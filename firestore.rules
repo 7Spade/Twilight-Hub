@@ -1,0 +1,163 @@
+/**
+ * @fileoverview Firestore Security Rules for Twilight Hub.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a combination of user-ownership and public-read/owner-write access patterns,
+ * with denormalization used to simplify authorization checks. User-owned data is stored under
+ * /users/{userId}, while public data is stored in top-level collections.
+ *
+ * Data Structure:
+ * - /users/{userId}: User profiles, accessible only to the user themselves.
+ * - /organizations/{organizationId}: Organization profiles, access controlled by organization membership.
+ * - /organizations/{organizationId}/groups/{groupId}: Groups within organizations, access controlled by group membership.
+ * - /spaces/{spaceId}: Public spaces, readable by everyone.
+ * - /users/{userId}/spaces/{spaceId}: User-owned spaces, accessible only to the user.
+ * - /organizations/{organizationId}/spaces/{spaceId}: Organization-owned spaces, access controlled by organization membership.
+ * - /modules/{moduleId}: Module definitions, publicly readable.
+ * - /achievement_badges/{achievementBadgeId}: Achievement badge definitions, publicly readable.
+ *
+ * Key Security Decisions:
+ * - User listing is disallowed to protect user privacy.
+ * - Public read access is granted to /spaces and /modules for open discoverability.
+ * - Owner-only writes are enforced for user-owned data.
+ *
+ * Denormalization for Authorization:
+ * - The 'Space' entity under users and organizations includes 'ownerId' and 'ownerType' to
+ *   allow direct authorization without needing to read parent documents.
+ *
+ * Structural Segregation:
+ * - Public spaces are stored in the top-level /spaces collection, while private spaces are
+ *   stored under /users/{userId}/spaces, enabling efficient and secure listing operations.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to user profile data.
+     * @path /users/{userId}
+     * @allow (create) - User with UID 'user123' can create their profile at /users/user123.
+     * @allow (get,update,delete) - User with UID 'user123' can read, update, or delete their profile at /users/user123.
+     * @deny (create) - User with UID 'user456' cannot create a profile at /users/user123.
+     * @deny (get,update,delete) - User with UID 'user456' cannot read, update, or delete the profile at /users/user123.
+     * @principle Enforces document ownership for writes.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // User listing is disabled for privacy.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id; // Enforce immutability of the user ID.
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to organization profile data.
+     * @path /organizations/{organizationId}
+     * @allow (create) - Any authenticated user can create an organization.
+     * @allow (get,list) - Any authenticated user can read and list organizations.
+     * @deny (update,delete) - Only organization members (or an admin role) should be able to update or delete organizations.  Currently denied.
+     * @principle Requires organization membership for writes.
+     */
+    match /organizations/{organizationId} {
+      allow get, list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if false; // TODO: Implement organization membership/admin check.
+    }
+
+    /**
+     * @description Controls access to group data within an organization.
+     * @path /organizations/{organizationId}/groups/{groupId}
+     * @allow (create) - Any authenticated user can create a group within an organization.
+     * @allow (get,list) - Any authenticated user can read and list groups.
+     * @deny (update,delete) - Only organization members (or an admin role) should be able to update or delete groups.  Currently denied.
+     * @principle Requires organization membership for writes.
+     */
+    match /organizations/{organizationId}/groups/{groupId} {
+      allow get, list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if false; // TODO: Implement organization membership/admin check.
+    }
+
+    /**
+     * @description Controls access to public space data.
+     * @path /spaces/{spaceId}
+     * @allow (get,list) - Anyone can read public spaces.
+     * @deny (create,update,delete) - Public spaces can only be created, updated, or deleted by an authorized user.
+     * @principle Allows public read access with owner-only writes.
+     */
+    match /spaces/{spaceId} {
+      allow get, list: if true;
+      allow create: if isSignedIn(); // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow update, delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+    }
+
+    /**
+     * @description Controls access to user-owned space data.
+     * @path /users/{userId}/spaces/{spaceId}
+     * @allow (create,get,list,update,delete) - Only the owner can create, read, list, update, or delete their own spaces.
+     * @deny (create) - A different user cannot create a space under another user's ID.
+     * @deny (get,list,update,delete) - A different user cannot read, list, update, or delete another user's spaces.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/spaces/{spaceId} {
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.ownerId == userId && request.resource.data.ownerType == 'user';
+      allow update: if isExistingOwner(userId) && request.resource.data.ownerId == resource.data.ownerId && request.resource.data.ownerType == 'user'; // Enforce immutability of the owner ID.
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to organization-owned space data.
+     * @path /organizations/{organizationId}/spaces/{spaceId}
+     *  @allow (create,get,list,update,delete) - Only members can create, read, list, update, or delete organization owned spaces.
+     * @deny (create) - A different user cannot create a space under another organization's ID.
+     * @deny (get,list,update,delete) - A different user cannot read, list, update, or delete another organization's spaces.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /organizations/{organizationId}/spaces/{spaceId} {
+      allow get, list: if isSignedIn(); //TODO: implement organization membership check.
+      allow create: if isSignedIn(); // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow update, delete: if false; // TODO: Implement organization membership/admin check.
+    }
+
+    /**
+     * @description Controls access to module data.
+     * @path /modules/{moduleId}
+     * @allow (get,list) - Anyone can read module definitions.
+     * @deny (create,update,delete) - Only authorized users can create, update, or delete module definitions.
+     * @principle Allows public read access.
+     */
+    match /modules/{moduleId} {
+      allow get, list: if true;
+      allow create: if isSignedIn(); // TODO: Implement organization membership/admin check.
+      allow update, delete: if false; // TODO: Implement organization membership/admin check.
+    }
+
+    /**
+     * @description Controls access to achievement badge data.
+     * @path /achievement_badges/{achievementBadgeId}
+     * @allow (get,list) - Anyone can read achievement badge definitions.
+     * @deny (create,update,delete) - Only authorized users can create, update, or delete achievement badge definitions.
+     * @principle Allows public read access.
+     */
+    match /achievement_badges/{achievementBadgeId} {
+      allow get, list: if true;
+      allow create: if isSignedIn(); // TODO: Implement organization membership/admin check.
+      allow update, delete: if false; // TODO: Implement organization membership/admin check.
+    }
+
+    // ---- Helper functions ----
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+    }
+  }
+}

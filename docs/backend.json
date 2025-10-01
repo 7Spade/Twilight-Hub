@@ -1,0 +1,394 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile within the application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity."
+        },
+        "username": {
+          "type": "string",
+          "description": "The user's chosen username.",
+          "format": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address.",
+          "format": "email"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "URL of the user's avatar image.",
+          "format": "uri"
+        },
+        "achievementBadgeIds": {
+          "type": "array",
+          "description": "References to AchievementBadge entities. (Relationship: UserProfile 1:N AchievementBadge)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "followingIds": {
+          "type": "array",
+          "description": "References to UserProfiles this user is following. (Relationship: UserProfile N:N UserProfile (Follows))",
+          "items": {
+            "type": "string"
+          }
+        },
+        "followerIds": {
+          "type": "array",
+          "description": "References to UserProfiles following this user. (Relationship: UserProfile N:N UserProfile (Follows))",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "name",
+        "email"
+      ]
+    },
+    "Organization": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Organization",
+      "type": "object",
+      "description": "Represents an organization within the application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Organization entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organization."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the organization."
+        },
+        "memberIds": {
+          "type": "array",
+          "description": "References to UserProfiles that are members of this organization. (Relationship: Organization N:N UserProfile)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "Group": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Group",
+      "type": "object",
+      "description": "Represents a group within an organization.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Group entity."
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "Reference to the Organization this group belongs to. (Relationship: Organization 1:N Group)"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the group."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the group."
+        },
+        "memberIds": {
+          "type": "array",
+          "description": "References to UserProfiles that are members of this group. (Relationship: Group N:N UserProfile)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "organizationId",
+        "name",
+        "description"
+      ]
+    },
+    "Space": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Space",
+      "type": "object",
+      "description": "Represents a space created by a user or organization.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Space entity."
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "Reference to the UserProfile or Organization that owns this space. (Relationship: UserProfile/Organization 1:N Space)"
+        },
+        "ownerType": {
+          "type": "string",
+          "description": "The type of the owner, either 'user' or 'organization'."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the space."
+        },
+        "isPublic": {
+          "type": "boolean",
+          "description": "Indicates whether the space is public or private."
+        },
+        "moduleIds": {
+          "type": "array",
+          "description": "References to Module entities added to the space. (Relationship: Space N:N Module)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "starredByUserIds": {
+          "type": "array",
+          "description": "References to UserProfiles that have starred this space. (Relationship: Space N:N UserProfile (Starred))",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "ownerType",
+        "name",
+        "isPublic"
+      ]
+    },
+    "Module": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Module",
+      "type": "object",
+      "description": "Represents a module that can be added to a space.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Module entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the module."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the module."
+        },
+        "spaceIds": {
+          "type": "array",
+          "description": "References to Space entities this module is added to. (Relationship: Module N:N Space)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "AchievementBadge": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AchievementBadge",
+      "type": "object",
+      "description": "Represents an achievement badge that a user can unlock.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the AchievementBadge entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the achievement badge."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the achievement badge."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the achievement badge image.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "imageUrl"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores user profiles. Path-based ownership ensures only the user (or admin) can read/write their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/organizations/{organizationId}",
+        "definition": {
+          "entityName": "Organization",
+          "schema": {
+            "$ref": "#/backend/entities/Organization"
+          },
+          "description": "Stores organization profiles. Includes `memberIds` array for managing organization membership. An admin role collection would be needed for admin privileges.",
+          "params": [
+            {
+              "name": "organizationId",
+              "description": "The unique identifier of the organization."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/organizations/{organizationId}/groups/{groupId}",
+        "definition": {
+          "entityName": "Group",
+          "schema": {
+            "$ref": "#/backend/entities/Group"
+          },
+          "description": "Stores groups within an organization. Includes `memberIds` array for managing group membership.",
+          "params": [
+            {
+              "name": "organizationId",
+              "description": "The unique identifier of the organization."
+            },
+            {
+              "name": "groupId",
+              "description": "The unique identifier of the group."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/spaces/{spaceId}",
+        "definition": {
+          "entityName": "Space",
+          "schema": {
+            "$ref": "#/backend/entities/Space"
+          },
+          "description": "Stores public spaces. Accessible to all users.",
+          "params": [
+            {
+              "name": "spaceId",
+              "description": "The unique identifier of the space."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/spaces/{spaceId}",
+        "definition": {
+          "entityName": "Space",
+          "schema": {
+            "$ref": "#/backend/entities/Space"
+          },
+          "description": "Stores spaces owned by a user. Includes denormalized 'ownerId' and 'ownerType' fields for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "spaceId",
+              "description": "The unique identifier of the space."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/organizations/{organizationId}/spaces/{spaceId}",
+        "definition": {
+          "entityName": "Space",
+          "schema": {
+            "$ref": "#/backend/entities/Space"
+          },
+          "description": "Stores spaces owned by an organization. Includes denormalized 'ownerId' and 'ownerType' fields for authorization independence.",
+          "params": [
+            {
+              "name": "organizationId",
+              "description": "The unique identifier of the organization."
+            },
+            {
+              "name": "spaceId",
+              "description": "The unique identifier of the space."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/modules/{moduleId}",
+        "definition": {
+          "entityName": "Module",
+          "schema": {
+            "$ref": "#/backend/entities/Module"
+          },
+          "description": "Stores module definitions. Accessible to all users.",
+          "params": [
+            {
+              "name": "moduleId",
+              "description": "The unique identifier of the module."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/achievement_badges/{achievementBadgeId}",
+        "definition": {
+          "entityName": "AchievementBadge",
+          "schema": {
+            "$ref": "#/backend/entities/AchievementBadge"
+          },
+          "description": "Stores achievement badge definitions.  Accessible to all users.",
+          "params": [
+            {
+              "name": "achievementBadgeId",
+              "description": "The unique identifier of the achievement badge."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to support the Twilight Hub application's user profiles, organizations, groups, spaces, and modules while adhering to the core design principles of Authorization Independence, Clarity of Intent, DBAC, QAPs, and Invariants. The structure emphasizes denormalization to avoid hierarchical authorization dependencies, enabling secure and atomic operations. It also leverages structural segregation for homogeneous security postures, making rules simpler and more manageable.\n\nAuthorization Independence is achieved primarily through denormalization. For example, the `spaces` subcollection under users or organizations includes denormalized `ownerId` and `ownerType` to determine ownership directly without needing to read the parent document. Similarly, if spaces were to have collaborative access, a `members` map could be denormalized into the space document itself.\n\nThe structure also takes into account QAPs. By segregating public and private spaces (using the `/spaces` collection for public spaces and `/users/{userId}/spaces` or `/organizations/{organizationId}/spaces` for private or organization-owned spaces), we ensure that listing operations can be secured effectively. Furthermore, membership maps within organization and group documents allow for easy role-based access control and secure listing of members."
+  }
+}
