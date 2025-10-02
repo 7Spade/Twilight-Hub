@@ -6,23 +6,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { doc, updateDoc } from 'firebase/firestore';
 
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  Form
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { useFirestore, useUser, useDoc } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { updateProfile } from 'firebase/auth';
 import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
+import { FormCard } from '@/components/forms/form-card';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -102,37 +91,26 @@ export default function SettingsPage() {
         title="Settings"
         description="Manage your account and personal information."
     >
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-          <CardDescription>Update your public profile details.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <p>Loading your profile...</p>
-          ) : (
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormInput
-                    control={form.control}
-                    name="name"
-                    label="Full Name"
-                    placeholder="Your full name"
-                />
-                <FormInput
-                    control={form.control}
-                    name="username"
-                    label="Username"
-                    placeholder="Your username"
-                />
-                <Button type="submit" disabled={form.formState.isSubmitting}>
-                  {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
-                </Button>
-              </form>
-            </Form>
-          )}
-        </CardContent>
-      </Card>
+      <FormCard
+        title="Personal Information"
+        description="Update your public profile details."
+        isLoading={isLoading}
+        form={form}
+        onSubmit={onSubmit}
+      >
+        <FormInput
+            control={form.control}
+            name="name"
+            label="Full Name"
+            placeholder="Your full name"
+        />
+        <FormInput
+            control={form.control}
+            name="username"
+            label="Username"
+            placeholder="Your username"
+        />
+      </FormCard>
     </PageContainer>
   );
 }

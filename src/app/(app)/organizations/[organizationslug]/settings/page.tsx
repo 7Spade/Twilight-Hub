@@ -7,17 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { doc, updateDoc, query, where, collection, getDocs, limit } from 'firebase/firestore';
 
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  Form,
-} from '@/components/ui/form';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -28,102 +17,86 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { Skeleton } from '@/components/ui/skeleton';
 import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormSwitch } from '@/components/forms/form-switch';
+import { FormCard } from '@/components/forms/form-card';
 
-const spaceSettingsSchema = z.object({
-  name: z.string().min(1, 'Space name is required'),
+const orgSettingsSchema = z.object({
+  name: z.string().min(1, 'Organization name is required'),
   description: z.string().min(1, 'Description is required'),
-  isPublic: z.boolean().default(false),
 });
 
-type SpaceSettingsFormValues = z.infer<typeof spaceSettingsSchema>;
+type OrgSettingsFormValues = z.infer<typeof orgSettingsSchema>;
 
-export default function OrgSpaceSettingsPage({
+export default function OrgSettingsPage({
   params: paramsPromise,
 }: {
-  params: Promise<{ organizationslug: string, spaceslug: string }>;
+  params: Promise<{ organizationslug: string }>;
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { toast } = useToast();
-  const [space, setSpace] = useState<any>(null);
   const [org, setOrg] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
  useEffect(() => {
-    const fetchSpaceAndOrg = async () => {
-        if (!firestore || !params.spaceslug || !params.organizationslug) return;
+    const fetchOrg = async () => {
+        if (!firestore || !params.organizationslug) return;
         setIsLoading(true);
 
         const orgsRef = collection(firestore, 'organizations');
         const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
         const orgSnapshot = await getDocs(orgQuery);
-        let currentOrg = null;
+
         if (!orgSnapshot.empty) {
-            currentOrg = { id: orgSnapshot.docs[0].id, ...orgSnapshot.docs[0].data() };
-            setOrg(currentOrg);
+            const orgDoc = orgSnapshot.docs[0];
+            setOrg({ id: orgDoc.id, ...orgDoc.data() });
         } else {
-             setIsLoading(false);
-             return;
-        }
-
-        const spacesRef = collection(firestore, 'spaces');
-        const q = query(spacesRef, where('slug', '==', params.spaceslug), where('ownerId', '==', currentOrg.id), limit(1));
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty) {
-            const spaceDoc = querySnapshot.docs[0];
-            setSpace({ id: spaceDoc.id, ...spaceDoc.data() });
-        } else {
-            setSpace(null);
+            setOrg(null);
         }
         setIsLoading(false);
     }
-    fetchSpaceAndOrg();
-  }, [firestore, params.spaceslug, params.organizationslug]);
+    fetchOrg();
+  }, [firestore, params.organizationslug]);
 
-  const spaceDocRef = useMemo(
-    () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
-    [firestore, space]
+  const orgDocRef = useMemo(
+    () => (firestore && org ? doc(firestore, 'organizations', org.id) : null),
+    [firestore, org]
   );
 
-  const form = useForm<SpaceSettingsFormValues>({
-    resolver: zodResolver(spaceSettingsSchema),
+  const form = useForm<OrgSettingsFormValues>({
+    resolver: zodResolver(orgSettingsSchema),
     defaultValues: {
       name: '',
       description: '',
-      isPublic: false,
     },
   });
 
   useEffect(() => {
-    if (space) {
+    if (org) {
       form.reset({
-        name: space.name || '',
-        description: space.description || '',
-        isPublic: space.isPublic || false,
+        name: org.name || '',
+        description: org.description || '',
       });
     }
-  }, [space, form]);
+  }, [org, form]);
 
-  const onSubmit = async (data: SpaceSettingsFormValues) => {
-    if (!spaceDocRef) return;
+  const onSubmit = async (data: OrgSettingsFormValues) => {
+    if (!orgDocRef) return;
     try {
-      await updateDoc(spaceDocRef, data);
+      await updateDoc(orgDocRef, data);
       toast({
         title: 'Success!',
-        description: 'Space settings have been updated.',
+        description: 'Organization settings have been updated.',
       });
     } catch (error) {
-      console.error('Error updating space:', error);
+      console.error('Error updating organization:', error);
       toast({
         variant: 'destructive',
         title: 'Update Failed',
-        description: 'Could not update space settings.',
+        description: 'Could not update organization settings.',
       });
     }
   };
@@ -151,62 +124,35 @@ export default function OrgSpaceSettingsPage({
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-             <BreadcrumbLink asChild>
-                <Link href={`/organizations/${params.organizationslug}/${params.spaceslug}`}>{isLoading ? '...' : space?.name}</Link>
-             </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
             <BreadcrumbPage>Settings</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       
       <PageContainer
-        title="Space Settings"
-        description={`Manage settings for ${isLoading ? '...' : `"${space?.name}"`}.`}
+        title="Organization Settings"
+        description={`Manage settings for ${isLoading ? '...' : `"${org?.name}"`}.`}
       >
-        <Card>
-          <CardHeader>
-            <CardTitle>General Settings</CardTitle>
-            <CardDescription>Update your space's name, description, and visibility.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-               <div className="space-y-8">
-                  <Skeleton className="h-10 w-1/2" />
-                  <Skeleton className="h-20 w-full" />
-                  <Skeleton className="h-10 w-1/4" />
-              </div>
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                  <FormInput
-                    control={form.control}
-                    name="name"
-                    label="Space Name"
-                    placeholder="Project Phoenix"
-                  />
-                  <FormTextarea
-                    control={form.control}
-                    name="description"
-                    label="Description"
-                    placeholder="A short description of the space's purpose."
-                  />
-                  <FormSwitch
-                    control={form.control}
-                    name="isPublic"
-                    label="Public Space"
-                    description="If enabled, anyone can discover and view this space."
-                  />
-                  <Button type="submit" disabled={form.formState.isSubmitting}>
-                    {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
-                  </Button>
-                </form>
-              </Form>
-            )}
-          </CardContent>
-        </Card>
+        <FormCard
+          title="General Settings"
+          description="Update your organization's name and description."
+          isLoading={isLoading}
+          form={form}
+          onSubmit={onSubmit}
+        >
+            <FormInput
+                control={form.control}
+                name="name"
+                label="Organization Name"
+                placeholder="Your organization's name"
+            />
+            <FormTextarea
+                control={form.control}
+                name="description"
+                label="Description"
+                placeholder="A short description of your organization."
+            />
+        </FormCard>
       </PageContainer>
     </div>
   );

@@ -52,13 +52,11 @@ import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import {
-  Form,
-} from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { useSearchParams } from 'next/navigation';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
+import { FormCard } from '@/components/forms/form-card';
 
 function MemberRow({ userId }: { userId: string }) {
     const firestore = useFirestore();
@@ -196,25 +194,26 @@ function OrganizationSettings({ organization }: { organization: any }) {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormInput
-            control={form.control}
-            name="name"
-            label="Organization Name"
-            placeholder="Your organization's name"
-        />
-        <FormTextarea
-            control={form.control}
-            name="description"
-            label="Description"
-            placeholder="A short description of your organization."
-        />
-        <Button type="submit" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
-        </Button>
-      </form>
-    </Form>
+    <FormCard
+      title="Organization Settings"
+      description="Update your organization's details."
+      isLoading={!organization}
+      form={form}
+      onSubmit={onSubmit}
+    >
+      <FormInput
+          control={form.control}
+          name="name"
+          label="Organization Name"
+          placeholder="Your organization's name"
+      />
+      <FormTextarea
+          control={form.control}
+          name="description"
+          label="Description"
+          placeholder="A short description of your organization."
+      />
+    </FormCard>
   );
 }
 
@@ -407,15 +406,7 @@ export default function OrganizationDetailsPage({
           </Card>
         </TabsContent>
         <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Organization Settings</CardTitle>
-              <CardDescription>Update your organization's details.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <OrganizationSettings organization={org} />
-            </CardContent>
-          </Card>
+          <OrganizationSettings organization={org} />
         </TabsContent>
       </Tabs>
     </div>
