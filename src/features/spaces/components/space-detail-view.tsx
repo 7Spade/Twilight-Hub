@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -26,8 +25,9 @@ import {
   documentId,
   updateDoc,
   arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange, FileStack, DollarSign, CheckCircle2 } from 'lucide-react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange, FileStack, DollarSign, CheckCircle2, Star } from 'lucide-react';
 import React, { useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FilesModule } from '@/features/marketplace/components/files-module';
@@ -47,6 +47,9 @@ import { CostModule } from '@/features/marketplace/components/cost-module';
 import { PunchListModule } from '@/features/marketplace/components/punch-list-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
+import { SpaceSettingsView, type SpaceSettingsFormValues } from './space-settings-view';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 const iconMap: { [key: string]: React.ElementType } = {
   'file-storage': File,
@@ -108,7 +111,6 @@ interface SpaceDetailViewProps {
   owner: Account | null;
   authUser: User | null;
   breadcrumbs: React.ReactNode;
-  basePath: string;
 }
 
 export function SpaceDetailView({
@@ -117,9 +119,9 @@ export function SpaceDetailView({
   owner,
   authUser,
   breadcrumbs,
-  basePath
 }: SpaceDetailViewProps) {
   const firestore = useFirestore();
+  const { toast } = useToast();
 
   const spaceDocRef = useMemo(
     () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
@@ -174,6 +176,24 @@ export function SpaceDetailView({
     });
   };
 
+  const handleSettingsSubmit = async (data: SpaceSettingsFormValues) => {
+    if (!spaceDocRef) return;
+    try {
+      await updateDoc(spaceDocRef, data);
+      toast({
+        title: 'Success!',
+        description: 'Space settings have been updated.',
+      });
+    } catch (error) {
+      console.error('Error updating space:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Update Failed',
+        description: 'Could not update space settings.',
+      });
+    }
+  };
+
   const isLoading =
     isPageLoading ||
     profileLoading ||
@@ -188,84 +208,91 @@ export function SpaceDetailView({
     return <div>Space or Owner not found.</div>;
   }
 
+  const isStarred = authUser?.uid ? space.starredByUserIds?.includes(authUser.uid) : false;
+
+  const handleStarClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!firestore || !authUser?.uid) return;
+    const spaceRef = doc(firestore, 'spaces', space.id);
+    await updateDoc(spaceRef, {
+      starredByUserIds: isStarred ? arrayRemove(authUser.uid) : arrayUnion(authUser.uid),
+    });
+  };
+
+  const isOwner = authUser?.uid === owner.id;
+
   return (
     <div className="flex flex-col gap-8">
       {breadcrumbs}
 
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{space.name}</h1>
-          <p className="text-muted-foreground">{space.description}</p>
+        <div className="flex items-center gap-4">
+            <h1 className="text-3xl font-bold tracking-tight">{space.name}</h1>
+             <Badge variant={space.isPublic ? 'secondary' : 'outline'}>
+                {space.isPublic ? (
+                    <Globe className="mr-1 h-3 w-3" />
+                ) : (
+                    <Lock className="mr-1 h-3 w-3" />
+                )}
+                {space.isPublic ? 'Public' : 'Private'}
+            </Badge>
         </div>
-        <Badge variant={space.isPublic ? 'secondary' : 'outline'}>
-          {space.isPublic ? (
-            <Globe className="mr-1 h-3 w-3" />
-          ) : (
-            <Lock className="mr-1 h-3 w-3" />
-          )}
-          {space.isPublic ? 'Public' : 'Private'}
-        </Badge>
+        <div className="flex items-center gap-2">
+           {authUser && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleStarClick}
+                className={cn(
+                  isStarred
+                    ? 'text-yellow-400 hover:text-yellow-500'
+                    : 'text-muted-foreground hover:text-yellow-400'
+                )}
+              >
+                <Star className={cn(isStarred && 'fill-current')} />
+              </Button>
+            )}
+        </div>
       </div>
+       <p className="text-muted-foreground -mt-4">{space.description}</p>
 
-      <div className="space-y-8">
-        {hasModule('files-module') && <FilesModule spaceId={space.id} />}
-        {hasModule('issues-module') && <IssuesModule />}
-        {hasModule('meetings-module') && <MeetingsModule />}
-        {hasModule('forms-module') && <FormsModule />}
-        {hasModule('rfi-module') && <RfiModule />}
-        {hasModule('photos-module') && <PhotosModule />}
-        {hasModule('reports-module') && <ReportsModule />}
-        {hasModule('ai-assistant-module') && <AiAssistantModule />}
-        {hasModule('submittals-module') && <SubmittalsModule />}
-        {hasModule('assets-module') && <AssetsModule />}
-        {hasModule('changes-module') && <ChangesModule />}
-        {hasModule('schedule-module') && <ScheduleModule />}
-        {hasModule('sheets-module') && <SheetsModule />}
-        {hasModule('cost-module') && <CostModule />}
-        {hasModule('punch-list-module') && <PunchListModule />}
-      </div>
-
-      <Tabs defaultValue="installed">
+      <Tabs defaultValue="overview">
         <TabsList>
-          <TabsTrigger value="installed">Installed Modules</TabsTrigger>
-          <TabsTrigger value="add">Add Modules</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="modules">Add Modules</TabsTrigger>
+          {isOwner && <TabsTrigger value="settings">Settings</TabsTrigger>}
         </TabsList>
 
-        <TabsContent value="installed" className="mt-6">
-          <h3 className="text-lg font-medium mb-4">Equipped Modules</h3>
-          {isLoading && <p>Loading installed modules...</p>}
-          {!isLoading && installedModules.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {installedModules.map((mod) => {
-                const Icon = iconMap[mod.icon || 'default'] || iconMap.default;
-                return (
-                  <Card key={mod.id}>
-                    <CardHeader className="flex-row items-center gap-4 space-y-0">
-                      <div className="p-3 bg-muted rounded-lg">
-                        <Icon className="h-6 w-6 text-muted-foreground" />
-                      </div>
-                      <CardTitle>{mod.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">
-                        {mod.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+        <TabsContent value="overview" className="mt-6">
+            <h3 className="text-lg font-medium mb-4">Installed Modules</h3>
+            {isLoading && <p>Loading installed modules...</p>}
+
+            <div className="space-y-8">
+                {hasModule('files-module') && <FilesModule spaceId={space.id} />}
+                {hasModule('issues-module') && <IssuesModule />}
+                {hasModule('meetings-module') && <MeetingsModule />}
+                {hasModule('forms-module') && <FormsModule />}
+                {hasModule('rfi-module') && <RfiModule />}
+                {hasModule('photos-module') && <PhotosModule />}
+                {hasModule('reports-module') && <ReportsModule />}
+                {hasModule('ai-assistant-module') && <AiAssistantModule />}
+                {hasModule('submittals-module') && <SubmittalsModule />}
+                {hasModule('assets-module') && <AssetsModule />}
+                {hasModule('changes-module') && <ChangesModule />}
+                {hasModule('schedule-module') && <ScheduleModule />}
+                {hasModule('sheets-module') && <SheetsModule />}
+                {hasModule('cost-module') && <CostModule />}
+                {hasModule('punch-list-module') && <PunchListModule />}
             </div>
-          ) : (
-            !isLoading && (
-              <p className="text-muted-foreground mt-4">
-                No modules equipped in this space yet.
-              </p>
-            )
-          )}
+
+            {!isLoading && installedModules.length === 0 && (
+                 <p className="text-muted-foreground mt-4">
+                    No modules installed in this space yet.
+                </p>
+            )}
         </TabsContent>
 
-        <TabsContent value="add" className="mt-6">
+        <TabsContent value="modules" className="mt-6">
           <h3 className="text-lg font-medium mb-4">
             Available from Your Backpack
           </h3>
@@ -284,35 +311,21 @@ export function SpaceDetailView({
           ) : (
             !isLoading && (
               <p className="text-muted-foreground mt-4">
-                All modules from your backpack are already equipped in this
+                All modules from your backpack are already installed in this
                 space, or your backpack is empty.
               </p>
             )
           )}
         </TabsContent>
-        <TabsContent value="settings" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Space Settings</CardTitle>
-              <CardDescription>
-                Manage your space's details and configuration.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                To manage this space, go to the settings page.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href={`${basePath}/settings`}>
-                <Button variant="outline">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Go to Settings
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </TabsContent>
+        {isOwner && (
+            <TabsContent value="settings" className="mt-6">
+                <SpaceSettingsView 
+                    space={space}
+                    isLoading={isLoading}
+                    onFormSubmit={handleSettingsSubmit}
+                />
+            </TabsContent>
+        )}
       </Tabs>
     </div>
   );

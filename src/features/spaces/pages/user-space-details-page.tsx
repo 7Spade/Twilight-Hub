@@ -101,7 +101,6 @@ export function UserSpaceDetailsPage({
       owner={owner}
       authUser={authUser}
       breadcrumbs={breadcrumbs}
-      basePath={`/${params.userslug}/${params.spaceslug}`}
     />
   );
 }

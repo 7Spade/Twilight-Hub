@@ -95,6 +95,14 @@ export function OrgSpaceDetailsPage({
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
+         <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link href={`/organizations/${org?.slug}/spaces`}>
+              Spaces
+            </Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>{space?.name || '...'}</BreadcrumbPage>
         </BreadcrumbItem>
@@ -109,7 +117,6 @@ export function OrgSpaceDetailsPage({
       owner={org}
       authUser={authUser}
       breadcrumbs={breadcrumbs}
-      basePath={`/organizations/${params.organizationslug}/${params.spaceslug}`}
     />
   );
 }
