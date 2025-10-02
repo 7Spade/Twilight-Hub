@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
 import { useDialogStore } from '@/hooks/use-dialog-store';
 import { PageContainer } from '@/components/layout/page-container';
-import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { SpaceListView } from '@/features/spaces/components/spaces-list-view';
 import { type Account, type Space } from '@/lib/types';
 
 export default function UnifiedSpacesPage() {
@@ -95,7 +95,7 @@ export default function UnifiedSpacesPage() {
         </Button>
       </div>
 
-      <SpacesView
+      <SpaceListView
         userId={user?.uid}
         owners={ownersMap}
         isLoading={isLoading}

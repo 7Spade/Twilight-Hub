@@ -9,8 +9,8 @@ import { PageContainer } from '@/components/layout/page-container';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FollowerList } from '@/components/follower-list';
 import { MembershipList } from '@/components/membership-list';
-import { SpacesView } from '@/features/spaces/components/spaces-view';
-import { StarredSpacesView } from '@/features/spaces/components/starred-spaces-view';
+import { SpaceListView } from '@/features/spaces/components/spaces-list-view';
+import { SpaceStarredView } from '@/features/spaces/components/spaces-starred-view';
 import { FollowingList } from '@/components/following-list';
 import { AchievementsList } from '@/components/achievements-list';
 import { type Account, type Space } from '@/lib/types';
@@ -151,7 +151,7 @@ export function UserProfilePage({ userslug }: { userslug: string }) {
               <TabsTrigger value="memberships">Memberships</TabsTrigger>
             </TabsList>
             <TabsContent value="spaces" className="mt-6">
-              <SpacesView
+              <SpaceListView
                 userId={currentUser?.uid}
                 owners={ownersMap}
                 isLoading={spacesLoading}
@@ -160,7 +160,7 @@ export function UserProfilePage({ userslug }: { userslug: string }) {
               />
             </TabsContent>
             <TabsContent value="stars" className="mt-6">
-              <StarredSpacesView userId={userProfile.id} />
+              <SpaceStarredView userId={userProfile.id} />
             </TabsContent>
             <TabsContent value="followers" className="mt-6">
               <FollowerList userId={userProfile.id} />

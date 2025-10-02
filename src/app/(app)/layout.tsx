@@ -10,7 +10,7 @@ import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { collection, query, where, doc } from 'firebase/firestore';
 import { useDoc } from '@/firebase/firestore/use-doc';
-import { CreateSpaceDialog } from '@/features/spaces/components/create-space-dialog';
+import { SpaceCreateDialog } from '@/features/spaces/components/spaces-create-dialog';
 import { CreateOrganizationDialog } from '@/components/create-organization-dialog';
 import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { ChatDialog } from '@/components/chat-dialog';
@@ -159,7 +159,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <CreateSpaceDialog selectedTeam={selectedTeam} />
+      <SpaceCreateDialog selectedTeam={selectedTeam} />
       <CreateOrganizationDialog />
       {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
       {currentOrgId && <InviteMemberDialog organizationId={currentOrgId} />}

@@ -3,20 +3,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { FormCard } from '@/components/forms/form-card';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormSwitch } from '@/components/forms/form-switch';
 import { type Space } from '@/lib/types';
+import { spaceBaseSchema, type SpaceBaseFormValues } from '@/features/spaces/spaces-schemas';
 
-const spaceSettingsSchema = z.object({
-  name: z.string().min(1, 'Space name is required'),
-  description: z.string().min(1, 'Description is required'),
-  isPublic: z.boolean().default(false),
-});
-
-export type SpaceSettingsFormValues = z.infer<typeof spaceSettingsSchema>;
+export type SpaceSettingsFormValues = SpaceBaseFormValues;
 
 interface SpaceSettingsViewProps {
   space: Space | null;
@@ -32,7 +26,7 @@ export function SpaceSettingsView({
   breadcrumbs,
 }: SpaceSettingsViewProps) {
   const form = useForm<SpaceSettingsFormValues>({
-    resolver: zodResolver(spaceSettingsSchema),
+    resolver: zodResolver(spaceBaseSchema),
     defaultValues: {
       name: '',
       description: '',

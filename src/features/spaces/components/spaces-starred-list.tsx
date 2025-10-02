@@ -11,7 +11,7 @@ import React, { useMemo } from 'react';
 import { collection, query, where, documentId } from 'firebase/firestore';
 
 import { useFirestore, useCollection } from '@/firebase';
-import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { SpaceListView } from '@/features/spaces/components/spaces-list-view';
 import { type Account } from '@/lib/types';
 
 export function StarredSpaces({ userId }: { userId: string }) {
@@ -54,7 +54,7 @@ export function StarredSpaces({ userId }: { userId: string }) {
   const pageIsLoading = isLoading || ownersLoading;
 
   return (
-    <SpacesView
+    <SpaceListView
       userId={userId}
       owners={ownersMap}
       isLoading={pageIsLoading}

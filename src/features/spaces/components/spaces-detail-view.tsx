@@ -4,15 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useFirestore } from '@/firebase';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { Globe, Lock, Star } from 'lucide-react';
+import { Globe, Lock } from 'lucide-react';
 import React, { useMemo } from 'react';
-import { Badge } from '@/components/ui/badge';
+import { SpaceVisibilityBadge } from '@/features/spaces/components/spaces-visibility-badge';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import { User } from 'firebase/auth';
 import { type Account, type Space } from '@/lib/types';
-import { SpaceSettingsView, type SpaceSettingsFormValues } from './space-settings-view';
+import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settings-view';
 import { cn } from '@/lib/utils';
+import { SpaceStarButton } from '@/features/spaces/components/spaces-star-button';
 import { useToast } from '@/hooks/use-toast';
 
 interface SpaceDetailViewProps {
@@ -94,7 +95,7 @@ export function SpaceDetailView({
     );
   }
 
-  const isStarred = authUser?.uid ? space.starredByUserIds?.includes(authUser.uid) : false;
+  const isStarred = !!(authUser?.uid && space.starredByUserIds?.includes(authUser.uid));
 
   const handleStarClick = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -116,38 +117,11 @@ export function SpaceDetailView({
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
             {space.name}
           </h1>
-          <Badge 
-            variant={space.isPublic ? 'secondary' : 'outline'}
-            className={cn(
-              'transition-colors duration-200',
-              space.isPublic 
-                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            )}
-          >
-            {space.isPublic ? (
-              <Globe className="mr-1 h-3 w-3" />
-            ) : (
-              <Lock className="mr-1 h-3 w-3" />
-            )}
-            {space.isPublic ? 'Public' : 'Private'}
-          </Badge>
+          <SpaceVisibilityBadge isPublic={space.isPublic} />
         </div>
         <div className="flex items-center gap-2">
           {authUser && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleStarClick}
-              className={cn(
-                'transition-all duration-200',
-                isStarred
-                  ? 'text-yellow-500 hover:text-yellow-600 scale-110'
-                  : 'text-muted-foreground hover:text-yellow-500 hover:scale-110'
-              )}
-            >
-              <Star className={cn('h-5 w-5', isStarred && 'fill-current')} />
-            </Button>
+            <SpaceStarButton spaceId={space.id} userId={authUser.uid} isStarred={isStarred} />
           )}
         </div>
       </div>

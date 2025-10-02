@@ -2,7 +2,6 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
 
 import { useFirestore } from '@/firebase';
@@ -30,25 +29,20 @@ import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { spaceBaseSchema, type SpaceBaseFormValues } from '@/features/spaces/spaces-schemas';
 
-const createSpaceSchema = z.object({
-  name: z.string().min(1, { message: 'Space name is required' }),
-  description: z.string().min(1, { message: 'Description is required' }),
-  isPublic: z.boolean().default(false),
-});
-
-type CreateSpaceFormValues = z.infer<typeof createSpaceSchema>;
+type CreateSpaceFormValues = SpaceBaseFormValues;
 
 const generateSlug = (name: string) => {
   return name
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // remove non-alphanumeric characters except spaces and hyphens
+    .replace(/[^a-z0-9\s-]/g, '')
     .trim()
-    .replace(/\s+/g, '-') // replace spaces with hyphens
-    .replace(/-+/g, '-'); // replace multiple hyphens with a single one
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 };
 
-export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null }) {
+export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null }) {
   const firestore = useFirestore();
   const { type, isOpen, close } = useDialogStore();
   const { toast } = useToast();
@@ -56,7 +50,7 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
   const isDialogVisible = isOpen && type === 'createSpace';
 
   const form = useForm<CreateSpaceFormValues>({
-    resolver: zodResolver(createSpaceSchema),
+    resolver: zodResolver(spaceBaseSchema),
     defaultValues: { name: '', description: '', isPublic: false },
   });
 
@@ -186,3 +180,5 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
     </Dialog>
   );
 }
+
+
