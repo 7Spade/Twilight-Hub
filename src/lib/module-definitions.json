@@ -1,0 +1,18 @@
+{
+  "modules": [
+    {
+      "id": "file-storage-module",
+      "name": "File Storage",
+      "description": "Upload and manage files for this space.",
+      "icon": "file-storage",
+      "type": "common"
+    },
+    {
+      "id": "issues-tracking-module",
+      "name": "Issues Tracking",
+      "description": "Track tasks, bugs, and other issues right here within your spaces.",
+      "icon": "clipboard-list",
+      "type": "common"
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import {
   Search,
   File,
   Backpack,
+  ClipboardList,
 } from 'lucide-react';
 import {
   useUser,
@@ -22,7 +23,7 @@ import {
   useCollection,
   useDoc,
 } from '@/firebase';
-import { collection, doc, updateDoc, getDoc, setDoc, increment, query, where, documentId } from 'firebase/firestore';
+import { collection, doc, updateDoc, getDoc, setDoc, increment, query, where, documentId, writeBatch } from 'firebase/firestore';
 import { useMemo, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -35,10 +36,12 @@ import { Badge } from '@/components/ui/badge';
 import { PageContainer } from '@/components/layout/page-container';
 import { useDialogStore } from '@/hooks/use-dialog-store';
 import { type Module, type Account } from '@/lib/types';
+import moduleDefinitions from '@/lib/module-definitions.json';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
   'file-storage': File,
+  'clipboard-list': ClipboardList,
 };
 
 type ModuleInventory = Account['moduleInventory'];
@@ -55,25 +58,35 @@ function MarketplaceTabContent() {
   const { data: modulesData, isLoading: modulesLoading } = useCollection<Module>(modulesQuery);
   const modules = modulesData || [];
 
+  // Ensure all defined modules exist in Firestore
   useEffect(() => {
     if (!firestore) return;
 
-    const fileModuleId = 'file-storage-module';
-    const moduleRef = doc(firestore, 'modules', fileModuleId);
+    const syncModules = async () => {
+        const batch = writeBatch(firestore);
+        let hasWrites = false;
 
-    const checkAndCreateModule = async () => {
-      const docSnap = await getDoc(moduleRef);
-      if (!docSnap.exists()) {
-        await setDoc(moduleRef, {
-          name: 'File Storage',
-          description: 'Upload and manage files for this space.',
-          icon: 'file-storage',
-          type: 'common',
-        });
-      }
-    };
-
-    checkAndCreateModule();
+        for (const moduleDef of moduleDefinitions.modules) {
+            const moduleRef = doc(firestore, 'modules', moduleDef.id);
+            const docSnap = await getDoc(moduleRef);
+            if (!docSnap.exists()) {
+                batch.set(moduleRef, {
+                    name: moduleDef.name,
+                    description: moduleDef.description,
+                    icon: moduleDef.icon,
+                    type: moduleDef.type,
+                });
+                hasWrites = true;
+            }
+        }
+        if (hasWrites) {
+            await batch.commit();
+            // Optionally, force a refetch or simply rely on the hook to update
+            console.log("Synchronized modules with Firestore.");
+        }
+    }
+    
+    syncModules();
   }, [firestore]);
 
 

@@ -27,17 +27,18 @@ import {
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings } from 'lucide-react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FileStorageModule } from '@/features/marketplace/components/file-storage-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
-import { IssuesPlaceholder } from '@/features/marketplace/components/issues-placeholder';
+import { IssuesModule } from '@/features/marketplace/components/issues-module';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
   'file-storage': File,
+  'clipboard-list': ClipboardList,
 };
 
 function ModuleCard({
@@ -92,7 +93,6 @@ export function SpaceDetailView({
   basePath
 }: SpaceDetailViewProps) {
   const firestore = useFirestore();
-  const [hasFileModule, setHasFileModule] = useState(false);
 
   const spaceDocRef = useMemo(
     () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
@@ -117,10 +117,10 @@ export function SpaceDetailView({
   const { data: installedModulesData, isLoading: installedModulesLoading } =
     useCollection<Module>(installedModulesQuery);
   const installedModules = installedModulesData || [];
+  
+  const hasFileModule = useMemo(() => installedModuleIds.includes('file-storage-module'), [installedModuleIds]);
+  const hasIssuesModule = useMemo(() => installedModuleIds.includes('issues-tracking-module'), [installedModuleIds]);
 
-  useEffect(() => {
-    setHasFileModule(installedModuleIds.includes('file-storage-module'));
-  }, [installedModuleIds]);
 
   const userInventoryIds = useMemo(
     () => (userProfile?.moduleInventory ? Object.keys(userProfile.moduleInventory) : []),
@@ -184,7 +184,7 @@ export function SpaceDetailView({
 
       <div className="space-y-8">
         {hasFileModule && <FileStorageModule spaceId={space.id} />}
-        <IssuesPlaceholder />
+        {hasIssuesModule && <IssuesModule />}
       </div>
 
       <Tabs defaultValue="installed">
