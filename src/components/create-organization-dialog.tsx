@@ -3,7 +3,16 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { collection, serverTimestamp, doc, writeBatch } from 'firebase/firestore';
+import {
+  collection,
+  serverTimestamp,
+  doc,
+  writeBatch,
+  query,
+  where,
+  getDocs,
+  limit,
+} from 'firebase/firestore';
 
 import { useFirestore, useUser } from '@/firebase';
 import { useDialogStore } from '@/hooks/use-dialog-store';
@@ -68,12 +77,32 @@ export function CreateOrganizationDialog() {
       return;
     }
 
+    const orgSlug = generateSlug(values.name);
+    const accountsRef = collection(firestore, 'accounts');
+
+    // Check if an organization with the same slug already exists
+    const q = query(
+      accountsRef,
+      where('slug', '==', orgSlug),
+      where('type', '==', 'organization'),
+      limit(1)
+    );
+    const existingOrgSnapshot = await getDocs(q);
+
+    if (!existingOrgSnapshot.empty) {
+      toast({
+        variant: 'destructive',
+        title: 'Organization Name Taken',
+        description:
+          'An organization with this name already exists. Please choose a different name.',
+      });
+      return;
+    }
+
     try {
       const batch = writeBatch(firestore);
-      const accountsRef = collection(firestore, 'accounts');
       const newOrgRef = doc(accountsRef); // Create a reference with a new ID
 
-      const orgSlug = generateSlug(values.name);
       const newOrg = {
         ...values,
         id: newOrgRef.id,
@@ -86,7 +115,9 @@ export function CreateOrganizationDialog() {
       };
       batch.set(newOrgRef, newOrg);
 
-      const auditLogRef = doc(collection(firestore, `accounts/${newOrgRef.id}/audit_logs`));
+      const auditLogRef = doc(
+        collection(firestore, `accounts/${newOrgRef.id}/audit_logs`)
+      );
       const auditLog = {
         organizationId: newOrgRef.id,
         userId: user.uid,
@@ -112,7 +143,6 @@ export function CreateOrganizationDialog() {
 
       // Force a reload to the new organization's page to ensure all states are updated correctly.
       window.location.href = `/organizations/${orgSlug}`;
-
     } catch (error) {
       console.error('Error creating organization:', error);
       toast({
@@ -173,7 +203,9 @@ export function CreateOrganizationDialog() {
                 Cancel
               </Button>
               <Button type="submit" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? 'Creating...' : 'Create Organization'}
+                {form.formState.isSubmitting
+                  ? 'Creating...'
+                  : 'Create Organization'}
               </Button>
             </DialogFooter>
           </form>
