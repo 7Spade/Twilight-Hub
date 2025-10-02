@@ -8,21 +8,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  LayoutDashboard,
-  Store,
-  Users2,
-  Settings,
-  Grid3x3,
-  MessageSquare,
-  Bell,
-  Package,
-} from "lucide-react";
-import React, { useMemo } from "react";
-import { type Team } from "@/app/(app)/layout";
+import React from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Logo } from "../logo";
+
+export type NavItem = {
+    href: string;
+    icon: React.ElementType;
+    label: string;
+};
 
 const NavLink = ({
     href,
@@ -36,7 +30,12 @@ const NavLink = ({
     isCollapsed: boolean;
 }) => {
     const pathname = usePathname();
-    const isActive = pathname === href || (href !== '/dashboard' && pathname.startsWith(href));
+    // More robust active check:
+    // 1. Exact match for dashboard.
+    // 2. StartsWith for other pages, but avoid matching parent routes if a more specific one is active.
+    // Example: /organizations should not be active if visiting /organizations/my-org
+    // The current logic handles this reasonably well. A simple startsWith is often sufficient.
+    const isActive = (href === '/dashboard' && pathname === href) || (href !== '/dashboard' && pathname.startsWith(href));
 
     if (isCollapsed) {
         return (
@@ -64,8 +63,8 @@ const NavLink = ({
         <Link
             href={href}
             className={cn(
-                "group flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary data-[active=true]:bg-muted data-[active=true]:text-primary",
-                isActive && "bg-muted text-primary"
+                "group flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
+                isActive && "bg-muted text-primary font-semibold"
             )}
         >
             <Icon className="h-4 w-4" />
@@ -76,33 +75,11 @@ const NavLink = ({
 
 export function Nav({
     isCollapsed,
-    selectedTeam,
+    navItems,
 }: {
     isCollapsed: boolean;
-    selectedTeam: Team | null;
+    navItems: NavItem[];
 }) {
-
- const navItems = useMemo(() => {
-    if (!selectedTeam) return [];
-    
-    if (selectedTeam.isUser) {
-        return [
-            { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-            { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
-            { href: '/marketplace', icon: Store, label: 'Marketplace' },
-            { href: '/organizations', icon: Users2, label: 'Organizations' },
-        ];
-    } else {
-        const orgSlug = selectedTeam.slug;
-        return [
-            { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
-            { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
-            { href: `/organizations/${orgSlug}/groups`, icon: Users2, label: 'Groups' },
-            { href: `/organizations/${orgSlug}/members`, icon: Users2, label: 'Members' },
-            { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
-        ];
-    }
-  }, [selectedTeam]);
 
   return (
     <nav 
@@ -110,7 +87,7 @@ export function Nav({
         className={cn("grid items-start gap-1 group", isCollapsed ? "px-2" : "px-4")}
     >
        {navItems.map((item) => (
-            <NavLink key={item.label} {...item} isCollapsed={isCollapsed}/>
+            <NavLink key={item.href} {...item} isCollapsed={isCollapsed}/>
         ))}
     </nav>
   )

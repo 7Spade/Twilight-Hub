@@ -3,9 +3,14 @@
 import Link from "next/link";
 import {
   Settings,
+  LayoutDashboard,
+  Store,
+  Users2,
+  Grid3x3,
+  Package,
 } from "lucide-react";
-import React from "react";
-import { Nav } from "./nav";
+import React, { useMemo } from "react";
+import { Nav, type NavItem } from "./nav";
 import { Logo } from "../logo";
 import { cn } from "@/lib/utils";
 import { TeamSwitcher, type Team } from "./team-switcher";
@@ -22,6 +27,27 @@ export function Sidebar({
     selectedTeam: Team | null,
     setSelectedTeam: (team: Team) => void,
 }) {
+
+  const navItems = useMemo((): NavItem[] => {
+    if (!selectedTeam) return [];
+    
+    if (selectedTeam.isUser) {
+        return [
+            { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+            { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
+            { href: '/marketplace', icon: Store, label: 'Marketplace' },
+            { href: '/organizations', icon: Users2, label: 'Organizations' },
+            { href: '/groups', icon: Users2, label: 'Groups' },
+        ];
+    } else {
+        const orgSlug = selectedTeam.slug;
+        return [
+            { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
+            { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
+            { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
+        ];
+    }
+  }, [selectedTeam]);
   
   return (
     <aside className={cn(
@@ -48,7 +74,7 @@ export function Sidebar({
                     isCollapsed={isCollapsed}
                 />
             </div>
-            <Nav isCollapsed={isCollapsed} selectedTeam={selectedTeam} />
+            <Nav isCollapsed={isCollapsed} navItems={navItems} />
         </div>
 
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
