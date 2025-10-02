@@ -17,7 +17,9 @@ import {
   Grid3X3,
   List,
   Download,
-  ChevronDown
+  ChevronDown,
+  Filter,
+  Trash2
 } from 'lucide-react';
 
 interface ToolbarProps {
@@ -28,6 +30,7 @@ interface ToolbarProps {
   onSearch: (query: string) => void;
   onViewChange: (view: 'grid' | 'list') => void;
   onFilter: () => void;
+  onDeletedItems: () => void;
   currentView: 'grid' | 'list';
   selectedCount: number;
   isFilterActive?: boolean;
@@ -41,6 +44,7 @@ export function Toolbar({
   onSearch, 
   onViewChange,
   onFilter,
+  onDeletedItems,
   currentView, 
   selectedCount,
   isFilterActive = false
@@ -100,6 +104,24 @@ export function Toolbar({
           onClick={onMoreOptions}
         >
           <MoreVertical className="h-4 w-4" />
+        </Button>
+
+        {/* 篩選按鈕 */}
+        <Button 
+          variant={isFilterActive ? "default" : "outline"}
+          onClick={onFilter}
+        >
+          <Filter className="h-4 w-4 mr-2" />
+          篩選
+        </Button>
+
+        {/* 刪除的項目按鈕 */}
+        <Button 
+          variant="outline"
+          onClick={onDeletedItems}
+        >
+          <Trash2 className="h-4 w-4 mr-2" />
+          刪除的項目
         </Button>
 
         {/* 隱藏的文件輸入 */}

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ContextMenu } from './context-menu';
+import { PackagesTab } from './packages-tab';
 
 export interface FileItem {
   id: string;
@@ -256,11 +257,9 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
           </div>
         </TabsContent>
         
-        <TabsContent value="packages" className="mt-2">
-          <div className="text-center py-8 text-muted-foreground">
-            <p className="text-sm">套件功能開發中...</p>
-          </div>
-        </TabsContent>
+              <TabsContent value="packages" className="mt-2">
+                <PackagesTab />
+              </TabsContent>
       </Tabs>
     </div>
   );

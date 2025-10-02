@@ -11,6 +11,9 @@ import { Toolbar } from './toolbar';
 import { UploadDialog } from './upload-dialog';
 import { VersionHistoryDrawer, type VersionItem } from './version-history-drawer';
 import { EmptyFolderState } from './empty-folder-state';
+import { FilterPanel, type FilterOptions } from './filter-panel';
+import { BreadcrumbNavigation, type BreadcrumbItem } from './breadcrumb-navigation';
+import { DeletedItems } from './deleted-items';
 
 interface FileExplorerProps {
   spaceId: string;
@@ -36,6 +39,17 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
   const [isVersionDrawerOpen, setIsVersionDrawerOpen] = useState(false);
   const [selectedFileForVersion, setSelectedFileForVersion] = useState<FileItem | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
+  const [currentFilters, setCurrentFilters] = useState<FilterOptions>({
+    searchQuery: '',
+    searchScope: 'current',
+    includeSubfolders: true,
+    includeContent: true,
+  });
+  const [breadcrumbItems, setBreadcrumbItems] = useState<BreadcrumbItem[]>([
+    { id: 'project-files', name: '專案檔案' }
+  ]);
+  const [isDeletedItemsOpen, setIsDeletedItemsOpen] = useState(false);
 
   // 轉換原始文件數據為 FileItem 格式，並添加一些測試檔案
   const files: FileItem[] = useMemo(() => {
@@ -134,13 +148,49 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
 
   // 過濾文件
   const filteredFiles = useMemo(() => {
-    if (!searchQuery.trim()) return files;
-    
-    const query = searchQuery.toLowerCase();
-    return files.filter(file => 
-      file.name.toLowerCase().includes(query)
-    );
-  }, [files, searchQuery]);
+    let filtered = files;
+
+    // 基本搜尋過濾
+    if (currentFilters.searchQuery.trim()) {
+      const query = currentFilters.searchQuery.toLowerCase();
+      filtered = filtered.filter(file =>
+        file.name.toLowerCase().includes(query) ||
+        (currentFilters.includeContent && file.description?.toLowerCase().includes(query))
+      );
+    }
+
+    // 類型過濾
+    if (currentFilters.type) {
+      filtered = filtered.filter(file => file.type === currentFilters.type);
+    }
+
+    // 檔案類型過濾
+    if (currentFilters.fileType) {
+      filtered = filtered.filter(file => {
+        const extension = file.name.split('.').pop()?.toLowerCase();
+        switch (currentFilters.fileType) {
+          case 'pdf': return extension === 'pdf';
+          case 'dwg': return extension === 'dwg';
+          case 'docx': return extension === 'docx';
+          case 'xlsx': return extension === 'xlsx';
+          case 'image': return ['jpg', 'jpeg', 'png', 'gif'].includes(extension || '');
+          default: return true;
+        }
+      });
+    }
+
+    // 審閱狀態過濾
+    if (currentFilters.reviewStatus) {
+      filtered = filtered.filter(file => file.reviewStatus === currentFilters.reviewStatus);
+    }
+
+    // 更新者過濾
+    if (currentFilters.updater) {
+      filtered = filtered.filter(file => file.updater === currentFilters.updater);
+    }
+
+    return filtered;
+  }, [files, currentFilters]);
 
   // 載入文件列表
   useEffect(() => {
@@ -242,6 +292,42 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
     setContextMenuItem(null);
   };
 
+  // 篩選處理函數
+  const handleFilterApply = (filters: FilterOptions) => {
+    setCurrentFilters(filters);
+    setIsFilterPanelOpen(false);
+  };
+
+  const handleSaveSearch = (filters: FilterOptions, name: string) => {
+    // 這裡可以實現儲存搜尋到本地儲存或後端
+    console.log('Saving search:', name, filters);
+  };
+
+  const handleFilterToggle = () => {
+    setIsFilterPanelOpen(!isFilterPanelOpen);
+  };
+
+  // 麵包屑處理函數
+  const handleBreadcrumbClick = (item: BreadcrumbItem) => {
+    console.log('Breadcrumb clicked:', item);
+    // 這裡可以實現導航邏輯
+  };
+
+  // 刪除項目處理函數
+  const handleDeletedItemsToggle = () => {
+    setIsDeletedItemsOpen(!isDeletedItemsOpen);
+  };
+
+  const handleRestoreItem = (item: any) => {
+    console.log('Restore item:', item);
+    // 這裡可以實現還原邏輯
+  };
+
+  const handlePermanentDelete = (item: any) => {
+    console.log('Permanent delete item:', item);
+    // 這裡可以實現永久刪除邏輯
+  };
+
   return (
     <div 
       className={`h-full flex flex-col relative ${isDragOver ? 'bg-blue-50 border-2 border-dashed border-blue-400' : ''}`}
@@ -268,9 +354,20 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
         onExport={() => handleToolbarAction('export')}
         onSearch={setSearchQuery}
         onViewChange={setCurrentView}
+        onFilter={handleFilterToggle}
+        onDeletedItems={handleDeletedItemsToggle}
         currentView={currentView}
         selectedCount={selectedItems.length}
+        isFilterActive={isFilterPanelOpen}
       />
+
+      {/* 麵包屑導航 */}
+      <div className="px-4 py-2 border-b bg-muted/10">
+        <BreadcrumbNavigation
+          items={breadcrumbItems}
+          onItemClick={handleBreadcrumbClick}
+        />
+      </div>
 
       {/* 主內容區 */}
       <div className="flex-1 flex overflow-hidden">
@@ -324,6 +421,23 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
           )}
         </div>
       </div>
+
+      {/* 篩選面板 */}
+      <FilterPanel
+        isOpen={isFilterPanelOpen}
+        onClose={() => setIsFilterPanelOpen(false)}
+        onApply={handleFilterApply}
+        onSave={handleSaveSearch}
+        initialFilters={currentFilters}
+      />
+
+      {/* 刪除的項目 */}
+      <DeletedItems
+        isOpen={isDeletedItemsOpen}
+        onClose={() => setIsDeletedItemsOpen(false)}
+        onRestore={handleRestoreItem}
+        onPermanentDelete={handlePermanentDelete}
+      />
 
       {/* 上傳對話框 */}
       <UploadDialog
