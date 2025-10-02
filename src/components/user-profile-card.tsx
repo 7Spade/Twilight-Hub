@@ -12,6 +12,7 @@ import { collection, doc, query, where, documentId } from 'firebase/firestore';
 import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 function UserProfileCardSkeleton() {
     return (
@@ -135,22 +136,23 @@ export function UserProfileCard() {
             </div>
         </div>
 
-        {(achievements && achievements.length > 0) && (
-            <>
-                <Separator className="my-2" />
-                <div className="w-full">
-                    <h3 className="font-semibold text-foreground mb-3">Achievements</h3>
-                    <div className="flex items-center gap-3">
-                        {achievements.map((ach) => (
-                            <Avatar key={ach.id} className="h-10 w-10 border-2 border-border">
-                                <AvatarImage src={getPlaceholderImage(ach.icon).imageUrl} alt={ach.name} data-ai-hint={getPlaceholderImage(ach.icon).imageHint} />
-                                <AvatarFallback>{ach.name.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                        ))}
-                    </div>
-                </div>
-            </>
-        )}
+        <Separator className="my-2" />
+        <div className={cn("w-full", achievements && achievements.length === 0 && 'hidden md:block')}>
+            <h3 className="font-semibold text-foreground mb-3">Achievements</h3>
+            <div className="flex items-center gap-3">
+                {achievements && achievements.length > 0 ? (
+                    achievements.map((ach) => (
+                        <Avatar key={ach.id} className="h-10 w-10 border-2 border-border">
+                            <AvatarImage src={getPlaceholderImage(ach.icon).imageUrl} alt={ach.name} data-ai-hint={getPlaceholderImage(ach.icon).imageHint} />
+                            <AvatarFallback>{ach.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                    ))
+                ) : (
+                    <p className="text-xs text-muted-foreground">No achievements yet.</p>
+                )}
+            </div>
+        </div>
+
 
         {(organizations && organizations.length > 0) && (
             <>
