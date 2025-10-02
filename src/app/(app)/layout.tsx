@@ -14,13 +14,7 @@ import { CreateSpaceDialog } from '@/components/create-space-dialog';
 import { CreateOrganizationDialog } from '@/components/create-organization-dialog';
 import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { ChatDialog } from '@/components/chat-dialog';
-
-export type Team = {
-  id: string;
-  label: string;
-  isUser: boolean;
-  slug?: string;
-};
+import { type Team } from '@/components/layout/team-switcher';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
