@@ -26,12 +26,11 @@ export default function SettingsLayout({
       description="Manage your account settings and set e-mail preferences."
     >
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-        <div className="hidden md:block md:col-span-2">
+        <aside className="hidden md:block md:col-span-2 lg:col-span-1">
             <UserProfileCard />
-        </div>
-        <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <aside className="md:col-span-1">
-              <nav className="grid gap-1">
+        </aside>
+        <div className="md:col-span-3 lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <nav className="md:col-span-1 grid gap-1">
                 {settingsNavItems.map(item => {
                   const isActive = pathname === item.href;
                   return (
@@ -48,8 +47,7 @@ export default function SettingsLayout({
                     </Link>
                   );
                 })}
-              </nav>
-            </aside>
+            </nav>
             <main className="md:col-span-2">
                 {children}
             </main>
