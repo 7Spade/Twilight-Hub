@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -29,7 +30,7 @@ import {
 import { File, Globe, Lock, PlusCircle, Puzzle, Settings } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { FileStorageModule } from '@/components/file-storage-module';
+import { FileStorageModule } from '@/features/marketplace/components/file-storage-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
 
