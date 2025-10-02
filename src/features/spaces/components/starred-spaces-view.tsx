@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { collection, query, where, documentId } from 'firebase/firestore';
 import { useFirestore, useCollection } from '@/firebase';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
-import { type Account } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types';
 
 export function StarredSpacesView({ userId }: { userId: string }) {
   const firestore = useFirestore();
@@ -20,7 +20,7 @@ export function StarredSpacesView({ userId }: { userId: string }) {
     [firestore, userId]
   );
 
-  const { data: starredSpaces, isLoading } = useCollection(starredSpacesQuery);
+  const { data: starredSpaces, isLoading } = useCollection<Space>(starredSpacesQuery);
 
   const ownerIds = useMemo(() => {
     if (!starredSpaces) return [];

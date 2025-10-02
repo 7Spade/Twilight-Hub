@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, use } from 'react';
 import Link from 'next/link';
 import {
   Breadcrumb,
@@ -18,10 +18,11 @@ import { type Account, type Space } from '@/lib/types';
 export default function UnifiedSpaceDetailsPage({
   params,
 }: {
-  params: { spaceslug: string };
+  params: Promise<{ spaceslug: string }>;
 }) {
   const { user: authUser } = useUser();
   const firestore = useFirestore();
+  const { spaceslug } = use(params);
 
   const [space, setSpace] = useState<Space | null>(null);
   const [owner, setOwner] = useState<Account | null>(null);
@@ -29,14 +30,14 @@ export default function UnifiedSpaceDetailsPage({
 
   useEffect(() => {
     const fetchSpaceAndOwner = async () => {
-      if (!firestore || !params.spaceslug) return;
+      if (!firestore || !spaceslug) return;
       setLoading(true);
 
       // Find space by slug
       const spacesRef = collection(firestore, 'spaces');
       const spaceQuery = query(
         spacesRef,
-        where('slug', '==', params.spaceslug),
+        where('slug', '==', spaceslug),
         limit(1)
       );
       const spaceSnapshot = await getDocs(spaceQuery);
@@ -73,7 +74,7 @@ export default function UnifiedSpaceDetailsPage({
       setLoading(false);
     };
     fetchSpaceAndOwner();
-  }, [firestore, params.spaceslug]);
+  }, [firestore, spaceslug]);
 
   const breadcrumbs = (
     <Breadcrumb>

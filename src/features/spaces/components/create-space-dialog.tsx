@@ -108,13 +108,13 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
 
   return (
     <Dialog open={isDialogVisible} onOpenChange={handleClose}>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>
-            Create a new space for {selectedTeam?.label || 'your account'}
+          <DialogTitle className="text-xl font-semibold">
+            Create a new space
           </DialogTitle>
           <DialogDescription>
-            Fill out the details to get started.
+            Build a collaborative workspace for {selectedTeam?.label || 'your account'}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -168,13 +168,14 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="gap-2 sm:gap-0">
               <Button type="button" variant="outline" onClick={handleClose}>
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={!selectedTeam || form.formState.isSubmitting}
+                className="bg-blue-600 hover:bg-blue-700"
               >
                 {form.formState.isSubmitting ? 'Creating...' : 'Create Space'}
               </Button>

@@ -105,6 +105,8 @@ export default function UnifiedSpacesPage() {
         showYourSpacesTab={true}
         showStarredSpacesTab={true}
         showDiscoverTab={true}
+        showSearch={true}
+        showFilters={true}
       />
     </PageContainer>
   );

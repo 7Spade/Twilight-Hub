@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, use } from 'react';
 import Link from 'next/link';
 import { doc, updateDoc, query, where, collection, getDocs, limit } from 'firebase/firestore';
 
@@ -20,21 +20,22 @@ import { type Space } from '@/lib/types';
 export default function UnifiedSpaceSettingsPage({
   params,
 }: {
-  params: { spaceslug: string };
+  params: Promise<{ spaceslug: string }>;
 }) {
   const firestore = useFirestore();
   const { toast } = useToast();
+  const { spaceslug } = use(params);
   const [space, setSpace] = useState<Space | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSpace = async () => {
-      if (!firestore || !params.spaceslug) return;
+      if (!firestore || !spaceslug) return;
       setIsLoading(true);
       const spacesRef = collection(firestore, 'spaces');
       const q = query(
         spacesRef,
-        where('slug', '==', params.spaceslug),
+        where('slug', '==', spaceslug),
         limit(1)
       );
       const querySnapshot = await getDocs(q);
@@ -48,7 +49,7 @@ export default function UnifiedSpaceSettingsPage({
       setIsLoading(false);
     };
     fetchSpace();
-  }, [firestore, params.spaceslug]);
+  }, [firestore, spaceslug]);
 
   const spaceDocRef = useMemo(
     () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
@@ -90,7 +91,7 @@ export default function UnifiedSpaceSettingsPage({
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={`/spaces/${params.spaceslug}`}>
+            <Link href={`/spaces/${spaceslug}`}>
               {isLoading ? '...' : space?.name}
             </Link>
           </BreadcrumbLink>

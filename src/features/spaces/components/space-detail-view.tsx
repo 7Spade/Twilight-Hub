@@ -1,22 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
-import { useFirestore, useDoc, useCollection } from '@/firebase';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useFirestore, useDoc } from '@/firebase';
 import {
   collection,
   doc,
@@ -27,83 +14,16 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange, FileStack, DollarSign, CheckCircle2, Star } from 'lucide-react';
+import { Globe, Lock, Star } from 'lucide-react';
 import React, { useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { FilesModule } from '@/features/marketplace/components/files-module';
-import { IssuesModule } from '@/features/marketplace/components/issues-module';
-import { MeetingsModule } from '@/features/marketplace/components/meetings-module';
-import { FormsModule } from '@/features/marketplace/components/forms-module';
-import { RfiModule } from '@/features/marketplace/components/rfi-module';
-import { PhotosModule } from '@/features/marketplace/components/photos-module';
-import { ReportsModule } from '@/features/marketplace/components/reports-module';
-import { AiAssistantModule } from '@/features/marketplace/components/ai-assistant-module';
-import { SubmittalsModule } from '@/features/marketplace/components/submittals-module';
-import { AssetsModule } from '@/features/marketplace/components/assets-module';
-import { ChangesModule } from '@/features/marketplace/components/changes-module';
-import { ScheduleModule } from '@/features/marketplace/components/schedule-module';
-import { SheetsModule } from '@/features/marketplace/components/sheets-module';
-import { CostModule } from '@/features/marketplace/components/cost-module';
-import { PunchListModule } from '@/features/marketplace/components/punch-list-module';
+import { Skeleton } from '@/components/ui/skeleton';
+
 import { User } from 'firebase/auth';
-import { type Account, type Space, type Module } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types';
 import { SpaceSettingsView, type SpaceSettingsFormValues } from './space-settings-view';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-
-const iconMap: { [key: string]: React.ElementType } = {
-  'file-storage': File,
-  'clipboard-list': ClipboardList,
-  'video': Video,
-  'list-checks': ListChecks,
-  'help-circle': HelpCircle,
-  'image': ImageIcon,
-  'bar-chart': BarChart,
-  'sparkles': Sparkles,
-  'send': Send,
-  'archive': Archive,
-  'file-diff': FileDiff,
-  'calendar-range': CalendarRange,
-  'file-stack': FileStack,
-  'dollar-sign': DollarSign,
-  'check-circle-2': CheckCircle2,
-  default: Puzzle,
-};
-
-
-function ModuleCard({
-  module,
-  onAction,
-  actionLabel,
-  disabled = false,
-}: {
-  module: Module;
-  onAction: () => void;
-  actionLabel: string;
-  disabled?: boolean;
-}) {
-  const Icon = iconMap[module.icon || 'default'] || iconMap.default;
-
-  return (
-    <Card className="flex flex-col">
-      <CardHeader className="flex-row items-center gap-4 space-y-0">
-        <div className="p-3 bg-muted rounded-lg">
-          <Icon className="h-6 w-6 text-muted-foreground" />
-        </div>
-        <CardTitle>{module.name}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-sm text-muted-foreground">{module.description}</p>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full" onClick={onAction} disabled={disabled}>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          {actionLabel}
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-}
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
@@ -133,47 +53,7 @@ export function SpaceDetailView({
     [firestore, authUser]
   );
   const { data: userProfileData, isLoading: profileLoading } = useDoc<Account>(userProfileRef);
-
-  const installedModuleIds = useMemo(() => space?.moduleIds || [], [space]);
-  const installedModulesQuery = useMemo(() => {
-    if (!firestore || installedModuleIds.length === 0) return null;
-    return query(
-      collection(firestore, 'modules'),
-      where(documentId(), 'in', installedModuleIds)
-    );
-  }, [firestore, installedModuleIds]);
-  const { data: installedModulesData, isLoading: installedModulesLoading } =
-    useCollection<Module>(installedModulesQuery);
-  const installedModules = installedModulesData || [];
   
-  const hasModule = (id: string) => installedModuleIds.includes(id);
-
-  const userInventoryIds = useMemo(
-    () => (userProfileData?.moduleInventory ? Object.keys(userProfileData.moduleInventory) : []),
-    [userProfileData]
-  );
-  const availableToEquipIds = useMemo(
-    () => userInventoryIds.filter((id) => !installedModuleIds.includes(id)),
-    [userInventoryIds, installedModuleIds]
-  );
-
-  const availableModulesQuery = useMemo(() => {
-    if (!firestore || availableToEquipIds.length === 0) return null;
-    return query(
-      collection(firestore, 'modules'),
-      where(documentId(), 'in', availableToEquipIds)
-    );
-  }, [firestore, availableToEquipIds]);
-  const { data: availableModulesData, isLoading: availableModulesLoading } =
-    useCollection<Module>(availableModulesQuery);
-  const availableModules = availableModulesData || [];
-
-  const handleAddModuleToSpace = async (moduleId: string) => {
-    if (!firestore || !spaceDocRef) return;
-    await updateDoc(spaceDocRef, {
-      moduleIds: arrayUnion(moduleId),
-    });
-  };
 
   const handleSettingsSubmit = async (data: SpaceSettingsFormValues) => {
     if (!spaceDocRef) return;
@@ -193,18 +73,43 @@ export function SpaceDetailView({
     }
   };
 
-  const isLoading =
-    isPageLoading ||
-    profileLoading ||
-    installedModulesLoading ||
-    availableModulesLoading;
+  const isLoading = isPageLoading || profileLoading;
 
   if (isPageLoading) {
-    return <div>Loading space...</div>;
+    return (
+      <div className="flex flex-col gap-8">
+        {breadcrumbs}
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-9 w-64" />
+            <Skeleton className="h-6 w-20" />
+          </div>
+          <Skeleton className="h-10 w-10" />
+        </div>
+        <Skeleton className="h-5 w-96" />
+        <div className="space-y-6">
+          <Skeleton className="h-6 w-24" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-4 w-24" />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (!space || !owner) {
-    return <div>Space or Owner not found.</div>;
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="mx-auto w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-4">
+          <Globe className="h-12 w-12 text-muted-foreground" />
+        </div>
+        <h3 className="text-lg font-medium text-muted-foreground mb-2">Space not found</h3>
+        <p className="text-sm text-muted-foreground">
+          The space you're looking for doesn't exist or has been removed.
+        </p>
+      </div>
+    );
   }
 
   const isStarred = authUser?.uid ? space.starredByUserIds?.includes(authUser.uid) : false;
@@ -226,116 +131,66 @@ export function SpaceDetailView({
 
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-            <h1 className="text-3xl font-bold tracking-tight">{space.name}</h1>
-             <Badge variant={space.isPublic ? 'secondary' : 'outline'}>
-                {space.isPublic ? (
-                    <Globe className="mr-1 h-3 w-3" />
-                ) : (
-                    <Lock className="mr-1 h-3 w-3" />
-                )}
-                {space.isPublic ? 'Public' : 'Private'}
-            </Badge>
+          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            {space.name}
+          </h1>
+          <Badge 
+            variant={space.isPublic ? 'secondary' : 'outline'}
+            className={cn(
+              'transition-colors duration-200',
+              space.isPublic 
+                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            )}
+          >
+            {space.isPublic ? (
+              <Globe className="mr-1 h-3 w-3" />
+            ) : (
+              <Lock className="mr-1 h-3 w-3" />
+            )}
+            {space.isPublic ? 'Public' : 'Private'}
+          </Badge>
         </div>
         <div className="flex items-center gap-2">
-           {authUser && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleStarClick}
-                className={cn(
-                  isStarred
-                    ? 'text-yellow-400 hover:text-yellow-500'
-                    : 'text-muted-foreground hover:text-yellow-400'
-                )}
-              >
-                <Star className={cn(isStarred && 'fill-current')} />
-              </Button>
-            )}
+          {authUser && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleStarClick}
+              className={cn(
+                'transition-all duration-200',
+                isStarred
+                  ? 'text-yellow-500 hover:text-yellow-600 scale-110'
+                  : 'text-muted-foreground hover:text-yellow-500 hover:scale-110'
+              )}
+            >
+              <Star className={cn('h-5 w-5', isStarred && 'fill-current')} />
+            </Button>
+          )}
         </div>
       </div>
-       <p className="text-muted-foreground -mt-4">{space.description}</p>
+      <p className="text-muted-foreground text-lg leading-relaxed -mt-2">{space.description}</p>
 
       <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="modules">Add Modules</TabsTrigger>
           {isOwner && <TabsTrigger value="settings">Settings</TabsTrigger>}
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
-            <h3 className="text-lg font-medium mb-4">Installed Modules</h3>
-            {isLoading && <p>Loading installed modules...</p>}
-
-            <div className="space-y-8">
-                {installedModules.map((module) => {
-                  switch (module.id) {
-                    case 'files-module':
-                      return <FilesModule key={module.id} spaceId={space.id} />;
-                    case 'issues-module':
-                      return <IssuesModule key={module.id} />;
-                    case 'meetings-module':
-                      return <MeetingsModule key={module.id} />;
-                    case 'forms-module':
-                      return <FormsModule key={module.id} />;
-                    case 'rfi-module':
-                      return <RfiModule key={module.id} />;
-                    case 'photos-module':
-                      return <PhotosModule key={module.id} />;
-                    case 'reports-module':
-                      return <ReportsModule key={module.id} />;
-                    case 'ai-assistant-module':
-                      return <AiAssistantModule key={module.id} />;
-                    case 'submittals-module':
-                      return <SubmittalsModule key={module.id} />;
-                    case 'assets-module':
-                      return <AssetsModule key={module.id} />;
-                    case 'changes-module':
-                      return <ChangesModule key={module.id} />;
-                    case 'schedule-module':
-                      return <ScheduleModule key={module.id} />;
-                    case 'sheets-module':
-                      return <SheetsModule key={module.id} />;
-                    case 'cost-module':
-                      return <CostModule key={module.id} />;
-                    case 'punch-list-module':
-                      return <PunchListModule key={module.id} />;
-                    default:
-                      return null;
-                  }
-                })}
+          <div className="space-y-6">
+            <h3 className="text-lg font-medium">Overview</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">Owner</h4>
+                <p className="text-sm">{owner.name}</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">Visibility</h4>
+                <p className="text-sm">{space.isPublic ? 'Public' : 'Private'}</p>
+              </div>
             </div>
-
-            {!isLoading && installedModules.length === 0 && (
-                 <p className="text-muted-foreground mt-4">
-                    No modules installed in this space yet.
-                </p>
-            )}
-        </TabsContent>
-
-        <TabsContent value="modules" className="mt-6">
-          <h3 className="text-lg font-medium mb-4">
-            Available from Your Backpack
-          </h3>
-          {isLoading && <p>Loading available modules...</p>}
-          {!isLoading && availableModules.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {availableModules.map((mod) => (
-                <ModuleCard
-                  key={mod.id}
-                  module={mod}
-                  actionLabel="Add to Space"
-                  onAction={() => handleAddModuleToSpace(mod.id)}
-                />
-              ))}
-            </div>
-          ) : (
-            !isLoading && (
-              <p className="text-muted-foreground mt-4">
-                All modules from your backpack are already installed in this
-                space, or your backpack is empty.
-              </p>
-            )
-          )}
+          </div>
         </TabsContent>
         {isOwner && (
             <TabsContent value="settings" className="mt-6">
