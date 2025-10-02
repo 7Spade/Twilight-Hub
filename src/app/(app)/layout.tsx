@@ -120,7 +120,14 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
           navItems={navItems}
         />
         <div className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${isCollapsed ? 'sm:pl-14' : 'sm:pl-56'}`}>
-          <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} navItems={navItems} />
+          <Header
+            isCollapsed={isCollapsed}
+            setIsCollapsed={setIsCollapsed}
+            navItems={navItems}
+            teams={teams}
+            selectedTeam={selectedTeam}
+            setSelectedTeam={setSelectedTeam}
+          />
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             {isLoading ? <div>Loading...</div> : children}
           </main>

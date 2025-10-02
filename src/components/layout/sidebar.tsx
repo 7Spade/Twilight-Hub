@@ -44,7 +44,7 @@ export function Sidebar({
       </div>
 
       <div className="flex-1 overflow-auto py-2">
-        <div className={cn("px-3 py-2", isCollapsed && "px-2")}>
+        <div className={cn("p-2 hidden sm:block", isCollapsed && "px-2")}>
           <TeamSwitcher
             teams={teams}
             selectedTeam={selectedTeam}

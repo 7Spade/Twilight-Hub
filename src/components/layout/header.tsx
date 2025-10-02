@@ -10,29 +10,29 @@ import {
   PanelLeftOpen,
 } from "lucide-react";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useChatStore } from "@/hooks/use-chat-store";
 import { NotificationPopover } from "@/components/notification-popover";
 import { UserNav } from "./user-nav";
-import { Nav } from "./nav";
+import { Nav, type NavItem } from "./nav";
+import { TeamSwitcher, type Team } from "./team-switcher";
+import { Separator } from "../ui/separator";
 
 export function Header({
   isCollapsed,
   setIsCollapsed,
   navItems,
+  teams,
+  selectedTeam,
+  setSelectedTeam,
 }: {
   isCollapsed: boolean;
   setIsCollapsed: (isCollapsed: boolean) => void;
-  navItems: React.ComponentProps<typeof Nav>['navItems'];
+  navItems: NavItem[];
+  teams: Team[];
+  selectedTeam: Team | null;
+  setSelectedTeam: (team: Team) => void;
 }) {
   const { toggle: toggleChat } = useChatStore();
 
@@ -46,8 +46,22 @@ export function Header({
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
-          <Nav isCollapsed={false} navItems={navItems} />
+        <SheetContent side="left" className="sm:max-w-xs p-0">
+          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+             <Link href="/" className="flex items-center gap-2 font-semibold">
+                <p>Team</p>
+            </Link>
+          </div>
+          <div className="flex flex-col p-2 gap-2">
+            <TeamSwitcher
+                teams={teams}
+                selectedTeam={selectedTeam}
+                setSelectedTeam={setSelectedTeam}
+                isCollapsed={false}
+            />
+            <Separator />
+            <Nav isCollapsed={false} navItems={navItems} />
+          </div>
         </SheetContent>
       </Sheet>
 
@@ -60,22 +74,7 @@ export function Header({
       >
         {isCollapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
       </Button>
-
-      {/* Breadcrumbs (for larger screens) */}
-      <Breadcrumb className="hidden md:flex">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Recent</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
+      
       {/* Header Actions */}
       <div className="ml-auto flex items-center gap-2">
         <Button
