@@ -67,8 +67,11 @@ export interface Group {
 export interface Item {
     id: string;
     name: string;
-    description: string;
+    description?: string;
     price: number;
+    sku?: string;
+    category?: string;
+    lowStockThreshold?: number;
 }
 
 export interface Warehouse {

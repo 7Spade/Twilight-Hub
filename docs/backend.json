@@ -13,6 +13,7 @@
         "slug": { "type": "string", "description": "The URL-friendly slug for the account's profile or page." },
         "email": { "type": "string", "description": "The user's email address (for users only).", "format": "email" },
         "avatarUrl": { "type": "string", "description": "URL of the account's avatar or logo.", "format": "uri" },
+        "bio": { "type": "string", "description": "A short biography or description for a user account." },
         "description": { "type": "string", "description": "A description of the organization (for orgs only)." },
         "memberIds": { "type": "array", "description": "References to User Accounts that are members of this organization (for orgs only).", "items": { "type": "string" } },
         "level": { "type": "number", "description": "The user's current level (for users only)." },
@@ -74,9 +75,10 @@
         "id": { "type": "string", "description": "Unique identifier for the Module entity." },
         "name": { "type": "string", "description": "The name of the module." },
         "description": { "type": "string", "description": "A description of the module." },
-        "icon": { "type": "string", "description": "A string identifier for a Lucide icon (e.g., 'puzzle', 'file-storage')." }
+        "icon": { "type": "string", "description": "A string identifier for a Lucide icon (e.g., 'puzzle', 'file-storage')." },
+        "type": { "type": "string", "enum": ["user", "organization", "common"], "description": "The type of module determining where it can be used." }
       },
-      "required": [ "id", "name", "description" ]
+      "required": [ "id", "name", "description", "type" ]
     },
     "Achievement": {
       "title": "Achievement",
@@ -155,7 +157,10 @@
         "id": { "type": "string" },
         "name": { "type": "string" },
         "description": { "type": "string" },
-        "price": { "type": "number" }
+        "price": { "type": "number" },
+        "sku": { "type": "string", "description": "Stock Keeping Unit." },
+        "category": { "type": "string", "description": "The category of the item." },
+        "lowStockThreshold": { "type": "number", "description": "The threshold for low stock warnings." }
       },
       "required": ["id", "name", "price"]
     },

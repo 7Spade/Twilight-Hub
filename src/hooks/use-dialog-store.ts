@@ -2,7 +2,15 @@
 
 import { create } from 'zustand';
 
-export type DialogType = 'createOrganization' | 'createSpace' | 'createGroup' | 'inviteMember' | 'useModule';
+export type DialogType =
+  | 'createOrganization'
+  | 'createSpace'
+  | 'createGroup'
+  | 'inviteMember'
+  | 'useModule'
+  | 'createItem'
+  | 'createWarehouse'
+  | 'adjustStock';
 
 interface DialogData {
   module?: {
@@ -10,6 +18,7 @@ interface DialogData {
     name: string;
     type: string;
   };
+  item?: any;
 }
 
 interface DialogStore {

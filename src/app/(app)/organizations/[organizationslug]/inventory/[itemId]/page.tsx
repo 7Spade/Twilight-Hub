@@ -2,18 +2,12 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
-import {
-  useFirestore,
-  useDoc,
-  useCollection,
-} from '@/firebase';
+import { useFirestore, useDoc, useCollection } from '@/firebase';
 import {
   collection,
   doc,
   query,
   where,
-  updateDoc,
-  increment,
   getDocs,
 } from 'firebase/firestore';
 import {
@@ -40,51 +34,14 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Package } from 'lucide-react';
-import { type Account, type Item, type Warehouse, type Stock } from '@/lib/types';
-
-
-function StockRow({
-  stock,
-  warehouseName,
-  onUpdateStock,
-}: {
-  stock: Stock;
-  warehouseName: string;
-  onUpdateStock: (stockId: string, adjustment: number) => void;
-}) {
-  const [adjustment, setAdjustment] = useState(1);
-
-  return (
-    <TableRow>
-      <TableCell className="font-medium">{warehouseName}</TableCell>
-      <TableCell>{stock.quantity}</TableCell>
-      <TableCell className="flex items-center gap-2 justify-end">
-        <Input
-          type="number"
-          value={adjustment}
-          onChange={(e) => setAdjustment(parseInt(e.target.value, 10) || 0)}
-          className="w-20"
-        />
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onUpdateStock(stock.id, adjustment)}
-        >
-          Add
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onUpdateStock(stock.id, -adjustment)}
-        >
-          Remove
-        </Button>
-      </TableCell>
-    </TableRow>
-  );
-}
+import {
+  type Account,
+  type Item,
+  type Warehouse,
+  type Stock,
+} from '@/lib/types';
+import { useDialogStore } from '@/hooks/use-dialog-store';
 
 export default function ItemStockPage({
   params: paramsPromise,
@@ -95,92 +52,83 @@ export default function ItemStockPage({
   const firestore = useFirestore();
   const { organizationslug, itemId } = params;
   const [organization, setOrganization] = useState<Account | null>(null);
+  const { open: openDialog } = useDialogStore();
+
 
   // Fetch organization by slug to get its ID
   useEffect(() => {
     if (!firestore || !organizationslug) return;
     const fetchOrg = async () => {
       const orgsRef = collection(firestore, 'accounts');
-      const q = query(orgsRef, where('slug', '==', organizationslug), where('type', '==', 'organization'));
+      const q = query(
+        orgsRef,
+        where('slug', '==', organizationslug),
+        where('type', '==', 'organization')
+      );
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
-        setOrganization({id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()} as Account);
+        setOrganization({
+          id: querySnapshot.docs[0].id,
+          ...querySnapshot.docs[0].data(),
+        } as Account);
       }
     };
     fetchOrg();
   }, [firestore, organizationslug]);
 
+  const orgId = organization?.id;
 
   // Get Item Details
   const itemDocRef = useMemo(
-    () => (firestore && organization ? doc(firestore, 'accounts', organization.id, 'items', itemId) : null),
-    [firestore, organization, itemId]
+    () => (firestore && orgId ? doc(firestore, 'accounts', orgId, 'items', itemId) : null),
+    [firestore, orgId, itemId]
   );
-  const { data: itemData, isLoading: itemLoading } = useDoc<Item>(itemDocRef);
-  const item = itemData;
+  const { data: item, isLoading: itemLoading } = useDoc<Item>(itemDocRef);
 
   // Get All Warehouses for the Org
   const warehousesQuery = useMemo(
-    () => (firestore && organization ? collection(firestore, 'accounts', organization.id, 'warehouses') : null),
-    [firestore, organization]
+    () => (firestore && orgId ? collection(firestore, 'accounts', orgId, 'warehouses') : null),
+    [firestore, orgId]
   );
   const { data: warehousesData, isLoading: warehousesLoading } =
     useCollection<Warehouse>(warehousesQuery);
   const warehouses = warehousesData || [];
 
-  const stockCollections = useMemo(() => {
-    if (!firestore || !warehouses || !organization) return [];
-    return warehouses.map((w) => ({
-      warehouseId: w.id,
-      warehouseName: w.name,
-      query: query(
-        collection(
-          firestore,
-          'accounts',
-          organization.id,
-          'warehouses',
-          w.id,
-          'stock'
-        ),
-        where('itemId', '==', itemId)
-      ),
-    }));
-  }, [firestore, organization, warehouses, itemId]);
-  
-  const stockResults = stockCollections.map(({ query: q, warehouseId, warehouseName }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, isLoading } = useCollection<Stock>(q);
-    return { data, isLoading, warehouseId, warehouseName };
-  });
+  // Get stock for this item across all warehouses
+  const [stockData, setStockData] = useState< (Stock & { warehouseName: string })[] >([]);
+  const [stockLoading, setStockLoading] = useState(true);
 
-  const handleUpdateStock = async (
-    warehouseId: string,
-    stockId: string,
-    adjustment: number
-  ) => {
-    if (!firestore || !organization) return;
-    const stockDocRef = doc(
-      firestore,
-      'accounts',
-      organization.id,
-      'warehouses',
-      warehouseId,
-      'stock',
-      stockId
-    );
-    await updateDoc(stockDocRef, {
-      quantity: increment(adjustment),
-    });
-  };
+  useEffect(() => {
+      if (!firestore || !orgId || warehousesLoading || !item) return;
 
-  const isLoading = !organization || itemLoading || warehousesLoading || stockResults.some(r => r.isLoading);
-  
-  const combinedStockData = useMemo(() => {
-    return stockResults.flatMap(r => 
-        r.data ? r.data.map(d => ({ ...d, warehouseName: r.warehouseName, warehouseId: r.warehouseId })) : []
-    );
-  }, [stockResults]);
+      const fetchAllStock = async () => {
+          setStockLoading(true);
+          const stockPromises = warehouses.map(w => 
+              getDocs(query(collection(firestore, 'accounts', orgId, 'warehouses', w.id, 'stock'), where('itemId', '==', item.id)))
+          );
+          const stockSnapshots = await Promise.all(stockPromises);
+          
+          const combinedStock = stockSnapshots.flatMap((snapshot, index) => 
+              snapshot.docs.map(d => ({
+                  ...(d.data() as Stock),
+                  id: d.id,
+                  warehouseName: warehouses[index].name,
+              }))
+          );
+          
+          setStockData(combinedStock);
+          setStockLoading(false);
+      }
+      if (warehouses.length > 0 && item) {
+          fetchAllStock();
+      } else {
+          setStockLoading(false);
+          setStockData([]);
+      }
+  }, [firestore, orgId, warehouses, item, warehousesLoading]);
 
+  const isLoading =
+    !organization || itemLoading || warehousesLoading || stockLoading;
 
   if (isLoading) {
     return <div>Loading stock details...</div>;
@@ -205,38 +153,49 @@ export default function ItemStockPage({
               <Link href="/organizations">Organizations</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
-           <BreadcrumbSeparator />
-           <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href={`/organizations/${organizationslug}`}>{organization.name}</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
           <BreadcrumbSeparator />
-           <BreadcrumbItem>
+          <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={`/organizations/${organizationslug}/inventory`}>Inventory</Link>
+              <Link href={`/organizations/${organizationslug}`}>
+                {organization?.name}
+              </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Manage Stock for {item.name}</BreadcrumbPage>
+            <BreadcrumbLink asChild>
+              <Link href={`/organizations/${organizationslug}/inventory`}>
+                Inventory
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{item.name}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      
-      <div className="flex items-center gap-4">
-        <Package className="h-12 w-12 text-muted-foreground" />
-        <div>
-            <h1 className="text-3xl font-bold tracking-tight">Manage Stock for {item.name}</h1>
+
+      <div className="flex items-center justify-between gap-4">
+        <div className='flex items-center gap-4'>
+            <Package className="h-12 w-12 text-muted-foreground" />
+            <div>
+            <h1 className="text-3xl font-bold tracking-tight">
+                {item.name}
+            </h1>
             <p className="text-muted-foreground">{item.description}</p>
+            </div>
         </div>
+         <Button onClick={() => openDialog('adjustStock', { item })}>
+            Adjust Stock
+        </Button>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle>Stock Levels by Warehouse</CardTitle>
           <CardDescription>
-            View and adjust the quantity of this item in each location.
+            Quantity of this item in each location.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -244,26 +203,26 @@ export default function ItemStockPage({
             <TableHeader>
               <TableRow>
                 <TableHead>Warehouse</TableHead>
-                <TableHead>Current Quantity</TableHead>
-                <TableHead className="text-right">Adjust Stock</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead className="text-right">Current Quantity</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {combinedStockData.length > 0 ? (
-                combinedStockData.map((stock) => (
-                  <StockRow
-                    key={stock.id}
-                    stock={stock}
-                    warehouseName={stock.warehouseName}
-                    onUpdateStock={(stockId, adjustment) =>
-                      handleUpdateStock(stock.warehouseId, stockId, adjustment)
-                    }
-                  />
-                ))
+              {warehouses.length > 0 ? (
+                warehouses.map((warehouse) => {
+                    const stock = stockData.find(s => s.warehouseId === warehouse.id);
+                    return (
+                        <TableRow key={warehouse.id}>
+                            <TableCell>{warehouse.name}</TableCell>
+                            <TableCell>{warehouse.location}</TableCell>
+                            <TableCell className='text-right'>{stock?.quantity || 0}</TableCell>
+                        </TableRow>
+                    )
+                })
               ) : (
                 <TableRow>
                   <TableCell colSpan={3} className="text-center">
-                    No stock records found for this item.
+                    No warehouses found for this organization.
                   </TableCell>
                 </TableRow>
               )}
