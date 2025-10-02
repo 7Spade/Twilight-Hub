@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { type FileItem } from './folder-tree';
+import { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';
 
 interface FileTableProps {
   files: FileItem[];
@@ -31,6 +32,20 @@ type SortDirection = 'asc' | 'desc';
 export function FileTable({ files, selectedItems, onSelectionChange, onItemClick, onItemAction }: FileTableProps) {
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
+
+  // 列設定狀態
+  const [columns, setColumns] = useState<ColumnConfig[]>([
+    { id: 'description', label: '描述', visible: true },
+    { id: 'version', label: '版本', visible: true },
+    { id: 'indicator', label: '指標', visible: true },
+    { id: 'tag', label: '標記', visible: true },
+    { id: 'issue', label: '問題', visible: true },
+    { id: 'size', label: '大小', visible: true },
+    { id: 'lastUpdate', label: '上次更新', visible: true },
+    { id: 'updater', label: '更新者', visible: true },
+    { id: 'versionContributor', label: '版本加入者', visible: true },
+    { id: 'reviewStatus', label: '審閱狀態', visible: true },
+  ]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -150,6 +165,22 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
+  const handleColumnToggle = (columnId: string, visible: boolean) => {
+    setColumns(prev => prev.map(col => 
+      col.id === columnId ? { ...col, visible } : col
+    ));
+  };
+
+  const handleReset = () => {
+    setColumns(prev => prev.map(col => ({ ...col, visible: true })));
+  };
+
+  const handlePropertySettings = () => {
+    console.log('Property settings clicked');
+  };
+
+  const getVisibleColumns = () => columns.filter(col => col.visible);
+
   return (
     <div className="border rounded-lg">
       <Table>
@@ -170,98 +201,25 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
                 {getSortIcon('name')}
               </div>
             </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('description')}
-            >
-              <div className="flex items-center gap-2">
-                描述
-                {getSortIcon('description')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('version')}
-            >
-              <div className="flex items-center gap-2">
-                版本
-                {getSortIcon('version')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('indicator')}
-            >
-              <div className="flex items-center gap-2">
-                指標
-                {getSortIcon('indicator')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('tag')}
-            >
-              <div className="flex items-center gap-2">
-                標記
-                {getSortIcon('tag')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('issue')}
-            >
-              <div className="flex items-center gap-2">
-                問題
-                {getSortIcon('issue')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('size')}
-            >
-              <div className="flex items-center gap-2">
-                大小
-                {getSortIcon('size')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('lastUpdate')}
-            >
-              <div className="flex items-center gap-2">
-                上次更新
-                {getSortIcon('lastUpdate')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('updater')}
-            >
-              <div className="flex items-center gap-2">
-                更新者
-                {getSortIcon('updater')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('versionContributor')}
-            >
-              <div className="flex items-center gap-2">
-                版本加入者
-                {getSortIcon('versionContributor')}
-              </div>
-            </TableHead>
-            <TableHead 
-              className="cursor-pointer hover:bg-muted/50"
-              onClick={() => handleSort('reviewStatus')}
-            >
-              <div className="flex items-center gap-2">
-                審閱狀態
-                {getSortIcon('reviewStatus')}
-              </div>
-            </TableHead>
+            {getVisibleColumns().map((column) => (
+              <TableHead 
+                key={column.id}
+                className="cursor-pointer hover:bg-muted/50"
+                onClick={() => handleSort(column.id as SortField)}
+              >
+                <div className="flex items-center gap-2">
+                  {column.label}
+                  {getSortIcon(column.id as SortField)}
+                </div>
+              </TableHead>
+            ))}
             <TableHead className="w-12">
-              <MoreVertical className="h-4 w-4 text-muted-foreground" />
+              <ColumnSettingsMenu
+                columns={columns}
+                onColumnToggle={handleColumnToggle}
+                onReset={handleReset}
+                onPropertySettings={handlePropertySettings}
+              />
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -293,33 +251,37 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
                     <span className="font-medium">{file.name}</span>
                   </div>
                 </TableCell>
-                <TableCell>{file.description || '--'}</TableCell>
-                <TableCell>
-                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                    {file.version || 'V1'}
-                  </span>
-                </TableCell>
-                <TableCell>{file.indicator || '--'}</TableCell>
-                <TableCell>{file.tag || '--'}</TableCell>
-                <TableCell>{file.issue || '--'}</TableCell>
-                <TableCell>{formatFileSize(file.size)}</TableCell>
-                <TableCell>{formatDate(file.updated)}</TableCell>
-                <TableCell>
-                  {file.updater ? (
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-6 w-6">
-                        <AvatarFallback className="text-xs">
-                          {getInitials(file.updater)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <span className="text-sm">{file.updater}</span>
-                    </div>
-                  ) : (
-                    '--'
-                  )}
-                </TableCell>
-                <TableCell>{file.versionContributor || '--'}</TableCell>
-                <TableCell>{file.reviewStatus || '--'}</TableCell>
+                {getVisibleColumns().map((column) => (
+                  <TableCell key={column.id}>
+                    {column.id === 'description' && (file.description || '--')}
+                    {column.id === 'version' && (
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        {file.version || 'V1'}
+                      </span>
+                    )}
+                    {column.id === 'indicator' && (file.indicator || '--')}
+                    {column.id === 'tag' && (file.tag || '--')}
+                    {column.id === 'issue' && (file.issue || '--')}
+                    {column.id === 'size' && formatFileSize(file.size)}
+                    {column.id === 'lastUpdate' && formatDate(file.updated)}
+                    {column.id === 'updater' && (
+                      file.updater ? (
+                        <div className="flex items-center gap-2">
+                          <Avatar className="h-6 w-6">
+                            <AvatarFallback className="text-xs">
+                              {getInitials(file.updater)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <span className="text-sm">{file.updater}</span>
+                        </div>
+                      ) : (
+                        '--'
+                      )
+                    )}
+                    {column.id === 'versionContributor' && (file.versionContributor || '--')}
+                    {column.id === 'reviewStatus' && (file.reviewStatus || '--')}
+                  </TableCell>
+                ))}
                 <TableCell onClick={(e) => e.stopPropagation()}>
                   <Button
                     variant="ghost"

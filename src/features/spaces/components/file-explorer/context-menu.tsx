@@ -10,19 +10,39 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { 
-  Move,
+  Plus,
+  Folder,
   Edit,
   Share,
+  Move,
   Trash2,
+  ArrowUpDown,
+  ChevronRight,
+  Upload,
   Download,
   FileText,
   UserCheck,
   Package,
+  Settings,
   Play,
-  Link,
-  MoreVertical
+  MoreVertical,
+  Info
 } from 'lucide-react';
 import { type FileItem } from './folder-tree';
+
+interface MenuItem {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  secondaryIcon?: React.ReactNode;
+  hasArrow?: boolean;
+  info?: boolean;
+}
+
+interface MenuGroup {
+  group: string;
+  items: MenuItem[];
+}
 
 interface ContextMenuProps {
   item: FileItem;
@@ -31,15 +51,16 @@ interface ContextMenuProps {
 }
 
 export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
-  const menuItems = [
-    // 基本操作
+  const menuItems: MenuGroup[] = [
+    // 第一組：基本文件/資料夾操作
     {
       group: 'basic',
       items: [
         {
-          id: 'move',
-          label: '移動',
-          icon: <Move className="h-4 w-4" />,
+          id: 'add-subfolder',
+          label: '加入子資料夾',
+          icon: <Plus className="h-4 w-4" />,
+          secondaryIcon: <Folder className="h-4 w-4" />,
         },
         {
           id: 'rename',
@@ -52,24 +73,41 @@ export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
           icon: <Share className="h-4 w-4" />,
         },
         {
+          id: 'move',
+          label: '移動',
+          icon: <Move className="h-4 w-4" />,
+        },
+        {
           id: 'delete',
           label: '刪除',
           icon: <Trash2 className="h-4 w-4" />,
         },
+        {
+          id: 'sort-by',
+          label: '排序依據',
+          icon: <ArrowUpDown className="h-4 w-4" />,
+          hasArrow: true,
+        },
       ]
     },
-    // 下載/匯出/審閱
+    // 第二組：上傳和下載操作
     {
-      group: 'download',
+      group: 'upload-download',
       items: [
         {
-          id: 'download',
-          label: '下載原始檔案',
-          icon: <Download className="h-4 w-4" />,
-          info: 'i',
+          id: 'upload',
+          label: '上載',
+          icon: <Upload className="h-4 w-4" />,
+          hasArrow: true,
         },
         {
-          id: 'export',
+          id: 'download-original',
+          label: '下載原始檔案',
+          icon: <Download className="h-4 w-4" />,
+          info: true,
+        },
+        {
+          id: 'export-history',
           label: '匯出檔案記錄',
           icon: <FileText className="h-4 w-4" />,
         },
@@ -78,27 +116,33 @@ export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
           label: '提交以供審閱',
           icon: <UserCheck className="h-4 w-4" />,
         },
-      ]
-    },
-    // 進階操作
-    {
-      group: 'advanced',
-      items: [
         {
           id: 'create-transfer',
           label: '建立傳送',
           icon: <Package className="h-4 w-4" />,
-          info: '1',
+          info: true,
+        },
+      ]
+    },
+    // 第三組：設定和更多選項
+    {
+      group: 'settings',
+      items: [
+        {
+          id: 'permission-settings',
+          label: '權限設定',
+          icon: <Settings className="h-4 w-4" />,
         },
         {
-          id: 'review-trigger',
+          id: 'review-auto-trigger',
           label: '審閱自動觸發詳細資料',
           icon: <Play className="h-4 w-4" />,
         },
         {
-          id: 'auto-hyperlink',
-          label: '自動超連結設定',
-          icon: <Link className="h-4 w-4" />,
+          id: 'more',
+          label: '更多',
+          icon: <MoreVertical className="h-4 w-4" />,
+          hasArrow: true,
         },
       ]
     }
@@ -109,22 +153,30 @@ export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
       <DropdownMenuTrigger asChild>
         {children}
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-64">
         {menuItems.map((group, groupIndex) => (
           <React.Fragment key={group.group}>
             {group.items.map((menuItem) => (
               <DropdownMenuItem
                 key={menuItem.id}
                 onClick={() => onAction(menuItem.id)}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 py-2 px-3"
               >
-                {menuItem.icon}
-                <span className="flex-1">{menuItem.label}</span>
-                {menuItem.info && (
-                  <span className="text-xs text-muted-foreground bg-muted rounded-full h-4 w-4 flex items-center justify-center">
-                    {menuItem.info}
-                  </span>
-                )}
+                <div className="flex items-center gap-2">
+                  {menuItem.icon}
+                  {menuItem.secondaryIcon && (
+                    <span className="ml-1">{menuItem.secondaryIcon}</span>
+                  )}
+                </div>
+                <span className="flex-1 text-sm">{menuItem.label}</span>
+                <div className="flex items-center gap-1">
+                  {menuItem.info && (
+                    <Info className="h-3 w-3 text-muted-foreground" />
+                  )}
+                  {menuItem.hasArrow && (
+                    <ChevronRight className="h-3 w-3 text-muted-foreground" />
+                  )}
+                </div>
               </DropdownMenuItem>
             ))}
             {groupIndex < menuItems.length - 1 && <DropdownMenuSeparator />}

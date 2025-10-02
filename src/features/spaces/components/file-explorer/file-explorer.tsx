@@ -169,6 +169,7 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
               selectedItems={selectedItems}
               onSelectionChange={setSelectedItems}
               onItemClick={handleItemClick}
+              onItemAction={handleItemAction}
             />
           </div>
         </div>
