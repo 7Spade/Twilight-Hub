@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User, Bell, Settings as SettingsIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 const settingsNavItems: NavItem[] = [
     { href: '/settings/profile', icon: User, label: 'Public profile' },
@@ -25,12 +26,12 @@ export default function SettingsLayout({
       title="Settings"
       description="Manage your account settings and set e-mail preferences."
     >
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-        <aside className="hidden md:block md:col-span-2 lg:col-span-1">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+        <aside className="hidden md:block md:col-span-1">
             <UserProfileCard />
         </aside>
-        <div className="md:col-span-3 lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <nav className="md:col-span-1 grid gap-1">
+        <div className="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <nav className="lg:col-span-1 grid gap-1">
                 {settingsNavItems.map(item => {
                   const isActive = pathname === item.href;
                   return (
@@ -38,7 +39,7 @@ export default function SettingsLayout({
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                        'flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-primary',
                         isActive && 'bg-muted text-primary font-semibold'
                       )}
                     >
@@ -48,7 +49,7 @@ export default function SettingsLayout({
                   );
                 })}
             </nav>
-            <main className="md:col-span-2">
+            <main className="lg:col-span-2">
                 {children}
             </main>
         </div>

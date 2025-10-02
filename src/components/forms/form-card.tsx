@@ -12,6 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { UseFormReturn, FieldValues } from 'react-hook-form';
+import { FormCardSkeleton } from '../form-card-skeleton';
 
 interface FormCardProps<T extends FieldValues> {
   title: string;
@@ -30,42 +31,29 @@ export function FormCard<T extends FieldValues>({
   onSubmit,
   children,
 }: FormCardProps<T>) {
+
+  if (isLoading) {
+    return <FormCardSkeleton />;
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <CardContent>
-            {isLoading ? (
-              <div className="space-y-8">
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-1/4" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-1/4" />
-                  <Skeleton className="h-20 w-full" />
-                </div>
-                 <div className="space-y-2">
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              </div>
-            ) : (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+         <Card>
+            <CardHeader>
+              <CardTitle>{title}</CardTitle>
+              <CardDescription>{description}</CardDescription>
+            </CardHeader>
+            <CardContent>
               <div className="space-y-8">{children}</div>
-            )}
-          </CardContent>
-          <CardFooter>
-            {!isLoading && (
-              <Button type="submit" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
-              </Button>
-            )}
-          </CardFooter>
-        </form>
-      </Form>
-    </Card>
+            </CardContent>
+            <CardFooter>
+                <Button type="submit" disabled={form.formState.isSubmitting}>
+                  {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
+                </Button>
+            </CardFooter>
+          </Card>
+      </form>
+    </Form>
   );
 }
