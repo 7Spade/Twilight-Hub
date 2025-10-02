@@ -27,8 +27,10 @@ interface ToolbarProps {
   onExport: () => void;
   onSearch: (query: string) => void;
   onViewChange: (view: 'grid' | 'list') => void;
+  onFilter: () => void;
   currentView: 'grid' | 'list';
   selectedCount: number;
+  isFilterActive?: boolean;
 }
 
 export function Toolbar({ 
@@ -37,9 +39,11 @@ export function Toolbar({
   onMoreOptions, 
   onExport, 
   onSearch, 
-  onViewChange, 
-  currentView,
-  selectedCount 
+  onViewChange,
+  onFilter,
+  currentView, 
+  selectedCount,
+  isFilterActive = false
 }: ToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 

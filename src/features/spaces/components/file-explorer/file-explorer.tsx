@@ -10,6 +10,7 @@ import { ContextMenu, ToolbarContextMenu } from './context-menu';
 import { Toolbar } from './toolbar';
 import { UploadDialog } from './upload-dialog';
 import { VersionHistoryDrawer, type VersionItem } from './version-history-drawer';
+import { EmptyFolderState } from './empty-folder-state';
 
 interface FileExplorerProps {
   spaceId: string;
@@ -34,6 +35,7 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [isVersionDrawerOpen, setIsVersionDrawerOpen] = useState(false);
   const [selectedFileForVersion, setSelectedFileForVersion] = useState<FileItem | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   // 轉換原始文件數據為 FileItem 格式，並添加一些測試檔案
   const files: FileItem[] = useMemo(() => {
@@ -212,6 +214,27 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
     setIsUploadDialogOpen(false);
   };
 
+  // 拖拽上傳處理
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    
+    const files = Array.from(e.dataTransfer.files);
+    if (files.length > 0) {
+      await handleUpload(files);
+    }
+  };
+
   const handleContextMenuAction = (action: string) => {
     if (!contextMenuItem) return;
     
@@ -220,7 +243,23 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div 
+      className={`h-full flex flex-col relative ${isDragOver ? 'bg-blue-50 border-2 border-dashed border-blue-400' : ''}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
+      {/* 拖拽上傳提示 */}
+      {isDragOver && (
+        <div className="absolute inset-0 bg-blue-50/90 border-2 border-dashed border-blue-400 flex items-center justify-center z-50">
+          <div className="text-center">
+            <div className="text-4xl mb-4">📁</div>
+            <div className="text-lg font-semibold text-blue-600">放開檔案以上傳</div>
+            <div className="text-sm text-blue-500">將檔案拖曳至此處</div>
+          </div>
+        </div>
+      )}
+
       {/* 工具欄 */}
       <Toolbar
         onUpload={() => handleToolbarAction('upload')}
@@ -250,30 +289,39 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
 
         {/* 右側文件表格 */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-auto p-4">
-            <FileTable
-              files={filteredFiles}
-              selectedItems={selectedItems}
-              onSelectionChange={setSelectedItems}
-              onItemClick={handleItemClick}
-              onItemAction={handleItemAction}
+          {filteredFiles.length === 0 ? (
+            <EmptyFolderState 
+              onUpload={() => handleToolbarAction('upload')}
+              folderName="專案檔案"
             />
-          </div>
-          
-          {/* 底部狀態欄 */}
-          <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
-            <div className="text-sm text-muted-foreground">
-              顯示 {filteredFiles.length} 個項目
-            </div>
-            <div className="flex items-center gap-2">
-              <button className="p-1 hover:bg-muted rounded">
-                ←
-              </button>
-              <button className="p-1 hover:bg-muted rounded">
-                →
-              </button>
-            </div>
-          </div>
+          ) : (
+            <>
+              <div className="flex-1 overflow-auto p-4">
+                <FileTable
+                  files={filteredFiles}
+                  selectedItems={selectedItems}
+                  onSelectionChange={setSelectedItems}
+                  onItemClick={handleItemClick}
+                  onItemAction={handleItemAction}
+                />
+              </div>
+
+              {/* 底部狀態欄 */}
+              <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
+                <div className="text-sm text-muted-foreground">
+                  顯示 {filteredFiles.length} 個項目
+                </div>
+                <div className="flex items-center gap-2">
+                  <button className="p-1 hover:bg-muted rounded">
+                    ←
+                  </button>
+                  <button className="p-1 hover:bg-muted rounded">
+                    →
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
