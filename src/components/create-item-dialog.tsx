@@ -27,10 +27,6 @@ const createItemSchema = z.object({
   sku: z.string().optional(),
   category: z.string().optional(),
   description: z.string().optional(),
-  price: z.preprocess(
-    (a) => parseFloat(z.string().parse(a)),
-    z.number().positive('Price must be a positive number')
-  ),
   lowStockThreshold: z.preprocess(
     (a) => parseInt(z.string().parse(a), 10),
     z.number().int().nonnegative('Threshold must be a non-negative number')
@@ -53,7 +49,6 @@ export function CreateItemDialog({ organizationId }: { organizationId: string })
       sku: '',
       category: '',
       description: '',
-      price: 0,
       lowStockThreshold: 10,
     },
   });
@@ -108,10 +103,7 @@ export function CreateItemDialog({ organizationId }: { organizationId: string })
               <FormInput control={form.control} name="category" label="Category (Optional)" placeholder="e.g. Safety Gear" />
             </div>
             <FormTextarea control={form.control} name="description" label="Description (Optional)" placeholder="A brief description of the item." />
-            <div className="grid grid-cols-2 gap-4">
-              <FormInput control={form.control} name="price" label="Price" placeholder="0.00" type="number" step="0.01" />
-              <FormInput control={form.control} name="lowStockThreshold" label="Low Stock Alert" placeholder="10" type="number" />
-            </div>
+            <FormInput control={form.control} name="lowStockThreshold" label="Low Stock Alert" placeholder="10" type="number" />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={handleClose}>
                 Cancel

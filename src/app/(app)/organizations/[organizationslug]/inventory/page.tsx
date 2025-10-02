@@ -27,8 +27,6 @@ import {
   Warehouse,
   PlusCircle,
   TrendingUp,
-  Boxes,
-  DollarSign,
   AlertCircle,
 } from 'lucide-react';
 import { PageContainer } from '@/components/layout/page-container';
@@ -166,18 +164,10 @@ export default function InventoryPage({
 
   // Dashboard Stats Calculation
   const stats = useMemo(() => {
-    const totalStockValue = itemsWithStock.reduce(
-      (sum, item) => sum + item.price * item.totalStock,
-      0
-    );
     const totalStockCount = itemsWithStock.reduce((sum, item) => sum + item.totalStock, 0);
     const lowStockItems = itemsWithStock.filter(item => item.totalStock < (item.lowStockThreshold || 10)).length;
 
     return {
-      totalValue: totalStockValue.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }),
       totalItems: totalStockCount,
       itemVariants: itemsData?.length || 0,
       warehouseCount: warehouses.length,
@@ -234,8 +224,7 @@ export default function InventoryPage({
           description={`An overview of items and stock for ${org.name}.`}
         >
           {/* Stats Cards */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-              <StatCard title="Total Inventory Value" value={stats.totalValue} icon={DollarSign} />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <StatCard title="Total Items in Stock" value={stats.totalItems.toString()} icon={TrendingUp} />
               <StatCard title="Item Variants" value={stats.itemVariants.toString()} icon={Package} />
               <StatCard title="Warehouses" value={stats.warehouseCount.toString()} icon={Warehouse} />
@@ -270,7 +259,6 @@ export default function InventoryPage({
                       <TableHead>Name</TableHead>
                       <TableHead>SKU</TableHead>
                       <TableHead>Category</TableHead>
-                      <TableHead className="text-right">Price</TableHead>
                       <TableHead className="text-right">Total Stock</TableHead>
                       <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
@@ -281,17 +269,14 @@ export default function InventoryPage({
                         <TableCell className="font-medium">{item.name}</TableCell>
                         <TableCell>{item.sku}</TableCell>
                         <TableCell>{item.category}</TableCell>
-                        <TableCell className="text-right">
-                          ${item.price.toFixed(2)}
-                        </TableCell>
                         <TableCell className="text-right">{item.totalStock}</TableCell>
                         <TableCell className="text-right">
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => openDialog('adjustStock', { item })}
+                            asChild
                           >
-                            Adjust Stock
+                           <Link href={`/organizations/${org.slug}/inventory/${item.id}`}>View Details</Link>
                           </Button>
                         </TableCell>
                       </TableRow>

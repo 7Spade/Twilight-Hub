@@ -157,12 +157,11 @@
         "id": { "type": "string" },
         "name": { "type": "string" },
         "description": { "type": "string" },
-        "price": { "type": "number" },
         "sku": { "type": "string", "description": "Stock Keeping Unit." },
         "category": { "type": "string", "description": "The category of the item." },
         "lowStockThreshold": { "type": "number", "description": "The threshold for low stock warnings." }
       },
-      "required": ["id", "name", "price"]
+      "required": ["id", "name"]
     },
     "Warehouse": {
       "title": "Warehouse",
