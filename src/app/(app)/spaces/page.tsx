@@ -2,6 +2,6 @@
 
 import { SpacesEntryPage } from '@/features/spaces/pages/spaces-entry-page';
 
-export default function SpacesPage() {
+export default function SpacesPageWrapper() {
   return <SpacesEntryPage />;
 }

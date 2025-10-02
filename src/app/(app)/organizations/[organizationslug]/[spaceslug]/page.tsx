@@ -1,17 +1,17 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { OrgSpaceDetailsPage } from '@/features/spaces/pages/org-space-details-page';
+import { SpaceDetailsPage } from '@/features/spaces/pages/space-details-page';
 
-export default function OrgSpaceDetailsPageWrapper({
+export default function SpaceDetailsPageWrapper({
   params: paramsPromise,
 }: {
-  params: Promise<{ organizationslug: string; spaceslug: string }>;
+  params: Promise<{ organizationslug?: string; userslug?: string; spaceslug:string }>;
 }) {
   const params = React.use(paramsPromise);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <OrgSpaceDetailsPage params={params} />
+      <SpaceDetailsPage params={params} />
     </Suspense>
   );
 }

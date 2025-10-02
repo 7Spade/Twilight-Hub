@@ -133,7 +133,6 @@ export function SpaceDetailView({
     [firestore, authUser]
   );
   const { data: userProfileData, isLoading: profileLoading } = useDoc<Account>(userProfileRef);
-  const userProfile = userProfileData;
 
   const installedModuleIds = useMemo(() => space?.moduleIds || [], [space]);
   const installedModulesQuery = useMemo(() => {
@@ -150,8 +149,8 @@ export function SpaceDetailView({
   const hasModule = (id: string) => installedModuleIds.includes(id);
 
   const userInventoryIds = useMemo(
-    () => (userProfile?.moduleInventory ? Object.keys(userProfile.moduleInventory) : []),
-    [userProfile]
+    () => (userProfileData?.moduleInventory ? Object.keys(userProfileData.moduleInventory) : []),
+    [userProfileData]
   );
   const availableToEquipIds = useMemo(
     () => userInventoryIds.filter((id) => !installedModuleIds.includes(id)),
