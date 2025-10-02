@@ -33,6 +33,7 @@ import { Badge } from '@/components/ui/badge';
 import { FileStorageModule } from '@/features/marketplace/components/file-storage-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
+import { IssuesPlaceholder } from '@/features/marketplace/components/issues-placeholder';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
@@ -181,7 +182,10 @@ export function SpaceDetailView({
         </Badge>
       </div>
 
-      {hasFileModule && <FileStorageModule spaceId={space.id} />}
+      <div className="space-y-8">
+        {hasFileModule && <FileStorageModule spaceId={space.id} />}
+        <IssuesPlaceholder />
+      </div>
 
       <Tabs defaultValue="installed">
         <TabsList>
