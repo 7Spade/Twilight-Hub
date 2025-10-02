@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A reusable form input component.
+ * It integrates a standard `Input` with `react-hook-form`'s `FormField`
+ * to provide validation and state management out of the box.
+ * It handles displaying labels, descriptions, and error messages.
+ */
+
 'use client';
 
 import { Control, FieldPath, FieldValues } from 'react-hook-form';

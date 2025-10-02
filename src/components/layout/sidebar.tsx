@@ -1,3 +1,10 @@
+/**
+ * @fileoverview The main desktop sidebar component for the application.
+ * It houses the team/account switcher and the primary navigation.
+ * The sidebar can be in an `expanded` or `collapsed` state, which is
+ * controlled by its parent layout component.
+ */
+
 "use client";
 
 import React from "react";

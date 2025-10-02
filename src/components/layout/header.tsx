@@ -1,3 +1,10 @@
+/**
+ * @fileoverview The main header component for the application's authenticated layout.
+ * It includes the mobile sidebar trigger, the desktop sidebar toggle,
+ * a global search command, a chat toggle, a notification popover, and the user navigation menu.
+ * It orchestrates various layout and navigation elements.
+ */
+
 'use client';
 
 import Link from 'next/link';

@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A reusable card component for forms.
+ * It wraps a react-hook-form instance, handling submission logic,
+ * loading states, and providing a consistent layout with a card,
+ * header, content, and a submit button in the footer.
+ */
+
 'use client';
 
 import {

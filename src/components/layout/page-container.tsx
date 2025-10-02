@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A standard container for page content.
+ * It provides a consistent layout structure with a main title (h1)
+ * and an optional description, followed by the page's main content.
+ * This helps maintain visual consistency across different pages.
+ */
+
 'use client';
 
 import { cn } from '@/lib/utils';

@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A reusable form switch component.
+ * It integrates a `Switch` with `react-hook-form`'s `FormField`
+ * to provide a toggle input with validation and state management.
+ * It handles displaying labels and descriptions within a bordered item.
+ */
+
 'use client';
 
 import { Control, FieldPath, FieldValues } from 'react-hook-form';

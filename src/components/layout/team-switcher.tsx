@@ -1,3 +1,11 @@
+/**
+ * @fileoverview A component for switching between different teams or accounts.
+ * It displays the currently selected team and provides a dropdown menu
+ * to switch to other available teams (personal account or organizations).
+ * It also includes actions like managing an organization or creating a new one.
+ * The component adapts its appearance based on the sidebar's collapsed state.
+ */
+
 'use client';
 
 import React from 'react';

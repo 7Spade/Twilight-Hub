@@ -1,3 +1,10 @@
+/**
+ * @fileoverview User navigation dropdown menu.
+ * This component displays the user's avatar and, when clicked, opens a dropdown
+ * with links to the user's profile, starred spaces, settings, and a logout button.
+ * It retrieves user information from the `useUser` hook and profile data from a prop.
+ */
+
 "use client";
 
 import Link from "next/link";

@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A reusable form textarea component.
+ * It integrates a standard `Textarea` with `react-hook-form`'s `FormField`
+ * to provide a multi-line text input with validation and state management.
+ * It handles displaying labels, descriptions, and error messages.
+ */
+
 'use client';
 
 import { Control, FieldPath, FieldValues } from 'react-hook-form';

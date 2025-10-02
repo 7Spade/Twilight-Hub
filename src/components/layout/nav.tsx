@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A primary navigation component that renders a list of navigation items.
+ * It supports two visual states: expanded (with icons and labels) and
+ * collapsed (icon-only with tooltips). The active link is automatically highlighted
+ * based on the current URL pathname.
+ */
 
 'use client';
 
