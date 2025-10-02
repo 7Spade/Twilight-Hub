@@ -106,8 +106,8 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
         { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
         { href: '/marketplace', icon: Store, label: 'Marketplace' },
-        { href: '/discover', icon: Compass, label: 'Discover' },
         { href: '/organizations', icon: Users2, label: 'Organizations' },
+        { href: '/discover', icon: Compass, label: 'Discover' },
       ];
     } else {
       const orgSlug = selectedTeam.slug;
