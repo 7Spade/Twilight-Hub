@@ -53,7 +53,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormCard } from '@/components/forms/form-card';
@@ -152,6 +152,7 @@ type OrgSettingsFormValues = z.infer<typeof orgSettingsSchema>;
 function OrganizationSettings({ organization }: { organization: any }) {
   const firestore = useFirestore();
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<OrgSettingsFormValues>({
     resolver: zodResolver(orgSettingsSchema),
@@ -183,6 +184,8 @@ function OrganizationSettings({ organization }: { organization: any }) {
         title: 'Success',
         description: 'Organization details have been updated.',
       });
+      // Optionally, redirect or refresh to reflect name change if slug is not changed
+      // router.refresh();
     } catch (error) {
       console.error('Failed to update organization', error);
       toast({
@@ -224,6 +227,7 @@ export default function OrganizationDetailsPage({
 }) {
   const params = React.use(paramsPromise);
   const searchParams = useSearchParams();
+  const router = useRouter();
   const tab = searchParams.get('tab') || 'overview';
   
   const firestore = useFirestore();
@@ -253,6 +257,10 @@ export default function OrganizationDetailsPage({
 
   const groupsQuery = useMemo(() => (firestore && org ? collection(firestore, 'organizations', org.id, 'groups') : null), [firestore, org]);
   const { data: groups, isLoading: groupsLoading } = useCollection(groupsQuery);
+  
+  const onTabChange = (value: string) => {
+    router.push(`/organizations/${params.organizationslug}?tab=${value}`);
+  }
 
 
   if (isLoading) {
@@ -307,7 +315,7 @@ export default function OrganizationDetailsPage({
         </Button>
       </div>
 
-      <Tabs defaultValue={tab} className="w-full">
+      <Tabs value={tab} onValueChange={onTabChange} className="w-full">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="members">Members</TabsTrigger>

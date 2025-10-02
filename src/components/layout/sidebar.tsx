@@ -10,6 +10,7 @@ import {
   Grid3x3,
   Package,
 } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { cn } from "@/lib/utils";
 import { Logo } from "../logo";
@@ -41,6 +42,7 @@ export function Sidebar({
       const orgSlug = selectedTeam.slug;
       return [
         { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
+        { href: `/organizations/${orgSlug}?tab=groups`, icon: Users2, label: 'Groups' },
         { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
         { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
       ];
