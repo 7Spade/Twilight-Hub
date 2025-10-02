@@ -20,6 +20,7 @@ import { GitHubHeatMap } from '@/components/github-heat-map';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ActivityOverviewChart } from '@/components/activity-overview-chart';
 import { ContributionBreakdownChart } from '@/components/contribution-breakdown-chart';
+import { RecentActivityTimeline } from '@/components/recent-activity-timeline';
 
 
 function UserProfilePageContent({ userslug }: { userslug: string }) {
@@ -202,6 +203,14 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
                 </CardHeader>
                 <CardContent>
                     <GitHubHeatMap data={heatMapData} />
+                </CardContent>
+             </Card>
+             <Card>
+                <CardHeader>
+                    <CardTitle>Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <RecentActivityTimeline />
                 </CardContent>
              </Card>
           </div>
