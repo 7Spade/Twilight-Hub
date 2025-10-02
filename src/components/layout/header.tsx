@@ -18,6 +18,7 @@ import { Nav, type NavItem } from './nav';
 import { TeamSwitcher, type Team } from './team-switcher';
 import { Separator } from '../ui/separator';
 import { SearchCommand } from '../search-command';
+import { type Account } from '@/lib/types';
 
 export function Header({
   isCollapsed,
@@ -26,6 +27,7 @@ export function Header({
   teams,
   selectedTeam,
   setSelectedTeam,
+  userProfile
 }: {
   isCollapsed: boolean;
   setIsCollapsed: (isCollapsed: boolean) => void;
@@ -33,6 +35,7 @@ export function Header({
   teams: Team[];
   selectedTeam: Team | null;
   setSelectedTeam: (team: Team) => void;
+  userProfile: Account | null;
 }) {
   const { toggle: toggleChat } = useChatStore();
 
@@ -88,7 +91,7 @@ export function Header({
           <span className="sr-only">Messages</span>
         </Button>
         <NotificationPopover />
-        <UserNav />
+        <UserNav userProfile={userProfile} />
       </div>
     </header>
   );

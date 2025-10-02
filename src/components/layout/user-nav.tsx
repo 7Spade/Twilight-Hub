@@ -17,8 +17,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { type Account } from "@/lib/types";
 
-export function UserNav() {
+export function UserNav({ userProfile }: { userProfile: Account | null }) {
   const { user } = useUser();
   const auth = useAuth();
   const router = useRouter();
@@ -39,6 +40,8 @@ export function UserNav() {
 
   const avatarUrl = user.photoURL || getPlaceholderImage('avatar-1').imageUrl;
   const fallbackText = user.displayName ? user.displayName.charAt(0) : (user.email ? user.email.charAt(0) : 'U');
+  const profileUrl = userProfile ? `/${userProfile.slug}` : `/`;
+
 
   return (
     <DropdownMenu>
@@ -61,7 +64,7 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`/${user.uid}`}>
+          <Link href={profileUrl}>
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </Link>

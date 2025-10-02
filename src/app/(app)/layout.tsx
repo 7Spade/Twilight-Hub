@@ -64,7 +64,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
   
-  const handleSetSelectedTeam = (team: Team | null) => {
+  const handleSetSelectedTeam = (team: Team) => {
     setSelectedTeam(team);
   };
 
@@ -171,7 +171,6 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         {!isMobile && (
           <Sidebar
             isCollapsed={isCollapsed}
-            setIsCollapsed={setIsCollapsed}
             teams={teams}
             selectedTeam={selectedTeam}
             setSelectedTeam={handleSetSelectedTeam}
@@ -190,6 +189,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
             teams={teams}
             selectedTeam={selectedTeam}
             setSelectedTeam={handleSetSelectedTeam}
+            userProfile={userProfile}
           />
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             {isLoading ? <div>Loading...</div> : children}
