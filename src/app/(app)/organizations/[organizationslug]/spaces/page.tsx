@@ -2,17 +2,13 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { PlusCircle, Star, Globe, Lock } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import {
   collection,
   query,
   where,
   getDocs,
   limit,
-  doc,
-  updateDoc,
-  arrayRemove,
-  arrayUnion,
 } from 'firebase/firestore';
 
 import { useFirestore, useUser, useCollection } from '@/firebase';
@@ -27,86 +23,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
-import { CreateSpaceDialog } from '@/components/create-space-dialog';
-
-const SpaceCard = ({
-  space,
-  userId,
-  orgSlug,
-}: {
-  space: any;
-  userId: string | undefined;
-  orgSlug: string;
-}) => {
-  const firestore = useFirestore();
-  const isStarred = userId ? space.starredByUserIds?.includes(userId) : false;
-
-  const handleStarClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!firestore || !userId) return;
-    const spaceRef = doc(firestore, 'spaces', space.id);
-    await updateDoc(spaceRef, {
-      starredByUserIds: isStarred ? arrayRemove(userId) : arrayUnion(userId),
-    });
-  };
-
-  const spaceUrl = `/organizations/${orgSlug}/${space.slug}`;
-
-  return (
-    <Card key={space.id} className="flex flex-col">
-      <Link href={spaceUrl} className="flex flex-col flex-grow">
-        <CardHeader>
-          <div className="flex justify-between items-start">
-            <div>
-              <CardTitle>{space.name}</CardTitle>
-              <CardDescription>{space.description}</CardDescription>
-            </div>
-            {userId && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleStarClick}
-                className={cn(
-                  'z-10',
-                  isStarred
-                    ? 'text-yellow-400'
-                    : 'text-muted-foreground hover:text-yellow-400'
-                )}
-              >
-                <Star className={cn(isStarred && 'fill-current')} />
-              </Button>
-            )}
-          </div>
-        </CardHeader>
-        <CardContent className="flex-grow">
-          <Badge variant={space.isPublic ? 'secondary' : 'outline'}>
-            {space.isPublic ? (
-              <Globe className="mr-1 h-3 w-3" />
-            ) : (
-              <Lock className="mr-1 h-3 w-3" />
-            )}
-            {space.isPublic ? 'Public' : 'Private'}
-          </Badge>
-        </CardContent>
-      </Link>
-      <CardFooter>
-        <Button variant="outline" className="w-full" asChild>
-          <Link href={spaceUrl}>Enter Space</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-};
+import { SpacesView } from '@/features/spaces/components/spaces-view';
 
 export default function OrgSpacesPage({
   params: paramsPromise,
@@ -153,6 +70,14 @@ export default function OrgSpacesPage({
   );
   const { data: spaces, isLoading: spacesLoading } =
     useCollection(spacesQuery);
+
+  const ownersMap = useMemo(() => {
+      const map = new Map<string, any>();
+      if (org) {
+        map.set(org.id, org);
+      }
+      return map;
+  }, [org]);
 
   const pageIsLoading = isLoading || spacesLoading;
 
@@ -202,24 +127,14 @@ export default function OrgSpacesPage({
           </Button>
         </div>
         
-        {pageIsLoading ? (
-            <p>Loading spaces...</p>
-        ) : !spaces || spaces.length === 0 ? (
-            <div className="text-center py-10 text-muted-foreground">
-                <p>No spaces found for this organization.</p>
-            </div>
-        ) : (
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {spaces.map((space) => (
-                    <SpaceCard
-                    key={space.id}
-                    space={space}
-                    userId={user?.uid}
-                    orgSlug={org.slug}
-                    />
-                ))}
-            </div>
-        )}
+        <SpacesView
+            userId={user?.uid}
+            owners={ownersMap}
+            isLoading={pageIsLoading}
+            organizationSpaces={spaces}
+            showOrganizationSpacesTab={true}
+        />
+
       </PageContainer>
     </div>
   );
