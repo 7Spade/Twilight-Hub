@@ -17,6 +17,10 @@ import { type Account, type Space } from '@/lib/types';
 import { UserProfileCard } from '@/components/user-profile-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GitHubHeatMap } from '@/components/github-heat-map';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ActivityOverviewChart } from '@/components/activity-overview-chart';
+import { ContributionBreakdownChart } from '@/components/contribution-breakdown-chart';
+
 
 function UserProfilePageContent({ userslug }: { userslug: string }) {
   const { user: currentUser } = useUser();
@@ -25,7 +29,7 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('tab') || 'spaces';
-  
+
   // Placeholder data for the heat map
   const heatMapData = useMemo(() => {
     const data = [];
@@ -39,6 +43,28 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
     }
     return data;
   }, []);
+  
+    // Placeholder data for the new charts
+  const activityOverviewData = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => {
+      const date = new Date();
+      date.setDate(date.getDate() - (29 - i));
+      return {
+        date: date.toISOString().split('T')[0],
+        count: Math.floor(Math.random() * 20) + (i % 7) * 5, // Some pattern
+      };
+    });
+  }, []);
+
+  const contributionBreakdownData = useMemo(() => {
+    return [
+        { subject: 'Commits', value: Math.floor(Math.random() * 80) + 20 },
+        { subject: 'Issues', value: Math.floor(Math.random() * 20) },
+        { subject: 'Pull Requests', value: Math.floor(Math.random() * 40) + 5 },
+        { subject: 'Code Review', value: Math.floor(Math.random() * 10) + 1 },
+    ];
+  }, []);
+
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -87,15 +113,15 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
 
   if (isLoading) {
     return (
-        <div className="grid md:grid-cols-4 gap-8 items-start">
-            <aside className="md:col-span-1">
-                 <UserProfileCard userId={undefined} />
-            </aside>
-            <main className="md:col-span-3">
-                 <Skeleton className="h-10 w-full mb-6" />
-                 <Skeleton className="h-96 w-full" />
-            </main>
-        </div>
+      <div className="grid md:grid-cols-4 gap-8 items-start">
+        <aside className="md:col-span-1">
+          <UserProfileCard userId={undefined} />
+        </aside>
+        <main className="md:col-span-3">
+          <Skeleton className="h-10 w-full mb-6" />
+          <Skeleton className="h-96 w-full" />
+        </main>
+      </div>
     );
   }
 
@@ -104,8 +130,13 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
   }
 
   return (
-    <PageContainer title={userProfile.name} description={`@${userProfile.username}`}>
-       {userProfile.bio && <p className="text-muted-foreground max-w-2xl">{userProfile.bio}</p>}
+    <PageContainer
+      title={userProfile.name}
+      description={`@${userProfile.username}`}
+    >
+      {userProfile.bio && (
+        <p className="text-muted-foreground max-w-2xl">{userProfile.bio}</p>
+      )}
       <div className="grid md:grid-cols-4 gap-8 items-start">
         <aside className="md:col-span-1">
           <UserProfileCard userId={userProfile.id} />
@@ -145,10 +176,31 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
               <MembershipList userId={userProfile.id} />
             </TabsContent>
           </Tabs>
-          <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-2">Contribution Activity</h3>
-              <GitHubHeatMap data={heatMapData} />
-           </div>
+          
+          <div className="mt-8 space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Activity overview</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ActivityOverviewChart data={activityOverviewData} />
+                    </CardContent>
+                </Card>
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>Contribution breakdown</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ContributionBreakdownChart data={contributionBreakdownData} />
+                    </CardContent>
+                </Card>
+            </div>
+             <div>
+                <h3 className="text-lg font-semibold mb-2">Contribution activity</h3>
+                <GitHubHeatMap data={heatMapData} />
+            </div>
+          </div>
         </main>
       </div>
     </PageContainer>
