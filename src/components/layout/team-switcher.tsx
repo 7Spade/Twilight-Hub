@@ -1,14 +1,17 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
-import { ChevronDown, User, Users } from 'lucide-react';
+import { ChevronDown, User, Users, Settings, PlusCircle } from 'lucide-react';
+import { useDialogStore } from '@/hooks/use-dialog-store';
 
 export type Team = {
   id: string;
@@ -28,6 +31,7 @@ export function TeamSwitcher({
   setSelectedTeam: (team: Team) => void;
   isCollapsed: boolean;
 }) {
+  const { open: openDialog } = useDialogStore();
   const handleSelect = (team: Team) => {
     setSelectedTeam(team);
   };
@@ -60,6 +64,19 @@ export function TeamSwitcher({
               </div>
             </DropdownMenuItem>
           ))}
+           <DropdownMenuSeparator />
+           {selectedTeam && !selectedTeam.isUser && (
+                <DropdownMenuItem asChild>
+                    <Link href={`/organizations/${selectedTeam.slug}`}>
+                        <Settings className="mr-2 h-4 w-4" />
+                        Manage Organization
+                    </Link>
+                </DropdownMenuItem>
+            )}
+            <DropdownMenuItem onSelect={() => openDialog('createOrganization')}>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                New Organization
+            </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     );
@@ -77,6 +94,7 @@ export function TeamSwitcher({
             )}
             <span className="truncate font-medium">{selectedTeam.label}</span>
           </div>
+
           <ChevronDown className="ml-auto h-4 w-4 text-muted-foreground" />
         </Button>
       </DropdownMenuTrigger>
@@ -93,6 +111,19 @@ export function TeamSwitcher({
             </div>
           </DropdownMenuItem>
         ))}
+        <DropdownMenuSeparator />
+        {selectedTeam && !selectedTeam.isUser && (
+            <DropdownMenuItem asChild>
+                <Link href={`/organizations/${selectedTeam.slug}`}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    Manage Organization
+                </Link>
+            </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onSelect={() => openDialog('createOrganization')}>
+            <PlusCircle className="mr-2 h-4 w-4" />
+            New Organization
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
