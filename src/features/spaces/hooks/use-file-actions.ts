@@ -171,7 +171,7 @@ export function useFileActions(): UseFileActionsReturn {
   }, [toast]);
 
   const listFiles = useCallback(async (
-    spaceId: string, ´ovo je ključ'
+    spaceId: string,
     userId: string
   ): Promise<FileItem[]> => {
     try {
