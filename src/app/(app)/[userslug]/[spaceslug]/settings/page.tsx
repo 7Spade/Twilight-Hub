@@ -7,17 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { doc, updateDoc, query, where, collection, getDocs, limit } from 'firebase/firestore';
 
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  Form,
-} from '@/components/ui/form';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -28,11 +17,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { Skeleton } from '@/components/ui/skeleton';
 import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormSwitch } from '@/components/forms/form-switch';
+import { FormCard } from '@/components/forms/form-card';
 
 const spaceSettingsSchema = z.object({
   name: z.string().min(1, 'Space name is required'),
@@ -146,47 +135,32 @@ export default function SpaceSettingsPage({
         title="Space Settings"
         description={`Manage settings for ${isLoading ? '...' : `"${space?.name}"`}.`}
       >
-        <Card>
-          <CardHeader>
-            <CardTitle>General Settings</CardTitle>
-            <CardDescription>Update your space's name, description, and visibility.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-               <div className="space-y-8">
-                  <Skeleton className="h-10 w-1/2" />
-                  <Skeleton className="h-20 w-full" />
-                  <Skeleton className="h-10 w-1/4" />
-              </div>
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                  <FormInput
-                    control={form.control}
-                    name="name"
-                    label="Space Name"
-                    placeholder="Project Phoenix"
-                  />
-                  <FormTextarea
-                    control={form.control}
-                    name="description"
-                    label="Description"
-                    placeholder="A short description of the space's purpose."
-                  />
-                  <FormSwitch
-                    control={form.control}
-                    name="isPublic"
-                    label="Public Space"
-                    description="If enabled, anyone can discover and view this space."
-                  />
-                  <Button type="submit" disabled={form.formState.isSubmitting}>
-                    {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
-                  </Button>
-                </form>
-              </Form>
-            )}
-          </CardContent>
-        </Card>
+        <FormCard
+          title="General Settings"
+          description="Update your space's name, description, and visibility."
+          isLoading={isLoading}
+          form={form}
+          onSubmit={onSubmit}
+        >
+          <FormInput
+            control={form.control}
+            name="name"
+            label="Space Name"
+            placeholder="Project Phoenix"
+          />
+          <FormTextarea
+            control={form.control}
+            name="description"
+            label="Description"
+            placeholder="A short description of the space's purpose."
+          />
+          <FormSwitch
+            control={form.control}
+            name="isPublic"
+            label="Public Space"
+            description="If enabled, anyone can discover and view this space."
+          />
+        </FormCard>
       </PageContainer>
     </div>
   );
