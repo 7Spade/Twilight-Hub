@@ -26,10 +26,10 @@ import {
   FormMessage,
   FormDescription,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const createSpaceSchema = z.object({
   name: z.string().min(1, { message: 'Space name is required' }),
@@ -76,7 +76,6 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
         ...values,
         slug: generateSlug(values.name),
         ownerId: selectedTeam.id,
-        ownerType: selectedTeam.isUser ? 'user' : 'organization',
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         moduleIds: [],

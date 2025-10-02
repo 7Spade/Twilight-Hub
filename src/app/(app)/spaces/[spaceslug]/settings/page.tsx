@@ -17,10 +17,10 @@ import {
 import { SpaceSettingsView, type SpaceSettingsFormValues } from '@/features/spaces/components/space-settings-view';
 import { type Space } from '@/lib/types';
 
-export function UserSpaceSettingsPage({
+export default function UnifiedSpaceSettingsPage({
   params,
 }: {
-  params: { userslug: string; spaceslug: string };
+  params: { spaceslug: string };
 }) {
   const firestore = useFirestore();
   const { toast } = useToast();
@@ -90,7 +90,7 @@ export function UserSpaceSettingsPage({
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={`/${params.userslug}/${params.spaceslug}`}>
+            <Link href={`/spaces/${params.spaceslug}`}>
               {isLoading ? '...' : space?.name}
             </Link>
           </BreadcrumbLink>

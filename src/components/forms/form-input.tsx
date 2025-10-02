@@ -21,7 +21,7 @@ import { Input, type InputProps } from '@/components/ui/input';
 interface FormInputProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends InputProps {
+> extends Omit<InputProps, 'name'> {
   control: Control<TFieldValues>;
   name: TName;
   label: string;

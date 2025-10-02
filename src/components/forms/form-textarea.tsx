@@ -21,7 +21,7 @@ import { Textarea, type TextareaProps } from '@/components/ui/textarea';
 interface FormTextareaProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends TextareaProps {
+> extends Omit<TextareaProps, 'name'> {
   control: Control<TFieldValues>;
   name: TName;
   label: string;

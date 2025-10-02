@@ -52,12 +52,8 @@ const SpaceCard = ({
   };
 
   let spaceUrl = '#'; // Default fallback URL
-  if (owner && owner.slug && space.slug) {
-    if (space.ownerType === 'user') {
-      spaceUrl = `/${owner.slug}/${space.slug}`;
-    } else {
-      spaceUrl = `/organizations/${owner.slug}/${space.slug}`;
-    }
+  if (space.slug) {
+    spaceUrl = `/spaces/${space.slug}`;
   }
 
   return (

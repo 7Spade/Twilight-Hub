@@ -22,12 +22,14 @@ interface SpaceSettingsViewProps {
   space: Space | null;
   isLoading: boolean;
   onFormSubmit: (values: SpaceSettingsFormValues) => Promise<void>;
+  breadcrumbs?: React.ReactNode;
 }
 
 export function SpaceSettingsView({
   space,
   isLoading,
   onFormSubmit,
+  breadcrumbs,
 }: SpaceSettingsViewProps) {
   const form = useForm<SpaceSettingsFormValues>({
     resolver: zodResolver(spaceSettingsSchema),
@@ -49,31 +51,34 @@ export function SpaceSettingsView({
   }, [space, form]);
 
   return (
-    <FormCard
-      title="General Settings"
-      description="Update your space's name, description, and visibility."
-      isLoading={isLoading}
-      form={form}
-      onSubmit={onFormSubmit}
-    >
-      <FormInput
-        control={form.control}
-        name="name"
-        label="Space Name"
-        placeholder="Project Phoenix"
-      />
-      <FormTextarea
-        control={form.control}
-        name="description"
-        label="Description"
-        placeholder="A short description of the space's purpose."
-      />
-      <FormSwitch
-        control={form.control}
-        name="isPublic"
-        label="Public Space"
-        description="If enabled, anyone can discover and view this space."
-      />
-    </FormCard>
+    <div className="flex flex-col gap-8">
+      {breadcrumbs}
+      <FormCard
+        title="General Settings"
+        description="Update your space's name, description, and visibility."
+        isLoading={isLoading}
+        form={form}
+        onSubmit={onFormSubmit}
+      >
+        <FormInput
+          control={form.control}
+          name="name"
+          label="Space Name"
+          placeholder="Project Phoenix"
+        />
+        <FormTextarea
+          control={form.control}
+          name="description"
+          label="Description"
+          placeholder="A short description of the space's purpose."
+        />
+        <FormSwitch
+          control={form.control}
+          name="isPublic"
+          label="Public Space"
+          description="If enabled, anyone can discover and view this space."
+        />
+      </FormCard>
+    </div>
   );
 }

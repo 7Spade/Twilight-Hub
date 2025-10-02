@@ -88,20 +88,12 @@ export function UseModuleDialog() {
   const { data: allSpaces, isLoading: spacesLoading } =
     useCollection(spacesQuery);
 
-  // Filter spaces based on module type
+  // Filter spaces that don't already have the module
   const availableSpaces = useMemo(() => {
     if (!allSpaces || !module) return [];
     return allSpaces.filter((space) => {
       // Don't show spaces that already have the module
-      if (space.moduleIds?.includes(module.id)) {
-        return false;
-      }
-      // Check type compatibility
-      if (module.type === 'common') return true;
-      if (module.type === 'user' && space.ownerType === 'user') return true;
-      if (module.type === 'organization' && space.ownerType === 'organization')
-        return true;
-      return false;
+      return !space.moduleIds?.includes(module.id);
     });
   }, [allSpaces, module]);
 
