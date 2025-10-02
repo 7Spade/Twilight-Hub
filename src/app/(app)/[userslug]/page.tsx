@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Edit, Mail } from 'lucide-react';
 import { useUser, useFirestore, useCollection } from '@/firebase';
-import { collection, query, where, getDocs, limit, documentId } from 'firebase/firestore';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 import React, { useEffect, useState, useMemo, Suspense } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Link from 'next/link';
@@ -18,6 +18,8 @@ import { SpacesView } from '@/features/spaces/components/spaces-view';
 import { StarredSpaces } from '@/components/starred-spaces';
 import { type Account, type Space } from '@/lib/types';
 import { useSearchParams } from 'next/navigation';
+import { FollowingList } from '@/components/following-list';
+import { AchievementsList } from '@/components/achievements-list';
 
 function UserProfilePageContent({ userslug }: { userslug: string }) {
   const { user: currentUser } = useUser();
@@ -157,6 +159,8 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
             <TabsTrigger value="spaces">Spaces</TabsTrigger>
             <TabsTrigger value="stars">Stars</TabsTrigger>
             <TabsTrigger value="followers">Followers</TabsTrigger>
+            <TabsTrigger value="following">Following</TabsTrigger>
+            <TabsTrigger value="achievements">Achievements</TabsTrigger>
             <TabsTrigger value="memberships">Memberships</TabsTrigger>
           </TabsList>
           <TabsContent value="spaces" className="mt-6">
@@ -173,6 +177,12 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
           </TabsContent>
           <TabsContent value="followers" className="mt-6">
             <FollowerList userId={userProfile.id} />
+          </TabsContent>
+          <TabsContent value="following" className="mt-6">
+            <FollowingList userId={userProfile.id} />
+          </TabsContent>
+          <TabsContent value="achievements" className="mt-6">
+            <AchievementsList userId={userProfile.id} />
           </TabsContent>
           <TabsContent value="memberships" className="mt-6">
             <MembershipList userId={userProfile.id} />

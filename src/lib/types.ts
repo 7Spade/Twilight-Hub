@@ -95,3 +95,15 @@ export interface AuditLog {
     entityTitle: string;
     createdAt: Timestamp;
 }
+
+export interface UserAchievement {
+    achievementId: string;
+    unlockedAt: Timestamp;
+}
+
+export interface Achievement {
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+}
