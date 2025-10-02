@@ -1,7 +1,7 @@
 'use client';
 
 import { formatDistanceToNow } from 'date-fns';
-import { PlusCircle, Star, UserPlus, GitCommit, GitRepoForked, GitPullRequest, MessageSquare, Code } from 'lucide-react';
+import { PlusCircle, Star, UserPlus, GitCommit, GitFork, GitPullRequest, MessageSquare, Code } from 'lucide-react';
 import React from 'react';
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -9,7 +9,7 @@ const iconMap: { [key: string]: React.ElementType } = {
   'star_space': Star,
   'follow_user': UserPlus,
   'commit': GitCommit,
-  'fork': GitRepoForked,
+  'fork': GitFork,
   'pull_request': GitPullRequest,
   'comment': MessageSquare,
   'default': Code
