@@ -27,19 +27,32 @@ import {
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList } from 'lucide-react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { FileStorageModule } from '@/features/marketplace/components/file-storage-module';
+import { FilesModule } from '@/features/marketplace/components/files-module';
+import { IssuesModule } from '@/features/marketplace/components/issues-module';
+import { MeetingsModule } from '@/features/marketplace/components/meetings-module';
+import { FormsModule } from '@/features/marketplace/components/forms-module';
+import { RfiModule } from '@/features/marketplace/components/rfi-module';
+import { PhotosModule } from '@/features/marketplace/components/photos-module';
+import { ReportsModule } from '@/features/marketplace/components/reports-module';
+import { AiAssistantModule } from '@/features/marketplace/components/ai-assistant-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
-import { IssuesModule } from '@/features/marketplace/components/issues-module';
 
 const iconMap: { [key: string]: React.ElementType } = {
-  default: Puzzle,
   'file-storage': File,
   'clipboard-list': ClipboardList,
+  'video': Video,
+  'list-checks': ListChecks,
+  'help-circle': HelpCircle,
+  'image': ImageIcon,
+  'bar-chart': BarChart,
+  'sparkles': Sparkles,
+  default: Puzzle,
 };
+
 
 function ModuleCard({
   module,
@@ -118,9 +131,7 @@ export function SpaceDetailView({
     useCollection<Module>(installedModulesQuery);
   const installedModules = installedModulesData || [];
   
-  const hasFileModule = useMemo(() => installedModuleIds.includes('file-storage-module'), [installedModuleIds]);
-  const hasIssuesModule = useMemo(() => installedModuleIds.includes('issues-tracking-module'), [installedModuleIds]);
-
+  const hasModule = (id: string) => installedModuleIds.includes(id);
 
   const userInventoryIds = useMemo(
     () => (userProfile?.moduleInventory ? Object.keys(userProfile.moduleInventory) : []),
@@ -183,8 +194,14 @@ export function SpaceDetailView({
       </div>
 
       <div className="space-y-8">
-        {hasFileModule && <FileStorageModule spaceId={space.id} />}
-        {hasIssuesModule && <IssuesModule />}
+        {hasModule('files-module') && <FilesModule spaceId={space.id} />}
+        {hasModule('issues-module') && <IssuesModule />}
+        {hasModule('meetings-module') && <MeetingsModule />}
+        {hasModule('forms-module') && <FormsModule />}
+        {hasModule('rfi-module') && <RfiModule />}
+        {hasModule('photos-module') && <PhotosModule />}
+        {hasModule('reports-module') && <ReportsModule />}
+        {hasModule('ai-assistant-module') && <AiAssistantModule />}
       </div>
 
       <Tabs defaultValue="installed">

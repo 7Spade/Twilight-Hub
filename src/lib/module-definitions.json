@@ -1,17 +1,59 @@
 {
   "modules": [
     {
-      "id": "file-storage-module",
-      "name": "File Storage",
+      "id": "files-module",
+      "name": "文件庫",
       "description": "Upload and manage files for this space.",
       "icon": "file-storage",
       "type": "common"
     },
     {
-      "id": "issues-tracking-module",
-      "name": "Issues Tracking",
+      "id": "issues-module",
+      "name": "任務看板",
       "description": "Track tasks, bugs, and other issues right here within your spaces.",
       "icon": "clipboard-list",
+      "type": "common"
+    },
+    {
+      "id": "meetings-module",
+      "name": "會議記錄",
+      "description": "Manage meeting agendas, notes, and track action items.",
+      "icon": "video",
+      "type": "common"
+    },
+    {
+      "id": "forms-module",
+      "name": "表單",
+      "description": "Build custom forms and checklists for standardized processes.",
+      "icon": "list-checks",
+      "type": "common"
+    },
+    {
+      "id": "rfi-module",
+      "name": "問答",
+      "description": "Manage formal Requests for Information to track key decisions.",
+      "icon": "help-circle",
+      "type": "common"
+    },
+    {
+      "id": "photos-module",
+      "name": "照片牆",
+      "description": "Upload, organize, and annotate photos in a visual gallery.",
+      "icon": "image",
+      "type": "common"
+    },
+    {
+      "id": "reports-module",
+      "name": "儀表板",
+      "description": "Visualize project data with customizable reports and dashboards.",
+      "icon": "bar-chart",
+      "type": "common"
+    },
+    {
+      "id": "ai-assistant-module",
+      "name": "AI 助手",
+      "description": "Interact with an AI assistant to get insights and help with your tasks.",
+      "icon": "sparkles",
       "type": "common"
     }
   ]

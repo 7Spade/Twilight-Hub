@@ -23,7 +23,7 @@ interface FileItem {
   url: string;
 }
 
-export function FileStorageModule({ spaceId }: { spaceId: string }) {
+export function FilesModule({ spaceId }: { spaceId: string }) {
   const firebaseApp = useFirebaseApp();
   const storage = useMemo(() => firebaseApp ? getStorage(firebaseApp) : null, [firebaseApp]);
   const [files, setFiles] = useState<FileItem[]>([]);
@@ -110,7 +110,7 @@ export function FileStorageModule({ spaceId }: { spaceId: string }) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <File className="h-6 w-6" />
-          File Storage
+          文件庫 (File Library)
         </CardTitle>
         <CardDescription>
           Upload and manage files for this space. All files are stored securely.
