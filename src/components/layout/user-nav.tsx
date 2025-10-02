@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
-import { User, Settings, LogOut } from "lucide-react";
+import { User, Settings, LogOut, Star } from "lucide-react";
 
 import { useAuth, useUser } from "@/firebase";
 import { getPlaceholderImage } from "@/lib/placeholder-images";
@@ -41,6 +41,7 @@ export function UserNav({ userProfile }: { userProfile: Account | null }) {
   const avatarUrl = user.photoURL || getPlaceholderImage('avatar-1').imageUrl;
   const fallbackText = user.displayName ? user.displayName.charAt(0) : (user.email ? user.email.charAt(0) : 'U');
   const profileUrl = userProfile ? `/${userProfile.slug}` : `/`;
+  const starredUrl = userProfile ? `/${userProfile.slug}?tab=stars` : '/';
 
 
   return (
@@ -67,6 +68,12 @@ export function UserNav({ userProfile }: { userProfile: Account | null }) {
           <Link href={profileUrl}>
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={starredUrl}>
+            <Star className="mr-2 h-4 w-4" />
+            <span>Starred Spaces</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
