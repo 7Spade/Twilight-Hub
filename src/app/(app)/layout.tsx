@@ -107,6 +107,11 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
           label: 'Overview',
         },
         {
+          href: `/organizations/${orgSlug}/spaces`,
+          icon: Grid3x3,
+          label: 'Spaces',
+        },
+        {
           href: `/organizations/${orgSlug}/inventory`,
           icon: Package,
           label: 'Inventory',
