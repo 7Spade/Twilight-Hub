@@ -105,149 +105,158 @@ export function ChatDialog() {
   if (!isOpen) return null;
 
   return (
-    <Draggable nodeRef={nodeRef} handle=".drag-handle">
-        <Dialog open={isOpen} onOpenChange={close}>
-        <DialogContent
-            ref={nodeRef}
-            className="p-0 w-full max-w-4xl h-[600px] flex flex-col fixed bottom-4 right-4 !m-0 !translate-x-0 !translate-y-0"
-            onPointerDownOutside={(e) => e.preventDefault()}
-        >
-            <Card className="h-full w-full flex flex-col border-0">
+    <Dialog open={isOpen} onOpenChange={close}>
+      <DialogContent
+        className="p-0 border-none bg-transparent shadow-none w-auto h-auto !max-w-none fixed bottom-4 right-4 !m-0 !translate-x-0 !translate-y-0"
+        onPointerDownOutside={(e) => e.preventDefault()}
+      >
+        <Draggable nodeRef={nodeRef} handle=".drag-handle">
+          <Card ref={nodeRef} className="h-[600px] w-full max-w-4xl flex flex-col border-0">
             <DialogHeader className="drag-handle cursor-move p-4 border-b flex-row items-center justify-between space-y-0">
-                <div className='flex items-center gap-2'>
-                    <GripVertical className="h-5 w-5 text-muted-foreground" />
-                    <DialogTitle>Messages</DialogTitle>
-                </div>
-                <Button variant="ghost" size="icon" onClick={close} className="h-6 w-6">
-                    <X className="h-4 w-4" />
-                </Button>
+              <div className="flex items-center gap-2">
+                <GripVertical className="h-5 w-5 text-muted-foreground" />
+                <DialogTitle>Messages</DialogTitle>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={close}
+                className="h-6 w-6"
+              >
+                <X className="h-4 w-4" />
+              </Button>
             </DialogHeader>
 
             <div className="flex-1 grid md:grid-cols-[300px_1fr] overflow-hidden">
-                <div className="flex flex-col h-full border-r">
+              <div className="flex flex-col h-full border-r">
                 <div className="p-4 border-b">
-                    <div className="relative">
+                  <div className="relative">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="Search conversations..." className="pl-8" />
-                    </div>
+                    <Input
+                      placeholder="Search conversations..."
+                      className="pl-8"
+                    />
+                  </div>
                 </div>
                 <ScrollArea className="flex-1">
-                    {placeholderConversations.map((convo) => (
+                  {placeholderConversations.map((convo) => (
                     <div
-                        key={convo.id}
-                        className={cn(
+                      key={convo.id}
+                      className={cn(
                         'flex items-center gap-3 p-3 text-sm cursor-pointer border-b',
                         selectedConversation &&
-                            convo.id === selectedConversation.id
-                            ? 'bg-muted'
-                            : 'hover:bg-muted/50'
-                        )}
-                        onClick={() => setSelectedConversation(convo)}
+                          convo.id === selectedConversation.id
+                          ? 'bg-muted'
+                          : 'hover:bg-muted/50'
+                      )}
+                      onClick={() => setSelectedConversation(convo)}
                     >
-                        <Avatar className="h-10 w-10 border">
+                      <Avatar className="h-10 w-10 border">
                         <AvatarImage
-                            src={convo.user.avatarUrl}
-                            alt={convo.user.name}
+                          src={convo.user.avatarUrl}
+                          alt={convo.user.name}
                         />
                         <AvatarFallback>
-                            {convo.user.name.charAt(0)}
+                          {convo.user.name.charAt(0)}
                         </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1 overflow-hidden">
-                        <p className="font-medium truncate">{convo.user.name}</p>
-                        <p className="text-muted-foreground truncate">
-                            {convo.lastMessage}
+                      </Avatar>
+                      <div className="flex-1 overflow-hidden">
+                        <p className="font-medium truncate">
+                          {convo.user.name}
                         </p>
-                        </div>
-                        <span className="text-xs text-muted-foreground">
+                        <p className="text-muted-foreground truncate">
+                          {convo.lastMessage}
+                        </p>
+                      </div>
+                      <span className="text-xs text-muted-foreground">
                         {convo.time}
-                        </span>
+                      </span>
                     </div>
-                    ))}
+                  ))}
                 </ScrollArea>
-                </div>
-                {selectedConversation && currentUser ? (
+              </div>
+              {selectedConversation && currentUser ? (
                 <div className="flex flex-col h-full">
-                    <div className="flex items-center gap-3 p-3 border-b">
+                  <div className="flex items-center gap-3 p-3 border-b">
                     <Avatar className="h-10 w-10 border">
-                        <AvatarImage
+                      <AvatarImage
                         src={selectedConversation.user.avatarUrl}
                         alt={selectedConversation.user.name}
-                        />
-                        <AvatarFallback>
+                      />
+                      <AvatarFallback>
                         {selectedConversation.user.name.charAt(0)}
-                        </AvatarFallback>
+                      </AvatarFallback>
                     </Avatar>
                     <div>
-                        <p className="font-medium">
+                      <p className="font-medium">
                         {selectedConversation.user.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground">Online</p>
+                      </p>
+                      <p className="text-xs text-muted-foreground">Online</p>
                     </div>
-                    </div>
-                    <ScrollArea className="flex-1 p-4">
+                  </div>
+                  <ScrollArea className="flex-1 p-4">
                     <div className="flex flex-col gap-4">
-                        {selectedConversation.messages.map(
+                      {selectedConversation.messages.map(
                         (msg: any, index: number) => (
-                            <div
+                          <div
                             key={index}
                             className={cn(
-                                'flex items-end gap-2',
-                                msg.sender.id !== currentUser.uid
+                              'flex items-end gap-2',
+                              msg.sender.id !== currentUser.uid
                                 ? ''
                                 : 'justify-end'
                             )}
-                            >
+                          >
                             {msg.sender.id !== currentUser.uid && (
-                                <Avatar className="h-8 w-8 border">
+                              <Avatar className="h-8 w-8 border">
                                 <AvatarImage
-                                    src={msg.sender.avatarUrl}
-                                    alt={msg.sender.name}
+                                  src={msg.sender.avatarUrl}
+                                  alt={msg.sender.name}
                                 />
                                 <AvatarFallback>
-                                    {msg.sender.name.charAt(0)}
+                                  {msg.sender.name.charAt(0)}
                                 </AvatarFallback>
-                                </Avatar>
+                              </Avatar>
                             )}
                             <div
-                                className={cn(
+                              className={cn(
                                 'max-w-xs rounded-lg p-3 text-sm',
                                 msg.sender.id !== currentUser.uid
-                                    ? 'bg-muted'
-                                    : 'bg-primary text-primary-foreground'
-                                )}
+                                  ? 'bg-muted'
+                                  : 'bg-primary text-primary-foreground'
+                              )}
                             >
-                                {msg.text}
+                              {msg.text}
                             </div>
-                            </div>
+                          </div>
                         )
-                        )}
+                      )}
                     </div>
-                    </ScrollArea>
-                    <CardFooter className="p-4 border-t">
+                  </ScrollArea>
+                  <CardFooter className="p-4 border-t">
                     <div className="relative w-full">
-                        <Input
+                      <Input
                         placeholder="Type a message..."
                         className="pr-12"
-                        />
-                        <Button
+                      />
+                      <Button
                         size="icon"
                         className="absolute right-1 top-1 h-8 w-8"
-                        >
+                      >
                         <Send className="h-4 w-4" />
-                        </Button>
+                      </Button>
                     </div>
-                    </CardFooter>
+                  </CardFooter>
                 </div>
-                ) : (
+              ) : (
                 <div className="border-l flex items-center justify-center h-full text-muted-foreground">
-                    Select a conversation to start chatting.
+                  Select a conversation to start chatting.
                 </div>
-                )}
+              )}
             </div>
-            </Card>
-        </DialogContent>
-        </Dialog>
-    </Draggable>
+          </Card>
+        </Draggable>
+      </DialogContent>
+    </Dialog>
   );
 }
