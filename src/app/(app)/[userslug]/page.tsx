@@ -89,7 +89,7 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
     return (
         <div className="grid md:grid-cols-4 gap-8 items-start">
             <aside className="md:col-span-1">
-                 <Skeleton className="h-[500px] w-full" />
+                 <UserProfileCard userId={undefined} />
             </aside>
             <main className="md:col-span-3">
                  <Skeleton className="h-10 w-full mb-6" />
@@ -111,10 +111,6 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
           <UserProfileCard userId={userProfile.id} />
         </aside>
         <main className="md:col-span-3">
-           <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Contribution Activity</h3>
-              <GitHubHeatMap data={heatMapData} />
-           </div>
           <Tabs defaultValue={defaultTab}>
             <TabsList>
               <TabsTrigger value="spaces">Spaces</TabsTrigger>
@@ -149,6 +145,10 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
               <MembershipList userId={userProfile.id} />
             </TabsContent>
           </Tabs>
+          <div className="mt-8">
+              <h3 className="text-lg font-semibold mb-2">Contribution Activity</h3>
+              <GitHubHeatMap data={heatMapData} />
+           </div>
         </main>
       </div>
     </PageContainer>
