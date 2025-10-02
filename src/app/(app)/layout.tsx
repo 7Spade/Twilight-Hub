@@ -16,12 +16,14 @@ import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { ChatDialog } from '@/components/chat-dialog';
 import { type Team } from '@/components/layout/team-switcher';
 import {
-    LayoutDashboard,
-    Grid3x3,
-    Store,
-    Users2,
-    Package,
-    Settings,
+  LayoutDashboard,
+  Grid3x3,
+  Store,
+  Users2,
+  Package,
+  Settings,
+  Group,
+  ScrollText,
 } from 'lucide-react';
 import { type NavItem } from '@/components/layout/nav';
 
@@ -69,17 +71,23 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
       slug: org.slug,
       isUser: false,
     }));
-    
+
     const allTeams = [personalTeam, ...orgTeams];
 
     if (!selectedTeam && personalTeam) {
-        setSelectedTeam(personalTeam);
+      setSelectedTeam(personalTeam);
     }
-    
-    return allTeams;
 
-  }, [isUserLoading, isProfileLoading, user, userProfile, organizations, selectedTeam]);
-  
+    return allTeams;
+  }, [
+    isUserLoading,
+    isProfileLoading,
+    user,
+    userProfile,
+    organizations,
+    selectedTeam,
+  ]);
+
   const navItems = useMemo((): NavItem[] => {
     if (!selectedTeam) return [];
 
@@ -93,17 +101,39 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     } else {
       const orgSlug = selectedTeam.slug;
       return [
-        { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
-        { href: `/organizations/${orgSlug}?tab=groups`, icon: Users2, label: 'Groups' },
-        { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
-        { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
+        {
+          href: `/organizations/${orgSlug}`,
+          icon: LayoutDashboard,
+          label: 'Overview',
+        },
+        {
+          href: `/organizations/${orgSlug}/inventory`,
+          icon: Package,
+          label: 'Inventory',
+        },
+        {
+          href: `/organizations/${orgSlug}/members`,
+          icon: Users2,
+          label: 'Members',
+        },
+        { href: `/organizations/${orgSlug}/groups`, icon: Group, label: 'Groups' },
+        {
+          href: `/organizations/${orgSlug}/audit-log`,
+          icon: ScrollText,
+          label: 'Audit Log',
+        },
+        {
+          href: `/organizations/${orgSlug}/settings`,
+          icon: Settings,
+          label: 'Settings',
+        },
       ];
     }
   }, [selectedTeam]);
 
   const isLoading = isUserLoading || isProfileLoading || orgsLoading;
-  const currentOrgId = (selectedTeam && !selectedTeam.isUser) ? selectedTeam.id : undefined;
-
+  const currentOrgId =
+    selectedTeam && !selectedTeam.isUser ? selectedTeam.id : undefined;
 
   return (
     <>
@@ -112,14 +142,18 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
       {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
       <ChatDialog />
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
-        <Sidebar 
-          isCollapsed={isCollapsed} 
-          teams={teams} 
-          selectedTeam={selectedTeam} 
+        <Sidebar
+          isCollapsed={isCollapsed}
+          teams={teams}
+          selectedTeam={selectedTeam}
           setSelectedTeam={setSelectedTeam}
           navItems={navItems}
         />
-        <div className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${isCollapsed ? 'sm:pl-14' : 'sm:pl-56'}`}>
+        <div
+          className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${
+            isCollapsed ? 'sm:pl-14' : 'sm:pl-56'
+          }`}
+        >
           <Header
             isCollapsed={isCollapsed}
             setIsCollapsed={setIsCollapsed}
