@@ -116,6 +116,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         { href: '/marketplace', icon: Store, label: 'Marketplace' },
         { href: '/organizations', icon: Users2, label: 'Organizations' },
         { href: '/discover', icon: Compass, label: 'Discover' },
+        { href: '/settings/profile', icon: Settings, label: 'Settings' },
       ];
     } else {
       const orgSlug = selectedTeam.slug;

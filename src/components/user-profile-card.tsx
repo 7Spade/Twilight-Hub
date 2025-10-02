@@ -12,6 +12,7 @@ import { collection, doc, query, where, documentId } from 'firebase/firestore';
 import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
 import Link from 'next/link';
+import { type User as FirebaseAuthUser } from 'firebase/auth';
 
 function UserProfileCardSkeleton() {
     return (
@@ -25,6 +26,7 @@ function UserProfileCardSkeleton() {
                 <Skeleton className="h-9 w-full" />
                 <div className="w-full space-y-2 text-sm">
                     <div className="flex items-center gap-2"><Users className="h-4 w-4" /><Skeleton className="h-4 w-20" /></div>
+                     <div className="flex items-center gap-2"><Users className="h-4 w-4" /><Skeleton className="h-4 w-20" /></div>
                     <div className="flex items-center gap-2"><Mail className="h-4 w-4" /><Skeleton className="h-4 w-40" /></div>
                 </div>
                 <Separator className="my-2" />

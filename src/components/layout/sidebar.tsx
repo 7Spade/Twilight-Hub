@@ -54,28 +54,6 @@ export function Sidebar({
         </div>
         <Nav isCollapsed={isCollapsed} navItems={navItems} />
       </div>
-
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="/settings/profile"
-                className={cn(
-                  "flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8",
-                  isCollapsed ? "" : "w-full justify-start gap-3 px-3"
-                )}
-              >
-                <Settings className="h-5 w-5" />
-                <span className={cn(isCollapsed && "sr-only")}>Settings</span>
-              </Link>
-            </TooltipTrigger>
-            {isCollapsed && (
-              <TooltipContent side="right">Settings</TooltipContent>
-            )}
-          </Tooltip>
-        </TooltipProvider>
-      </nav>
     </aside>
   );
 }
