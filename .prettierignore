@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+.next/
+out/
+build/
+dist/
+
+# Cache directories
+.vercel/
+.turbo/
+
+# Generated files
+.genkit/
+coverage/
+
+# Public assets
+public/
+
+# Lockfiles and project config
+package.json
+package-lock.json
+pnpm-lock.yaml
