@@ -124,6 +124,7 @@ function SignupPageContent() {
             name: values.fullName,
             email: newUser.email,
             avatarUrl: newUser.photoURL || getPlaceholderImage('avatar-1').imageUrl,
+            bio: '',
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
             level: 1,

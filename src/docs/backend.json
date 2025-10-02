@@ -13,6 +13,7 @@
         "slug": { "type": "string", "description": "The URL-friendly slug for the account's profile or page." },
         "email": { "type": "string", "description": "The user's email address (for users only).", "format": "email" },
         "avatarUrl": { "type": "string", "description": "URL of the account's avatar or logo.", "format": "uri" },
+        "bio": { "type": "string", "description": "A short biography or description for a user account." },
         "description": { "type": "string", "description": "A description of the organization (for orgs only)." },
         "memberIds": { "type": "array", "description": "References to User Accounts that are members of this organization (for orgs only).", "items": { "type": "string" } },
         "level": { "type": "number", "description": "The user's current level (for users only)." },

@@ -25,6 +25,7 @@ export interface Account {
     username?: string;
     email?: string;
     avatarUrl?: string;
+    bio?: string;
     description?: string;
     memberIds?: string[];
     level?: number;

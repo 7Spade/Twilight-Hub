@@ -107,6 +107,7 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
   const displayName = userProfile.name || 'User';
   const username = userProfile.username || 'username';
   const email = userProfile.email || 'user@example.com';
+  const bio = userProfile.bio || 'No bio provided.';
   const avatarUrl =
     userProfile.avatarUrl || getPlaceholderImage('avatar-1').imageUrl;
 
@@ -126,6 +127,7 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
                 </AvatarFallback>
               </Avatar>
               <div className="text-center md:text-left flex-1">
+                <p className="text-muted-foreground mt-2">{bio}</p>
                 <div className="flex items-center gap-2 mt-2 text-muted-foreground justify-center md:justify-start">
                   <Mail className="h-4 w-4" />
                   <span>{email}</span>

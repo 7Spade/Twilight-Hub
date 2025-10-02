@@ -10,12 +10,14 @@ import { useFirestore, useUser, useDoc } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { updateProfile } from 'firebase/auth';
 import { FormInput } from '@/components/forms/form-input';
+import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormCard } from '@/components/forms/form-card';
 import { type Account } from '@/lib/types';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   username: z.string().min(3, 'Username must be at least 3 characters'),
+  bio: z.string().max(160, 'Bio cannot be longer than 160 characters').optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -36,6 +38,7 @@ export default function ProfileSettingsPage() {
     defaultValues: {
       name: '',
       username: '',
+      bio: '',
     },
   });
 
@@ -44,6 +47,7 @@ export default function ProfileSettingsPage() {
       form.reset({
         name: userProfile.name || '',
         username: userProfile.username || '',
+        bio: userProfile.bio || '',
       });
     }
   }, [userProfile, form]);
@@ -63,6 +67,7 @@ export default function ProfileSettingsPage() {
       await updateDoc(userProfileRef, {
         name: data.name,
         username: data.username,
+        bio: data.bio,
       });
 
       // Also update Firebase Auth profile if the name has changed
@@ -106,6 +111,12 @@ export default function ProfileSettingsPage() {
             label="Username"
             placeholder="Your username"
             disabled // Usually, username is not easily changed
+        />
+        <FormTextarea
+            control={form.control}
+            name="bio"
+            label="Bio"
+            placeholder="Tell us a little bit about yourself"
         />
       </FormCard>
   );
