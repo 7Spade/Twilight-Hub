@@ -2,10 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useFirestore } from '@/firebase';
-import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { Globe, Lock } from 'lucide-react';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { SpaceVisibilityBadge } from '@/features/spaces/components/spaces-visibility-badge';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -14,8 +12,8 @@ import { type Account, type Space } from '@/lib/types';
 import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settings-view';
 import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/features/spaces/components/spaces-star-button';
-import { useToast } from '@/hooks/use-toast';
 import { FileManager } from './spaces-files-view';
+import { useSpaceActions } from '@/features/spaces/hooks';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
@@ -32,31 +30,11 @@ export function SpaceDetailView({
   authUser,
   breadcrumbs,
 }: SpaceDetailViewProps) {
-  const firestore = useFirestore();
-  const { toast } = useToast();
-
-  const spaceDocRef = useMemo(
-    () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
-    [firestore, space]
-  );
-
+  const { updateSpace } = useSpaceActions();
 
   const handleSettingsSubmit = async (data: SpaceSettingsFormValues) => {
-    if (!spaceDocRef) return;
-    try {
-      await updateDoc(spaceDocRef, data);
-      toast({
-        title: 'Success!',
-        description: 'Space settings have been updated.',
-      });
-    } catch (error) {
-      console.error('Error updating space:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Update Failed',
-        description: 'Could not update space settings.',
-      });
-    }
+    if (!space) return;
+    await updateSpace(space.id, data);
   };
 
   if (isPageLoading) {
@@ -97,15 +75,6 @@ export function SpaceDetailView({
   }
 
   const isStarred = !!(authUser?.uid && space.starredByUserIds?.includes(authUser.uid));
-
-  const handleStarClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!firestore || !authUser?.uid) return;
-    const spaceRef = doc(firestore, 'spaces', space.id);
-    await updateDoc(spaceRef, {
-      starredByUserIds: isStarred ? arrayRemove(authUser.uid) : arrayUnion(authUser.uid),
-    });
-  };
 
   const isOwner = authUser?.uid === owner.id;
 

@@ -4,9 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { useToast } from '@/hooks/use-toast';
 import { Upload, Download, Trash2, File, FileText, Image, Video, Music } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { useFileActions } from '@/features/spaces/hooks';
 
 interface FileItem {
   name: string;
@@ -22,12 +22,16 @@ interface FileManagerProps {
 }
 
 export function FileManager({ spaceId, userId }: FileManagerProps) {
-  const [files, setFiles] = useState<FileItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
+  const { 
+    uploadFile, 
+    downloadFile, 
+    deleteFile, 
+    listFiles, 
+    isLoading, 
+    uploadProgress, 
+    files 
+  } = useFileActions();
 
   // Load files on component mount
   useEffect(() => {
@@ -35,155 +39,31 @@ export function FileManager({ spaceId, userId }: FileManagerProps) {
   }, [spaceId, userId]);
 
   const loadFiles = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`/api/storage/list?spaceId=${spaceId}&userId=${userId}`);
-      const data = await response.json();
-      
-      if (data.success) {
-        setFiles(data.files);
-      } else {
-        throw new Error('Failed to load files');
-      }
-    } catch (error) {
-      console.error('Error loading files:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to load files',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await listFiles(spaceId, userId);
   };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Validate file size (50MB limit)
-    if (file.size > 50 * 1024 * 1024) {
-      toast({
-        variant: 'destructive',
-        title: 'File too large',
-        description: 'File size must be less than 50MB',
-      });
-      return;
+    const success = await uploadFile(file, spaceId, userId);
+    if (success) {
+      loadFiles(); // Reload files list
     }
 
-    try {
-      setIsUploading(true);
-      setUploadProgress(0);
-
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('spaceId', spaceId);
-      formData.append('userId', userId);
-
-      // Simulate upload progress
-      const progressInterval = setInterval(() => {
-        setUploadProgress(prev => Math.min(prev + 10, 90));
-      }, 100);
-
-      const response = await fetch('/api/storage/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      clearInterval(progressInterval);
-      setUploadProgress(100);
-
-      const data = await response.json();
-
-      if (data.success) {
-        toast({
-          title: 'Success',
-          description: 'File uploaded successfully',
-        });
-        loadFiles(); // Reload files list
-      } else {
-        throw new Error('Upload failed');
-      }
-    } catch (error) {
-      console.error('Upload error:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Upload failed',
-        description: 'Failed to upload file',
-      });
-    } finally {
-      setIsUploading(false);
-      setUploadProgress(0);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
   const handleDownload = async (fileName: string) => {
-    try {
-      const response = await fetch('/api/storage/download', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          spaceId,
-          userId,
-          fileName,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Open download URL in new tab
-        window.open(data.downloadURL, '_blank');
-      } else {
-        throw new Error('Download failed');
-      }
-    } catch (error) {
-      console.error('Download error:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Download failed',
-        description: 'Failed to download file',
-      });
-    }
+    await downloadFile(fileName, spaceId, userId);
   };
 
   const handleDelete = async (fileName: string) => {
-    try {
-      const response = await fetch('/api/storage/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          spaceId,
-          userId,
-          fileName,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        toast({
-          title: 'Success',
-          description: 'File deleted successfully',
-        });
-        loadFiles(); // Reload files list
-      } else {
-        throw new Error('Delete failed');
-      }
-    } catch (error) {
-      console.error('Delete error:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Delete failed',
-        description: 'Failed to delete file',
-      });
+    const success = await deleteFile(fileName, spaceId, userId);
+    if (success) {
+      loadFiles(); // Reload files list
     }
   };
 
@@ -228,20 +108,20 @@ export function FileManager({ spaceId, userId }: FileManagerProps) {
             />
             <Button
               onClick={() => fileInputRef.current?.click()}
-              disabled={isUploading}
+              disabled={isLoading}
               className="w-full"
             >
               <Upload className="h-4 w-4 mr-2" />
               Choose File
             </Button>
             
-            {isUploading && (
+            {uploadProgress && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span>Uploading...</span>
-                  <span>{uploadProgress}%</span>
+                  <span>Uploading {uploadProgress.fileName}...</span>
+                  <span>{uploadProgress.progress}%</span>
                 </div>
-                <Progress value={uploadProgress} className="w-full" />
+                <Progress value={uploadProgress.progress} className="w-full" />
               </div>
             )}
           </div>

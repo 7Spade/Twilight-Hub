@@ -2,11 +2,8 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
 
-import { useFirestore } from '@/firebase';
 import { useDialogStore } from '@/hooks/use-dialog-store';
-import { useToast } from '@/hooks/use-toast';
 import { type Team } from '@/components/layout/team-switcher';
 import {
   Dialog,
@@ -30,22 +27,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { spaceBaseSchema, type SpaceBaseFormValues } from '@/features/spaces/spaces-schemas';
+import { useSpaceActions } from '@/features/spaces/hooks';
 
 type CreateSpaceFormValues = SpaceBaseFormValues;
 
-const generateSlug = (name: string) => {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-};
-
 export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null }) {
-  const firestore = useFirestore();
   const { type, isOpen, close } = useDialogStore();
-  const { toast } = useToast();
+  const { createSpace, isLoading } = useSpaceActions();
 
   const isDialogVisible = isOpen && type === 'createSpace';
 
@@ -55,43 +43,18 @@ export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null 
   });
 
   const onSubmit = async (values: CreateSpaceFormValues) => {
-    if (!firestore || !selectedTeam) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Cannot create a space without a selected team.',
-      });
+    if (!selectedTeam) {
       return;
     }
 
-    try {
-      const spacesRef = collection(firestore, 'spaces');
-      const newSpace = {
-        ...values,
-        slug: generateSlug(values.name),
-        ownerId: selectedTeam.id,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-        moduleIds: [],
-        starredByUserIds: [],
-      };
+    const success = await createSpace({
+      ...values,
+      ownerId: selectedTeam.id,
+    });
 
-      await addDoc(spacesRef, newSpace);
-
-      toast({
-        title: 'Success!',
-        description: `Space "${values.name}" has been created.`,
-      });
-
+    if (success) {
       form.reset();
       close();
-    } catch (error) {
-      console.error('Error creating space:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Failed to create space',
-        description: 'An unexpected error occurred. Please try again.',
-      });
     }
   };
 
@@ -168,10 +131,10 @@ export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null 
               </Button>
               <Button
                 type="submit"
-                disabled={!selectedTeam || form.formState.isSubmitting}
+                disabled={!selectedTeam || isLoading}
                 className="bg-blue-600 hover:bg-blue-700"
               >
-                {form.formState.isSubmitting ? 'Creating...' : 'Create Space'}
+                {isLoading ? 'Creating...' : 'Create Space'}
               </Button>
             </DialogFooter>
           </form>

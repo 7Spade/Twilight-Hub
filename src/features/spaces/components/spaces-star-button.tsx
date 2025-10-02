@@ -4,8 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Star } from 'lucide-react';
-import { useFirestore } from '@/firebase';
-import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
+import { useStarActions } from '@/features/spaces/hooks';
 
 interface SpaceStarButtonProps {
   spaceId: string;
@@ -22,16 +21,16 @@ export function SpaceStarButton({
   className,
   onToggled,
 }: SpaceStarButtonProps) {
-  const firestore = useFirestore();
+  const { toggleStar, isLoading } = useStarActions();
 
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
-    if (!firestore || !userId) return;
-    const spaceRef = doc(firestore, 'spaces', spaceId);
-    await updateDoc(spaceRef, {
-      starredByUserIds: isStarred ? arrayRemove(userId) : arrayUnion(userId),
-    });
-    onToggled?.(!isStarred);
+    if (!userId) return;
+    
+    const success = await toggleStar(spaceId, userId, isStarred);
+    if (success) {
+      onToggled?.(!isStarred);
+    }
   };
 
   return (
@@ -39,6 +38,7 @@ export function SpaceStarButton({
       variant="ghost"
       size="icon"
       onClick={handleClick}
+      disabled={isLoading}
       className={cn(
         'transition-all duration-200',
         isStarred
