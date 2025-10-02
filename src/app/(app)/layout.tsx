@@ -29,6 +29,7 @@ import {
 import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
+import { UseModuleDialog } from '@/features/spaces/components/use-module-dialog';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -155,6 +156,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     <>
       <CreateSpaceDialog selectedTeam={selectedTeam} />
       <CreateOrganizationDialog />
+      <UseModuleDialog />
       {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
       {currentOrgId && <InviteMemberDialog organizationId={currentOrgId} />}
       <ChatDialog />

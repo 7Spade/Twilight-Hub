@@ -34,6 +34,7 @@ import {
 } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { PageContainer } from '@/components/layout/page-container';
+import { useDialogStore } from '@/hooks/use-dialog-store';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
@@ -69,6 +70,7 @@ function MarketplaceTabContent() {
           name: 'File Storage',
           description: 'Upload and manage files for this space.',
           icon: 'file-storage',
+          type: 'common',
         });
       }
     };
@@ -175,6 +177,7 @@ function MarketplaceTabContent() {
 function BackpackTabContent() {
     const { user } = useUser();
     const firestore = useFirestore();
+    const { open: openDialog } = useDialogStore();
 
     const userProfileRef = useMemo(() => (
         firestore && user ? doc(firestore, 'accounts', user.uid) : null
@@ -229,7 +232,12 @@ function BackpackTabContent() {
                     </p>
                     </CardContent>
                     <CardFooter>
-                    <Button className="w-full">Use in a Space</Button>
+                    <Button 
+                      className="w-full"
+                      onClick={() => openDialog('useModule', { module: { id: module.id, name: module.name, type: module.type }})}
+                    >
+                      Use in a Space
+                    </Button>
                     </CardFooter>
                 </Card>
                 );
