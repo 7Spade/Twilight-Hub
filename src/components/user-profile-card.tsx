@@ -87,6 +87,7 @@ export function UserProfileCard() {
   const user = {
     name: userProfile.name || 'User',
     username: userProfile.username || 'username',
+    slug: userProfile.slug || '',
     avatarUrl: userProfile.avatarUrl || getPlaceholderImage('avatar-1').imageUrl,
     followers: userProfile.followersCount || 0,
     following: userProfile.followingCount || 0,
@@ -117,14 +118,14 @@ export function UserProfileCard() {
         </Button>
 
         <div className='flex flex-col gap-2 w-full text-sm text-muted-foreground'>
-             <div className="flex items-center gap-2">
+             <Link href={`/${user.slug}?tab=followers`} className="flex items-center gap-2 hover:text-foreground">
                 <Users className="h-4 w-4" />
                 <span className="font-bold text-foreground">{user.followers}</span> followers
-             </div>
-             <div className="flex items-center gap-2">
+             </Link>
+             <Link href={`/${user.slug}?tab=following`} className="flex items-center gap-2 hover:text-foreground">
                  <Users className="h-4 w-4" />
                 <span className="font-bold text-foreground">{user.following}</span> following
-            </div>
+            </Link>
             <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
                 <span>{user.email}</span>
@@ -133,19 +134,21 @@ export function UserProfileCard() {
 
         <Separator className="my-2" />
         <div className="w-full">
-            <h3 className="font-semibold text-foreground mb-3 text-sm">Achievements</h3>
-            <div className="flex items-center gap-3">
-                {achievements && achievements.length > 0 ? (
-                    achievements.slice(0, 5).map((ach) => (
-                        <Avatar key={ach.id} className="h-10 w-10 border-2 border-border" title={ach.name}>
-                            <AvatarImage src={getPlaceholderImage(ach.icon).imageUrl} alt={ach.name} data-ai-hint={getPlaceholderImage(ach.icon).imageHint} />
-                            <AvatarFallback>{ach.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                    ))
-                ) : (
-                    <p className="text-xs text-muted-foreground">No achievements yet.</p>
-                )}
-            </div>
+            <Link href={`/${user.slug}?tab=achievements`} className="group">
+                <h3 className="font-semibold text-foreground mb-3 text-sm group-hover:underline">Achievements</h3>
+                <div className="flex items-center gap-3">
+                    {achievements && achievements.length > 0 ? (
+                        achievements.slice(0, 5).map((ach) => (
+                            <Avatar key={ach.id} className="h-10 w-10 border-2 border-border" title={ach.name}>
+                                <AvatarImage src={getPlaceholderImage(ach.icon).imageUrl} alt={ach.name} data-ai-hint={getPlaceholderImage(ach.icon).imageHint} />
+                                <AvatarFallback>{ach.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                        ))
+                    ) : (
+                        <p className="text-xs text-muted-foreground">No achievements yet.</p>
+                    )}
+                </div>
+            </Link>
         </div>
 
 
