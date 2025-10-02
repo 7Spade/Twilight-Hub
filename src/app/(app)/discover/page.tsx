@@ -23,8 +23,9 @@ import Link from 'next/link';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Globe, Lock, User, Users2 } from 'lucide-react';
-import { useMemo } from 'react';
+import { Globe, Lock, User, Users2, Search } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Input } from '@/components/ui/input';
 
 const UserCard = ({ user }: { user: any }) => (
   <Card>
@@ -112,6 +113,38 @@ const DataGrid = ({ data, isLoading, renderItem, emptyMessage }: any) => {
   );
 };
 
+const SearchableTabContent = ({ data, isLoading, renderItem, emptyMessage, searchPlaceholder }: any) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredData = useMemo(() => {
+        if (!data) return [];
+        return data.filter((item: any) => 
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [data, searchTerm]);
+
+    return (
+        <div>
+            <div className="relative mb-8">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                    placeholder={searchPlaceholder}
+                    className="pl-8 w-full md:w-[300px]"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+            <DataGrid
+                data={filteredData}
+                isLoading={isLoading}
+                renderItem={renderItem}
+                emptyMessage={searchTerm ? 'No results found.' : emptyMessage}
+            />
+        </div>
+    );
+};
+
+
 export default function DiscoverPage() {
   const firestore = useFirestore();
 
@@ -137,27 +170,30 @@ export default function DiscoverPage() {
           <TabsTrigger value="spaces">Spaces</TabsTrigger>
         </TabsList>
         <TabsContent value="users" className="mt-6">
-          <DataGrid
-            data={users}
-            isLoading={usersLoading}
-            renderItem={(user: any) => <UserCard key={user.id} user={user} />}
-            emptyMessage="No users found."
-          />
+            <SearchableTabContent
+                data={users}
+                isLoading={usersLoading}
+                renderItem={(user: any) => <UserCard key={user.id} user={user} />}
+                emptyMessage="No users found."
+                searchPlaceholder="Search users..."
+            />
         </TabsContent>
         <TabsContent value="organizations" className="mt-6">
-          <DataGrid
-            data={orgs}
-            isLoading={orgsLoading}
-            renderItem={(org: any, index: number) => <OrgCard key={org.id} org={org} index={index}/>}
-            emptyMessage="No organizations found."
-          />
+            <SearchableTabContent
+                data={orgs}
+                isLoading={orgsLoading}
+                renderItem={(org: any, index: number) => <OrgCard key={org.id} org={org} index={index}/>}
+                emptyMessage="No organizations found."
+                searchPlaceholder="Search organizations..."
+            />
         </TabsContent>
         <TabsContent value="spaces" className="mt-6">
-            <DataGrid
+            <SearchableTabContent
                 data={spaces}
                 isLoading={spacesLoading}
                 renderItem={(space: any) => <SpaceCard key={space.id} space={space} />}
                 emptyMessage="No public spaces found."
+                searchPlaceholder="Search spaces..."
             />
         </TabsContent>
       </Tabs>

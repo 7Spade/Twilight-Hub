@@ -18,7 +18,6 @@ import { UserNav } from "./user-nav";
 import { Nav, type NavItem } from "./nav";
 import { TeamSwitcher, type Team } from "./team-switcher";
 import { Separator } from "../ui/separator";
-import { SearchCommand } from "../search-command";
 
 export function Header({
   isCollapsed,
@@ -76,15 +75,8 @@ export function Header({
         {isCollapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
       </Button>
       
-      <div className="hidden sm:block">
-        <SearchCommand />
-      </div>
-      
       {/* Header Actions */}
       <div className="ml-auto flex items-center gap-2">
-        <div className="sm:hidden">
-           <SearchCommand />
-        </div>
         <Button
           variant="ghost"
           size="icon"
