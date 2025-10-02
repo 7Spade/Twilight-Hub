@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A custom hook for managing the visibility of a space (public/private).
+ * It provides functions to toggle, set to public, or set to private, abstracting
+ * the Firestore update logic and managing loading and error states.
+ */
 'use client';
 
 import { useState, useCallback } from 'react';

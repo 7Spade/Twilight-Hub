@@ -1,3 +1,10 @@
+/**
+ * @fileoverview This component fetches and displays a list of spaces that a user has starred.
+ * It queries the 'spaces' collection for documents where the current user's ID is in the
+ * 'starredByUserIds' array. It then uses the generic `SpaceListView` component to
+ * render the results, providing a consistent look and feel.
+ * This file supersedes the old `starred-spaces-view.tsx`.
+ */
 'use client';
 
 /**
@@ -60,6 +67,3 @@ export function SpaceStarredView({ userId }: { userId: string }) {
     />
   );
 }
-
-
-

@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Barrel file for all components related to the 'spaces' feature.
+ * This simplifies importing space-related components into other parts of the application
+ * by providing a single, consistent path.
+ */
 // Spaces feature components exports
 export { SpaceCreateDialog } from './spaces-create-dialog';
 export { SpaceDetailView } from './spaces-detail-view';

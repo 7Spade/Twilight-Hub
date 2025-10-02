@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A custom hook for handling the "starring" and "unstarring" of spaces.
+ * It abstracts the Firestore logic for adding or removing a user's ID from a
+ * space's `starredByUserIds` array, and manages the loading and error states
+ * for these actions.
+ */
 'use client';
 
 import { useState, useCallback } from 'react';

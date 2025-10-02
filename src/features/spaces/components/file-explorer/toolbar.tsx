@@ -1,3 +1,9 @@
+/**
+ * @fileoverview The main toolbar for the file explorer.
+ * It contains primary actions like upload, move, and export, as well as controls
+ * for searching, changing the view layout (grid/list), and accessing filters and
+ * deleted items.
+ */
 'use client';
 
 import React, { useRef } from 'react';

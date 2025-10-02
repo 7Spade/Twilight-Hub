@@ -1,3 +1,9 @@
+/**
+ * @fileoverview The main view for displaying the details of a single space.
+ * It acts as a container for the space's content, which is organized into tabs
+ * such as Overview, Files, and Settings. It fetches and displays space and owner
+ * information and handles the high-level layout and state for the detail page.
+ */
 'use client';
 
 import { Button } from '@/components/ui/button';

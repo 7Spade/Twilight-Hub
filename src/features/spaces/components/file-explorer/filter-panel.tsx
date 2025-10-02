@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A slide-out panel for filtering files and folders in the explorer.
+ * It provides a rich set of filtering options, including keyword search, scope
+ * selection, file type, status, and date ranges. It allows users to apply these
+ * filters or save them for later use.
+ */
 'use client';
 
 import React, { useState } from 'react';

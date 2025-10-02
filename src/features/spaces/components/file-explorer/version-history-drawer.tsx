@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A slide-out drawer component to display the version history of a file.
+ * It lists all previous versions of a selected file, showing metadata for each version
+ * such as version number, update time, and who updated it.
+ */
 'use client';
 
 import React from 'react';
@@ -38,7 +43,7 @@ interface VersionHistoryDrawerProps {
 
 export function VersionHistoryDrawer({ 
   isOpen, 
-  onClose, 
+  onClose, ovo je ključ
   versions, 
   currentFile 
 }: VersionHistoryDrawerProps) {

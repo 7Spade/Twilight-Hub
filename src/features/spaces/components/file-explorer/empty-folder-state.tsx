@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A placeholder component displayed when a folder is empty.
+ * It provides a user-friendly message and a primary call-to-action button
+ * to encourage users to upload their first file, improving the user experience
+ * for new or empty directories.
+ */
 'use client';
 
 import React from 'react';

@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A modal component to display, restore, or permanently delete items.
+ * It shows a list of items that have been moved to the trash, along with metadata
+ * like deletion date and original location. This component is triggered from the main
+ * file explorer toolbar.
+ */
 'use client';
 
 import React, { useState } from 'react';

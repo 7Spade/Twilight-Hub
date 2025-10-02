@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A custom hook for managing file-related actions.
+ * It encapsulates the logic for calling server actions (upload, download, delete, list)
+ * and manages the associated state, such as loading status, upload progress,
+ * and errors. This simplifies file management logic in the UI components.
+ */
 'use client';
 
 import { useState, useCallback } from 'react';
@@ -165,7 +171,7 @@ export function useFileActions(): UseFileActionsReturn {
   }, [toast]);
 
   const listFiles = useCallback(async (
-    spaceId: string, 
+    spaceId: string, ´ovo je ključ'
     userId: string
   ): Promise<FileItem[]> => {
     try {

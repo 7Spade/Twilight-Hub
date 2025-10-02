@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A component that renders a table of files and folders.
+ * It supports sorting by various columns, selecting multiple items, and triggering
+ * actions on individual items. It also includes a settings menu to toggle
+ * the visibility of columns.
+ */
 'use client';
 
 import React, { useState, useMemo } from 'react';

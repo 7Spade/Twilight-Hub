@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A custom hook for managing core space actions like create, update, and delete.
+ * It encapsulates the logic for interacting with the Firestore database, including
+ * data validation, state management (loading, error), and user feedback via toasts.
+ * This centralizes the business logic for space management.
+ */
 'use client';
 
 import { useState, useCallback } from 'react';

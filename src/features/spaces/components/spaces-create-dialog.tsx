@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A dialog component for creating new spaces.
+ * It uses a global Zustand store (`useDialogStore`) to manage its visibility and
+ * is triggered from various parts of the UI. The form handles the creation logic,
+ * including setting the name, description, and public/private visibility.
+ */
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -143,5 +149,3 @@ export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null 
     </Dialog>
   );
 }
-
-

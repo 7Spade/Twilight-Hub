@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A component for displaying and editing the settings of a space.
+ * It provides a form to update the space's name, description, and visibility (public/private).
+ * This component is typically used within a "Settings" tab on a space detail page.
+ */
 'use client';
 
 import React from 'react';

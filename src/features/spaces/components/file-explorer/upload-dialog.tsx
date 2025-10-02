@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A dialog component for uploading files.
+ * It supports both drag-and-drop and traditional file selection. The dialog
+ * displays the upload progress and provides options, such as syncing to mobile,
+ * before completing the upload process.
+ */
 'use client';
 
 import React, { useState, useRef, useCallback } from 'react';
@@ -144,7 +150,7 @@ export function UploadDialog({
               
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">
-                  將檔案拖曳至此處或選擇上述選項
+                  將檔案拖曳至此处或選擇上述選項
                 </p>
                 <p className="text-xs text-gray-500">
                   支援多個檔案同時上傳

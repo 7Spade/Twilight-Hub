@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A context menu component for file and folder items in the explorer.
+ * It provides a list of actions (e.g., rename, delete, share) relevant to the
+ * selected item. A separate context menu for the toolbar is also defined here.
+ */
 'use client';
 
 import React from 'react';

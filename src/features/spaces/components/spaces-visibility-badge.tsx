@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A simple badge component that visually indicates whether a space is
+ * public or private. It displays a "Public" or "Private" label along with a
+ * corresponding icon (Globe or Lock), providing a quick visual cue for the
+ * space's visibility status.
+ */
 'use client';
 
 import { Globe, Lock } from 'lucide-react';
@@ -24,5 +30,3 @@ export function SpaceVisibilityBadge({ isPublic }: { isPublic: boolean }) {
     </Badge>
   );
 }
-
-

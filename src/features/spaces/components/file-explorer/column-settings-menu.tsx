@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A dropdown menu for managing table column visibility in the file explorer.
+ * It allows users to show or hide specific columns in the file table, search for
+ * specific properties, and reset the column configuration to its default state.
+ */
 'use client';
 
 import React, { useState } from 'react';

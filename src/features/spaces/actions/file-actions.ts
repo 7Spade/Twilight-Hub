@@ -1,3 +1,9 @@
+/**
+ * @fileoverview This file contains server-side actions for file management within spaces.
+ * It provides functions for uploading, downloading, deleting, and listing files
+ * from Firebase Storage. These actions are designed to be called from client-side
+ * components and handle the direct interaction with the storage service.
+ */
 'use server';
 
 import { initializeApp, getApps } from "firebase/app";

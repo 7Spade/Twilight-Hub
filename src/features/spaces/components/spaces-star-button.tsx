@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A button component for starring or unstarring a space.
+ * It displays a star icon that is filled when the space is starred and empty
+ * otherwise. It handles the asynchronous logic of updating the star status
+- * when clicked.
+ */
 'use client';
 
 import React from 'react';
@@ -51,5 +57,3 @@ export function SpaceStarButton({
     </Button>
   );
 }
-
-

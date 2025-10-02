@@ -1,3 +1,10 @@
+/**
+ * @fileoverview The main container component for the entire file explorer interface.
+ * It orchestrates all the sub-components, including the toolbar, folder tree,
+ * file table, and various dialogs/panels. It manages the overall state, such as
+ * selected items, search queries, and view modes, and handles data fetching
+ * and user actions.
+ */
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';

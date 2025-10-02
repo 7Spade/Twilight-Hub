@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A breadcrumb navigation component for the file explorer.
+ * It displays the current path within the folder structure and allows users to
+ * navigate back to parent directories by clicking on the breadcrumb items.
+ */
 'use client';
 
 import React from 'react';

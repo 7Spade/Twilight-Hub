@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A component that displays a hierarchical folder structure.
+ * It allows users to expand and collapse folders, select items, and access
+ * context-menu actions. It's the primary navigation element on the left side
+ * of the file explorer.
+ */
 'use client';
 
 import React, { useState } from 'react';

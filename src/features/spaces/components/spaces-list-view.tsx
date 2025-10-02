@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A flexible component for displaying lists of spaces.
+ * It can render multiple tabs (e.g., "Your Spaces", "Starred", "Discover") and
+ * includes built-in functionality for searching and filtering the displayed spaces.
+ * The actual rendering of each space is delegated to the `SpaceCard` component.
+ */
 'use client';
 
 /**
@@ -280,4 +286,3 @@ export function SpaceListView({
     </div>
   );
 }
-

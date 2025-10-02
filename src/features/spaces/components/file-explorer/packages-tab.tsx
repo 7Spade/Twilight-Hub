@@ -1,3 +1,8 @@
+/**
+ * @fileoverview A component for the "Packages" tab in the file explorer's sidebar.
+ * It displays a list of file packages, which are collections of related documents.
+ * This component handles the creation and management of these packages.
+ */
 'use client';
 
 import React, { useState } from 'react';
