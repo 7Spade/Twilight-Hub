@@ -2,6 +2,7 @@
 
 import { NavItem } from '@/components/layout/nav';
 import { PageContainer } from '@/components/layout/page-container';
+import { UserProfileCard } from '@/components/user-profile-card';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User, Bell, Settings as SettingsIcon } from 'lucide-react';
@@ -24,30 +25,35 @@ export default function SettingsLayout({
       title="Settings"
       description="Manage your account settings and set e-mail preferences."
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <aside className="md:col-span-1">
-          <nav className="grid gap-1">
-            {settingsNavItems.map(item => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
-                    isActive && 'bg-muted text-primary font-semibold'
-                  )}
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-        </aside>
-        <main className="md:col-span-3">
-            {children}
-        </main>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="hidden md:block md:col-span-2">
+            <UserProfileCard />
+        </div>
+        <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <aside className="md:col-span-1">
+              <nav className="grid gap-1">
+                {settingsNavItems.map(item => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={cn(
+                        'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
+                        isActive && 'bg-muted text-primary font-semibold'
+                      )}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </aside>
+            <main className="md:col-span-2">
+                {children}
+            </main>
+        </div>
       </div>
     </PageContainer>
   );
