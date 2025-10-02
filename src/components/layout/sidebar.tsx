@@ -36,7 +36,6 @@ export function Sidebar({
         { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
         { href: '/marketplace', icon: Store, label: 'Marketplace' },
         { href: '/organizations', icon: Users2, label: 'Organizations' },
-        { href: '/groups', icon: Users2, label: 'Groups' },
       ];
     } else {
       const orgSlug = selectedTeam.slug;
@@ -79,13 +78,25 @@ export function Sidebar({
       </div>
 
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <Link
-          href="/settings"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-        >
-          <Settings className="h-5 w-5" />
-          <span className="sr-only">Settings</span>
-        </Link>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href="/settings"
+                className={cn(
+                  "flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8",
+                  isCollapsed ? "" : "w-full justify-start gap-3 px-3"
+                )}
+              >
+                <Settings className="h-5 w-5" />
+                <span className={cn(isCollapsed && "sr-only")}>Settings</span>
+              </Link>
+            </TooltipTrigger>
+            {isCollapsed && (
+              <TooltipContent side="right">Settings</TooltipContent>
+            )}
+          </Tooltip>
+        </TooltipProvider>
       </nav>
     </aside>
   );
