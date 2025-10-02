@@ -64,6 +64,13 @@
       "type": "common"
     },
     {
+      "id": "schedule-module",
+      "name": "進度計劃",
+      "description": "Create Gantt charts, set milestones, and track your project timeline.",
+      "icon": "calendar-range",
+      "type": "common"
+    },
+    {
       "id": "assets-module",
       "name": "資產",
       "description": "Define, track, and manage key project assets, equipment, or deliverables.",
@@ -75,13 +82,6 @@
       "name": "變更單",
       "description": "Manage and track change orders and their impact on the project.",
       "icon": "file-diff",
-      "type": "common"
-    },
-    {
-      "id": "schedule-module",
-      "name": "進度計劃",
-      "description": "Create Gantt charts, set milestones, and track your project timeline.",
-      "icon": "calendar-range",
       "type": "common"
     }
   ]
