@@ -9,7 +9,8 @@ import {
   ChevronDown, 
   Folder, 
   FolderOpen,
-  MoreVertical
+  MoreVertical,
+  File
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ContextMenu } from './context-menu';
@@ -44,6 +45,51 @@ interface FolderTreeProps {
 export function FolderTree({ files, selectedItems, onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['project-files', 'supported']));
 
+  // 將真實檔案數據組織成資料夾結構
+  const organizeFilesIntoFolders = (fileList: FileItem[]) => {
+    const folders: { [key: string]: FileItem[] } = {};
+    
+    // 根據檔案類型或名稱前綴組織檔案
+    fileList.forEach(file => {
+      let folderName = '其他檔案';
+      
+      // 根據檔案名稱前綴判斷資料夾
+      if (file.name.startsWith('A000') || file.name.startsWith('A100')) {
+        folderName = '建築圖紙';
+      } else if (file.name.includes('PDF') || file.name.endsWith('.pdf')) {
+        folderName = 'PDFs';
+      } else if (file.name.includes('CAD') || file.name.endsWith('.dwg')) {
+        folderName = 'CAD檔案';
+      } else if (file.name.includes('Contract') || file.name.includes('合約')) {
+        folderName = '合約文件';
+      } else if (file.name.includes('Report') || file.name.includes('報告')) {
+        folderName = '報告';
+      }
+      
+      if (!folders[folderName]) {
+        folders[folderName] = [];
+      }
+      folders[folderName].push(file);
+    });
+
+    // 轉換為 FileItem 格式
+    return Object.entries(folders).map(([folderName, folderFiles]) => ({
+      id: folderName.toLowerCase().replace(/\s+/g, '-'),
+      name: folderName,
+      type: 'folder' as const,
+      timeCreated: '',
+      updated: '',
+      children: folderFiles.map(file => ({
+        ...file,
+        id: `file-${file.id}`,
+        type: 'file' as const
+      }))
+    }));
+  };
+
+  // 使用真實檔案數據組織的資料夾結構
+  const organizedFolders = organizeFilesIntoFolders(files);
+
   // 模擬資料夾數據，符合圖片中的設計
   const mockFolders: FileItem[] = [
     { id: 'bids', name: 'Bids', type: 'folder', timeCreated: '', updated: '', children: [] },
@@ -67,6 +113,9 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
       ]
     }
   ];
+
+  // 合併模擬資料夾和真實檔案資料夾
+  const allFolders = [...mockFolders, ...organizedFolders];
 
   const toggleFolder = (folderId: string) => {
     const newExpanded = new Set(expandedFolders);
@@ -108,10 +157,16 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             )}
           </div>
           
-          {/* 資料夾圖標 */}
+          {/* 資料夾/檔案圖標 */}
           <div className="w-4 h-4 flex items-center justify-center">
-            {item.type === 'folder' && (
-              <Folder className="h-4 w-4 text-gray-500" />
+            {item.type === 'folder' ? (
+              isExpanded ? (
+                <FolderOpen className="h-4 w-4 text-blue-500" />
+              ) : (
+                <Folder className="h-4 w-4 text-gray-500" />
+              )
+            ) : (
+              <File className="h-4 w-4 text-gray-400" />
             )}
           </div>
           
@@ -195,7 +250,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             
             <ScrollArea className="h-[400px]">
               <div className="space-y-1">
-                {mockFolders.map(item => renderFolderItem(item))}
+                {allFolders.map(item => renderFolderItem(item))}
               </div>
             </ScrollArea>
           </div>

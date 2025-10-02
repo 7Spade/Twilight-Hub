@@ -35,9 +35,9 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
   const [isVersionDrawerOpen, setIsVersionDrawerOpen] = useState(false);
   const [selectedFileForVersion, setSelectedFileForVersion] = useState<FileItem | null>(null);
 
-  // 轉換原始文件數據為 FileItem 格式
+  // 轉換原始文件數據為 FileItem 格式，並添加一些測試檔案
   const files: FileItem[] = useMemo(() => {
-    return rawFiles.map(file => ({
+    const realFiles = rawFiles.map(file => ({
       id: file.name,
       name: file.name,
       type: 'file' as const,
@@ -54,6 +54,80 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
       versionContributor: '--',
       reviewStatus: '--',
     }));
+
+    // 添加一些測試檔案以便展示收合功能
+    const testFiles: FileItem[] = [
+      {
+        id: 'test-arch-001',
+        name: 'A000 - ARCHITECTURAL DRAWING.pdf',
+        type: 'file',
+        size: 1024000,
+        contentType: 'application/pdf',
+        timeCreated: '2024-01-01T00:00:00Z',
+        updated: '2024-01-15T10:30:00Z',
+        description: '建築平面圖',
+        version: 'V2',
+        indicator: '--',
+        tag: '重要',
+        issue: '--',
+        updater: 'ACC Sample P...',
+        versionContributor: '--',
+        reviewStatus: '已審閱',
+      },
+      {
+        id: 'test-office-001',
+        name: 'A100 - OFFICE - FLOOR PLAN.dwg',
+        type: 'file',
+        size: 512000,
+        contentType: 'application/dwg',
+        timeCreated: '2024-01-02T00:00:00Z',
+        updated: '2024-01-16T14:20:00Z',
+        description: '辦公室平面圖',
+        version: 'V1',
+        indicator: '--',
+        tag: '草稿',
+        issue: '--',
+        updater: 'ACC Sample P...',
+        versionContributor: '--',
+        reviewStatus: '待審閱',
+      },
+      {
+        id: 'test-contract-001',
+        name: 'Contract - Building Agreement.pdf',
+        type: 'file',
+        size: 256000,
+        contentType: 'application/pdf',
+        timeCreated: '2024-01-03T00:00:00Z',
+        updated: '2024-01-17T09:15:00Z',
+        description: '建築合約',
+        version: 'V3',
+        indicator: '--',
+        tag: '合約',
+        issue: '--',
+        updater: 'ACC Sample P...',
+        versionContributor: '--',
+        reviewStatus: '已審閱',
+      },
+      {
+        id: 'test-report-001',
+        name: 'Monthly Progress Report.pdf',
+        type: 'file',
+        size: 128000,
+        contentType: 'application/pdf',
+        timeCreated: '2024-01-04T00:00:00Z',
+        updated: '2024-01-18T16:45:00Z',
+        description: '月度進度報告',
+        version: 'V1',
+        indicator: '--',
+        tag: '報告',
+        issue: '--',
+        updater: 'ACC Sample P...',
+        versionContributor: '--',
+        reviewStatus: '--',
+      }
+    ];
+
+    return [...realFiles, ...testFiles];
   }, [rawFiles]);
 
   // 過濾文件
