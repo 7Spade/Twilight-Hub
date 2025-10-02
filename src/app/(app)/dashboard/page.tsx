@@ -2,13 +2,11 @@
 import Link from 'next/link';
 import {
   Activity,
-  ArrowUpRight,
   Backpack,
   Grid3x3,
   Star,
   Users2,
 } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -21,6 +19,7 @@ import { useUser, useFirestore, useCollection } from '@/firebase';
 import { collection, query, where, limit } from 'firebase/firestore';
 import { useMemo } from 'react';
 import { PageContainer } from '@/components/layout/page-container';
+import { type Account, type Space } from '@/lib/types';
 
 export default function Dashboard() {
   const { user, isUserLoading } = useUser();
@@ -30,19 +29,22 @@ export default function Dashboard() {
     () => (firestore && user ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid)) : null),
     [firestore, user]
   );
-  const { data: organizations, isLoading: orgsLoading } = useCollection(userOrganizationsQuery);
+  const { data: organizationsData, isLoading: orgsLoading } = useCollection<Account>(userOrganizationsQuery);
+  const organizations = organizationsData || [];
 
   const userSpacesQuery = useMemo(
     () => (firestore && user ? query(collection(firestore, 'accounts', user.uid, 'spaces')) : null),
     [firestore, user]
   );
-  const { data: spaces, isLoading: spacesLoading } = useCollection(userSpacesQuery);
+  const { data: spacesData, isLoading: spacesLoading } = useCollection<Space>(userSpacesQuery);
+  const spaces = spacesData || [];
   
   const starredSpacesQuery = useMemo(
     () => (firestore && user ? query(collection(firestore, 'spaces'), where('starredByUserIds', 'array-contains', user.uid), limit(3)) : null),
     [firestore, user]
   );
-  const { data: starredSpaces, isLoading: starredSpacesLoading } = useCollection(starredSpacesQuery);
+  const { data: starredSpacesData, isLoading: starredSpacesLoading } = useCollection<Space>(starredSpacesQuery);
+  const starredSpaces = starredSpacesData || [];
 
 
   if (isUserLoading || orgsLoading || spacesLoading || starredSpacesLoading) {
@@ -67,9 +69,9 @@ export default function Dashboard() {
             <Users2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{organizations?.length || 0}</div>
+            <div className="text-2xl font-bold">{organizations.length}</div>
             <p className="text-xs text-muted-foreground">
-              You are a member of {organizations?.length || 0} orgs
+              You are a member of {organizations.length} orgs
             </p>
           </CardContent>
         </Card>
@@ -79,9 +81,9 @@ export default function Dashboard() {
             <Grid3x3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{spaces?.length || 0}</div>
+            <div className="text-2xl font-bold">{spaces.length}</div>
             <p className="text-xs text-muted-foreground">
-              You own {spaces?.length || 0} spaces
+              You own {spaces.length} spaces
             </p>
           </CardContent>
         </Card>
@@ -133,7 +135,7 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
-                {starredSpaces && starredSpaces.map((space) => (
+                {starredSpaces.map((space) => (
                     <div key={space.id} className="flex items-center gap-4">
                         <div className="p-2 bg-muted rounded-md">
                             <Star className="h-6 w-6 text-yellow-500 fill-yellow-400" />
@@ -147,7 +149,7 @@ export default function Dashboard() {
                         </Link>
                     </div>
                 ))}
-                {(!starredSpaces || starredSpaces.length === 0) && <p className="text-sm text-muted-foreground">You haven&apos;t starred any spaces yet.</p>}
+                {starredSpaces.length === 0 && <p className="text-sm text-muted-foreground">You haven&apos;t starred any spaces yet.</p>}
             </div>
           </CardContent>
         </Card>

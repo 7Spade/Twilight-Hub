@@ -38,6 +38,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Package, Warehouse, PlusCircle } from 'lucide-react';
 import { PageContainer } from '@/components/layout/page-container';
+import { type Account, type Item, type Warehouse as WarehouseType } from '@/lib/types';
 
 export default function InventoryPage({
   params: paramsPromise,
@@ -46,7 +47,7 @@ export default function InventoryPage({
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoadingOrg, setIsLoadingOrg] = useState(true);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function InventoryPage({
       
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }
@@ -71,11 +72,13 @@ export default function InventoryPage({
 
   // Get Items for the Org
   const itemsQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'accounts', org.id, 'items')) : null), [firestore, org]);
-  const { data: items, isLoading: itemsLoading } = useCollection(itemsQuery);
+  const { data: itemsData, isLoading: itemsLoading } = useCollection<Item>(itemsQuery);
+  const items = itemsData || [];
   
   // Get Warehouses for the Org
   const warehousesQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'accounts', org.id, 'warehouses')) : null), [firestore, org]);
-  const { data: warehouses, isLoading: warehousesLoading } = useCollection(warehousesQuery);
+  const { data: warehousesData, isLoading: warehousesLoading } = useCollection<WarehouseType>(warehousesQuery);
+  const warehouses = warehousesData || [];
 
   const isLoading = itemsLoading || warehousesLoading || isLoadingOrg;
 
@@ -130,7 +133,7 @@ export default function InventoryPage({
               </CardHeader>
               <CardContent>
                   {isLoading && <p>Loading warehouses...</p>}
-                  {warehouses && warehouses.length > 0 ? (
+                  {warehouses.length > 0 ? (
                        <Table>
                           <TableHeader>
                               <TableRow>
@@ -165,7 +168,7 @@ export default function InventoryPage({
               </CardHeader>
               <CardContent>
                    {isLoading && <p>Loading items...</p>}
-                   {items && items.length > 0 ? (
+                   {items.length > 0 ? (
                        <Table>
                           <TableHeader>
                               <TableRow>

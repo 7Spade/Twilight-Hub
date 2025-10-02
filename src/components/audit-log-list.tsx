@@ -7,8 +7,9 @@ import { formatDistanceToNow } from 'date-fns';
 import { useFirestore, useCollection } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
+import { type AuditLog } from '@/lib/types';
 
-function generateLogMessage(log: any) {
+function generateLogMessage(log: AuditLog) {
   const actionText = log.action.toLowerCase();
   const entityType = log.entityType.toLowerCase();
 
@@ -55,13 +56,14 @@ export function AuditLogList({ organizationId }: { organizationId: string }) {
     [firestore, organizationId]
   );
 
-  const { data: logs, isLoading } = useCollection(auditLogsQuery);
+  const { data: logsData, isLoading } = useCollection<AuditLog>(auditLogsQuery);
+  const logs = logsData || [];
 
   if (isLoading) {
     return <AuditLogSkeleton />;
   }
 
-  if (!logs || logs.length === 0) {
+  if (logs.length === 0) {
     return (
       <div className="text-center text-muted-foreground py-10">
         No audit log entries yet.

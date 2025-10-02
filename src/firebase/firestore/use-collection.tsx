@@ -29,12 +29,12 @@ export interface UseCollectionResult<T> {
  * React hook to subscribe to a Firestore collection or query in real-time.
  * Handles nullable references/queries.
  * 
- * @template T Optional type for document data. Defaults to any.
+ * @template T Optional type for document data. Defaults to DocumentData.
  * @param {CollectionReference<DocumentData> | Query<DocumentData> | null | undefined} targetRefOrQuery -
  * The Firestore CollectionReference or Query. Waits if null/undefined.
  * @returns {UseCollectionResult<T>} Object with data, isLoading, error.
  */
-export function useCollection<T = any>(
+export function useCollection<T = DocumentData>(
     targetRefOrQuery: CollectionReference<DocumentData> | Query<DocumentData> | null | undefined,
 ): UseCollectionResult<T> {
   type ResultItemType = WithId<T>;
@@ -66,7 +66,7 @@ export function useCollection<T = any>(
         setError(null);
         setIsLoading(false);
       },
-      (error: FirestoreError) => {
+      (err: FirestoreError) => {
         let path: string;
         if (targetRefOrQuery.type === 'collection') {
           path = (targetRefOrQuery as CollectionReference).path;
@@ -81,6 +81,7 @@ export function useCollection<T = any>(
           path,
         })
 
+        console.error("useCollection error:", contextualError);
         setError(contextualError)
         setData(null)
         setIsLoading(false)

@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 import {
-  Bell,
   MessageSquare,
   PanelLeft,
   PanelLeftClose,
   PanelLeftOpen,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useChatStore } from "@/hooks/use-chat-store";
-import { NotificationPopover } from "@/components/notification-popover";
-import { UserNav } from "./user-nav";
-import { Nav, type NavItem } from "./nav";
-import { TeamSwitcher, type Team } from "./team-switcher";
-import { Separator } from "../ui/separator";
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useChatStore } from '@/hooks/use-chat-store';
+import { NotificationPopover } from '@/components/notification-popover';
+import { UserNav } from './user-nav';
+import { Nav, type NavItem } from './nav';
+import { TeamSwitcher, type Team } from './team-switcher';
+import { Separator } from '../ui/separator';
+import { SearchCommand } from '../search-command';
 
 export function Header({
   isCollapsed,
@@ -77,6 +77,7 @@ export function Header({
       
       {/* Header Actions */}
       <div className="ml-auto flex items-center gap-2">
+        <SearchCommand />
         <Button
           variant="ghost"
           size="icon"

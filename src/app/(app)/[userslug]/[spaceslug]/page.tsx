@@ -10,9 +10,10 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { useUser, useFirestore } from '@/firebase';
-import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import React, { useEffect, useState, useMemo } from 'react';
+import { collection, query, where, getDocs, limit, DocumentData } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import { SpaceDetailView } from '@/features/spaces/components/space-detail-view';
+import { type Account, type Space } from '@/lib/types';
 
 export default function UserSpaceDetailsPage({
   params: paramsPromise,
@@ -23,8 +24,8 @@ export default function UserSpaceDetailsPage({
   const { user: authUser } = useUser();
   const firestore = useFirestore();
 
-  const [space, setSpace] = useState<any>(null);
-  const [owner, setOwner] = useState<any>(null);
+  const [space, setSpace] = useState<Space | null>(null);
+  const [owner, setOwner] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,12 +42,12 @@ export default function UserSpaceDetailsPage({
         limit(1)
       );
       const ownerSnapshot = await getDocs(ownerQuery);
-      let currentOwner = null;
+      let currentOwner: Account | null = null;
       if (!ownerSnapshot.empty) {
         currentOwner = {
           id: ownerSnapshot.docs[0].id,
           ...ownerSnapshot.docs[0].data(),
-        };
+        } as Account;
         setOwner(currentOwner);
       } else {
         setLoading(false);
@@ -65,7 +66,7 @@ export default function UserSpaceDetailsPage({
 
       if (!spaceSnapshot.empty) {
         const spaceDoc = spaceSnapshot.docs[0];
-        setSpace({ id: spaceDoc.id, ...spaceDoc.data() });
+        setSpace({ id: spaceDoc.id, ...spaceDoc.data() } as Space);
       } else {
         setSpace(null);
       }

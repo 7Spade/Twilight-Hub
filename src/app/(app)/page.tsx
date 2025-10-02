@@ -1,7 +1,6 @@
 'use client';
 import { useUser } from '@/firebase';
 import { redirect } from 'next/navigation';
-import { useMemo } from 'react';
 
 export default function AppRootPage() {
     const { user, isUserLoading } = useUser();

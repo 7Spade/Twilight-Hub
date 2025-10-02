@@ -42,13 +42,19 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Package } from 'lucide-react';
+import { type Account, type Item, type Warehouse, type Stock } from '@/lib/types';
+
+interface StockWithWarehouse extends Stock {
+    warehouseName: string;
+    warehouseId: string;
+}
 
 function StockRow({
   stock,
   warehouseName,
   onUpdateStock,
 }: {
-  stock: any;
+  stock: Stock;
   warehouseName: string;
   onUpdateStock: (stockId: string, adjustment: number) => void;
 }) {
@@ -92,7 +98,7 @@ export default function ItemStockPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { organizationslug, itemId } = params;
-  const [organization, setOrganization] = useState<any>(null);
+  const [organization, setOrganization] = useState<Account | null>(null);
 
   // Fetch organization by slug to get its ID
   useEffect(() => {
@@ -102,7 +108,7 @@ export default function ItemStockPage({
       const q = query(orgsRef, where('slug', '==', organizationslug), where('type', '==', 'organization'));
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
-        setOrganization({id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()});
+        setOrganization({id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()} as Account);
       }
     };
     fetchOrg();
@@ -114,15 +120,17 @@ export default function ItemStockPage({
     () => (firestore && organization ? doc(firestore, 'accounts', organization.id, 'items', itemId) : null),
     [firestore, organization, itemId]
   );
-  const { data: item, isLoading: itemLoading } = useDoc(itemDocRef);
+  const { data: itemData, isLoading: itemLoading } = useDoc<Item>(itemDocRef);
+  const item = itemData;
 
   // Get All Warehouses for the Org
   const warehousesQuery = useMemo(
     () => (firestore && organization ? collection(firestore, 'accounts', organization.id, 'warehouses') : null),
     [firestore, organization]
   );
-  const { data: warehouses, isLoading: warehousesLoading } =
-    useCollection(warehousesQuery);
+  const { data: warehousesData, isLoading: warehousesLoading } =
+    useCollection<Warehouse>(warehousesQuery);
+  const warehouses = warehousesData || [];
 
   const stockCollections = useMemo(() => {
     if (!firestore || !warehouses || !organization) return [];
@@ -145,7 +153,7 @@ export default function ItemStockPage({
   
   const stockResults = stockCollections.map(({ query, warehouseId, warehouseName }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, isLoading } = useCollection(query);
+    const { data, isLoading } = useCollection<Stock>(query);
     return { data, isLoading, warehouseId, warehouseName };
   });
 

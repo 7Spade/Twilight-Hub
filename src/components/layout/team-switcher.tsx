@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { useDialogStore } from '@/hooks/use-dialog-store';
-import { cn } from '@/lib/utils';
 
 export type Team = {
   id: string;
@@ -68,7 +67,7 @@ export function TeamSwitcher({
             </DropdownMenuItem>
           ))}
           <DropdownMenuSeparator />
-          {selectedTeam && !selectedTeam.isUser && (
+          {selectedTeam && !selectedTeam.isUser && selectedTeam.slug && (
             <DropdownMenuItem asChild>
               <Link href={`/organizations/${selectedTeam.slug}`}>
                 <Settings className="mr-2 h-4 w-4" />
@@ -114,7 +113,7 @@ export function TeamSwitcher({
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
-        {selectedTeam && !selectedTeam.isUser && (
+        {selectedTeam && !selectedTeam.isUser && selectedTeam.slug && (
           <DropdownMenuItem asChild>
             <Link href={`/organizations/${selectedTeam.slug}/settings`}>
               <Settings className="mr-2 h-4 w-4" />

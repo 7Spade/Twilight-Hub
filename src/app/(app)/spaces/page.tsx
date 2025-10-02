@@ -17,6 +17,7 @@ import { useDialogStore } from '@/hooks/use-dialog-store';
 import { useMemo } from 'react';
 import { PageContainer } from '@/components/layout/page-container';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { type Account, type Space } from '@/lib/types';
 
 export default function SpacesPage() {
   const { user } = useUser();
@@ -27,7 +28,7 @@ export default function SpacesPage() {
     if (!firestore || !user) return null;
     return query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid));
   }, [firestore, user]);
-  const { data: userOrgs, isLoading: userOrgsLoading } = useCollection(userOrgsQuery);
+  const { data: userOrgs, isLoading: userOrgsLoading } = useCollection<Account>(userOrgsQuery);
 
   const ownerIds = useMemo(() => {
     if (!user) return [];
@@ -37,10 +38,11 @@ export default function SpacesPage() {
   }, [user, userOrgs]);
 
   const allSpacesQuery = useMemo(() => firestore ? collection(firestore, 'spaces') : null, [firestore]);
-  const {data: allSpaces, isLoading: allSpacesLoading } = useCollection(allSpacesQuery);
+  const {data: allSpacesData, isLoading: allSpacesLoading } = useCollection<Space>(allSpacesQuery);
+  const allSpaces = allSpacesData || [];
   
   const allOwnerIds = useMemo(() => {
-      if (!allSpaces) return [];
+      if (allSpaces.length === 0) return [];
       const ids = new Set<string>();
       allSpaces.forEach(space => ids.add(space.ownerId));
       return Array.from(ids);
@@ -50,28 +52,28 @@ export default function SpacesPage() {
     if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return null;
     return query(collection(firestore, 'accounts'), where(documentId(), 'in', allOwnerIds));
   }, [firestore, allOwnerIds]);
-  const { data: owners, isLoading: ownersLoading } = useCollection(ownersQuery);
+  const { data: ownersData, isLoading: ownersLoading } = useCollection<Account>(ownersQuery);
 
   const ownersMap = useMemo(() => {
-      const map = new Map<string, any>();
-      owners?.forEach(o => map.set(o.id, o));
+      const map = new Map<string, Account>();
+      ownersData?.forEach(o => map.set(o.id, o));
       return map;
-  }, [owners]);
+  }, [ownersData]);
 
 
   const yourSpaces = useMemo(() => {
-    if (!allSpaces || ownerIds.length === 0) return [];
+    if (allSpaces.length === 0 || ownerIds.length === 0) return [];
     return allSpaces.filter(space => ownerIds.includes(space.ownerId));
   }, [allSpaces, ownerIds]);
 
   const starredSpaces = useMemo(() => {
-    if (!allSpaces || !user) return [];
+    if (allSpaces.length === 0 || !user) return [];
     return allSpaces.filter(space => space.starredByUserIds?.includes(user.uid));
   }, [allSpaces, user]);
 
 
   const publicSpaces = useMemo(() => {
-    if (!allSpaces) return [];
+    if (allSpaces.length === 0) return [];
     return allSpaces.filter(space => space.isPublic);
   }, [allSpaces]);
     

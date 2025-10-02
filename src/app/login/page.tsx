@@ -24,11 +24,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Logo } from '@/components/logo';
 import { useAuth, useUser } from '@/firebase';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, AuthError } from 'firebase/auth';
 import { useToast } from '@/hooks/use-toast';
 
 const loginSchema = z.object({
@@ -61,10 +60,11 @@ function LoginPageContent() {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       router.push('/dashboard');
-    } catch (error: any) {
-      console.error("Failed to sign in", error);
+    } catch (error) {
+      const authError = error as AuthError;
+      console.error("Failed to sign in", authError);
       let description = "An unexpected error occurred. Please try again.";
-      if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+      if (authError.code === 'auth/invalid-credential' || authError.code === 'auth/user-not-found' || authError.code === 'auth/wrong-password') {
           description = "Incorrect email or password. Please check your credentials and try again.";
       }
       toast({

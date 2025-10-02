@@ -11,25 +11,25 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, FieldValues } from 'react-hook-form';
 
-interface FormCardProps {
+interface FormCardProps<T extends FieldValues> {
   title: string;
   description: string;
   isLoading: boolean;
-  form: UseFormReturn<any>;
-  onSubmit: (values: any) => Promise<void>;
+  form: UseFormReturn<T>;
+  onSubmit: (values: T) => Promise<void>;
   children: React.ReactNode;
 }
 
-export function FormCard({
+export function FormCard<T extends FieldValues>({
   title,
   description,
   isLoading,
   form,
   onSubmit,
   children,
-}: FormCardProps) {
+}: FormCardProps<T>) {
   return (
     <Card>
       <CardHeader>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 
@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { type Account } from '@/lib/types';
 
 export default function AuditLogPage({
   params: paramsPromise,
@@ -30,7 +31,7 @@ export default function AuditLogPage({
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function AuditLogPage({
 
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }

@@ -22,6 +22,7 @@ import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormSwitch } from '@/components/forms/form-switch';
 import { FormCard } from '@/components/forms/form-card';
+import { type Space } from '@/lib/types';
 
 const spaceSettingsSchema = z.object({
   name: z.string().min(1, 'Space name is required'),
@@ -39,7 +40,7 @@ export default function SpaceSettingsPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { toast } = useToast();
-  const [space, setSpace] = useState<any>(null);
+  const [space, setSpace] = useState<Space | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function SpaceSettingsPage({
 
         if (!querySnapshot.empty) {
             const spaceDoc = querySnapshot.docs[0];
-            setSpace({ id: spaceDoc.id, ...spaceDoc.data() });
+            setSpace({ id: spaceDoc.id, ...spaceDoc.data() } as Space);
         } else {
             setSpace(null);
         }

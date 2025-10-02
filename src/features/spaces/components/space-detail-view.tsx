@@ -31,6 +31,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FileStorageModule } from '@/components/file-storage-module';
 import { User } from 'firebase/auth';
+import { type Account, type Space, type Module } from '@/lib/types';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
@@ -43,12 +44,12 @@ function ModuleCard({
   actionLabel,
   disabled = false,
 }: {
-  module: any;
+  module: Module;
   onAction: () => void;
   actionLabel: string;
   disabled?: boolean;
 }) {
-  const Icon = iconMap[module.icon as string] || iconMap.default;
+  const Icon = iconMap[module.icon || 'default'] || iconMap.default;
 
   return (
     <Card className="flex flex-col">
@@ -73,8 +74,8 @@ function ModuleCard({
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
-  space: any;
-  owner: any;
+  space: Space | null;
+  owner: Account | null;
   authUser: User | null;
   breadcrumbs: React.ReactNode;
   basePath: string;
@@ -100,9 +101,8 @@ export function SpaceDetailView({
     () => (firestore && authUser ? doc(firestore, 'accounts', authUser.uid) : null),
     [firestore, authUser]
   );
-  const { data: userProfile, isLoading: profileLoading } = useDoc<{
-    moduleInventory?: { [key: string]: number };
-  }>(userProfileRef);
+  const { data: userProfileData, isLoading: profileLoading } = useDoc<Account>(userProfileRef);
+  const userProfile = userProfileData;
 
   const installedModuleIds = useMemo(() => space?.moduleIds || [], [space]);
   const installedModulesQuery = useMemo(() => {
@@ -112,8 +112,9 @@ export function SpaceDetailView({
       where(documentId(), 'in', installedModuleIds)
     );
   }, [firestore, installedModuleIds]);
-  const { data: installedModules, isLoading: installedModulesLoading } =
-    useCollection(installedModulesQuery);
+  const { data: installedModulesData, isLoading: installedModulesLoading } =
+    useCollection<Module>(installedModulesQuery);
+  const installedModules = installedModulesData || [];
 
   useEffect(() => {
     setHasFileModule(installedModuleIds.includes('file-storage-module'));
@@ -135,8 +136,9 @@ export function SpaceDetailView({
       where(documentId(), 'in', availableToEquipIds)
     );
   }, [firestore, availableToEquipIds]);
-  const { data: availableModules, isLoading: availableModulesLoading } =
-    useCollection(availableModulesQuery);
+  const { data: availableModulesData, isLoading: availableModulesLoading } =
+    useCollection<Module>(availableModulesQuery);
+  const availableModules = availableModulesData || [];
 
   const handleAddModuleToSpace = async (moduleId: string) => {
     if (!firestore || !spaceDocRef) return;
@@ -190,10 +192,10 @@ export function SpaceDetailView({
         <TabsContent value="installed" className="mt-6">
           <h3 className="text-lg font-medium mb-4">Equipped Modules</h3>
           {isLoading && <p>Loading installed modules...</p>}
-          {!isLoading && installedModules && installedModules.length > 0 ? (
+          {!isLoading && installedModules.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {installedModules.map((mod) => {
-                const Icon = iconMap[mod.icon] || iconMap.default;
+                const Icon = iconMap[mod.icon || 'default'] || iconMap.default;
                 return (
                   <Card key={mod.id}>
                     <CardHeader className="flex-row items-center gap-4 space-y-0">
@@ -225,7 +227,7 @@ export function SpaceDetailView({
             Available from Your Backpack
           </h3>
           {isLoading && <p>Loading available modules...</p>}
-          {!isLoading && availableModules && availableModules.length > 0 ? (
+          {!isLoading && availableModules.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {availableModules.map((mod) => (
                 <ModuleCard

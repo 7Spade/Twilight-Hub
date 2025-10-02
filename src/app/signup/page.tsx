@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { updateProfile, UserCredential } from 'firebase/auth';
+import { updateProfile, UserCredential, AuthError } from 'firebase/auth';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -139,10 +139,11 @@ function SignupPageContent() {
         
         router.push('/dashboard');
         
-    } catch (error: any) {
-        console.error("Error during sign up:", error);
+    } catch (error) {
+      const authError = error as AuthError;
+        console.error("Error during sign up:", authError);
         let description = "An unexpected error occurred. Please try again.";
-        if (error.code === 'auth/email-already-in-use') {
+        if (authError.code === 'auth/email-already-in-use') {
             description = "This email address is already in use. Please use a different email or log in.";
         }
         toast({
@@ -167,8 +168,7 @@ function SignupPageContent() {
         <CardHeader className="text-center">
           <Link href="/" className="mb-4 inline-block">
             <Logo />
-          </Link>
-          <CardTitle className="text-2xl">Create an Account</CardTitle>
+          </Link>          <CardTitle className="text-2xl">Create an Account</CardTitle>
           <CardDescription>
             Join Twilight Hub and start collaborating.
           </CardDescription>

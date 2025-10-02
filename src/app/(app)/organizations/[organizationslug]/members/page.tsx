@@ -17,13 +17,6 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   Table,
   TableBody,
   TableCell,
@@ -41,6 +34,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useDialogStore } from '@/hooks/use-dialog-store';
+import { type Account } from '@/lib/types';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 function MemberRow({ userId }: { userId: string }) {
   const firestore = useFirestore();
@@ -48,7 +43,8 @@ function MemberRow({ userId }: { userId: string }) {
     () => (firestore ? doc(firestore, 'accounts', userId) : null),
     [firestore, userId]
   );
-  const { data: user, isLoading } = useDoc(userDocRef);
+  const { data: userData, isLoading } = useDoc<Account>(userDocRef);
+  const user = userData;
 
   if (isLoading || !user) {
     return (
@@ -102,7 +98,7 @@ export default function MembersPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { open: openDialog } = useDialogStore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -115,7 +111,7 @@ export default function MembersPage({
 
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }

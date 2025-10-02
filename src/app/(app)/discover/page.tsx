@@ -23,11 +23,12 @@ import Link from 'next/link';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Globe, Lock, User, Users2, Search } from 'lucide-react';
+import { Globe, User, Users2, Search } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
+import { type Account, type Space } from '@/lib/types';
 
-const UserCard = ({ user }: { user: any }) => (
+const UserCard = ({ user }: { user: Account }) => (
   <Card>
     <CardHeader className="items-center">
       <Avatar className="h-20 w-20">
@@ -49,7 +50,7 @@ const UserCard = ({ user }: { user: any }) => (
   </Card>
 );
 
-const OrgCard = ({ org, index }: { org: any, index: number }) => {
+const OrgCard = ({ org, index }: { org: Account, index: number }) => {
     const logo = getPlaceholderImage(`org-logo-${(index % 3) + 1}`);
     return (
         <Card>
@@ -78,7 +79,7 @@ const OrgCard = ({ org, index }: { org: any, index: number }) => {
     );
 };
 
-const SpaceCard = ({ space }: { space: any }) => (
+const SpaceCard = ({ space }: { space: Space }) => (
     <Card>
         <CardHeader>
             <CardTitle>{space.name}</CardTitle>
@@ -102,23 +103,36 @@ const SpaceCard = ({ space }: { space: any }) => (
     </Card>
 )
 
-const DataGrid = ({ data, isLoading, renderItem, emptyMessage }: any) => {
+const DataGrid = <T,>({ data, isLoading, renderItem, emptyMessage }: {
+    data: T[] | null,
+    isLoading: boolean,
+    renderItem: (item: T, index: number) => React.ReactNode;
+    emptyMessage: string;
+}) => {
   if (isLoading) return <p>Loading...</p>;
   if (!data || data.length === 0) return <p className="text-muted-foreground text-center py-8">{emptyMessage}</p>;
   
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {data.map((item: any, index: number) => renderItem(item, index))}
+      {data.map((item, index) => renderItem(item, index))}
     </div>
   );
 };
 
-const SearchableTabContent = ({ data, isLoading, renderItem, emptyMessage, searchPlaceholder }: any) => {
+interface SearchableTabContentProps<T> {
+    data: T[] | null;
+    isLoading: boolean;
+    renderItem: (item: T, index: number) => React.ReactNode;
+    emptyMessage: string;
+    searchPlaceholder: string;
+}
+
+const SearchableTabContent = <T extends { name: string }>({ data, isLoading, renderItem, emptyMessage, searchPlaceholder }: SearchableTabContentProps<T>) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredData = useMemo(() => {
         if (!data) return [];
-        return data.filter((item: any) => 
+        return data.filter((item) => 
             item.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
     }, [data, searchTerm]);
@@ -134,7 +148,7 @@ const SearchableTabContent = ({ data, isLoading, renderItem, emptyMessage, searc
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
-            <DataGrid
+            <DataGrid<T>
                 data={filteredData}
                 isLoading={isLoading}
                 renderItem={renderItem}
@@ -149,13 +163,13 @@ export default function DiscoverPage() {
   const firestore = useFirestore();
 
   const usersQuery = useMemo(() => (firestore ? query(collection(firestore, 'accounts'), where('type', '==', 'user')) : null), [firestore]);
-  const { data: users, isLoading: usersLoading } = useCollection(usersQuery);
+  const { data: users, isLoading: usersLoading } = useCollection<Account>(usersQuery);
 
   const orgsQuery = useMemo(() => (firestore ? query(collection(firestore, 'accounts'), where('type', '==', 'organization')) : null), [firestore]);
-  const { data: orgs, isLoading: orgsLoading } = useCollection(orgsQuery);
+  const { data: orgs, isLoading: orgsLoading } = useCollection<Account>(orgsQuery);
 
   const spacesQuery = useMemo(() => (firestore ? query(collection(firestore, 'spaces'), where('isPublic', '==', true)) : null), [firestore]);
-  const { data: spaces, isLoading: spacesLoading } = useCollection(spacesQuery);
+  const { data: spaces, isLoading: spacesLoading } = useCollection<Space>(spacesQuery);
 
 
   return (
@@ -173,7 +187,7 @@ export default function DiscoverPage() {
             <SearchableTabContent
                 data={users}
                 isLoading={usersLoading}
-                renderItem={(user: any) => <UserCard key={user.id} user={user} />}
+                renderItem={(user: Account) => <UserCard key={user.id} user={user} />}
                 emptyMessage="No users found."
                 searchPlaceholder="Search users..."
             />
@@ -182,7 +196,7 @@ export default function DiscoverPage() {
             <SearchableTabContent
                 data={orgs}
                 isLoading={orgsLoading}
-                renderItem={(org: any, index: number) => <OrgCard key={org.id} org={org} index={index}/>}
+                renderItem={(org: Account, index: number) => <OrgCard key={org.id} org={org} index={index}/>}
                 emptyMessage="No organizations found."
                 searchPlaceholder="Search organizations..."
             />
@@ -191,7 +205,7 @@ export default function DiscoverPage() {
             <SearchableTabContent
                 data={spaces}
                 isLoading={spacesLoading}
-                renderItem={(space: any) => <SpaceCard key={space.id} space={space} />}
+                renderItem={(space: Space) => <SpaceCard key={space.id} space={space} />}
                 emptyMessage="No public spaces found."
                 searchPlaceholder="Search spaces..."
             />

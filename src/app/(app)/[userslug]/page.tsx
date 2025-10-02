@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FollowerList } from '@/components/follower-list';
 import { MembershipList } from '@/components/membership-list';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { type Account, type Space } from '@/lib/types';
 
 export default function UserProfilePage({
   params: paramsPromise,
@@ -24,7 +25,7 @@ export default function UserProfilePage({
   const params = React.use(paramsPromise);
   const { user: currentUser } = useUser();
   const firestore = useFirestore();
-  const [userProfile, setUserProfile] = useState<any>(null);
+  const [userProfile, setUserProfile] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function UserProfilePage({
 
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
-        setUserProfile({ id: userDoc.id, ...userDoc.data() });
+        setUserProfile({ id: userDoc.id, ...userDoc.data() } as Account);
       } else {
         setUserProfile(null);
       }
@@ -57,10 +58,11 @@ export default function UserProfilePage({
     return query(collection(firestore, 'spaces'), where('ownerId', '==', userProfile.id));
   },[firestore, userProfile]);
 
-  const { data: spaces, isLoading: spacesLoading } = useCollection(userSpacesQuery);
+  const { data: spacesData, isLoading: spacesLoading } = useCollection<Space>(userSpacesQuery);
+  const spaces = spacesData || [];
   
   const ownersMap = useMemo(() => {
-    const map = new Map<string, any>();
+    const map = new Map<string, Account>();
     if (userProfile) {
         map.set(userProfile.id, userProfile);
     }

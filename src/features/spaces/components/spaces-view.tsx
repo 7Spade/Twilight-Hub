@@ -21,15 +21,16 @@ import {
 } from '@/components/ui/tabs';
 import { useFirestore } from '@/firebase';
 import { doc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
+import { type Account, type Space } from '@/lib/types';
 
 const SpaceCard = ({
   space,
   userId,
   owner,
 }: {
-  space: any;
+  space: Space;
   userId: string | undefined;
-  owner?: any;
+  owner?: Account;
 }) => {
   const firestore = useFirestore();
   const isStarred = userId ? space.starredByUserIds?.includes(userId) : false;
@@ -105,10 +106,10 @@ const SpacesGrid = ({
   owners,
   emptyStateMessage = 'No spaces found.',
 }: {
-  spaces: any[] | null;
+  spaces: Space[] | null;
   isLoading: boolean;
   userId: string | undefined;
-  owners: Map<string, any>;
+  owners: Map<string, Account>;
   emptyStateMessage?: string;
 }) => {
   if (isLoading) {
@@ -133,14 +134,14 @@ const SpacesGrid = ({
 
 interface SpacesViewProps {
     userId?: string;
-    owners: Map<string, any>;
+    owners: Map<string, Account>;
     isLoading: boolean;
 
     // Different sets of spaces for the tabs
-    yourSpaces?: any[] | null;
-    starredSpaces?: any[] | null;
-    publicSpaces?: any[] | null;
-    organizationSpaces?: any[] | null;
+    yourSpaces?: Space[] | null;
+    starredSpaces?: Space[] | null;
+    publicSpaces?: Space[] | null;
+    organizationSpaces?: Space[] | null;
 
     // Configuration for tabs
     showYourSpacesTab?: boolean;
@@ -163,11 +164,11 @@ export function SpacesView({
     showOrganizationSpacesTab = false
 }: SpacesViewProps) {
 
-    const tabs = [];
-    if(showOrganizationSpacesTab) tabs.push({ value: 'org', label: 'Organization Spaces', data: organizationSpaces, empty: 'No spaces found for this organization.' });
-    if(showYourSpacesTab) tabs.push({ value: 'yours', label: 'Your Spaces', data: yourSpaces, empty: 'You have not created any spaces.' });
-    if(showStarredSpacesTab) tabs.push({ value: 'starred', label: 'Starred', data: starredSpaces, empty: 'You have not starred any spaces.' });
-    if(showDiscoverTab) tabs.push({ value: 'discover', label: 'Discover', data: publicSpaces, empty: 'No public spaces available to discover.' });
+    const tabs: { value: string; label: string; data: Space[] | null; empty: string; }[] = [];
+    if(showOrganizationSpacesTab) tabs.push({ value: 'org', label: 'Organization Spaces', data: organizationSpaces || null, empty: 'No spaces found for this organization.' });
+    if(showYourSpacesTab) tabs.push({ value: 'yours', label: 'Your Spaces', data: yourSpaces || null, empty: 'You have not created any spaces.' });
+    if(showStarredSpacesTab) tabs.push({ value: 'starred', label: 'Starred', data: starredSpaces || null, empty: 'You have not starred any spaces.' });
+    if(showDiscoverTab) tabs.push({ value: 'discover', label: 'Discover', data: publicSpaces || null, empty: 'No public spaces available to discover.' });
 
     if (tabs.length === 0) {
         return null; // or some default view

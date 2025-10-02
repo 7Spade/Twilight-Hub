@@ -15,7 +15,6 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -26,6 +25,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { PageContainer } from '@/components/layout/page-container';
 import { Skeleton } from '@/components/ui/skeleton';
+import { type Account, type Group as GroupType, type Item } from '@/lib/types';
 
 function StatCard({
   title,
@@ -66,7 +66,7 @@ export default function OrganizationDetailsPage({
   const params = React.use(paramsPromise);
 
   const firestore = useFirestore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function OrganizationDetailsPage({
 
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }
@@ -93,13 +93,15 @@ export default function OrganizationDetailsPage({
     () => (firestore && org ? collection(firestore, 'accounts', org.id, 'groups') : null),
     [firestore, org]
   );
-  const { data: groups, isLoading: groupsLoading } = useCollection(groupsQuery);
+  const { data: groupsData, isLoading: groupsLoading } = useCollection<GroupType>(groupsQuery);
+  const groups = groupsData || [];
   
   const itemsQuery = useMemo(
     () => (firestore && org ? collection(firestore, 'accounts', org.id, 'items') : null),
     [firestore, org]
   );
-  const { data: items, isLoading: itemsLoading } = useCollection(itemsQuery);
+  const { data: itemsData, isLoading: itemsLoading } = useCollection<Item>(itemsQuery);
+  const items = itemsData || [];
 
   if (isLoading) {
     return (
@@ -191,14 +193,14 @@ export default function OrganizationDetailsPage({
             />
              <StatCard 
                 title="Groups"
-                value={groupsLoading ? '...' : groups?.length || 0}
+                value={groupsLoading ? '...' : groups.length}
                 icon={Group}
                 link={`/organizations/${org.slug}/groups`}
                 linkText="Manage groups"
             />
             <StatCard 
                 title="Inventory Items"
-                value={itemsLoading ? '...' : items?.length || 0}
+                value={itemsLoading ? '...' : items.length}
                 icon={Package}
                 link={`/organizations/${org.slug}/inventory`}
                 linkText="Manage inventory"

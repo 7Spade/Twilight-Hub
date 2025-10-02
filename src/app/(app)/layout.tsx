@@ -30,6 +30,7 @@ import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
 import { UseModuleDialog } from '@/features/spaces/components/use-module-dialog';
+import { type Account } from '@/lib/types';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -41,8 +42,9 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     () => (firestore && user ? doc(firestore, 'accounts', user.uid) : null),
     [firestore, user]
   );
-  const { data: userProfile, isLoading: isProfileLoading } =
-    useDoc(userProfileRef);
+  const { data: userProfileData, isLoading: isProfileLoading } =
+    useDoc<Account>(userProfileRef);
+  const userProfile = userProfileData;
 
   const userOrganizationsQuery = useMemo(
     () =>
@@ -55,23 +57,28 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         : null,
     [firestore, user]
   );
-  const { data: organizations, isLoading: orgsLoading } = useCollection(
+  const { data: organizationsData, isLoading: orgsLoading } = useCollection<Account>(
     userOrganizationsQuery
   );
+  const organizations = organizationsData || [];
 
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+  
+  const handleSetSelectedTeam = (team: Team | null) => {
+    setSelectedTeam(team);
+  };
 
   const teams = useMemo(() => {
     if (isUserLoading || isProfileLoading || !userProfile || !user) return [];
 
     const personalTeam: Team = {
-      id: user!.uid,
+      id: user.uid,
       label: userProfile.name || 'Personal Account',
       slug: userProfile.slug,
       isUser: true,
     };
 
-    const orgTeams: Team[] = (organizations || []).map((org) => ({
+    const orgTeams: Team[] = organizations.map((org) => ({
       id: org.id,
       label: org.name,
       slug: org.slug,
@@ -167,7 +174,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
             setIsCollapsed={setIsCollapsed}
             teams={teams}
             selectedTeam={selectedTeam}
-            setSelectedTeam={setSelectedTeam}
+            setSelectedTeam={handleSetSelectedTeam}
             navItems={navItems}
           />
         )}
@@ -182,7 +189,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
             navItems={navItems}
             teams={teams}
             selectedTeam={selectedTeam}
-            setSelectedTeam={setSelectedTeam}
+            setSelectedTeam={handleSetSelectedTeam}
           />
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             {isLoading ? <div>Loading...</div> : children}

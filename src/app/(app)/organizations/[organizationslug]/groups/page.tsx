@@ -27,6 +27,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { CreateGroupDialog } from '@/components/create-group-dialog';
+import { type Account, type Group } from '@/lib/types';
 
 
 function GroupCard({ groupId, organizationId }: { groupId: string; organizationId: string }) {
@@ -35,7 +36,8 @@ function GroupCard({ groupId, organizationId }: { groupId: string; organizationI
     () => (firestore ? doc(firestore, 'accounts', organizationId, 'groups', groupId) : null),
     [firestore, organizationId, groupId]
   );
-  const { data: group, isLoading } = useDoc(groupDocRef);
+  const { data: groupData, isLoading } = useDoc<Group>(groupDocRef);
+  const group = groupData;
 
   if (isLoading || !group) {
     return (
@@ -78,7 +80,7 @@ export default function GroupsPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { open: openDialog } = useDialogStore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -91,7 +93,7 @@ export default function GroupsPage({
 
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }
@@ -105,7 +107,8 @@ export default function GroupsPage({
     () => (firestore && org ? collection(firestore, 'accounts', org.id, 'groups') : null),
     [firestore, org]
   );
-  const { data: groups, isLoading: groupsLoading } = useCollection(groupsQuery);
+  const { data: groupsData, isLoading: groupsLoading } = useCollection<Group>(groupsQuery);
+  const groups = groupsData || [];
   
   if (isLoading) {
     return <div>Loading organization...</div>;
@@ -155,10 +158,10 @@ export default function GroupsPage({
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {groupsLoading && <p>Loading groups...</p>}
-          {groups && groups.map((group) => (
+          {groups.map((group) => (
             <GroupCard key={group.id} groupId={group.id} organizationId={org.id} />
           ))}
-          {!groupsLoading && (!groups || groups.length === 0) && (
+          {!groupsLoading && groups.length === 0 && (
             <p className="text-muted-foreground col-span-full text-center py-8">
               No groups created yet.
             </p>

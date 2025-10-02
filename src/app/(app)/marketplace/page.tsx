@@ -13,7 +13,6 @@ import {
   PackagePlus,
   Puzzle,
   Search,
-  CheckCircle,
   File,
   Backpack,
 } from 'lucide-react';
@@ -35,16 +34,14 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { PageContainer } from '@/components/layout/page-container';
 import { useDialogStore } from '@/hooks/use-dialog-store';
+import { type Module, type Account } from '@/lib/types';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
   'file-storage': File,
 };
 
-type ModuleInventory = {
-    [moduleId: string]: number;
-}
-
+type ModuleInventory = Account['moduleInventory'];
 
 function MarketplaceTabContent() {
   const { user } = useUser();
@@ -55,7 +52,8 @@ function MarketplaceTabContent() {
     () => (firestore ? collection(firestore, 'modules') : null),
     [firestore]
   );
-  const { data: modules, isLoading: modulesLoading } = useCollection(modulesQuery);
+  const { data: modulesData, isLoading: modulesLoading } = useCollection<Module>(modulesQuery);
+  const modules = modulesData || [];
 
   useEffect(() => {
     if (!firestore) return;
@@ -100,17 +98,26 @@ function MarketplaceTabContent() {
             title: "Module Added!",
             description: "A new module has been added to your backpack.",
         });
-    } catch (error) {
-        await setDoc(userDocRef, {
-            moduleInventory: {
-                [moduleId]: increment(1)
-            }
+    } catch (e) {
+      // This can happen if the `moduleInventory` field doesn't exist yet.
+      console.error("Failed to increment, attempting set with merge:", e);
+      try {
+        await setDoc(userDocRef, { 
+            moduleInventory: { [moduleId]: 1 } 
         }, { merge: true });
-
+        
         toast({
             title: "Module Added!",
             description: "Your backpack was updated with a new module.",
         });
+      } catch (error) {
+        console.error("Error adding to backpack:", error);
+        toast({
+            variant: "destructive",
+            title: "Update Failed",
+            description: "Could not add module to your backpack.",
+        });
+      }
     }
   };
   
@@ -139,8 +146,8 @@ function MarketplaceTabContent() {
 
       {!isLoading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {modules?.map((module) => {
-            const Icon = iconMap[module.icon as string] || iconMap.default;
+          {modules.map((module) => {
+            const Icon = iconMap[module.icon || 'default'] || iconMap.default;
             return (
               <Card key={module.id} className="flex flex-col">
                 <CardHeader className="flex-row items-center gap-4 space-y-0">
@@ -182,7 +189,7 @@ function BackpackTabContent() {
     const userProfileRef = useMemo(() => (
         firestore && user ? doc(firestore, 'accounts', user.uid) : null
     ), [firestore, user]);
-    const { data: userProfile, isLoading: isProfileLoading } = useDoc<{ moduleInventory?: ModuleInventory }>(userProfileRef);
+    const { data: userProfile, isLoading: isProfileLoading } = useDoc<Account>(userProfileRef);
 
     const moduleIds = useMemo(() => userProfile?.moduleInventory ? Object.keys(userProfile.moduleInventory) : [], [userProfile]);
 
@@ -191,7 +198,8 @@ function BackpackTabContent() {
         return query(collection(firestore, 'modules'), where(documentId(), 'in', moduleIds));
     }, [firestore, moduleIds]);
 
-    const { data: userModules, isLoading: areModulesLoading } = useCollection(modulesQuery);
+    const { data: userModulesData, isLoading: areModulesLoading } = useCollection<Module>(modulesQuery);
+    const userModules = userModulesData || [];
 
     const isLoading = isProfileLoading || areModulesLoading;
 
@@ -208,10 +216,10 @@ function BackpackTabContent() {
 
         {isLoading && <p>Loading modules...</p>}
       
-        {!isLoading && userModules && userModules.length > 0 ? (
+        {!isLoading && userModules.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {userModules.map((module) => {
-                const Icon = iconMap[(module as any).icon] || iconMap.default;
+                const Icon = iconMap[module.icon || 'default'] || iconMap.default;
                 const quantity = userProfile?.moduleInventory?.[module.id] || 0;
                 return (
                 <Card key={module.id} className="flex flex-col">
@@ -221,14 +229,14 @@ function BackpackTabContent() {
                                 <div className="p-3 bg-muted rounded-lg">
                                     <Icon className="h-6 w-6 text-muted-foreground" />
                                 </div>
-                                <CardTitle>{(module as any).name}</CardTitle>
+                                <CardTitle>{module.name}</CardTitle>
                             </div>
                             <Badge variant="secondary">Qty: {quantity}</Badge>
                         </div>
                     </CardHeader>
                     <CardContent className="flex-grow">
                     <p className="text-sm text-muted-foreground">
-                        {(module as any).description}
+                        {module.description}
                     </p>
                     </CardContent>
                     <CardFooter>

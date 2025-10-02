@@ -20,8 +20,8 @@ import {
 import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
-import { FormSwitch } from '@/components/forms/form-switch';
 import { FormCard } from '@/components/forms/form-card';
+import { type Account } from '@/lib/types';
 
 const orgSettingsSchema = z.object({
   name: z.string().min(1, 'Organization name is required'),
@@ -38,7 +38,7 @@ export default function OrgSettingsPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { toast } = useToast();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
  useEffect(() => {
@@ -52,7 +52,7 @@ export default function OrgSettingsPage({
 
         if (!orgSnapshot.empty) {
             const orgDoc = orgSnapshot.docs[0];
-            setOrg({ id: orgDoc.id, ...orgDoc.data() });
+            setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
         } else {
             setOrg(null);
         }

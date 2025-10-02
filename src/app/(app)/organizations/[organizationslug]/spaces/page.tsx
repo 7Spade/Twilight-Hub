@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { type Account, type Space } from '@/lib/types';
 
 export default function OrgSpacesPage({
   params: paramsPromise,
@@ -34,7 +35,7 @@ export default function OrgSpacesPage({
   const { user } = useUser();
   const firestore = useFirestore();
   const { open: openDialog } = useDialogStore();
-  const [org, setOrg] = useState<any>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function OrgSpacesPage({
 
       if (!querySnapshot.empty) {
         const orgDoc = querySnapshot.docs[0];
-        setOrg({ id: orgDoc.id, ...orgDoc.data() });
+        setOrg({ id: orgDoc.id, ...orgDoc.data() } as Account);
       } else {
         setOrg(null);
       }
@@ -69,11 +70,12 @@ export default function OrgSpacesPage({
         : null,
     [firestore, org]
   );
-  const { data: spaces, isLoading: spacesLoading } =
-    useCollection(spacesQuery);
+  const { data: spacesData, isLoading: spacesLoading } =
+    useCollection<Space>(spacesQuery);
+  const spaces = spacesData || [];
 
   const ownersMap = useMemo(() => {
-      const map = new Map<string, any>();
+      const map = new Map<string, Account>();
       if (org) {
         map.set(org.id, org);
       }
