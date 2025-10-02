@@ -1,19 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useFirestore, useDoc } from '@/firebase';
-import {
-  collection,
-  doc,
-  query,
-  where,
-  documentId,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-} from 'firebase/firestore';
+import { useFirestore } from '@/firebase';
+import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { Globe, Lock, Star } from 'lucide-react';
 import React, { useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -48,12 +38,6 @@ export function SpaceDetailView({
     [firestore, space]
   );
 
-  const userProfileRef = useMemo(
-    () => (firestore && authUser ? doc(firestore, 'accounts', authUser.uid) : null),
-    [firestore, authUser]
-  );
-  const { data: userProfileData, isLoading: profileLoading } = useDoc<Account>(userProfileRef);
-  
 
   const handleSettingsSubmit = async (data: SpaceSettingsFormValues) => {
     if (!spaceDocRef) return;
@@ -72,8 +56,6 @@ export function SpaceDetailView({
       });
     }
   };
-
-  const isLoading = isPageLoading || profileLoading;
 
   if (isPageLoading) {
     return (
@@ -196,7 +178,7 @@ export function SpaceDetailView({
             <TabsContent value="settings" className="mt-6">
                 <SpaceSettingsView 
                     space={space}
-                    isLoading={isLoading}
+                    isLoading={isPageLoading}
                     onFormSubmit={handleSettingsSubmit}
                 />
             </TabsContent>

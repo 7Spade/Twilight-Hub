@@ -55,9 +55,7 @@ const SpaceCard = ({
   };
 
   let spaceUrl = '#'; // Default fallback URL
-  if (space.slug) {
-    spaceUrl = `/spaces/${space.slug}`;
-  }
+  spaceUrl = space.slug ? `/spaces/${space.slug}` : '#';
 
   return (
     <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1">

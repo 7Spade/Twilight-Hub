@@ -18,7 +18,6 @@ import { type Team } from '@/components/layout/team-switcher';
 import {
   LayoutDashboard,
   Grid3x3,
-  Store,
   Users2,
   Package,
   Settings,
