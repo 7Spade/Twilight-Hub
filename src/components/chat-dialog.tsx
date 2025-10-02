@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Draggable from 'react-draggable';
-import { GripVertical, Search, Send, X } from 'lucide-react';
+import { GripVertical, Search, Send, X, Minimize2, MessageSquare } from 'lucide-react';
 
 import { useUser } from '@/firebase';
 import { cn } from '@/lib/utils';
@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -53,40 +53,65 @@ const placeholderConversations = [
 
 /* ----------------------------- ChatDialog Component ---------------------------- */
 export function ChatDialog() {
-  const { isOpen, close } = useChatStore();
+  const { isOpen, close, isMinimized, toggleMinimize } = useChatStore();
   const { user: currentUser } = useUser();
   const [selectedConversation, setSelectedConversation] = useState(placeholderConversations[0]);
   const nodeRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    // If the dialog is opened, ensure it's not minimized
+    if (isOpen && isMinimized) {
+        toggleMinimize();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
+  // Minimized View
+  if (isMinimized) {
+    return (
+        <div className="fixed bottom-4 right-4 z-50">
+            <Button 
+                size="icon" 
+                className="rounded-full h-14 w-14 shadow-lg"
+                onClick={toggleMinimize}
+            >
+                <MessageSquare className="h-6 w-6" />
+            </Button>
+        </div>
+    )
+  }
+
+  // Expanded View
   return (
-    <Dialog open={isOpen} onOpenChange={close}>
-      {/* DialogContent: 外層容器，可拖動 */}
+    <Dialog open={isOpen} onOpenChange={!isMinimized ? close : undefined}>
       <DialogContent
         className="p-0 border-none bg-transparent shadow-none w-auto h-auto !max-w-none fixed bottom-4 right-4 !m-0 !translate-x-0 !translate-y-0"
-        onPointerDownOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e) => e.preventDefault()}
+        showCloseButton={false}
       >
         <Draggable nodeRef={nodeRef} handle=".drag-handle">
-          <Card ref={nodeRef} className="h-[600px] w-full max-w-4xl flex flex-col border-0">
+          <Card ref={nodeRef} className="h-[600px] w-full max-w-4xl flex flex-col border shadow-2xl">
 
-            {/* --------------------- Header --------------------- */}
             <DialogHeader className="drag-handle cursor-move p-4 border-b flex-row items-center justify-between space-y-0">
               <div className="flex items-center gap-2">
                 <GripVertical className="h-5 w-5 text-muted-foreground" />
                 <DialogTitle>Messages</DialogTitle>
               </div>
-              <Button variant="ghost" size="icon" onClick={close} className="h-6 w-6">
-                <X className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center">
+                <Button variant="ghost" size="icon" onClick={toggleMinimize} className="h-6 w-6">
+                    <Minimize2 className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="icon" onClick={close} className="h-6 w-6">
+                    <X className="h-4 w-4" />
+                </Button>
+              </div>
             </DialogHeader>
 
-            {/* --------------------- 主內容區 --------------------- */}
             <div className="flex-1 grid md:grid-cols-[300px_1fr] overflow-hidden">
-
               {/* Conversation List */}
               <div className="flex flex-col h-full border-r">
-                {/* 搜尋欄 */}
                 <div className="p-4 border-b">
                   <div className="relative">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -124,7 +149,6 @@ export function ChatDialog() {
               {selectedConversation && currentUser ? (
                 <div className="flex flex-col h-full">
 
-                  {/* 使用者資訊 Header */}
                   <div className="flex items-center gap-3 p-3 border-b">
                     <Avatar className="h-10 w-10 border">
                       <AvatarImage src={selectedConversation.user.avatarUrl} alt={selectedConversation.user.name} />
@@ -136,7 +160,6 @@ export function ChatDialog() {
                     </div>
                   </div>
 
-                  {/* Messages List */}
                   <ScrollArea className="flex-1 p-4">
                     <div className="flex flex-col gap-4">
                       {selectedConversation.messages.map((msg, index) => (
@@ -147,7 +170,6 @@ export function ChatDialog() {
                             msg.sender.id !== currentUser.uid ? '' : 'justify-end'
                           )}
                         >
-                          {/* 對方頭像 */}
                           {msg.sender.id !== currentUser.uid && (
                             <Avatar className="h-8 w-8 border">
                               <AvatarImage src={msg.sender.avatarUrl} alt={msg.sender.name} />
@@ -155,7 +177,6 @@ export function ChatDialog() {
                             </Avatar>
                           )}
 
-                          {/* 訊息氣泡 */}
                           <div
                             className={cn(
                               'max-w-xs rounded-lg p-3 text-sm',
@@ -171,15 +192,14 @@ export function ChatDialog() {
                     </div>
                   </ScrollArea>
 
-                  {/* Input Footer */}
-                  <CardFooter className="p-4 border-t">
+                  <div className="p-4 border-t">
                     <div className="relative w-full">
                       <Input placeholder="Type a message..." className="pr-12" />
                       <Button size="icon" className="absolute right-1 top-1 h-8 w-8">
                         <Send className="h-4 w-4" />
                       </Button>
                     </div>
-                  </CardFooter>
+                  </div>
                 </div>
               ) : (
                 <div className="border-l flex items-center justify-center h-full text-muted-foreground">
