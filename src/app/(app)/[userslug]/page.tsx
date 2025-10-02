@@ -196,10 +196,14 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
                     </CardContent>
                 </Card>
             </div>
-             <div>
-                <h3 className="text-lg font-semibold mb-2">Contribution activity</h3>
-                <GitHubHeatMap data={heatMapData} />
-            </div>
+             <Card>
+                <CardHeader>
+                    <CardTitle>Contribution activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <GitHubHeatMap data={heatMapData} />
+                </CardContent>
+             </Card>
           </div>
         </main>
       </div>
