@@ -103,6 +103,11 @@ export function SpaceDetailsPage({
                 </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
+             <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                    <Link href={`/organizations/${owner.slug}/spaces`}>Spaces</Link>
+                </BreadcrumbLink>
+             </BreadcrumbItem>
           </>
         ) : (
             <BreadcrumbItem>
@@ -111,13 +116,6 @@ export function SpaceDetailsPage({
                 </BreadcrumbLink>
             </BreadcrumbItem>
         )}
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href={owner?.type === 'organization' ? `/organizations/${owner.slug}/spaces`: `/spaces`}>
-              Spaces
-            </Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>{space?.name || '...'}</BreadcrumbPage>
