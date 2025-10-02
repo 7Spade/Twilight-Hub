@@ -12,6 +12,7 @@ import {
   updateDoc,
   arrayUnion,
   limit,
+  getDoc,
 } from 'firebase/firestore';
 
 import { useFirestore } from '@/firebase';
@@ -75,7 +76,7 @@ export function InviteMemberDialog({ organizationId }: { organizationId: string 
       const userToInvite = userSnapshot.docs[0];
       const userId = userToInvite.id;
       const orgDocRef = doc(firestore, 'organizations', organizationId);
-      const orgDoc = await orgDocRef.get();
+      const orgDoc = await getDoc(orgDocRef);
 
       // 2. Check if user is already a member
       if (orgDoc.exists() && orgDoc.data().memberIds?.includes(userId)) {
