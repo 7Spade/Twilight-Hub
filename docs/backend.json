@@ -159,7 +159,8 @@
         "description": { "type": "string" },
         "sku": { "type": "string", "description": "Stock Keeping Unit." },
         "category": { "type": "string", "description": "The category of the item." },
-        "lowStockThreshold": { "type": "number", "description": "The threshold for low stock warnings." }
+        "lowStockThreshold": { "type": "number", "description": "The threshold for low stock warnings." },
+        "price": { "type": "number" }
       },
       "required": ["id", "name"]
     },

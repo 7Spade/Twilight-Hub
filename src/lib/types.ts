@@ -71,6 +71,7 @@ export interface Item {
     sku?: string;
     category?: string;
     lowStockThreshold?: number;
+    price?: number;
 }
 
 export interface Warehouse {
