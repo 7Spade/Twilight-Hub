@@ -1,5 +1,12 @@
 'use client';
 
+/**
+ * @fileoverview A versatile view component for displaying lists of spaces in various contexts.
+ * It uses a tabbed interface to switch between different lists of spaces, such as "Your Spaces",
+ * "Starred", "Organization Spaces", and "Discover". It handles the presentation logic
+ * for each tab and provides a consistent look and feel for space cards.
+ */
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -189,7 +196,7 @@ export function SpacesView({
 
     return (
         <Tabs defaultValue={tabs[0].value}>
-            <TabsList className={`grid w-full grid-cols-${tabs.length} md:w-[${tabs.length * 100}px]`}>
+            <TabsList>
                {tabs.map(tab => <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>)}
             </TabsList>
             {tabs.map(tab => (

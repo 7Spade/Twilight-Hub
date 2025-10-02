@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * @fileoverview A discovery page for exploring public users, organizations, and spaces.
+ * It features a tabbed interface to switch between different categories and includes
+ * a search input for filtering results within each tab.
+ */
+
 import { useFirestore, useCollection } from '@/firebase';
 import { collection, query, where } from 'firebase/firestore';
 import {
@@ -178,7 +184,7 @@ export default function DiscoverPage() {
       description="Explore public profiles, organizations, and spaces on Twilight Hub."
     >
       <Tabs defaultValue="users">
-        <TabsList className="grid w-full grid-cols-3 md:w-[400px]">
+        <TabsList>
           <TabsTrigger value="users">Users</TabsTrigger>
           <TabsTrigger value="organizations">Organizations</TabsTrigger>
           <TabsTrigger value="spaces">Spaces</TabsTrigger>
