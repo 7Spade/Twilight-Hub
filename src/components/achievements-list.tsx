@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Fetches and displays a list of achievements for a given user.
+ * It queries the user's unlocked achievements and then fetches the corresponding
+ * global achievement definitions to display their details.
+ */
+
 'use client';
 
 import React, { useMemo } from 'react';

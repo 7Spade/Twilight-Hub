@@ -1,3 +1,11 @@
+/**
+ * @fileoverview A dialog component for inviting a new member to an organization.
+ * It uses a global Zustand store (`useDialogStore`) for visibility.
+ * The form validates an email, finds the corresponding user in Firestore,
+ * checks if they are already a member, and then adds their ID to the
+ * organization's `memberIds` array.
+ */
+
 'use client';
 
 import { useForm } from 'react-hook-form';

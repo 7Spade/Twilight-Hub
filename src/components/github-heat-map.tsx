@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A GitHub-style contribution heat map component.
+ * It visualizes time-series data, showing activity levels over the past year.
+ * Each day is represented by a colored square, with color intensity indicating
+ * the activity count. It includes tooltips for detailed information on hover.
+ */
+
 'use client';
 
 import React from 'react';

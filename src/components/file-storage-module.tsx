@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A functional module for uploading, listing, and downloading files.
+ * It integrates with Firebase Storage to manage files associated with a specific `spaceId`.
+ * The component handles file selection, upload with progress simulation, and fetching
+ * the list of existing files for display.
+ */
+
 'use client';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';

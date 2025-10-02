@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A component that displays a vertical timeline of recent user activities.
+ * Each activity has an associated icon, a descriptive text, and a relative timestamp.
+ * Currently, it uses static placeholder data for demonstration purposes.
+ */
+
 'use client';
 
 import { formatDistanceToNow } from 'date-fns';

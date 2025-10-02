@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A dialog component for creating a new group within an organization.
+ * It uses a global Zustand store (`useDialogStore`) to control its visibility.
+ * The form handles group creation by adding a new document to the organization's
+ * `groups` subcollection in Firestore.
+ */
+
 'use client';
 
 import { useForm } from 'react-hook-form';

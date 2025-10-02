@@ -1,9 +1,3 @@
-/**
- * @fileoverview An invisible component that listens for globally emitted 'permission-error' events.
- * It throws any received error to be caught by Next.js's error boundary, making it visible
- * during development. This is a crucial tool for debugging Firestore Security Rules.
- */
-
 'use client';
 
 import { useState, useEffect } from 'react';

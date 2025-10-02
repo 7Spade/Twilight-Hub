@@ -1,3 +1,11 @@
+/**
+ * @fileoverview A dialog component for creating a new organization.
+ * It uses a global Zustand store (`useDialogStore`) to control its visibility.
+ * The form handles organization creation logic, including generating a URL slug,
+ * checking for slug uniqueness, and creating both the organization account
+ * and an initial audit log entry in a single Firestore batch write.
+ */
+
 'use client';
 
 import { useForm } from 'react-hook-form';

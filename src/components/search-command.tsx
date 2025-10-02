@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A global search command palette component.
+ * It can be triggered by a button or a keyboard shortcut (Cmd+K/Ctrl+K).
+ * It uses `cmdk` for the command menu UI and `use-debounce` to delay search queries.
+ * It queries Firestore for users, organizations, and public spaces based on the search term.
+ */
+
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';

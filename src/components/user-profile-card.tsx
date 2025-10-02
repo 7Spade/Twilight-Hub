@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A reusable card component to display a user's profile summary.
+ * It can display either the currently authenticated user or a user specified by `userId`.
+ * It fetches and shows the user's avatar, name, stats (followers/following),
+ * achievements, and organization memberships.
+ */
+
 'use client';
 
 import React, { useMemo } from 'react';

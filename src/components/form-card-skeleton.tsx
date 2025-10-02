@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A skeleton loader component for the `FormCard`.
+ * It provides a visual placeholder that mimics the layout of the FormCard,
+ * including its header, content inputs, and footer button, to be displayed
+ * while form data is being loaded.
+ */
+
 'use client';
 
 import {

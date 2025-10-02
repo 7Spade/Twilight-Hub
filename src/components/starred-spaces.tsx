@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A component that fetches and displays spaces starred by a specific user.
+ * It first queries for all spaces where the `starredByUserIds` array contains the `userId`,
+ * then fetches the account details of the space owners to construct the correct links.
+ * It uses the reusable `SpacesView` component to render the final list.
+ */
+
 'use client';
 
 import React, { useMemo } from 'react';

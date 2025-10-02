@@ -1,3 +1,10 @@
+/**
+ * @fileoverview The main application logo component.
+ * It consists of an SVG icon and the application name text.
+ * The component can be rendered in an expanded or collapsed state,
+ * where the collapsed state only shows the icon.
+ */
+
 import { cn } from "@/lib/utils";
 
 export function Logo({ className, isCollapsed }: { className?: string, isCollapsed?: boolean }) {

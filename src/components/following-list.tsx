@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Fetches and displays a list of users that a given user is following.
+ * It queries the `following` subcollection for a specific `userId` and then
+ * fetches the full account details for each followed user to display their profile cards.
+ */
+
 'use client';
 
 import React, { useMemo } from 'react';

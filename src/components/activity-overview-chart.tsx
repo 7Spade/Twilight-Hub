@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A presentational component that renders an area chart for activity overview.
+ * It uses Recharts to display time-series data and adapts its colors based on the current theme.
+ * It expects a `data` prop containing an array of { date, count } objects.
+ */
+
 'use client';
 
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';

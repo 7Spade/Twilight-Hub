@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A draggable, minimizable chat dialog component.
+ * It uses a global Zustand store (`useChatStore`) to manage its open/minimized state.
+ * The component features a conversation list and a message view for the selected conversation.
+ * Currently, it uses static placeholder data for demonstration purposes.
+ */
+
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';

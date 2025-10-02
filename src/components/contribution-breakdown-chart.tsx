@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A presentational component that renders a radar chart for contribution breakdown.
+ * It uses Recharts to display categorical data and adapts its colors based on the current theme.
+ * It expects a `data` prop containing an array of { subject, value } objects.
+ */
+
 'use client';
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';

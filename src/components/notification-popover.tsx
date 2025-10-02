@@ -1,3 +1,10 @@
+/**
+ * @fileoverview A popover component for displaying user notifications.
+ * It features a bell icon that shows an indicator for unread notifications.
+ * When clicked, it opens a popover listing recent notifications.
+ * Currently, it uses static placeholder data.
+ */
+
 'use client';
 
 import React from 'react';

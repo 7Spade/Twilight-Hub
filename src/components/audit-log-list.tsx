@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Fetches and displays a list of audit log entries for a given organization.
+ * It queries the `audit_logs` subcollection for the specified `organizationId`,
+ * orders them by creation date, and formats each log entry into a human-readable message.
+ */
+
 'use client';
 
 import { useMemo } from 'react';

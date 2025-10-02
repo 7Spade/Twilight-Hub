@@ -1,3 +1,9 @@
+/**
+ * @fileoverview A placeholder component for a future "Issues" feature.
+ * It displays a message indicating that the feature is under construction,
+ * providing a clear visual cue to the user about planned functionality.
+ */
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';

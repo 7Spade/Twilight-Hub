@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Fetches and displays a list of organizations a given user is a member of.
+ * It queries the `accounts` collection for documents of type 'organization'
+ * where the `memberIds` array contains the specified `userId`.
+ */
+
 'use client';
 
 import React, { useMemo } from 'react';
