@@ -26,11 +26,13 @@ import {
   ScrollText,
 } from 'lucide-react';
 import { type NavItem } from '@/components/layout/nav';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
   const firestore = useFirestore();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const isMobile = useIsMobile();
 
   const userProfileRef = useMemo(
     () => (firestore && user ? doc(firestore, 'users', user.uid) : null),
@@ -147,13 +149,15 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
       {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
       <ChatDialog />
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
-        <Sidebar
-          isCollapsed={isCollapsed}
-          teams={teams}
-          selectedTeam={selectedTeam}
-          setSelectedTeam={setSelectedTeam}
-          navItems={navItems}
-        />
+        {!isMobile && (
+          <Sidebar
+            isCollapsed={isCollapsed}
+            teams={teams}
+            selectedTeam={selectedTeam}
+            setSelectedTeam={setSelectedTeam}
+            navItems={navItems}
+          />
+        )}
         <div
           className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${
             isCollapsed ? 'sm:pl-14' : 'sm:pl-56'
