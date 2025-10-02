@@ -1,20 +1,12 @@
-/**
- * @fileoverview A component that fetches and displays spaces starred by a specific user.
- * It first queries for all spaces where the `starredByUserIds` array contains the `userId`,
- * then fetches the account details of the space owners to construct the correct links.
- * It uses the reusable `SpacesView` component to render the final list.
- */
-
 'use client';
 
 import React, { useMemo } from 'react';
 import { collection, query, where, documentId } from 'firebase/firestore';
-
 import { useFirestore, useCollection } from '@/firebase';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
 import { type Account } from '@/lib/types';
 
-export function StarredSpaces({ userId }: { userId: string }) {
+export function StarredSpacesView({ userId }: { userId: string }) {
   const firestore = useFirestore();
 
   const starredSpacesQuery = useMemo(
@@ -30,7 +22,6 @@ export function StarredSpaces({ userId }: { userId: string }) {
 
   const { data: starredSpaces, isLoading } = useCollection(starredSpacesQuery);
 
-  // We need to fetch the owners of these spaces to generate correct links
   const ownerIds = useMemo(() => {
     if (!starredSpaces) return [];
     const ids = new Set<string>();
@@ -40,9 +31,11 @@ export function StarredSpaces({ userId }: { userId: string }) {
 
   const ownersQuery = useMemo(() => {
     if (!firestore || !ownerIds || ownerIds.length === 0) return null;
-    return query(collection(firestore, 'accounts'), where(documentId(), 'in', ownerIds));
+    return query(
+      collection(firestore, 'accounts'),
+      where(documentId(), 'in', ownerIds)
+    );
   }, [firestore, ownerIds]);
-
   const { data: owners, isLoading: ownersLoading } = useCollection<Account>(ownersQuery);
 
   const ownersMap = useMemo(() => {
@@ -58,7 +51,7 @@ export function StarredSpaces({ userId }: { userId: string }) {
       userId={userId}
       owners={ownersMap}
       isLoading={pageIsLoading}
-      starredSpaces={starredSpaces}
+      starredSpaces={starredSpaces || []}
       showStarredSpacesTab={true}
     />
   );
