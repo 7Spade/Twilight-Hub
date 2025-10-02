@@ -24,6 +24,7 @@ import {
   Settings,
   Group,
   ScrollText,
+  Compass,
 } from 'lucide-react';
 import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -98,6 +99,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
         { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
         { href: '/marketplace', icon: Store, label: 'Marketplace' },
+        { href: '/discover', icon: Compass, label: 'Discover' },
         { href: '/organizations', icon: Users2, label: 'Organizations' },
       ];
     } else {
@@ -152,6 +154,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         {!isMobile && (
           <Sidebar
             isCollapsed={isCollapsed}
+            setIsCollapsed={setIsCollapsed}
             teams={teams}
             selectedTeam={selectedTeam}
             setSelectedTeam={setSelectedTeam}
