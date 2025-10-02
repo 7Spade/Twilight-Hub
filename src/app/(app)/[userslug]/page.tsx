@@ -1,0 +1,130 @@
+'use client';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+} from '@/components/ui/card';
+import { Edit, Mail } from 'lucide-react';
+import { useUser, useFirestore } from '@/firebase';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { getPlaceholderImage } from '@/lib/placeholder-images';
+import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
+
+export default function UserProfilePage({ params: paramsPromise }: { params: Promise<{ userslug: string }> }) {
+  const params = React.use(paramsPromise);
+  const { user: currentUser } = useUser();
+  const firestore = useFirestore();
+  const [userProfile, setUserProfile] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (!firestore) return;
+      setIsLoading(true);
+      const usersRef = collection(firestore, 'users');
+      const q = query(usersRef, where('slug', '==', params.userslug), limit(1));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        setUserProfile({ id: userDoc.id, ...userDoc.data() });
+      } else {
+        setUserProfile(null);
+      }
+      setIsLoading(false);
+    };
+
+    fetchUserProfile();
+  }, [firestore, params.userslug]);
+
+  if (isLoading) {
+    return (
+        <div className="grid gap-6 lg:grid-cols-3">
+            <div className="lg:col-span-3">
+                <Card>
+                    <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
+                        <Skeleton className="h-24 w-24 rounded-full" />
+                        <div className="text-center md:text-left flex-1 space-y-2">
+                             <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
+                             <Skeleton className="h-5 w-32 mx-auto md:mx-0" />
+                             <Skeleton className="h-5 w-48 mx-auto md:mx-0" />
+                             <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+                                <div className="text-center space-y-1">
+                                    <Skeleton className="h-6 w-12 mx-auto"/>
+                                    <Skeleton className="h-4 w-16 mx-auto"/>
+                                </div>
+                                <div className="text-center space-y-1">
+                                    <Skeleton className="h-6 w-12 mx-auto"/>
+                                    <Skeleton className="h-4 w-16 mx-auto"/>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    )
+  }
+
+  if (!userProfile) {
+    return <div>User not found.</div>;
+  }
+
+  const isOwnProfile = currentUser?.uid === userProfile.id;
+
+  const displayName = userProfile.name || 'User';
+  const username = userProfile.username || 'username';
+  const email = userProfile.email || 'user@example.com';
+  const avatarUrl = userProfile.avatarUrl || getPlaceholderImage('avatar-1').imageUrl;
+  
+  const followers = userProfile.followersCount || 0;
+  const following = userProfile.followingCount || 0;
+
+  return (
+    <div className="flex flex-col gap-8">
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-3">
+            <Card>
+                <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
+                    <Avatar className="h-24 w-24 border-2 border-primary">
+                        <AvatarImage src={avatarUrl} alt={displayName} />
+                        <AvatarFallback className="text-3xl">{displayName.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div className="text-center md:text-left flex-1">
+                        <h2 className="text-2xl font-bold">{displayName}</h2>
+                        <p className="text-muted-foreground">@{username}</p>
+                        <div className="flex items-center gap-2 mt-2 text-muted-foreground justify-center md:justify-start">
+                            <Mail className="h-4 w-4" />
+                            <span>{email}</span>
+                        </div>
+                         <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+                            <div className="text-center">
+                                <p className="text-xl font-bold">{following}</p>
+                                <p className="text-sm text-muted-foreground">Following</p>
+                            </div>
+                            <div className="text-center">
+                                <p className="text-xl font-bold">{followers}</p>
+                                <p className="text-sm text-muted-foreground">Followers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        {isOwnProfile && (
+                            <Button variant="outline" asChild>
+                               <Link href="/settings">
+                                 <Edit className="mr-2 h-4 w-4" /> Edit Profile
+                               </Link>
+                            </Button>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+      </div>
+    </div>
+  );
+}

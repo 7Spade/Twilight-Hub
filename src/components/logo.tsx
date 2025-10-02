@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({ className, isCollapsed }: { className?: string, isCollapsed?: boolean }) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <svg
@@ -17,7 +17,7 @@ export function Logo({ className }: { className?: string }) {
         <path d="M2 17l10 5 10-5" />
         <path d="M2 12l10 5 10-5" />
       </svg>
-      <span className="text-xl font-bold">Twilight Hub</span>
+      {!isCollapsed && <span className="text-xl font-bold">Twilight Hub</span>}
     </div>
   );
 }

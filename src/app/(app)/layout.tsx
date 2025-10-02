@@ -1,124 +1,114 @@
-import Link from 'next/link';
+'use client';
 import {
-  Bell,
-  Backpack,
-  Grid3x3,
-  LayoutDashboard,
-  LogOut,
-  MessageSquare,
-  Settings,
-  Store,
-  User,
-  Users2,
-} from 'lucide-react';
+  FirebaseClientProvider,
+  useUser,
+  useFirestore,
+  useCollection,
+} from '@/firebase';
+import React, { useMemo, useState } from 'react';
+import { Sidebar } from '@/components/layout/sidebar';
+import { Header } from '@/components/layout/header';
+import { collection, query, where, doc } from 'firebase/firestore';
+import { useDoc } from '@/firebase/firestore/use-doc';
+import { CreateSpaceDialog } from '@/components/create-space-dialog';
+import { CreateOrganizationDialog } from '@/components/create-organization-dialog';
+import { CreateGroupDialog } from '@/components/create-group-dialog';
+import { ChatDialog } from '@/components/chat-dialog';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarFooter,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarInset,
-  SidebarTrigger,
-} from '@/components/ui/sidebar';
-import { currentUser } from '@/lib/placeholder-data';
-import { Logo } from '@/components/logo';
+export type Team = {
+  id: string;
+  label: string;
+  isUser: boolean;
+  slug?: string;
+};
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const navItems = [
-    { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { href: '/profile', icon: User, label: 'Profile' },
-    { href: '/organizations', icon: Users2, label: 'Organizations' },
-    { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
-    { href: '/marketplace', icon: Store, label: 'Marketplace' },
-    { href: '/inventory', icon: Backpack, label: 'Inventory' },
-    { href: '/notifications', icon: Bell, label: 'Notifications' },
-    { href: '/messages', icon: MessageSquare, label: 'Messages' },
-  ];
+function AppLayoutContent({ children }: { children: React.ReactNode }) {
+  const { user, isUserLoading } = useUser();
+  const firestore = useFirestore();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const userProfileRef = useMemo(
+    () => (firestore && user ? doc(firestore, 'users', user.uid) : null),
+    [firestore, user]
+  );
+  const { data: userProfile, isLoading: isProfileLoading } =
+    useDoc(userProfileRef);
+
+  const userOrganizationsQuery = useMemo(
+    () =>
+      firestore && user
+        ? query(
+            collection(firestore, 'organizations'),
+            where('memberIds', 'array-contains', user.uid)
+          )
+        : null,
+    [firestore, user]
+  );
+  const { data: organizations, isLoading: orgsLoading } = useCollection(
+    userOrganizationsQuery
+  );
+
+  const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+
+  const teams = useMemo(() => {
+    if (isUserLoading || isProfileLoading || !userProfile || !user) return [];
+
+    const personalTeam: Team = {
+      id: user!.uid,
+      label: userProfile.name || 'Personal Account',
+      slug: userProfile.slug,
+      isUser: true,
+    };
+
+    const orgTeams: Team[] = (organizations || []).map((org) => ({
+      id: org.id,
+      label: org.name,
+      slug: org.slug,
+      isUser: false,
+    }));
+    
+    const allTeams = [personalTeam, ...orgTeams];
+
+    if (!selectedTeam && personalTeam) {
+        setSelectedTeam(personalTeam);
+    }
+    
+    return allTeams;
+
+  }, [isUserLoading, isProfileLoading, user, userProfile, organizations, selectedTeam]);
+  
+  const isLoading = isUserLoading || isProfileLoading || orgsLoading;
+  const currentOrgId = (selectedTeam && !selectedTeam.isUser) ? selectedTeam.id : undefined;
+
 
   return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <div className="p-2 flex justify-center group-data-[collapsible=icon]:hidden">
-             <Logo className="h-8 w-auto text-sidebar-foreground" />
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            {navItems.map((item) => (
-              <SidebarMenuItem key={item.href}>
-                <Link href={item.href} className="w-full">
-                  <SidebarMenuButton tooltip={item.label}>
-                    <item.icon />
-                    <span>{item.label}</span>
-                  </SidebarMenuButton>
-                </Link>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-12 w-full justify-start p-2 group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-12 group-data-[collapsible=icon]:justify-center">
-                 <Avatar className="h-8 w-8">
-                  <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
-                  <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div className="ml-2 text-left group-data-[collapsible=icon]:hidden">
-                  <p className="text-sm font-medium text-sidebar-foreground">{currentUser.name}</p>
-                  <p className="text-xs text-sidebar-foreground/70">@{currentUser.username}</p>
-                </div>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 mb-2" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{currentUser.name}</p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {currentUser.email}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <Link href="/">
-                <DropdownMenuItem>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </Link>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </SidebarFooter>
-      </Sidebar>
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 py-2">
-            <SidebarTrigger className="md:hidden" />
-            {/* Potentially add breadcrumbs or page title here */}
-        </header>
-        <main className="flex-1 overflow-auto p-4 sm:px-6">
-            {children}
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+    <>
+      <CreateSpaceDialog selectedTeam={selectedTeam} />
+      <CreateOrganizationDialog />
+      {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
+      <ChatDialog />
+      <div className="flex min-h-screen w-full flex-col bg-muted/40">
+        <Sidebar 
+          isCollapsed={isCollapsed} 
+          teams={teams} 
+          selectedTeam={selectedTeam} 
+          setSelectedTeam={setSelectedTeam}
+        />
+        <div className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${isCollapsed ? 'sm:pl-14' : 'sm:pl-56'}`}>
+          <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+          <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+            {isLoading ? <div>Loading...</div> : children}
+          </main>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <FirebaseClientProvider>
+      <AppLayoutContent>{children}</AppLayoutContent>
+    </FirebaseClientProvider>
   );
 }
