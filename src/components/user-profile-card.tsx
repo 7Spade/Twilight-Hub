@@ -5,36 +5,34 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
-import { Mail, Smile, Users, User as UserIcon } from 'lucide-react';
+import { Mail, Users, User as UserIcon } from 'lucide-react';
 import { useUser, useDoc, useFirestore, useCollection } from '@/firebase';
 import { useMemo } from 'react';
 import { collection, doc, query, where, documentId } from 'firebase/firestore';
 import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 
 function UserProfileCardSkeleton() {
     return (
         <Card className="w-full">
             <CardContent className="p-6 flex flex-col items-center gap-4">
-                <Skeleton className="w-32 h-32 rounded-full" />
+                <Skeleton className="w-24 h-24 rounded-full" />
                 <div className="text-center space-y-2">
-                    <Skeleton className="h-7 w-32" />
-                    <Skeleton className="h-5 w-24" />
+                    <Skeleton className="h-6 w-32" />
+                    <Skeleton className="h-4 w-24" />
                 </div>
-                <Skeleton className="h-10 w-full" />
-                <div className="flex flex-col gap-2 w-full">
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-1/2" />
+                <Skeleton className="h-9 w-full" />
+                <div className="w-full space-y-2 text-sm">
+                    <div className="flex items-center gap-2"><Users className="h-4 w-4" /><Skeleton className="h-4 w-20" /></div>
+                    <div className="flex items-center gap-2"><Mail className="h-4 w-4" /><Skeleton className="h-4 w-40" /></div>
                 </div>
                 <Separator className="my-2" />
                 <div className="w-full space-y-3">
                     <Skeleton className="h-5 w-24" />
                     <div className="flex gap-3">
-                        <Skeleton className="h-10 w-10 rounded-full" />
-                        <Skeleton className="h-10 w-10 rounded-full" />
-                        <Skeleton className="h-10 w-10 rounded-full" />
+                        <Skeleton className="h-10 w-10 rounded-md" />
+                        <Skeleton className="h-10 w-10 rounded-md" />
                     </div>
                 </div>
             </CardContent>
@@ -98,36 +96,31 @@ export function UserProfileCard() {
   return (
     <Card className="w-full">
       <CardContent className="p-6 flex flex-col items-center gap-4">
-        <div className="relative">
-          <Avatar className="w-32 h-32 border-4 border-background ring-2 ring-primary">
+        <Avatar className="w-24 h-24 border-2 border-border">
             <AvatarImage src={user.avatarUrl} alt={user.name} />
-            <AvatarFallback className="bg-muted text-5xl font-bold">
-              {fallbackText}
+            <AvatarFallback className="bg-muted text-4xl font-bold">
+                {fallbackText}
             </AvatarFallback>
-          </Avatar>
-          <div className="absolute bottom-1 right-1 bg-background rounded-full p-1 border">
-            <Smile className="h-4 w-4 text-muted-foreground" />
-          </div>
-        </div>
+        </Avatar>
 
         <div className="text-center">
-          <h2 className="text-2xl font-bold">{user.name}</h2>
+          <h2 className="text-xl font-bold">{user.name}</h2>
           <p className="text-muted-foreground">@{user.username}</p>
         </div>
 
         <Button variant="outline" className="w-full" asChild>
             <Link href={`/settings/profile`}>
-                <UserIcon className="mr-2 h-4 w-4" /> Edit profile
+                <UserIcon className="mr-2" /> Edit profile
             </Link>
         </Button>
 
         <div className='flex flex-col gap-2 w-full text-sm text-muted-foreground'>
              <div className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
-                <span className="font-bold text-foreground">{user.followers}</span> follower{user.followers !== 1 && 's'}
-            </div>
+                <span className="font-bold text-foreground">{user.followers}</span> followers
+             </div>
              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
+                 <Users className="h-4 w-4" />
                 <span className="font-bold text-foreground">{user.following}</span> following
             </div>
             <div className="flex items-center gap-2">
@@ -137,12 +130,12 @@ export function UserProfileCard() {
         </div>
 
         <Separator className="my-2" />
-        <div className={cn("w-full", achievements && achievements.length === 0 && 'hidden md:block')}>
-            <h3 className="font-semibold text-foreground mb-3">Achievements</h3>
+        <div className="w-full">
+            <h3 className="font-semibold text-foreground mb-3 text-sm">Achievements</h3>
             <div className="flex items-center gap-3">
                 {achievements && achievements.length > 0 ? (
-                    achievements.map((ach) => (
-                        <Avatar key={ach.id} className="h-10 w-10 border-2 border-border">
+                    achievements.slice(0, 5).map((ach) => (
+                        <Avatar key={ach.id} className="h-10 w-10 border-2 border-border" title={ach.name}>
                             <AvatarImage src={getPlaceholderImage(ach.icon).imageUrl} alt={ach.name} data-ai-hint={getPlaceholderImage(ach.icon).imageHint} />
                             <AvatarFallback>{ach.name.charAt(0)}</AvatarFallback>
                         </Avatar>
@@ -158,10 +151,10 @@ export function UserProfileCard() {
             <>
                 <Separator className="my-2" />
                 <div className="w-full">
-                    <h3 className="font-semibold text-foreground mb-3">Organizations</h3>
+                    <h3 className="font-semibold text-foreground mb-3 text-sm">Organizations</h3>
                     <div className="flex items-center gap-3">
-                        {organizations.map((org, index) => (
-                            <Avatar key={org.id} className="h-10 w-10 rounded-md border-2 border-border">
+                        {organizations.slice(0,5).map((org, index) => (
+                            <Avatar key={org.id} className="h-10 w-10 rounded-md border-2 border-border" title={org.name}>
                                 <AvatarImage src={getPlaceholderImage(`org-logo-${(index % 3) + 1}`).imageUrl} alt={org.name} data-ai-hint={getPlaceholderImage(`org-logo-${(index % 3) + 1}`).imageHint} />
                                 <AvatarFallback>{org.name.charAt(0)}</AvatarFallback>
                             </Avatar>
