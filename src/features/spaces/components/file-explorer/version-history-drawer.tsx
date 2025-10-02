@@ -43,7 +43,7 @@ interface VersionHistoryDrawerProps {
 
 export function VersionHistoryDrawer({ 
   isOpen, 
-  onClose, ovo je ključ
+  onClose,
   versions, 
   currentFile 
 }: VersionHistoryDrawerProps) {
