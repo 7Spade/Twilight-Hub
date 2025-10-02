@@ -16,6 +16,7 @@ import { AchievementsList } from '@/components/achievements-list';
 import { type Account, type Space } from '@/lib/types';
 import { UserProfileCard } from '@/components/user-profile-card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { GitHubHeatMap } from '@/components/github-heat-map';
 
 function UserProfilePageContent({ userslug }: { userslug: string }) {
   const { user: currentUser } = useUser();
@@ -24,6 +25,20 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('tab') || 'spaces';
+  
+  // Placeholder data for the heat map
+  const heatMapData = useMemo(() => {
+    const data = [];
+    for (let i = 0; i < 365; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const count = Math.random() > 0.3 ? Math.floor(Math.random() * 10) : 0;
+      if (count > 0) {
+        data.push({ date, count });
+      }
+    }
+    return data;
+  }, []);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -90,11 +105,16 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
 
   return (
     <PageContainer title={userProfile.name} description={`@${userProfile.username}`}>
+       {userProfile.bio && <p className="text-muted-foreground max-w-2xl">{userProfile.bio}</p>}
       <div className="grid md:grid-cols-4 gap-8 items-start">
         <aside className="md:col-span-1">
           <UserProfileCard userId={userProfile.id} />
         </aside>
         <main className="md:col-span-3">
+           <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-2">Contribution Activity</h3>
+              <GitHubHeatMap data={heatMapData} />
+           </div>
           <Tabs defaultValue={defaultTab}>
             <TabsList>
               <TabsTrigger value="spaces">Spaces</TabsTrigger>
