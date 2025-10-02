@@ -1,5 +1,14 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { collection, serverTimestamp, doc, writeBatch } from 'firebase/firestore';
+
+import { useFirestore, useUser } from '@/firebase';
+import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useToast } from '@/hooks/use-toast';
+import { getPlaceholderImage } from '@/lib/placeholder-images';
 import {
   Dialog,
   DialogContent,
@@ -7,7 +16,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogClose,
 } from '@/components/ui/dialog';
 import {
   Form,
@@ -20,29 +28,22 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useFirestore, useUser } from '@/firebase';
-import { collection, serverTimestamp, doc, writeBatch } from 'firebase/firestore';
-import { useDialogStore } from '@/hooks/use-dialog-store';
-import { useToast } from '@/hooks/use-toast';
-import { getPlaceholderImage } from '@/lib/placeholder-images';
 
 const createOrgSchema = z.object({
   name: z.string().min(1, { message: 'Organization name is required' }),
   description: z.string().min(1, { message: 'Description is required' }),
 });
 
-const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '') // remove non-alphanumeric characters except spaces and hyphens
-      .trim()
-      .replace(/\s+/g, '-') // replace spaces with hyphens
-      .replace(/-+/g, '-'); // replace multiple hyphens with a single one
-};
+type CreateOrgFormValues = z.infer<typeof createOrgSchema>;
 
+const generateSlug = (name: string) => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // remove non-alphanumeric characters except spaces and hyphens
+    .trim()
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-'); // replace multiple hyphens with a single one
+};
 
 export function CreateOrganizationDialog() {
   const firestore = useFirestore();
@@ -52,12 +53,12 @@ export function CreateOrganizationDialog() {
 
   const isDialogVisible = isOpen && type === 'createOrganization';
 
-  const form = useForm<z.infer<typeof createOrgSchema>>({
+  const form = useForm<CreateOrgFormValues>({
     resolver: zodResolver(createOrgSchema),
     defaultValues: { name: '', description: '' },
   });
 
-  const onSubmit = async (values: z.infer<typeof createOrgSchema>) => {
+  const onSubmit = async (values: CreateOrgFormValues) => {
     if (!firestore || !user) {
       toast({
         variant: 'destructive',
@@ -68,13 +69,10 @@ export function CreateOrganizationDialog() {
     }
 
     try {
-      // Use a batch to ensure atomicity
       const batch = writeBatch(firestore);
-
-      // 1. Create the new organization document
       const orgsRef = collection(firestore, 'organizations');
       const newOrgRef = doc(orgsRef); // Create a reference with a new ID
-      
+
       const newOrg = {
         ...values,
         id: newOrgRef.id,
@@ -86,7 +84,6 @@ export function CreateOrganizationDialog() {
       };
       batch.set(newOrgRef, newOrg);
 
-      // 2. Create the initial audit log entry for organization creation
       const auditLogRef = doc(collection(firestore, `organizations/${newOrgRef.id}/audit_logs`));
       const auditLog = {
         organizationId: newOrgRef.id,
@@ -101,7 +98,6 @@ export function CreateOrganizationDialog() {
       };
       batch.set(auditLogRef, auditLog);
 
-      // Commit the batch
       await batch.commit();
 
       toast({

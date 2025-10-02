@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+
 import { useFirebaseApp } from '@/firebase';
+import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { File, UploadCloud, Download } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 
 interface FileItem {
   name: string;
@@ -61,12 +62,12 @@ export function FileStorageModule({ spaceId }: { spaceId: string }) {
     if (!selectedFile || !storage) return;
 
     setUploading(true);
-    setUploadProgress(0); // Reset progress
+    setUploadProgress(0);
 
     const fileRef = ref(storage, `spaces/${spaceId}/${selectedFile.name}`);
     
     try {
-      // A simple progress simulation as uploadBytes doesn't provide progress
+      // Simulate progress as uploadBytes doesn't provide it directly
       const progressInterval = setInterval(() => {
         setUploadProgress((prev) => (prev < 90 ? prev + 10 : prev));
       }, 200);
@@ -93,7 +94,7 @@ export function FileStorageModule({ spaceId }: { spaceId: string }) {
     } finally {
       setUploading(false);
       setSelectedFile(null);
-       setTimeout(() => setUploadProgress(0), 1500); // Reset progress bar after a delay
+       setTimeout(() => setUploadProgress(0), 1500);
     }
   };
 

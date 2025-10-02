@@ -1,26 +1,43 @@
 'use client';
 
-import { useFirestore, useCollection } from '@/firebase';
-import { collection, query, orderBy, limit } from 'firebase/firestore';
 import { useMemo } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Skeleton } from '@/components/ui/skeleton';
+import { collection, query, orderBy, limit } from 'firebase/firestore';
 import { formatDistanceToNow } from 'date-fns';
 
-function generateLogMessage(log: any) {
-  const { action, entityType, entityTitle } = log;
-  const actionText = action.toLowerCase();
+import { useFirestore, useCollection } from '@/firebase';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Skeleton } from '@/components/ui/skeleton';
 
-  switch (entityType) {
+function generateLogMessage(log: any) {
+  const actionText = log.action.toLowerCase();
+  const entityType = log.entityType.toLowerCase();
+
+  switch (log.entityType) {
     case 'ORGANIZATION':
       return `created the organization.`;
     case 'ITEM':
-      return `${actionText} the item "${entityTitle}".`;
+      return `${actionText} the item "${log.entityTitle}".`;
     case 'MEMBER':
       return `${actionText} a member.`;
     default:
-      return `${actionText} a ${entityType.toLowerCase()} named "${entityTitle}".`;
+      return `${actionText} a ${entityType} named "${log.entityTitle}".`;
   }
+}
+
+function AuditLogSkeleton() {
+    return (
+        <div className="space-y-4">
+            {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex items-center gap-3">
+                    <Skeleton className="h-9 w-9 rounded-full" />
+                    <div className="space-y-1">
+                        <Skeleton className="h-4 w-64 rounded" />
+                        <Skeleton className="h-3 w-24 rounded" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export function AuditLogList({ organizationId }: { organizationId: string }) {
@@ -41,19 +58,7 @@ export function AuditLogList({ organizationId }: { organizationId: string }) {
   const { data: logs, isLoading } = useCollection(auditLogsQuery);
 
   if (isLoading) {
-    return (
-      <div className="space-y-4">
-        {[...Array(3)].map((_, i) => (
-          <div key={i} className="flex items-center gap-3">
-            <Skeleton className="h-9 w-9 rounded-full" />
-            <div className="space-y-1">
-              <Skeleton className="h-4 w-64 rounded" />
-              <Skeleton className="h-3 w-24 rounded" />
-            </div>
-          </div>
-        ))}
-      </div>
-    );
+    return <AuditLogSkeleton />;
   }
 
   if (!logs || logs.length === 0) {

@@ -2,14 +2,15 @@
 'use client';
 
 import Link from "next/link";
+import React from "react";
+import { usePathname } from "next/navigation";
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import React from "react";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export type NavItem = {
@@ -30,11 +31,6 @@ const NavLink = ({
     isCollapsed: boolean;
 }) => {
     const pathname = usePathname();
-    // More robust active check:
-    // 1. Exact match for dashboard.
-    // 2. StartsWith for other pages, but avoid matching parent routes if a more specific one is active.
-    // Example: /organizations should not be active if visiting /organizations/my-org
-    // The current logic handles this reasonably well. A simple startsWith is often sufficient.
     const isActive = (href === '/dashboard' && pathname === href) || (href !== '/dashboard' && pathname.startsWith(href));
 
     if (isCollapsed) {

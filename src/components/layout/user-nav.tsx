@@ -1,5 +1,14 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { User, Settings, LogOut } from "lucide-react";
+
+import { useAuth, useUser } from "@/firebase";
+import { getPlaceholderImage } from "@/lib/placeholder-images";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,14 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAuth, useUser } from "@/firebase";
-import { getPlaceholderImage } from "@/lib/placeholder-images";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { signOut } from "firebase/auth";
-import { User, Settings, LogOut } from "lucide-react";
 
 export function UserNav() {
   const { user } = useUser();
@@ -44,7 +45,7 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={avatarUrl} alt={user.displayName || ""} />
+            <AvatarImage src={avatarUrl} alt={user.displayName || "User Avatar"} />
             <AvatarFallback>{fallbackText}</AvatarFallback>
           </Avatar>
         </Button>

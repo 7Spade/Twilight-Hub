@@ -1,5 +1,13 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
+
+import { useFirestore, useUser } from '@/firebase';
+import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
   DialogContent,
@@ -19,18 +27,13 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useFirestore, useUser } from '@/firebase';
-import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
-import { useDialogStore } from '@/hooks/use-dialog-store';
-import { useToast } from '@/hooks/use-toast';
 
 const createGroupSchema = z.object({
   name: z.string().min(1, { message: 'Group name is required' }),
   description: z.string().optional(),
 });
+
+type CreateGroupFormValues = z.infer<typeof createGroupSchema>;
 
 export function CreateGroupDialog({ organizationId }: { organizationId: string }) {
   const firestore = useFirestore();
@@ -40,12 +43,12 @@ export function CreateGroupDialog({ organizationId }: { organizationId: string }
 
   const isDialogVisible = isOpen && type === 'createGroup';
 
-  const form = useForm<z.infer<typeof createGroupSchema>>({
+  const form = useForm<CreateGroupFormValues>({
     resolver: zodResolver(createGroupSchema),
     defaultValues: { name: '', description: '' },
   });
 
-  const onSubmit = async (values: z.infer<typeof createGroupSchema>) => {
+  const onSubmit = async (values: CreateGroupFormValues) => {
     if (!firestore || !user) {
       toast({
         variant: 'destructive',
@@ -57,7 +60,6 @@ export function CreateGroupDialog({ organizationId }: { organizationId: string }
 
     try {
       const groupsRef = collection(firestore, `organizations/${organizationId}/groups`);
-      
       const newGroup = {
         ...values,
         organizationId: organizationId,

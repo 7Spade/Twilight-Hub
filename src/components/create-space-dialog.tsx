@@ -1,5 +1,14 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
+
+import { useFirestore } from '@/firebase';
+import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useToast } from '@/hooks/use-toast';
+import { type Team } from '@/components/layout/team-switcher';
 import {
   Dialog,
   DialogContent,
@@ -21,14 +30,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useFirestore } from '@/firebase';
-import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
-import { useDialogStore } from '@/hooks/use-dialog-store';
-import { type Team } from '@/app/(app)/layout';
-import { useToast } from '@/hooks/use-toast';
 
 const createSpaceSchema = z.object({
   name: z.string().min(1, { message: 'Space name is required' }),
@@ -36,13 +37,15 @@ const createSpaceSchema = z.object({
   isPublic: z.boolean().default(false),
 });
 
+type CreateSpaceFormValues = z.infer<typeof createSpaceSchema>;
+
 const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '') // remove non-alphanumeric characters except spaces and hyphens
-      .trim()
-      .replace(/\s+/g, '-') // replace spaces with hyphens
-      .replace(/-+/g, '-'); // replace multiple hyphens with a single one
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // remove non-alphanumeric characters except spaces and hyphens
+    .trim()
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-'); // replace multiple hyphens with a single one
 };
 
 export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null }) {
@@ -52,12 +55,12 @@ export function CreateSpaceDialog({ selectedTeam }: { selectedTeam: Team | null 
 
   const isDialogVisible = isOpen && type === 'createSpace';
 
-  const form = useForm<z.infer<typeof createSpaceSchema>>({
+  const form = useForm<CreateSpaceFormValues>({
     resolver: zodResolver(createSpaceSchema),
     defaultValues: { name: '', description: '', isPublic: false },
   });
 
-  const onSubmit = async (values: z.infer<typeof createSpaceSchema>) => {
+  const onSubmit = async (values: CreateSpaceFormValues) => {
     if (!firestore || !selectedTeam) {
       toast({
         variant: 'destructive',

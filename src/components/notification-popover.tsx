@@ -1,11 +1,14 @@
 'use client';
+
+import React from 'react';
+import { Bell, User, Package } from 'lucide-react';
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import { Bell, User, Package } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -14,10 +17,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
+// --- Placeholder Data ---
 const placeholderNotifications = [
     {
         id: 'notif-1',
-        fromUserId: 'user-1',
         type: 'follow',
         text: 'Alice started following you.',
         timestamp: new Date(Date.now() - 1000 * 60 * 5), // 5 minutes ago
@@ -25,7 +28,6 @@ const placeholderNotifications = [
     },
     {
         id: 'notif-2',
-        fromUserId: 'user-2',
         type: 'space_invite',
         text: 'Bob invited you to join the "Project Phoenix" space.',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
@@ -33,23 +35,22 @@ const placeholderNotifications = [
     },
     {
         id: 'notif-3',
-        fromUserId: 'system',
         type: 'module_update',
         text: 'A new version of the "Data Analytics" module is available.',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
         read: true,
     }
-]
+];
 
 const iconMap: { [key: string]: React.ElementType } = {
     follow: User,
     space_invite: Bell,
     module_update: Package,
     default: Bell,
-}
+};
 
-
-function NotificationItem({ notification }: { notification: any }) {
+// --- Sub-components ---
+function NotificationItem({ notification }: { notification: (typeof placeholderNotifications)[0] }) {
     const Icon = iconMap[notification.type] || iconMap.default;
 
     return (
@@ -72,9 +73,10 @@ function NotificationItem({ notification }: { notification: any }) {
                  <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
             )}
         </div>
-    )
+    );
 }
 
+// --- Main Component ---
 export function NotificationPopover() {
     const notifications = placeholderNotifications;
     const unreadCount = notifications.filter(n => !n.read).length;
@@ -117,5 +119,5 @@ export function NotificationPopover() {
                  </Card>
             </PopoverContent>
         </Popover>
-    )
+    );
 }
