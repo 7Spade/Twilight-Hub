@@ -15,6 +15,15 @@ import { CreateOrganizationDialog } from '@/components/create-organization-dialo
 import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { ChatDialog } from '@/components/chat-dialog';
 import { type Team } from '@/components/layout/team-switcher';
+import {
+    LayoutDashboard,
+    Grid3x3,
+    Store,
+    Users2,
+    Package,
+    Settings,
+} from 'lucide-react';
+import { type NavItem } from '@/components/layout/nav';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -71,6 +80,27 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 
   }, [isUserLoading, isProfileLoading, user, userProfile, organizations, selectedTeam]);
   
+  const navItems = useMemo((): NavItem[] => {
+    if (!selectedTeam) return [];
+
+    if (selectedTeam.isUser) {
+      return [
+        { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+        { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
+        { href: '/marketplace', icon: Store, label: 'Marketplace' },
+        { href: '/organizations', icon: Users2, label: 'Organizations' },
+      ];
+    } else {
+      const orgSlug = selectedTeam.slug;
+      return [
+        { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
+        { href: `/organizations/${orgSlug}?tab=groups`, icon: Users2, label: 'Groups' },
+        { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
+        { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
+      ];
+    }
+  }, [selectedTeam]);
+
   const isLoading = isUserLoading || isProfileLoading || orgsLoading;
   const currentOrgId = (selectedTeam && !selectedTeam.isUser) ? selectedTeam.id : undefined;
 
@@ -87,9 +117,10 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
           teams={teams} 
           selectedTeam={selectedTeam} 
           setSelectedTeam={setSelectedTeam}
+          navItems={navItems}
         />
         <div className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${isCollapsed ? 'sm:pl-14' : 'sm:pl-56'}`}>
-          <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+          <Header isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} navItems={navItems} />
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
             {isLoading ? <div>Loading...</div> : children}
           </main>

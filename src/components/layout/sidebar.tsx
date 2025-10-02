@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   Settings,
-  LayoutDashboard,
-  Store,
-  Users2,
-  Grid3x3,
-  Package,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -22,33 +17,14 @@ export function Sidebar({
   teams,
   selectedTeam,
   setSelectedTeam,
+  navItems,
 }: {
   isCollapsed: boolean;
   teams: Team[];
   selectedTeam: Team | null;
   setSelectedTeam: (team: Team) => void;
+  navItems: NavItem[];
 }) {
-  const navItems = useMemo((): NavItem[] => {
-    if (!selectedTeam) return [];
-
-    if (selectedTeam.isUser) {
-      return [
-        { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-        { href: '/spaces', icon: Grid3x3, label: 'Spaces' },
-        { href: '/marketplace', icon: Store, label: 'Marketplace' },
-        { href: '/organizations', icon: Users2, label: 'Organizations' },
-      ];
-    } else {
-      const orgSlug = selectedTeam.slug;
-      return [
-        { href: `/organizations/${orgSlug}`, icon: LayoutDashboard, label: 'Overview' },
-        { href: `/organizations/${orgSlug}?tab=groups`, icon: Users2, label: 'Groups' },
-        { href: `/organizations/${orgSlug}/inventory`, icon: Package, label: 'Inventory' },
-        { href: `/organizations/${orgSlug}/settings`, icon: Settings, label: 'Settings' },
-      ];
-    }
-  }, [selectedTeam]);
-
   return (
     <aside
       className={cn(
