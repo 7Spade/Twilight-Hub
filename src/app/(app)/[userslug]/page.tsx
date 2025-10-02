@@ -1,25 +1,21 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Edit, Mail } from 'lucide-react';
-import { useUser, useFirestore, useCollection } from '@/firebase';
-import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 import React, { useEffect, useState, useMemo, Suspense } from 'react';
-import { getPlaceholderImage } from '@/lib/placeholder-images';
-import Link from 'next/link';
-import { Skeleton } from '@/components/ui/skeleton';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { useSearchParams } from 'next/navigation';
+
+import { useUser, useFirestore, useCollection } from '@/firebase';
 import { PageContainer } from '@/components/layout/page-container';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FollowerList } from '@/components/follower-list';
 import { MembershipList } from '@/components/membership-list';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
 import { StarredSpaces } from '@/components/starred-spaces';
-import { type Account, type Space } from '@/lib/types';
-import { useSearchParams } from 'next/navigation';
 import { FollowingList } from '@/components/following-list';
 import { AchievementsList } from '@/components/achievements-list';
+import { type Account, type Space } from '@/lib/types';
+import { UserProfileCard } from '@/components/user-profile-card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function UserProfilePageContent({ userslug }: { userslug: string }) {
   const { user: currentUser } = useUser();
@@ -53,48 +49,38 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
 
     fetchUserProfile();
   }, [firestore, userslug]);
-  
+
   const userSpacesQuery = useMemo(() => {
     if (!firestore || !userProfile) return null;
-    return query(collection(firestore, 'spaces'), where('ownerId', '==', userProfile.id));
-  },[firestore, userProfile]);
+    return query(
+      collection(firestore, 'spaces'),
+      where('ownerId', '==', userProfile.id)
+    );
+  }, [firestore, userProfile]);
 
-  const { data: spacesData, isLoading: spacesLoading } = useCollection<Space>(userSpacesQuery);
+  const { data: spacesData, isLoading: spacesLoading } =
+    useCollection<Space>(userSpacesQuery);
   const spaces = spacesData || [];
-  
+
   const ownersMap = useMemo(() => {
     const map = new Map<string, Account>();
     if (userProfile) {
-        map.set(userProfile.id, userProfile);
+      map.set(userProfile.id, userProfile);
     }
     return map;
   }, [userProfile]);
 
-
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-8">
-        <Card>
-          <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
-            <Skeleton className="h-24 w-24 rounded-full" />
-            <div className="text-center md:text-left flex-1 space-y-2">
-              <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
-              <Skeleton className="h-5 w-32 mx-auto md:mx-0" />
-              <Skeleton className="h-5 w-48 mx-auto md:mx-0" />
-              <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-                <div className="text-center space-y-1">
-                  <Skeleton className="h-6 w-12 mx-auto" />
-                  <Skeleton className="h-4 w-16 mx-auto" />
-                </div>
-                <div className="text-center space-y-1">
-                  <Skeleton className="h-6 w-12 mx-auto" />
-                  <Skeleton className="h-4 w-16 mx-auto" />
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+        <div className="grid md:grid-cols-4 gap-8 items-start">
+            <aside className="md:col-span-1">
+                 <Skeleton className="h-[500px] w-full" />
+            </aside>
+            <main className="md:col-span-3">
+                 <Skeleton className="h-10 w-full mb-6" />
+                 <Skeleton className="h-96 w-full" />
+            </main>
+        </div>
     );
   }
 
@@ -102,94 +88,48 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
     return <div>User not found.</div>;
   }
 
-  const isOwnProfile = currentUser?.uid === userProfile.id;
-
-  const displayName = userProfile.name || 'User';
-  const username = userProfile.username || 'username';
-  const email = userProfile.email || 'user@example.com';
-  const bio = userProfile.bio || 'No bio provided.';
-  const avatarUrl =
-    userProfile.avatarUrl || getPlaceholderImage('avatar-1').imageUrl;
-
-  const followers = userProfile.followersCount || 0;
-  const following = userProfile.followingCount || 0;
-
   return (
-    <PageContainer title={displayName} description={`@${username}`}>
-      <div className="grid gap-6">
-        <div className="lg:col-span-3">
-          <Card>
-            <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
-              <Avatar className="h-24 w-24 border-2 border-primary">
-                <AvatarImage src={avatarUrl} alt={displayName} />
-                <AvatarFallback className="text-3xl">
-                  {displayName.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
-              <div className="text-center md:text-left flex-1">
-                <p className="text-muted-foreground mt-2">{bio}</p>
-                <div className="flex items-center gap-2 mt-2 text-muted-foreground justify-center md:justify-start">
-                  <Mail className="h-4 w-4" />
-                  <span>{email}</span>
-                </div>
-                <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-                  <div className="text-center">
-                    <p className="text-xl font-bold">{following}</p>
-                    <p className="text-sm text-muted-foreground">Following</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xl font-bold">{followers}</p>
-                    <p className="text-sm text-muted-foreground">Followers</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                {isOwnProfile && (
-                  <Button variant="outline" asChild>
-                    <Link href="/settings/profile">
-                      <Edit className="mr-2 h-4 w-4" /> Edit Profile
-                    </Link>
-                  </Button>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <Tabs defaultValue={defaultTab}>
-          <TabsList>
-            <TabsTrigger value="spaces">Spaces</TabsTrigger>
-            <TabsTrigger value="stars">Stars</TabsTrigger>
-            <TabsTrigger value="followers">Followers</TabsTrigger>
-            <TabsTrigger value="following">Following</TabsTrigger>
-            <TabsTrigger value="achievements">Achievements</TabsTrigger>
-            <TabsTrigger value="memberships">Memberships</TabsTrigger>
-          </TabsList>
-          <TabsContent value="spaces" className="mt-6">
-            <SpacesView
+    <PageContainer title={userProfile.name} description={`@${userProfile.username}`}>
+      <div className="grid md:grid-cols-4 gap-8 items-start">
+        <aside className="md:col-span-1">
+          <UserProfileCard userId={userProfile.id} />
+        </aside>
+        <main className="md:col-span-3">
+          <Tabs defaultValue={defaultTab}>
+            <TabsList>
+              <TabsTrigger value="spaces">Spaces</TabsTrigger>
+              <TabsTrigger value="stars">Stars</TabsTrigger>
+              <TabsTrigger value="followers">Followers</TabsTrigger>
+              <TabsTrigger value="following">Following</TabsTrigger>
+              <TabsTrigger value="achievements">Achievements</TabsTrigger>
+              <TabsTrigger value="memberships">Memberships</TabsTrigger>
+            </TabsList>
+            <TabsContent value="spaces" className="mt-6">
+              <SpacesView
                 userId={currentUser?.uid}
                 owners={ownersMap}
                 isLoading={spacesLoading}
                 yourSpaces={spaces}
                 showYourSpacesTab={true}
-            />
-          </TabsContent>
-           <TabsContent value="stars" className="mt-6">
-             <StarredSpaces userId={userProfile.id} />
-          </TabsContent>
-          <TabsContent value="followers" className="mt-6">
-            <FollowerList userId={userProfile.id} />
-          </TabsContent>
-          <TabsContent value="following" className="mt-6">
-            <FollowingList userId={userProfile.id} />
-          </TabsContent>
-          <TabsContent value="achievements" className="mt-6">
-            <AchievementsList userId={userProfile.id} />
-          </TabsContent>
-          <TabsContent value="memberships" className="mt-6">
-            <MembershipList userId={userProfile.id} />
-          </TabsContent>
-        </Tabs>
+              />
+            </TabsContent>
+            <TabsContent value="stars" className="mt-6">
+              <StarredSpaces userId={userProfile.id} />
+            </TabsContent>
+            <TabsContent value="followers" className="mt-6">
+              <FollowerList userId={userProfile.id} />
+            </TabsContent>
+            <TabsContent value="following" className="mt-6">
+              <FollowingList userId={userProfile.id} />
+            </TabsContent>
+            <TabsContent value="achievements" className="mt-6">
+              <AchievementsList userId={userProfile.id} />
+            </TabsContent>
+            <TabsContent value="memberships" className="mt-6">
+              <MembershipList userId={userProfile.id} />
+            </TabsContent>
+          </Tabs>
+        </main>
       </div>
     </PageContainer>
   );
@@ -205,5 +145,5 @@ export default function UserProfilePageWrapper({
     <Suspense fallback={<div>Loading...</div>}>
       <UserProfilePageContent userslug={params.userslug} />
     </Suspense>
-  )
+  );
 }

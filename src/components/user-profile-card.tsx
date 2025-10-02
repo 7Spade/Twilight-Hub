@@ -1,5 +1,9 @@
 'use client';
 
+import React, { useMemo } from 'react';
+import Link from 'next/link';
+import { collection, doc, query, where, documentId } from 'firebase/firestore';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,12 +11,8 @@ import { Separator } from '@/components/ui/separator';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { Mail, Users, User as UserIcon } from 'lucide-react';
 import { useUser, useDoc, useFirestore, useCollection } from '@/firebase';
-import { useMemo } from 'react';
-import { collection, doc, query, where, documentId } from 'firebase/firestore';
 import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
-import Link from 'next/link';
-import { type User as FirebaseAuthUser } from 'firebase/auth';
 
 function UserProfileCardSkeleton() {
     return (
@@ -43,19 +43,22 @@ function UserProfileCardSkeleton() {
 }
 
 
-export function UserProfileCard() {
+export function UserProfileCard({ userId }: { userId?: string }) {
     const { user: authUser, isUserLoading: isAuthLoading } = useUser();
     const firestore = useFirestore();
 
+    const displayUserId = userId || authUser?.uid;
+    const isOwnProfile = !userId || (authUser?.uid === userId);
+
     const userProfileRef = useMemo(() => 
-        (firestore && authUser ? doc(firestore, 'accounts', authUser.uid) : null),
-        [firestore, authUser]
+        (firestore && displayUserId ? doc(firestore, 'accounts', displayUserId) : null),
+        [firestore, displayUserId]
     );
     const { data: userProfile, isLoading: isProfileLoading } = useDoc<Account>(userProfileRef);
 
     const userAchievementsQuery = useMemo(
-        () => (firestore && authUser ? collection(firestore, 'accounts', authUser.uid, 'user_achievements') : null),
-        [firestore, authUser]
+        () => (firestore && displayUserId ? collection(firestore, 'accounts', displayUserId, 'user_achievements') : null),
+        [firestore, displayUserId]
     );
     const { data: userAchievements, isLoading: userAchievementsLoading } = useCollection<UserAchievement>(userAchievementsQuery);
     
@@ -70,17 +73,16 @@ export function UserProfileCard() {
     const { data: achievements, isLoading: achievementsLoading } = useCollection<Achievement>(achievementsQuery);
     
     const organizationsQuery = useMemo(() =>
-        (firestore && authUser
-            ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', authUser.uid))
+        (firestore && displayUserId
+            ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', displayUserId))
             : null
-        ), [firestore, authUser]
+        ), [firestore, displayUserId]
     );
     const { data: organizations, isLoading: orgsLoading } = useCollection<Account>(organizationsQuery);
 
-
     const isLoading = isAuthLoading || isProfileLoading || userAchievementsLoading || achievementsLoading || orgsLoading;
 
-    if (isLoading || !userProfile || !authUser) {
+    if (isLoading || !userProfile) {
         return <UserProfileCardSkeleton />;
     }
     
@@ -99,7 +101,7 @@ export function UserProfileCard() {
   return (
     <Card className="w-full">
       <CardContent className="p-6 flex flex-col items-center gap-4">
-        <Avatar className="w-24 h-24 border-2 border-border">
+        <Avatar className="w-24 h-24 border-2 border-primary">
             <AvatarImage src={user.avatarUrl} alt={user.name} />
             <AvatarFallback className="bg-muted text-4xl font-bold">
                 {fallbackText}
@@ -111,11 +113,13 @@ export function UserProfileCard() {
           <p className="text-muted-foreground">@{user.username}</p>
         </div>
 
-        <Button variant="outline" className="w-full" asChild>
+        {isOwnProfile && (
+          <Button variant="outline" className="w-full" asChild>
             <Link href={`/settings/profile`}>
                 <UserIcon className="mr-2" /> Edit profile
             </Link>
-        </Button>
+          </Button>
+        )}
 
         <div className='flex flex-col gap-2 w-full text-sm text-muted-foreground'>
              <Link href={`/${user.slug}?tab=followers`} className="flex items-center gap-2 hover:text-foreground">
