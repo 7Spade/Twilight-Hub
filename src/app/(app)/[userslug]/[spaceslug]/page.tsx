@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { useUser, useFirestore } from '@/firebase';
-import { collection, query, where, getDocs, limit, DocumentData } from 'firebase/firestore';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { SpaceDetailView } from '@/features/spaces/components/space-detail-view';
 import { type Account, type Space } from '@/lib/types';

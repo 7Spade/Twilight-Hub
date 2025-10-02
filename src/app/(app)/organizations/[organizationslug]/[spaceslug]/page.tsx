@@ -17,8 +17,9 @@ import {
   getDocs,
   limit,
 } from 'firebase/firestore';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SpaceDetailView } from '@/features/spaces/components/space-detail-view';
+import { type Account, type Space } from '@/lib/types';
 
 export default function OrgSpaceDetailsPage({
   params: paramsPromise,
@@ -29,8 +30,8 @@ export default function OrgSpaceDetailsPage({
   const { user: authUser } = useUser();
   const firestore = useFirestore();
 
-  const [space, setSpace] = useState<any>(null);
-  const [org, setOrg] = useState<any>(null);
+  const [space, setSpace] = useState<Space | null>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,12 +48,12 @@ export default function OrgSpaceDetailsPage({
         limit(1)
       );
       const orgSnapshot = await getDocs(orgQuery);
-      let currentOrg = null;
+      let currentOrg: Account | null = null;
       if (!orgSnapshot.empty) {
         currentOrg = {
           id: orgSnapshot.docs[0].id,
           ...orgSnapshot.docs[0].data(),
-        };
+        } as Account;
         setOrg(currentOrg);
       } else {
         setLoading(false);
@@ -71,7 +72,7 @@ export default function OrgSpaceDetailsPage({
 
       if (!spaceSnapshot.empty) {
         const spaceDoc = spaceSnapshot.docs[0];
-        setSpace({ id: spaceDoc.id, ...spaceDoc.data() });
+        setSpace({ id: spaceDoc.id, ...spaceDoc.data() } as Space);
       } else {
         setSpace(null);
       }

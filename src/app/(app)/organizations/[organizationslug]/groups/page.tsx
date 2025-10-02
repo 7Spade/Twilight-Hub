@@ -26,7 +26,6 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { type Account, type Group } from '@/lib/types';
 
 
@@ -120,7 +119,6 @@ export default function GroupsPage({
 
   return (
     <div className="flex flex-col gap-8">
-      <CreateGroupDialog organizationId={org.id} />
        <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

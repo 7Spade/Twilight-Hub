@@ -73,16 +73,39 @@ export default function OrgSpacesPage({
   const { data: spacesData, isLoading: spacesLoading } =
     useCollection<Space>(spacesQuery);
   const spaces = spacesData || [];
+  
+    const yourSpacesQuery = useMemo(() => {
+    if (!firestore || !user) return null;
+    return query(collection(firestore, 'spaces'), where('ownerId', '==', user.uid));
+    }, [firestore, user]);
+
+    const { data: yourSpacesData, isLoading: yourSpacesLoading } = useCollection<Space>(yourSpacesQuery);
+    const yourSpaces = yourSpacesData || [];
+
+    const starredSpacesQuery = useMemo(() => {
+        if (!firestore || !user) return null;
+        return query(collection(firestore, 'spaces'), where('starredByUserIds', 'array-contains', user.uid));
+    }, [firestore, user]);
+    const { data: starredSpacesData, isLoading: starredSpacesLoading } = useCollection<Space>(starredSpacesQuery);
+    const starredSpaces = starredSpacesData || [];
+
+    const publicSpacesQuery = useMemo(() => {
+        if (!firestore) return null;
+        return query(collection(firestore, 'spaces'), where('isPublic', '==', true));
+    }, [firestore]);
+    const { data: publicSpacesData, isLoading: publicSpacesLoading } = useCollection<Space>(publicSpacesQuery);
+    const publicSpaces = publicSpacesData || [];
 
   const ownersMap = useMemo(() => {
       const map = new Map<string, Account>();
       if (org) {
         map.set(org.id, org);
       }
+      // In a real app, you'd fetch all relevant owners. For now, just the org is fine.
       return map;
   }, [org]);
 
-  const pageIsLoading = isLoading || spacesLoading;
+  const pageIsLoading = isLoading || spacesLoading || yourSpacesLoading || starredSpacesLoading || publicSpacesLoading;
 
   if (isLoading) {
     return <div>Loading organization...</div>;
@@ -134,8 +157,14 @@ export default function OrgSpacesPage({
             userId={user?.uid}
             owners={ownersMap}
             isLoading={pageIsLoading}
+            yourSpaces={yourSpaces}
+            starredSpaces={starredSpaces}
+            publicSpaces={publicSpaces}
             organizationSpaces={spaces}
             showOrganizationSpacesTab={true}
+            showYourSpacesTab={true}
+            showStarredSpacesTab={true}
+            showDiscoverTab={true}
         />
 
       </PageContainer>

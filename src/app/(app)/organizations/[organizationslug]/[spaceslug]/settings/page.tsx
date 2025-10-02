@@ -38,6 +38,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Skeleton } from '@/components/ui/skeleton';
+import { type Account, type Space } from '@/lib/types';
 
 const spaceSettingsSchema = z.object({
   name: z.string().min(1, 'Space name is required'),
@@ -55,8 +56,8 @@ export default function OrgSpaceSettingsPage({
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { toast } = useToast();
-  const [space, setSpace] = useState<any>(null);
-  const [org, setOrg] = useState<any>(null);
+  const [space, setSpace] = useState<Space | null>(null);
+  const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
  useEffect(() => {
@@ -64,12 +65,12 @@ export default function OrgSpaceSettingsPage({
         if (!firestore || !params.spaceslug || !params.organizationslug) return;
         setIsLoading(true);
 
-        const orgsRef = collection(firestore, 'organizations');
-        const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+        const orgsRef = collection(firestore, 'accounts');
+        const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
         const orgSnapshot = await getDocs(orgQuery);
-        let currentOrg = null;
+        let currentOrg: Account | null = null;
         if (!orgSnapshot.empty) {
-            currentOrg = { id: orgSnapshot.docs[0].id, ...orgSnapshot.docs[0].data() };
+            currentOrg = { id: orgSnapshot.docs[0].id, ...orgSnapshot.docs[0].data() } as Account;
             setOrg(currentOrg);
         } else {
              setIsLoading(false);
@@ -82,7 +83,7 @@ export default function OrgSpaceSettingsPage({
 
         if (!querySnapshot.empty) {
             const spaceDoc = querySnapshot.docs[0];
-            setSpace({ id: spaceDoc.id, ...spaceDoc.data() });
+            setSpace({ id: spaceDoc.id, ...spaceDoc.data() } as Space);
         } else {
             setSpace(null);
         }

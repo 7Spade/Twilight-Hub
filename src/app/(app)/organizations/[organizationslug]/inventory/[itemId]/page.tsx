@@ -44,10 +44,6 @@ import { Input } from '@/components/ui/input';
 import { Package } from 'lucide-react';
 import { type Account, type Item, type Warehouse, type Stock } from '@/lib/types';
 
-interface StockWithWarehouse extends Stock {
-    warehouseName: string;
-    warehouseId: string;
-}
 
 function StockRow({
   stock,
@@ -151,9 +147,9 @@ export default function ItemStockPage({
     }));
   }, [firestore, organization, warehouses, itemId]);
   
-  const stockResults = stockCollections.map(({ query, warehouseId, warehouseName }) => {
+  const stockResults = stockCollections.map(({ query: q, warehouseId, warehouseName }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, isLoading } = useCollection<Stock>(query);
+    const { data, isLoading } = useCollection<Stock>(q);
     return { data, isLoading, warehouseId, warehouseName };
   });
 

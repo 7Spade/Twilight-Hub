@@ -194,10 +194,11 @@ function UserProfilePageContent({ userslug }: { userslug: string }) {
 }
 
 export default function UserProfilePageWrapper({
-  params,
+  params: paramsPromise,
 }: {
-  params: { userslug: string };
+  params: Promise<{ userslug: string }>;
 }) {
+  const params = React.use(paramsPromise);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <UserProfilePageContent userslug={params.userslug} />
