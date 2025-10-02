@@ -27,7 +27,7 @@ import {
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange } from 'lucide-react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange, FileStack, DollarSign, CheckCircle2 } from 'lucide-react';
 import React, { useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FilesModule } from '@/features/marketplace/components/files-module';
@@ -42,6 +42,9 @@ import { SubmittalsModule } from '@/features/marketplace/components/submittals-m
 import { AssetsModule } from '@/features/marketplace/components/assets-module';
 import { ChangesModule } from '@/features/marketplace/components/changes-module';
 import { ScheduleModule } from '@/features/marketplace/components/schedule-module';
+import { SheetsModule } from '@/features/marketplace/components/sheets-module';
+import { CostModule } from '@/features/marketplace/components/cost-module';
+import { PunchListModule } from '@/features/marketplace/components/punch-list-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
 
@@ -58,6 +61,9 @@ const iconMap: { [key: string]: React.ElementType } = {
   'archive': Archive,
   'file-diff': FileDiff,
   'calendar-range': CalendarRange,
+  'file-stack': FileStack,
+  'dollar-sign': DollarSign,
+  'check-circle-2': CheckCircle2,
   default: Puzzle,
 };
 
@@ -214,6 +220,9 @@ export function SpaceDetailView({
         {hasModule('assets-module') && <AssetsModule />}
         {hasModule('changes-module') && <ChangesModule />}
         {hasModule('schedule-module') && <ScheduleModule />}
+        {hasModule('sheets-module') && <SheetsModule />}
+        {hasModule('cost-module') && <CostModule />}
+        {hasModule('punch-list-module') && <PunchListModule />}
       </div>
 
       <Tabs defaultValue="installed">
