@@ -1,17 +1,14 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import { SpaceDetailsPage } from '@/features/spaces/pages/space-details-page';
+import React from 'react';
+import { redirect } from 'next/navigation';
 
-export default function SpaceDetailsPageWrapper({
-  params: paramsPromise,
+export default function OrgSpaceDetailsPageWrapper({
+  params,
 }: {
-  params: Promise<{ organizationslug?: string; userslug?: string; spaceslug:string }>;
+  params: Promise<{ organizationslug?: string; spaceslug: string }>;
 }) {
-  const params = React.use(paramsPromise);
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SpaceDetailsPage params={params} />
-    </Suspense>
-  );
+  // Redirect to unified space details page
+  const { spaceslug } = React.use(params);
+  redirect(`/spaces/${spaceslug}`);
 }

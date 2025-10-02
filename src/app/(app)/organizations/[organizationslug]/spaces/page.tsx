@@ -1,11 +1,12 @@
 'use client';
 
-import { OrgSpacesPage } from '@/features/spaces/pages/org-spaces-page';
+import { redirect } from 'next/navigation';
 
 export default function OrgSpacesPageWrapper({
   params,
 }: {
   params: { organizationslug: string };
 }) {
-  return <OrgSpacesPage params={params} />;
+  // Redirect to unified spaces page
+  redirect('/spaces');
 }
