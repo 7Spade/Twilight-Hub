@@ -46,17 +46,19 @@ export default function SpacesPage() {
       return Array.from(ids);
   }, [allSpaces]);
 
-  const ownerQueries = useMemo(() => {
-    if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return { userQuery: null, orgQuery: null };
-    
-    const userQuery = query(collection(firestore, 'users'), where(documentId(), 'in', allOwnerIds));
-    const orgQuery = query(collection(firestore, 'organizations'), where(documentId(), 'in', allOwnerIds));
-
-    return { userQuery, orgQuery };
+  const ownersUsersQuery = useMemo(() => {
+    if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return null;
+    return query(collection(firestore, 'users'), where(documentId(), 'in', allOwnerIds));
   }, [firestore, allOwnerIds]);
 
-  const { data: ownerUsers, isLoading: ownersLoading } = useCollection(ownerQueries.userQuery);
-  const { data: ownerOrgs, isLoading: orgsOwnerLoading } = useCollection(ownerQueries.orgQuery);
+  const ownersOrgsQuery = useMemo(() => {
+      if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return null;
+      return query(collection(firestore, 'organizations'), where(documentId(), 'in', allOwnerIds));
+  }, [firestore, allOwnerIds]);
+
+  const { data: ownerUsers, isLoading: ownersLoading } = useCollection(ownersUsersQuery);
+  const { data: ownerOrgs, isLoading: orgsOwnerLoading } = useCollection(ownersOrgsQuery);
+
 
   const ownersMap = useMemo(() => {
       const map = new Map<string, any>();

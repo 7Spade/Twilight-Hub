@@ -22,7 +22,7 @@ import {
 
 import { useCollection, useFirestore } from '@/firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { PageContainer } from '@/components/layout/page-container';
 import { Skeleton } from '@/components/ui/skeleton';

@@ -24,6 +24,7 @@ import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Globe, Lock, User, Users2 } from 'lucide-react';
+import { useMemo } from 'react';
 
 const UserCard = ({ user }: { user: any }) => (
   <Card>
@@ -114,17 +115,15 @@ const DataGrid = ({ data, isLoading, renderItem, emptyMessage }: any) => {
 export default function DiscoverPage() {
   const firestore = useFirestore();
 
-  const { data: users, isLoading: usersLoading } = useCollection(
-    firestore ? collection(firestore, 'users') : null
-  );
+  const usersQuery = useMemo(() => (firestore ? collection(firestore, 'users') : null), [firestore]);
+  const { data: users, isLoading: usersLoading } = useCollection(usersQuery);
 
-  const { data: orgs, isLoading: orgsLoading } = useCollection(
-    firestore ? collection(firestore, 'organizations') : null
-  );
+  const orgsQuery = useMemo(() => (firestore ? collection(firestore, 'organizations') : null), [firestore]);
+  const { data: orgs, isLoading: orgsLoading } = useCollection(orgsQuery);
 
-  const { data: spaces, isLoading: spacesLoading } = useCollection(
-    firestore ? query(collection(firestore, 'spaces'), where('isPublic', '==', true)) : null
-  );
+  const spacesQuery = useMemo(() => (firestore ? query(collection(firestore, 'spaces'), where('isPublic', '==', true)) : null), [firestore]);
+  const { data: spaces, isLoading: spacesLoading } = useCollection(spacesQuery);
+
 
   return (
     <PageContainer
