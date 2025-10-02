@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Edit, Mail } from 'lucide-react';
 import { useUser, useFirestore, useCollection } from '@/firebase';
 import { collection, query, where, getDocs, limit, documentId } from 'firebase/firestore';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, Suspense } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -15,18 +15,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FollowerList } from '@/components/follower-list';
 import { MembershipList } from '@/components/membership-list';
 import { SpacesView } from '@/features/spaces/components/spaces-view';
+import { StarredSpaces } from '@/components/starred-spaces';
 import { type Account, type Space } from '@/lib/types';
+import { useSearchParams } from 'next/navigation';
 
-export default function UserProfilePage({
-  params: paramsPromise,
-}: {
-  params: Promise<{ userslug: string }>;
-}) {
-  const params = React.use(paramsPromise);
+function UserProfilePageContent({ userslug }: { userslug: string }) {
   const { user: currentUser } = useUser();
   const firestore = useFirestore();
   const [userProfile, setUserProfile] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const defaultTab = searchParams.get('tab') || 'spaces';
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -35,7 +34,7 @@ export default function UserProfilePage({
       const accountsRef = collection(firestore, 'accounts');
       const q = query(
         accountsRef,
-        where('slug', '==', params.userslug),
+        where('slug', '==', userslug),
         where('type', '==', 'user'),
         limit(1)
       );
@@ -51,7 +50,7 @@ export default function UserProfilePage({
     };
 
     fetchUserProfile();
-  }, [firestore, params.userslug]);
+  }, [firestore, userslug]);
   
   const userSpacesQuery = useMemo(() => {
     if (!firestore || !userProfile) return null;
@@ -143,7 +142,7 @@ export default function UserProfilePage({
               <div className="flex flex-col gap-2">
                 {isOwnProfile && (
                   <Button variant="outline" asChild>
-                    <Link href="/settings">
+                    <Link href="/settings/profile">
                       <Edit className="mr-2 h-4 w-4" /> Edit Profile
                     </Link>
                   </Button>
@@ -153,9 +152,10 @@ export default function UserProfilePage({
           </Card>
         </div>
 
-        <Tabs defaultValue="spaces">
+        <Tabs defaultValue={defaultTab}>
           <TabsList>
             <TabsTrigger value="spaces">Spaces</TabsTrigger>
+            <TabsTrigger value="stars">Stars</TabsTrigger>
             <TabsTrigger value="followers">Followers</TabsTrigger>
             <TabsTrigger value="memberships">Memberships</TabsTrigger>
           </TabsList>
@@ -168,6 +168,9 @@ export default function UserProfilePage({
                 showYourSpacesTab={true}
             />
           </TabsContent>
+           <TabsContent value="stars" className="mt-6">
+             <StarredSpaces userId={userProfile.id} />
+          </TabsContent>
           <TabsContent value="followers" className="mt-6">
             <FollowerList userId={userProfile.id} />
           </TabsContent>
@@ -178,4 +181,16 @@ export default function UserProfilePage({
       </div>
     </PageContainer>
   );
+}
+
+export default function UserProfilePageWrapper({
+  params,
+}: {
+  params: { userslug: string };
+}) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UserProfilePageContent userslug={params.userslug} />
+    </Suspense>
+  )
 }

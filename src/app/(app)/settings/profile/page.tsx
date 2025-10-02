@@ -9,9 +9,9 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { useFirestore, useUser, useDoc } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { updateProfile } from 'firebase/auth';
-import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
 import { FormCard } from '@/components/forms/form-card';
+import { type Account } from '@/lib/types';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -20,7 +20,7 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export default function SettingsPage() {
+export default function ProfileSettingsPage() {
   const { user, isUserLoading: isAuthLoading } = useUser();
   const firestore = useFirestore();
   const { toast } = useToast();
@@ -29,7 +29,7 @@ export default function SettingsPage() {
     (firestore && user ? doc(firestore, 'accounts', user.uid) : null),
     [firestore, user]
   );
-  const { data: userProfile, isLoading: isProfileLoading } = useDoc(userProfileRef);
+  const { data: userProfile, isLoading: isProfileLoading } = useDoc<Account>(userProfileRef);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
@@ -87,13 +87,9 @@ export default function SettingsPage() {
   const isLoading = isAuthLoading || isProfileLoading;
 
   return (
-    <PageContainer
-        title="Settings"
-        description="Manage your account and personal information."
-    >
       <FormCard
-        title="Personal Information"
-        description="Update your public profile details."
+        title="Public Profile"
+        description="This information will be displayed publicly."
         isLoading={isLoading}
         form={form}
         onSubmit={onSubmit}
@@ -109,8 +105,8 @@ export default function SettingsPage() {
             name="username"
             label="Username"
             placeholder="Your username"
+            disabled // Usually, username is not easily changed
         />
       </FormCard>
-    </PageContainer>
   );
 }
