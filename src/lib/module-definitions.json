@@ -55,6 +55,13 @@
       "description": "Interact with an AI assistant to get insights and help with your tasks.",
       "icon": "sparkles",
       "type": "common"
+    },
+    {
+      "id": "submittals-module",
+      "name": "送審管理",
+      "description": "Manage and track the submission and approval of project documents.",
+      "icon": "send",
+      "type": "common"
     }
   ]
 }

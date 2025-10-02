@@ -27,7 +27,7 @@ import {
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles } from 'lucide-react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FilesModule } from '@/features/marketplace/components/files-module';
@@ -38,6 +38,7 @@ import { RfiModule } from '@/features/marketplace/components/rfi-module';
 import { PhotosModule } from '@/features/marketplace/components/photos-module';
 import { ReportsModule } from '@/features/marketplace/components/reports-module';
 import { AiAssistantModule } from '@/features/marketplace/components/ai-assistant-module';
+import { SubmittalsModule } from '@/features/marketplace/components/submittals-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
 
@@ -50,6 +51,7 @@ const iconMap: { [key: string]: React.ElementType } = {
   'image': ImageIcon,
   'bar-chart': BarChart,
   'sparkles': Sparkles,
+  'send': Send,
   default: Puzzle,
 };
 
@@ -202,6 +204,7 @@ export function SpaceDetailView({
         {hasModule('photos-module') && <PhotosModule />}
         {hasModule('reports-module') && <ReportsModule />}
         {hasModule('ai-assistant-module') && <AiAssistantModule />}
+        {hasModule('submittals-module') && <SubmittalsModule />}
       </div>
 
       <Tabs defaultValue="installed">
