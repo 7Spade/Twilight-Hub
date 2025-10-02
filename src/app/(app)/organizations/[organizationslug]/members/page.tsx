@@ -40,6 +40,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useDialogStore } from '@/hooks/use-dialog-store';
 
 function MemberRow({ userId }: { userId: string }) {
   const firestore = useFirestore();
@@ -100,6 +101,7 @@ export default function MembersPage({
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
+  const { open: openDialog } = useDialogStore();
   const [org, setOrg] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -164,7 +166,7 @@ export default function MembersPage({
         description={`Manage who is part of ${org.name}.`}
       >
         <div className="flex justify-end mb-8">
-            <Button>
+            <Button onClick={() => openDialog('inviteMember')}>
                 <UserPlus className="mr-2 h-4 w-4" />
                 Invite Member
             </Button>

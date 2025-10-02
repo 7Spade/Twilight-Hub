@@ -2,7 +2,7 @@
 
 import { create } from 'zustand';
 
-export type DialogType = 'createOrganization' | 'createSpace' | 'createGroup';
+export type DialogType = 'createOrganization' | 'createSpace' | 'createGroup' | 'inviteMember';
 
 interface DialogStore {
   type: DialogType | null;

@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { InviteMemberDialog } from '@/components/invite-member-dialog';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -79,7 +80,12 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 
     if (!selectedTeam && personalTeam) {
       setSelectedTeam(personalTeam);
+    } else if (selectedTeam && !allTeams.find(t => t.id === selectedTeam.id)) {
+      // If the selected team is no longer in the list (e.g., user left an org),
+      // default back to the personal team.
+      setSelectedTeam(personalTeam);
     }
+
 
     return allTeams;
   }, [
@@ -90,7 +96,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     organizations,
     selectedTeam,
   ]);
-
+  
   const navItems = useMemo((): NavItem[] => {
     if (!selectedTeam) return [];
 
@@ -149,6 +155,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
       <CreateSpaceDialog selectedTeam={selectedTeam} />
       <CreateOrganizationDialog />
       {currentOrgId && <CreateGroupDialog organizationId={currentOrgId} />}
+      {currentOrgId && <InviteMemberDialog organizationId={currentOrgId} />}
       <ChatDialog />
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
         {!isMobile && (
@@ -163,7 +170,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         )}
         <div
           className={`flex flex-col sm:gap-4 sm:py-4 transition-[padding-left] sm:duration-300 ${
-            isCollapsed ? 'sm:pl-14' : 'sm:pl-56'
+            !isMobile && (isCollapsed ? 'sm:pl-14' : 'sm:pl-56')
           }`}
         >
           <Header
