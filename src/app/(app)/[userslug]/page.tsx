@@ -9,7 +9,7 @@ import {
 import { Edit, Mail } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -26,8 +26,8 @@ export default function UserProfilePage({ params: paramsPromise }: { params: Pro
     const fetchUserProfile = async () => {
       if (!firestore) return;
       setIsLoading(true);
-      const usersRef = collection(firestore, 'users');
-      const q = query(usersRef, where('slug', '==', params.userslug), limit(1));
+      const accountsRef = collection(firestore, 'accounts');
+      const q = query(accountsRef, where('slug', '==', params.userslug), where('type', '==', 'user'), limit(1));
       const querySnapshot = await getDocs(q);
       
       if (!querySnapshot.empty) {

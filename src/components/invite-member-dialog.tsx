@@ -60,8 +60,8 @@ export function InviteMemberDialog({ organizationId }: { organizationId: string 
 
     try {
       // 1. Find user by email
-      const usersRef = collection(firestore, 'users');
-      const q = query(usersRef, where('email', '==', values.email), limit(1));
+      const accountsRef = collection(firestore, 'accounts');
+      const q = query(accountsRef, where('email', '==', values.email), where('type', '==', 'user'), limit(1));
       const userSnapshot = await getDocs(q);
 
       if (userSnapshot.empty) {
@@ -75,7 +75,7 @@ export function InviteMemberDialog({ organizationId }: { organizationId: string 
 
       const userToInvite = userSnapshot.docs[0];
       const userId = userToInvite.id;
-      const orgDocRef = doc(firestore, 'organizations', organizationId);
+      const orgDocRef = doc(firestore, 'accounts', organizationId);
       const orgDoc = await getDoc(orgDocRef);
 
       // 2. Check if user is already a member

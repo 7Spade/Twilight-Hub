@@ -97,7 +97,7 @@ export function SpaceDetailView({
   );
 
   const userProfileRef = useMemo(
-    () => (firestore && authUser ? doc(firestore, 'users', authUser.uid) : null),
+    () => (firestore && authUser ? doc(firestore, 'accounts', authUser.uid) : null),
     [firestore, authUser]
   );
   const { data: userProfile, isLoading: profileLoading } = useDoc<{

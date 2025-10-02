@@ -86,7 +86,7 @@ function MarketplaceTabContent() {
         });
         return;
     }
-    const userDocRef = doc(firestore, 'users', user.uid);
+    const userDocRef = doc(firestore, 'accounts', user.uid);
     
     const inventoryField = `moduleInventory.${moduleId}`;
 
@@ -177,7 +177,7 @@ function BackpackTabContent() {
     const firestore = useFirestore();
 
     const userProfileRef = useMemo(() => (
-        firestore && user ? doc(firestore, 'users', user.uid) : null
+        firestore && user ? doc(firestore, 'accounts', user.uid) : null
     ), [firestore, user]);
     const { data: userProfile, isLoading: isProfileLoading } = useDoc<{ moduleInventory?: ModuleInventory }>(userProfileRef);
 

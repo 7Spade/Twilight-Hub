@@ -87,8 +87,9 @@ function SignupPageContent() {
             displayName: values.fullName,
         });
 
-        const userProfile = {
+        const userAccount = {
             id: newUser.uid,
+            type: 'user',
             username: values.username,
             slug: generateSlug(values.username),
             name: values.fullName,
@@ -104,8 +105,8 @@ function SignupPageContent() {
             moduleInventory: {},
         };
 
-        const userDocRef = doc(firestore, 'users', newUser.uid);
-        await setDoc(userDocRef, userProfile);
+        const userDocRef = doc(firestore, 'accounts', newUser.uid);
+        await setDoc(userDocRef, userAccount);
         
         router.push('/dashboard');
         

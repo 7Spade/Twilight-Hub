@@ -75,7 +75,7 @@ export default function OrganizationsPage() {
   const { open: openDialog } = useDialogStore();
 
   const organizationsQuery = useMemo(
-    () => (firestore && user ? query(collection(firestore, 'organizations'), where('memberIds', 'array-contains', user.uid)) : null),
+    () => (firestore && user ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid)) : null),
     [firestore, user]
   );
   const { data: organizations, isLoading } = useCollection(organizationsQuery);

@@ -37,7 +37,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
 
   const userProfileRef = useMemo(
-    () => (firestore && user ? doc(firestore, 'users', user.uid) : null),
+    () => (firestore && user ? doc(firestore, 'accounts', user.uid) : null),
     [firestore, user]
   );
   const { data: userProfile, isLoading: isProfileLoading } =
@@ -47,7 +47,8 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     () =>
       firestore && user
         ? query(
-            collection(firestore, 'organizations'),
+            collection(firestore, 'accounts'),
+            where('type', '==', 'organization'),
             where('memberIds', 'array-contains', user.uid)
           )
         : null,

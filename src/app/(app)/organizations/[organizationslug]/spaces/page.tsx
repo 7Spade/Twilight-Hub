@@ -41,10 +41,11 @@ export default function OrgSpacesPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoading(true);
-      const orgsRef = collection(firestore, 'organizations');
+      const orgsRef = collection(firestore, 'accounts');
       const q = query(
         orgsRef,
         where('slug', '==', params.organizationslug),
+        where('type', '==', 'organization'),
         limit(1)
       );
       const querySnapshot = await getDocs(q);

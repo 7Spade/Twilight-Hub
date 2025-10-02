@@ -1,25 +1,28 @@
 {
   "entities": {
-    "UserProfile": {
+    "Account": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "UserProfile",
+      "title": "Account",
       "type": "object",
-      "description": "Represents a user's core profile and progress data.",
+      "description": "Represents a unified entity for both users and organizations, distinguished by a 'type' field.",
       "properties": {
-        "id": { "type": "string", "description": "Unique identifier for the UserProfile entity." },
-        "username": { "type": "string", "description": "The user's chosen username." },
-        "slug": { "type": "string", "description": "The URL-friendly slug for the user's profile." },
-        "name": { "type": "string", "description": "The user's full name." },
-        "email": { "type": "string", "description": "The user's email address.", "format": "email" },
-        "avatarUrl": { "type": "string", "description": "URL of the user's avatar image.", "format": "uri" },
-        "level": { "type": "number", "description": "The user's current level." },
-        "experience": { "type": "number", "description": "The user's current experience points (XP)." },
-        "managementScore": { "type": "number", "description": "A score representing the user's management skills or progress." },
-        "followingCount": { "type": "number", "description": "The number of users this user is following." },
-        "followersCount": { "type": "number", "description": "The number of users following this user." },
-        "moduleInventory": { "type": "object", "description": "A map of Module IDs to the quantity the user owns.", "additionalProperties": { "type": "number" } }
+        "id": { "type": "string", "description": "Unique identifier for the Account." },
+        "type": { "type": "string", "enum": ["user", "organization"], "description": "The type of the account." },
+        "name": { "type": "string", "description": "The user's full name or the organization's name." },
+        "username": { "type": "string", "description": "The user's chosen username (for users only)." },
+        "slug": { "type": "string", "description": "The URL-friendly slug for the account's profile or page." },
+        "email": { "type": "string", "description": "The user's email address (for users only).", "format": "email" },
+        "avatarUrl": { "type": "string", "description": "URL of the account's avatar or logo.", "format": "uri" },
+        "description": { "type": "string", "description": "A description of the organization (for orgs only)." },
+        "memberIds": { "type": "array", "description": "References to User Accounts that are members of this organization (for orgs only).", "items": { "type": "string" } },
+        "level": { "type": "number", "description": "The user's current level (for users only)." },
+        "experience": { "type": "number", "description": "The user's current experience points (XP) (for users only)." },
+        "managementScore": { "type": "number", "description": "A score representing the user's management skills or progress (for users only)." },
+        "followingCount": { "type": "number", "description": "The number of users this user is following (for users only)." },
+        "followersCount": { "type": "number", "description": "The number of users following this user (for users only)." },
+        "moduleInventory": { "type": "object", "description": "A map of Module IDs to the quantity the user owns (for users only).", "additionalProperties": { "type": "number" } }
       },
-      "required": [ "id", "username", "slug", "name", "email" ]
+      "required": [ "id", "type", "name", "slug" ]
     },
     "UserFollow": {
         "title": "UserFollow",
@@ -29,20 +32,6 @@
             "followedAt": { "type": "string", "format": "date-time" }
         },
         "required": ["followedAt"]
-    },
-    "Organization": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Organization",
-      "type": "object",
-      "description": "Represents an organization within the application.",
-      "properties": {
-        "id": { "type": "string", "description": "Unique identifier for the Organization entity." },
-        "name": { "type": "string", "description": "The name of the organization." },
-        "slug": { "type": "string", "description": "The URL-friendly slug for the organization." },
-        "description": { "type": "string", "description": "A description of the organization." },
-        "memberIds": { "type": "array", "description": "References to UserProfiles that are members of this organization.", "items": { "type": "string" } }
-      },
-      "required": [ "id", "name", "slug", "description" ]
     },
     "Group": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -216,45 +205,53 @@
     "providers": [ "password", "anonymous" ]
   },
   "firestore": {
-    "/users/{userId}": {
-      "schema": { "$ref": "#/entities/UserProfile" },
-      "description": "Stores user profiles, including embedded progress data like level and XP and aggregated counts for followers/following for quick access."
+    "/accounts/{accountId}": {
+      "schema": { "$ref": "#/entities/Account" },
+      "description": "Stores all accounts, both users and organizations, distinguished by the 'type' field."
     },
-    "/users/{userId}/following/{followingId}": {
+    "/accounts/{userId}/following/{followingId}": {
       "schema": { "$ref": "#/entities/UserFollow" },
-      "description": "A collection where each document represents a user that the parent user is following. The document ID is the ID of the user being followed."
+      "description": "A subcollection for user accounts, where each document represents another account that the parent user is following."
     },
-    "/users/{userId}/followers/{followerId}": {
+    "/accounts/{userId}/followers/{followerId}": {
       "schema": { "$ref": "#/entities/UserFollow" },
-      "description": "A collection where each document represents a user that is following the parent user. The document ID is the ID of the follower."
+      "description": "A subcollection for user accounts, where each document represents an account that is following the parent user."
     },
-    "/users/{userId}/user_achievements/{achievementId}": {
+    "/accounts/{userId}/user_achievements/{achievementId}": {
       "schema": { "$ref": "#/entities/UserAchievement" },
-      "description": "Stores achievements unlocked by a specific user. The document ID is the global achievement ID."
+      "description": "Stores achievements unlocked by a specific user."
     },
-    "/users/{userId}/wallet/{currencyId}": {
+    "/accounts/{userId}/wallet/{currencyId}": {
       "schema": { "$ref": "#/entities/Wallet" },
-      "description": "Stores the balance for a specific currency (e.g., 'gold', 'gems') for a user. Designed for secure, server-side updates."
+      "description": "Stores the balance for a specific currency for a user."
     },
-    "/users/{userId}/transactions/{transactionId}": {
+    "/accounts/{userId}/transactions/{transactionId}": {
       "schema": { "$ref": "#/entities/Transaction" },
-      "description": "A log of all significant events for a user, such as currency changes or level-ups."
+      "description": "A log of all significant events for a user."
     },
-    "/users/{userId}/spaces/{spaceId}": {
+    "/accounts/{userId}/spaces/{spaceId}": {
       "schema": { "$ref": "#/entities/Space" },
-      "description": "A subcollection for spaces owned directly by a user. This is a denormalization for quick access on the dashboard."
+      "description": "A subcollection for spaces owned directly by a user. This is a denormalization for quick access."
     },
-    "/organizations/{organizationId}": {
-      "schema": { "$ref": "#/entities/Organization" },
-      "description": "Stores organization profiles."
-    },
-     "/organizations/{organizationId}/audit_logs/{logId}": {
+     "/accounts/{organizationId}/audit_logs/{logId}": {
       "schema": { "$ref": "#/entities/AuditLog" },
       "description": "Stores the audit trail of all actions performed within an organization."
     },
-    "/organizations/{organizationId}/groups/{groupId}": {
+    "/accounts/{organizationId}/groups/{groupId}": {
       "schema": { "$ref": "#/entities/Group" },
       "description": "Stores groups within an organization."
+    },
+     "/accounts/{organizationId}/items/{itemId}": {
+      "schema": { "$ref": "#/entities/Item" },
+      "description": "Items belonging to an organization."
+    },
+    "/accounts/{organizationId}/warehouses/{warehouseId}": {
+      "schema": { "$ref": "#/entities/Warehouse" },
+      "description": "Warehouses belonging to an organization."
+    },
+    "/accounts/{organizationId}/warehouses/{warehouseId}/stock/{stockId}": {
+      "schema": { "$ref": "#/entities/Stock" },
+      "description": "Stock levels for items within a specific warehouse of an organization."
     },
     "/spaces/{spaceId}": {
       "schema": { "$ref": "#/entities/Space" },
@@ -275,18 +272,6 @@
     "/conversations/{conversationId}/messages/{messageId}": {
       "schema": { "$ref": "#/entities/Message" },
       "description": "Stores messages within a conversation."
-    },
-    "/organizations/{organizationId}/items/{itemId}": {
-      "schema": { "$ref": "#/entities/Item" },
-      "description": "Items belonging to an organization."
-    },
-    "/organizations/{organizationId}/warehouses/{warehouseId}": {
-      "schema": { "$ref": "#/entities/Warehouse" },
-      "description": "Warehouses belonging to an organization."
-    },
-    "/organizations/{organizationId}/warehouses/{warehouseId}/stock/{stockId}": {
-      "schema": { "$ref": "#/entities/Stock" },
-      "description": "Stock levels for items within a specific warehouse of an organization."
     }
   }
 }

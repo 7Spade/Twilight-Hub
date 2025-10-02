@@ -25,7 +25,7 @@ export default function SpacesPage() {
   
   const userOrgsQuery = useMemo(() => {
     if (!firestore || !user) return null;
-    return query(collection(firestore, 'organizations'), where('memberIds', 'array-contains', user.uid));
+    return query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid));
   }, [firestore, user]);
   const { data: userOrgs, isLoading: userOrgsLoading } = useCollection(userOrgsQuery);
 
@@ -46,26 +46,17 @@ export default function SpacesPage() {
       return Array.from(ids);
   }, [allSpaces]);
 
-  const ownersUsersQuery = useMemo(() => {
+  const ownersQuery = useMemo(() => {
     if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return null;
-    return query(collection(firestore, 'users'), where(documentId(), 'in', allOwnerIds));
+    return query(collection(firestore, 'accounts'), where(documentId(), 'in', allOwnerIds));
   }, [firestore, allOwnerIds]);
-
-  const ownersOrgsQuery = useMemo(() => {
-      if (!firestore || !allOwnerIds || allOwnerIds.length === 0) return null;
-      return query(collection(firestore, 'organizations'), where(documentId(), 'in', allOwnerIds));
-  }, [firestore, allOwnerIds]);
-
-  const { data: ownerUsers, isLoading: ownersLoading } = useCollection(ownersUsersQuery);
-  const { data: ownerOrgs, isLoading: orgsOwnerLoading } = useCollection(ownersOrgsQuery);
-
+  const { data: owners, isLoading: ownersLoading } = useCollection(ownersQuery);
 
   const ownersMap = useMemo(() => {
       const map = new Map<string, any>();
-      ownerUsers?.forEach(u => map.set(u.id, u));
-      ownerOrgs?.forEach(o => map.set(o.id, o));
+      owners?.forEach(o => map.set(o.id, o));
       return map;
-  }, [ownerUsers, ownerOrgs]);
+  }, [owners]);
 
 
   const yourSpaces = useMemo(() => {
@@ -84,7 +75,7 @@ export default function SpacesPage() {
     return allSpaces.filter(space => space.isPublic);
   }, [allSpaces]);
     
-  const isLoading = allSpacesLoading || userOrgsLoading || ownersLoading || orgsOwnerLoading;
+  const isLoading = allSpacesLoading || userOrgsLoading || ownersLoading;
 
   return (
     <PageContainer

@@ -37,8 +37,8 @@ export default function AuditLogPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoading(true);
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {

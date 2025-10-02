@@ -73,8 +73,8 @@ export default function OrganizationDetailsPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoading(true);
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -90,13 +90,13 @@ export default function OrganizationDetailsPage({
   }, [firestore, params.organizationslug]);
 
   const groupsQuery = useMemo(
-    () => (firestore && org ? collection(firestore, 'organizations', org.id, 'groups') : null),
+    () => (firestore && org ? collection(firestore, 'accounts', org.id, 'groups') : null),
     [firestore, org]
   );
   const { data: groups, isLoading: groupsLoading } = useCollection(groupsQuery);
   
   const itemsQuery = useMemo(
-    () => (firestore && org ? collection(firestore, 'organizations', org.id, 'items') : null),
+    () => (firestore && org ? collection(firestore, 'accounts', org.id, 'items') : null),
     [firestore, org]
   );
   const { data: items, isLoading: itemsLoading } = useCollection(itemsQuery);

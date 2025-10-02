@@ -17,7 +17,7 @@ import {
   getDocs,
   limit,
 } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { SpaceDetailView } from '@/features/spaces/components/space-detail-view';
 
 export default function OrgSpaceDetailsPage({
@@ -39,10 +39,11 @@ export default function OrgSpaceDetailsPage({
       setLoading(true);
 
       // Fetch organization
-      const orgsRef = collection(firestore, 'organizations');
+      const accountsRef = collection(firestore, 'accounts');
       const orgQuery = query(
-        orgsRef,
+        accountsRef,
         where('slug', '==', params.organizationslug),
+        where('type', '==', 'organization'),
         limit(1)
       );
       const orgSnapshot = await getDocs(orgQuery);

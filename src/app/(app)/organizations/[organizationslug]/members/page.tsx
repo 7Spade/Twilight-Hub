@@ -45,7 +45,7 @@ import { useDialogStore } from '@/hooks/use-dialog-store';
 function MemberRow({ userId }: { userId: string }) {
   const firestore = useFirestore();
   const userDocRef = useMemo(
-    () => (firestore ? doc(firestore, 'users', userId) : null),
+    () => (firestore ? doc(firestore, 'accounts', userId) : null),
     [firestore, userId]
   );
   const { data: user, isLoading } = useDoc(userDocRef);
@@ -109,8 +109,8 @@ export default function MembersPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoading(true);
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {

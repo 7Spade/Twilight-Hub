@@ -27,13 +27,13 @@ export default function Dashboard() {
   const firestore = useFirestore();
 
   const userOrganizationsQuery = useMemo(
-    () => (firestore && user ? query(collection(firestore, 'organizations'), where('memberIds', 'array-contains', user.uid)) : null),
+    () => (firestore && user ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid)) : null),
     [firestore, user]
   );
   const { data: organizations, isLoading: orgsLoading } = useCollection(userOrganizationsQuery);
 
   const userSpacesQuery = useMemo(
-    () => (firestore && user ? query(collection(firestore, 'users', user.uid, 'spaces')) : null),
+    () => (firestore && user ? query(collection(firestore, 'accounts', user.uid, 'spaces')) : null),
     [firestore, user]
   );
   const { data: spaces, isLoading: spacesLoading } = useCollection(userSpacesQuery);

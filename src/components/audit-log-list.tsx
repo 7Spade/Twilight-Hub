@@ -47,7 +47,7 @@ export function AuditLogList({ organizationId }: { organizationId: string }) {
     () =>
       firestore
         ? query(
-            collection(firestore, `organizations/${organizationId}/audit_logs`),
+            collection(firestore, `accounts/${organizationId}/audit_logs`),
             orderBy('createdAt', 'desc'),
             limit(50)
           )

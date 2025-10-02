@@ -32,7 +32,7 @@ import { CreateGroupDialog } from '@/components/create-group-dialog';
 function GroupCard({ groupId, organizationId }: { groupId: string; organizationId: string }) {
   const firestore = useFirestore();
   const groupDocRef = useMemo(
-    () => (firestore ? doc(firestore, 'organizations', organizationId, 'groups', groupId) : null),
+    () => (firestore ? doc(firestore, 'accounts', organizationId, 'groups', groupId) : null),
     [firestore, organizationId, groupId]
   );
   const { data: group, isLoading } = useDoc(groupDocRef);
@@ -85,8 +85,8 @@ export default function GroupsPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoading(true);
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -102,7 +102,7 @@ export default function GroupsPage({
   }, [firestore, params.organizationslug]);
 
   const groupsQuery = useMemo(
-    () => (firestore && org ? collection(firestore, 'organizations', org.id, 'groups') : null),
+    () => (firestore && org ? collection(firestore, 'accounts', org.id, 'groups') : null),
     [firestore, org]
   );
   const { data: groups, isLoading: groupsLoading } = useCollection(groupsQuery);

@@ -70,12 +70,13 @@ export function CreateOrganizationDialog() {
 
     try {
       const batch = writeBatch(firestore);
-      const orgsRef = collection(firestore, 'organizations');
-      const newOrgRef = doc(orgsRef); // Create a reference with a new ID
+      const accountsRef = collection(firestore, 'accounts');
+      const newOrgRef = doc(accountsRef); // Create a reference with a new ID
 
       const newOrg = {
         ...values,
         id: newOrgRef.id,
+        type: 'organization',
         slug: generateSlug(values.name),
         ownerId: user.uid,
         memberIds: [user.uid],
@@ -84,7 +85,7 @@ export function CreateOrganizationDialog() {
       };
       batch.set(newOrgRef, newOrg);
 
-      const auditLogRef = doc(collection(firestore, `organizations/${newOrgRef.id}/audit_logs`));
+      const auditLogRef = doc(collection(firestore, `accounts/${newOrgRef.id}/audit_logs`));
       const auditLog = {
         organizationId: newOrgRef.id,
         userId: user.uid,

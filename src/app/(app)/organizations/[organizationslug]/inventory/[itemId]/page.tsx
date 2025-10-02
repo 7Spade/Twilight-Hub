@@ -98,8 +98,8 @@ export default function ItemStockPage({
   useEffect(() => {
     if (!firestore || !organizationslug) return;
     const fetchOrg = async () => {
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', organizationslug));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', organizationslug), where('type', '==', 'organization'));
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
         setOrganization({id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()});
@@ -111,14 +111,14 @@ export default function ItemStockPage({
 
   // Get Item Details
   const itemDocRef = useMemo(
-    () => (firestore && organization ? doc(firestore, 'organizations', organization.id, 'items', itemId) : null),
+    () => (firestore && organization ? doc(firestore, 'accounts', organization.id, 'items', itemId) : null),
     [firestore, organization, itemId]
   );
   const { data: item, isLoading: itemLoading } = useDoc(itemDocRef);
 
   // Get All Warehouses for the Org
   const warehousesQuery = useMemo(
-    () => (firestore && organization ? collection(firestore, 'organizations', organization.id, 'warehouses') : null),
+    () => (firestore && organization ? collection(firestore, 'accounts', organization.id, 'warehouses') : null),
     [firestore, organization]
   );
   const { data: warehouses, isLoading: warehousesLoading } =
@@ -132,7 +132,7 @@ export default function ItemStockPage({
       query: query(
         collection(
           firestore,
-          'organizations',
+          'accounts',
           organization.id,
           'warehouses',
           w.id,
@@ -157,7 +157,7 @@ export default function ItemStockPage({
     if (!firestore || !organization) return;
     const stockDocRef = doc(
       firestore,
-      'organizations',
+      'accounts',
       organization.id,
       'warehouses',
       warehouseId,

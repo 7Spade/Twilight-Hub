@@ -26,7 +26,7 @@ export default function SettingsPage() {
   const { toast } = useToast();
 
   const userProfileRef = useMemo(() => 
-    (firestore && user ? doc(firestore, 'users', user.uid) : null),
+    (firestore && user ? doc(firestore, 'accounts', user.uid) : null),
     [firestore, user]
   );
   const { data: userProfile, isLoading: isProfileLoading } = useDoc(userProfileRef);

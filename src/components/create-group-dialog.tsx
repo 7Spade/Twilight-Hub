@@ -59,7 +59,7 @@ export function CreateGroupDialog({ organizationId }: { organizationId: string }
     }
 
     try {
-      const groupsRef = collection(firestore, `organizations/${organizationId}/groups`);
+      const groupsRef = collection(firestore, `accounts/${organizationId}/groups`);
       const newGroup = {
         ...values,
         organizationId: organizationId,

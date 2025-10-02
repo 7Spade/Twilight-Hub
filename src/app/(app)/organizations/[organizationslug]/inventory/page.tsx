@@ -53,8 +53,8 @@ export default function InventoryPage({
     const fetchOrg = async () => {
       if (!firestore || !params.organizationslug) return;
       setIsLoadingOrg(true);
-      const orgsRef = collection(firestore, 'organizations');
-      const q = query(orgsRef, where('slug', '==', params.organizationslug));
+      const orgsRef = collection(firestore, 'accounts');
+      const q = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'));
       const querySnapshot = await getDocs(q);
       
       if (!querySnapshot.empty) {
@@ -70,11 +70,11 @@ export default function InventoryPage({
   }, [firestore, params.organizationslug]);
 
   // Get Items for the Org
-  const itemsQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'organizations', org.id, 'items')) : null), [firestore, org]);
+  const itemsQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'accounts', org.id, 'items')) : null), [firestore, org]);
   const { data: items, isLoading: itemsLoading } = useCollection(itemsQuery);
   
   // Get Warehouses for the Org
-  const warehousesQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'organizations', org.id, 'warehouses')) : null), [firestore, org]);
+  const warehousesQuery = useMemo(() => (firestore && org ? query(collection(firestore, 'accounts', org.id, 'warehouses')) : null), [firestore, org]);
   const { data: warehouses, isLoading: warehousesLoading } = useCollection(warehousesQuery);
 
   const isLoading = itemsLoading || warehousesLoading || isLoadingOrg;

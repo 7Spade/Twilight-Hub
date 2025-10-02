@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useUser, useFirestore } from '@/firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { SpaceDetailView } from '@/features/spaces/components/space-detail-view';
 
 export default function UserSpaceDetailsPage({
@@ -33,10 +33,11 @@ export default function UserSpaceDetailsPage({
       setLoading(true);
 
       // Fetch owner (user)
-      const usersRef = collection(firestore, 'users');
+      const accountsRef = collection(firestore, 'accounts');
       const ownerQuery = query(
-        usersRef,
+        accountsRef,
         where('slug', '==', params.userslug),
+        where('type', '==', 'user'),
         limit(1)
       );
       const ownerSnapshot = await getDocs(ownerQuery);

@@ -46,8 +46,8 @@ export default function OrgSettingsPage({
         if (!firestore || !params.organizationslug) return;
         setIsLoading(true);
 
-        const orgsRef = collection(firestore, 'organizations');
-        const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+        const orgsRef = collection(firestore, 'accounts');
+        const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), where('type', '==', 'organization'), limit(1));
         const orgSnapshot = await getDocs(orgQuery);
 
         if (!orgSnapshot.empty) {
@@ -62,7 +62,7 @@ export default function OrgSettingsPage({
   }, [firestore, params.organizationslug]);
 
   const orgDocRef = useMemo(
-    () => (firestore && org ? doc(firestore, 'organizations', org.id) : null),
+    () => (firestore && org ? doc(firestore, 'accounts', org.id) : null),
     [firestore, org]
   );
 

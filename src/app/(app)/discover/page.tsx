@@ -115,10 +115,10 @@ const DataGrid = ({ data, isLoading, renderItem, emptyMessage }: any) => {
 export default function DiscoverPage() {
   const firestore = useFirestore();
 
-  const usersQuery = useMemo(() => (firestore ? collection(firestore, 'users') : null), [firestore]);
+  const usersQuery = useMemo(() => (firestore ? query(collection(firestore, 'accounts'), where('type', '==', 'user')) : null), [firestore]);
   const { data: users, isLoading: usersLoading } = useCollection(usersQuery);
 
-  const orgsQuery = useMemo(() => (firestore ? collection(firestore, 'organizations') : null), [firestore]);
+  const orgsQuery = useMemo(() => (firestore ? query(collection(firestore, 'accounts'), where('type', '==', 'organization')) : null), [firestore]);
   const { data: orgs, isLoading: orgsLoading } = useCollection(orgsQuery);
 
   const spacesQuery = useMemo(() => (firestore ? query(collection(firestore, 'spaces'), where('isPublic', '==', true)) : null), [firestore]);
