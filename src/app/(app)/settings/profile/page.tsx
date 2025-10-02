@@ -13,6 +13,7 @@ import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormCard } from '@/components/forms/form-card';
 import { type Account } from '@/lib/types';
+import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),

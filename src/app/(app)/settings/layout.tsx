@@ -28,10 +28,9 @@ export default function SettingsLayout({
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
         <aside className="hidden md:block md:col-span-1">
+          <div className="flex flex-col gap-6">
             <UserProfileCard />
-        </aside>
-        <div className="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <nav className="lg:col-span-1 grid gap-1">
+            <nav className="grid gap-1">
                 {settingsNavItems.map(item => {
                   const isActive = pathname === item.href;
                   return (
@@ -49,10 +48,13 @@ export default function SettingsLayout({
                   );
                 })}
             </nav>
-            <main className="lg:col-span-2">
-                {children}
-            </main>
-        </div>
+          </div>
+        </aside>
+        <main className="md:col-span-3">
+            <Card>
+             {children}
+            </Card>
+        </main>
       </div>
     </PageContainer>
   );

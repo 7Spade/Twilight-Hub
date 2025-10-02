@@ -12,7 +12,7 @@ export default function AccountSettingsPage() {
         }
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: unknown) => {
         console.log('Account settings submitted', data);
         // Here you would handle updating the user's account settings.
     };

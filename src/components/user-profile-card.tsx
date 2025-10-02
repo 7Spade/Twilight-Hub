@@ -8,14 +8,14 @@ import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { Mail, Smile, Users, User as UserIcon } from 'lucide-react';
 import { useUser, useDoc, useFirestore, useCollection } from '@/firebase';
 import { useMemo } from 'react';
-import { collection, doc, query, where } from 'firebase/firestore';
+import { collection, doc, query, where, documentId } from 'firebase/firestore';
 import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
 import Link from 'next/link';
 
 function UserProfileCardSkeleton() {
     return (
-        <Card className="w-full max-w-xs">
+        <Card className="w-full">
             <CardContent className="p-6 flex flex-col items-center gap-4">
                 <Skeleton className="w-32 h-32 rounded-full" />
                 <div className="text-center space-y-2">
@@ -62,7 +62,7 @@ export function UserProfileCard() {
 
     const achievementsQuery = useMemo(() =>
         (firestore && achievementIds.length > 0
-            ? query(collection(firestore, 'achievements'), where('__name__', 'in', achievementIds))
+            ? query(collection(firestore, 'achievements'), where(documentId(), 'in', achievementIds))
             : null
         ), [firestore, achievementIds]
     );
@@ -95,7 +95,7 @@ export function UserProfileCard() {
   const fallbackText = user.name.charAt(0)?.toUpperCase() || 'U';
 
   return (
-    <Card className="w-full max-w-xs">
+    <Card className="w-full">
       <CardContent className="p-6 flex flex-col items-center gap-4">
         <div className="relative">
           <Avatar className="w-32 h-32 border-4 border-background ring-2 ring-primary">
@@ -115,19 +115,19 @@ export function UserProfileCard() {
         </div>
 
         <Button variant="outline" className="w-full" asChild>
-            <Link href={`/${userProfile.slug}`}>
+            <Link href={`/settings/profile`}>
                 <UserIcon className="mr-2 h-4 w-4" /> Edit profile
             </Link>
         </Button>
 
         <div className='flex flex-col gap-2 w-full text-sm text-muted-foreground'>
-            <div className="flex items-center gap-2">
+             <div className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
-                <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-foreground">{user.followers}</span> follower{user.followers !== 1 && 's'}
-                    <span className='font-bold'>·</span>
-                    <span className="font-bold text-foreground">{user.following}</span> following
-                </div>
+                <span className="font-bold text-foreground">{user.followers}</span> follower{user.followers !== 1 && 's'}
+            </div>
+             <div className="flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                <span className="font-bold text-foreground">{user.following}</span> following
             </div>
             <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />

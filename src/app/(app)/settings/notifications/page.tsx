@@ -14,7 +14,7 @@ export default function NotificationSettingsPage() {
         }
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: unknown) => {
         console.log('Notification settings submitted', data);
         // Here you would save the user's notification preferences.
     };
