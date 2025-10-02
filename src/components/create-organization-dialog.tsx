@@ -73,11 +73,12 @@ export function CreateOrganizationDialog() {
       const accountsRef = collection(firestore, 'accounts');
       const newOrgRef = doc(accountsRef); // Create a reference with a new ID
 
+      const orgSlug = generateSlug(values.name);
       const newOrg = {
         ...values,
         id: newOrgRef.id,
         type: 'organization',
-        slug: generateSlug(values.name),
+        slug: orgSlug,
         ownerId: user.uid,
         memberIds: [user.uid],
         createdAt: serverTimestamp(),
@@ -108,6 +109,10 @@ export function CreateOrganizationDialog() {
 
       form.reset();
       close();
+
+      // Force a reload to the new organization's page to ensure all states are updated correctly.
+      window.location.href = `/organizations/${orgSlug}`;
+
     } catch (error) {
       console.error('Error creating organization:', error);
       toast({

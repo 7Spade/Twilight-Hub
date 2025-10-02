@@ -32,6 +32,7 @@ import { useFirestore } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useEffect } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
+import { useToast } from '@/hooks/use-toast';
 
 
 const signupSchema = z.object({
@@ -56,6 +57,7 @@ function SignupPageContent() {
   const firestore = useFirestore();
   const router = useRouter();
   const { user, isUserLoading } = useUser();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -75,7 +77,11 @@ function SignupPageContent() {
 
   const onSubmit = async (values: z.infer<typeof signupSchema>) => {
     if (!auth || !firestore) {
-        console.error("Firebase not initialized");
+        toast({
+          variant: 'destructive',
+          title: 'Initialization Error',
+          description: 'Firebase is not ready. Please try again in a moment.',
+        });
         return;
     }
 
@@ -110,9 +116,17 @@ function SignupPageContent() {
         
         router.push('/dashboard');
         
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error during sign up:", error);
-        // Here you would typically show an error to the user
+        let description = "An unexpected error occurred. Please try again.";
+        if (error.code === 'auth/email-already-in-use') {
+            description = "This email address is already in use. Please use a different email or log in.";
+        }
+        toast({
+          variant: "destructive",
+          title: "Sign-up Failed",
+          description: description,
+        });
     }
   };
 
@@ -195,8 +209,8 @@ function SignupPageContent() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
-                Create Account
+              <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? 'Creating...' : 'Create Account'}
               </Button>
             </form>
           </Form>
