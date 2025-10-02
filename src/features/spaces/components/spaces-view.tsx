@@ -7,6 +7,7 @@
  * for each tab and provides a consistent look and feel for space cards.
  */
 
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -167,11 +168,23 @@ export function SpacesView({
     showOrganizationSpacesTab = false
 }: SpacesViewProps) {
 
-    const tabs: { value: string; label: string; data: Space[] | null; empty: string; }[] = [];
-    if(showOrganizationSpacesTab) tabs.push({ value: 'org', label: 'Organization Spaces', data: organizationSpaces || null, empty: 'No spaces found for this organization.' });
-    if(showYourSpacesTab) tabs.push({ value: 'yours', label: 'Your Spaces', data: yourSpaces || null, empty: 'You have not created any spaces.' });
-    if(showStarredSpacesTab) tabs.push({ value: 'starred', label: 'Starred', data: starredSpaces || null, empty: 'You have not starred any spaces.' });
-    if(showDiscoverTab) tabs.push({ value: 'discover', label: 'Discover', data: publicSpaces || null, empty: 'No public spaces available to discover.' });
+    const tabs = useMemo(() => {
+        const tabConfigs = [
+            { condition: showOrganizationSpacesTab, value: 'org', label: 'Organization Spaces', data: organizationSpaces, empty: 'No spaces found for this organization.' },
+            { condition: showYourSpacesTab, value: 'yours', label: 'Your Spaces', data: yourSpaces, empty: 'You have not created any spaces.' },
+            { condition: showStarredSpacesTab, value: 'starred', label: 'Starred', data: starredSpaces, empty: 'You have not starred any spaces.' },
+            { condition: showDiscoverTab, value: 'discover', label: 'Discover', data: publicSpaces, empty: 'No public spaces available to discover.' }
+        ];
+        
+        return tabConfigs
+            .filter(config => config.condition)
+            .map(config => ({
+                value: config.value,
+                label: config.label,
+                data: config.data || null,
+                empty: config.empty
+            }));
+    }, [showOrganizationSpacesTab, showYourSpacesTab, showStarredSpacesTab, showDiscoverTab, organizationSpaces, yourSpaces, starredSpaces, publicSpaces]);
 
     if (tabs.length === 0) {
         return null; // or some default view

@@ -90,11 +90,8 @@ export function UseModuleDialog() {
 
   // Filter spaces that don't already have the module
   const availableSpaces = useMemo(() => {
-    if (!allSpaces || !module) return [];
-    return allSpaces.filter((space) => {
-      // Don't show spaces that already have the module
-      return !space.moduleIds?.includes(module.id);
-    });
+    if (!allSpaces?.length || !module) return [];
+    return allSpaces.filter((space) => !space.moduleIds?.includes(module.id));
   }, [allSpaces, module]);
 
   const form = useForm<UseModuleFormValues>({

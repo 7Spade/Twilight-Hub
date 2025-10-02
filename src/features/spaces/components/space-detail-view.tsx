@@ -267,21 +267,42 @@ export function SpaceDetailView({
             {isLoading && <p>Loading installed modules...</p>}
 
             <div className="space-y-8">
-                {hasModule('files-module') && <FilesModule spaceId={space.id} />}
-                {hasModule('issues-module') && <IssuesModule />}
-                {hasModule('meetings-module') && <MeetingsModule />}
-                {hasModule('forms-module') && <FormsModule />}
-                {hasModule('rfi-module') && <RfiModule />}
-                {hasModule('photos-module') && <PhotosModule />}
-                {hasModule('reports-module') && <ReportsModule />}
-                {hasModule('ai-assistant-module') && <AiAssistantModule />}
-                {hasModule('submittals-module') && <SubmittalsModule />}
-                {hasModule('assets-module') && <AssetsModule />}
-                {hasModule('changes-module') && <ChangesModule />}
-                {hasModule('schedule-module') && <ScheduleModule />}
-                {hasModule('sheets-module') && <SheetsModule />}
-                {hasModule('cost-module') && <CostModule />}
-                {hasModule('punch-list-module') && <PunchListModule />}
+                {installedModules.map((module) => {
+                  switch (module.id) {
+                    case 'files-module':
+                      return <FilesModule key={module.id} spaceId={space.id} />;
+                    case 'issues-module':
+                      return <IssuesModule key={module.id} />;
+                    case 'meetings-module':
+                      return <MeetingsModule key={module.id} />;
+                    case 'forms-module':
+                      return <FormsModule key={module.id} />;
+                    case 'rfi-module':
+                      return <RfiModule key={module.id} />;
+                    case 'photos-module':
+                      return <PhotosModule key={module.id} />;
+                    case 'reports-module':
+                      return <ReportsModule key={module.id} />;
+                    case 'ai-assistant-module':
+                      return <AiAssistantModule key={module.id} />;
+                    case 'submittals-module':
+                      return <SubmittalsModule key={module.id} />;
+                    case 'assets-module':
+                      return <AssetsModule key={module.id} />;
+                    case 'changes-module':
+                      return <ChangesModule key={module.id} />;
+                    case 'schedule-module':
+                      return <ScheduleModule key={module.id} />;
+                    case 'sheets-module':
+                      return <SheetsModule key={module.id} />;
+                    case 'cost-module':
+                      return <CostModule key={module.id} />;
+                    case 'punch-list-module':
+                      return <PunchListModule key={module.id} />;
+                    default:
+                      return null;
+                  }
+                })}
             </div>
 
             {!isLoading && installedModules.length === 0 && (
