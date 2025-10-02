@@ -27,7 +27,16 @@ import { Input } from '@/components/ui/input';
 import { Logo } from '@/components/logo';
 import { useAuth, useUser } from '@/firebase';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  serverTimestamp,
+  setDoc,
+  doc,
+  query,
+  where,
+  getDocs,
+  limit,
+} from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useEffect } from 'react';
@@ -86,6 +95,20 @@ function SignupPageContent() {
     }
 
     try {
+        // Check if username already exists
+        const accountsRef = collection(firestore, 'accounts');
+        const q = query(accountsRef, where('type', '==', 'user'), where('username', '==', values.username), limit(1));
+        const usernameSnapshot = await getDocs(q);
+
+        if (!usernameSnapshot.empty) {
+            toast({
+                variant: 'destructive',
+                title: 'Username Taken',
+                description: 'This username is already in use. Please choose another one.',
+            });
+            return;
+        }
+
         const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
         const newUser = userCredential.user;
 
