@@ -27,8 +27,8 @@ import {
   updateDoc,
   arrayUnion,
 } from 'firebase/firestore';
-import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send } from 'lucide-react';
-import React, { useMemo, useState, useEffect } from 'react';
+import { File, Globe, Lock, PlusCircle, Puzzle, Settings, ClipboardList, Video, ListChecks, HelpCircle, Image as ImageIcon, BarChart, Sparkles, Send, Archive, FileDiff, CalendarRange } from 'lucide-react';
+import React, { useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { FilesModule } from '@/features/marketplace/components/files-module';
 import { IssuesModule } from '@/features/marketplace/components/issues-module';
@@ -39,6 +39,9 @@ import { PhotosModule } from '@/features/marketplace/components/photos-module';
 import { ReportsModule } from '@/features/marketplace/components/reports-module';
 import { AiAssistantModule } from '@/features/marketplace/components/ai-assistant-module';
 import { SubmittalsModule } from '@/features/marketplace/components/submittals-module';
+import { AssetsModule } from '@/features/marketplace/components/assets-module';
+import { ChangesModule } from '@/features/marketplace/components/changes-module';
+import { ScheduleModule } from '@/features/marketplace/components/schedule-module';
 import { User } from 'firebase/auth';
 import { type Account, type Space, type Module } from '@/lib/types';
 
@@ -52,6 +55,9 @@ const iconMap: { [key: string]: React.ElementType } = {
   'bar-chart': BarChart,
   'sparkles': Sparkles,
   'send': Send,
+  'archive': Archive,
+  'file-diff': FileDiff,
+  'calendar-range': CalendarRange,
   default: Puzzle,
 };
 
@@ -205,6 +211,9 @@ export function SpaceDetailView({
         {hasModule('reports-module') && <ReportsModule />}
         {hasModule('ai-assistant-module') && <AiAssistantModule />}
         {hasModule('submittals-module') && <SubmittalsModule />}
+        {hasModule('assets-module') && <AssetsModule />}
+        {hasModule('changes-module') && <ChangesModule />}
+        {hasModule('schedule-module') && <ScheduleModule />}
       </div>
 
       <Tabs defaultValue="installed">
