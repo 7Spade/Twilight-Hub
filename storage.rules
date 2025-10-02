@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// Firebase Storage Security Rules
+// Allows users to upload files to their own space folders
+// Files are organized by spaceId/userId structure for better organization
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Files organized by spaceId/userId/filename
+    // This allows multiple users to have files in the same space
+    match /spaces/{spaceId}/{userId}/{fileName} {
+      // Allow authenticated users to upload files to spaces they have access to
+      allow write: if request.auth != null 
+        && request.auth.uid == userId
+        && isValidFileType()
+        && isValidFileSize();
+      
+      // Allow space members to read files
+      allow read: if request.auth != null 
+        && (isSpaceMember(spaceId) || isSpaceOwner(spaceId));
+      
+      // Allow space owners to delete files
+      allow delete: if request.auth != null 
+        && (isSpaceOwner(spaceId) || request.auth.uid == userId);
+    }
+    
+    // Helper functions
+    function isValidFileType() {
+      return request.resource.contentType.matches('image/.*') ||
+             request.resource.contentType.matches('application/pdf') ||
+             request.resource.contentType.matches('text/.*') ||
+             request.resource.contentType.matches('application/.*') ||
+             request.resource.contentType.matches('video/.*') ||
+             request.resource.contentType.matches('audio/.*');
+    }
+    
+    function isValidFileSize() {
+      return request.resource.size < 50 * 1024 * 1024; // 50MB limit
+    }
+    
+    function isSpaceMember(spaceId) {
+      // This would need to be implemented based on your space membership logic
+      // For now, we'll allow authenticated users to read files
+      return request.auth != null;
+    }
+    
+    function isSpaceOwner(spaceId) {
+      // This would need to be implemented based on your space ownership logic
+      // For now, we'll allow authenticated users to delete files
+      return request.auth != null;
+    }
+  }
+}

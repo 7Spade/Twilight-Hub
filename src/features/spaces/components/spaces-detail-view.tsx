@@ -15,6 +15,7 @@ import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settin
 import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/features/spaces/components/spaces-star-button';
 import { useToast } from '@/hooks/use-toast';
+import { FileManager } from './spaces-files-view';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
@@ -130,6 +131,7 @@ export function SpaceDetailView({
       <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="files">Files</TabsTrigger>
           {isOwner && <TabsTrigger value="settings">Settings</TabsTrigger>}
         </TabsList>
 
@@ -148,6 +150,13 @@ export function SpaceDetailView({
             </div>
           </div>
         </TabsContent>
+
+        <TabsContent value="files" className="mt-6">
+          {authUser && (
+            <FileManager spaceId={space.id} userId={authUser.uid} />
+          )}
+        </TabsContent>
+
         {isOwner && (
             <TabsContent value="settings" className="mt-6">
                 <SpaceSettingsView 
