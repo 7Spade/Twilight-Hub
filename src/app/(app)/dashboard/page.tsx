@@ -20,6 +20,7 @@ import {
 import { useUser, useFirestore, useCollection } from '@/firebase';
 import { collection, query, where, limit } from 'firebase/firestore';
 import { useMemo } from 'react';
+import { PageContainer } from '@/components/layout/page-container';
 
 export default function Dashboard() {
   const { user, isUserLoading } = useUser();
@@ -55,16 +56,10 @@ export default function Dashboard() {
   const displayName = user.displayName || 'User';
 
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, {displayName}!
-        </h1>
-        <p className="text-muted-foreground">
-          Here&apos;s a quick overview of your hub.
-        </p>
-      </div>
-
+    <PageContainer
+        title={`Welcome back, ${displayName}!`}
+        description="Here's a quick overview of your hub."
+    >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -157,6 +152,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -54,16 +54,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import {
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useSearchParams } from 'next/navigation';
+import { FormInput } from '@/components/forms/form-input';
+import { FormTextarea } from '@/components/forms/form-textarea';
 
 function MemberRow({ userId }: { userId: string }) {
     const firestore = useFirestore();
@@ -203,31 +198,17 @@ function OrganizationSettings({ organization }: { organization: any }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Organization Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your organization's name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+        <FormInput
+            control={form.control}
+            name="name"
+            label="Organization Name"
+            placeholder="Your organization's name"
         />
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Textarea placeholder="A short description of your organization." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+        <FormTextarea
+            control={form.control}
+            name="description"
+            label="Description"
+            placeholder="A short description of your organization."
         />
         <Button type="submit" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}

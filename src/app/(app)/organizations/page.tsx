@@ -20,6 +20,7 @@ import Image from 'next/image';
 import { useDialogStore } from '@/hooks/use-dialog-store';
 import { useMemo } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
+import { PageContainer } from '@/components/layout/page-container';
 
 function OrganizationCard({
   org,
@@ -80,51 +81,48 @@ export default function OrganizationsPage() {
   const { data: organizations, isLoading } = useCollection(organizationsQuery);
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Organizations</h1>
-          <p className="text-muted-foreground">
-            Collaborate with your teams and communities.
-          </p>
-        </div>
-        <Button onClick={() => openDialog('createOrganization')}>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Create Organization
-        </Button>
-      </div>
-
-      {isLoading && <p>Loading organizations...</p>}
-
-      {!isLoading && organizations && organizations.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {organizations.map((org, index) => (
-            <OrganizationCard
-              key={org.id}
-              org={org as { id: string; name: string; description: string; memberIds: string[]; slug: string; }}
-              index={index}
-            />
-          ))}
-        </div>
-      )}
-      {!isLoading && (!organizations || organizations.length === 0) && (
-        <Card className="flex flex-col items-center justify-center py-20 text-center">
-          <CardHeader>
-            <div className="mx-auto bg-muted p-4 rounded-full mb-4">
-              <Users2 className="h-12 w-12 text-muted-foreground" />
-            </div>
-            <CardTitle>No Organizations Found</CardTitle>
-            <CardDescription>
-              Get started by creating a new organization.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+    <PageContainer
+        title="Organizations"
+        description="Collaborate with your teams and communities."
+    >
+        <div className="flex justify-end mb-8">
             <Button onClick={() => openDialog('createOrganization')}>
-              Create Organization
+                <PlusCircle className="mr-2 h-4 w-4" />
+                Create Organization
             </Button>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+        </div>
+
+        {isLoading && <p>Loading organizations...</p>}
+
+        {!isLoading && organizations && organizations.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {organizations.map((org, index) => (
+                <OrganizationCard
+                key={org.id}
+                org={org as { id: string; name: string; description: string; memberIds: string[]; slug: string; }}
+                index={index}
+                />
+            ))}
+            </div>
+        )}
+        {!isLoading && (!organizations || organizations.length === 0) && (
+            <Card className="flex flex-col items-center justify-center py-20 text-center">
+            <CardHeader>
+                <div className="mx-auto bg-muted p-4 rounded-full mb-4">
+                <Users2 className="h-12 w-12 text-muted-foreground" />
+                </div>
+                <CardTitle>No Organizations Found</CardTitle>
+                <CardDescription>
+                Get started by creating a new organization.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Button onClick={() => openDialog('createOrganization')}>
+                Create Organization
+                </Button>
+            </CardContent>
+            </Card>
+        )}
+    </PageContainer>
   );
 }

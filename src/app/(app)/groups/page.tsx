@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Users } from 'lucide-react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
+import { PageContainer } from '@/components/layout/page-container';
 
 function GroupCard({ groupId, organizationId }: { groupId: string; organizationId: string }) {
   const firestore = useFirestore();
@@ -108,14 +109,10 @@ export default function GroupsPage() {
 
 
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Your Groups</h1>
-        <p className="text-muted-foreground">
-          An overview of all groups across your organizations.
-        </p>
-      </div>
-
+    <PageContainer
+        title="Your Groups"
+        description="An overview of all groups across your organizations."
+    >
        {isLoading && <p>Loading your organizations...</p>}
 
        {!isLoading && organizations && organizations.length > 0 ? (
@@ -144,6 +141,6 @@ export default function GroupsPage() {
             </Card>
          )
        )}
-    </div>
+    </PageContainer>
   );
 }

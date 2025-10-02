@@ -33,6 +33,7 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { PageContainer } from '@/components/layout/page-container';
 
 const iconMap: { [key: string]: React.ElementType } = {
   default: Puzzle,
@@ -255,14 +256,10 @@ function BackpackTabContent() {
 
 export default function MarketplacePage() {
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Marketplace</h1>
-        <p className="text-muted-foreground">
-          Discover modules and manage your collection.
-        </p>
-      </div>
-
+    <PageContainer
+        title="Marketplace"
+        description="Discover modules and manage your collection."
+    >
       <Tabs defaultValue="marketplace" className="w-full">
         <TabsList>
           <TabsTrigger value="marketplace">Marketplace</TabsTrigger>
@@ -275,6 +272,6 @@ export default function MarketplacePage() {
            <BackpackTabContent />
         </TabsContent>
       </Tabs>
-    </div>
+    </PageContainer>
   );
 }

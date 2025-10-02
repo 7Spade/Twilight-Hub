@@ -42,23 +42,37 @@ const spaceSettingsSchema = z.object({
 
 type SpaceSettingsFormValues = z.infer<typeof spaceSettingsSchema>;
 
-export default function SpaceSettingsPage({
+export default function OrgSpaceSettingsPage({
   params: paramsPromise,
 }: {
-  params: Promise<{ userslug: string, spaceslug: string }>;
+  params: Promise<{ organizationslug: string, spaceslug: string }>;
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
   const { toast } = useToast();
   const [space, setSpace] = useState<any>(null);
+  const [org, setOrg] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchSpace = async () => {
-        if (!firestore || !params.spaceslug) return;
+ useEffect(() => {
+    const fetchSpaceAndOrg = async () => {
+        if (!firestore || !params.spaceslug || !params.organizationslug) return;
         setIsLoading(true);
+
+        const orgsRef = collection(firestore, 'organizations');
+        const orgQuery = query(orgsRef, where('slug', '==', params.organizationslug), limit(1));
+        const orgSnapshot = await getDocs(orgQuery);
+        let currentOrg = null;
+        if (!orgSnapshot.empty) {
+            currentOrg = { id: orgSnapshot.docs[0].id, ...orgSnapshot.docs[0].data() };
+            setOrg(currentOrg);
+        } else {
+             setIsLoading(false);
+             return;
+        }
+
         const spacesRef = collection(firestore, 'spaces');
-        const q = query(spacesRef, where('slug', '==', params.spaceslug), limit(1));
+        const q = query(spacesRef, where('slug', '==', params.spaceslug), where('ownerId', '==', currentOrg.id), limit(1));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
@@ -69,8 +83,8 @@ export default function SpaceSettingsPage({
         }
         setIsLoading(false);
     }
-    fetchSpace();
-  }, [firestore, params.spaceslug]);
+    fetchSpaceAndOrg();
+  }, [firestore, params.spaceslug, params.organizationslug]);
 
   const spaceDocRef = useMemo(
     () => (firestore && space ? doc(firestore, 'spaces', space.id) : null),
@@ -126,13 +140,19 @@ export default function SpaceSettingsPage({
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/spaces">Spaces</Link>
+              <Link href="/organizations">Organizations</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+           <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href={`/organizations/${params.organizationslug}`}>{isLoading ? '...' : org?.name}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
              <BreadcrumbLink asChild>
-                <Link href={`/${params.userslug}/${params.spaceslug}`}>{isLoading ? '...' : space?.name}</Link>
+                <Link href={`/organizations/${params.organizationslug}/${params.spaceslug}`}>{isLoading ? '...' : space?.name}</Link>
              </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />

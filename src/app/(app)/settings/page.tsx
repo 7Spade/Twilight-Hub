@@ -15,17 +15,14 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  Form
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useFirestore, useUser, useDoc } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { updateProfile } from 'firebase/auth';
+import { PageContainer } from '@/components/layout/page-container';
+import { FormInput } from '@/components/forms/form-input';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -101,14 +98,10 @@ export default function SettingsPage() {
   const isLoading = isAuthLoading || isProfileLoading;
 
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">
-          Manage your account and personal information.
-        </p>
-      </div>
-
+    <PageContainer
+        title="Settings"
+        description="Manage your account and personal information."
+    >
       <Card>
         <CardHeader>
           <CardTitle>Personal Information</CardTitle>
@@ -120,31 +113,17 @@ export default function SettingsPage() {
           ) : (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your full name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <FormInput
+                    control={form.control}
+                    name="name"
+                    label="Full Name"
+                    placeholder="Your full name"
                 />
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Username</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your username" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <FormInput
+                    control={form.control}
+                    name="username"
+                    label="Username"
+                    placeholder="Your username"
                 />
                 <Button type="submit" disabled={form.formState.isSubmitting}>
                   {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
@@ -154,6 +133,6 @@ export default function SettingsPage() {
           )}
         </CardContent>
       </Card>
-    </div>
+    </PageContainer>
   );
 }

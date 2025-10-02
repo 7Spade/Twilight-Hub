@@ -13,6 +13,7 @@ import React, { useEffect, useState } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
+import { PageContainer } from '@/components/layout/page-container';
 
 export default function UserProfilePage({ params: paramsPromise }: { params: Promise<{ userslug: string }> }) {
   const params = React.use(paramsPromise);
@@ -43,29 +44,27 @@ export default function UserProfilePage({ params: paramsPromise }: { params: Pro
 
   if (isLoading) {
     return (
-        <div className="grid gap-6 lg:grid-cols-3">
-            <div className="lg:col-span-3">
-                <Card>
-                    <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
-                        <Skeleton className="h-24 w-24 rounded-full" />
-                        <div className="text-center md:text-left flex-1 space-y-2">
-                             <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
-                             <Skeleton className="h-5 w-32 mx-auto md:mx-0" />
-                             <Skeleton className="h-5 w-48 mx-auto md:mx-0" />
-                             <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-                                <div className="text-center space-y-1">
-                                    <Skeleton className="h-6 w-12 mx-auto"/>
-                                    <Skeleton className="h-4 w-16 mx-auto"/>
-                                </div>
-                                <div className="text-center space-y-1">
-                                    <Skeleton className="h-6 w-12 mx-auto"/>
-                                    <Skeleton className="h-4 w-16 mx-auto"/>
-                                </div>
+        <div className="flex flex-col gap-8">
+            <Card>
+                <CardContent className="p-6 flex flex-col md:flex-row items-center gap-6">
+                    <Skeleton className="h-24 w-24 rounded-full" />
+                    <div className="text-center md:text-left flex-1 space-y-2">
+                         <Skeleton className="h-8 w-48 mx-auto md:mx-0" />
+                         <Skeleton className="h-5 w-32 mx-auto md:mx-0" />
+                         <Skeleton className="h-5 w-48 mx-auto md:mx-0" />
+                         <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+                            <div className="text-center space-y-1">
+                                <Skeleton className="h-6 w-12 mx-auto"/>
+                                <Skeleton className="h-4 w-16 mx-auto"/>
+                            </div>
+                            <div className="text-center space-y-1">
+                                <Skeleton className="h-6 w-12 mx-auto"/>
+                                <Skeleton className="h-4 w-16 mx-auto"/>
                             </div>
                         </div>
-                    </CardContent>
-                </Card>
-            </div>
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     )
   }
@@ -85,7 +84,7 @@ export default function UserProfilePage({ params: paramsPromise }: { params: Pro
   const following = userProfile.followingCount || 0;
 
   return (
-    <div className="flex flex-col gap-8">
+    <PageContainer title={displayName} description={`@${username}`}>
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-3">
             <Card>
@@ -95,8 +94,6 @@ export default function UserProfilePage({ params: paramsPromise }: { params: Pro
                         <AvatarFallback className="text-3xl">{displayName.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div className="text-center md:text-left flex-1">
-                        <h2 className="text-2xl font-bold">{displayName}</h2>
-                        <p className="text-muted-foreground">@{username}</p>
                         <div className="flex items-center gap-2 mt-2 text-muted-foreground justify-center md:justify-start">
                             <Mail className="h-4 w-4" />
                             <span>{email}</span>
@@ -125,6 +122,6 @@ export default function UserProfilePage({ params: paramsPromise }: { params: Pro
             </Card>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -37,6 +37,7 @@ import {
 import { useDialogStore } from '@/hooks/use-dialog-store';
 import { useMemo } from 'react';
 import { type Team } from '../layout';
+import { PageContainer } from '@/components/layout/page-container';
 
 const SpaceCard = ({
   space,
@@ -218,18 +219,15 @@ export default function SpacesPage({ selectedTeam }: { selectedTeam: Team | null
   const isLoading = allSpacesLoading || userOrgsLoading || ownersLoading || orgsOwnerLoading;
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Spaces</h1>
-          <p className="text-muted-foreground">
-            Build and customize your personal or team environments.
-          </p>
-        </div>
-        <Button onClick={() => openDialog('createSpace')}>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Create Space
-        </Button>
+    <PageContainer
+        title="Spaces"
+        description="Build and customize your personal or team environments."
+    >
+      <div className="flex justify-end">
+          <Button onClick={() => openDialog('createSpace')}>
+              <PlusCircle className="mr-2 h-4 w-4" />
+              Create Space
+          </Button>
       </div>
 
       <Tabs defaultValue="yours">
@@ -263,6 +261,6 @@ export default function SpacesPage({ selectedTeam }: { selectedTeam: Team | null
           />
         </TabsContent>
       </Tabs>
-    </div>
+    </PageContainer>
   );
 }
