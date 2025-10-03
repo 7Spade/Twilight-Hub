@@ -136,9 +136,10 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      // TODO: Fetch user role assignment from server
+      // TODO: [P1] FEAT src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配
       // const roleAssignment = await fetchUserRoleAssignment(state.userId);
       // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));
+      // @assignee dev
     } catch (error) {
       setState(prev => ({ 
         ...prev, 

@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:49:23
+> 最後更新時間: 2025/10/03 下午07:51:05
 
 ## 目錄結構
 
@@ -18,9 +18,20 @@
     ├── natural-language-commands.md (17.7 KB, 今天)
     ├── nextjs15_dev-brief.md (12.2 KB, 今天)
     ├── nextjs15_dev-standard.md (35.5 KB, 今天)
-    ├── project-structure.md (16.9 KB, 今天)
+    ├── project-structure.md (16.8 KB, 今天)
 └── memory-bank/
+    ├── archive/
+    ├── creative/
+    ├── reflection/
+    ├── activeContext.md (191 B, 今天)
     ├── memory.json (2 B, 今天)
+    ├── productContext.md (269 B, 今天)
+    ├── progress.md (223 B, 今天)
+    ├── projectbrief.md (240 B, 今天)
+    ├── style-guide.md (289 B, 今天)
+    ├── systemPatterns.md (277 B, 今天)
+    ├── tasks.md (279 B, 今天)
+    ├── techContext.md (237 B, 今天)
 └── scripts/
     ├── generate-tree.ts (7 KB, 今天)
     ├── todo-automation-toolkit.ts (11.6 KB, 今天)
@@ -84,7 +95,7 @@
     │   ├── globals.css (2.4 KB, 昨天)
     ├── components/
     │   ├── auth/
-    │   │   ├── auth-provider.tsx (6.2 KB, 今天)
+    │   │   ├── auth-provider.tsx (6.3 KB, 今天)
     │   │   ├── index.ts (509 B, 今天)
     │   │   ├── permission-guard.tsx (401 B, 今天)
     │   │   ├── role-manager.tsx (16.9 KB, 今天)
@@ -273,7 +284,7 @@
     │   ├── use-app-state.ts (3 KB, 今天)
     │   ├── use-file-operations.ts (5.8 KB, 今天)
     │   ├── use-mobile.tsx (584 B, 今天)
-    │   ├── use-permissions.ts (4.7 KB, 今天)
+    │   ├── use-permissions.ts (4.9 KB, 今天)
     │   ├── use-toast.ts (4.1 KB, 今天)
     ├── lib/
     │   └── services/
@@ -283,7 +294,7 @@
     │       ├── contract.types.ts (3.3 KB, 今天)
     │   └── placeholder-images.json (4.3 KB, 昨天)
     │   └── placeholder-images.ts (1.5 KB, 今天)
-    │   └── role-management.ts (656 B, 今天)
+    │   └── role-management.ts (884 B, 今天)
     │   └── types-unified.ts (6.6 KB, 今天)
     │   └── utils.ts (172 B, 今天)
 └── .editorconfig (873 B, 今天)

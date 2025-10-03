@@ -20,8 +20,9 @@ export function usePermissions() {
     setError(null);
 
     try {
-      // TODO: 實現實際的權限檢查邏輯
+      // TODO: [P1] FEAT src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯
       // 這裡應該調用 Firebase 或 API 來檢查權限
+      // @assignee dev
       
       // 模擬 API 調用
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -124,7 +125,9 @@ export function usePermissions() {
     organizationId: string,
     permission: Permission
   ): Promise<PermissionCheckResult> => {
-    // TODO: 實現組織權限檢查
+    // TODO: [P2] FEAT src/hooks/use-permissions.ts - 實現組織權限檢查
+    // 需要根據組織層級的權限配置進行檢查
+    // @assignee dev
     return checkPermission(permission);
   }, [checkPermission]);
 
