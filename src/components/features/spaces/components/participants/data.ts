@@ -78,21 +78,19 @@ export class ParticipantDataService {
     },
   ];
 
-  // TODO: [P0] FIX Typo/Parsing (L81) [低認知]
-  // - 指引：修正參數型別宣告錯字 `_spaceId:`
-  static async getParticipants(_spaceId: string): Promise<Participant[]> {
+  // 已處理：修正參數命名，保留語義與最小 API
+  static async getParticipants(spaceId: string): Promise<Participant[]> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100));
     return [...this.participants];
   }
 
-  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]
-  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`
+  // 已處理：修正可選參數宣告，維持簡潔
   static async inviteParticipant(
     spaceId: string,
     email: string,
     role: Participant['role'],
-    _message?: string
+    message?: string
   ): Promise<Participant> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));

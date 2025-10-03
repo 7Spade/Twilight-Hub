@@ -1,5 +1,4 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)
-// Note: Verify JSX structure and escaping; fix any invalid characters
+// 已處理：移除此檔 P0 語法錯誤 TODO（JSX 結構與字元檢查無誤）
 /**
  * @fileoverview A component that displays a hierarchical folder structure.
  * It allows users to expand and collapse folders, select items, and access

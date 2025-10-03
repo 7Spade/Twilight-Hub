@@ -1,5 +1,4 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）
-// 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint
+// 已處理：移除此檔 P0 語法錯誤 TODO（語法已正確）
 /**
  * @fileoverview A component that renders a table of files and folders.
  * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量

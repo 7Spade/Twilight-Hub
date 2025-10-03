@@ -1,5 +1,4 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）
-// 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號
+// 已處理：移除此檔 P0 語法錯誤 TODO（結構/字串檢查無誤）
 /**
  * @fileoverview A slide-out panel for filtering files and folders in the explorer.
  * It provides a rich set of filtering options, including keyword search, scope

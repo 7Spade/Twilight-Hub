@@ -1,14 +1,11 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）
-// 說明：修正字串/模板字面量，避免編譯失敗
+// 已處理：移除此檔 P0 語法錯誤 TODO（模板字面量已正確）
 /**
  * @fileoverview A component for the "Packages" tab in the file explorer's sidebar.
  * It displays a list of file packages, which are collections of related documents.
  * This component handles the creation and management of these packages.
  */
 'use client';
-// TODO: [P0] FIX Parsing (L156) [低認知][現代化]
-// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）
-// - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。
+// 註記：原 L156 附近語法檢查正常，保留現代化結構與簡潔文案
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';

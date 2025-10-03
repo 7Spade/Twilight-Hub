@@ -1,9 +1,6 @@
-// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）
-// 說明：補齊引號或修正 JSX 文字，確保通過 Lint
+// 已處理：移除此檔 P0 語法錯誤 TODO（字串/JSX 已正確）
 'use client';
-// TODO: [P0] FIX Parsing (L139) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。
+// 註記：維持低認知文字與簡單 icon 代號
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

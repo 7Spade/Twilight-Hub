@@ -1,9 +1,6 @@
-// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）
-// 說明：修正字串或模板字面量，避免 Lint 解析錯誤
+// 已處理：移除此檔 P0 語法錯誤 TODO（字串皆已閉合）
 'use client';
-// TODO: [P0] FIX Parsing (L109) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。
+// 註記：Icon 文字暫以簡易代號回傳，避免高認知負擔
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
