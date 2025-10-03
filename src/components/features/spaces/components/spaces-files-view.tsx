@@ -5,7 +5,7 @@
  */
 'use client';
 
-import { FileExplorer } from './file-explorer';
+import { FileExplorer } from './file-explorer/file-explorer';
 
 interface FileManagerProps {
   spaceId: string;

@@ -14,6 +14,7 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
     "docs:update": "node scripts/generate-tree.js",
+    "todos:sync": "node scripts/sync-todos.js",
     "prepare": "husky"
   },
   "dependencies": {

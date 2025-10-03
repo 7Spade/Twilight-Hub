@@ -1,11 +1,28 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午03:16:12
+> 最後更新時間: 2025/10/03 下午03:58:31
 
 ## 目錄結構
 
 ```
+└── --version/
+    ├── _/
+    │   └── applypatch-msg
+    │   └── commit-msg
+    │   └── h
+    │   └── husky.sh
+    │   └── post-applypatch
+    │   └── post-commit
+    │   └── post-merge
+    │   └── post-rewrite
+    │   └── pre-applypatch
+    │   └── pre-auto-gc
+    │   └── pre-commit
+    │   └── pre-merge-commit
+    │   └── pre-push
+    │   └── pre-rebase
+    │   └── prepare-commit-msg
 └── src/
     ├── ai/
     │   ├── flows/
@@ -67,31 +84,27 @@
     ├── components/
     │   ├── auth/
     │   │   ├── auth-provider.tsx
-    │   │   ├── index.ts
     │   │   ├── permission-guard.tsx
     │   │   ├── role-manager.tsx
+    │   ├── contracts/
+    │   │   ├── files/
+    │   │   ├── search/
     │   ├── features/
     │   │   ├── organizations/
     │   │   │   ├── components/
-    │   │   │   │   ├── roles/
-    │   │   │   │   │   ├── index.ts
-    │   │   │   │   │   ├── role-list.tsx
-    │   │   │   │   ├── index.ts
-    │   │   │   ├── index.ts
+    │   │   │   │   └── roles/
+    │   │   │   │       └── role-list.tsx
     │   │   ├── spaces/
     │   │   │   ├── actions/
     │   │   │   │   ├── file-actions.ts
-    │   │   │   │   ├── index.ts
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
     │   │   │   │   │   ├── acceptance-item.tsx
     │   │   │   │   │   ├── acceptance-list.tsx
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx
     │   │   │   │   ├── contracts/
     │   │   │   │   │   ├── contract-details.tsx
     │   │   │   │   │   ├── contract-list.tsx
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   ├── file-explorer/
     │   │   │   │   │   ├── detail/
     │   │   │   │   │   │   ├── file-detail-view.tsx
@@ -112,19 +125,16 @@
     │   │   │   │   │   ├── file-table.tsx
     │   │   │   │   │   ├── filter-panel.tsx
     │   │   │   │   │   ├── folder-tree.tsx
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── packages-tab.tsx
     │   │   │   │   │   ├── toolbar.tsx
     │   │   │   │   │   ├── version-history-drawer.tsx
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── issue-details.tsx
     │   │   │   │   │   ├── issue-list.tsx
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-dashboard-data.ts
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── loading-skeleton.tsx
     │   │   │   │   │   ├── overview-dashboard.tsx
     │   │   │   │   │   ├── recent-activity.tsx
@@ -136,7 +146,6 @@
     │   │   │   │   │   ├── advanced-filters.tsx
     │   │   │   │   │   ├── card-grid.tsx
     │   │   │   │   │   ├── data.ts
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── participant-card.tsx
     │   │   │   │   │   ├── participant-filters.tsx
     │   │   │   │   │   ├── participant-list.tsx
@@ -147,15 +156,12 @@
     │   │   │   │   │   ├── virtualized-table.tsx
     │   │   │   │   ├── quality/
     │   │   │   │   │   ├── checklist.tsx
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── quality-dashboard.tsx
     │   │   │   │   ├── report/
-    │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── report-dashboard.tsx
     │   │   │   │   │   ├── report-viewer.tsx
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── index.ts
-    │   │   │   │   ├── index.ts
     │   │   │   │   ├── spaces-detail-view.tsx
     │   │   │   │   ├── spaces-files-view.tsx
     │   │   │   │   ├── spaces-list-view.tsx
@@ -165,12 +171,10 @@
     │   │   │   │   ├── spaces-starred-view.tsx
     │   │   │   │   ├── spaces-visibility-badge.tsx
     │   │   │   ├── hooks/
-    │   │   │   │   ├── index.ts
     │   │   │   │   ├── use-file-actions.ts
     │   │   │   │   ├── use-space-actions.ts
     │   │   │   │   ├── use-star-actions.ts
     │   │   │   │   ├── use-visibility-actions.ts
-    │   │   │   ├── index.ts
     │   │   │   ├── spaces-schemas.ts
     │   │   ├── users/
     │   │   │   └── pages/
@@ -181,7 +185,6 @@
     │   │   ├── form-input.tsx
     │   │   ├── form-switch.tsx
     │   │   ├── form-textarea.tsx
-    │   │   ├── index.ts
     │   ├── ui/
     │   │   ├── accordion.tsx
     │   │   ├── alert.tsx
@@ -224,7 +227,6 @@
     │   ├── activity-overview-chart.tsx
     │   ├── contribution-breakdown-chart.tsx
     │   ├── firebase-error-listener.tsx
-    │   ├── FirebaseErrorListener.tsx
     │   ├── follower-list.tsx
     │   ├── following-list.tsx
     │   ├── form-card-skeleton.tsx
@@ -247,17 +249,19 @@
     │   ├── index.ts
     │   ├── provider.tsx
     ├── hooks/
-    │   ├── index.ts
     │   ├── use-app-state.ts
     │   ├── use-mobile.tsx
     │   ├── use-permissions.ts
     │   ├── use-toast.ts
     ├── lib/
+    │   └── services/
+    │       ├── contracts/
+    │   └── types/
+    │       ├── contracts/
     │   └── placeholder-images.json
     │   └── placeholder-images.ts
     │   └── role-management.ts
     │   └── types-unified.ts
-    │   └── types.ts
     │   └── utils.ts
 └── .eslintrc.json
 └── .prettierignore

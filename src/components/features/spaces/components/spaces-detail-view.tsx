@@ -19,14 +19,14 @@ import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settin
 import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';
 import { FileManager } from './spaces-files-view';
-import { useSpaceActions } from '@/components/features/spaces/hooks';
-import { OverviewDashboard } from './overview';
-import { ParticipantList } from './participants';
-import { IssueList } from './issues';
-import { QualityDashboard } from './quality';
-import { ReportDashboard } from './report';
-import { AcceptanceList } from './acceptance';
-import { ContractList } from './contracts';
+import { useSpaceActions } from '@/components/features/spaces/hooks/use-space-actions';
+import { OverviewDashboard } from './overview/overview-dashboard';
+import { ParticipantList } from './participants/participant-list';
+import { IssueList } from './issues/issue-list';
+import { QualityDashboard } from './quality/quality-dashboard';
+import { ReportDashboard } from './report/report-dashboard';
+import { AcceptanceList } from './acceptance/acceptance-list';
+import { ContractList } from './contracts/contract-list';
 import { PermissionGuard, PermissionTab } from '@/components/auth/permission-guard';
 import { Permission } from '@/lib/types-unified';
 

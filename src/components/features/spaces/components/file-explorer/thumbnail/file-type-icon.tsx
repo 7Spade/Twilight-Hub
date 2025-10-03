@@ -20,8 +20,7 @@ import {
   FileVideo,
   FileAudio,
   FileCode,
-  FileArchive,
-  FilePdf
+  FileArchive
 } from 'lucide-react';
 
 export interface FileTypeIconProps {
@@ -56,7 +55,7 @@ const FILE_TYPE_CONFIG = {
   'audio/m4a': { icon: FileAudio, color: 'text-blue-600', bgColor: 'bg-blue-50' },
   
   // Documents
-  'application/pdf': { icon: FilePdf, color: 'text-red-600', bgColor: 'bg-red-50' },
+  'application/pdf': { icon: FileText, color: 'text-red-600', bgColor: 'bg-red-50' },
   'application/msword': { icon: FileText, color: 'text-blue-600', bgColor: 'bg-blue-50' },
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document': { icon: FileText, color: 'text-blue-600', bgColor: 'bg-blue-50' },
   'application/vnd.ms-excel': { icon: FileSpreadsheet, color: 'text-green-600', bgColor: 'bg-green-50' },

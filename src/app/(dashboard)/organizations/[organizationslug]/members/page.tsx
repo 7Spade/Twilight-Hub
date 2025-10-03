@@ -34,7 +34,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useDialogState } from '@/hooks/use-app-state';
-import { type Account } from '@/lib/types-unified';
+import { type Account, type OrganizationRole } from '@/lib/types-unified';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 function MemberRow({ userId }: { userId: string }) {
@@ -54,7 +54,8 @@ function MemberRow({ userId }: { userId: string }) {
     );
   }
 
-  const role = 'Member';
+  // TODO: 實現動態角色獲取邏輯
+  const role: OrganizationRole = 'organization_member';
 
   return (
     <TableRow key={user.id}>
@@ -71,7 +72,7 @@ function MemberRow({ userId }: { userId: string }) {
         </div>
       </TableCell>
       <TableCell>
-        <Badge variant={role === 'Admin' ? 'default' : 'secondary'}>{role}</Badge>
+        <Badge variant={(role as string) === 'organization_admin' ? 'default' : 'secondary'}>{role}</Badge>
       </TableCell>
       <TableCell className="text-right">
         <DropdownMenu>

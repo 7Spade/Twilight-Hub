@@ -3,7 +3,7 @@
 import { useCollection, useFirestore } from '@/firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 import React, { useEffect, useMemo, useState } from 'react';
-import { RoleList } from '@/components/features/organizations/components/roles';
+import { RoleList } from '@/components/features/organizations/components/roles/role-list';
 import { Skeleton } from '@/components/ui/skeleton';
 import { type Account } from '@/lib/types-unified';
 import { useUser } from '@/firebase';
