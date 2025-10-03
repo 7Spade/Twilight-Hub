@@ -3,6 +3,10 @@
  * It provides functions for uploading, downloading, deleting, and listing files
  * from Firebase Storage. These actions are designed to be called from client-side
  * components and handle the direct interaction with the storage service.
+ * 
+ * [P0] [CRITICAL] [ARCHITECTURE] [TODO] 修復架構違規 - Server Actions 中不應使用 Firebase 客戶端 SDK
+ * 建議: 將 Firebase Storage 操作移至客戶端組件，或使用 Firebase Admin SDK
+ * [P2] [MEDIUM] [ARCHITECTURE] [TODO] 文件命名規範 - 應重命名為 spaces-file-actions.ts 以符合 [feature].actions.ts 規範
  */
 'use server';
 

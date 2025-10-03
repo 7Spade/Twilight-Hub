@@ -1,16 +1,16 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:34:34
+> 最後更新時間: 2025/10/03 下午05:37:40
 
 ## 統計信息
 
-- **總計**: 140 個 TODO
+- **總計**: 151 個 TODO
 - **高優先級**: 0 個
-- **中優先級**: 140 個  
+- **中優先級**: 151 個  
 - **低優先級**: 0 個
 
-## 🟡 中優先級 (140 個)
+## 🟡 中優先級 (151 個)
 
 - [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
@@ -86,6 +86,17 @@
 - [ ] `src/components/features/organizations/components/roles/role-list.tsx:169` - Implement permission update logic
 - [ ] `src/components/features/organizations/components/roles/role-list.tsx:174` - Implement access level update logic
 - [ ] `src/components/features/organizations/components/roles/role-list.tsx:365` - Add member list component
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:6` - `spaces.actions.ts` - 缺少統一的 Server Actions 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:7` - `spaces.client.tsx` - 缺少統一的 Client Components 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:8` - `spaces.queries.ts` - 缺少統一的 React Query hooks 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:9` - `spaces.schema.ts` - 缺少統一的 Zod schemas 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:12` - `actions/file-actions.ts` → `spaces-file-actions.ts` (已添加 TODO)
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:13` - 其他組件文件應按照功能分組重命名
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:16` - 將 Firebase 操作從 Server Actions 移至 Client Components
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:17` - 實施正確的前後端分離策略
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:20` - 修復所有字符串字面量錯誤
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:21` - 修復所有語法錯誤
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:22` - 清理未使用的導入和參數
 - [ ] `src/components/features/spaces/components/acceptance/acceptance-item.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
 - [ ] `src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx:55` - Implement create acceptance API call
 - [ ] `src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx:29` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
@@ -165,7 +176,7 @@
 - [ ] `scripts/sync-todos.js:459` - 內容\`, \`<!-- TODO: 內容 -->\`
 - [ ] `scripts/sync-todos.js:459` - 內容
 
-### Markdown (50 個)
+### Markdown (61 個)
 
 - [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
@@ -217,6 +228,17 @@
 - [ ] `docs/TODO.md:330` - 優化工作流程
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `docs/TODO.md:1` - 管理系統
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:6` - `spaces.actions.ts` - 缺少統一的 Server Actions 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:7` - `spaces.client.tsx` - 缺少統一的 Client Components 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:8` - `spaces.queries.ts` - 缺少統一的 React Query hooks 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:9` - `spaces.schema.ts` - 缺少統一的 Zod schemas 文件
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:12` - `actions/file-actions.ts` → `spaces-file-actions.ts` (已添加 TODO)
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:13` - 其他組件文件應按照功能分組重命名
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:16` - 將 Firebase 操作從 Server Actions 移至 Client Components
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:17` - 實施正確的前後端分離策略
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:20` - 修復所有字符串字面量錯誤
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:21` - 修復所有語法錯誤
+- [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:22` - 清理未使用的導入和參數
 
 ### TypeScript (22 個)
 

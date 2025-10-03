@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:34:33
+> 最後更新時間: 2025/10/03 下午05:37:40
 
 ## 目錄結構
 
@@ -170,6 +170,7 @@
     │   │   │   │   ├── use-space-actions.ts
     │   │   │   │   ├── use-star-actions.ts
     │   │   │   │   ├── use-visibility-actions.ts
+    │   │   │   ├── COMPLIANCE_TODO.md
     │   │   │   ├── index.ts
     │   │   │   ├── spaces-schemas.ts
     │   │   ├── users/
