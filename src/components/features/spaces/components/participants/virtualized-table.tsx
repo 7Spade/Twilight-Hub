@@ -19,7 +19,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { MoreHorizontal, UserCheck, UserX, Crown, Shield, Users, Eye } from 'lucide-react';
 import { VirtualizedTableProps, Participant } from './types';
 
-// 角色?��??��?
+// 角色圖示對應
 const ROLE_ICONS = {
   owner: Crown,
   admin: Shield,
@@ -27,7 +27,7 @@ const ROLE_ICONS = {
   viewer: Eye,
 } as const;
 
-// 角色顏色?��?
+// 角色顏色
 const ROLE_COLORS = {
   owner: 'bg-purple-100 text-purple-800 border-purple-200',
   admin: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -35,7 +35,7 @@ const ROLE_COLORS = {
   viewer: 'bg-gray-100 text-gray-800 border-gray-200',
 } as const;
 
-// ?�?��??��?�?
+// 狀態顏色
 const STATUS_COLORS = {
   active: 'text-green-600',
   inactive: 'text-red-600',
@@ -210,7 +210,7 @@ export function VirtualizedTable({
     switch (action) {
       case 'edit':
         // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框
-        console.log('編輯?�員:', participantId);
+        console.log('編輯成員:', participantId);
         break;
       case 'role':
         // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框
@@ -262,7 +262,7 @@ export function VirtualizedTable({
             />
           </div>
           
-          <div className="flex-1 text-sm font-medium text-muted-foreground">成員 ({participants.length})</div>
+          <div className="flex-1 text-sm font-medium text-muted-foreground">參與者 ({participants.length})</div>
           
           <div className="text-sm font-medium text-muted-foreground mr-4">
             角色
@@ -334,7 +334,7 @@ export function VirtualizedTable({
               variant="destructive"
               size="sm"
               onClick={() => {
-                if (confirm(`確�?要移?�選中�? ${selectedParticipants.length} ?��??��?？`)) {
+                if (confirm(`確定要移除選中的 ${selectedParticipants.length} 位嗎？`)) {
                   actions.onBulkRemove(selectedParticipants);
                   setSelectedParticipants([]);
                 }
