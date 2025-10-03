@@ -78,7 +78,7 @@ export class ParticipantDataService {
     },
   ];
 
-  static async getParticipants(spaceId: string): Promise<Participant[]> { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */
+  static async getParticipants(spaceId: string): Promise<Participant[]> { /* TODO: [P3] REFACTOR src/components/features/spaces/components/participants/data.ts - 清理未使用的參數 */
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100));
     return [...this.participants];
@@ -88,7 +88,7 @@ export class ParticipantDataService {
     spaceId: string,
     email: string,
     role: Participant['role'],
-    message?: string /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用 */
+    message?: string /* TODO: [P3] REFACTOR src/components/features/spaces/components/participants/data.ts - 清理未使用的參數 */
   ): Promise<Participant> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));

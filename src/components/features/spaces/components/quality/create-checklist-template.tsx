@@ -30,7 +30,9 @@ interface CreateChecklistTemplateProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onTemplateCreated?: (template: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型
+  // 說明：以具名型別替代 unknown，為 template 建立明確型別介面
+  onTemplateCreated?: (template: unknown) => void;
 }
 
 export function CreateChecklistTemplate({

@@ -47,6 +47,20 @@ import {
 import { useAuth } from './auth-provider';
 import { roleManagementService } from '@/lib/role-management';
 import { Permission, UserRoleAssignment } from '@/lib/types-unified';
+import { 
+  getFirestore, 
+  collection, 
+  doc, 
+  getDocs, 
+  addDoc, 
+  updateDoc, 
+  deleteDoc, 
+  query, 
+  where, 
+  orderBy,
+  serverTimestamp 
+} from 'firebase/firestore';
+import { initializeFirebase } from '@/firebase';
 
 interface Role {
   id: string;
@@ -71,7 +85,7 @@ interface RoleManagerProps {
 }
 
 export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
-  const { hasPermission } = useAuth();
+  const { hasPermission, userId } = useAuth();
   const [roles, setRoles] = useState<Role[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
@@ -80,10 +94,14 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Initialize Firestore
+  const db = getFirestore(initializeFirebase().firebaseApp);
 
   // Check permissions
-  const canManageRoles = hasPermission({ id: 'manage_roles', name: 'Manage Roles' }, spaceId);
-  const canAssignRoles = hasPermission({ id: 'assign_roles', name: 'Assign Roles' }, spaceId);
+  const canManageRoles = hasPermission('space:manage', spaceId);
+  const canAssignRoles = hasPermission('space:manage', spaceId);
 
   // Load roles and users
   useEffect(() => {
@@ -93,44 +111,33 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const loadRoles = async () => {
     setLoading(true);
+    setError(null);
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // const rolesData = await fetchRoles(spaceId);
-      // setRoles(rolesData);
-      // @assignee dev
+      // Fetch roles from Firestore
+      const rolesQuery = query(
+        collection(db, 'spaces', spaceId, 'roles'),
+        orderBy('createdAt', 'desc')
+      );
+      const rolesSnapshot = await getDocs(rolesQuery);
       
-      // Mock data for now
-      setRoles([
-        {
-          id: 'admin',
-          name: 'Administrator',
-          description: 'Full access to all features',
-          permissions: [
-            { id: 'manage_roles', name: 'Manage Roles' },
-            { id: 'assign_roles', name: 'Assign Roles' },
-            { id: 'manage_users', name: 'Manage Users' },
-            { id: 'manage_content', name: 'Manage Content' }
-          ],
-          isSystem: true,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
-        },
-        {
-          id: 'moderator',
-          name: 'Moderator',
-          description: 'Can moderate content and manage users',
-          permissions: [
-            { id: 'assign_roles', name: 'Assign Roles' },
-            { id: 'manage_users', name: 'Manage Users' },
-            { id: 'manage_content', name: 'Manage Content' }
-          ],
-          isSystem: false,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
-        }
-      ]);
+      const rolesData: Role[] = [];
+      rolesSnapshot.forEach((doc) => {
+        const data = doc.data();
+        rolesData.push({
+          id: doc.id,
+          name: data.name,
+          description: data.description,
+          permissions: data.permissions || [],
+          isSystem: data.isSystem || false,
+          createdAt: data.createdAt?.toDate()?.toISOString() || new Date().toISOString(),
+          updatedAt: data.updatedAt?.toDate()?.toISOString() || new Date().toISOString(),
+        });
+      });
+      
+      setRoles(rolesData);
     } catch (error) {
       console.error('Failed to load roles:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load roles');
     } finally {
       setLoading(false);
     }
@@ -138,84 +145,132 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const loadUsers = async () => {
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // const usersData = await fetchUsers(spaceId);
-      // setUsers(usersData);
-      // @assignee dev
+      // Fetch users from Firestore
+      const usersQuery = query(
+        collection(db, 'users'),
+        orderBy('name', 'asc')
+      );
+      const usersSnapshot = await getDocs(usersQuery);
       
-      // Mock data for now
-      setUsers([
-        {
-          id: 'user1',
-          name: 'John Doe',
-          email: 'john@example.com',
-          currentRoles: ['admin']
-        },
-        {
-          id: 'user2',
-          name: 'Jane Smith',
-          email: 'jane@example.com',
-          currentRoles: ['moderator']
-        }
-      ]);
+      const usersData: User[] = [];
+      for (const userDoc of usersSnapshot.docs) {
+        const userData = userDoc.data();
+        
+        // Get user's roles in this space
+        const userRolesQuery = query(
+          collection(db, 'userSpaceRoles'),
+          where('userId', '==', userDoc.id),
+          where('spaceId', '==', spaceId)
+        );
+        const userRolesSnapshot = await getDocs(userRolesQuery);
+        const currentRoles = userRolesSnapshot.docs.map(doc => doc.data().roleId);
+        
+        usersData.push({
+          id: userDoc.id,
+          name: userData.displayName || userData.name || 'Unknown User',
+          email: userData.email || '',
+          currentRoles,
+        });
+      }
+      
+      setUsers(usersData);
     } catch (error) {
       console.error('Failed to load users:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load users');
     }
   };
 
   const handleCreateRole = async (roleData: Omit<Role, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // const newRole = await createRole(spaceId, roleData);
-      // setRoles(prev => [...prev, newRole]);
-      // @assignee dev
+      setError(null);
       
-      console.log('Creating role:', roleData);
+      // Create role in Firestore
+      const roleRef = await addDoc(collection(db, 'spaces', spaceId, 'roles'), {
+        name: roleData.name,
+        description: roleData.description,
+        permissions: roleData.permissions,
+        isSystem: roleData.isSystem,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+      
+      // Add to local state
+      const newRole: Role = {
+        ...roleData,
+        id: roleRef.id,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      
+      setRoles(prev => [newRole, ...prev]);
       setIsCreateDialogOpen(false);
     } catch (error) {
       console.error('Failed to create role:', error);
+      setError(error instanceof Error ? error.message : 'Failed to create role');
     }
   };
 
   const handleUpdateRole = async (roleId: string, roleData: Partial<Role>) => {
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // const updatedRole = await updateRole(spaceId, roleId, roleData);
-      // setRoles(prev => prev.map(role => role.id === roleId ? updatedRole : role));
-      // @assignee dev
+      setError(null);
       
-      console.log('Updating role:', roleId, roleData);
+      // Update role in Firestore
+      const roleRef = doc(db, 'spaces', spaceId, 'roles', roleId);
+      await updateDoc(roleRef, {
+        ...roleData,
+        updatedAt: serverTimestamp(),
+      });
+      
+      // Update local state
+      setRoles(prev => prev.map(role => 
+        role.id === roleId 
+          ? { ...role, ...roleData, updatedAt: new Date().toISOString() }
+          : role
+      ));
+      
       setIsEditDialogOpen(false);
       setSelectedRole(null);
     } catch (error) {
       console.error('Failed to update role:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update role');
     }
   };
 
   const handleDeleteRole = async (roleId: string) => {
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // await deleteRole(spaceId, roleId);
-      // setRoles(prev => prev.filter(role => role.id !== roleId));
-      // @assignee dev
+      setError(null);
       
-      console.log('Deleting role:', roleId);
+      // Delete role from Firestore
+      const roleRef = doc(db, 'spaces', spaceId, 'roles', roleId);
+      await deleteDoc(roleRef);
+      
+      // Remove from local state
+      setRoles(prev => prev.filter(role => role.id !== roleId));
     } catch (error) {
       console.error('Failed to delete role:', error);
+      setError(error instanceof Error ? error.message : 'Failed to delete role');
     }
   };
 
   const handleAssignRole = async (userId: string, roleId: string) => {
     try {
-      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
-      // await assignRole(spaceId, userId, roleId);
-      // loadUsers(); // Reload users to reflect changes
-      // @assignee dev
+      setError(null);
       
-      console.log('Assigning role:', userId, roleId);
+      // Assign role in Firestore
+      await addDoc(collection(db, 'userSpaceRoles'), {
+        userId,
+        spaceId,
+        roleId,
+        assignedAt: serverTimestamp(),
+        assignedBy: userId || 'system',
+      });
+      
+      // Reload users to reflect changes
+      await loadUsers();
       setIsAssignDialogOpen(false);
     } catch (error) {
       console.error('Failed to assign role:', error);
+      setError(error instanceof Error ? error.message : 'Failed to assign role');
     }
   };
 
@@ -242,6 +297,13 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   return (
     <div className="space-y-6">
+      {/* Error Display */}
+      {error && (
+        <div className="bg-destructive/15 text-destructive px-4 py-3 rounded-md">
+          {error}
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -253,7 +315,7 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
         <div className="flex gap-2">
           <Button
             onClick={() => setIsCreateDialogOpen(true)}
-            disabled={!canManageRoles}
+            disabled={!canManageRoles || loading}
           >
             <Plus className="h-4 w-4 mr-2" />
             Create Role
@@ -261,7 +323,7 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
           <Button
             variant="outline"
             onClick={() => setIsAssignDialogOpen(true)}
-            disabled={!canAssignRoles}
+            disabled={!canAssignRoles || loading}
           >
             <Users className="h-4 w-4 mr-2" />
             Assign Roles
@@ -286,26 +348,31 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
           <CardTitle>Roles</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Permissions</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredRoles.map((role) => (
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Permissions</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredRoles.map((role) => (
                 <TableRow key={role.id}>
                   <TableCell className="font-medium">{role.name}</TableCell>
                   <TableCell>{role.description}</TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
                       {role.permissions.slice(0, 3).map((permission) => (
-                        <Badge key={permission.id} variant="secondary">
-                          {permission.name}
+                        <Badge key={permission} variant="secondary">
+                          {permission}
                         </Badge>
                       ))}
                       {role.permissions.length > 3 && (
@@ -344,9 +411,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
                     </div>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
 

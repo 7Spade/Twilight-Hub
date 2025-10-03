@@ -12,17 +12,37 @@ import {
   UserRoleAssignment, 
   PermissionCheckResult,
   OrganizationRole,
-  SpaceRole 
+  SpaceRole,
+  OrganizationRoleAssignment,
+  SpaceRoleAssignment
 } from '@/lib/types-unified';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used */
 import { roleManagementService } from '@/lib/role-management';
+import { 
+  onAuthStateChanged, 
+  User as FirebaseUser,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut
+} from 'firebase/auth';
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  collection, 
+  query, 
+  where, 
+  getDocs,
+  Timestamp 
+} from 'firebase/firestore';
+import { initializeFirebase } from '@/firebase';
 
 // Authentication state interface
 interface AuthState {
   userId: string | null;
+  user: FirebaseUser | null;
   userRoleAssignment: UserRoleAssignment | null;
   isLoading: boolean;
   error: string | null;
+  isAuthenticated: boolean;
 }
 
 // Authentication actions interface
@@ -32,6 +52,8 @@ interface AuthActions {
   checkPermission: (permission: Permission, spaceId: string) => Promise<PermissionCheckResult>;
   hasPermission: (permission: Permission, spaceId: string) => boolean;
   refreshPermissions: () => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 // Complete authentication context
@@ -49,10 +71,16 @@ export interface AuthProviderProps {
 export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   const [state, setState] = useState<AuthState>({
     userId: initialUserId || null,
+    user: null,
     userRoleAssignment: null,
-    isLoading: false,
+    isLoading: true,
     error: null,
+    isAuthenticated: false,
   });
+
+  // Initialize Firebase services
+  const { auth, firestore } = initializeFirebase();
+  const db = firestore;
 
   // Set user
   const setUser = (userId: string, roleAssignment: UserRoleAssignment) => {
@@ -60,6 +88,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       ...prev,
       userId,
       userRoleAssignment: roleAssignment,
+      isAuthenticated: true,
       error: null,
     }));
   };
@@ -69,7 +98,9 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     setState(prev => ({
       ...prev,
       userId: null,
+      user: null,
       userRoleAssignment: null,
+      isAuthenticated: false,
       error: null,
     }));
   };
@@ -109,24 +140,103 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       return false;
     }
 
-    // Simplified synchronous permission check
-    const spaceRole = state.userRoleAssignment.spaceRoles[spaceId];
-    if (spaceRole) {
-      const roleDef = roleManagementService.getRoleDefinition(spaceRole.roleId);
-      if (roleDef && roleDef.permissions.includes(permission)) {
-        return true;
-      }
-    }
+    return state.userRoleAssignment.effectivePermissions.includes(permission);
+  };
 
-    // Check organization roles
-    for (const orgRole of state.userRoleAssignment.organizationRoles) {
-      const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
-      if (roleDef && roleDef.permissions.includes(permission)) {
-        return true;
+  // Fetch user role assignment from Firestore
+  const fetchUserRoleAssignment = async (userId: string): Promise<UserRoleAssignment> => {
+    try {
+      // Get user document
+      const userDocRef = doc(db, 'users', userId);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (!userDoc.exists()) {
+        // Gracefully handle missing user document by returning empty assignments
+        return {
+          userId,
+          spaceRoles: {},
+          organizationRoles: [],
+          effectivePermissions: [],
+        } as UserRoleAssignment;
       }
-    }
 
-    return false;
+      const userData = userDoc.data();
+      
+      // Get space roles
+      const spaceRolesQuery = query(
+        collection(db, 'userSpaceRoles'),
+        where('userId', '==', userId)
+      );
+      const spaceRolesSnapshot = await getDocs(spaceRolesQuery);
+      const spaceRoles: Record<string, SpaceRoleAssignment> = {};
+      
+      spaceRolesSnapshot.forEach(d => {
+        const data = d.data() as any;
+        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
+          ? data.assignedAt as Timestamp
+          : Timestamp.fromDate(new Date());
+        spaceRoles[data.spaceId] = {
+          roleId: data.roleId as SpaceRole,
+          assignedAt: ts,
+          assignedBy: (data.assignedBy || '') as string,
+          expiresAt: undefined,
+          inheritedFrom: undefined,
+        };
+      });
+
+      // Get organization roles
+      const orgRolesQuery = query(
+        collection(db, 'userOrganizationRoles'),
+        where('userId', '==', userId)
+      );
+      const orgRolesSnapshot = await getDocs(orgRolesQuery);
+      const organizationRoles: OrganizationRoleAssignment[] = [];
+      
+      orgRolesSnapshot.forEach(d => {
+        const data = d.data() as any;
+        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
+          ? data.assignedAt as Timestamp
+          : Timestamp.fromDate(new Date());
+        organizationRoles.push({
+          roleId: data.roleId as OrganizationRole,
+          assignedAt: ts,
+          assignedBy: (data.assignedBy || '') as string,
+          expiresAt: undefined,
+        });
+      });
+
+      // Compute effective permissions from roles
+      const effectivePermissions: Permission[] = [];
+      // Aggregate space roles' permissions
+      for (const key of Object.keys(spaceRoles)) {
+        const spaceRole = spaceRoles[key];
+        const roleDef = await roleManagementService.getRoleDefinition(spaceRole.roleId);
+        if (roleDef) {
+          for (const p of roleDef.permissions) {
+            if (!effectivePermissions.includes(p)) effectivePermissions.push(p);
+          }
+        }
+      }
+      // Aggregate organization roles' permissions
+      for (const org of organizationRoles) {
+        const roleDef = await roleManagementService.getRoleDefinition(org.roleId);
+        if (roleDef) {
+          for (const p of roleDef.permissions) {
+            if (!effectivePermissions.includes(p)) effectivePermissions.push(p);
+          }
+        }
+      }
+
+      return {
+        userId,
+        spaceRoles,
+        organizationRoles,
+        effectivePermissions,
+      } as UserRoleAssignment;
+    } catch (error) {
+      console.error('Failed to fetch user role assignment:', error);
+      throw error;
+    }
   };
 
   // Refresh permissions
@@ -136,10 +246,8 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      // TODO: [P1] FEAT src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配
-      // const roleAssignment = await fetchUserRoleAssignment(state.userId);
-      // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));
-      // @assignee dev
+      const roleAssignment = await fetchUserRoleAssignment(state.userId);
+      setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));
     } catch (error) {
       setState(prev => ({ 
         ...prev, 
@@ -150,6 +258,80 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     }
   };
 
+  // Sign in with email and password
+  const signIn = async (email: string, password: string) => {
+    setState(prev => ({ ...prev, isLoading: true, error: null }));
+    
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      // Fetch user role assignment
+      const roleAssignment = await fetchUserRoleAssignment(user.uid);
+      
+      setState(prev => ({
+        ...prev,
+        userId: user.uid,
+        user,
+        userRoleAssignment: roleAssignment,
+        isAuthenticated: true,
+        isLoading: false,
+      }));
+    } catch (error) {
+      setState(prev => ({
+        ...prev,
+        error: error instanceof Error ? error.message : 'Sign in failed',
+        isLoading: false,
+      }));
+      throw error;
+    }
+  };
+
+  // Sign out
+  const signOut = async () => {
+    try {
+      await firebaseSignOut(auth);
+      clearUser();
+    } catch (error) {
+      setState(prev => ({
+        ...prev,
+        error: error instanceof Error ? error.message : 'Sign out failed',
+      }));
+      throw error;
+    }
+  };
+
+  // Listen to auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const roleAssignment = await fetchUserRoleAssignment(user.uid);
+          setState(prev => ({
+            ...prev,
+            userId: user.uid,
+            user,
+            userRoleAssignment: roleAssignment,
+            isAuthenticated: true,
+            isLoading: false,
+            error: null,
+          }));
+        } catch (error) {
+          setState(prev => ({
+            ...prev,
+            error: error instanceof Error ? error.message : 'Failed to load user data',
+            isLoading: false,
+          }));
+        }
+      } else {
+        clearUser();
+        setState(prev => ({ ...prev, isLoading: false }));
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
+
   const value: AuthContext = {
     ...state,
     setUser,
@@ -157,6 +339,8 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     checkPermission,
     hasPermission,
     refreshPermissions,
+    signIn,
+    signOut,
   };
 
   return (

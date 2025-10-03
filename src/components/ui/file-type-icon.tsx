@@ -17,7 +17,7 @@ import {
   FileSpreadsheet,
   Presentation,
   FileImage,
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用 */
+  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）
   FileVideo,
   FileAudio,
   FileCode,
@@ -194,7 +194,7 @@ export function FileTypeIcon({
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-gray-600"></div>
             </div>
           )}
-          {/* TODO: [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤 */}
+          {/* TODO: [P2] FIX src/components/ui/file-type-icon.tsx - 修復 Next.js 圖片警告（改用 next/image） */}
           <img
             src={thumbnailUrl}
             alt={fileName}

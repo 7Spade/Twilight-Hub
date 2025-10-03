@@ -26,7 +26,9 @@ interface InitiateAcceptanceFlowProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onAcceptanceCreated?: (acceptance: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 修正 unknown/any 類型
+  // 說明：以具名型別替代 unknown，為 acceptance 建立明確型別介面
+  onAcceptanceCreated?: (acceptance: unknown) => void;
 }
 
 export function InitiateAcceptanceFlow({
@@ -52,7 +54,7 @@ export function InitiateAcceptanceFlow({
   const onSubmit = async (data: InitiateAcceptanceFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: [P2] FEAT src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實現創建驗收 API 調用
+      // TODO: [P2] FEAT src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實作創建驗收 API 呼叫
       console.log('Creating acceptance item:', { spaceId, ...data });
       // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call

@@ -9,7 +9,7 @@
 import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { collection, doc, query, where, documentId } from 'firebase/firestore';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用 */
+// TODO: [P2] REFACTOR src/components/follower-list.tsx - 清理未使用的導入（doc 未使用）
 
 import { useFirestore, useCollection } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

@@ -33,7 +33,9 @@ interface CreateContractDialogProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onContractCreated?: (contract: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 修正 unknown/any 類型
+  // 說明：以具名型別替代 unknown，為 contract 建立明確型別介面
+  onContractCreated?: (contract: unknown) => void;
 }
 
 export function CreateContractDialog({
@@ -66,7 +68,7 @@ export function CreateContractDialog({
   const onSubmit = async (data: CreateContractFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實現創建合約 API 調用
+      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫
       console.log('Creating contract:', { spaceId, ...data });
       // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call

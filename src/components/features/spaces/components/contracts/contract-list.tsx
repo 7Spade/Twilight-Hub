@@ -1,6 +1,6 @@
 'use client';
 
-/* TODO: [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符 */
+// TODO: [P2] FIX src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用 */
+// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）
 import { CreateContractDialog } from './create-contract-dialog';
 import { ContractDetails } from './contract-details';
 import { useState } from 'react';

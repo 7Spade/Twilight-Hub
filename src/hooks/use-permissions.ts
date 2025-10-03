@@ -1,13 +1,25 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { Permission, PermissionCheckResult } from '@/lib/types-unified';
+import { useState, useCallback, useMemo } from 'react';
+import { Permission, PermissionCheckResult, UserRoleAssignment } from '@/lib/types-unified';
+import { useAuth } from '@/components/auth/auth-provider';
+import { roleManagementService } from '@/lib/role-management';
 
 /**
  * 權限檢查 Hook
  * 提供用戶權限檢查功能
+ * 整合 Firebase 認證和角色管理系統
  */
 export function usePermissions() {
+  const { 
+    userId, 
+    userRoleAssignment, 
+    isLoading: authLoading, 
+    error: authError,
+    checkPermission: authCheckPermission,
+    hasPermission: authHasPermission
+  } = useAuth();
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,20 +32,33 @@ export function usePermissions() {
     setError(null);
 
     try {
-      // TODO: [P1] FEAT src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯
-      // 這裡應該調用 Firebase 或 API 來檢查權限
-      // @assignee dev
-      
-      // 模擬 API 調用
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // 暫時返回默認結果
-      return {
-        hasPermission: false,
-        reason: 'not_implemented',
-        source: spaceId ? 'space' : 'organization',
-        roleId: undefined,
-      };
+      // 如果沒有用戶 ID，返回未認證
+      if (!userId) {
+        return {
+          hasPermission: false,
+          reason: 'not_authenticated',
+          source: spaceId ? 'space' : 'organization',
+          roleId: undefined,
+        };
+      }
+
+      // 如果沒有角色分配，返回未分配
+      if (!userRoleAssignment) {
+        return {
+          hasPermission: false,
+          reason: 'not_assigned',
+          source: spaceId ? 'space' : 'organization',
+          roleId: undefined,
+        };
+      }
+
+      // 使用 auth provider 的權限檢查
+      if (spaceId) {
+        return await authCheckPermission(permission, spaceId);
+      }
+
+      // 組織層級權限檢查
+      return await checkOrganizationPermissionInternal(permission, userRoleAssignment);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : '權限檢查失敗';
       setError(errorMessage);
@@ -46,6 +71,42 @@ export function usePermissions() {
       };
     } finally {
       setLoading(false);
+    }
+  }, [userId, userRoleAssignment, authCheckPermission]);
+
+  // 內部組織權限檢查函數
+  const checkOrganizationPermissionInternal = useCallback(async (
+    permission: Permission,
+    roleAssignment: UserRoleAssignment
+  ): Promise<PermissionCheckResult> => {
+    try {
+      // 檢查組織角色
+      for (const orgRole of roleAssignment.organizationRoles) {
+        const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
+        if (roleDef && roleDef.permissions.includes(permission)) {
+          return {
+            hasPermission: true,
+            reason: 'granted',
+            source: 'organization',
+            roleId: orgRole.roleId,
+          };
+        }
+      }
+
+      return {
+        hasPermission: false,
+        reason: 'denied',
+        source: 'organization',
+        roleId: undefined,
+      };
+    } catch (error) {
+      console.error('Organization permission check failed:', error);
+      return {
+        hasPermission: false,
+        reason: 'error',
+        source: 'organization',
+        roleId: undefined,
+      };
     }
   }, []);
 
@@ -65,52 +126,65 @@ export function usePermissions() {
   // 檢查用戶是否有特定權限（同步版本）
   const hasPermission = useCallback((
     permission: Permission,
-    userPermissions?: Permission[]
+    spaceId?: string
   ): boolean => {
-    if (!userPermissions) {
+    if (!userId || !userRoleAssignment) {
       return false;
     }
-    
-    return userPermissions.includes(permission);
-  }, []);
+
+    // 使用 auth provider 的同步權限檢查
+    if (spaceId) {
+      return authHasPermission(permission, spaceId);
+    }
+
+    // 組織層級同步權限檢查
+    for (const orgRole of userRoleAssignment.organizationRoles) {
+      const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
+      if (roleDef && roleDef.permissions.includes(permission)) {
+        return true;
+      }
+    }
+
+    return false;
+  }, [userId, userRoleAssignment, authHasPermission]);
 
   // 檢查用戶是否有任一權限
   const hasAnyPermission = useCallback((
     permissions: Permission[],
-    userPermissions?: Permission[]
+    spaceId?: string
   ): boolean => {
-    if (!userPermissions) {
+    if (!userId || !userRoleAssignment) {
       return false;
     }
     
-    return permissions.some(permission => userPermissions.includes(permission));
-  }, []);
+    return permissions.some(permission => hasPermission(permission, spaceId));
+  }, [userId, userRoleAssignment, hasPermission]);
 
   // 檢查用戶是否有所有權限
   const hasAllPermissions = useCallback((
     permissions: Permission[],
-    userPermissions?: Permission[]
+    spaceId?: string
   ): boolean => {
-    if (!userPermissions) {
+    if (!userId || !userRoleAssignment) {
       return false;
     }
     
-    return permissions.every(permission => userPermissions.includes(permission));
-  }, []);
+    return permissions.every(permission => hasPermission(permission, spaceId));
+  }, [userId, userRoleAssignment, hasPermission]);
 
   // 獲取用戶缺少的權限
   const getMissingPermissions = useCallback((
     requiredPermissions: Permission[],
-    userPermissions?: Permission[]
+    spaceId?: string
   ): Permission[] => {
-    if (!userPermissions) {
+    if (!userId || !userRoleAssignment) {
       return requiredPermissions;
     }
     
     return requiredPermissions.filter(
-      permission => !userPermissions.includes(permission)
+      permission => !hasPermission(permission, spaceId)
     );
-  }, []);
+  }, [userId, userRoleAssignment, hasPermission]);
 
   // 檢查空間權限
   const checkSpacePermission = useCallback(async (
@@ -125,11 +199,31 @@ export function usePermissions() {
     organizationId: string,
     permission: Permission
   ): Promise<PermissionCheckResult> => {
-    // TODO: [P2] FEAT src/hooks/use-permissions.ts - 實現組織權限檢查
-    // 需要根據組織層級的權限配置進行檢查
-    // @assignee dev
-    return checkPermission(permission);
-  }, [checkPermission]);
+    if (!userId || !userRoleAssignment) {
+      return {
+        hasPermission: false,
+        reason: 'not_authenticated',
+        source: 'organization',
+        roleId: undefined,
+      };
+    }
+
+    // 檢查用戶是否在指定組織中有角色
+    const orgRole = userRoleAssignment.organizationRoles.find(
+      role => role.organizationId === organizationId
+    );
+
+    if (!orgRole) {
+      return {
+        hasPermission: false,
+        reason: 'not_assigned',
+        source: 'organization',
+        roleId: undefined,
+      };
+    }
+
+    return await checkOrganizationPermissionInternal(permission, userRoleAssignment);
+  }, [userId, userRoleAssignment, checkOrganizationPermissionInternal]);
 
   // 批量檢查空間權限
   const checkSpacePermissions = useCallback(async (
@@ -150,10 +244,80 @@ export function usePermissions() {
     setError(null);
   }, []);
 
+  // 獲取用戶當前權限列表（用於 UI 顯示）
+  const getUserPermissions = useCallback((spaceId?: string): Permission[] => {
+    if (!userId || !userRoleAssignment) {
+      return [];
+    }
+
+    const permissions: Permission[] = [];
+
+    if (spaceId) {
+      // 空間權限
+      const spaceRole = userRoleAssignment.spaceRoles[spaceId];
+      if (spaceRole) {
+        const roleDef = roleManagementService.getRoleDefinition(spaceRole.roleId);
+        if (roleDef) {
+          permissions.push(...roleDef.permissions);
+        }
+      }
+    } else {
+      // 組織權限
+      for (const orgRole of userRoleAssignment.organizationRoles) {
+        const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
+        if (roleDef) {
+          permissions.push(...roleDef.permissions);
+        }
+      }
+    }
+
+    return [...new Set(permissions)]; // 去重
+  }, [userId, userRoleAssignment]);
+
+  // 檢查用戶是否為管理員
+  const isAdmin = useCallback((spaceId?: string): boolean => {
+    return hasPermission({ id: 'admin', name: 'Administrator' }, spaceId);
+  }, [hasPermission]);
+
+  // 檢查用戶是否為空間管理員
+  const isSpaceAdmin = useCallback((spaceId: string): boolean => {
+    return hasPermission({ id: 'space_admin', name: 'Space Administrator' }, spaceId);
+  }, [hasPermission]);
+
+  // 檢查用戶是否為組織管理員
+  const isOrganizationAdmin = useCallback((organizationId: string): boolean => {
+    return hasPermission({ id: 'org_admin', name: 'Organization Administrator' }, undefined);
+  }, [hasPermission]);
+
+  // 權限狀態摘要
+  const permissionSummary = useMemo(() => {
+    if (!userId || !userRoleAssignment) {
+      return {
+        isAuthenticated: false,
+        hasRoles: false,
+        spaceRoles: 0,
+        organizationRoles: 0,
+        totalPermissions: 0,
+      };
+    }
+
+    const spaceRoles = Object.keys(userRoleAssignment.spaceRoles).length;
+    const organizationRoles = userRoleAssignment.organizationRoles.length;
+    const allPermissions = getUserPermissions();
+
+    return {
+      isAuthenticated: true,
+      hasRoles: spaceRoles > 0 || organizationRoles > 0,
+      spaceRoles,
+      organizationRoles,
+      totalPermissions: allPermissions.length,
+    };
+  }, [userId, userRoleAssignment, getUserPermissions]);
+
   return {
     // 狀態
-    loading,
-    error,
+    loading: loading || authLoading,
+    error: error || authError,
     
     // 權限檢查方法
     checkPermission,
@@ -169,6 +333,13 @@ export function usePermissions() {
     
     // 組織權限檢查
     checkOrganizationPermission,
+    
+    // 用戶權限信息
+    getUserPermissions,
+    isAdmin,
+    isSpaceAdmin,
+    isOrganizationAdmin,
+    permissionSummary,
     
     // 工具方法
     clearError,

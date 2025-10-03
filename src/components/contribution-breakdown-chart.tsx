@@ -8,7 +8,7 @@
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用 */
+// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx - 清理未使用的導入（Card* 未使用）
 
 interface ContributionData {
     subject: string;

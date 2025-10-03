@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */
+// TODO: [P2] REFACTOR src/components/features/spaces/components/quality/checklist.tsx - 清理未使用的導入（Button 未使用）
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';

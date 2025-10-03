@@ -242,7 +242,9 @@ export interface AppState {
   };
   dialog: {
     type: string | null;
-    data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+    // TODO: [P2] FIX src/lib/types-unified.ts - 修正 unknown/any 類型
+    // 說明：以具名型別替代 unknown，或引入泛型以約束資料型別
+    data: unknown;
     isOpen: boolean;
   };
 }

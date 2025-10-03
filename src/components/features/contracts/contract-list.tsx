@@ -10,9 +10,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter, X } from 'lucide-react';
 import { Contract, ContractFilters } from '@/lib/types/contract.types';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useContracts, useDeleteContract, useAnalyzeContract, useGenerateContractPDF } from '@/hooks/use-contracts';
+import { useDebounce } from 'use-debounce';
 
 interface ContractListProps {
   spaceId: string;
@@ -32,12 +36,19 @@ export function ContractList({
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const [filters, setFilters] = useState<ContractFilters>({});
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
 
-  // TODO: [P1] FEAT src/components/features/contracts/contract-list.tsx - 整合 React Query hooks 和 Server Actions
-  const contracts: Contract[] = [];
-  const isLoading = false;
-  // @assignee dev
-  const error = null;
+  // 使用 React Query hooks
+  const { data: contractsData, isLoading, error } = useContracts(spaceId, {
+    ...filters,
+    search: debouncedSearchTerm || undefined,
+  });
+
+  const deleteContractMutation = useDeleteContract(spaceId);
+  const analyzeContractMutation = useAnalyzeContract(spaceId);
+  const generatePDFMutation = useGenerateContractPDF(spaceId);
+
+  const contracts = contractsData?.data || [];
 
   // 處理搜索
   const handleSearch = (term: string) => {
@@ -57,24 +68,44 @@ export function ContractList({
   };
 
   // 處理合約操作
-  const handleDeleteContract = (contractId: string) => {
+  const handleDeleteContract = async (contractId: string) => {
     if (confirm('確定要刪除這個合約嗎？')) {
-      // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現刪除邏輯
-      console.log('Delete contract:', contractId);
-      // @assignee dev
+      try {
+        await deleteContractMutation.mutateAsync(contractId);
+        // 成功後可以顯示 toast 通知
+        console.log('Contract deleted successfully');
+      } catch (error) {
+        console.error('Failed to delete contract:', error);
+        // 可以顯示錯誤 toast 通知
+      }
     }
   };
 
-  const handleAnalyzeContract = (contractId: string) => {
-    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 AI 分析邏輯
-    console.log('Analyze contract:', contractId);
-    // @assignee dev
+  const handleAnalyzeContract = async (contractId: string) => {
+    try {
+      const result = await analyzeContractMutation.mutateAsync(contractId);
+      if (result.success) {
+        console.log('Contract analysis completed:', result.data);
+        // 可以顯示分析結果或跳轉到分析頁面
+      }
+    } catch (error) {
+      console.error('Failed to analyze contract:', error);
+    }
   };
 
-  const handleGeneratePDF = (contractId: string) => {
-    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 PDF 生成邏輯
-    console.log('Generate PDF for contract:', contractId);
-    // @assignee dev
+  const handleGeneratePDF = async (contractId: string) => {
+    try {
+      const result = await generatePDFMutation.mutateAsync(contractId);
+      if (result.success) {
+        console.log('PDF generated successfully:', result.data);
+        // 可以下載 PDF 或顯示下載鏈接
+        if (result.data?.pdfUrl) {
+          window.open(result.data.pdfUrl, '_blank');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to generate PDF:', error);
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -115,7 +146,9 @@ export function ContractList({
     return (
       <Card>
         <CardContent className="p-6 text-center">
-          <p className="text-destructive">載入合約時發生錯誤</p>
+          <p className="text-destructive">
+            載入合約時發生錯誤: {error instanceof Error ? error.message : '未知錯誤'}
+          </p>
         </CardContent>
       </Card>
     );
@@ -124,7 +157,72 @@ export function ContractList({
   return (
     <div className="space-y-6">
       {/* 搜索和過濾器 */}
-      {/* TODO: 整合 SearchFilters 組件 */}
+      <Card>
+        <CardContent className="p-6">
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* 搜索框 */}
+            <div className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  placeholder="搜索合約標題..."
+                  value={searchTerm}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            
+            {/* 狀態過濾器 */}
+            <Select
+              value={filters.status || ''}
+              onValueChange={(value) => handleFiltersChange({ ...filters, status: value || undefined })}
+            >
+              <SelectTrigger className="w-full sm:w-40">
+                <SelectValue placeholder="狀態" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">全部狀態</SelectItem>
+                <SelectItem value="draft">草稿</SelectItem>
+                <SelectItem value="pending">待審核</SelectItem>
+                <SelectItem value="active">生效中</SelectItem>
+                <SelectItem value="expired">已過期</SelectItem>
+                <SelectItem value="terminated">已終止</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* 類型過濾器 */}
+            <Select
+              value={filters.type || ''}
+              onValueChange={(value) => handleFiltersChange({ ...filters, type: value || undefined })}
+            >
+              <SelectTrigger className="w-full sm:w-40">
+                <SelectValue placeholder="類型" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">全部類型</SelectItem>
+                <SelectItem value="service">服務合約</SelectItem>
+                <SelectItem value="license">授權合約</SelectItem>
+                <SelectItem value="nda">保密協議</SelectItem>
+                <SelectItem value="partnership">合作協議</SelectItem>
+                <SelectItem value="employment">僱傭合約</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* 清除過濾器 */}
+            {(searchTerm || filters.status || filters.type) && (
+              <Button
+                variant="outline"
+                onClick={handleClearFilters}
+                className="w-full sm:w-auto"
+              >
+                <X className="h-4 w-4 mr-2" />
+                清除
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* 合約列表 */}
       <Card>
@@ -292,8 +390,8 @@ export function ContractList({
         </CardContent>
       </Card>
 
-      {/* TODO: 整合創建合約對話框 */}
-      {/* TODO: 整合合約詳情對話框 */}
+      {/* 創建合約對話框 - 待實現 */}
+      {/* 合約詳情對話框 - 待實現 */}
     </div>
   );
 }

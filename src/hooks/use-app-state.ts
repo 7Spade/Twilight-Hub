@@ -9,7 +9,9 @@ interface ChatState {
 
 interface DialogState {
   type: string | null;
-  data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
+  // 說明：以具名型別替代 unknown，為 dialog data 建立明確型別
+  data: unknown;
   isOpen: boolean;
 }
 
@@ -23,7 +25,9 @@ interface AppStateActions {
   closeChat: () => void;
   toggleChat: () => void;
   toggleMinimizeChat: () => void;
-  openDialog: (type: string, data?: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
+  // 說明：替換為具名型別或泛型參數，避免使用 unknown
+  openDialog: (type: string, data?: unknown) => void;
   closeDialog: () => void;
 }
 
@@ -67,7 +71,9 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));
   }, []);
 
-  const openDialog = useCallback((type: string, data: unknown = {}) => { /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
+  // 說明：為 data 提供具名型別或受限泛型，避免使用 unknown
+  const openDialog = useCallback((type: string, data: unknown = {}) => {
     setDialog({ type, data, isOpen: true });
   }, []);
 

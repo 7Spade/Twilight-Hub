@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */
+// TODO: [P2] REFACTOR src/components/features/spaces/components/participants/view-toggle.tsx - 清理未使用的導入（Button 未使用）
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Table, Grid3X3, List } from 'lucide-react';
 import { ViewMode } from './types';

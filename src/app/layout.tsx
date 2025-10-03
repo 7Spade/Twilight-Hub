@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* TODO: [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結 */}
+        {/* TODO: [P2] FIX src/app/layout.tsx - 修復字體載入警告（改用 next/font 取代手動 link） */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

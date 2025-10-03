@@ -38,7 +38,8 @@ export interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  metadata?: Record<string, unknown>; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）
+  metadata?: Record<string, unknown>;
   status?: 'completed' | 'pending' | 'failed';
 }
 

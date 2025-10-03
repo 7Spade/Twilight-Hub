@@ -12,7 +12,7 @@ import {
   increment,
   setDoc,
 } from 'firebase/firestore';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用 */
+// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx - 清理未使用的導入（setDoc 未使用）
 
 import { useFirestore } from '@/firebase';
 import { useDialogState } from '@/hooks/use-app-state';
@@ -127,10 +127,9 @@ export function AdjustStockDialog({
           
           let stockDocRef;
 
-          if (hasExistingStockRecord) {
+  if (hasExistingStockRecord) {
               // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告
-              // 應該先檢查 stockInfo.stockId 是否存在
-              // @assignee dev
+              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言
               stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);
               batch.update(stockDocRef, { quantity: increment(adjustment) });
           } else {

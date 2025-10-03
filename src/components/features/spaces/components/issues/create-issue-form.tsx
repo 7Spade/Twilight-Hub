@@ -26,7 +26,9 @@ interface CreateIssueFormProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onIssueCreated?: (issue: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型
+  // 說明：以具名型別替代 unknown，為 issue 建立明確型別介面
+  onIssueCreated?: (issue: unknown) => void;
 }
 
 export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }: CreateIssueFormProps) {
@@ -47,7 +49,7 @@ export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }:
   const onSubmit = async (data: CreateIssueFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: [P2] FEAT src/components/features/spaces/components/issues/create-issue-form.tsx - 實現創建問題 API 調用
+      // TODO: [P2] FEAT src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫
       console.log('Creating issue:', { spaceId, ...data });
       // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call

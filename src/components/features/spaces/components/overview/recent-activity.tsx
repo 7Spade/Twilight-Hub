@@ -14,7 +14,9 @@ interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  metadata?: Record<string, unknown>; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+  // TODO: [P2] FIX src/components/features/spaces/components/overview/recent-activity.tsx - 修正 unknown/any 類型
+  // 說明：定義 metadata 結構或使用更嚴格的型別映射
+  metadata?: Record<string, unknown>;
 }
 
 interface RecentActivityProps {
@@ -23,7 +25,7 @@ interface RecentActivityProps {
 }
 
 export function RecentActivity({ spaceId, activities }: RecentActivityProps) {
-  /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */
+  // TODO: [P3] REFACTOR src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數
   const defaultActivities: ActivityItem[] = [
     {
       id: '1',

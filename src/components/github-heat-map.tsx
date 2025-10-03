@@ -36,7 +36,7 @@ const getColorClass = (count: number): string => {
   return 'bg-primary';
 };
 
-const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用 */
+const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; /* TODO: [P3] REFACTOR src/components/github-heat-map.tsx - 清理未使用的變數 */
 
 export const GitHubHeatMap: React.FC<HeatMapProps> = ({
   data,

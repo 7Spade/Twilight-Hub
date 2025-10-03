@@ -364,7 +364,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                       <p className="text-sm text-muted-foreground">
                         此角色目前有 {selectedRole.memberCount} 位成員
                       </p>
-                      {/* TODO: Add member list component */}
+                      {/* TODO: [P3] FEAT src/components/features/organizations/components/roles/role-list.tsx - 新增成員清單元件 */}
                       <div className="text-center py-8 text-muted-foreground">
                         成員列表功能開發中...
                       </div>

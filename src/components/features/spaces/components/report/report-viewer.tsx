@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用 */
+// TODO: [P2] REFACTOR src/components/features/spaces/components/report/report-viewer.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage 未使用）
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

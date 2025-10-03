@@ -24,7 +24,7 @@ import {
   CheckCircle,
   AlertCircle 
 } from 'lucide-react';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用 */
+// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx - 清理未使用的導入（Badge, X, CheckCircle, AlertCircle 未使用）
 import { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';
 import { ContractDocument } from '@/lib/types/contract.types';
 

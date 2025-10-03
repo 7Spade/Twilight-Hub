@@ -13,7 +13,7 @@ import {
   Settings,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用 */
+// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 清理未使用的導入（Settings, Tooltip* 未使用）
 
 import { cn } from "@/lib/utils";
 import { Logo } from "../logo";

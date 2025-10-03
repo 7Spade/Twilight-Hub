@@ -6,7 +6,7 @@
  * and user actions.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號 */
+// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/file-explorer.tsx - 修復語法錯誤（第95行缺少分號）
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
