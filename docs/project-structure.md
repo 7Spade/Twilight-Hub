@@ -1,18 +1,16 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:38:14
+> 最後更新時間: 2025/10/03 下午07:49:23
 
 ## 目錄結構
 
 ```
 └── .todo-reports/
-    ├── ai-prompt-2025-10-03.md (39.4 KB, 今天)
-    ├── todo-report-2025-10-03.json (40.1 KB, 今天)
-    ├── todo-report-2025-10-03.md (7.9 KB, 今天)
+    ├── ai-prompt-2025-10-03.md (715 B, 今天)
+    ├── todo-report-2025-10-03.json (447 B, 今天)
+    ├── todo-report-2025-10-03.md (237 B, 今天)
 └── docs/
-    ├── Commands/
-    │   ├── TODO-list.md (113.1 KB, 今天)
     ├── TODO/
     │   ├── todo-automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
@@ -20,19 +18,12 @@
     ├── natural-language-commands.md (17.7 KB, 今天)
     ├── nextjs15_dev-brief.md (12.2 KB, 今天)
     ├── nextjs15_dev-standard.md (35.5 KB, 今天)
-    ├── project-structure.md (17.6 KB, 今天)
-    ├── typescript-migration-guide.md (4.5 KB, 今天)
+    ├── project-structure.md (16.9 KB, 今天)
 └── memory-bank/
     ├── memory.json (2 B, 今天)
 └── scripts/
-    ├── .todo-reports/
-    │   ├── ai-prompt-2025-10-03.md (3.7 KB, 今天)
-    │   ├── todo-report-2025-10-03.json (3.6 KB, 今天)
-    │   ├── todo-report-2025-10-03.md (919 B, 今天)
     ├── generate-tree.ts (7 KB, 今天)
-    ├── todo-automation-toolkit.ts (12.9 KB, 今天)
-    ├── todo-scanner.ts (195 B, 今天)
-    ├── tsconfig.json (556 B, 今天)
+    ├── todo-automation-toolkit.ts (11.6 KB, 今天)
 └── src/
     ├── ai/
     │   ├── flows/
