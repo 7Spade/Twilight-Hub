@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午08:02:24
+> 最後更新時間: 2025/10/03 下午08:05:10
 
 ## 目錄結構
 
@@ -11,6 +11,19 @@
     ├── todo-report-2025-10-03.json (31 KB, 今天)
     ├── todo-report-2025-10-03.md (8.1 KB, 今天)
 └── docs/
+    ├── Commands/
+    │   ├── 01-core-commands.md (2.8 KB, 今天)
+    │   ├── 02-development-commands.md (4.6 KB, 今天)
+    │   ├── 03-analysis-commands.md (5.3 KB, 今天)
+    │   ├── 04-cleanup-commands.md (6.2 KB, 今天)
+    │   ├── 06-quick-commands.md (5 KB, 今天)
+    │   ├── 07-smart-commands.md (6.5 KB, 今天)
+    │   ├── 08-priority-commands.md (6.8 KB, 今天)
+    │   ├── 09-compliance-commands.md (8.1 KB, 今天)
+    │   ├── 10-best-practices.md (6.2 KB, 今天)
+    │   ├── README.md (10.8 KB, 今天)
+    │   ├── TODO-list.md (0 B, 今天)
+    │   ├── TODO.md (23 KB, 今天)
     ├── TODO/
     │   ├── todo-automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
