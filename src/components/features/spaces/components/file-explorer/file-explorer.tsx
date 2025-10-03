@@ -6,13 +6,6 @@
  * and user actions.
  */
 'use client';
-// TODO: [P0] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
-// 說明：目前元件同時負責資料抓取、狀態、呈現與互動。建議：
-// 1) 將 listFiles/upload/download/delete 等 IO 行為抽離至專用 hook/service；
-// 2) 視需要由父層 Server Component 提供序列化資料（或以 Suspense 分段）；
-// 3) 拆分 FileExplorerContent 為更小的展示型子元件，降低 useState/useMemo 密度。
-// 目標：維持效能並大幅降低 AI agent 認知負擔。
-// @assignee ai
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useFileActions } from '@/components/features/spaces/hooks';

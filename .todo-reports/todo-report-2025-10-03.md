@@ -1,35 +1,22 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 62 個項目
-- 🔴 緊急: 7 個項目
+- 總計: 60 個項目
+- 🔴 緊急: 5 個項目
 ### 依優先級
 - P2: 41 個
 - P1: 18 個
-- P0: 3 個
+- P0: 1 個
 ### 依類型
 - PERF: 1 個
-- REFACTOR: 33 個
+- REFACTOR: 31 個
 - FEAT: 14 個
 - CLEANUP: 2 個
 - TYPING: 1 個
 - HOOK: 2 個
 - VAN: 9 個
 ---
-## 🔴 P0 (3 個)
-### 1. [REFACTOR] src/app/(app)/organizations/[organizationslug]/[spaceslug]/page.tsx - 伺服端處理 redirect
-**位置:** `src\app\(app)\organizations\[organizationslug]\[spaceslug]\page.tsx:2`
-**負責人:** @ai
-**詳細說明:**
-> 說明：將 params 解析與 redirect 放到 server page，縮小 client 邊界，降低 AI agent 認知負擔。
----
-### 2. [REFACTOR] src/app/(app)/[userslug]/[spaceslug]/page.tsx - 將 client 端 redirect 移至 Server Component
-**位置:** `src\app\(app)\[userslug]\[spaceslug]\page.tsx:2`
-**負責人:** @ai
-**詳細說明:**
-> 說明：`redirect` 應優先在伺服端執行以降低邊界複雜度；可改為 server page 直接 `await params` 後 redirect。
-> 參考：Next.js App Router（server/client components、redirect、params）。
----
-### 3. [REFACTOR] src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
+## 🔴 P0 (1 個)
+### 1. [REFACTOR] src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
 **位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:9`
 **負責人:** @ai
 **詳細說明:**

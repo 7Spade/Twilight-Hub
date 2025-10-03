@@ -34,7 +34,7 @@
     ├── activeContext.md (1.8 KB, 今天)
     ├── memory-clean.json (12 KB, 今天)
     ├── memory.backup.json (13.7 KB, 今天)
-    ├── memory.json (28 KB, 今天)
+    ├── memory.json (46.5 KB, 今天)
     ├── monitor.json (245 B, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
@@ -64,7 +64,7 @@
     │   ├── (app)/
     │   │   ├── [userslug]/
     │   │   │   ├── [spaceslug]/
-    │   │   │   │   ├── page.tsx (702 B, 今天)
+    │   │   │   │   ├── page.tsx (305 B, 今天)
     │   │   │   ├── page.tsx (703 B, 今天)
     │   │   ├── dashboard/
     │   │   │   ├── page.tsx (6.5 KB, 今天)
@@ -73,7 +73,7 @@
     │   │   ├── organizations/
     │   │   │   ├── [organizationslug]/
     │   │   │   │   ├── [spaceslug]/
-    │   │   │   │   │   ├── page.tsx (606 B, 今天)
+    │   │   │   │   │   ├── page.tsx (313 B, 今天)
     │   │   │   │   ├── groups/
     │   │   │   │   │   ├── page.tsx (5.5 KB, 今天)
     │   │   │   │   ├── inventory/
