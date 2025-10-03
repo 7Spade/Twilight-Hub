@@ -1,26 +1,23 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午03:09:46
+> 最後更新時間: 2025/10/03 下午03:13:00
 
 ## 目錄結構
 
 ```
-└── .idx/
-    ├── dev.nix
-    ├── icon.png
-    ├── integrations.json
-    ├── mcp.json
 └── docs/
     ├── backend.json
     ├── blueprint.md
     ├── nextjs15_dev_guidelines.md
+    ├── project-structure.md
 └── memory-bank/
     ├── activeContext.md
     ├── productContext.md
     ├── progress.md
     ├── projectbrief.md
     ├── systemPatterns.md
+    ├── tasks.md
     ├── techContext.md
 └── scripts/
     ├── generate-tree.js
@@ -68,14 +65,12 @@
     │   │   │   ├── notifications/
     │   │   │   │   ├── page.tsx
     │   │   │   ├── profile/
-    │   │   │   │   ├── page.tsx
-    │   │   │   ├── layout.tsx
+    │   │   │   │   └── page.tsx
     │   │   ├── spaces/
     │   │   │   ├── [spaceslug]/
     │   │   │   │   ├── files/
     │   │   │   │   ├── page.tsx
     │   │   │   ├── page.tsx
-    │   │   ├── layout.tsx
     │   │   ├── page.tsx
     │   ├── login/
     │   │   ├── page.tsx
@@ -83,7 +78,6 @@
     │   │   ├── page.tsx
     │   ├── favicon.ico
     │   ├── globals.css
-    │   ├── layout.tsx
     │   ├── page.tsx
     ├── components/
     │   ├── auth/
@@ -203,19 +197,9 @@
     │   │   ├── form-switch.tsx
     │   │   ├── form-textarea.tsx
     │   │   ├── index.ts
-    │   ├── layout/
-    │   │   ├── header.tsx
-    │   │   ├── index.ts
-    │   │   ├── nav.tsx
-    │   │   ├── navigation.tsx
-    │   │   ├── page-container.tsx
-    │   │   ├── sidebar.tsx
-    │   │   ├── team-switcher.tsx
-    │   │   ├── user-nav.tsx
     │   ├── ui/
     │   │   ├── accordion.tsx
     │   │   ├── alert.tsx
-    │   │   ├── aspect-ratio.tsx
     │   │   ├── avatar.tsx
     │   │   ├── badge.tsx
     │   │   ├── breadcrumb.tsx
@@ -291,13 +275,11 @@
     │   └── types.ts
     │   └── utils.ts
 └── .eslintrc.json
-└── .modified
 └── .prettierignore
 └── .prettierrc
 └── apphosting.yaml
 └── components.json
 └── firestore.rules
-└── next-env.d.ts
 └── next.config.ts
 └── package-lock.json
 └── package.json
@@ -314,29 +296,69 @@
 以下目錄和文件已被排除在結構圖之外：
 
 ### 目錄排除
+
+#### IDE 和編輯器配置
 - `.playwright-mcp` - Playwright MCP 相關文件
 - `.cursor` - Cursor IDE 配置
-- `.next` - Next.js 構建輸出
-- `node_modules` - Node.js 依賴包
-- `.git` - Git 版本控制文件
 - `.vscode` - VS Code 配置
 - `.idea` - IntelliJ IDEA 配置
+- `.idx` - 索引文件目錄
+
+#### 構建和依賴目錄
+- `.next` - Next.js 構建輸出
+- `node_modules` - Node.js 依賴包
 - `dist` - 構建輸出目錄
 - `build` - 構建輸出目錄
+- `out` - 輸出目錄
+- `.pnp`, `.pnp.*` - Yarn PnP 文件
+- `.yarn` - Yarn 配置目錄
+
+#### 版本控制
+- `.git` - Git 版本控制文件
+- `.husky` - Git hooks 配置
+- `.github` - GitHub 配置目錄
+
+#### 測試和覆蓋率
 - `coverage` - 測試覆蓋率報告
 - `.nyc_output` - NYC 測試覆蓋率輸出
-- `.husky` - Git hooks 配置
+- `__tests__`, `test`, `tests` - 測試目錄
+- `spec`, `specs` - 規格測試目錄
+
+#### 部署和雲端配置
+- `.vercel` - Vercel 部署配置
+- `.netlify` - Netlify 部署配置
+- `.firebase` - Firebase 配置
 
 ### 文件排除
+
+#### 日誌和臨時文件
 - `*.log` - 日誌文件
 - `*.tmp`, `*.temp` - 臨時文件
-- `.DS_Store` - macOS 系統文件
-- `Thumbs.db` - Windows 縮略圖文件
-- `.env.*` - 環境變量文件
 - `*.swp`, `*.swo` - Vim 交換文件
 - `*~` - 備份文件
-- `.map` - Source map 文件
+- `.modified` - 修改標記文件
+
+#### 系統文件
+- `.DS_Store` - macOS 系統文件
+- `Thumbs.db` - Windows 縮略圖文件
+- `desktop.ini` - Windows 桌面配置
+
+#### 環境變量文件
+- `.env`, `.env.*` - 環境變量文件
+- `firebase-debug.log`, `firestore-debug.log` - Firebase 調試日誌
+
+#### 構建和編譯文件
+- `*.map` - Source map 文件
 - `tsconfig.tsbuildinfo` - TypeScript 構建信息
+- `next-env.d.ts` - Next.js 環境類型定義
+
+#### 證書和密鑰文件
+- `*.pem`, `*.key`, `*.crt` - 證書文件
+- `*.p12`, `*.pfx` - PKCS 證書文件
+
+#### 其他開發工具文件
+- `.genkit` - Genkit 配置目錄
+- `.eslintcache`, `.stylelintcache`, `.prettiercache` - 緩存文件
 
 ## 自動化說明
 
