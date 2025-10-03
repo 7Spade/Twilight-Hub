@@ -2,88 +2,118 @@
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./"
+      ],
       "disabled": false,
       "autoApprove": [
-        "list_allowed_directories", "list_directory", "directory_tree",
-        "create_directory", "write_file", "read_file", "edit_file",
-        "delete_file", "move_file", "copy_file", "search_files"
+        "list_allowed_directories",
+        "list_directory",
+        "directory_tree",
+        "create_directory",
+        "write_file",
+        "read_file",
+        "edit_file",
+        "delete_file",
+        "move_file",
+        "copy_file",
+        "search_files"
       ]
-    },
-    "fetch": {
-      "command": "uvx",
-      "args": ["mcp-server-fetch"],
-      "env": {},
-      "disabled": false
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp"],
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ],
       "disabled": false,
       "autoApprove": [
-        "navigate_to_url", "click_element", "fill_input", "type_text",
-        "press_key", "take_screenshot", "get_element_text", "get_element_attribute",
-        "wait_for_selector", "wait_for_url", "go_back", "go_forward",
-        "scroll_to_element", "get_by_text", "get_by_role", "get_by_label",
-        "get_by_placeholder", "get_by_test_id"
+        "navigate_to_url",
+        "click_element",
+        "fill_input",
+        "type_text",
+        "press_key",
+        "take_screenshot",
+        "get_element_text",
+        "get_element_attribute",
+        "wait_for_selector",
+        "wait_for_url",
+        "go_back",
+        "go_forward",
+        "scroll_to_element",
+        "get_by_text",
+        "get_by_role",
+        "get_by_label",
+        "get_by_placeholder",
+        "get_by_test_id"
       ]
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"],
-      "env": { "NODE_OPTIONS": "--max-old-space-size=2048" },
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=2048"
+      },
       "disabled": false,
-      "autoApprove": ["resolve-library-id", "get-library-docs"]
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
     },
-    "npm-registry": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-npm-registry"],
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "env": {},
       "disabled": false,
-      "autoApprove": ["get_package_info", "search_packages"]
-    },
-    "mdn": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-mdn"],
-      "disabled": false,
-      "autoApprove": ["search_docs", "get_doc"]
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "" },
-      "disabled": false,
-      "autoApprove": ["get_file_contents", "search_code", "get_repository"]
-    },
-    "web-search": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-web-search"],
-      "disabled": false,
-      "autoApprove": ["web_search"]
+      "autoApprove": [
+        "fetch_url"
+      ]
     },
     "git": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
       "disabled": false,
-      "autoApprove": ["status", "log", "diff", "branch", "commit"]
-    },
-    "sqlite": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
-      "env": { "SQLITE_DB_PATH": "./data/database.sqlite" },
-      "disabled": false,
-      "autoApprove": ["query", "execute", "create_table"]
+      "autoApprove": [
+        "status",
+        "log",
+        "diff",
+        "branch",
+        "commit"
+      ]
     },
     "sequential-thinking": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "env": { "NODE_OPTIONS": "--max-old-space-size=1024" },
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=1024"
+      },
       "disabled": false,
-      "autoApprove": ["sequentialthinking"]
+      "autoApprove": [
+        "sequentialthinking"
+      ]
     },
     "memory": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "env": { "MEMORY_FILE_PATH": "./memory-bank/memory.json" },
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "./memory-bank/memory.json"
+      },
       "disabled": false
     }
   }
