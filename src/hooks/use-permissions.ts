@@ -10,7 +10,7 @@ import {
   PermissionCheckResult,
   OrganizationRole,
   SpaceRole 
-} from '@/lib/types';
+} from '@/lib/types-unified';
 import { roleManagementService } from '@/lib/role-management';
 
 /**

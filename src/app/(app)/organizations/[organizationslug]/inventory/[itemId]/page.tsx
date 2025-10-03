@@ -40,7 +40,7 @@ import {
   type Item,
   type Warehouse,
   type Stock,
-} from '@/lib/types';
+} from '@/lib/types-unified';
 import { useDialogState } from '@/hooks/use-app-state';
 
 export default function ItemStockPage({

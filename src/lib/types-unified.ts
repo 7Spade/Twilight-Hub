@@ -4,6 +4,12 @@
  */
 
 import { Timestamp } from "firebase/firestore";
+import type { 
+  FieldValues, 
+  Control, 
+  FieldPath, 
+  UseFormReturn 
+} from "react-hook-form";
 
 // ===== 基礎類型 =====
 

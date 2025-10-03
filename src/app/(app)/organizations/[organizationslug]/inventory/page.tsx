@@ -35,7 +35,7 @@ import {
   type Item,
   type Warehouse as WarehouseType,
   type Stock,
-} from '@/lib/types';
+} from '@/lib/types-unified';
 import { useDialogState } from '@/hooks/use-app-state';
 import { CreateItemDialog } from '@/components/create-item-dialog';
 import { CreateWarehouseDialog } from '@/components/create-warehouse-dialog';

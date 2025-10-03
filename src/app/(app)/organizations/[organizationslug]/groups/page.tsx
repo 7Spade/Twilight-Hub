@@ -26,7 +26,7 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { type Account, type Group } from '@/lib/types';
+import { type Account, type Group } from '@/lib/types-unified';
 
 
 function GroupCard({ groupId, organizationId }: { groupId: string; organizationId: string }) {

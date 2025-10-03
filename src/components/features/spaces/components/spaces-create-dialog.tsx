@@ -33,7 +33,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { spaceBaseSchema, type SpaceBaseFormValues } from '@/components/features/spaces/spaces-schemas';
-import { useSpaceActions } from '@/components/features/spaces/hooks';
+import { useSpaceActions } from '@/components/features/spaces/hooks/use-space-actions';
 
 type CreateSpaceFormValues = SpaceBaseFormValues;
 

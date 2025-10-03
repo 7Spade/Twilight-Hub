@@ -29,9 +29,9 @@ import {
 import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 import { AppStateProvider } from '@/hooks/use-app-state';
-import { AuthProvider } from '@/components/auth';
+import { AuthProvider } from '@/components/auth/auth-provider';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();

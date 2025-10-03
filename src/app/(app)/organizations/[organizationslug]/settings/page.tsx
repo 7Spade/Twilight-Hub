@@ -21,7 +21,7 @@ import { PageContainer } from '@/components/layout/page-container';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormCard } from '@/components/forms/form-card';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 
 const orgSettingsSchema = z.object({
   name: z.string().min(1, 'Organization name is required'),

@@ -1483,7 +1483,7 @@ GENKIT_API_KEY=xxx
 
 # 應用配置
 NEXT_PUBLIC_APP_NAME=My App
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:9002
 ```
 
 ---

@@ -34,7 +34,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useDialogState } from '@/hooks/use-app-state';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 function MemberRow({ userId }: { userId: string }) {

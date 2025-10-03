@@ -8,7 +8,7 @@ import { PlusCircle } from 'lucide-react';
 import { useDialogState } from '@/hooks/use-app-state';
 import { PageContainer } from '@/components/layout/page-container';
 import { SpaceListView } from '@/components/features/spaces/components/spaces-list-view';
-import { type Account, type Space } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types-unified';
 
 export default function UnifiedSpacesPage() {
   const { user } = useUser();

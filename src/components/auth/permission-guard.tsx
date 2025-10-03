@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Permission } from '@/lib/types';
+import { Permission } from '@/lib/types-unified';
 import { usePermissionGuard } from '@/hooks/use-permissions';
 
 interface PermissionGuardProps {

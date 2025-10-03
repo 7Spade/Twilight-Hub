@@ -32,7 +32,7 @@ import { Badge } from '@/components/ui/badge';
 import { Globe, User, Users2, Search } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { type Account, type Space } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types-unified';
 
 const UserCard = ({ user }: { user: Account }) => (
   <Card>

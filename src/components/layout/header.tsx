@@ -25,7 +25,7 @@ import { Nav, type NavItem } from './nav';
 import { TeamSwitcher, type Team } from './team-switcher';
 import { Separator } from '../ui/separator';
 import { SearchCommand } from '../search-command';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 
 export function Header({
   isCollapsed,

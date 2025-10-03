@@ -12,7 +12,7 @@ import { updateProfile } from 'firebase/auth';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormCard } from '@/components/forms/form-card';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
 const profileFormSchema = z.object({

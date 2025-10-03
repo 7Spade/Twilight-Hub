@@ -24,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type Account } from "@/lib/types";
+import { type Account } from "@/lib/types-unified";
 
 export function UserNav({ userProfile }: { userProfile: Account | null }) {
   const { user } = useUser();
