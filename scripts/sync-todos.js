@@ -185,7 +185,7 @@ const AUTO_CLEANUP_PATTERNS = [
 function shouldExclude(filePath, fileName) {
   // 跳過自動生成的文檔，避免自引用
   const generatedDocs = [
-    'docs/TODO-list.md',
+    'docs/Commands/TODO-list.md',
   ];
   const normalizedPath = filePath.replace(/\\/g, '/');
   if (generatedDocs.some((p) => normalizedPath.endsWith(p))) {
@@ -637,7 +637,7 @@ npm run todos:sync
  */
 function syncTodos() {
   const rootPath = process.cwd();
-  const outputPath = path.join(rootPath, 'docs', 'TODO-list.md');
+  const outputPath = path.join(rootPath, 'docs', 'Commands', 'TODO-list.md');
   
   // 確保 docs 目錄存在
   const docsDir = path.dirname(outputPath);
