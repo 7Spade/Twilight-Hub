@@ -1,6 +1,6 @@
 /**
- * @fileoverview 仪表板数据管理Hook
- * 提供数据获取、缓存和状态管理功能
+ * @fileoverview 仪表?�数?�管?�Hook
+ * ?��??�据?��??��?存�??�态管?��???
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -22,13 +22,13 @@ interface UseDashboardDataReturn {
 }
 
 /**
- * 仪表板数据管理Hook
- * 提供统一的数据获取和状态管理
+ * 仪表?�数?�管?�Hook
+ * ?��?统�??�数?�获?��??�态管??
  */
 export function useDashboardData({
   spaceId,
   autoRefresh = false,
-  refreshInterval = 30000 // 30秒
+  refreshInterval = 30000 // 30�?
 }: UseDashboardDataProps): UseDashboardDataReturn {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [activities, setActivities] = useState<ActivityItem[]>([]);
@@ -36,10 +36,10 @@ export function useDashboardData({
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  // 获取仪表板统计数据
+  // ?��?仪表?��?计数??
   const fetchStats = useCallback(async (): Promise<DashboardStats> => {
-    // TODO: 替换为真实的API调用
-    // 这里使用模拟数据
+    // TODO: ?�换为�?实�?API调用
+    // 这�?使用模�??�据
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -56,9 +56,9 @@ export function useDashboardData({
     });
   }, []);
 
-  // 获取最近活动数据
+  // ?��??�近活?�数??
   const fetchActivities = useCallback(async (): Promise<ActivityItem[]> => {
-    // TODO: 替换为真实的API调用
+    // TODO: ?�换为�?实�?API调用
     return new Promise((resolve) => {
       setTimeout(() => {
         const mockActivities: ActivityItem[] = [
@@ -119,7 +119,7 @@ export function useDashboardData({
     });
   }, []);
 
-  // 刷新数据
+  // ?�新?�据
   const refresh = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -141,14 +141,14 @@ export function useDashboardData({
     }
   }, [fetchStats, fetchActivities]);
 
-  // 初始数据加载
+  // ?��??�据?�载
   useEffect(() => {
     if (spaceId) {
       refresh();
     }
   }, [spaceId, refresh]);
 
-  // 自动刷新
+  // ?�动?�新
   useEffect(() => {
     if (!autoRefresh || !refreshInterval) return;
 

@@ -125,17 +125,17 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return 'ğŸ”§';
+        return '?”§';
       case 'license':
-        return 'ğŸ“„';
+        return '??';
       case 'nda':
-        return 'ğŸ”’';
+        return '??';
       case 'partnership':
-        return 'ğŸ¤';
+        return '??';
       case 'employment':
-        return 'ğŸ‘¤';
+        return '?‘¤';
       default:
-        return 'ğŸ“';
+        return '??';
     }
   };
 
@@ -314,7 +314,7 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
                       </p>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span>{contract.documents} documents</span>
-                        <span>â€¢</span>
+                        <span>??/span>
                         <span>Modified {contract.lastModified.toLocaleDateString()}</span>
                       </div>
                     </div>

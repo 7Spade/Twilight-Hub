@@ -39,18 +39,18 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
-  // 列設定狀態
+  // ?�設定�???
   const [columns, setColumns] = useState<ColumnConfig[]>([
-    { id: 'description', label: '描述', visible: true },
-    { id: 'version', label: '版本', visible: true },
-    { id: 'indicator', label: '指標', visible: true },
-    { id: 'tag', label: '標記', visible: true },
-    { id: 'issue', label: '問題', visible: true },
-    { id: 'size', label: '大小', visible: true },
-    { id: 'lastUpdate', label: '上次更新', visible: true },
-    { id: 'updater', label: '更新者', visible: true },
-    { id: 'versionContributor', label: '版本加入者', visible: true },
-    { id: 'reviewStatus', label: '審閱狀態', visible: true },
+    { id: 'description', label: '?�述', visible: true },
+    { id: 'version', label: '?�本', visible: true },
+    { id: 'indicator', label: '?��?', visible: true },
+    { id: 'tag', label: '標�?', visible: true },
+    { id: 'issue', label: '?��?', visible: true },
+    { id: 'size', label: '大�?', visible: true },
+    { id: 'lastUpdate', label: '上次?�新', visible: true },
+    { id: 'updater', label: '?�新??, visible: true },
+    { id: 'versionContributor', label: '?�本?�入??, visible: true },
+    { id: 'reviewStatus', label: '審閱?�??, visible: true },
   ]);
 
   const handleSort = (field: SortField) => {
@@ -203,7 +203,7 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
               onClick={() => handleSort('name')}
             >
               <div className="flex items-center gap-2">
-                名稱
+                ?�稱
                 {getSortIcon('name')}
               </div>
             </TableHead>

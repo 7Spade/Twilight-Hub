@@ -1,6 +1,6 @@
 /**
- * @fileoverview 響應式卡片網格視圖組件
- * 使用虛擬化技術支持大量數據的高性能渲染
+ * @fileoverview ?��?式卡?�網?��??��?�?
+ * 使用?�擬?��?術支?�大?�數?��?高性能渲�?
  */
 
 'use client';
@@ -33,11 +33,11 @@ export function CardGrid({
 
   const parentRef = React.useRef<HTMLDivElement>(null);
 
-  // 計算網格佈局
-  const containerWidth = 800; // 假設容器寬度
-  const cardWidth = 320; // 卡片寬度
-  const cardHeight = 200; // 卡片高度
-  const gap = 16; // 間距
+  // 計�?網格佈�?
+  const containerWidth = 800; // ?�設容器寬度
+  const cardWidth = 320; // ?��?寬度
+  const cardHeight = 200; // ?��?高度
+  const gap = 16; // ?��?
   const cardsPerRow = Math.floor((containerWidth + gap) / (cardWidth + gap));
 
   const virtualizer = useVirtualizer({
@@ -69,16 +69,16 @@ export function CardGrid({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
-        console.log('編輯成員:', participantId);
+        console.log('編輯?�員:', participantId);
         break;
       case 'role':
         console.log('變更角色:', participantId);
         break;
       case 'permissions':
-        console.log('管理權限:', participantId);
+        console.log('管�?權�?:', participantId);
         break;
       case 'remove':
-        if (confirm('確定要移除此成員嗎？')) {
+        if (confirm('確�?要移?�此?�員?��?')) {
           actions.onRemove(participantId);
         }
         break;
@@ -99,9 +99,9 @@ export function CardGrid({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒有找到成員</h3>
+        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒�??�到?�員</h3>
         <p className="text-sm text-muted-foreground">
-          嘗試調整搜索條件或邀請新成員
+          ?�試調整?�索條件?��?請新?�員
         </p>
       </div>
     );
@@ -109,7 +109,7 @@ export function CardGrid({
 
   return (
     <div className="space-y-4">
-      {/* 選擇控制 */}
+      {/* ?��??�制 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Checkbox
@@ -118,43 +118,43 @@ export function CardGrid({
               if (el) el.indeterminate = isIndeterminate;
             }}
             onCheckedChange={handleSelectAll}
-            aria-label="選擇所有成員"
+            aria-label="?��??�?��???
           />
           <span className="text-sm font-medium">
-            成員 ({participants.length})
+            ?�員 ({participants.length})
           </span>
         </div>
 
         {selectedParticipants.length > 0 && (
           <div className="flex items-center gap-2">
             <Badge variant="secondary">
-              已選擇 {selectedParticipants.length} 個
+              已選??{selectedParticipants.length} ??
             </Badge>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setSelectedParticipants([])}
             >
-              取消選擇
+              ?��??��?
             </Button>
             <Button
               variant="destructive"
               size="sm"
               onClick={() => {
-                if (confirm(`確定要移除選中的 ${selectedParticipants.length} 個成員嗎？`)) {
+                if (confirm(`確�?要移?�選中�? ${selectedParticipants.length} ?��??��?？`)) {
                   actions.onBulkRemove(selectedParticipants);
                   setSelectedParticipants([]);
                 }
               }}
             >
               <UserX className="h-4 w-4 mr-1" />
-              批量移除
+              ?��?移除
             </Button>
           </div>
         )}
       </div>
 
-      {/* 虛擬化網格 */}
+      {/* ?�擬?�網??*/}
       <div
         ref={parentRef}
         className="overflow-auto"

@@ -1,7 +1,7 @@
 /**
- * @fileoverview 統一的表單字段組件
- * 整合 form-input, form-switch, form-textarea 的功能
- * 遵循奧卡姆剃刀原則，提供最簡潔的實現
+ * @fileoverview 統�??�表?��?段�?�?
+ * ?��? form-input, form-switch, form-textarea ?��???
+ * ?�循奧卡姆�??�?��?，�?供�?簡�??�實??
  */
 
 'use client';
@@ -14,10 +14,10 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
-// 表單字段類型定義
+// 表單字段類�?定義
 export type FormFieldType = 'input' | 'textarea' | 'switch';
 
-// 基礎表單字段屬性
+// ?��?表單字段屬�?
 interface BaseFormFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -30,7 +30,7 @@ interface BaseFormFieldProps<
   disabled?: boolean;
 }
 
-// 輸入框特定屬性
+// 輸入框特定屬??
 interface InputFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -40,7 +40,7 @@ interface InputFieldProps<
   placeholder?: string;
 }
 
-// 文本區域特定屬性
+// ?�本?�?�特定屬??
 interface TextareaFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -50,7 +50,7 @@ interface TextareaFieldProps<
   rows?: number;
 }
 
-// 開關特定屬性
+// ?��??��?屬�?
 interface SwitchFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -58,15 +58,15 @@ interface SwitchFieldProps<
   type: 'switch';
 }
 
-// 聯合類型
+// ?��?類�?
 export type FormFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = InputFieldProps<TFieldValues, TName> | TextareaFieldProps<TFieldValues, TName> | SwitchFieldProps<TFieldValues, TName>;
 
 /**
- * 統一的表單字段組件
- * 支持輸入框、文本區域和開關三種類型
+ * 統�??�表?��?段�?�?
+ * ?��?輸入框、�??��??��??��?三種類�?
  */
 export function FormField<TFieldValues extends FieldValues>({
   control,
@@ -152,7 +152,7 @@ export function FormField<TFieldValues extends FieldValues>({
   );
 }
 
-// 導出便捷的類型化組件
+// 導出便捷?��??��?組件
 export const FormInput = <TFieldValues extends FieldValues>(
   props: Omit<InputFieldProps<TFieldValues>, 'type'>
 ) => <FormField {...props} type="input" />;

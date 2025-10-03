@@ -22,8 +22,8 @@ import { OverviewDashboardProps } from './types';
 import { cn } from '@/lib/utils';
 
 /**
- * 现代化的仪表板主组件
- * 提供完整的空间概览和交互功能
+ * ?�代?��?仪表?�主组件
+ * ?��?完整?�空?��?览�?交�??�能
  */
 export function OverviewDashboard({ 
   spaceId, 
@@ -42,13 +42,13 @@ export function OverviewDashboard({
   } = useDashboardData({ 
     spaceId, 
     autoRefresh: true,
-    refreshInterval: 60000 // 1分钟自动刷新
+    refreshInterval: 60000 // 1?��??�动?�新
   });
 
   const isLoading = externalLoading || dataLoading;
   const error = externalError || dataError;
 
-  // 使用外部传入的stats或内部获取的stats
+  // 使用外部传入?�stats?��??�获?��?stats
   const displayStats = externalStats || stats;
 
   const handleRefresh = async () => {
@@ -105,7 +105,7 @@ export function OverviewDashboard({
         </div>
       </div>
 
-      {/* 指标网格 */}
+      {/* ?��?网格 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
@@ -169,7 +169,7 @@ export function OverviewDashboard({
         ) : null}
       </div>
 
-      {/* 次要指标 */}
+      {/* 次�??��? */}
       {displayStats && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatCard
@@ -204,7 +204,7 @@ export function OverviewDashboard({
         </div>
       )}
 
-      {/* 最近活动 */}
+      {/* ?�近活??*/}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">

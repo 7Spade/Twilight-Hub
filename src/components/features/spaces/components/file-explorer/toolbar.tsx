@@ -59,14 +59,14 @@ export function Toolbar({
   return (
     <div className="flex items-center justify-between gap-4 p-4 border-b bg-white">
       <div className="flex items-center gap-3">
-        {/* 上傳按鈕 - 匹配 Autodesk 設計 */}
+        {/* 上傳?��? - ?��? Autodesk 設�? */}
         <div className="flex">
           <Button 
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-none px-4 py-2 h-9"
             onClick={handleFileSelect}
           >
             <Upload className="h-4 w-4 mr-2" />
-            上載檔案
+            上�?檔�?
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -79,17 +79,17 @@ export function Toolbar({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem onClick={handleFileSelect}>
-                上載檔案
+                上�?檔�?
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleFileSelect}>
-                上傳連結的檔案
+                上傳????��?�?
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
 
-        {/* 更多選項按鈕 */}
+        {/* ?��??��??��? */}
         <Button 
           variant="outline" 
           size="icon"
@@ -98,60 +98,60 @@ export function Toolbar({
           <MoreVertical className="h-4 w-4" />
         </Button>
 
-        {/* 篩選按鈕 - 匹配 Autodesk 設計 */}
+        {/* 篩選?��? - ?��? Autodesk 設�? */}
         <Button 
           variant={isFilterActive ? "default" : "outline"}
           onClick={onFilter}
         >
           <Filter className="h-4 w-4 mr-2" />
-          搜尋和篩選
+          ?��??�篩??
         </Button>
 
 
-        {/* 隱藏的文件輸入 */}
+        {/* ?��??��?件輸??*/}
         <input
           ref={fileInputRef}
           type="file"
           multiple
           className="hidden"
           onChange={(e) => {
-            // 處理文件上傳邏輯
+            // ?��??�件上傳?�輯
             console.log('Files selected:', e.target.files);
           }}
         />
       </div>
 
       <div className="flex items-center gap-3">
-        {/* 匯出按鈕 - 匹配 Autodesk 設計 */}
+        {/* ?�出?��? - ?��? Autodesk 設�? */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
-              匯出
+              ?�出
               <ChevronDown className="h-4 w-4 ml-1" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => console.log('檔案記錄')}>
-              檔案記錄
+            <DropdownMenuItem onClick={() => console.log('檔�?記�?')}>
+              檔�?記�?
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log('資料夾權限')}>
-              資料夾權限
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={onExport}>
-              匯出為 Excel
+            <DropdownMenuItem onClick={() => console.log('資�?夾�???)}>
+              資�?夾�???
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
-              匯出為 CSV
+              ?�出??Excel
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
-              匯出為 PDF
+              ?�出??CSV
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onExport}>
+              ?�出??PDF
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
 
-        {/* 視圖切換按鈕 */}
+        {/* 視�??��??��? */}
         <div className="flex items-center border rounded-md">
           <Button
             variant={currentView === 'grid' ? 'default' : 'ghost'}

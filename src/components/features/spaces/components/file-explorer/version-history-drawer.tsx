@@ -65,7 +65,7 @@ export function VersionHistoryDrawer({
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent side="right" className="w-[400px] sm:w-[540px]">
         <SheetHeader className="flex flex-row items-center justify-between">
-          <SheetTitle className="text-lg font-semibold">版本歷史紀錄</SheetTitle>
+          <SheetTitle className="text-lg font-semibold">?�本歷史紀??/SheetTitle>
           <Button
             variant="ghost"
             size="icon"
@@ -77,7 +77,7 @@ export function VersionHistoryDrawer({
         </SheetHeader>
 
         <div className="mt-6 space-y-6">
-          {/* 當前文件信息 */}
+          {/* ?��??�件信息 */}
           {currentFile && (
             <div className="p-4 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-3">
@@ -85,17 +85,17 @@ export function VersionHistoryDrawer({
                 <div>
                   <h3 className="font-medium">{currentFile.name}</h3>
                   <p className="text-sm text-muted-foreground">
-                    目前版本: {currentFile.version}
+                    ?��??�本: {currentFile.version}
                   </p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* 版本列表 */}
+          {/* ?�本?�表 */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-muted-foreground">
-              版本歷史
+              ?�本歷史
             </h4>
             
             <div className="border rounded-lg">
@@ -103,10 +103,10 @@ export function VersionHistoryDrawer({
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
-                    <TableHead>版本</TableHead>
-                    <TableHead>名稱</TableHead>
-                    <TableHead>指標</TableHead>
-                    <TableHead>標記</TableHead>
+                    <TableHead>?�本</TableHead>
+                    <TableHead>?�稱</TableHead>
+                    <TableHead>?��?</TableHead>
+                    <TableHead>標�?</TableHead>
                     <TableHead className="w-12"></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -129,7 +129,7 @@ export function VersionHistoryDrawer({
                           </div>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3" />
-                            <span>已由於 {formatDate(version.updatedAt)}</span>
+                            <span>已由??{formatDate(version.updatedAt)}</span>
                           </div>
                         </div>
                       </TableCell>
@@ -159,10 +159,10 @@ export function VersionHistoryDrawer({
             </div>
           </div>
 
-          {/* 底部狀態 */}
+          {/* 底部?�??*/}
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground text-center">
-              正在展示 {versions.length} 個版本
+              �?��展示 {versions.length} ?��???
             </p>
           </div>
         </div>

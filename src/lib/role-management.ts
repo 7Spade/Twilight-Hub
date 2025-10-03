@@ -1,8 +1,7 @@
 /**
- * @fileoverview 角色管理核心服務
- * 實現混合角色管理架構：組織層級 + 空間層級
- * 支持權限繼承和覆蓋機制
- */
+ * @fileoverview 角色管�??��??��?
+ * 實現混�?角色管�??��?：�?織層�?+ 空�?層�?
+ * ?��?權�?繼承?��??��??? */
 
 import { 
   Permission, 
@@ -16,13 +15,12 @@ import {
   RoleManagementConfig 
 } from './types';
 
-// 預定義角色配置
-export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
-  // 組織層級角色
+// ?��?義�??��?�?export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
+  // 組�?層�?角色
   'super_admin': {
     id: 'super_admin',
-    name: '超級管理員',
-    description: '擁有所有權限，可管理整個系統',
+    name: '超�?管�???,
+    description: '?��??�?��??��??�管?�整?�系�?,
     permissions: [
       'space:read', 'space:write', 'space:delete', 'space:manage',
       'participant:read', 'participant:invite', 'participant:remove', 'participant:manage',
@@ -36,8 +34,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'organization_admin': {
     id: 'organization_admin',
-    name: '組織管理員',
-    description: '可管理組織和授權的空間',
+    name: '組�?管�???,
+    description: '?�管?��?織�??��??�空??,
     permissions: [
       'space:read', 'space:write', 'space:manage',
       'participant:read', 'participant:invite', 'participant:manage',
@@ -51,8 +49,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'organization_member': {
     id: 'organization_member',
-    name: '組織成員',
-    description: '組織成員，可參與授權的空間',
+    name: '組�??�員',
+    description: '組�??�員，可?��??��??�空??,
     permissions: [
       'space:read',
       'participant:read',
@@ -65,8 +63,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'organization_viewer': {
     id: 'organization_viewer',
-    name: '組織檢視者',
-    description: '只能查看組織信息',
+    name: '組�?檢�???,
+    description: '?�能?��?組�?信息',
     permissions: [
       'space:read',
       'participant:read',
@@ -78,11 +76,11 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
     inheritable: true
   },
 
-  // 空間層級角色
+  // 空�?層�?角色
   'space_owner': {
     id: 'space_owner',
-    name: '空間擁有者',
-    description: '空間的完全控制者',
+    name: '空�??��???,
+    description: '空�??��??�控?��?,
     permissions: [
       'space:read', 'space:write', 'space:delete', 'space:manage',
       'participant:read', 'participant:invite', 'participant:remove', 'participant:manage',
@@ -96,8 +94,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'space_admin': {
     id: 'space_admin',
-    name: '空間管理員',
-    description: '可管理空間成員和內容',
+    name: '空�?管�???,
+    description: '?�管?�空?��??��??�容',
     permissions: [
       'space:read', 'space:write', 'space:manage',
       'participant:read', 'participant:invite', 'participant:manage',
@@ -111,8 +109,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'space_member': {
     id: 'space_member',
-    name: '空間成員',
-    description: '可參與空間活動',
+    name: '空�??�員',
+    description: '?��??�空?�活??,
     permissions: [
       'space:read',
       'participant:read',
@@ -125,8 +123,8 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   },
   'space_viewer': {
     id: 'space_viewer',
-    name: '空間檢視者',
-    description: '只能查看空間內容',
+    name: '空�?檢�???,
+    description: '?�能?��?空�??�容',
     permissions: [
       'space:read',
       'participant:read',
@@ -139,7 +137,7 @@ export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {
   }
 };
 
-// 角色繼承映射：組織角色 -> 空間角色
+// 角色繼承?��?：�?織�???-> 空�?角色
 export const ROLE_INHERITANCE_MAP: Record<OrganizationRole, SpaceRole> = {
   'super_admin': 'space_owner',
   'organization_admin': 'space_admin',
@@ -148,8 +146,7 @@ export const ROLE_INHERITANCE_MAP: Record<OrganizationRole, SpaceRole> = {
 };
 
 /**
- * 角色管理服務類
- */
+ * 角色管�??��?�? */
 export class RoleManagementService {
   private config: RoleManagementConfig;
 
@@ -163,7 +160,7 @@ export class RoleManagementService {
   }
 
   /**
-   * 獲取用戶在特定空間的有效權限
+   * ?��??�戶?�特定空?��??��?權�?
    */
   async getUserSpacePermissions(
     userId: string, 
@@ -172,18 +169,17 @@ export class RoleManagementService {
   ): Promise<Permission[]> {
     const permissions = new Set<Permission>();
 
-    // 1. 添加組織層級權限（如果啟用繼承）
+    // 1. 添�?組�?層�?權�?（�??��??�繼?��?
     if (this.config.enableInheritance) {
       for (const orgRole of userRoleAssignment.organizationRoles) {
         const roleDef = ROLE_DEFINITIONS[orgRole.roleId];
         if (roleDef && roleDef.inheritable) {
-          // 檢查是否過期
+          // 檢查?�否?��?
           if (orgRole.expiresAt && orgRole.expiresAt.toDate() < new Date()) {
             continue;
           }
           
-          // 添加繼承的空間角色權限
-          const inheritedSpaceRole = ROLE_INHERITANCE_MAP[orgRole.roleId];
+          // 添�?繼承?�空?��??��???          const inheritedSpaceRole = ROLE_INHERITANCE_MAP[orgRole.roleId];
           if (inheritedSpaceRole) {
             const inheritedRoleDef = ROLE_DEFINITIONS[inheritedSpaceRole];
             inheritedRoleDef.permissions.forEach(permission => permissions.add(permission));
@@ -192,17 +188,17 @@ export class RoleManagementService {
       }
     }
 
-    // 2. 添加空間層級權限（可能覆蓋組織權限）
+    // 2. 添�?空�?層�?權�?（可?��??��?織�??��?
     const spaceRole = userRoleAssignment.spaceRoles[spaceId];
     if (spaceRole) {
-      // 檢查是否過期
+      // 檢查?�否?��?
       if (spaceRole.expiresAt && spaceRole.expiresAt.toDate() < new Date()) {
         return Array.from(permissions);
       }
 
       const roleDef = ROLE_DEFINITIONS[spaceRole.roleId];
       if (roleDef) {
-        // 如果啟用覆蓋，空間權限會覆蓋組織權限
+        // 如�??�用覆�?，空?��??��?覆�?組�?權�?
         if (this.config.enableOverride) {
           permissions.clear();
         }
@@ -214,7 +210,7 @@ export class RoleManagementService {
   }
 
   /**
-   * 檢查用戶是否具有特定權限
+   * 檢查?�戶?�否?��??��?權�?
    */
   async checkPermission(
     userId: string,
@@ -242,8 +238,7 @@ export class RoleManagementService {
   }
 
   /**
-   * 分配組織角色給用戶
-   */
+   * ?��?組�?角色給用??   */
   async assignOrganizationRole(
     userId: string,
     roleId: OrganizationRole,
@@ -257,13 +252,12 @@ export class RoleManagementService {
       expiresAt: expiresAt ? { toDate: () => expiresAt } as any : undefined
     };
 
-    // TODO: 保存到數據庫
+    // TODO: 保�??�數?�庫
     return assignment;
   }
 
   /**
-   * 分配空間角色給用戶
-   */
+   * ?��?空�?角色給用??   */
   async assignSpaceRole(
     userId: string,
     spaceId: string,
@@ -278,12 +272,12 @@ export class RoleManagementService {
       expiresAt: expiresAt ? { toDate: () => expiresAt } as any : undefined
     };
 
-    // TODO: 保存到數據庫
+    // TODO: 保�??�數?�庫
     return assignment;
   }
 
   /**
-   * 獲取權限來源
+   * ?��?權�?來�?
    */
   private getPermissionSource(
     userId: string,
@@ -304,8 +298,7 @@ export class RoleManagementService {
   }
 
   /**
-   * 獲取權限對應的角色
-   */
+   * ?��?權�?對�??��???   */
   private getPermissionRole(
     userId: string,
     spaceId: string,
@@ -321,7 +314,7 @@ export class RoleManagementService {
       }
     }
 
-    // 檢查組織角色
+    // 檢查組�?角色
     for (const orgRole of userRoleAssignment.organizationRoles) {
       const roleDef = ROLE_DEFINITIONS[orgRole.roleId];
       if (roleDef && roleDef.permissions.includes(permission)) {
@@ -333,19 +326,18 @@ export class RoleManagementService {
   }
 
   /**
-   * 獲取所有可用角色
-   */
+   * ?��??�?�可?��???   */
   getAvailableRoles(level: 'organization' | 'space'): RoleDefinition[] {
     return Object.values(ROLE_DEFINITIONS).filter(role => role.level === level);
   }
 
   /**
-   * 獲取角色定義
+   * ?��?角色定義
    */
   getRoleDefinition(roleId: string): RoleDefinition | undefined {
     return ROLE_DEFINITIONS[roleId];
   }
 }
 
-// 導出單例實例
+// 導出?��?實�?
 export const roleManagementService = new RoleManagementService();

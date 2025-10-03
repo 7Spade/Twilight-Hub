@@ -1,6 +1,6 @@
 /**
- * @fileoverview 角色管理 UI 組件
- * 提供角色分配和管理的用戶界面
+ * @fileoverview 角色管�? UI 組件
+ * ?��?角色?��??�管?��??�戶?�面
  */
 
 'use client';
@@ -18,7 +18,7 @@ import {
   SpaceRole, 
   Permission, 
   UserRoleAssignment 
-} from '@/lib/types';
+} from '@/lib/types-unified';
 import { roleManagementService } from '@/lib/role-management';
 import { useRoleManagement } from '@/hooks/use-permissions';
 
@@ -30,8 +30,7 @@ interface RoleManagerProps {
 }
 
 /**
- * 角色管理對話框
- */
+ * 角色管�?對話�? */
 export function RoleManager({
   userId,
   spaceId,
@@ -51,7 +50,7 @@ export function RoleManager({
       setSelectedOrgRole('');
       onRoleChange?.();
     } catch (err) {
-      console.error('分配組織角色失敗:', err);
+      console.error('?��?組�?角色失�?:', err);
     }
   };
 
@@ -63,7 +62,7 @@ export function RoleManager({
       setSelectedSpaceRole('');
       onRoleChange?.();
     } catch (err) {
-      console.error('分配空間角色失敗:', err);
+      console.error('?��?空�?角色失�?:', err);
     }
   };
 
@@ -83,7 +82,7 @@ export function RoleManager({
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           <Shield className="h-4 w-4 mr-2" />
-          管理角色
+          管�?角色
         </Button>
       </DialogTrigger>
       
@@ -91,24 +90,24 @@ export function RoleManager({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5" />
-            角色管理
+            角色管�?
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* 當前角色顯示 */}
+          {/* ?��?角色顯示 */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium">當前角色</h3>
+            <h3 className="text-lg font-medium">?��?角色</h3>
             
-            {/* 組織角色 */}
+            {/* 組�?角色 */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  組織角色
+                  組�?角色
                 </CardTitle>
                 <CardDescription>
-                  用戶在組織層級的權限角色
+                  ?�戶?��?織層級�?權�?角色
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -130,17 +129,16 @@ export function RoleManager({
               </CardContent>
             </Card>
 
-            {/* 空間角色 */}
+            {/* 空�?角色 */}
             {spaceId && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <User className="h-4 w-4" />
-                    空間角色
+                    空�?角色
                   </CardTitle>
                   <CardDescription>
-                    用戶在此空間的權限角色
-                  </CardDescription>
+                    ?�戶?�此空�??��??��???                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -153,12 +151,12 @@ export function RoleManager({
                         {formatRoleName(currentUserRoleAssignment.spaceRoles[spaceId].roleId)}
                         {currentUserRoleAssignment.spaceRoles[spaceId].inheritedFrom && (
                           <span className="text-xs opacity-70">
-                            (繼承自 {formatRoleName(currentUserRoleAssignment.spaceRoles[spaceId].inheritedFrom!)})
+                            (繼承??{formatRoleName(currentUserRoleAssignment.spaceRoles[spaceId].inheritedFrom!)})
                           </span>
                         )}
                       </Badge>
                     ) : (
-                      <Badge variant="outline">未分配</Badge>
+                      <Badge variant="outline">?��???/Badge>
                     )}
                   </div>
                 </CardContent>
@@ -168,23 +166,23 @@ export function RoleManager({
 
           <Separator />
 
-          {/* 角色分配 */}
+          {/* 角色?��? */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium">分配新角色</h3>
+            <h3 className="text-lg font-medium">?��??��???/h3>
             
-            {/* 組織角色分配 */}
+            {/* 組�?角色?��? */}
             <Card>
               <CardHeader>
-                <CardTitle>分配組織角色</CardTitle>
+                <CardTitle>?��?組�?角色</CardTitle>
                 <CardDescription>
-                  為用戶分配組織層級的角色
+                  ?�用?��??��?織層級�?角色
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex gap-2">
                   <Select value={selectedOrgRole} onValueChange={setSelectedOrgRole}>
                     <SelectTrigger className="flex-1">
-                      <SelectValue placeholder="選擇組織角色" />
+                      <SelectValue placeholder="?��?組�?角色" />
                     </SelectTrigger>
                     <SelectContent>
                       {roleManagementService.getAvailableRoles('organization').map(role => (
@@ -203,26 +201,25 @@ export function RoleManager({
                     onClick={handleOrgRoleAssign}
                     disabled={!selectedOrgRole || loading}
                   >
-                    分配
+                    ?��?
                   </Button>
                 </div>
               </CardContent>
             </Card>
 
-            {/* 空間角色分配 */}
+            {/* 空�?角色?��? */}
             {spaceId && (
               <Card>
                 <CardHeader>
-                  <CardTitle>分配空間角色</CardTitle>
+                  <CardTitle>?��?空�?角色</CardTitle>
                   <CardDescription>
-                    為用戶分配此空間的角色
-                  </CardDescription>
+                    ?�用?��??�此空�??��???                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex gap-2">
                     <Select value={selectedSpaceRole} onValueChange={setSelectedSpaceRole}>
                       <SelectTrigger className="flex-1">
-                        <SelectValue placeholder="選擇空間角色" />
+                        <SelectValue placeholder="?��?空�?角色" />
                       </SelectTrigger>
                       <SelectContent>
                         {roleManagementService.getAvailableRoles('space').map(role => (
@@ -241,7 +238,7 @@ export function RoleManager({
                       onClick={handleSpaceRoleAssign}
                       disabled={!selectedSpaceRole || loading}
                     >
-                      分配
+                      ?��?
                     </Button>
                   </div>
                 </CardContent>
@@ -249,7 +246,7 @@ export function RoleManager({
             )}
           </div>
 
-          {/* 錯誤顯示 */}
+          {/* ?�誤顯示 */}
           {error && (
             <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-md">
               <p className="text-sm text-destructive">{error}</p>
@@ -262,14 +259,14 @@ export function RoleManager({
 }
 
 /**
- * 權限顯示組件
+ * 權�?顯示組件
  */
 interface PermissionDisplayProps {
   permissions: Permission[];
   title?: string;
 }
 
-export function PermissionDisplay({ permissions, title = "權限" }: PermissionDisplayProps) {
+export function PermissionDisplay({ permissions, title = "權�?" }: PermissionDisplayProps) {
   const formatPermission = (permission: Permission) => {
     const [resource, action] = permission.split(':');
     return `${resource} - ${action}`;

@@ -25,7 +25,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { PageContainer } from '@/components/layout/page-container';
 import { Skeleton } from '@/components/ui/skeleton';
-import { type Account, type Group as GroupType, type Item } from '@/lib/types';
+import { type Account, type Group as GroupType, type Item } from '@/lib/types-unified';
 
 function StatCard({
   title,

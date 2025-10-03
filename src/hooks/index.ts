@@ -1,9 +1,9 @@
 /**
- * @fileoverview Hooks 統一導出
- * 整合所有自定義 hooks，提供清晰的 API
+ * @fileoverview Hooks 統�?導出
+ * ?��??�?�自定義 hooks，�?供�??��? API
  */
 
-// 應用狀態管理
+// ?�用?�?�管??
 export { 
   AppStateProvider, 
   useAppState, 
@@ -11,10 +11,10 @@ export {
   useDialogState 
 } from './use-app-state';
 
-// 權限管理
+// 權�?管�?
 export { usePermissions, useRoleManagement, usePermissionGuard } from './use-permissions';
 
-// UI 狀態管理
+// UI ?�?�管??
 export { useToast } from './use-toast';
 export { useIsMobile } from './use-mobile';
 

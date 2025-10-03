@@ -55,15 +55,15 @@ export function RecentActivity({ spaceId, activities }: RecentActivityProps) {
     switch (type) {
       case 'file_upload':
       case 'file_update':
-        return 'ğŸ“„';
+        return '??';
       case 'member_join':
-        return 'ğŸ‘¤';
+        return '?‘¤';
       case 'issue_created':
-        return 'ğŸ›';
+        return '??';
       case 'comment_added':
-        return 'ğŸ’¬';
+        return '?’¬';
       default:
-        return 'ğŸ“';
+        return '??';
     }
   };
 

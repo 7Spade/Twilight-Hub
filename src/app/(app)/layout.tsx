@@ -26,10 +26,10 @@ import {
   Compass,
   Shield,
 } from 'lucide-react';
-import { type NavItem } from '@/components/layout/nav';
+import { type NavItem } from '@/components/layout/navigation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 import { AppStateProvider } from '@/hooks/use-app-state';
 import { AuthProvider } from '@/components/auth';
 

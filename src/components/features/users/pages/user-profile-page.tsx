@@ -13,7 +13,7 @@ import { SpaceListView } from '@/components/features/spaces/components/spaces-li
 import { SpaceStarredView } from '@/components/features/spaces/components/spaces-starred-view';
 import { FollowingList } from '@/components/following-list';
 import { AchievementsList } from '@/components/achievements-list';
-import { type Account, type Space } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types-unified';
 import { UserProfileCard } from '@/components/user-profile-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GitHubHeatMap } from '@/components/github-heat-map';

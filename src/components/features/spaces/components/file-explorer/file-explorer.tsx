@@ -66,12 +66,11 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     includeContent: true,
   });
   const [breadcrumbItems, setBreadcrumbItems] = useState<BreadcrumbItem[]>([
-    { id: 'project-files', name: '專案檔案' }
+    { id: 'project-files', name: '專�?檔�?' }
   ]);
   const [isDeletedItemsOpen, setIsDeletedItemsOpen] = useState(false);
 
-  // 轉換原始文件數據為 FileItem 格式，並添加一些測試檔案
-  const files: FileItem[] = useMemo(() => {
+  // 轉�??��??�件?��???FileItem ?��?，並添�?一些測試�?�?  const files: FileItem[] = useMemo(() => {
     const realFiles = rawFiles.map(file => ({
       id: file.name,
       name: file.name,
@@ -90,8 +89,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       reviewStatus: '--',
     }));
 
-    // 添加一些測試檔案以便展示收合功能
-    const testFiles: FileItem[] = [
+    // 添�?一些測試�?案以便�?示收?��???    const testFiles: FileItem[] = [
       {
         id: 'test-arch-001',
         name: 'A000 - ARCHITECTURAL DRAWING.pdf',
@@ -100,14 +98,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-01T00:00:00Z',
         updated: '2024-01-15T10:30:00Z',
-        description: '建築平面圖',
+        description: '建�?平面??,
         version: 'V2',
         indicator: '--',
-        tag: '重要',
+        tag: '?��?',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '已審閱',
+        reviewStatus: '已審??,
       },
       {
         id: 'test-office-001',
@@ -117,14 +115,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/dwg',
         timeCreated: '2024-01-02T00:00:00Z',
         updated: '2024-01-16T14:20:00Z',
-        description: '辦公室平面圖',
+        description: '辦公室平?��?',
         version: 'V1',
         indicator: '--',
-        tag: '草稿',
+        tag: '?�稿',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '待審閱',
+        reviewStatus: '待審??,
       },
       {
         id: 'test-contract-001',
@@ -134,14 +132,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-03T00:00:00Z',
         updated: '2024-01-17T09:15:00Z',
-        description: '建築合約',
+        description: '建�??��?',
         version: 'V3',
         indicator: '--',
-        tag: '合約',
+        tag: '?��?',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '已審閱',
+        reviewStatus: '已審??,
       },
       {
         id: 'test-report-001',
@@ -151,10 +149,10 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-04T00:00:00Z',
         updated: '2024-01-18T16:45:00Z',
-        description: '月度進度報告',
+        description: '?�度?�度?��?',
         version: 'V1',
         indicator: '--',
-        tag: '報告',
+        tag: '?��?',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
@@ -165,11 +163,11 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     return [...realFiles, ...testFiles];
   }, [rawFiles]);
 
-  // 過濾文件
+  // ?�濾?�件
   const filteredFiles = useMemo(() => {
     let filtered = files;
 
-    // 基本搜尋過濾
+    // ?�本?��??�濾
     if (currentFilters.searchQuery.trim()) {
       const query = currentFilters.searchQuery.toLowerCase();
       filtered = filtered.filter(file =>
@@ -178,12 +176,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       );
     }
 
-    // 類型過濾
+    // 類�??�濾
     if (currentFilters.type) {
       filtered = filtered.filter(file => file.type === currentFilters.type);
     }
 
-    // 檔案類型過濾
+    // 檔�?類�??�濾
     if (currentFilters.fileType) {
       filtered = filtered.filter(file => {
         const extension = file.name.split('.').pop()?.toLowerCase();
@@ -198,30 +196,27 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       });
     }
 
-    // 審閱狀態過濾
-    if (currentFilters.reviewStatus) {
+    // 審閱?�?��?�?    if (currentFilters.reviewStatus) {
       filtered = filtered.filter(file => file.reviewStatus === currentFilters.reviewStatus);
     }
 
-    // 更新者過濾
-    if (currentFilters.updater) {
+    // ?�新?��?�?    if (currentFilters.updater) {
       filtered = filtered.filter(file => file.updater === currentFilters.updater);
     }
 
     return filtered;
   }, [files, currentFilters]);
 
-  // 載入文件列表
+  // 載入?�件?�表
   useEffect(() => {
     listFiles(spaceId, userId);
   }, [spaceId, userId, listFiles]);
 
   const handleItemClick = (item: FileItem) => {
     if (item.type === 'folder') {
-      // 處理文件夾點擊
-      console.log('Folder clicked:', item.name);
+      // ?��??�件夾�???      console.log('Folder clicked:', item.name);
     } else {
-      // 處理文件點擊
+      // ?��??�件點�?
       console.log('File clicked:', item.name);
     }
   };
@@ -231,7 +226,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     
     switch (action) {
       case 'menu':
-        // 上下文菜單已通過 ContextMenu 組件處理
+        // 上�??��??�已?��? ContextMenu 組件?��?
         break;
       case 'download':
         downloadFile(item.name, spaceId, userId);
@@ -283,7 +278,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setIsUploadDialogOpen(false);
   };
 
-  // 拖拽上傳處理
+  // ?�拽上傳?��?
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);
@@ -311,14 +306,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setContextMenuItem(null);
   };
 
-  // 篩選處理函數
+  // 篩選?��??�數
   const handleFilterApply = (filters: FilterOptions) => {
     setCurrentFilters(filters);
     setIsFilterPanelOpen(false);
   };
 
   const handleSaveSearch = (filters: FilterOptions, name: string) => {
-    // 這裡可以實現儲存搜尋到本地儲存或後端
+    // ?�裡?�以實現?��??��??�本?�儲存�?後端
     console.log('Saving search:', name, filters);
   };
 
@@ -326,25 +321,24 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setIsFilterPanelOpen(!isFilterPanelOpen);
   };
 
-  // 麵包屑處理函數
-  const handleBreadcrumbClick = (item: BreadcrumbItem) => {
+  // 麵�?屑�??�函??  const handleBreadcrumbClick = (item: BreadcrumbItem) => {
     console.log('Breadcrumb clicked:', item);
-    // 這裡可以實現導航邏輯
+    // ?�裡?�以實現導航?�輯
   };
 
-  // 刪除項目處理函數
+  // ?�除?�目?��??�數
   const handleDeletedItemsToggle = () => {
     setIsDeletedItemsOpen(!isDeletedItemsOpen);
   };
 
   const handleRestoreItem = (item: any) => {
     console.log('Restore item:', item);
-    // 這裡可以實現還原邏輯
+    // ?�裡?�以實現?��??�輯
   };
 
   const handlePermanentDelete = (item: any) => {
     console.log('Permanent delete item:', item);
-    // 這裡可以實現永久刪除邏輯
+    // ?�裡?�以實現永�??�除?�輯
   };
 
   return (
@@ -354,18 +348,18 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {/* 拖拽上傳提示 */}
+      {/* ?�拽上傳?�示 */}
       {isDragOver && (
         <div className="absolute inset-0 bg-blue-50/90 border-2 border-dashed border-blue-400 flex items-center justify-center z-50">
           <div className="text-center">
-            <div className="text-4xl mb-4">📁</div>
-            <div className="text-lg font-semibold text-blue-600">放開檔案以上傳</div>
-            <div className="text-sm text-blue-500">將檔案拖曳至此處</div>
+            <div className="text-4xl mb-4">??</div>
+            <div className="text-lg font-semibold text-blue-600">?��?檔�?以�???/div>
+            <div className="text-sm text-blue-500">將�?案�??�至此�?</div>
           </div>
         </div>
       )}
 
-      {/* 工具欄 */}
+      {/* 工具�?*/}
       <Toolbar
         onUpload={() => handleToolbarAction('upload')}
         onMoreOptions={() => handleToolbarAction('more-options')}
@@ -379,7 +373,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isFilterActive={isFilterPanelOpen}
       />
 
-      {/* 麵包屑導航 */}
+      {/* 麵�?屑�???*/}
       <div className="px-4 py-2 border-b bg-muted/10">
         <BreadcrumbNavigation
           items={breadcrumbItems}
@@ -387,9 +381,9 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         />
       </div>
 
-      {/* 主內容區 */}
+      {/* 主內容�? */}
       <div className="flex-1 flex overflow-hidden">
-        {/* 左側文件夾樹 */}
+        {/* 左側?�件夾樹 */}
         <div className="w-80 border-r bg-muted/20">
           <div className="p-4">
             <FolderTree
@@ -402,12 +396,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
           </div>
         </div>
 
-        {/* 右側文件視圖 */}
+        {/* ?�側?�件視�? */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {filteredFiles.length === 0 ? (
             <EmptyFolderState 
               onUpload={() => handleToolbarAction('upload')}
-              folderName="專案檔案"
+              folderName="專�?檔�?"
             />
           ) : (
             <>
@@ -432,18 +426,16 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
                 )}
               </div>
 
-              {/* 底部狀態欄 */}
+              {/* 底部?�?��? */}
               <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
                 <div className="text-sm text-muted-foreground">
-                  顯示 {filteredFiles.length} 個項目 • {currentView === 'list' ? '列表視圖' : '縮圖視圖'}
+                  顯示 {filteredFiles.length} ?��?????{currentView === 'list' ? '?�表視�?' : '縮�?視�?'}
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="p-1 hover:bg-muted rounded">
-                    ←
-                  </button>
+                    ??                  </button>
                   <button className="p-1 hover:bg-muted rounded">
-                    →
-                  </button>
+                    ??                  </button>
                 </div>
               </div>
             </>
@@ -451,7 +443,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         </div>
       </div>
 
-      {/* 篩選面板 */}
+      {/* 篩選?�板 */}
       <FilterPanel
         isOpen={isFilterPanelOpen}
         onClose={() => setIsFilterPanelOpen(false)}
@@ -460,7 +452,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         initialFilters={currentFilters}
       />
 
-      {/* 刪除的項目 */}
+      {/* ?�除?��???*/}
       <DeletedItems
         isOpen={isDeletedItemsOpen}
         onClose={() => setIsDeletedItemsOpen(false)}
@@ -468,7 +460,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         onPermanentDelete={handlePermanentDelete}
       />
 
-      {/* 上傳對話框 */}
+      {/* 上傳對話�?*/}
       <UploadDialog
         isOpen={isUploadDialogOpen}
         onClose={() => setIsUploadDialogOpen(false)}
@@ -477,7 +469,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isUploading={isLoading}
       />
 
-      {/* 版本歷史記錄抽屜 */}
+      {/* ?�本歷史記�??��? */}
       <VersionHistoryDrawer
         isOpen={isVersionDrawerOpen}
         onClose={() => {
@@ -502,7 +494,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         } : undefined}
       />
 
-      {/* 詳細視圖 */}
+      {/* 詳細視�? */}
       <FileDetailView
         file={detailViewFile}
         isOpen={isDetailViewOpen}
@@ -514,7 +506,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         onStar={(file) => console.log('Star file:', file.name)}
       />
 
-      {/* 上下文菜單 */}
+      {/* 上�??��???*/}
       {contextMenuItem && (
         <ContextMenu
           item={contextMenuItem}

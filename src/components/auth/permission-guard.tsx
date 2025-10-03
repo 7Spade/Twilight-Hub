@@ -1,10 +1,10 @@
 /**
- * @fileoverview 權限保護組件
- * 提供基於權限的條件渲染和訪問控制
+ * @fileoverview 權�?保護組件
+ * ?��??�於權�??��?件渲?��?訪�??�制
  */
 
 import React from 'react';
-import { Permission } from '@/lib/types';
+import { Permission } from '@/lib/types-unified';
 import { usePermissionGuard } from '@/hooks/use-permissions';
 
 interface PermissionGuardProps {
@@ -17,8 +17,8 @@ interface PermissionGuardProps {
 }
 
 /**
- * 權限保護組件
- * 只有當用戶具有指定權限時才渲染子組件
+ * 權�?保護組件
+ * ?��??�用?�具?��?定�??��??�渲?��?組件
  */
 export function PermissionGuard({
   permission,
@@ -48,9 +48,8 @@ interface PermissionButtonProps extends PermissionGuardProps {
 }
 
 /**
- * 權限保護按鈕
- * 只有當用戶具有指定權限時才啟用按鈕
- */
+ * 權�?保護?��?
+ * ?��??�用?�具?��?定�??��??��??��??? */
 export function PermissionButton({
   permission,
   userId,
@@ -91,8 +90,7 @@ interface PermissionTabProps extends PermissionGuardProps {
 }
 
 /**
- * 權限保護標籤頁
- * 只有當用戶具有指定權限時才顯示標籤頁
+ * 權�?保護標籤?? * ?��??�用?�具?��?定�??��??�顯示�?籤�?
  */
 export function PermissionTab({
   permission,

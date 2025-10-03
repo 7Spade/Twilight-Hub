@@ -19,7 +19,7 @@ import { useUser, useFirestore, useCollection } from '@/firebase';
 import { collection, query, where, limit } from 'firebase/firestore';
 import { useMemo } from 'react';
 import { PageContainer } from '@/components/layout/page-container';
-import { type Account, type Space } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types-unified';
 
 export default function Dashboard() {
   const { user, isUserLoading } = useUser();

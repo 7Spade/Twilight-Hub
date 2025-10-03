@@ -128,10 +128,10 @@ export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }:
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="bug">🐛 Bug</SelectItem>
-                        <SelectItem value="feature">✨ Feature</SelectItem>
-                        <SelectItem value="task">📋 Task</SelectItem>
-                        <SelectItem value="question">❓ Question</SelectItem>
+                        <SelectItem value="bug">?? Bug</SelectItem>
+                        <SelectItem value="feature">??Feature</SelectItem>
+                        <SelectItem value="task">?? Task</SelectItem>
+                        <SelectItem value="question">??Question</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

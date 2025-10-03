@@ -8,7 +8,7 @@ export const TaskSchema = z.object({
   title: z.string().describe('The title or name of the task'),
   quantity: z.number().describe('The quantity of work units for this task'),
   unitPrice: z.number().describe('The price per unit for this task'),
-  value: z.number().describe('The total value for this task (quantity × unitPrice)'),
+  value: z.number().describe('The total value for this task (quantity ? unitPrice)'),
   discount: z.number().optional().describe('Discount percentage applied to this task'),
   lastUpdated: z.string().describe('ISO string timestamp of when this task was last updated'),
   completedQuantity: z.number().default(0).describe('The quantity of work completed for this task'),

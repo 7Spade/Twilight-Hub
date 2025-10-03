@@ -45,17 +45,17 @@ export function ContractDetails({ contract, open, onOpenChange }: ContractDetail
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return 'ğŸ”§';
+        return '?”§';
       case 'license':
-        return 'ğŸ“„';
+        return '??';
       case 'nda':
-        return 'ğŸ”’';
+        return '??';
       case 'partnership':
-        return 'ğŸ¤';
+        return '??';
       case 'employment':
-        return 'ğŸ‘¤';
+        return '?‘¤';
       default:
-        return 'ğŸ“';
+        return '??';
     }
   };
 

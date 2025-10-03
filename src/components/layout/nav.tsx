@@ -19,11 +19,8 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-export type NavItem = {
-    href: string;
-    icon: React.ElementType;
-    label: string;
-};
+// 使用統一的 NavItem 類型定義
+import { type NavItem } from './navigation';
 
 const NavLink = ({
     href,

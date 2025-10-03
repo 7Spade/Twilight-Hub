@@ -59,13 +59,13 @@ export function ParticipantRoleEditor({
   const getRoleDescription = (role: string) => {
     switch (role) {
       case 'owner':
-        return '擁有所有功能和設定的完整存取權';
+        return '?��??�?��??��?設�??��??��??��?';
       case 'admin':
-        return '可以管理成員和大部分設定';
+        return '?�以管�??�員?�大?��?設�?';
       case 'member':
-        return '可以檢視和編輯內容';
+        return '?�以檢�??�編輯內�?;
       case 'viewer':
-        return '只能檢視內容';
+        return '?�能檢�??�容';
       default:
         return '';
     }
@@ -77,7 +77,7 @@ export function ParticipantRoleEditor({
         <DialogHeader>
           <DialogTitle>變更角色</DialogTitle>
           <DialogDescription>
-            更新 {participantName} 的角色。這將變更他們在此空間中的權限。
+            ?�新 {participantName} ?��??�。這�?變更他們在此空?�中?��??��?
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -91,14 +91,14 @@ export function ParticipantRoleEditor({
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="選取角色" />
+                        <SelectValue placeholder="?��?角色" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="owner">擁有者</SelectItem>
-                      <SelectItem value="admin">管理員</SelectItem>
-                      <SelectItem value="member">成員</SelectItem>
-                      <SelectItem value="viewer">檢視者</SelectItem>
+                      <SelectItem value="owner">?��???/SelectItem>
+                      <SelectItem value="admin">管�???/SelectItem>
+                      <SelectItem value="member">?�員</SelectItem>
+                      <SelectItem value="viewer">檢�???/SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -114,10 +114,10 @@ export function ParticipantRoleEditor({
             )}
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                取消
+                ?��?
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '更新中...' : '更新角色'}
+                {isLoading ? '?�新�?..' : '?�新角色'}
               </Button>
             </DialogFooter>
           </form>

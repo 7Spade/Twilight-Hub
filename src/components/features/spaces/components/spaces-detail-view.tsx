@@ -213,37 +213,35 @@ export function SpaceDetailView({
           <TabsContent value="participants" className="mt-6">
             <ParticipantList 
               spaceId={space.id} 
-              participants={[]} // TODO: 從數據庫載入參與者
-              canManage={isOwner}
+              participants={[]} // TODO: 從數?�庫載入?��???              canManage={isOwner}
               currentUserId={authUser?.uid}
               actions={{
                 onInvite: async (email, role, message) => {
-                  // TODO: 實現邀請邏輯
-                  console.log('邀請參與者:', { email, role, message });
+                  // TODO: 實現?�請�?�?                  console.log('?�請�??��?', { email, role, message });
                 },
                 onUpdateRole: async (participantId, role) => {
-                  // TODO: 實現角色更新邏輯
-                  console.log('更新角色:', { participantId, role });
+                  // TODO: 實現角色?�新?�輯
+                  console.log('?�新角色:', { participantId, role });
                 },
                 onUpdatePermissions: async (participantId, permissions) => {
-                  // TODO: 實現權限更新邏輯
-                  console.log('更新權限:', { participantId, permissions });
+                  // TODO: 實現權�??�新?�輯
+                  console.log('?�新權�?:', { participantId, permissions });
                 },
                 onRemove: async (participantId) => {
-                  // TODO: 實現移除邏輯
-                  console.log('移除參與者:', participantId);
+                  // TODO: 實現移除?�輯
+                  console.log('移除?��???', participantId);
                 },
                 onBulkUpdate: async (participantIds, updates) => {
-                  // TODO: 實現批量更新邏輯
-                  console.log('批量更新參與者:', { participantIds, updates });
+                  // TODO: 實現?��??�新?�輯
+                  console.log('?��??�新?��???', { participantIds, updates });
                 },
                 onBulkRemove: async (participantIds) => {
-                  // TODO: 實現批量移除邏輯
-                  console.log('批量移除參與者:', participantIds);
+                  // TODO: 實現?��?移除?�輯
+                  console.log('?��?移除?��???', participantIds);
                 },
                 onExport: async (format) => {
-                  // TODO: 實現導出邏輯
-                  console.log('導出參與者:', format);
+                  // TODO: 實現導出?�輯
+                  console.log('導出?��???', format);
                 },
               }}
             />

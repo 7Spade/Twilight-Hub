@@ -34,7 +34,7 @@ export function DeletedItems({
   onRestore, 
   onPermanentDelete 
 }: DeletedItemsProps) {
-  // 模擬已刪除的項目
+  // 模擬已刪?��??�目
   const [deletedItems] = useState<DeletedItem[]>([
     {
       id: 'deleted-1',
@@ -44,17 +44,17 @@ export function DeletedItems({
       contentType: 'application/pdf',
       timeCreated: '2024-01-01T00:00:00Z',
       updated: '2024-01-15T10:30:00Z',
-      description: '舊版建築圖紙',
+      description: '?��?建�??��?',
       version: 'V1',
       indicator: '--',
-      tag: '已過期',
+      tag: '已�???,
       issue: '--',
       updater: 'ACC Sample P...',
       versionContributor: '--',
       reviewStatus: '--',
       deletedAt: '2024-01-20T14:30:00Z',
       deletedBy: 'ACC Sample P...',
-      originalPath: '/專案檔案/Drawings/'
+      originalPath: '/專�?檔�?/Drawings/'
     },
     {
       id: 'deleted-2',
@@ -64,17 +64,17 @@ export function DeletedItems({
       contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       timeCreated: '2024-01-10T00:00:00Z',
       updated: '2024-01-18T09:15:00Z',
-      description: '臨時合約文件',
+      description: '?��??��??�件',
       version: 'V2',
       indicator: '--',
-      tag: '臨時',
+      tag: '?��?',
       issue: '--',
-      updater: 'A系 ACC 系統',
+      updater: 'A�?ACC 系統',
       versionContributor: '--',
       reviewStatus: '--',
       deletedAt: '2024-01-19T16:45:00Z',
-      deletedBy: 'A系 ACC 系統',
-      originalPath: '/專案檔案/Correspondence/'
+      deletedBy: 'A�?ACC 系統',
+      originalPath: '/專�?檔�?/Correspondence/'
     }
   ]);
 
@@ -103,10 +103,10 @@ export function DeletedItems({
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Trash2 className="h-5 w-5" />
-            刪除的項目
+            ?�除?��???
           </CardTitle>
           <Button variant="ghost" size="sm" onClick={onClose}>
-            ✕
+            ??
           </Button>
         </CardHeader>
         
@@ -114,25 +114,25 @@ export function DeletedItems({
           {deletedItems.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">
               <Trash2 className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <p className="text-lg font-medium">沒有已刪除的項目</p>
-              <p className="text-sm">已刪除的檔案和資料夾將在此處顯示</p>
+              <p className="text-lg font-medium">沒�?已刪?��??�目</p>
+              <p className="text-sm">已刪?��?檔�??��??�夾將在此�?顯示</p>
             </div>
           ) : (
             <div className="space-y-4">
               <div className="text-sm text-muted-foreground mb-4">
-                顯示 {deletedItems.length} 個已刪除的項目
+                顯示 {deletedItems.length} ?�已?�除?��???
               </div>
               
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
-                    <TableHead>名稱</TableHead>
-                    <TableHead>原始位置</TableHead>
-                    <TableHead>大小</TableHead>
-                    <TableHead>刪除時間</TableHead>
-                    <TableHead>刪除者</TableHead>
-                    <TableHead className="w-32">操作</TableHead>
+                    <TableHead>?�稱</TableHead>
+                    <TableHead>?��?位置</TableHead>
+                    <TableHead>大�?</TableHead>
+                    <TableHead>?�除?��?</TableHead>
+                    <TableHead>?�除??/TableHead>
+                    <TableHead className="w-32">?��?</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -149,7 +149,7 @@ export function DeletedItems({
                           )} />
                           <span className="font-medium">{item.name}</span>
                           <Badge variant="secondary" className="text-xs">
-                            {item.type === 'folder' ? '資料夾' : '檔案'}
+                            {item.type === 'folder' ? '資�?�? : '檔�?'}
                           </Badge>
                         </div>
                       </TableCell>
@@ -184,7 +184,7 @@ export function DeletedItems({
                             className="h-8 px-2"
                           >
                             <RotateCcw className="h-3 w-3 mr-1" />
-                            還原
+                            ?��?
                           </Button>
                           <Button
                             variant="ghost"
@@ -193,7 +193,7 @@ export function DeletedItems({
                             className="h-8 px-2 text-red-600 hover:text-red-700"
                           >
                             <Trash className="h-3 w-3 mr-1" />
-                            永久刪除
+                            永�??�除
                           </Button>
                         </div>
                       </TableCell>

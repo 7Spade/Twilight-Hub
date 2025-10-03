@@ -5,8 +5,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { LoadingSkeletonProps } from './types';
 
 /**
- * 现代化的加载骨架屏组件
- * 提供流畅的加载体验和一致的设计语言
+ * ?�代?��??�载骨架屏�?�?
+ * ?��?流�??��?载�?验�?一?��?设计语�?
  */
 export function LoadingSkeleton({ 
   className = '', 
@@ -32,7 +32,7 @@ export function LoadingSkeleton({
 }
 
 /**
- * 指标卡片骨架屏
+ * ?��??��?骨架�?
  */
 export function MetricCardSkeleton() {
   return (
@@ -50,7 +50,7 @@ export function MetricCardSkeleton() {
 }
 
 /**
- * 活动列表骨架屏
+ * 活动?�表骨架�?
  */
 export function ActivitySkeleton({ count = 3 }: { count?: number }) {
   return (
@@ -73,7 +73,7 @@ export function ActivitySkeleton({ count = 3 }: { count?: number }) {
 }
 
 /**
- * 图表骨架屏
+ * ?�表骨架�?
  */
 export function ChartSkeleton() {
   return (

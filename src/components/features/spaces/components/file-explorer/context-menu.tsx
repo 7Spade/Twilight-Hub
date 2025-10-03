@@ -57,95 +57,95 @@ interface ContextMenuProps {
 
 export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
   const menuItems: MenuGroup[] = [
-    // 第一組：基本文件/資料夾操作
+    // 第�?組�??�本?�件/資�?夾�?�?
     {
       group: 'basic',
       items: [
         {
           id: 'add-subfolder',
-          label: '加入子資料夾',
+          label: '?�入子�??�夾',
           icon: <Plus className="h-4 w-4" />,
           secondaryIcon: <Folder className="h-4 w-4" />,
         },
         {
           id: 'rename',
-          label: '更名',
+          label: '?��?',
           icon: <Edit className="h-4 w-4" />,
         },
         {
           id: 'share',
-          label: '共用',
+          label: '?�用',
           icon: <Share className="h-4 w-4" />,
         },
         {
           id: 'move',
-          label: '移動',
+          label: '移�?',
           icon: <Move className="h-4 w-4" />,
         },
         {
           id: 'delete',
-          label: '刪除',
+          label: '?�除',
           icon: <Trash2 className="h-4 w-4" />,
         },
         {
           id: 'sort-by',
-          label: '排序依據',
+          label: '?��?依�?',
           icon: <ArrowUpDown className="h-4 w-4" />,
           hasArrow: true,
         },
       ]
     },
-    // 第二組：上傳和下載操作
+    // 第�?組�?上傳?��?載�?�?
     {
       group: 'upload-download',
       items: [
         {
           id: 'upload',
-          label: '上載',
+          label: '上�?',
           icon: <Upload className="h-4 w-4" />,
           hasArrow: true,
         },
         {
           id: 'download-original',
-          label: '下載原始檔案',
+          label: '下�??��?檔�?',
           icon: <Download className="h-4 w-4" />,
           info: true,
         },
         {
           id: 'export-history',
-          label: '匯出檔案記錄',
+          label: '?�出檔�?記�?',
           icon: <FileText className="h-4 w-4" />,
         },
         {
           id: 'submit-review',
-          label: '提交以供審閱',
+          label: '?�交以�?審閱',
           icon: <UserCheck className="h-4 w-4" />,
         },
         {
           id: 'create-transfer',
-          label: '建立傳送',
+          label: '建�??��?,
           icon: <Package className="h-4 w-4" />,
           info: true,
         },
       ]
     },
-    // 第三組：設定和更多選項
+    // 第�?組�?設�??�更多選??
     {
       group: 'settings',
       items: [
         {
           id: 'permission-settings',
-          label: '權限設定',
+          label: '權�?設�?',
           icon: <Settings className="h-4 w-4" />,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱自動觸發詳細資料',
+          label: '審閱?��?觸發詳細資�?',
           icon: <Play className="h-4 w-4" />,
         },
         {
           id: 'more',
-          label: '更多',
+          label: '?��?',
           icon: <MoreVertical className="h-4 w-4" />,
           hasArrow: true,
         },
@@ -203,17 +203,17 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       items: [
         {
           id: 'properties',
-          label: '屬性',
+          label: '屬�?,
           hasArrow: true,
         },
         {
           id: 'compliance',
-          label: '合規性',
+          label: '?��???,
           hasArrow: true,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱自動觸發',
+          label: '審閱?��?觸發',
         },
         {
           id: 'packages',
@@ -221,7 +221,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
         },
         {
           id: 'advanced',
-          label: '進階',
+          label: '?��?',
         },
       ]
     }
@@ -232,7 +232,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <MoreVertical className="h-4 w-4 mr-2" />
-          設定
+          設�?
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
@@ -246,7 +246,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
               >
                 <span>{menuItem.label}</span>
                 {menuItem.hasArrow && (
-                  <span className="text-muted-foreground">›</span>
+                  <span className="text-muted-foreground">??/span>
                 )}
               </DropdownMenuItem>
             ))}

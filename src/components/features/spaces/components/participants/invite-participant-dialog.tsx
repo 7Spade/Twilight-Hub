@@ -12,7 +12,7 @@ import { z } from 'zod';
 import { ParticipantInviteFormData, ParticipantRole } from './types';
 
 const inviteSchema = z.object({
-  email: z.string().email('請輸入有效的電子郵件地址'),
+  email: z.string().email('請輸?��??��??��??�件?��?'),
   role: z.enum(['admin', 'member', 'viewer']),
   message: z.string().optional(),
 });
@@ -61,9 +61,9 @@ export function InviteParticipantDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>新增成員</DialogTitle>
+          <DialogTitle>?��??�員</DialogTitle>
           <DialogDescription>
-            傳送邀請以加入此空間。他們將收到包含邀請的電子郵件。
+            ?�送�?請以?�入此空?�。�??��??�到?�含?�請�??��??�件??
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -73,7 +73,7 @@ export function InviteParticipantDialog({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>電子郵件地址</FormLabel>
+                  <FormLabel>?��??�件?��?</FormLabel>
                   <FormControl>
                     <Input placeholder="colleague@example.com" {...field} />
                   </FormControl>
@@ -90,13 +90,13 @@ export function InviteParticipantDialog({
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="選取角色" />
+                        <SelectValue placeholder="?��?角色" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="admin">管理員</SelectItem>
-                      <SelectItem value="member">成員</SelectItem>
-                      <SelectItem value="viewer">檢視者</SelectItem>
+                      <SelectItem value="admin">管�???/SelectItem>
+                      <SelectItem value="member">?�員</SelectItem>
+                      <SelectItem value="viewer">檢�???/SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -108,9 +108,9 @@ export function InviteParticipantDialog({
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>個人訊息 (選填)</FormLabel>
+                  <FormLabel>?�人訊息 (?�填)</FormLabel>
                   <FormControl>
-                    <Input placeholder="新增個人訊息..." {...field} />
+                    <Input placeholder="?��??�人訊息..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -118,10 +118,10 @@ export function InviteParticipantDialog({
             />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                取消
+                ?��?
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '傳送中...' : '傳送邀請'}
+                {isLoading ? '?�送中...' : '?�送�?�?}
               </Button>
             </DialogFooter>
           </form>

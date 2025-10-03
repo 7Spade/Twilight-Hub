@@ -18,7 +18,7 @@ import { Separator } from '@/components/ui/separator';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { Mail, Users, User as UserIcon } from 'lucide-react';
 import { useUser, useDoc, useFirestore, useCollection } from '@/firebase';
-import { type Account, type Achievement, type UserAchievement } from '@/lib/types';
+import { type Account, type Achievement, type UserAchievement } from '@/lib/types-unified';
 import { Skeleton } from './ui/skeleton';
 
 function UserProfileCardSkeleton() {

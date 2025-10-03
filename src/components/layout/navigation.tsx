@@ -126,5 +126,5 @@ export function Navigation({
   );
 }
 
-// 導出類型
-export type { NavItem, NavigationProps };
+// 導出類型（NavItem 已在上面定義並導出）
+export type { NavigationProps };

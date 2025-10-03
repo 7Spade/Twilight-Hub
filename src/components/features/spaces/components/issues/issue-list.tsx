@@ -132,15 +132,15 @@ export function IssueList({ spaceId, issues, canCreate = false }: IssueListProps
   const getTypeIcon = (type: Issue['type']) => {
     switch (type) {
       case 'bug':
-        return '🐛';
+        return '??';
       case 'feature':
-        return '✨';
+        return '??;
       case 'task':
-        return '📋';
+        return '??';
       case 'question':
-        return '❓';
+        return '??;
       default:
-        return '📝';
+        return '??';
     }
   };
 

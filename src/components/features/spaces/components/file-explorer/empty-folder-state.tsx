@@ -24,12 +24,12 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
         </div>
         
         <h3 className="text-lg font-semibold text-gray-700 mb-2">
-          沒有要檢視的檔案
+          沒�?要檢視�?檔�?
         </h3>
         
         <p className="text-gray-500 mb-6">
-          {folderName ? `在 ${folderName} 資料夾中沒有檔案。` : '此資料夾中沒有檔案。'}
-          將檔案拖曳到此處或上載檔案。
+          {folderName ? `??${folderName} 資�?夾中沒�?檔�??�` : '此�??�夾中�??��?案�?}
+          將�?案�??�到此�??��?載�?案�?
         </p>
         
         <div className="space-y-3">
@@ -38,7 +38,7 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
             className="w-full bg-blue-600 hover:bg-blue-700"
           >
             <UploadCloud className="h-4 w-4 mr-2" />
-            上載檔案
+            上�?檔�?
           </Button>
           
           <p className="text-xs text-gray-400">
@@ -48,9 +48,9 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
-              瞭解更多
+              ?�解?��?
             </a>
-            關於檔案。
+            ?�於檔�???
           </p>
         </div>
       </div>

@@ -21,11 +21,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useChatState } from '@/hooks/use-app-state';
 import { NotificationPopover } from '@/components/notification-popover';
 import { UserNav } from './user-nav';
-import { Nav, type NavItem } from './nav';
+import { Nav } from './nav';
+import { type NavItem } from './navigation';
 import { TeamSwitcher, type Team } from './team-switcher';
 import { Separator } from '../ui/separator';
 import { SearchCommand } from '../search-command';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 
 export function Header({
   isCollapsed,

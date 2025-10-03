@@ -42,8 +42,8 @@ interface RoleListProps {
 const defaultRoles: Role[] = [
   {
     id: '1',
-    name: '組織管理員',
-    description: '負責組織整體管理和決策',
+    name: '組�?管�???,
+    description: '負責組�??��?管�??�決�?,
     isDefault: true,
     memberCount: 2,
     accessLevel: 'organization-admin',
@@ -61,8 +61,8 @@ const defaultRoles: Role[] = [
   },
   {
     id: '2',
-    name: 'BIM 經理',
-    description: '負責 BIM 專案管理和協調',
+    name: 'BIM 經�?',
+    description: '負責 BIM 專�?管�??��?�?,
     isDefault: true,
     memberCount: 3,
     accessLevel: 'organization-member',
@@ -80,8 +80,8 @@ const defaultRoles: Role[] = [
   },
   {
     id: '3',
-    name: '專案經理',
-    description: '專案整體管理和決策',
+    name: '專�?經�?',
+    description: '專�??��?管�??�決�?,
     isDefault: true,
     memberCount: 2,
     accessLevel: 'organization-member',
@@ -99,8 +99,8 @@ const defaultRoles: Role[] = [
   },
   {
     id: '4',
-    name: '工程師',
-    description: '技術實施和設計',
+    name: '工�?�?,
+    description: '?�術實?��?設�?',
     isDefault: true,
     memberCount: 5,
     accessLevel: 'organization-member',
@@ -118,8 +118,8 @@ const defaultRoles: Role[] = [
   },
   {
     id: '5',
-    name: '估算員',
-    description: '成本估算和預算管理',
+    name: '估�???,
+    description: '?�本估�??��?算管??,
     isDefault: true,
     memberCount: 2,
     accessLevel: 'organization-member',
@@ -137,8 +137,8 @@ const defaultRoles: Role[] = [
   },
   {
     id: '6',
-    name: '建築師',
-    description: '建築設計和規劃',
+    name: '建�?�?,
+    description: '建�?設�??��???,
     isDefault: true,
     memberCount: 4,
     accessLevel: 'organization-member',
@@ -180,13 +180,13 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">組織角色</h2>
-          <p className="text-muted-foreground">管理組織中的角色和權限設定</p>
+          <h2 className="text-2xl font-bold tracking-tight">組�?角色</h2>
+          <p className="text-muted-foreground">管�?組�?中�?角色?��??�設�?/p>
         </div>
         {canManage && (
           <Button onClick={() => setCreateDialogOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
-            新增角色
+            ?��?角色
           </Button>
         )}
       </div>
@@ -196,7 +196,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="搜尋角色"
+            placeholder="?��?角色"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-9"
@@ -211,7 +211,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
           <Card>
             <CardHeader>
               <CardTitle className="text-sm font-medium">
-                正在顯示 {filteredRoles.length} 個 (共 {roles.length} 個)
+                �?��顯示 {filteredRoles.length} ??(??{roles.length} ??
               </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
@@ -232,12 +232,12 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                           <h4 className="font-medium">{role.name}</h4>
                           {role.isDefault && (
                             <Badge variant="secondary" className="text-xs">
-                              預設
+                              ?�設
                             </Badge>
                           )}
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">
-                          {role.memberCount} 位成員
+                          {role.memberCount} 位�???
                         </p>
                       </div>
                       {canManage && (
@@ -254,7 +254,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                             </DropdownMenuItem>
                             {!role.isDefault && (
                               <DropdownMenuItem className="text-destructive">
-                                刪除角色
+                                ?�除角色
                               </DropdownMenuItem>
                             )}
                           </DropdownMenuContent>
@@ -278,7 +278,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                     <CardTitle className="flex items-center gap-2">
                       {selectedRole.name}
                       {selectedRole.isDefault && (
-                        <Badge variant="secondary">預設</Badge>
+                        <Badge variant="secondary">?�設</Badge>
                       )}
                     </CardTitle>
                     <CardDescription>{selectedRole.description}</CardDescription>
@@ -289,14 +289,14 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                 {/* Tabs */}
                 <Tabs defaultValue="access">
                   <TabsList>
-                    <TabsTrigger value="access">存取</TabsTrigger>
-                    <TabsTrigger value="members">成員</TabsTrigger>
+                    <TabsTrigger value="access">存�?</TabsTrigger>
+                    <TabsTrigger value="members">?�員</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="access" className="space-y-6">
                     {/* Default Access Level */}
                     <div>
-                      <h4 className="text-sm font-medium mb-3">預設存取層級</h4>
+                      <h4 className="text-sm font-medium mb-3">?�設存�?層�?</h4>
                       <Select
                         value={selectedRole.accessLevel}
                         onValueChange={(value) => handleAccessLevelChange(selectedRole.id, value)}
@@ -306,9 +306,9 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="organization-member">組織成員</SelectItem>
-                          <SelectItem value="organization-admin">組織管理員</SelectItem>
-                          <SelectItem value="organization-owner">組織擁有者</SelectItem>
+                          <SelectItem value="organization-member">組�??�員</SelectItem>
+                          <SelectItem value="organization-admin">組�?管�???/SelectItem>
+                          <SelectItem value="organization-owner">組�??��???/SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -319,7 +319,7 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                     <div>
                       <h4 className="text-sm font-medium mb-3">Purchased products</h4>
                       <p className="text-sm text-muted-foreground mb-4">
-                        您的帳戶尚未購買任何產品。
+                        ?��?帳戶尚未購買任�??��???
                       </p>
                     </div>
 
@@ -360,11 +360,11 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
                   <TabsContent value="members">
                     <div className="space-y-4">
                       <p className="text-sm text-muted-foreground">
-                        此角色目前有 {selectedRole.memberCount} 位成員
+                        此�??�目?��? {selectedRole.memberCount} 位�???
                       </p>
                       {/* TODO: Add member list component */}
                       <div className="text-center py-8 text-muted-foreground">
-                        成員列表功能開發中...
+                        ?�員?�表?�能?�發�?..
                       </div>
                     </div>
                   </TabsContent>
@@ -376,9 +376,9 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
               <CardContent className="flex items-center justify-center py-12">
                 <div className="text-center">
                   <Settings className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg font-medium mb-2">選擇角色</h3>
+                  <h3 className="text-lg font-medium mb-2">?��?角色</h3>
                   <p className="text-muted-foreground">
-                    從左側列表選擇一個角色來查看詳細資訊
+                    從左?��?表選?��??��??��??��?詳細資�?
                   </p>
                 </div>
               </CardContent>

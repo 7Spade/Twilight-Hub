@@ -1,6 +1,6 @@
 /**
- * @fileoverview 視圖切換組件
- * 支持表格、卡片、列表三種視圖模式
+ * @fileoverview 視�??��?組件
+ * ?��?表格?�卡?�、�?表�?種�??�模�?
  */
 
 'use client';
@@ -20,17 +20,17 @@ interface ViewToggleProps {
 const VIEW_MODES: ViewMode[] = [
   {
     type: 'table',
-    label: '表格視圖',
+    label: '表格視�?',
     icon: 'Table',
   },
   {
     type: 'card',
-    label: '卡片視圖',
+    label: '?��?視�?',
     icon: 'Grid3X3',
   },
   {
     type: 'list',
-    label: '列表視圖',
+    label: '?�表視�?',
     icon: 'List',
   },
 ];

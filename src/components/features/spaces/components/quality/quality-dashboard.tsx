@@ -146,7 +146,7 @@ export function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {
                 <AlertTriangle className="h-4 w-4 text-red-600" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Authentication vulnerability</p>
-                  <p className="text-xs text-muted-foreground">High priority • 2 days ago</p>
+                  <p className="text-xs text-muted-foreground">High priority ??2 days ago</p>
                 </div>
                 <Badge variant="destructive" className="text-xs">Critical</Badge>
               </div>
@@ -155,7 +155,7 @@ export function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {
                 <Clock className="h-4 w-4 text-yellow-600" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Missing unit tests</p>
-                  <p className="text-xs text-muted-foreground">Medium priority • 1 week ago</p>
+                  <p className="text-xs text-muted-foreground">Medium priority ??1 week ago</p>
                 </div>
                 <Badge variant="secondary" className="text-xs">Warning</Badge>
               </div>
@@ -164,7 +164,7 @@ export function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {
                 <Clock className="h-4 w-4 text-yellow-600" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Outdated documentation</p>
-                  <p className="text-xs text-muted-foreground">Low priority • 2 weeks ago</p>
+                  <p className="text-xs text-muted-foreground">Low priority ??2 weeks ago</p>
                 </div>
                 <Badge variant="outline" className="text-xs">Info</Badge>
               </div>

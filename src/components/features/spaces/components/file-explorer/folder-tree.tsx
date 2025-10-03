@@ -52,25 +52,25 @@ interface FolderTreeProps {
 export function FolderTree({ files, selectedItems, onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['project-files', 'supported']));
 
-  // 將真實檔案數據組織成資料夾結構
+  // 將�?實�?案數?��?織�?資�?夾�?�?
   const organizeFilesIntoFolders = (fileList: FileItem[]) => {
     const folders: { [key: string]: FileItem[] } = {};
     
-    // 根據檔案類型或名稱前綴組織檔案
+    // ?��?檔�?類�??��?稱�?綴�?織�?�?
     fileList.forEach(file => {
-      let folderName = '其他檔案';
+      let folderName = '?��?檔�?';
       
-      // 根據檔案名稱前綴判斷資料夾
+      // ?��?檔�??�稱?�綴?�斷資�?�?
       if (file.name.startsWith('A000') || file.name.startsWith('A100')) {
-        folderName = '建築圖紙';
+        folderName = '建�??��?';
       } else if (file.name.includes('PDF') || file.name.endsWith('.pdf')) {
         folderName = 'PDFs';
       } else if (file.name.includes('CAD') || file.name.endsWith('.dwg')) {
-        folderName = 'CAD檔案';
-      } else if (file.name.includes('Contract') || file.name.includes('合約')) {
-        folderName = '合約文件';
-      } else if (file.name.includes('Report') || file.name.includes('報告')) {
-        folderName = '報告';
+        folderName = 'CAD檔�?';
+      } else if (file.name.includes('Contract') || file.name.includes('?��?')) {
+        folderName = '?��??�件';
+      } else if (file.name.includes('Report') || file.name.includes('?��?')) {
+        folderName = '?��?';
       }
       
       if (!folders[folderName]) {
@@ -79,7 +79,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
       folders[folderName].push(file);
     });
 
-    // 轉換為 FileItem 格式
+    // 轉�???FileItem ?��?
     return Object.entries(folders).map(([folderName, folderFiles]) => ({
       id: folderName.toLowerCase().replace(/\s+/g, '-'),
       name: folderName,
@@ -94,10 +94,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     }));
   };
 
-  // 使用真實檔案數據組織的資料夾結構
+  // 使用?�實檔�??��?組�??��??�夾結�?
   const organizedFolders = organizeFilesIntoFolders(files);
 
-  // 模擬資料夾數據，用於測試收合功能 - 更豐富的層級結構
+  // 模擬資�?夾數?��??�於測試?��??�能 - ?��?富�?層�?結�?
   const mockFolders: FileItem[] = [
     { 
       id: 'bids', 
@@ -387,7 +387,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     }
   ];
 
-  // 合併模擬資料夾和真實檔案資料夾
+  // ?�併模擬資�?夾�??�實檔�?資�?�?
   const allFolders = [...mockFolders, ...organizedFolders];
 
   const toggleFolder = (folderId: string) => {
@@ -414,7 +414,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
           )}
           style={{ paddingLeft: `${level * 16 + 8}px` }}
         >
-          {/* 展開/收合箭頭 */}
+          {/* 展�?/?��?箭頭 */}
           <div className="w-4 h-4 flex items-center justify-center">
             {hasChildren ? (
               <button
@@ -428,7 +428,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             )}
           </div>
           
-          {/* 資料夾/檔案圖標 */}
+          {/* 資�?�?檔�??��? */}
           <div className="w-4 h-4 flex items-center justify-center">
             {item.type === 'folder' ? (
               isExpanded ? (
@@ -441,7 +441,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             )}
           </div>
           
-          {/* 資料夾名稱 */}
+          {/* 資�?夾�?�?*/}
           <span 
             className="text-sm text-gray-700 truncate flex-1"
             onClick={() => onItemClick(item)}
@@ -449,7 +449,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             {item.name}
           </span>
           
-          {/* 更多選項按鈕 */}
+          {/* ?��??��??��? */}
           <ContextMenu
             item={item}
             onAction={(action) => onItemAction?.(item, action)}
@@ -463,7 +463,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
           </ContextMenu>
         </div>
         
-        {/* 子資料夾 */}
+        {/* 子�??�夾 */}
         {item.type === 'folder' && isExpanded && hasChildren && (
           <div>
             {item.children!.map(child => renderFolderItem(child, level + 1))}
@@ -477,13 +477,13 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     <div className="h-full flex flex-col">
       <Tabs defaultValue="folders" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="folders">資料夾</TabsTrigger>
+          <TabsTrigger value="folders">資�?�?/TabsTrigger>
           <TabsTrigger value="packages">套件</TabsTrigger>
         </TabsList>
         
         <TabsContent value="folders" className="mt-2">
           <div className="space-y-1">
-            {/* 根目錄 - 專案檔案 */}
+            {/* ?�目??- 專�?檔�? */}
             <div className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-100 cursor-pointer group rounded-sm bg-gray-50">
               <div className="w-4 h-4 flex items-center justify-center">
                 <button
@@ -499,10 +499,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
               <div className="w-4 h-4 flex items-center justify-center">
                 <Folder className="h-4 w-4 text-blue-500" />
               </div>
-              <span className="text-sm font-medium text-gray-700">專案檔案</span>
+              <span className="text-sm font-medium text-gray-700">專�?檔�?</span>
               <ContextMenu
-                item={{ id: 'project-files', name: '專案檔案', type: 'folder', timeCreated: '', updated: '' }}
-                onAction={(action) => onItemAction?.({ id: 'project-files', name: '專案檔案', type: 'folder', timeCreated: '', updated: '' }, action)}
+                item={{ id: 'project-files', name: '專�?檔�?', type: 'folder', timeCreated: '', updated: '' }}
+                onAction={(action) => onItemAction?.({ id: 'project-files', name: '專�?檔�?', type: 'folder', timeCreated: '', updated: '' }, action)}
               >
                 <button
                   className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-200 rounded-sm flex items-center justify-center ml-auto"

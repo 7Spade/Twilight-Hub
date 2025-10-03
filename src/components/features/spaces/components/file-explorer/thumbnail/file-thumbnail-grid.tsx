@@ -181,9 +181,9 @@ export function FileThumbnailGrid({
     return (
       <div className={cn('flex items-center justify-center h-64 animate-in fade-in-0 slide-in-from-bottom-2 duration-300', className)}>
         <div className="text-center text-muted-foreground">
-          <div className="text-4xl mb-4">📁</div>
-          <p className="text-lg font-medium">沒有檔案</p>
-          <p className="text-sm">上傳檔案開始使用</p>
+          <div className="text-4xl mb-4">??</div>
+          <p className="text-lg font-medium">沒�?檔�?</p>
+          <p className="text-sm">上傳檔�??��?使用</p>
         </div>
       </div>
     );
@@ -202,17 +202,17 @@ export function FileThumbnailGrid({
           />
           <span className="text-sm text-muted-foreground">
             {selectedItems.length > 0 
-              ? `已選擇 ${selectedItems.length} 個檔案`
-              : `共 ${files.length} 個檔案`
+              ? `已選??${selectedItems.length} ?��?案`
+              : `??${files.length} ?��?案`
             }
           </span>
         </div>
         
         <div className="text-sm text-muted-foreground">
-          {screenSize === 'sm' && '2 列'}
-          {screenSize === 'md' && '3 列'}
-          {screenSize === 'lg' && '4 列'}
-          {screenSize === 'xl' && '6 列'}
+          {screenSize === 'sm' && '2 ??}
+          {screenSize === 'md' && '3 ??}
+          {screenSize === 'lg' && '4 ??}
+          {screenSize === 'xl' && '6 ??}
         </div>
       </div>
 
@@ -256,7 +256,7 @@ export function FileThumbnailGrid({
 
       {/* Grid info */}
       <div className="mt-2 text-xs text-muted-foreground text-center animate-in fade-in-0 duration-300 delay-200">
-        顯示 {files.length} 個檔案 • {columnCount} 列 × {rowCount} 行
+        顯示 {files.length} ?��?�???{columnCount} ??? {rowCount} �?
       </div>
     </div>
   );

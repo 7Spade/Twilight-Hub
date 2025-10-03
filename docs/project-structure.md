@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午04:37:31
+> 最後更新時間: 2025/10/03 下午04:43:15
 
 ## 目錄結構
 
@@ -56,10 +56,6 @@
     │   │   │   │   ├── page.tsx
     │   │   │   ├── page.tsx
     │   │   ├── page.tsx
-    │   ├── (dashboard)/
-    │   │   ├── spaces/
-    │   │   │   └── [spaceslug]/
-    │   │   │       └── files/
     │   ├── login/
     │   │   ├── page.tsx
     │   ├── signup/
@@ -92,15 +88,6 @@
     │   │   │   │   │   ├── index.ts
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx
     │   │   │   │   ├── contracts/
-    │   │   │   │   │   ├── src/
-    │   │   │   │   │   │   ├── app/
-    │   │   │   │   │   │   │   ├── actions/
-    │   │   │   │   │   │   ├── components/
-    │   │   │   │   │   │   │   ├── contracts/
-    │   │   │   │   │   │   ├── hooks/
-    │   │   │   │   │   │   ├── lib/
-    │   │   │   │   │   │   │   └── firebase/
-    │   │   │   │   │   │   │   └── types/
     │   │   │   │   │   ├── contract-details.tsx
     │   │   │   │   │   ├── contract-list.tsx
     │   │   │   │   │   ├── index.ts
@@ -172,7 +159,6 @@
     │   │   │   │   ├── spaces-list-view.tsx
     │   │   │   │   ├── spaces-settings-view.tsx
     │   │   │   │   ├── spaces-star-button.tsx
-    │   │   │   │   ├── spaces-starred-list.tsx
     │   │   │   │   ├── spaces-starred-view.tsx
     │   │   │   │   ├── spaces-visibility-badge.tsx
     │   │   │   ├── hooks/

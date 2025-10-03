@@ -58,12 +58,12 @@ export function ColumnSettingsMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
-        {/* 搜尋欄 */}
+        {/* ?��?�?*/}
         <div className="p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="搜尋屬性"
+              placeholder="?��?屬�?
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-8"
@@ -71,7 +71,7 @@ export function ColumnSettingsMenu({
           </div>
         </div>
 
-        {/* 列設定選項 */}
+        {/* ?�設定選??*/}
         <div className="max-h-64 overflow-y-auto">
           {filteredColumns.map((column) => (
             <div
@@ -91,7 +91,7 @@ export function ColumnSettingsMenu({
 
         <Separator />
 
-        {/* 底部操作 */}
+        {/* 底部?��? */}
         <div className="p-2 space-y-1">
           <Button
             variant="ghost"
@@ -99,7 +99,7 @@ export function ColumnSettingsMenu({
             className="w-full justify-start text-blue-600 hover:text-blue-700 hover:bg-blue-50"
             onClick={onPropertySettings}
           >
-            屬性設定
+            屬性設�?
           </Button>
           <Button
             variant="ghost"
@@ -108,7 +108,7 @@ export function ColumnSettingsMenu({
             onClick={onReset}
           >
             <RotateCcw className="h-4 w-4 mr-2" />
-            重置
+            ?�置
           </Button>
         </div>
       </DropdownMenuContent>

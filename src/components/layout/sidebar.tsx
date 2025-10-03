@@ -16,7 +16,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 import { cn } from "@/lib/utils";
 import { Logo } from "../logo";
-import { Nav, type NavItem } from "./nav";
+import { Nav } from "./nav";
+import { type NavItem } from "./navigation";
 import { TeamSwitcher, type Team } from "./team-switcher";
 
 export function Sidebar({

@@ -103,31 +103,31 @@ export function FilterPanel({
   return (
     <div className="absolute right-0 top-0 h-full w-80 bg-white border-l shadow-lg z-40">
       <div className="h-full flex flex-col">
-        {/* 標題欄 - 匹配 Autodesk 設計 */}
+        {/* 標�?�?- ?��? Autodesk 設�? */}
         <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-lg font-semibold">搜尋</h3>
+          <h3 className="text-lg font-semibold">?��?</h3>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="h-4 w-4" />
           </Button>
         </div>
 
-        {/* 標籤頁 */}
+        {/* 標籤??*/}
         <div className="flex border-b">
           <button className="flex-1 py-2 px-4 text-sm font-medium border-b-2 border-blue-500 text-blue-600">
-            搜尋
+            ?��?
           </button>
           <button className="flex-1 py-2 px-4 text-sm font-medium text-gray-500">
-            儲存的搜尋
+            ?��??��?�?
           </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
-          {/* 搜尋框 */}
+          {/* ?��?�?*/}
           <div className="space-y-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="搜尋"
+                placeholder="?��?"
                 value={filters.searchQuery}
                 onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
                 className="pl-10"
@@ -135,34 +135,34 @@ export function FilterPanel({
             </div>
           </div>
 
-          {/* 搜尋和篩選設定 - 匹配 Autodesk 設計 */}
+          {/* ?��??�篩?�設�?- ?��? Autodesk 設�? */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h4 className="text-sm font-medium">搜尋和篩選設定</h4>
+              <h4 className="text-sm font-medium">?��??�篩?�設�?/h4>
               <Button variant="ghost" size="sm">
                 <Settings className="h-4 w-4" />
               </Button>
             </div>
 
-            {/* 搜尋範圍 */}
+            {/* ?��?範�? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">搜尋範圍</Label>
+              <Label className="text-sm font-medium">?��?範�?</Label>
               <RadioGroup
                 value={filters.searchScope}
                 onValueChange={(value) => handleFilterChange('searchScope', value)}
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="current" id="current" />
-                  <Label htmlFor="current" className="text-sm">目前資料夾</Label>
+                  <Label htmlFor="current" className="text-sm">?��?資�?�?/Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="all" id="all" />
-                  <Label htmlFor="all" className="text-sm">所有資料夾</Label>
+                  <Label htmlFor="all" className="text-sm">?�?��??�夾</Label>
                 </div>
               </RadioGroup>
             </div>
 
-            {/* 搜尋選項 */}
+            {/* ?��??��? */}
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -170,7 +170,7 @@ export function FilterPanel({
                   checked={filters.includeSubfolders}
                   onCheckedChange={(checked) => handleFilterChange('includeSubfolders', checked)}
                 />
-                <Label htmlFor="subfolders" className="text-sm">子資料夾</Label>
+                <Label htmlFor="subfolders" className="text-sm">子�??�夾</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -178,7 +178,7 @@ export function FilterPanel({
                   checked={filters.includeContent}
                   onCheckedChange={(checked) => handleFilterChange('includeContent', checked)}
                 />
-                <Label htmlFor="content" className="text-sm">內容</Label>
+                <Label htmlFor="content" className="text-sm">?�容</Label>
               </div>
             </div>
           </div>
@@ -194,70 +194,70 @@ export function FilterPanel({
               </Button>
             </div>
 
-            {/* 類型 */}
+            {/* 類�? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">類型</Label>
+              <Label className="text-sm font-medium">類�?</Label>
               <Select value={filters.type} onValueChange={(value) => handleFilterChange('type', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="file">檔案</SelectItem>
-                  <SelectItem value="folder">資料夾</SelectItem>
+                  <SelectItem value="file">檔�?</SelectItem>
+                  <SelectItem value="folder">資�?�?/SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 檔案類型 */}
+            {/* 檔�?類�? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">檔案類型</Label>
+              <Label className="text-sm font-medium">檔�?類�?</Label>
               <Select value={filters.fileType} onValueChange={(value) => handleFilterChange('fileType', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="pdf">PDF</SelectItem>
                   <SelectItem value="dwg">DWG</SelectItem>
                   <SelectItem value="docx">DOCX</SelectItem>
                   <SelectItem value="xlsx">XLSX</SelectItem>
-                  <SelectItem value="image">圖片</SelectItem>
+                  <SelectItem value="image">?��?</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 檔案狀態 */}
+            {/* 檔�??�??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">檔案狀態</Label>
+              <Label className="text-sm font-medium">檔�??�??/Label>
               <Select value={filters.fileStatus} onValueChange={(value) => handleFilterChange('fileStatus', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="active">啟用</SelectItem>
-                  <SelectItem value="archived">已封存</SelectItem>
-                  <SelectItem value="deleted">已刪除</SelectItem>
+                  <SelectItem value="active">?�用</SelectItem>
+                  <SelectItem value="archived">已�?�?/SelectItem>
+                  <SelectItem value="deleted">已刪??/SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 目前版本 */}
+            {/* ?��??�本 */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">目前版本</Label>
+              <Label className="text-sm font-medium">?��??�本</Label>
               <Select value={filters.currentVersion} onValueChange={(value) => handleFilterChange('currentVersion', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="latest">最新版本</SelectItem>
-                  <SelectItem value="draft">草稿</SelectItem>
-                  <SelectItem value="review">審閱中</SelectItem>
+                  <SelectItem value="latest">?�?��???/SelectItem>
+                  <SelectItem value="draft">?�稿</SelectItem>
+                  <SelectItem value="review">審閱�?/SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 上次更新 */}
+            {/* 上次?�新 */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">上次更新</Label>
+              <Label className="text-sm font-medium">上次?�新</Label>
               <div className="flex gap-2">
                 <Popover>
                   <PopoverTrigger asChild>
@@ -265,7 +265,7 @@ export function FilterPanel({
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {filters.lastUpdated?.startDate ? 
                         format(filters.lastUpdated.startDate, 'yyyy/MM/dd', { locale: zhTW }) : 
-                        '開始日期'
+                        '?��??��?'
                       }
                     </Button>
                   </PopoverTrigger>
@@ -287,7 +287,7 @@ export function FilterPanel({
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {filters.lastUpdated?.endDate ? 
                         format(filters.lastUpdated.endDate, 'yyyy/MM/dd', { locale: zhTW }) : 
-                        '結束日期'
+                        '結�??��?'
                       }
                     </Button>
                   </PopoverTrigger>
@@ -306,66 +306,66 @@ export function FilterPanel({
               </div>
             </div>
 
-            {/* 更新者 */}
+            {/* ?�新??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">更新者</Label>
+              <Label className="text-sm font-medium">?�新??/Label>
               <Select value={filters.updater} onValueChange={(value) => handleFilterChange('updater', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="user1">ACC Sample Project</SelectItem>
-                  <SelectItem value="user2">A系 ACC 系統</SelectItem>
+                  <SelectItem value="user2">A�?ACC 系統</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 版本加入者 */}
+            {/* ?�本?�入??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">版本加入者</Label>
+              <Label className="text-sm font-medium">?�本?�入??/Label>
               <Select value={filters.versionContributor} onValueChange={(value) => handleFilterChange('versionContributor', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="user1">ACC Sample Project</SelectItem>
-                  <SelectItem value="user2">A系 ACC 系統</SelectItem>
+                  <SelectItem value="user2">A�?ACC 系統</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* 審閱狀態 */}
+            {/* 審閱?�??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">審閱狀態</Label>
+              <Label className="text-sm font-medium">審閱?�??/Label>
               <Select value={filters.reviewStatus} onValueChange={(value) => handleFilterChange('reviewStatus', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="選取…" />
+                  <SelectValue placeholder="?��??? />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="pending">待審閱</SelectItem>
-                  <SelectItem value="approved">已審閱</SelectItem>
-                  <SelectItem value="rejected">已拒絕</SelectItem>
+                  <SelectItem value="pending">待審??/SelectItem>
+                  <SelectItem value="approved">已審??/SelectItem>
+                  <SelectItem value="rejected">已�?�?/SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
         </div>
 
-        {/* 底部按鈕 */}
+        {/* 底部?��? */}
         <div className="p-4 border-t space-y-3">
           {showSaveDialog && (
             <div className="space-y-2">
               <Input
-                placeholder="搜尋名稱"
+                placeholder="?��??�稱"
                 value={saveSearchName}
                 onChange={(e) => setSaveSearchName(e.target.value)}
               />
               <div className="flex gap-2">
                 <Button size="sm" onClick={handleSave} disabled={!saveSearchName.trim()}>
-                  儲存
+                  ?��?
                 </Button>
                 <Button size="sm" variant="outline" onClick={() => setShowSaveDialog(false)}>
-                  取消
+                  ?��?
                 </Button>
               </div>
             </div>
@@ -374,7 +374,7 @@ export function FilterPanel({
           <div className="flex gap-2">
             <Button onClick={handleApply} className="flex-1">
               <Search className="h-4 w-4 mr-2" />
-              搜尋
+              ?��?
             </Button>
             <Button variant="outline" onClick={handleClear}>
               清除

@@ -102,9 +102,9 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>新增角色</DialogTitle>
+          <DialogTitle>?��?角色</DialogTitle>
           <DialogDescription>
-            建立一個新的組織角色並設定其權限和存取層級。
+            建�?一?�新?��?織�??�並設�??��??��?存�?層�???
           </DialogDescription>
         </DialogHeader>
 
@@ -112,11 +112,11 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
           {/* Basic Information */}
           <div className="space-y-4">
             <div>
-              <Label htmlFor="name">角色名稱 *</Label>
+              <Label htmlFor="name">角色?�稱 *</Label>
               <Input
                 id="name"
-                {...register('name', { required: '角色名稱為必填項目' })}
-                placeholder="例如：專案協調員"
+                {...register('name', { required: '角色?�稱?��?填�??? })}
+                placeholder="例�?：�?案�?調員"
               />
               {errors.name && (
                 <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
@@ -124,17 +124,17 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
             </div>
 
             <div>
-              <Label htmlFor="description">描述</Label>
+              <Label htmlFor="description">?�述</Label>
               <Textarea
                 id="description"
                 {...register('description')}
-                placeholder="描述此角色的職責和用途"
+                placeholder="?�述此�??��??�責?�用??
                 rows={3}
               />
             </div>
 
             <div>
-              <Label htmlFor="accessLevel">預設存取層級</Label>
+              <Label htmlFor="accessLevel">?�設存�?層�?</Label>
               <Select
                 value={watch('accessLevel')}
                 onValueChange={(value: RoleFormData['accessLevel']) => setValue('accessLevel', value)}
@@ -143,9 +143,9 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="organization-member">組織成員</SelectItem>
-                  <SelectItem value="organization-admin">組織管理員</SelectItem>
-                  <SelectItem value="organization-owner">組織擁有者</SelectItem>
+                  <SelectItem value="organization-member">組�??�員</SelectItem>
+                  <SelectItem value="organization-admin">組�?管�???/SelectItem>
+                  <SelectItem value="organization-owner">組�??��???/SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -154,9 +154,9 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
           {/* Permissions */}
           <div className="space-y-4">
             <div>
-              <h4 className="text-sm font-medium mb-3">產品權限</h4>
+              <h4 className="text-sm font-medium mb-3">?��?權�?</h4>
               <p className="text-sm text-muted-foreground mb-4">
-                選擇此角色可以存取哪些產品和功能
+                ?��?此�??�可以�??�哪些產?��??�能
               </p>
             </div>
 
@@ -173,7 +173,7 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
                       </Label>
                       {(permission === 'docs' || permission === 'insight') && (
                         <p className="text-xs text-muted-foreground mt-1">
-                          {permission === 'docs' ? '已購買的產品' : '預設啟用'}
+                          {permission === 'docs' ? '已購買�??��?' : '?�設?�用'}
                         </p>
                       )}
                     </div>
@@ -196,10 +196,10 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
               onClick={() => onOpenChange(false)}
               disabled={isLoading}
             >
-              取消
+              ?��?
             </Button>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? '建立中...' : '建立角色'}
+              {isLoading ? '建�?�?..' : '建�?角色'}
             </Button>
           </DialogFooter>
         </form>

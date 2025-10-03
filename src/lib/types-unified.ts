@@ -1,11 +1,10 @@
 /**
- * @fileoverview 統一的類型定義
- * 整合分散的類型定義，遵循奧卡姆剃刀原則
+ * @fileoverview 統�??��??��?�? * ?��??�散?��??��?義�??�循奧卡姆�??�?��?
  */
 
 import { Timestamp } from "firebase/firestore";
 
-// ===== 基礎類型 =====
+// ===== ?��?類�? =====
 
 export interface BaseEntity {
   id: string;
@@ -13,7 +12,7 @@ export interface BaseEntity {
   updatedAt: Timestamp;
 }
 
-// ===== 用戶和組織類型 =====
+// ===== ?�戶?��?織�???=====
 
 export interface Account extends BaseEntity {
   type: 'user' | 'organization';
@@ -33,7 +32,7 @@ export interface Account extends BaseEntity {
   moduleInventory?: { [key: string]: number };
 }
 
-// ===== 空間和模組類型 =====
+// ===== 空�??�模組�???=====
 
 export interface Space extends BaseEntity {
   ownerId: string;
@@ -53,7 +52,7 @@ export interface Module extends BaseEntity {
   type: 'user' | 'organization' | 'common';
 }
 
-// ===== 組織管理類型 =====
+// ===== 組�?管�?類�? =====
 
 export interface Group extends BaseEntity {
   organizationId: string;
@@ -82,7 +81,7 @@ export interface Stock extends BaseEntity {
   quantity: number;
 }
 
-// ===== 審計和成就類型 =====
+// ===== 審�??��?就�???=====
 
 export interface AuditLog extends BaseEntity {
   organizationId: string;
@@ -106,7 +105,7 @@ export interface Achievement extends BaseEntity {
   icon: string;
 }
 
-// ===== 權限管理類型 =====
+// ===== 權�?管�?類�? =====
 
 export type Permission = 
   | 'space:read'
@@ -188,7 +187,7 @@ export interface RoleManagementConfig {
   requireApprovalForRoleChange: boolean;
 }
 
-// ===== UI 組件類型 =====
+// ===== UI 組件類�? =====
 
 export interface NavItem {
   href: string;
@@ -203,7 +202,7 @@ export interface Team {
   slug?: string;
 }
 
-// ===== 表單類型 =====
+// ===== 表單類�? =====
 
 export interface FormFieldProps<TFieldValues extends FieldValues = FieldValues> {
   control: Control<TFieldValues>;
@@ -223,7 +222,7 @@ export interface FormCardProps<T extends FieldValues> {
   children: React.ReactNode;
 }
 
-// ===== 狀態管理類型 =====
+// ===== ?�?�管?��???=====
 
 export interface AppState {
   chat: {
@@ -244,7 +243,7 @@ export interface AuthState {
   error: string | null;
 }
 
-// ===== 文件操作類型 =====
+// ===== ?�件?��?類�? =====
 
 export interface FileItem {
   id: string;
@@ -273,9 +272,9 @@ export interface FileActionItem {
   updated: string;
 }
 
-// ===== 導出所有類型 =====
+// ===== 導出?�?��???=====
 
-// 重新導出 React Hook Form 類型
+// ?�新導出 React Hook Form 類�?
 export type {
   FieldValues,
   FieldPath,

@@ -1,6 +1,6 @@
 /**
- * @fileoverview 现代化Overview组件的类型定义
- * 基于现代dashboard设计模式和最佳实践
+ * @fileoverview ?�代?�Overview组件?�类?��?�?
+ * ?��??�代dashboard设计模�??��?佳�?�?
  */
 
 export interface MetricData {
@@ -96,7 +96,7 @@ export interface EmptyStateProps {
   };
 }
 
-// 主题和样式相关类型
+// 主�??�样式相?�类??
 export type Theme = 'light' | 'dark' | 'system';
 
 export interface ThemeConfig {
@@ -110,7 +110,7 @@ export interface ThemeConfig {
   };
 }
 
-// 响应式断点类型
+// ?��?式断?�类??
 export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export interface ResponsiveConfig {
@@ -119,7 +119,7 @@ export interface ResponsiveConfig {
   padding: Record<Breakpoint, string>;
 }
 
-// 动画配置类型
+// ?�画?�置类�?
 export interface AnimationConfig {
   duration: number;
   easing: string;

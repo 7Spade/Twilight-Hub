@@ -1,6 +1,6 @@
 /**
- * @fileoverview 權限管理 React Hooks
- * 提供權限檢查和角色管理的 React 接口
+ * @fileoverview 權�?管�? React Hooks
+ * ?��?權�?檢查?��??�管?��? React ?�口
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -10,27 +10,27 @@ import {
   PermissionCheckResult,
   OrganizationRole,
   SpaceRole 
-} from '@/lib/types';
+} from '@/lib/types-unified';
 import { roleManagementService } from '@/lib/role-management';
 
 /**
- * 權限檢查 Hook
+ * 權�?檢查 Hook
  */
 export function usePermissions(userId: string, spaceId: string) {
   const [userRoleAssignment, setUserRoleAssignment] = useState<UserRoleAssignment | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 載入用戶角色分配
+  // 載入?�戶角色?��?
   useEffect(() => {
     const loadUserRoles = async () => {
       try {
         setLoading(true);
-        // TODO: 從數據庫載入用戶角色分配
+        // TODO: 從數?�庫載入?�戶角色?��?
         const roles = await fetchUserRoleAssignment(userId);
         setUserRoleAssignment(roles);
       } catch (err) {
-        setError(err instanceof Error ? err.message : '載入角色失敗');
+        setError(err instanceof Error ? err.message : '載入角色失�?');
       } finally {
         setLoading(false);
       }
@@ -41,7 +41,7 @@ export function usePermissions(userId: string, spaceId: string) {
     }
   }, [userId]);
 
-  // 檢查權限
+  // 檢查權�?
   const checkPermission = useCallback(async (
     permission: Permission
   ): Promise<PermissionCheckResult> => {
@@ -62,8 +62,7 @@ export function usePermissions(userId: string, spaceId: string) {
     );
   }, [userId, spaceId, userRoleAssignment]);
 
-  // 檢查多個權限
-  const checkPermissions = useCallback(async (
+  // 檢查多個�???  const checkPermissions = useCallback(async (
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
     const results: Record<Permission, PermissionCheckResult> = {} as any;
@@ -75,7 +74,7 @@ export function usePermissions(userId: string, spaceId: string) {
     return results;
   }, [checkPermission]);
 
-  // 獲取用戶在空間的有效權限
+  // ?��??�戶?�空?��??��?權�?
   const getSpacePermissions = useCallback(async (): Promise<Permission[]> => {
     if (!userRoleAssignment) {
       return [];
@@ -88,16 +87,14 @@ export function usePermissions(userId: string, spaceId: string) {
     );
   }, [userId, spaceId, userRoleAssignment]);
 
-  // 檢查是否有任何權限
-  const hasAnyPermission = useCallback(async (
+  // 檢查?�否?�任何�???  const hasAnyPermission = useCallback(async (
     permissions: Permission[]
   ): Promise<boolean> => {
     const results = await checkPermissions(permissions);
     return Object.values(results).some(result => result.hasPermission);
   }, [checkPermissions]);
 
-  // 檢查是否有所有權限
-  const hasAllPermissions = useCallback(async (
+  // 檢查?�否?��??��???  const hasAllPermissions = useCallback(async (
     permissions: Permission[]
   ): Promise<boolean> => {
     const results = await checkPermissions(permissions);
@@ -117,13 +114,13 @@ export function usePermissions(userId: string, spaceId: string) {
 }
 
 /**
- * 角色管理 Hook
+ * 角色管�? Hook
  */
 export function useRoleManagement(userId: string) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 分配組織角色
+  // ?��?組�?角色
   const assignOrganizationRole = useCallback(async (
     targetUserId: string,
     roleId: OrganizationRole,
@@ -140,17 +137,16 @@ export function useRoleManagement(userId: string) {
         expiresAt
       );
       
-      // TODO: 更新數據庫
-      return assignment;
+      // TODO: ?�新?��?�?      return assignment;
     } catch (err) {
-      setError(err instanceof Error ? err.message : '分配角色失敗');
+      setError(err instanceof Error ? err.message : '?��?角色失�?');
       throw err;
     } finally {
       setLoading(false);
     }
   }, [userId]);
 
-  // 分配空間角色
+  // ?��?空�?角色
   const assignSpaceRole = useCallback(async (
     targetUserId: string,
     spaceId: string,
@@ -169,17 +165,16 @@ export function useRoleManagement(userId: string) {
         expiresAt
       );
       
-      // TODO: 更新數據庫
-      return assignment;
+      // TODO: ?�新?��?�?      return assignment;
     } catch (err) {
-      setError(err instanceof Error ? err.message : '分配角色失敗');
+      setError(err instanceof Error ? err.message : '?��?角色失�?');
       throw err;
     } finally {
       setLoading(false);
     }
   }, [userId]);
 
-  // 移除空間角色
+  // 移除空�?角色
   const removeSpaceRole = useCallback(async (
     targetUserId: string,
     spaceId: string
@@ -188,10 +183,10 @@ export function useRoleManagement(userId: string) {
       setLoading(true);
       setError(null);
       
-      // TODO: 從數據庫移除角色
+      // TODO: 從數?�庫移除角色
       return true;
     } catch (err) {
-      setError(err instanceof Error ? err.message : '移除角色失敗');
+      setError(err instanceof Error ? err.message : '移除角色失�?');
       throw err;
     } finally {
       setLoading(false);
@@ -208,7 +203,7 @@ export function useRoleManagement(userId: string) {
 }
 
 /**
- * 權限保護組件 Hook
+ * 權�?保護組件 Hook
  */
 export function usePermissionGuard(permission: Permission, userId: string, spaceId: string) {
   const { checkPermission, loading } = usePermissions(userId, spaceId);
@@ -234,9 +229,8 @@ export function usePermissionGuard(permission: Permission, userId: string, space
   };
 }
 
-// 模擬數據庫查詢函數
-async function fetchUserRoleAssignment(userId: string): Promise<UserRoleAssignment> {
-  // TODO: 實現真實的數據庫查詢
+// 模擬?��?庫查詢函??async function fetchUserRoleAssignment(userId: string): Promise<UserRoleAssignment> {
+  // TODO: 實現?�實?�數?�庫?�詢
   return {
     userId,
     organizationRoles: [

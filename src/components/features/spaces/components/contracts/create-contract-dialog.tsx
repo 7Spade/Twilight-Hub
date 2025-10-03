@@ -165,11 +165,11 @@ export function CreateContractDialog({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="service">ğŸ”§ Service Agreement</SelectItem>
-                        <SelectItem value="license">ğŸ“„ License Agreement</SelectItem>
-                        <SelectItem value="nda">ğŸ”’ Non-Disclosure Agreement</SelectItem>
-                        <SelectItem value="partnership">ğŸ¤ Partnership Agreement</SelectItem>
-                        <SelectItem value="employment">ğŸ‘¤ Employment Agreement</SelectItem>
+                        <SelectItem value="service">?”§ Service Agreement</SelectItem>
+                        <SelectItem value="license">?? License Agreement</SelectItem>
+                        <SelectItem value="nda">?? Non-Disclosure Agreement</SelectItem>
+                        <SelectItem value="partnership">?? Partnership Agreement</SelectItem>
+                        <SelectItem value="employment">?‘¤ Employment Agreement</SelectItem>
                       </SelectContent>
                     </Select>
                     <p className="text-sm text-muted-foreground">

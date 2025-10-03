@@ -72,10 +72,10 @@ export function FileDetailView({
           setPreviewDocument(document);
           setPreviewConfig(config);
         } else {
-          setPreviewError('不支援此檔案類型的預覽');
+          setPreviewError('不支?�此檔�?類�??��?�?);
         }
       } catch (error) {
-        setPreviewError('載入預覽時發生錯誤');
+        setPreviewError('載入?�覽?�發?�錯�?);
         console.error('Preview error:', error);
       } finally {
         setIsLoading(false);
@@ -108,9 +108,9 @@ export function FileDetailView({
 
   const getStatusIcon = () => {
     switch (file.reviewStatus) {
-      case '已審閱':
+      case '已審??:
         return <CheckCircle className="h-4 w-4 text-green-600" />;
-      case '待審閱':
+      case '待審??:
         return <Clock className="h-4 w-4 text-yellow-600" />;
       default:
         return <AlertCircle className="h-4 w-4 text-gray-400" />;
@@ -119,12 +119,12 @@ export function FileDetailView({
 
   const getStatusBadge = () => {
     switch (file.reviewStatus) {
-      case '已審閱':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">已審閱</Badge>;
-      case '待審閱':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">待審閱</Badge>;
+      case '已審??:
+        return <Badge variant="secondary" className="bg-green-100 text-green-800">已審??/Badge>;
+      case '待審??:
+        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">待審??/Badge>;
       default:
-        return <Badge variant="outline">未審閱</Badge>;
+        return <Badge variant="outline">?�審??/Badge>;
     }
   };
 
@@ -132,10 +132,10 @@ export function FileDetailView({
     if (!file.tag || file.tag === '--') return null;
     
     const tagColors: Record<string, string> = {
-      '重要': 'bg-red-100 text-red-800',
-      '草稿': 'bg-yellow-100 text-yellow-800',
-      '合約': 'bg-blue-100 text-blue-800',
-      '報告': 'bg-purple-100 text-purple-800',
+      '?��?': 'bg-red-100 text-red-800',
+      '?�稿': 'bg-yellow-100 text-yellow-800',
+      '?��?': 'bg-blue-100 text-blue-800',
+      '?��?': 'bg-purple-100 text-purple-800',
     };
     
     return (
@@ -165,7 +165,7 @@ export function FileDetailView({
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <FileText className="h-4 w-4" />
-                檔案預覽
+                檔�??�覽
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
@@ -183,23 +183,23 @@ export function FileDetailView({
               ) : previewDocument ? (
                 <div className="border rounded-lg p-2 bg-gray-50">
                   <div className="text-sm text-gray-600 mb-2">
-                    預覽: {previewDocument.fileName}
+                    ?�覽: {previewDocument.fileName}
                   </div>
                   <div className="text-xs text-gray-500">
-                    類型: {previewDocument.fileType}
+                    類�?: {previewDocument.fileType}
                   </div>
                   {/* In a real implementation, this would render the actual preview */}
                   <div className="mt-2 p-4 bg-white rounded border text-center text-gray-500">
                     <FileText className="h-12 w-12 mx-auto mb-2" />
-                    <p>檔案預覽將在此處顯示</p>
-                    <p className="text-xs mt-1">整合 Context7 庫後啟用</p>
+                    <p>檔�??�覽將在此�?顯示</p>
+                    <p className="text-xs mt-1">?��? Context7 庫�??�用</p>
                   </div>
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-32 text-gray-500">
                   <div className="text-center">
                     <FileText className="h-8 w-8 mx-auto mb-2" />
-                    <p className="text-sm">無法預覽此檔案</p>
+                    <p className="text-sm">?��??�覽此�?�?/p>
                   </div>
                 </div>
               )}
@@ -209,14 +209,14 @@ export function FileDetailView({
           {/* File Information */}
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm">檔案資訊</CardTitle>
+              <CardTitle className="text-sm">檔�?資�?</CardTitle>
             </CardHeader>
             <CardContent className="pt-0 space-y-3">
               {/* Status */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   {getStatusIcon()}
-                  <span className="text-sm text-gray-600">狀態</span>
+                  <span className="text-sm text-gray-600">?�??/span>
                 </div>
                 {getStatusBadge()}
               </div>
@@ -229,7 +229,7 @@ export function FileDetailView({
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Tag className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-600">標記</span>
+                      <span className="text-sm text-gray-600">標�?</span>
                     </div>
                     {getTagBadge()}
                   </div>
@@ -241,7 +241,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <HardDrive className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">大小</span>
+                  <span className="text-sm text-gray-600">大�?</span>
                 </div>
                 <span className="text-sm font-medium">{formatFileSize(file.size)}</span>
               </div>
@@ -250,7 +250,7 @@ export function FileDetailView({
 
               {/* Version */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">版本</span>
+                <span className="text-sm text-gray-600">?�本</span>
                 <span className="text-sm font-medium">{file.version || 'V1'}</span>
               </div>
 
@@ -260,7 +260,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">建立日期</span>
+                  <span className="text-sm text-gray-600">建�??��?</span>
                 </div>
                 <span className="text-sm font-medium">{formatDate(file.timeCreated)}</span>
               </div>
@@ -271,7 +271,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">修改日期</span>
+                  <span className="text-sm text-gray-600">修改?��?</span>
                 </div>
                 <span className="text-sm font-medium">{formatDate(file.updated)}</span>
               </div>
@@ -282,7 +282,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">更新者</span>
+                  <span className="text-sm text-gray-600">?�新??/span>
                 </div>
                 <span className="text-sm font-medium">{file.updater || '--'}</span>
               </div>
@@ -293,7 +293,7 @@ export function FileDetailView({
           {file.description && file.description !== '--' && (
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm">描述</CardTitle>
+                <CardTitle className="text-sm">?�述</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-gray-700">{file.description}</p>
@@ -312,7 +312,7 @@ export function FileDetailView({
               className="flex-1"
             >
               <Download className="h-4 w-4 mr-2" />
-              下載
+              下�?
             </Button>
             <Button 
               variant="outline" 
@@ -321,7 +321,7 @@ export function FileDetailView({
               className="flex-1"
             >
               <Share className="h-4 w-4 mr-2" />
-              分享
+              ?�享
             </Button>
             <Button 
               variant="outline" 

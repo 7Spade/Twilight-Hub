@@ -8,8 +8,8 @@ import { StatCardProps } from './types';
 import { useState, useEffect } from 'react';
 
 /**
- * 现代化的指标卡片组件
- * 支持动画效果、趋势指示器和交互功能
+ * ?�代?��??��??��?组件
+ * ?��??�画?��??��??��?示器?�交互�???
  */
 export function StatCard({ 
   title, 
@@ -26,7 +26,7 @@ export function StatCard({
   const [isVisible, setIsVisible] = useState(false);
   const [animatedValue, setAnimatedValue] = useState(0);
 
-  // 动画效果
+  // ?�画?��?
   useEffect(() => {
     setIsVisible(true);
     if (typeof value === 'number' && format === 'number') {
@@ -50,7 +50,7 @@ export function StatCard({
     }
   }, [value, format]);
 
-  // 颜色主题配置
+  // 颜色主�??�置
   const colorConfig = {
     blue: {
       bg: 'bg-blue-50 dark:bg-blue-950/20',
@@ -92,7 +92,7 @@ export function StatCard({
 
   const theme = colorConfig[color];
 
-  // 格式化数值显示
+  // ?��??�数?�显�?
   const formatValue = (val: string | number) => {
     if (typeof val === 'string') return val;
     
@@ -108,7 +108,7 @@ export function StatCard({
     }
   };
 
-  // 趋势图标
+  // 趋势?��?
   const getTrendIcon = () => {
     if (!trend) return null;
     if (trend.value > 0) return <TrendingUp className="h-3 w-3" />;

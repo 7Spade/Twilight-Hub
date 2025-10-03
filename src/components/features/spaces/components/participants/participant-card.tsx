@@ -1,6 +1,6 @@
 /**
- * @fileoverview 現代化參與者卡片組件
- * 響應式設計，支持動畫和交互效果
+ * @fileoverview ?�代?��??�者卡?��?�?
+ * ?��?式設計�??��??�畫?�交互�???
  */
 
 'use client';
@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 import { ParticipantCardProps } from './types';
 
-// 角色圖標映射
+// 角色?��??��?
 const ROLE_ICONS = {
   owner: Crown,
   admin: Shield,
@@ -36,7 +36,7 @@ const ROLE_ICONS = {
   viewer: Eye,
 } as const;
 
-// 角色顏色映射
+// 角色顏色?��?
 const ROLE_COLORS = {
   owner: 'bg-purple-100 text-purple-800 border-purple-200',
   admin: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -44,7 +44,7 @@ const ROLE_COLORS = {
   viewer: 'bg-gray-100 text-gray-800 border-gray-200',
 } as const;
 
-// 狀態顏色映射
+// ?�?��??��?�?
 const STATUS_COLORS = {
   active: 'bg-green-100 text-green-800',
   inactive: 'bg-red-100 text-red-800',
@@ -76,19 +76,19 @@ export function ParticipantCard({
         isSelected ? 'ring-2 ring-primary ring-offset-2' : ''
       } ${isCurrentUser ? 'bg-primary/5' : ''}`}>
         <CardContent className="p-4">
-          {/* 選擇框 */}
+          {/* ?��?�?*/}
           {onSelect && (
             <div className="absolute top-3 right-3">
               <Checkbox
                 checked={isSelected}
                 onCheckedChange={handleSelect}
                 disabled={isCurrentUser}
-                aria-label={`選擇 ${participant.name}`}
+                aria-label={`?��? ${participant.name}`}
               />
             </div>
           )}
 
-          {/* 頭像和基本信息 */}
+          {/* ?��??�基?�信??*/}
           <div className="flex items-start gap-3 mb-4">
             <div className="relative">
               <Avatar className="h-12 w-12">
@@ -106,7 +106,7 @@ export function ParticipantCard({
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold text-base truncate">{participant.name}</h3>
                 {isCurrentUser && (
-                  <Badge variant="outline" className="text-xs">你</Badge>
+                  <Badge variant="outline" className="text-xs">�?/Badge>
                 )}
               </div>
               
@@ -132,21 +132,21 @@ export function ParticipantCard({
             </div>
           </div>
 
-          {/* 角色和狀態 */}
+          {/* 角色?��???*/}
           <div className="flex items-center gap-2 mb-3">
             <Badge 
               variant="outline" 
               className={`${ROLE_COLORS[participant.role]} text-xs flex items-center gap-1`}
             >
               <RoleIcon className="h-3 w-3" />
-              {participant.role === 'member' ? '成員' : participant.role}
+              {participant.role === 'member' ? '?�員' : participant.role}
             </Badge>
             
             <Badge 
               variant="outline" 
               className={`${STATUS_COLORS[participant.status]} text-xs`}
             >
-              {participant.status === 'active' ? '使用中' : participant.status}
+              {participant.status === 'active' ? '使用�? : participant.status}
             </Badge>
 
             <Badge variant="outline" className="text-xs">
@@ -170,21 +170,21 @@ export function ParticipantCard({
             </div>
           )}
 
-          {/* 時間信息 */}
+          {/* ?��?信息 */}
           <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              <span>加入於 {participant.joinedAt.toLocaleDateString('zh-TW')}</span>
+              <span>?�入??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
             </div>
             {participant.lastActive && (
               <div className="flex items-center gap-1">
                 <Globe className="h-3 w-3" />
-                <span>最後活動 {participant.lastActive.toLocaleDateString('zh-TW')}</span>
+                <span>?�後活??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
               </div>
             )}
           </div>
 
-          {/* 操作按鈕 */}
+          {/* ?��??��? */}
           {canManage && !isCurrentUser && (
             <div className="flex items-center justify-end">
               <DropdownMenu>
@@ -196,7 +196,7 @@ export function ParticipantCard({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleAction('edit')}>
                     <UserCheck className="h-4 w-4 mr-2" />
-                    編輯成員
+                    編輯?�員
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('role')}>
                     <Shield className="h-4 w-4 mr-2" />
@@ -204,14 +204,14 @@ export function ParticipantCard({
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('permissions')}>
                     <Shield className="h-4 w-4 mr-2" />
-                    管理權限
+                    管�?權�?
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     className="text-red-600"
                     onClick={() => handleAction('remove')}
                   >
                     <UserX className="h-4 w-4 mr-2" />
-                    移除成員
+                    移除?�員
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
