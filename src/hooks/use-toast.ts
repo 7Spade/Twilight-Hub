@@ -18,7 +18,7 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-const actionTypes = {
+const actionTypes = { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型 */
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
   DISMISS_TOAST: "DISMISS_TOAST",

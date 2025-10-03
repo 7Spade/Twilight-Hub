@@ -3,13 +3,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LucideIcon, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] æ¸…ç†æœªä½¿ç”¨çš„å°å…¥ - LucideIcon æœªä½¿ç”¨ */
 import { cn } from '@/lib/utils';
 import { StatCardProps } from './types';
 import { useState, useEffect } from 'react';
 
 /**
- * ?°ä»£?–ç??‡æ??¡ç?ç»„ä»¶
- * ?¯æ??¨ç”»?ˆæ??è??¿æ?ç¤ºå™¨?Œäº¤äº’å???
+ * ?ï¿½ä»£?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ç»„ä»¶
+ * ?ï¿½ï¿½??ï¿½ç”»?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ç¤ºå™¨?ï¿½äº¤äº’ï¿½???
  */
 export function StatCard({ 
   title, 
@@ -26,7 +27,7 @@ export function StatCard({
   const [isVisible, setIsVisible] = useState(false);
   const [animatedValue, setAnimatedValue] = useState(0);
 
-  // ?¨ç”»?ˆæ?
+  // ?ï¿½ç”»?ï¿½ï¿½?
   useEffect(() => {
     setIsVisible(true);
     if (typeof value === 'number' && format === 'number') {
@@ -50,7 +51,7 @@ export function StatCard({
     }
   }, [value, format]);
 
-  // é¢œè‰²ä¸»é??ç½®
+  // é¢œè‰²ä¸»ï¿½??ï¿½ç½®
   const colorConfig = {
     blue: {
       bg: 'bg-blue-50 dark:bg-blue-950/20',
@@ -92,7 +93,7 @@ export function StatCard({
 
   const theme = colorConfig[color];
 
-  // ?¼å??–æ•°?¼æ˜¾ç¤?
+  // ?ï¿½ï¿½??ï¿½æ•°?ï¿½æ˜¾ï¿½?
   const formatValue = (val: string | number) => {
     if (typeof val === 'string') return val;
     
@@ -108,7 +109,7 @@ export function StatCard({
     }
   };
 
-  // è¶‹åŠ¿?¾æ?
+  // è¶‹åŠ¿?ï¿½ï¿½?
   const getTrendIcon = () => {
     if (!trend) return null;
     if (trend.value > 0) return <TrendingUp className="h-3 w-3" />;

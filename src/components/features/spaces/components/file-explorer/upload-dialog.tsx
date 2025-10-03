@@ -10,6 +10,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用 */
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Progress } from '@/components/ui/progress';
@@ -85,7 +86,7 @@ export function UploadDialog({
         )}
       >
         <DialogHeader className="flex flex-row items-center justify-between">
-          <DialogTitle className="text-lg font-semibold">上�?檔�?</DialogTitle>
+          <DialogTitle className="text-lg font-semibold">上�?檔�?</DialogTitle>
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
@@ -111,20 +112,20 @@ export function UploadDialog({
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* 上傳來�??��? */}
+          {/* 上傳來�??��? */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium">?��?上傳來�?</Label>
+            <Label className="text-sm font-medium">?��?上傳來�?</Label>
             <Button
               variant="outline"
               className="w-full justify-start"
               onClick={handleFileSelect}
             >
               <Monitor className="h-4 w-4 mr-2" />
-              從您?�電??
+              從您?�電??
             </Button>
           </div>
 
-          {/* ?�放?�??*/}
+          {/* ?�放?�??*/}
           <div
             className={cn(
               "border-2 border-dashed rounded-lg p-8 text-center transition-colors",
@@ -150,31 +151,31 @@ export function UploadDialog({
               
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">
-                  將�?案�??�至此�??�選?��?述選??
+                  將�?案�??�至此�??�選?��?述選??
                 </p>
                 <p className="text-xs text-gray-500">
-                  ?�援多個�?案�??��???
+                  ?�援多個�?案�??��???
                 </p>
               </div>
             </div>
           </div>
 
-          {/* 上傳?�度 */}
+          {/* 上傳?�度 */}
           {isUploading && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span>上傳�?..</span>
+                <span>上傳�?..</span>
                 <span>{uploadProgress}%</span>
               </div>
               <Progress value={uploadProgress} className="w-full" />
             </div>
           )}
 
-          {/* ?�步?��? */}
+          {/* ?�步?��? */}
           <div className="flex items-center space-x-2">
             <HelpCircle className="h-4 w-4 text-blue-500" />
             <Label htmlFor="sync-mobile" className="text-sm text-blue-600">
-              ?��?檔�??�否?�步?��??��?置�?
+              ?��?檔�??�否?�步?��??��?置�?
             </Label>
             <Switch
               id="sync-mobile"
@@ -183,7 +184,7 @@ export function UploadDialog({
             />
           </div>
 
-          {/* ?��??��?件輸??*/}
+          {/* ?��??��?件輸??*/}
           <input
             ref={fileInputRef}
             type="file"
@@ -193,17 +194,17 @@ export function UploadDialog({
           />
         </div>
 
-        {/* 底部?��? */}
+        {/* 底部?��? */}
         <div className="flex justify-end space-x-2 pt-4 border-t">
           <Button variant="outline" onClick={onClose}>
-            ?��?
+            ?��?
           </Button>
           <Button 
             onClick={handleFileSelect}
             disabled={isUploading}
             className="bg-blue-600 hover:bg-blue-700"
           >
-            完�?
+            完�?
           </Button>
         </div>
       </DialogContent>

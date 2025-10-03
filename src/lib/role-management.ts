@@ -12,11 +12,11 @@ export interface RoleDefinition {
 }
 
 export const roleManagementService = {
-  getRoleDefinition: (roleId: string): RoleDefinition | null => {
+  getRoleDefinition: (roleId: string): RoleDefinition | null => { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - roleId 未使用 */
     // TODO: Implement role definition lookup
     return null;
   },
-  checkPermission: async (userId: string, spaceId: string, permission: Permission, userRoleAssignment: any) => {
+  checkPermission: async (userId: string, spaceId: string, permission: Permission, userRoleAssignment: any) => { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用 */
     // TODO: Implement permission checking
     return {
       hasPermission: false,

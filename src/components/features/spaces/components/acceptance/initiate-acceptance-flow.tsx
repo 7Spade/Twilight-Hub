@@ -26,7 +26,7 @@ interface InitiateAcceptanceFlowProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onAcceptanceCreated?: (acceptance: any) => void;
+  onAcceptanceCreated?: (acceptance: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
 }
 
 export function InitiateAcceptanceFlow({

@@ -85,7 +85,7 @@ export function useDeleteFile() {
       path,
     }: {
       document: ContractDocument;
-      path: string;
+      path: string; /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用 */
     }) => {
       const { storage } = getSdks();
       

@@ -15,6 +15,7 @@ import {
   OrganizationRole,
   SpaceRole 
 } from '@/lib/types-unified';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用 */
 import { roleManagementService } from '@/lib/role-management';
 
 // 認證狀態介面

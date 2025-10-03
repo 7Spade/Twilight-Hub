@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用 */
 import { formatDistanceToNow } from 'date-fns';
 
 interface Contract {
@@ -45,7 +46,7 @@ export function ContractDetails({ contract, open, onOpenChange }: ContractDetail
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return '?��';
+        return '?��';
       case 'license':
         return '??';
       case 'nda':
@@ -53,7 +54,7 @@ export function ContractDetails({ contract, open, onOpenChange }: ContractDetail
       case 'partnership':
         return '??';
       case 'employment':
-        return '?��';
+        return '?��';
       default:
         return '??';
     }

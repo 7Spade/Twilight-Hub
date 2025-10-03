@@ -1,10 +1,10 @@
 /**
- * @fileoverview çµ±ä??„é??‹å?ç¾? * ?´å??†æ•£?„é??‹å?ç¾©ï??µå¾ªå¥§å¡å§†å??€?Ÿå?
+ * @fileoverview çµ±ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½? * ?ï¿½ï¿½??ï¿½æ•£?ï¿½ï¿½??ï¿½ï¿½?ç¾©ï¿½??ï¿½å¾ªå¥§å¡å§†ï¿½??ï¿½?ï¿½ï¿½?
  */
 
 import { Timestamp } from "firebase/firestore";
 
-// ===== ?ºç?é¡å? =====
+// ===== ?ï¿½ï¿½?é¡ï¿½? =====
 
 export interface BaseEntity {
   id: string;
@@ -12,7 +12,7 @@ export interface BaseEntity {
   updatedAt: Timestamp;
 }
 
-// ===== ?¨æˆ¶?Œç?ç¹”é???=====
+// ===== ?ï¿½æˆ¶?ï¿½ï¿½?ç¹”ï¿½???=====
 
 export interface Account extends BaseEntity {
   type: 'user' | 'organization';
@@ -32,7 +32,7 @@ export interface Account extends BaseEntity {
   moduleInventory?: { [key: string]: number };
 }
 
-// ===== ç©ºé??Œæ¨¡çµ„é???=====
+// ===== ç©ºï¿½??ï¿½æ¨¡çµ„ï¿½???=====
 
 export interface Space extends BaseEntity {
   ownerId: string;
@@ -52,7 +52,7 @@ export interface Module extends BaseEntity {
   type: 'user' | 'organization' | 'common';
 }
 
-// ===== çµ„ç?ç®¡ç?é¡å? =====
+// ===== çµ„ï¿½?ç®¡ï¿½?é¡ï¿½? =====
 
 export interface Group extends BaseEntity {
   organizationId: string;
@@ -81,7 +81,7 @@ export interface Stock extends BaseEntity {
   quantity: number;
 }
 
-// ===== å¯©è??Œæ?å°±é???=====
+// ===== å¯©ï¿½??ï¿½ï¿½?å°±ï¿½???=====
 
 export interface AuditLog extends BaseEntity {
   organizationId: string;
@@ -105,7 +105,7 @@ export interface Achievement extends BaseEntity {
   icon: string;
 }
 
-// ===== æ¬Šé?ç®¡ç?é¡å? =====
+// ===== æ¬Šï¿½?ç®¡ï¿½?é¡ï¿½? =====
 
 export type Permission = 
   | 'space:read'
@@ -187,7 +187,7 @@ export interface RoleManagementConfig {
   requireApprovalForRoleChange: boolean;
 }
 
-// ===== UI çµ„ä»¶é¡å? =====
+// ===== UI çµ„ä»¶é¡ï¿½? =====
 
 export interface NavItem {
   href: string;
@@ -202,7 +202,7 @@ export interface Team {
   slug?: string;
 }
 
-// ===== è¡¨å–®é¡å? =====
+// ===== è¡¨å–®é¡ï¿½? =====
 
 export interface FormFieldProps<TFieldValues extends FieldValues = FieldValues> {
   control: Control<TFieldValues>;
@@ -222,7 +222,7 @@ export interface FormCardProps<T extends FieldValues> {
   children: React.ReactNode;
 }
 
-// ===== ?€?‹ç®¡?†é???=====
+// ===== ?ï¿½?ï¿½ç®¡?ï¿½ï¿½???=====
 
 export interface AppState {
   chat: {
@@ -231,7 +231,7 @@ export interface AppState {
   };
   dialog: {
     type: string | null;
-    data: any;
+    data: any; /* TODO: [P2] [BUG] [UI] [TODO] ä¿®å¾© TypeScript any é¡å‹è­¦å‘Š */
     isOpen: boolean;
   };
 }
@@ -243,7 +243,7 @@ export interface AuthState {
   error: string | null;
 }
 
-// ===== ?‡ä»¶?ä?é¡å? =====
+// ===== ?ï¿½ä»¶?ï¿½ï¿½?é¡ï¿½? =====
 
 export interface FileItem {
   id: string;
@@ -272,9 +272,9 @@ export interface FileActionItem {
   updated: string;
 }
 
-// ===== å°å‡º?€?‰é???=====
+// ===== å°å‡º?ï¿½?ï¿½ï¿½???=====
 
-// ?æ–°å°å‡º React Hook Form é¡å?
+// ?ï¿½æ–°å°å‡º React Hook Form é¡ï¿½?
 export type {
   FieldValues,
   FieldPath,

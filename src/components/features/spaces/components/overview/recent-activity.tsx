@@ -14,7 +14,7 @@ interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, any>; /* TODO: [P2] [BUG] [UI] [TODO] ä¿®å¾© TypeScript any é¡žåž‹è­¦å‘Š */
 }
 
 interface RecentActivityProps {
@@ -57,11 +57,11 @@ export function RecentActivity({ spaceId, activities }: RecentActivityProps) {
       case 'file_update':
         return '??';
       case 'member_join':
-        return '?‘¤';
+        return '?ï¿½ï¿½';
       case 'issue_created':
         return '??';
       case 'comment_added':
-        return '?’¬';
+        return '?ï¿½ï¿½';
       default:
         return '??';
     }

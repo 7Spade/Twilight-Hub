@@ -34,7 +34,7 @@ const EXCLUDE_PATTERNS = [
   '.github',
   
   // 文檔目錄（避免掃描自己生成的文檔）
-  'docs',
+  // 保留 memory-bank 排除，但允許掃描 docs（僅跳過自動生成的文件）
   'memory-bank',
   
   // 測試和覆蓋率
@@ -137,6 +137,15 @@ const TODO_PATTERNS = [
  * 檢查路徑是否應該被排除
  */
 function shouldExclude(filePath, fileName) {
+  // 跳過自動生成的文檔，避免自引用
+  const generatedDocs = [
+    'docs/TODO-list.md',
+  ];
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  if (generatedDocs.some((p) => normalizedPath.endsWith(p))) {
+    return true;
+  }
+
   // 檢查排除模式
   for (const pattern of EXCLUDE_PATTERNS) {
     if (pattern.includes('*')) {
@@ -159,6 +168,28 @@ function shouldExclude(filePath, fileName) {
     return true;
   }
 
+  return false;
+}
+
+/**
+ * 檢查目錄是否應該被排除（不依賴副檔名）
+ */
+function shouldExcludeDir(dirPath, dirName) {
+  // 跳過特定自動生成的目錄（目前無）
+  const normalizedPath = dirPath.replace(/\\/g, '/');
+
+  for (const pattern of EXCLUDE_PATTERNS) {
+    if (pattern.includes('*')) {
+      const regex = new RegExp(pattern.replace(/\*/g, '.*'));
+      if (regex.test(dirName) || regex.test(normalizedPath)) {
+        return true;
+      }
+    } else {
+      if (dirName === pattern || normalizedPath.includes(pattern)) {
+        return true;
+      }
+    }
+  }
   return false;
 }
 
@@ -210,7 +241,6 @@ function scanTodos(dirPath, relativePath = '') {
   
   try {
     const items = fs.readdirSync(dirPath, { withFileTypes: true })
-      .filter(item => !shouldExclude(item.name, item.name))
       .sort((a, b) => a.name.localeCompare(b.name));
 
     for (const item of items) {
@@ -218,11 +248,18 @@ function scanTodos(dirPath, relativePath = '') {
       const relativeFilePath = path.join(relativePath, item.name).replace(/\\/g, '/');
 
       if (item.isDirectory()) {
+        // 目錄：只檢查是否屬於排除名單，不做副檔名判斷
+        if (shouldExcludeDir(fullPath, item.name)) {
+          continue;
+        }
         // 遞歸掃描子目錄
         const subTodos = scanTodos(fullPath, relativeFilePath);
         todos.push(...subTodos);
       } else {
         // 掃描文件
+        if (shouldExclude(fullPath, item.name)) {
+          continue;
+        }
         try {
           const content = fs.readFileSync(fullPath, 'utf8');
           const fileTodos = extractTodosFromContent(content, relativeFilePath);

@@ -1,6 +1,6 @@
 /**
- * @fileoverview ?�代?�Overview组件?�类?��?�?
- * ?��??�代dashboard设计模�??��?佳�?�?
+ * @fileoverview ?�代?�Overview组件?�类?��?�?
+ * ?��??�代dashboard设计模�??��?佳�?�?
  */
 
 export interface MetricData {
@@ -28,7 +28,7 @@ export interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, any>; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
   status?: 'completed' | 'pending' | 'failed';
 }
 
@@ -96,7 +96,7 @@ export interface EmptyStateProps {
   };
 }
 
-// 主�??�样式相?�类??
+// 主�??�样式相?�类??
 export type Theme = 'light' | 'dark' | 'system';
 
 export interface ThemeConfig {
@@ -110,7 +110,7 @@ export interface ThemeConfig {
   };
 }
 
-// ?��?式断?�类??
+// ?��?式断?�类??
 export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export interface ResponsiveConfig {
@@ -119,7 +119,7 @@ export interface ResponsiveConfig {
   padding: Record<Breakpoint, string>;
 }
 
-// ?�画?�置类�?
+// ?�画?�置类�?
 export interface AnimationConfig {
   duration: number;
   easing: string;

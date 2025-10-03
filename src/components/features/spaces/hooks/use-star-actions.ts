@@ -11,6 +11,7 @@ import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { type Space } from '@/lib/types-unified';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用 */
 
 interface UseStarActionsReturn {
   // Actions

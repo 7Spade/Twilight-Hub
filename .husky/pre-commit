@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 更新項目結構文檔
+# 先運行兩個生成腳本，避免循環與漏加
 echo "🔄 更新項目結構文檔..."
 npm run docs:update
+echo "🔄 同步 TODO 列表..."
+npm run todos:sync
 
-# 檢查是否有文檔變更
-if git diff --staged --name-only | grep -q "docs/project-structure.md"; then
-  echo "📝 項目結構文檔已更新，將自動添加到提交中"
-  git add docs/project-structure.md
-fi
+# 將變更檔案加入到暫存（若無變更則不影響）
+git add docs/project-structure.md 2>/dev/null || true
+git add docs/TODO-list.md 2>/dev/null || true
 
-echo "✅ 文檔更新完成"
+echo "✅ 文檔與 TODO 已更新並加入提交"

@@ -33,7 +33,7 @@ interface CreateContractDialogProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onContractCreated?: (contract: any) => void;
+  onContractCreated?: (contract: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] ä¿®å¾© TypeScript any é¡žåž‹è­¦å‘Š */
 }
 
 export function CreateContractDialog({
@@ -165,11 +165,11 @@ export function CreateContractDialog({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="service">?”§ Service Agreement</SelectItem>
+                        <SelectItem value="service">?ï¿½ï¿½ Service Agreement</SelectItem>
                         <SelectItem value="license">?? License Agreement</SelectItem>
                         <SelectItem value="nda">?? Non-Disclosure Agreement</SelectItem>
                         <SelectItem value="partnership">?? Partnership Agreement</SelectItem>
-                        <SelectItem value="employment">?‘¤ Employment Agreement</SelectItem>
+                        <SelectItem value="employment">?ï¿½ï¿½ Employment Agreement</SelectItem>
                       </SelectContent>
                     </Select>
                     <p className="text-sm text-muted-foreground">

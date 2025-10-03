@@ -26,7 +26,7 @@ interface CreateIssueFormProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onIssueCreated?: (issue: any) => void;
+  onIssueCreated?: (issue: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
 }
 
 export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }: CreateIssueFormProps) {
