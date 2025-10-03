@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total": 33,
+    "total": 35,
     "byPriority": {
-      "P2": 22,
+      "P2": 24,
       "P1": 11
     },
     "byType": {
       "FIX": 1,
-      "FEAT": 32
+      "FEAT": 34
     },
     "urgent": 0
   },
@@ -305,6 +305,24 @@
     {
       "priority": "P2",
       "type": "FEAT",
+      "description": "src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx",
+      "line": 211,
+      "context": "  const handleAction = useCallback((action: string, participantId: string) => {\r\n    switch (action) {\r\n      case 'edit':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框\r\n        console.log('編輯?�員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確�?要移?�此?�員?��?')) {\r\n          actions.onRemove(participantId);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FEAT",
+      "description": "src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx",
+      "line": 215,
+      "context": "        console.log('編輯?�員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確�?要移?�此?�員?��?')) {\r\n          actions.onRemove(participantId);\r\n        }\r\n        break;\r\n    }\r\n  }, [actions]);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FEAT",
       "description": "src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\quality\\create-checklist-template.tsx",
@@ -363,5 +381,5 @@
       "context": "\nexport const roleManagementService = {\n  getRoleDefinition: (_roleId: string): RoleDefinition | null => {\n    // TODO: [P2] FEAT src/lib/role-management.ts - 實作角色定義查詢功能\n    // 需要從資料庫或配置中獲取角色定義\n    // @assignee dev\n    return null;\n  },\n  checkPermission: async (_userId: string, _spaceId: string, _permission: Permission, _userRoleAssignment: unknown) => {\n    // TODO: [P1] FEAT src/lib/role-management.ts - 實作權限檢查邏輯\n    // 需要根據用戶角色和權限配置進行檢查\n    // @assignee dev\n    return {"
     }
   ],
-  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 33\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 35\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
 }

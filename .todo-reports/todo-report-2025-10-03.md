@@ -1,14 +1,14 @@
 # 📝 TODO 報告
-生成時間: 2025/10/3 下午7:56:48
+生成時間: 2025/10/3 下午7:58:24
 ## 📊 統計摘要
-- 總計: 33 個項目
+- 總計: 35 個項目
 - 🔴 緊急: 0 個項目
 ### 依優先級
-- P2: 22 個
+- P2: 24 個
 - P1: 11 個
 ### 依類型
 - FIX: 1 個
-- FEAT: 32 個
+- FEAT: 34 個
 ---
 ## 🔴 P0 (0 個)
 ## 🟠 P1 (11 個)
@@ -82,7 +82,7 @@
 **詳細說明:**
 > 需要根據用戶角色和權限配置進行檢查
 ---
-## 🟡 P2 (22 個)
+## 🟡 P2 (24 個)
 ### 1. [FIX] src/components/adjust-stock-dialog.tsx - 修復非空斷言警告
 **位置:** `src\components\adjust-stock-dialog.tsx:131`
 **負責人:** @dev
@@ -141,25 +141,31 @@
 ### 16. [FEAT] src/components/features/spaces/components/participants/participant-table.tsx - 打開角色更新對話框
 **位置:** `src\components\features\spaces\components\participants\participant-table.tsx:141`
 ---
-### 17. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
+### 17. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框
+**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:211`
+---
+### 18. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框
+**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:215`
+---
+### 19. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
 **位置:** `src\components\features\spaces\components\quality\create-checklist-template.tsx:69`
 ---
-### 18. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
+### 20. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
 **位置:** `src\components\features\spaces\components\report\create-report-dialog.tsx:68`
 ---
-### 19. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
+### 21. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-dashboard.tsx:124`
 ---
-### 20. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
+### 22. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-viewer.tsx:79`
 ---
-### 21. [FEAT] src/hooks/use-permissions.ts - 實現組織權限檢查
+### 23. [FEAT] src/hooks/use-permissions.ts - 實現組織權限檢查
 **位置:** `src\hooks\use-permissions.ts:128`
 **負責人:** @dev
 **詳細說明:**
 > 需要根據組織層級的權限配置進行檢查
 ---
-### 22. [FEAT] src/lib/role-management.ts - 實作角色定義查詢功能
+### 24. [FEAT] src/lib/role-management.ts - 實作角色定義查詢功能
 **位置:** `src\lib\role-management.ts:15`
 **負責人:** @dev
 **詳細說明:**

@@ -1,15 +1,15 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:56:45
+> 最後更新時間: 2025/10/03 下午07:58:23
 
 ## 目錄結構
 
 ```
 └── .todo-reports/
-    ├── ai-prompt-2025-10-03.md (28.6 KB, 今天)
-    ├── todo-report-2025-10-03.json (29.1 KB, 今天)
-    ├── todo-report-2025-10-03.md (7.7 KB, 今天)
+    ├── ai-prompt-2025-10-03.md (30.5 KB, 今天)
+    ├── todo-report-2025-10-03.json (31 KB, 今天)
+    ├── todo-report-2025-10-03.md (8.1 KB, 今天)
 └── docs/
     ├── TODO/
     │   ├── todo-automation-guide.md (19.4 KB, 今天)
@@ -175,7 +175,7 @@
     │   │   │   │   │   ├── participant-table.tsx (7.4 KB, 今天)
     │   │   │   │   │   ├── types.ts (4.5 KB, 今天)
     │   │   │   │   │   ├── view-toggle.tsx (2 KB, 今天)
-    │   │   │   │   │   ├── virtualized-table.tsx (11.9 KB, 今天)
+    │   │   │   │   │   ├── virtualized-table.tsx (12.2 KB, 今天)
     │   │   │   │   ├── quality/
     │   │   │   │   │   ├── checklist.tsx (8.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (211 B, 今天)
