@@ -194,12 +194,6 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       const spaceRoles: Record<string, SpaceRoleAssignment> = {};
       
       spaceRolesSnapshot.forEach(d => {
-        // TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用
-        // 問題：使用 any 類型違反類型安全原則
-        // 影響：失去類型檢查，可能導致運行時錯誤
-        // 建議：定義具體的類型接口替代 any 類型
-        // @assignee frontend-team
-        // @deadline 2025-01-25
         const raw = d.data() as Record<string, unknown>;
         const assignedAtRaw = raw.assignedAt as unknown;
         // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全

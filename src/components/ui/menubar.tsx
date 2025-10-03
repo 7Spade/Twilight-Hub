@@ -5,10 +5,6 @@ import * as MenubarPrimitive from "@radix-ui/react-menubar"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-// TODO: [P3] REFACTOR src/components/ui/menubar.tsx - 奧卡姆剃刀精簡 API 表面
-// 建議：
-// 1) 僅導出常用組件（Menubar, Trigger, Content, Item, Separator），其餘用到再暴露，降低 API 心智負擔。
-// 2) 以範例/Story 取代過度封裝，鼓勵組合而非新增包裝層。
 
 function MenubarMenu({
   ...props

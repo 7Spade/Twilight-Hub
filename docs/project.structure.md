@@ -25,13 +25,13 @@
     │   ├── TODO-list.md (0 B, 今天)
     │   ├── TODO.md (23 KB, 今天)
     ├── TODO/
-    │   ├── todo-automation-guide.md (19.4 KB, 今天)
+│   ├── todo.automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
     ├── blueprint.md (1.5 KB, 今天)
-    ├── natural-language-commands.md (17.7 KB, 今天)
-    ├── nextjs15_dev-brief.md (12.2 KB, 今天)
-    ├── nextjs15_dev-standard.md (35.5 KB, 今天)
-    ├── project-structure.md (17.2 KB, 今天)
+    ├── commands.natural-language.md (17.7 KB, 今天)
+    ├── nextjs15.dev-brief.md (12.2 KB, 今天)
+    ├── nextjs15.dev-standard.md (35.5 KB, 今天)
+    ├── project.structure.md (17.2 KB, 今天)
 └── memory-bank/
     ├── archive/
     ├── creative/

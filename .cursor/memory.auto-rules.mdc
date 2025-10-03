@@ -1,7 +1,6 @@
 ---
 alwaysApply: true
 ---
-
 # 自動記憶系統配置
 
 ## 🧠 自動記憶觸發規則
@@ -12,24 +11,39 @@ alwaysApply: true
 ```yaml
 triggers:
   user_preferences:
-    keywords: ["我喜歡", "我偏好", "我習慣", "我通常", "我總是"]
+    chinese_keywords: ["我喜歡", "我偏好", "我習慣", "我通常", "我總是", "我傾向於", "我的風格", "我習慣用", "我偏好使用"]
+    english_keywords: ["I like", "I prefer", "I usually", "I always", "I tend to", "my style", "I'm used to", "I prefer using", "I like to use"]
     entity_type: "user_preference"
     
   project_requirements:
-    keywords: ["需要", "要求", "必須", "應該", "希望實現"]
+    chinese_keywords: ["需要", "要求", "必須", "應該", "希望實現", "期望", "目標", "功能需求", "性能要求"]
+    english_keywords: ["need", "require", "must", "should", "want to implement", "expect", "goal", "feature requirement", "performance requirement"]
     entity_type: "project_requirement"
     
   technical_decisions:
-    keywords: ["使用", "選擇", "決定", "採用", "配置"]
+    chinese_keywords: ["使用", "選擇", "決定", "採用", "配置", "設置", "安裝", "技術選型", "架構選擇"]
+    english_keywords: ["use", "choose", "decide", "adopt", "configure", "setup", "install", "tech stack", "architecture choice"]
     entity_type: "technical_decision"
     
   problems_solutions:
-    keywords: ["問題", "錯誤", "解決", "修復", "優化"]
+    chinese_keywords: ["問題", "錯誤", "解決", "修復", "優化", "改進", "調整", "Bug", "Issue"]
+    english_keywords: ["problem", "error", "solve", "fix", "optimize", "improve", "adjust", "bug", "issue", "solution"]
     entity_type: "problem_solution"
     
   learning_insights:
-    keywords: ["學習到", "發現", "了解", "認識", "理解"]
+    chinese_keywords: ["學習到", "發現", "了解", "認識", "理解", "掌握", "學會", "經驗", "心得"]
+    english_keywords: ["learn", "discover", "understand", "realize", "grasp", "master", "experience", "insight", "lesson learned"]
     entity_type: "learning_insight"
+    
+  code_patterns:
+    chinese_keywords: ["代碼", "編程", "開發", "實現", "函數", "組件", "模塊", "API", "接口"]
+    english_keywords: ["code", "programming", "development", "implementation", "function", "component", "module", "api", "interface"]
+    entity_type: "code_pattern"
+    
+  workflow_patterns:
+    chinese_keywords: ["工作流程", "流程", "步驟", "方法", "策略", "方案", "計劃"]
+    english_keywords: ["workflow", "process", "step", "method", "strategy", "solution", "plan"]
+    entity_type: "workflow_pattern"
 ```
 
 ## 📝 自動記憶提取模式

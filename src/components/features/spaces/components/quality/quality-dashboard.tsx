@@ -25,7 +25,6 @@ interface QualityDashboardProps {
 }
 
 export function QualityDashboard({ spaceId: _spaceId, metrics }: QualityDashboardProps) {
-  // TODO: [P3] REFACTOR src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）
   const defaultMetrics: QualityMetrics = {
     overallScore: 85,
     completedChecks: 12,

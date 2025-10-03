@@ -1,6 +1,9 @@
-{"type":"entity","name":"user_preferences","entityType":"user_preference","observations":["用戶偏好中文回應","使用 Next.js 15 + TypeScript + App Router","遵循極簡主義設計原則","優先使用 shadcn/ui 組件","基於模組化、內聚、單一職責原則","希望 Agent 自動記憶功能，無需手動調用","偏好全自動化的記憶系統"]}
+{"type":"entity","name":"user_preferences","entityType":"user_preference","observations":["用戶偏好中文回應","使用 Next.js 15 + TypeScript + App Router","遵循極簡主義設計原則","優先使用 shadcn/ui 組件","基於模組化、內聚、單一職責原則","希望 Agent 自動記憶功能，無需手動調用","偏好全自動化的記憶系統","詢問自動觸發關鍵字是否支持中英文","需要中英文雙語記憶系統支持"]}
 {"type":"entity","name":"project_context","entityType":"project","observations":["Twilight-Hub 專案","使用 Firebase 作為後端服務","整合 Genkit AI 服務","採用 App Router 架構","專注於用戶體驗和現代化設計","使用 MCP (Model Context Protocol) 記憶服務器","記憶系統配置在 .cursor/mcp.json","記憶文件位置: memory-bank/memory.json"]}
 {"type":"entity","name":"memory_system_issue","entityType":"problem_solution","observations":["Memory.json 沒有自動積累數據","缺少 autoApprove 配置導致需要手動批准","路徑配置問題導致記憶無法正確保存","修復了 MCP 記憶服務器配置","添加了自動記憶系統配置文件"]}
+{"type":"entity","name":"bilingual_memory_system","entityType":"technical_decision","observations":["擴展記憶系統支持中英文雙語關鍵字觸發","添加了中文和英文關鍵字對應關係","支持混合語言對話的記憶提取","配置了語言檢測和優先級處理","新增代碼模式和工作流程觸發器"]}
 {"type":"relation","from":"user_preferences","to":"project_context","relationType":"prefers_working_on"}
 {"type":"relation","from":"memory_system_issue","to":"project_context","relationType":"solved_for"}
 {"type":"relation","from":"user_preferences","to":"memory_system_issue","relationType":"requested_solution_for"}
+{"type":"relation","from":"bilingual_memory_system","to":"project_context","relationType":"enhances"}
+{"type":"relation","from":"user_preferences","to":"bilingual_memory_system","relationType":"requested"}

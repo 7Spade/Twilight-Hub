@@ -2,7 +2,7 @@
 
 /**
  * 自動生成項目樹狀圖結構腳本 (TypeScript 版本)
- * 用於在 Git 提交時自動更新 docs/project-structure.md
+ * 用於在 Git 提交時自動更新 docs/project.structure.md
  */
 
 import * as fs from 'node:fs';

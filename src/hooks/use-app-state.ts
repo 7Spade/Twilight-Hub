@@ -9,9 +9,7 @@ interface ChatState {
 
 interface DialogState {
   type: string | null;
-  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 dialog data 建立明確型別
-  data: unknown;
+  data: unknown; // TODO: 現代化 - 定義具體的對話框資料類型
   isOpen: boolean;
 }
 
@@ -25,9 +23,7 @@ interface AppStateActions {
   closeChat: () => void;
   toggleChat: () => void;
   toggleMinimizeChat: () => void;
-  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
-  // 說明：替換為具名型別或泛型參數，避免使用 unknown
-  openDialog: (type: string, data?: unknown) => void;
+  openDialog: (type: string, data?: unknown) => void; // TODO: 現代化 - 使用泛型參數提升類型安全
   closeDialog: () => void;
 }
 
@@ -71,9 +67,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));
   }, []);
 
-  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型
-  // 說明：為 data 提供具名型別或受限泛型，避免使用 unknown
-  const openDialog = useCallback((type: string, data: unknown = {}) => {
+  const openDialog = useCallback((type: string, data: unknown = {}) => { // TODO: 現代化 - 定義具體的對話框資料類型
     setDialog({ type, data, isOpen: true });
   }, []);
 

@@ -31,7 +31,7 @@ VAN 模式連續任務協作 - 全專案 TODO 分析和分類
 - 緊急問題: 認證權限功能缺失 (8 個)
 - 建議優先處理: 認證權限 → 核心 API → 錯誤處理 → 代碼清理
 
-## Next.js TODO（零認知重構，遵循 docs/TODO/nextjs_todo_spec.md）
+## Next.js TODO（零認知重構，遵循 docs/TODO/nextjs.todo-spec.md）
 
 說明：以下任務僅做「認知負擔降低」的結構化調整，不更動現有功能與行為；完成後刪除對應 TODO 註解。
 

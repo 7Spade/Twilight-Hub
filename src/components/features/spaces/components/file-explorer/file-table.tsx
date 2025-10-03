@@ -24,11 +24,6 @@ import {
   FolderOpen as _FolderOpen
 } from 'lucide-react';
 
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
-// 問題：'FolderOpen' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 import { cn } from '@/lib/utils';
 import { type FileItem } from './folder-tree';
 import { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';
