@@ -1,18 +1,41 @@
 {
   "summary": {
-    "total": 54,
+    "total": 59,
     "byPriority": {
       "P3": 3,
-      "P2": 51
+      "P2": 54,
+      "P0": 2
     },
     "byType": {
       "REFACTOR": 19,
       "FEAT": 20,
-      "FIX": 15
+      "FIX": 20
     },
-    "urgent": 0
+    "urgent": 2
   },
   "todos": [
+    {
+      "priority": "P0",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）",
+      "details": [
+        "說明：修正字串/JSX 轉義，確保語法正確並通過 Lint"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx",
+      "line": 1,
+      "context": "// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\r\n// 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\r\n/**\r\n * @fileoverview A component that renders a table of files and folders.\r\n * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量\r\n * It supports sorting by various columns, selecting multiple items, and triggering\r\n * actions on individual items. It also includes a settings menu to toggle\r\n * the visibility of columns.\r\n */\r\n'use client';\r"
+    },
+    {
+      "priority": "P0",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）",
+      "details": [
+        "說明：檢查 JSX 標籤與大於號轉義，修正不合法符號"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx",
+      "line": 1,
+      "context": "// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\r\n// 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\r\n/**\r\n * @fileoverview A slide-out panel for filtering files and folders in the explorer.\r\n * It provides a rich set of filtering options, including keyword search, scope\r\n * selection, file type, status, and date ranges. It allows users to apply these\r\n * filters or save them for later use.\r\n */\r\n'use client';\r\n\r"
+    },
     {
       "priority": "P2",
       "type": "FEAT",
@@ -175,6 +198,33 @@
       "file": "src\\components\\features\\spaces\\components\\contracts\\create-contract-dialog.tsx",
       "line": 71,
       "context": "  const onSubmit = async (data: CreateContractFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫\r\n      console.log('Creating contract:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newContract = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        startDate: new Date(data.startDate),\r\n        endDate: data.endDate ? new Date(data.endDate) : undefined,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\context-menu.tsx",
+      "line": 7,
+      "context": " * selected item. A separate context menu for the toolbar is also defined here.\r\n */\r\n'use client';\r\n// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）\r\n\r\nimport React from 'react';\r\nimport {\r\n  DropdownMenu,\r\n  DropdownMenuContent,\r\n  DropdownMenuItem,\r\n  DropdownMenuSeparator,\r\n  DropdownMenuTrigger,\r\n} from '@/components/ui/dropdown-menu';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/deleted-items.tsx - 修復字符串字面量錯誤（第50行未終止）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\deleted-items.tsx",
+      "line": 8,
+      "context": " * file explorer toolbar.\r\n */\r\n'use client';\r\n// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/deleted-items.tsx - 修復字符串字面量錯誤（第50行未終止）\r\n\r\nimport React, { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Trash2, RotateCcw, Trash, Calendar, User } from 'lucide-react';\r\nimport { cn } from '@/lib/utils';\r\nimport { type FileItem } from './folder-tree';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/detail/file-detail-view.tsx - 修復字符串字面量錯誤（第75行未終止）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\detail\\file-detail-view.tsx",
+      "line": 6,
+      "context": " * in a side panel. Integrates with Context7 file viewing libraries.\r\n */\r\n'use client';\r\n// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/detail/file-detail-view.tsx - 修復字符串字面量錯誤（第75行未終止）\r\n\r\nimport React, { useState, useEffect } from 'react';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { cn } from '@/lib/utils';\r\nimport { \r\n  Download, \r"
     },
     {
       "priority": "P2",
@@ -535,5 +585,5 @@
       "context": "}\r\n\r\nexport function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {\r\n  // TODO: [P3] REFACTOR src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）\r\n  const defaultMetrics: QualityMetrics = {\r\n    overallScore: 85,\r\n    completedChecks: 12,\r\n    totalChecks: 15,\r\n    criticalIssues: 2,\r\n    warnings: 5,\r\n    trends: {\r\n      scoreChange: 5,\r\n      completionRate: 80,\r"
     }
   ],
-  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 54\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 59\n- 🔴 緊急項目: 2\n## ⚠️ 立即處理（P0 或已過期）\n### 1. FIX: src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\r\n// 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\r\n/**\r\n * @fileoverview A component that renders a table of files and folders.\r\n * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量\r\n * It supports sorting by various columns, selecting multiple items, and triggering\r\n * actions on individual items. It also includes a settings menu to toggle\r\n * the visibility of columns.\r\n */\r\n'use client';\r\n```\n### 2. FIX: src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\r\n// 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\r\n/**\r\n * @fileoverview A slide-out panel for filtering files and folders in the explorer.\r\n * It provides a rich set of filtering options, including keyword search, scope\r\n * selection, file type, status, and date ranges. It allows users to apply these\r\n * filters or save them for later use.\r\n */\r\n'use client';\r\n\r\n```\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
 }
