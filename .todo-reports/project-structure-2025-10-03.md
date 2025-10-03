@@ -31,6 +31,7 @@
     ├── creative/
     ├── reflection/
     ├── activeContext.md (674 B, 今天)
+    ├── memory.backup.json (2 KB, 今天)
     ├── memory.json (2 KB, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
