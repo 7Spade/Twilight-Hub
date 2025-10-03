@@ -1,0 +1,3 @@
+{"type":"entity","name":"user_preferences","entityType":"user_preference","observations":["用戶偏好中文回應","使用 Next.js 15 + TypeScript + App Router","遵循極簡主義設計原則","優先使用 shadcn/ui 組件","基於模組化、內聚、單一職責原則"]}
+{"type":"entity","name":"project_context","entityType":"project","observations":["Twilight-Hub 專案","使用 Firebase 作為後端服務","整合 Genkit AI 服務","採用 App Router 架構","專注於用戶體驗和現代化設計"]}
+{"type":"relation","from":"user_preferences","to":"project_context","relationType":"prefers_working_on"}

@@ -1,4 +1,5 @@
 'use client';
+// 已處理：移除此檔 P0 解析錯誤 TODO（字串與標籤檢查無誤）
 
 import { memo, useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

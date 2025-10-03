@@ -1,9 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-Twilight-Hub-bdbe6b71b54266ba75c0cc5306342f1bdc3a6ca7
-
 .playwright-mcp
-
-memory-bank
 # dependencies
 /node_modules
 /.pnp
