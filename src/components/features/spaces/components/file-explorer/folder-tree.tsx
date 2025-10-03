@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - ä¿®å¾©èªæ³•éŒ¯èª¤ï¼ˆç¬¬480è¡Œ Unexpected tokenï¼‰
+// èªªæ˜ï¼šæª¢æŸ¥ JSX çµæ§‹èˆ‡è½‰ç¾©ï¼Œä¿®æ­£ä¸åˆæ³•ç¬¦è™Ÿ
 /**
  * @fileoverview A component that displays a hierarchical folder structure.
  * It allows users to expand and collapse folders, select items, and access
@@ -52,25 +54,25 @@ interface FolderTreeProps {
 export function FolderTree({ files, selectedItems, onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['project-files', 'supported']));
 
-  // å°‡ç?å¯¦æ?æ¡ˆæ•¸?šç?ç¹”æ?è³‡æ?å¤¾ç?æ§?
+  // å°‡ï¿½?å¯¦ï¿½?æ¡ˆæ•¸?ï¿½ï¿½?ç¹”ï¿½?è³‡ï¿½?å¤¾ï¿½?ï¿½?
   const organizeFilesIntoFolders = (fileList: FileItem[]) => {
     const folders: { [key: string]: FileItem[] } = {};
     
-    // ?¹æ?æª”æ?é¡å??–å?ç¨±å?ç¶´ç?ç¹”æ?æ¡?
+    // ?ï¿½ï¿½?æª”ï¿½?é¡ï¿½??ï¿½ï¿½?ç¨±ï¿½?ç¶´ï¿½?ç¹”ï¿½?ï¿½?
     fileList.forEach(file => {
-      let folderName = '?¶ä?æª”æ?';
+      let folderName = '?ï¿½ï¿½?æª”ï¿½?';
       
-      // ?¹æ?æª”æ??ç¨±?ç¶´?¤æ–·è³‡æ?å¤?
+      // ?ï¿½ï¿½?æª”ï¿½??ï¿½ç¨±?ï¿½ç¶´?ï¿½æ–·è³‡ï¿½?ï¿½?
       if (file.name.startsWith('A000') || file.name.startsWith('A100')) {
-        folderName = 'å»ºç??–ç?';
+        folderName = 'å»ºï¿½??ï¿½ï¿½?';
       } else if (file.name.includes('PDF') || file.name.endsWith('.pdf')) {
         folderName = 'PDFs';
       } else if (file.name.includes('CAD') || file.name.endsWith('.dwg')) {
-        folderName = 'CADæª”æ?';
-      } else if (file.name.includes('Contract') || file.name.includes('?ˆç?')) {
-        folderName = '?ˆç??‡ä»¶';
-      } else if (file.name.includes('Report') || file.name.includes('?±å?')) {
-        folderName = '?±å?';
+        folderName = 'CADæª”ï¿½?';
+      } else if (file.name.includes('Contract') || file.name.includes('?ï¿½ï¿½?')) {
+        folderName = '?ï¿½ï¿½??ï¿½ä»¶';
+      } else if (file.name.includes('Report') || file.name.includes('?ï¿½ï¿½?')) {
+        folderName = '?ï¿½ï¿½?';
       }
       
       if (!folders[folderName]) {
@@ -79,7 +81,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
       folders[folderName].push(file);
     });
 
-    // è½‰æ???FileItem ?¼å?
+    // è½‰ï¿½???FileItem ?ï¿½ï¿½?
     return Object.entries(folders).map(([folderName, folderFiles]) => ({
       id: folderName.toLowerCase().replace(/\s+/g, '-'),
       name: folderName,
@@ -94,10 +96,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     }));
   };
 
-  // ä½¿ç”¨?Ÿå¯¦æª”æ??¸æ?çµ„ç??„è??™å¤¾çµæ?
+  // ä½¿ç”¨?ï¿½å¯¦æª”ï¿½??ï¿½ï¿½?çµ„ï¿½??ï¿½ï¿½??ï¿½å¤¾çµï¿½?
   const organizedFolders = organizeFilesIntoFolders(files);
 
-  // æ¨¡æ“¬è³‡æ?å¤¾æ•¸?šï??¨æ–¼æ¸¬è©¦?¶å??Ÿèƒ½ - ?´è?å¯Œç?å±¤ç?çµæ?
+  // æ¨¡æ“¬è³‡ï¿½?å¤¾æ•¸?ï¿½ï¿½??ï¿½æ–¼æ¸¬è©¦?ï¿½ï¿½??ï¿½èƒ½ - ?ï¿½ï¿½?å¯Œï¿½?å±¤ï¿½?çµï¿½?
   const mockFolders: FileItem[] = [
     { 
       id: 'bids', 
@@ -387,7 +389,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     }
   ];
 
-  // ?ˆä½µæ¨¡æ“¬è³‡æ?å¤¾å??Ÿå¯¦æª”æ?è³‡æ?å¤?
+  // ?ï¿½ä½µæ¨¡æ“¬è³‡ï¿½?å¤¾ï¿½??ï¿½å¯¦æª”ï¿½?è³‡ï¿½?ï¿½?
   const allFolders = [...mockFolders, ...organizedFolders];
 
   const toggleFolder = (folderId: string) => {
@@ -414,7 +416,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
           )}
           style={{ paddingLeft: `${level * 16 + 8}px` }}
         >
-          {/* å±•é?/?¶å?ç®­é ­ */}
+          {/* å±•ï¿½?/?ï¿½ï¿½?ç®­é ­ */}
           <div className="w-4 h-4 flex items-center justify-center">
             {hasChildren ? (
               <button
@@ -428,7 +430,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             )}
           </div>
           
-          {/* è³‡æ?å¤?æª”æ??–æ? */}
+          {/* è³‡ï¿½?ï¿½?æª”ï¿½??ï¿½ï¿½? */}
           <div className="w-4 h-4 flex items-center justify-center">
             {item.type === 'folder' ? (
               isExpanded ? (
@@ -441,7 +443,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             )}
           </div>
           
-          {/* è³‡æ?å¤¾å?ç¨?*/}
+          {/* è³‡ï¿½?å¤¾ï¿½?ï¿½?*/}
           <span 
             className="text-sm text-gray-700 truncate flex-1"
             onClick={() => onItemClick(item)}
@@ -449,7 +451,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
             {item.name}
           </span>
           
-          {/* ?´å??¸é??‰é? */}
+          {/* ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½? */}
           <ContextMenu
             item={item}
             onAction={(action) => onItemAction?.(item, action)}
@@ -463,7 +465,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
           </ContextMenu>
         </div>
         
-        {/* å­è??™å¤¾ */}
+        {/* å­ï¿½??ï¿½å¤¾ */}
         {item.type === 'folder' && isExpanded && hasChildren && (
           <div>
             {item.children!.map(child => renderFolderItem(child, level + 1))}
@@ -477,13 +479,13 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     <div className="h-full flex flex-col">
       <Tabs defaultValue="folders" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="folders">è³‡æ?å¤?/TabsTrigger>
+          <TabsTrigger value="folders">è³‡ï¿½?ï¿½?/TabsTrigger>
           <TabsTrigger value="packages">å¥—ä»¶</TabsTrigger>
         </TabsList>
         
         <TabsContent value="folders" className="mt-2">
           <div className="space-y-1">
-            {/* ?¹ç›®??- å°ˆæ?æª”æ? */}
+            {/* ?ï¿½ç›®??- å°ˆï¿½?æª”ï¿½? */}
             <div className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-100 cursor-pointer group rounded-sm bg-gray-50">
               <div className="w-4 h-4 flex items-center justify-center">
                 <button
@@ -499,10 +501,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
               <div className="w-4 h-4 flex items-center justify-center">
                 <Folder className="h-4 w-4 text-blue-500" />
               </div>
-              <span className="text-sm font-medium text-gray-700">å°ˆæ?æª”æ?</span>
+              <span className="text-sm font-medium text-gray-700">å°ˆï¿½?æª”ï¿½?</span>
               <ContextMenu
-                item={{ id: 'project-files', name: 'å°ˆæ?æª”æ?', type: 'folder', timeCreated: '', updated: '' }}
-                onAction={(action) => onItemAction?.({ id: 'project-files', name: 'å°ˆæ?æª”æ?', type: 'folder', timeCreated: '', updated: '' }, action)}
+                item={{ id: 'project-files', name: 'å°ˆï¿½?æª”ï¿½?', type: 'folder', timeCreated: '', updated: '' }}
+                onAction={(action) => onItemAction?.({ id: 'project-files', name: 'å°ˆï¿½?æª”ï¿½?', type: 'folder', timeCreated: '', updated: '' }, action)}
               >
                 <button
                   className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-200 rounded-sm flex items-center justify-center ml-auto"

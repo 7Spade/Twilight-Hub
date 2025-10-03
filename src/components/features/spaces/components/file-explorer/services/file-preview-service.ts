@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）
+// 說明：補齊引號或移除多餘字元，確保語法正確
 /**
  * @fileoverview Abstract service layer for file preview functionality.
  * Provides a unified interface for different file preview libraries.
@@ -213,7 +215,7 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('404')) {
       return {
         code: 'FILE_NOT_FOUND',
-        message: '檔�?不�??��??��?存�?',
+        message: '檔�?不�??��??��?存�?',
         details: error,
       };
     }
@@ -221,7 +223,7 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('403')) {
       return {
         code: 'ACCESS_DENIED',
-        message: '沒�?權�?存�?此�?�?,
+        message: '沒�?權�?存�?此�?�?,
         details: error,
       };
     }
@@ -229,14 +231,14 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('network')) {
       return {
         code: 'NETWORK_ERROR',
-        message: '網路????�誤，�?檢查網路???',
+        message: '網路????�誤，�?檢查網路???',
         details: error,
       };
     }
 
     return {
       code: 'UNKNOWN_ERROR',
-      message: '?�覽檔�??�發?�未?�錯�?,
+      message: '?�覽檔�??�發?�未?�錯�?,
       details: error,
     };
   }

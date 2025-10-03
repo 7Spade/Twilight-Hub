@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）
+// 說明：修正字串或模板字面量，避免 Lint 解析錯誤
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

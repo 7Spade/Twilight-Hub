@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - ä¿®å¾©èªæ³•éŒ¯èª¤ï¼ˆç¬¬141è¡Œ Unexpected tokenï¼‰
+// èªªæ˜ï¼šæª¢æŸ¥ JSX æ¨™ç±¤èˆ‡å¤§æ–¼è™Ÿè½‰ç¾©ï¼Œä¿®æ­£ä¸åˆæ³•ç¬¦è™Ÿ
 /**
  * @fileoverview A slide-out panel for filtering files and folders in the explorer.
  * It provides a rich set of filtering options, including keyword search, scope
@@ -5,6 +7,10 @@
  * filters or save them for later use.
  */
 'use client';
+// TODO[P2][lint][parser-error]: ç¬¬143è¡Œ Unexpected tokenï¼Œå¯èƒ½ç‚º JSX æ¨™ç±¤æœªæ­£ç¢ºé—œé–‰æˆ–éœ€è¦ä½¿ç”¨ {'>'}ã€‚
+// - æª¢æŸ¥ç ´æçš„ h4/Label/Select æ¨™ç±¤é—œé–‰ï¼Œä¿®æ­£ `</...>`ã€‚
+// - æª¢æŸ¥ SelectValue placeholder å­—ä¸²æ˜¯å¦ç¼ºå°‘çµå°¾å¼•è™Ÿã€‚
+// - åƒ…åšèªæ³•ä¿®æ­£ï¼Œç¶­æŒç¾æœ‰ UI/è¡Œç‚ºã€‚
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -103,9 +109,9 @@ export function FilterPanel({
   return (
     <div className="absolute right-0 top-0 h-full w-80 bg-white border-l shadow-lg z-40">
       <div className="h-full flex flex-col">
-        {/* æ¨™é?æ¬?- ?¹é? Autodesk è¨­è? */}
+        {/* æ¨™ï¿½?ï¿½?- ?ï¿½ï¿½? Autodesk è¨­ï¿½? */}
         <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-lg font-semibold">?œå?</h3>
+          <h3 className="text-lg font-semibold">?ï¿½ï¿½?</h3>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="h-4 w-4" />
           </Button>
@@ -114,20 +120,20 @@ export function FilterPanel({
         {/* æ¨™ç±¤??*/}
         <div className="flex border-b">
           <button className="flex-1 py-2 px-4 text-sm font-medium border-b-2 border-blue-500 text-blue-600">
-            ?œå?
+            ?ï¿½ï¿½?
           </button>
           <button className="flex-1 py-2 px-4 text-sm font-medium text-gray-500">
-            ?²å??„æ?å°?
+            ?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
           </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
-          {/* ?œå?æ¡?*/}
+          {/* ?ï¿½ï¿½?ï¿½?*/}
           <div className="space-y-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="?œå?"
+                placeholder="?ï¿½ï¿½?"
                 value={filters.searchQuery}
                 onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
                 className="pl-10"
@@ -135,34 +141,35 @@ export function FilterPanel({
             </div>
           </div>
 
-          {/* ?œå??Œç¯©?¸è¨­å®?- ?¹é? Autodesk è¨­è? */}
+          {/* ?ï¿½ï¿½??ï¿½ç¯©?ï¿½è¨­ï¿½?- ?ï¿½ï¿½? Autodesk è¨­ï¿½? */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h4 className="text-sm font-medium">?œå??Œç¯©?¸è¨­å®?/h4>
+              {/* TODO[P2][lint][parser-error][ä½èªçŸ¥]: ä¿®æ­£é—œé–‰æ¨™ç±¤ï¼Œé¿å… Unexpected token */}
+              <h4 className="text-sm font-medium">?ï¿½ï¿½??ï¿½ç¯©?ï¿½è¨­ï¿½? </h4>
               <Button variant="ghost" size="sm">
                 <Settings className="h-4 w-4" />
               </Button>
             </div>
 
-            {/* ?œå?ç¯„å? */}
+            {/* ?ï¿½ï¿½?ç¯„ï¿½? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">?œå?ç¯„å?</Label>
+              <Label className="text-sm font-medium">?ï¿½ï¿½?ç¯„ï¿½?</Label>
               <RadioGroup
                 value={filters.searchScope}
                 onValueChange={(value) => handleFilterChange('searchScope', value)}
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="current" id="current" />
-                  <Label htmlFor="current" className="text-sm">?®å?è³‡æ?å¤?/Label>
+                  <Label htmlFor="current" className="text-sm">?ï¿½ï¿½?è³‡ï¿½?ï¿½?/Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="all" id="all" />
-                  <Label htmlFor="all" className="text-sm">?€?‰è??™å¤¾</Label>
+                  <Label htmlFor="all" className="text-sm">?ï¿½?ï¿½ï¿½??ï¿½å¤¾</Label>
                 </div>
               </RadioGroup>
             </div>
 
-            {/* ?œå??¸é? */}
+            {/* ?ï¿½ï¿½??ï¿½ï¿½? */}
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -170,7 +177,7 @@ export function FilterPanel({
                   checked={filters.includeSubfolders}
                   onCheckedChange={(checked) => handleFilterChange('includeSubfolders', checked)}
                 />
-                <Label htmlFor="subfolders" className="text-sm">å­è??™å¤¾</Label>
+                <Label htmlFor="subfolders" className="text-sm">å­ï¿½??ï¿½å¤¾</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -178,7 +185,7 @@ export function FilterPanel({
                   checked={filters.includeContent}
                   onCheckedChange={(checked) => handleFilterChange('includeContent', checked)}
                 />
-                <Label htmlFor="content" className="text-sm">?§å®¹</Label>
+                <Label htmlFor="content" className="text-sm">?ï¿½å®¹</Label>
               </div>
             </div>
           </div>
@@ -194,70 +201,72 @@ export function FilterPanel({
               </Button>
             </div>
 
-            {/* é¡å? */}
+            {/* é¡ï¿½? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">é¡å?</Label>
+              <Label className="text-sm font-medium">é¡ï¿½?</Label>
               <Select value={filters.type} onValueChange={(value) => handleFilterChange('type', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  {/* TODO[P2][lint][parser-error]: é—œé–‰ placeholder å­—ä¸²èˆ‡ JSX æ¨™ç±¤ */}
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="file">æª”æ?</SelectItem>
-                  <SelectItem value="folder">è³‡æ?å¤?/SelectItem>
+                  <SelectItem value="file">æª”ï¿½?</SelectItem>
+                  {/* TODO[P2][lint][parser-error]: ä¿®æ­£ç ´æé—œé–‰æ¨™ç±¤ */}
+                  <SelectItem value="folder">è³‡ï¿½?ï¿½?</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* æª”æ?é¡å? */}
+            {/* æª”ï¿½?é¡ï¿½? */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">æª”æ?é¡å?</Label>
+              <Label className="text-sm font-medium">æª”ï¿½?é¡ï¿½?</Label>
               <Select value={filters.fileType} onValueChange={(value) => handleFilterChange('fileType', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="pdf">PDF</SelectItem>
                   <SelectItem value="dwg">DWG</SelectItem>
                   <SelectItem value="docx">DOCX</SelectItem>
                   <SelectItem value="xlsx">XLSX</SelectItem>
-                  <SelectItem value="image">?–ç?</SelectItem>
+                  <SelectItem value="image">?ï¿½ï¿½?</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* æª”æ??€??*/}
+            {/* æª”ï¿½??ï¿½??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">æª”æ??€??/Label>
+              <Label className="text-sm font-medium">æª”ï¿½??ï¿½??/Label>
               <Select value={filters.fileStatus} onValueChange={(value) => handleFilterChange('fileStatus', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="active">?Ÿç”¨</SelectItem>
-                  <SelectItem value="archived">å·²å?å­?/SelectItem>
+                  <SelectItem value="active">?ï¿½ç”¨</SelectItem>
+                  <SelectItem value="archived">å·²ï¿½?ï¿½?/SelectItem>
                   <SelectItem value="deleted">å·²åˆª??/SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* ?®å??ˆæœ¬ */}
+            {/* ?ï¿½ï¿½??ï¿½æœ¬ */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">?®å??ˆæœ¬</Label>
+              <Label className="text-sm font-medium">?ï¿½ï¿½??ï¿½æœ¬</Label>
               <Select value={filters.currentVersion} onValueChange={(value) => handleFilterChange('currentVersion', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½??? />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="latest">?€?°ç???/SelectItem>
-                  <SelectItem value="draft">?‰ç¨¿</SelectItem>
-                  <SelectItem value="review">å¯©é–±ä¸?/SelectItem>
+                  <SelectItem value="latest">?ï¿½?ï¿½ï¿½??</SelectItem>
+                  <SelectItem value="draft">?ï¿½ç¨¿</SelectItem>
+                  <SelectItem value="review">å¯©é–±ï¿½?/SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* ä¸Šæ¬¡?´æ–° */}
+            {/* ä¸Šæ¬¡?ï¿½æ–° */}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">ä¸Šæ¬¡?´æ–°</Label>
+              <Label className="text-sm font-medium">ä¸Šæ¬¡?ï¿½æ–°</Label>
               <div className="flex gap-2">
                 <Popover>
                   <PopoverTrigger asChild>
@@ -265,7 +274,7 @@ export function FilterPanel({
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {filters.lastUpdated?.startDate ? 
                         format(filters.lastUpdated.startDate, 'yyyy/MM/dd', { locale: zhTW }) : 
-                        '?‹å??¥æ?'
+                        '?ï¿½ï¿½??ï¿½ï¿½?'
                       }
                     </Button>
                   </PopoverTrigger>
@@ -287,7 +296,7 @@ export function FilterPanel({
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {filters.lastUpdated?.endDate ? 
                         format(filters.lastUpdated.endDate, 'yyyy/MM/dd', { locale: zhTW }) : 
-                        'çµæ??¥æ?'
+                        'çµï¿½??ï¿½ï¿½?'
                       }
                     </Button>
                   </PopoverTrigger>
@@ -306,66 +315,67 @@ export function FilterPanel({
               </div>
             </div>
 
-            {/* ?´æ–°??*/}
+            {/* ?ï¿½æ–°??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">?´æ–°??/Label>
+              {/* TODO[P2][lint][parser-error]: ä¿®æ­£ç ´æé—œé–‰æ¨™ç±¤ */}
+              <Label className="text-sm font-medium">?ï¿½æ–°??</Label>
               <Select value={filters.updater} onValueChange={(value) => handleFilterChange('updater', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="user1">ACC Sample Project</SelectItem>
-                  <SelectItem value="user2">Aç³?ACC ç³»çµ±</SelectItem>
+                  <SelectItem value="user2">Aï¿½?ACC ç³»çµ±</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* ?ˆæœ¬? å…¥??*/}
+            {/* ?ï¿½æœ¬?ï¿½å…¥??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">?ˆæœ¬? å…¥??/Label>
+              <Label className="text-sm font-medium">?ï¿½æœ¬?ï¿½å…¥??</Label>
               <Select value={filters.versionContributor} onValueChange={(value) => handleFilterChange('versionContributor', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="user1">ACC Sample Project</SelectItem>
-                  <SelectItem value="user2">Aç³?ACC ç³»çµ±</SelectItem>
+                  <SelectItem value="user2">Aï¿½?ACC ç³»çµ±</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* å¯©é–±?€??*/}
+            {/* å¯©é–±?ï¿½??*/}
             <div className="space-y-2">
-              <Label className="text-sm font-medium">å¯©é–±?€??/Label>
+              <Label className="text-sm font-medium">å¯©é–±?ï¿½??</Label>
               <Select value={filters.reviewStatus} onValueChange={(value) => handleFilterChange('reviewStatus', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="?¸å??? />
+                  <SelectValue placeholder="?ï¿½ï¿½?" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="pending">å¾…å¯©??/SelectItem>
-                  <SelectItem value="approved">å·²å¯©??/SelectItem>
-                  <SelectItem value="rejected">å·²æ?çµ?/SelectItem>
+                  <SelectItem value="pending">å¾…å¯©??</SelectItem>
+                  <SelectItem value="approved">å·²å¯©??</SelectItem>
+                  <SelectItem value="rejected">å·²ï¿½?ï¿½?</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
         </div>
 
-        {/* åº•éƒ¨?‰é? */}
+        {/* åº•éƒ¨?ï¿½ï¿½? */}
         <div className="p-4 border-t space-y-3">
           {showSaveDialog && (
             <div className="space-y-2">
               <Input
-                placeholder="?œå??ç¨±"
+                placeholder="?ï¿½ï¿½??ï¿½ç¨±"
                 value={saveSearchName}
                 onChange={(e) => setSaveSearchName(e.target.value)}
               />
               <div className="flex gap-2">
                 <Button size="sm" onClick={handleSave} disabled={!saveSearchName.trim()}>
-                  ?²å?
+                  ?ï¿½ï¿½?
                 </Button>
                 <Button size="sm" variant="outline" onClick={() => setShowSaveDialog(false)}>
-                  ?–æ?
+                  ?ï¿½ï¿½?
                 </Button>
               </div>
             </div>
@@ -374,7 +384,7 @@ export function FilterPanel({
           <div className="flex gap-2">
             <Button onClick={handleApply} className="flex-1">
               <Search className="h-4 w-4 mr-2" />
-              ?œå?
+              ?ï¿½ï¿½?
             </Button>
             <Button variant="outline" onClick={handleClear}>
               æ¸…é™¤

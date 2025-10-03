@@ -1,4 +1,11 @@
 'use client';
+// TODO: [P1] REFACTOR src/firebase/provider.tsx - Provider 只做服務注入與極簡使用者狀態
+// 指南：
+// 1) 移除非必要邏輯（如聚合/轉換），避免與授權/角色耦合；與 `components/auth` 分離。
+// 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
+// 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
+// @assignee ai
+
 
 import React, { createContext, useContext, ReactNode, useMemo, useState, useEffect } from 'react';
 import { FirebaseApp } from 'firebase/app';

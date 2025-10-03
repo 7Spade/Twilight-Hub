@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/toolbar.tsx - ä¿®å¾©èªæ³•éŒ¯èª¤ï¼ˆç¬¬138è¡Œæœªçµ‚æ­¢çš„å­—ä¸²ï¼‰
+// èªªæ˜ï¼šä¿®æ­£å­—ä¸²èˆ‡ JSX æ§‹é€ ï¼Œç¢ºä¿å¯ç·¨è­¯
 /**
  * @fileoverview The main toolbar for the file explorer.
  * It contains primary actions like upload, move, and export, as well as controls
@@ -59,14 +61,14 @@ export function Toolbar({
   return (
     <div className="flex items-center justify-between gap-4 p-4 border-b bg-white">
       <div className="flex items-center gap-3">
-        {/* ä¸Šå‚³?‰é? - ?¹é? Autodesk è¨­è? */}
+        {/* ä¸Šå‚³?ï¿½ï¿½? - ?ï¿½ï¿½? Autodesk è¨­ï¿½? */}
         <div className="flex">
           <Button 
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-none px-4 py-2 h-9"
             onClick={handleFileSelect}
           >
             <Upload className="h-4 w-4 mr-2" />
-            ä¸Šè?æª”æ?
+            ä¸Šï¿½?æª”ï¿½?
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -79,17 +81,17 @@ export function Toolbar({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem onClick={handleFileSelect}>
-                ä¸Šè?æª”æ?
+                ä¸Šï¿½?æª”ï¿½?
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleFileSelect}>
-                ä¸Šå‚³????„æ?æ¡?
+                ä¸Šå‚³????ï¿½ï¿½?ï¿½?
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
 
-        {/* ?´å??¸é??‰é? */}
+        {/* ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½? */}
         <Button 
           variant="outline" 
           size="icon"
@@ -98,60 +100,60 @@ export function Toolbar({
           <MoreVertical className="h-4 w-4" />
         </Button>
 
-        {/* ç¯©é¸?‰é? - ?¹é? Autodesk è¨­è? */}
+        {/* ç¯©é¸?ï¿½ï¿½? - ?ï¿½ï¿½? Autodesk è¨­ï¿½? */}
         <Button 
           variant={isFilterActive ? "default" : "outline"}
           onClick={onFilter}
         >
           <Filter className="h-4 w-4 mr-2" />
-          ?œå??Œç¯©??
+          ?ï¿½ï¿½??ï¿½ç¯©??
         </Button>
 
 
-        {/* ?±è??„æ?ä»¶è¼¸??*/}
+        {/* ?ï¿½ï¿½??ï¿½ï¿½?ä»¶è¼¸??*/}
         <input
           ref={fileInputRef}
           type="file"
           multiple
           className="hidden"
           onChange={(e) => {
-            // ?•ç??‡ä»¶ä¸Šå‚³?è¼¯
+            // ?ï¿½ï¿½??ï¿½ä»¶ä¸Šå‚³?ï¿½è¼¯
             console.log('Files selected:', e.target.files);
           }}
         />
       </div>
 
       <div className="flex items-center gap-3">
-        {/* ?¯å‡º?‰é? - ?¹é? Autodesk è¨­è? */}
+        {/* ?ï¿½å‡º?ï¿½ï¿½? - ?ï¿½ï¿½? Autodesk è¨­ï¿½? */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
-              ?¯å‡º
+              ?ï¿½å‡º
               <ChevronDown className="h-4 w-4 ml-1" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => console.log('æª”æ?è¨˜é?')}>
-              æª”æ?è¨˜é?
+            <DropdownMenuItem onClick={() => console.log('æª”ï¿½?è¨˜ï¿½?')}>
+              æª”ï¿½?è¨˜ï¿½?
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log('è³‡æ?å¤¾æ???)}>
-              è³‡æ?å¤¾æ???
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={onExport}>
-              ?¯å‡º??Excel
+            <DropdownMenuItem onClick={() => console.log('è³‡ï¿½?å¤¾ï¿½???)}>
+              è³‡ï¿½?å¤¾ï¿½???
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
-              ?¯å‡º??CSV
+              ?ï¿½å‡º??Excel
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
-              ?¯å‡º??PDF
+              ?ï¿½å‡º??CSV
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onExport}>
+              ?ï¿½å‡º??PDF
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
 
-        {/* è¦–å??‡æ??‰é? */}
+        {/* è¦–ï¿½??ï¿½ï¿½??ï¿½ï¿½? */}
         <div className="flex items-center border rounded-md">
           <Button
             variant={currentView === 'grid' ? 'default' : 'ghost'}

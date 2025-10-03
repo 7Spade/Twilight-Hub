@@ -9,6 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）
+// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 奧卡姆剃刀精簡列表
+// 建議：
+// 1) 將統計（total/pending/active）移至 memo 或上層 hook，避免在渲染期反覆計算。
+// 2) 類型圖示以 CSS/variant 取代多分支；最小化 UI 條件分支。
+// 3) 詳情 `ContractDetails` 採 lazy import（動態載入），減少首屏負擔。
 import { CreateContractDialog } from './create-contract-dialog';
 import { ContractDetails } from './contract-details';
 import { useState } from 'react';

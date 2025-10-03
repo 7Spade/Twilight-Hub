@@ -8,6 +8,11 @@
  * the visibility of columns.
  */
 'use client';
+// TODO[P2][lint][parser-error]: 第54行未終止字串，請關閉引號或修正 JSX 轉義。
+// - 建議：
+//   1) 檢查 `columns` 陣列中 label 的字串是否有未關閉引號。
+//   2) 檢查中文標點或全形符號是否破壞了 JSX/TSX。
+//   3) 僅修字串與標籤，不改動邏輯。
 
 import React, { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
@@ -23,6 +28,12 @@ import {
   Folder,
   FolderOpen
 } from 'lucide-react';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
+// 問題：'FolderOpen' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { cn } from '@/lib/utils';
 import { type FileItem } from './folder-tree';
 import { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';
@@ -51,9 +62,10 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
     { id: 'issue', label: '?��?', visible: true },
     { id: 'size', label: '大�?', visible: true },
     { id: 'lastUpdate', label: '上次?�新', visible: true },
-    { id: 'updater', label: '?�新??, visible: true },
-    { id: 'versionContributor', label: '?�本?�入??, visible: true },
-    { id: 'reviewStatus', label: '審閱?�??, visible: true },
+    // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+    { id: 'updater', label: '?�新??', visible: true },
+    { id: 'versionContributor', label: '?�本?�入??', visible: true },
+    { id: 'reviewStatus', label: '審閱?�??', visible: true },
   ]);
 
   const handleSort = (field: SortField) => {
@@ -69,6 +81,13 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
     return [...files].sort((a, b) => {
       let aValue: any;
       let bValue: any;
+      
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用
+// 問題：使用 any 類型違反類型安全原則
+// 影響：失去類型檢查，可能導致運行時錯誤
+// 建議：定義具體的類型接口替代 any 類型
+// @assignee frontend-team
+// @deadline 2025-01-25
 
       switch (sortField) {
         case 'name':

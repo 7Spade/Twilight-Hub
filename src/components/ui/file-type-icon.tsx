@@ -5,6 +5,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+
+// TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入
+// 問題：'useEffect' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { cn } from '@/lib/utils';
 import { 
   File, 
@@ -14,10 +20,27 @@ import {
   Music, 
   Archive, 
   Code,
+  
+// TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:18-22 - 清理未使用的導入
+// 問題：'Image', 'Video', 'Music', 'Archive', 'Code' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
   FileSpreadsheet,
   Presentation,
   FileImage,
   // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）
+  
+// TODO: [P2] PERF src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐
+// 問題：未充分利用 Next.js Image 組件的優化特性
+// 影響：圖片載入性能差、LCP 指標不佳
+// 建議：
+// 1) 使用 next/image 替代所有 <img> 標籤
+// 2) 配置適當的 priority 和 sizes 屬性
+// 3) 實現圖片預載入和懶加載策略
+// 4) 使用 WebP/AVIF 格式優化
+// @assignee performance-team
+// @deadline 2025-02-01
   FileVideo,
   FileAudio,
   FileCode,
@@ -195,6 +218,13 @@ export function FileTypeIcon({
             </div>
           )}
           {/* TODO: [P2] FIX src/components/ui/file-type-icon.tsx - 修復 Next.js 圖片警告（改用 next/image） */}
+          
+// TODO: [P2] PERF src/components/ui/file-type-icon.tsx:221 - 實現 Next.js 15 圖片優化最佳實踐
+// 問題：使用 <img> 標籤可能導致較慢的 LCP 和更高的頻寬使用
+// 影響：圖片載入性能差、LCP 指標不佳
+// 建議：使用 next/image 組件自動優化圖片，考慮使用自定義圖片載入器
+// @assignee performance-team
+// @deadline 2025-02-01
           <img
             src={thumbnailUrl}
             alt={fileName}

@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）
+// 說明：補齊引號或修正 JSX 文字，確保通過 Lint
 'use client';
 
 import { Badge } from '@/components/ui/badge';

@@ -124,7 +124,8 @@ export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
         },
         {
           id: 'create-transfer',
-          label: '建�??��?,
+          // TODO[P2][lint][parser-error]: 關閉字串引號，避免 ESLint Parsing error: Unterminated string literal（參考 ESLint parsing 與 TS 語法規則）
+          label: '建�??��?',
           icon: <Package className="h-4 w-4" />,
           info: true,
         },
@@ -204,12 +205,14 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       items: [
         {
           id: 'properties',
-          label: '屬�?,
+          // TODO[P2][lint][parser-error]: 修正未終止字串，確保 JSX/TSX 能正確解析
+          label: '屬�?',
           hasArrow: true,
         },
         {
           id: 'compliance',
-          label: '?��???,
+          // TODO[P2][lint][parser-error]: 修正未終止字串
+          label: '?��???',
           hasArrow: true,
         },
         {
@@ -246,8 +249,12 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
                 className="flex items-center justify-between"
               >
                 <span>{menuItem.label}</span>
+                {/* TODO[P2][lint][parser-error][低認知]: 這段在 L254 報 ") expected"。建議：
+                    - 確保 {menuItem.hasArrow && ( ... )} 的括號成對。
+                    - JSX 註解勿置於運算式最前，先渲染元素再於上方保留註解。
+                    - 若僅需圖示，保留 <span>{'>'}</span>，或以 <ChevronRight /> 取代。 */}
                 {menuItem.hasArrow && (
-                  <span className="text-muted-foreground">??/span>
+                  <span className="text-muted-foreground">{'>'}</span>
                 )}
               </DropdownMenuItem>
             ))}

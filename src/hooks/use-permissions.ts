@@ -1,4 +1,9 @@
 'use client';
+// TODO: [P2] REFACTOR src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+// 建議：
+// 1) 將 checkOrganizationPermissionInternal 暴露為單一 memoized selector，避免多處 useCallback 依賴分散。
+// 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
+// 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 
 import { useState, useCallback, useMemo } from 'react';
 import { Permission, PermissionCheckResult, UserRoleAssignment } from '@/lib/types-unified';

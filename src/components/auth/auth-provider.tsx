@@ -5,6 +5,18 @@
  */
 
 'use client';
+// TODO: [P1] REFACTOR src/components/auth/auth-provider.tsx - 縮減責任邊界與資料下傳
+// 原則（Next.js App Router / Firebase）：
+// - Firestore 聚合轉服務層；Provider 僅保留 userId/effectivePermissions 等最小必要。
+// - 禁止在 render 期間做 I/O；mutation 走 Server Actions 或明確事件觸發。
+// - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。
+// @assignee ai
+
+// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx - 奧卡姆剃刀精簡權限/認證 Provider
+// 建議：
+// 1) 將 Firestore 讀取拆為最小 API（單一 fetchUserRoleAssignment），其餘聚合邏輯移至 service；Provider 僅保存必要狀態。
+// 2) 僅暴露最小 API（hasPermission / checkPermission / signIn / signOut），其餘輔助函式封裝內部。
+// 3) 避免渲染期副作用；所有 mutation 綁定事件或 Server Actions；避免將完整使用者資料下傳至 client。
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { 
@@ -29,7 +41,13 @@ import {
   getDoc, 
   collection, 
   query, 
-  where, 
+  where,
+  
+// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:39 - 清理未使用的導入
+// 問題：'getFirestore' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team 
   getDocs,
   Timestamp 
 } from 'firebase/firestore';
@@ -172,6 +190,13 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       
       spaceRolesSnapshot.forEach(d => {
         const data = d.data() as any;
+        
+// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用
+// 問題：使用 any 類型違反類型安全原則
+// 影響：失去類型檢查，可能導致運行時錯誤
+// 建議：定義具體的類型接口替代 any 類型
+// @assignee frontend-team
+// @deadline 2025-01-25
         const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
           ? data.assignedAt as Timestamp
           : Timestamp.fromDate(new Date());
@@ -331,6 +356,13 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
 
     return () => unsubscribe();
   }, [auth]);
+
+// TODO: [P1] PERF src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項
+// 問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項
+// 影響：可能導致過時閉包問題，狀態更新不及時
+// 建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組
+// @assignee frontend-team
+// @deadline 2025-01-15
 
   const value: AuthContext = {
     ...state,

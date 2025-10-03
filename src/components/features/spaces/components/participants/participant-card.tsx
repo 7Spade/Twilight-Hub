@@ -1,8 +1,10 @@
 /**
- * @fileoverview ?¾ä»£?–å??‡è€…å¡?‡ç?ä»?
- * ?¿æ?å¼è¨­è¨ˆï??¯æ??•ç•«?Œäº¤äº’æ???
+ * @fileoverview ?ï¿½ä»£?ï¿½ï¿½??ï¿½è€…å¡?ï¿½ï¿½?ï¿½?
+ * ?ï¿½ï¿½?å¼è¨­è¨ˆï¿½??ï¿½ï¿½??ï¿½ç•«?ï¿½äº¤äº’ï¿½???
  */
 
+// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - ä¿®å¾©èªæ³•éŒ¯èª¤ï¼ˆç¬¬109è¡Œ Unexpected tokenï¼‰
+// èªªæ˜ï¼šæª¢æŸ¥ JSX å±¬æ€§èˆ‡æ¨™ç±¤é–‰åˆï¼Œä¿®æ­£ä¸åˆæ³•ç¬¦è™Ÿ
 'use client';
 
 import React, { useCallback } from 'react';
@@ -28,7 +30,7 @@ import {
 } from 'lucide-react';
 import { ParticipantCardProps } from './types';
 
-// è§’è‰²?–æ?? å?
+// è§’è‰²?ï¿½ï¿½??ï¿½ï¿½?
 const ROLE_ICONS = {
   owner: Crown,
   admin: Shield,
@@ -36,7 +38,7 @@ const ROLE_ICONS = {
   viewer: Eye,
 } as const;
 
-// è§’è‰²é¡è‰²? å?
+// è§’è‰²é¡è‰²?ï¿½ï¿½?
 const ROLE_COLORS = {
   owner: 'bg-purple-100 text-purple-800 border-purple-200',
   admin: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -44,7 +46,7 @@ const ROLE_COLORS = {
   viewer: 'bg-gray-100 text-gray-800 border-gray-200',
 } as const;
 
-// ?€?‹é??²æ?å°?
+// ?ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
 const STATUS_COLORS = {
   active: 'bg-green-100 text-green-800',
   inactive: 'bg-red-100 text-red-800',
@@ -76,19 +78,19 @@ export function ParticipantCard({
         isSelected ? 'ring-2 ring-primary ring-offset-2' : ''
       } ${isCurrentUser ? 'bg-primary/5' : ''}`}>
         <CardContent className="p-4">
-          {/* ?¸æ?æ¡?*/}
+          {/* ?ï¿½ï¿½?ï¿½?*/}
           {onSelect && (
             <div className="absolute top-3 right-3">
               <Checkbox
                 checked={isSelected}
                 onCheckedChange={handleSelect}
                 disabled={isCurrentUser}
-                aria-label={`?¸æ? ${participant.name}`}
+                aria-label={`?ï¿½ï¿½? ${participant.name}`}
               />
             </div>
           )}
 
-          {/* ?­å??ŒåŸº?¬ä¿¡??*/}
+          {/* ?ï¿½ï¿½??ï¿½åŸº?ï¿½ä¿¡??*/}
           <div className="flex items-start gap-3 mb-4">
             <div className="relative">
               <Avatar className="h-12 w-12">
@@ -106,7 +108,7 @@ export function ParticipantCard({
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold text-base truncate">{participant.name}</h3>
                 {isCurrentUser && (
-                  <Badge variant="outline" className="text-xs">ä½?/Badge>
+                  <Badge variant="outline" className="text-xs">ï¿½?/Badge>
                 )}
               </div>
               
@@ -132,21 +134,21 @@ export function ParticipantCard({
             </div>
           </div>
 
-          {/* è§’è‰²?Œç???*/}
+          {/* è§’è‰²?ï¿½ï¿½???*/}
           <div className="flex items-center gap-2 mb-3">
             <Badge 
               variant="outline" 
               className={`${ROLE_COLORS[participant.role]} text-xs flex items-center gap-1`}
             >
               <RoleIcon className="h-3 w-3" />
-              {participant.role === 'member' ? '?å“¡' : participant.role}
+              {participant.role === 'member' ? '?ï¿½å“¡' : participant.role}
             </Badge>
             
             <Badge 
               variant="outline" 
               className={`${STATUS_COLORS[participant.status]} text-xs`}
             >
-              {participant.status === 'active' ? 'ä½¿ç”¨ä¸? : participant.status}
+              {participant.status === 'active' ? 'ä½¿ç”¨ï¿½? : participant.status}
             </Badge>
 
             <Badge variant="outline" className="text-xs">
@@ -170,21 +172,21 @@ export function ParticipantCard({
             </div>
           )}
 
-          {/* ?‚é?ä¿¡æ¯ */}
+          {/* ?ï¿½ï¿½?ä¿¡æ¯ */}
           <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              <span>? å…¥??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
+              <span>?ï¿½å…¥??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
             </div>
             {participant.lastActive && (
               <div className="flex items-center gap-1">
                 <Globe className="h-3 w-3" />
-                <span>?€å¾Œæ´»??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
+                <span>?ï¿½å¾Œæ´»??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
               </div>
             )}
           </div>
 
-          {/* ?ä??‰é? */}
+          {/* ?ï¿½ï¿½??ï¿½ï¿½? */}
           {canManage && !isCurrentUser && (
             <div className="flex items-center justify-end">
               <DropdownMenu>
@@ -196,7 +198,7 @@ export function ParticipantCard({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleAction('edit')}>
                     <UserCheck className="h-4 w-4 mr-2" />
-                    ç·¨è¼¯?å“¡
+                    ç·¨è¼¯?ï¿½å“¡
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('role')}>
                     <Shield className="h-4 w-4 mr-2" />
@@ -204,14 +206,14 @@ export function ParticipantCard({
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('permissions')}>
                     <Shield className="h-4 w-4 mr-2" />
-                    ç®¡ç?æ¬Šé?
+                    ç®¡ï¿½?æ¬Šï¿½?
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     className="text-red-600"
                     onClick={() => handleAction('remove')}
                   >
                     <UserX className="h-4 w-4 mr-2" />
-                    ç§»é™¤?å“¡
+                    ç§»é™¤?ï¿½å“¡
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

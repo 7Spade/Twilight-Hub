@@ -29,7 +29,8 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
         </h3>
         
         <p className="text-gray-500 mb-6">
-          {folderName ? `??${folderName} 資�?夾中沒�?檔�??�` : '此�??�夾中�??��?案�?}
+          {/* TODO[P2][lint][parser-error]: 修正模板字串與單引號未關閉問題 */}
+          {folderName ? `??${folderName} 資�?夾中沒�?檔�??�` : '此�??�夾中�??��?案�'}
           將�?案�??�到此�??��?載�?案�?
         </p>
         
@@ -49,8 +50,10 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
+              {/* TODO[P2][copy]: 補齊文案 */}
               ?�解?��?
             </a>
+            {/* TODO[P2][copy]: 補齊文案 */}
             ?�於檔�???
           </p>
         </div>

@@ -21,6 +21,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* TODO: [P2] FIX src/app/layout.tsx - 修復字體載入警告（改用 next/font 取代手動 link） */}
+        {/* TODO: [P0] FIX src/app/layout.tsx:23 - 修復 JSX 註釋錯誤 */}
+        
+{/* TODO: [P2] PERF src/app/layout.tsx:26 - 實現 Next.js 15 字體優化最佳實踐
+// 問題：自定義字體未在 pages/_document.js 中添加，僅載入單頁面
+// 影響：字體載入性能差，可能導致 FOUT（Flash of Unstyled Text）
+// 建議：使用 next/font 模組優化字體載入，自動主機字體文件
+// @assignee frontend-team
+// @deadline 2025-01-20 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

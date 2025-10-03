@@ -6,7 +6,32 @@
  * and user actions.
  */
 'use client';
-// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/file-explorer.tsx - 修復語法錯誤（第95行缺少分號）
+// TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：
+// 1) 檢查上一行是否缺分號或字串未關閉。
+// 2) 檢查註解是否破壞字元（如中文全形標點）。
+// 3) 保持最小改動，先確保程式可被解析再進行重構。
+// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。
+// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構
+// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則
+// 影響：維護困難、測試複雜、性能問題
+// 建議：
+// 1) 將組件拆分為更小的單一職責組件
+// 2) 移除多層 Context Provider 嵌套
+// 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components
+// 4) 統一狀態管理，避免 prop drilling
+// @assignee frontend-team
+// @deadline 2025-01-15
+
+// TODO: [P2] PERF src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用
+// 問題：過度使用 Client Components，違反 Next.js 15 最佳實踐
+// 影響：增加 JavaScript bundle 大小、影響首屏性能
+// 建議：
+// 1) 將純展示組件改為 Server Components
+// 2) 使用 Next.js 15 的 'use client' 邊界優化
+// 3) 實現適當的代碼分割和懶加載
+// 4) 使用 React 19 的新特性優化渲染
+// @assignee performance-team
+// @deadline 2025-01-25
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -90,7 +115,9 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       reviewStatus: '--',
     }));
 
-    // 添�?一些測試�?案以便�?示收?��???    const testFiles: FileItem[] = [
+    // TODO[P2][lint][parser-error][低認知]: 這行同時含註解與程式，請換行或補分號。
+    // 添�?一些測試�?案以便�?示收?��???
+    const testFiles: FileItem[] = [
       {
         id: 'test-arch-001',
         name: 'A000 - ARCHITECTURAL DRAWING.pdf',

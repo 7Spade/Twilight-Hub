@@ -5,6 +5,11 @@
  * and errors. This simplifies file management logic in the UI components.
  */
 'use client';
+// TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
+// 建議：
+// 1) 將 fileOperations 相關依賴集中於單一 factory/context，移除多處 useCallback 依賴項導致的 hooks 警告。
+// 2) 僅回傳實際用到的最小 API（如 download/preview/delete），避免暴露整包操作以降低重渲染。
+// 3) 針對重複邏輯（權限/錯誤處理/Toast）抽為 util，避免每個 action 內重複。
 
 import { useState, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -98,6 +103,13 @@ export function useFileActions(): UseFileActionsReturn {
       setUploadProgress(null);
     }
   }, [toast]);
+
+// TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 修復 React Hook 缺失依賴項
+// 問題：useCallback Hook 缺少 'fileOperations' 依賴項
+// 影響：可能導致過時閉包問題，函數更新不及時
+// 建議：將 'fileOperations' 添加到依賴數組中，或移除依賴數組
+// @assignee frontend-team
+// @deadline 2025-01-15
 
   const downloadFile = useCallback(async (
     fileName: string, 

@@ -1,4 +1,11 @@
 'use client';
+// TODO: [P1] REFACTOR src/app/(app)/layout.tsx - 降低客戶端邊界與狀態複雜度
+// 導向：
+// 1) 盡量保持本檔為瘦客戶端殼層，將資料抓取/權限/聚合移至 Server Components 或 Server Actions。
+// 2) 將重型 UI（Sidebar/Nav 計算）與資料相依分離，採 props 注入；避免在 layout 內多重 useEffect/useMemo 疊加。
+// 3) 使用 App Router 推薦：父層 Server Layout + 子層 Client Providers（參考 Next.js docs: server and client components, use client in provider）。
+// @assignee ai
+
 import {
   FirebaseClientProvider,
   useUser,
@@ -62,6 +69,13 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
     userOrganizationsQuery
   );
   const organizations = organizationsData || [];
+
+// TODO: [P1] PERF src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項
+// 問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變
+// 影響：性能問題，不必要的重新渲染
+// 建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中
+// @assignee frontend-team
+// @deadline 2025-01-15
 
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
   

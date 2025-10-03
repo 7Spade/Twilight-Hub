@@ -73,10 +73,12 @@ export function FileDetailView({
           setPreviewDocument(document);
           setPreviewConfig(config);
         } else {
-          setPreviewError('不支?�此檔�?類�??��?�?);
+          // TODO[P2][lint][parser-error]: 關閉字串引號
+          setPreviewError('不支?�此檔�?類�??��?�?');
         }
       } catch (error) {
-        setPreviewError('載入?�覽?�發?�錯�?);
+        // TODO[P2][lint][parser-error]: 關閉字串引號
+        setPreviewError('載入?�覽?�發?�錯�?');
         console.error('Preview error:', error);
       } finally {
         setIsLoading(false);
@@ -109,9 +111,11 @@ export function FileDetailView({
 
   const getStatusIcon = () => {
     switch (file.reviewStatus) {
-      case '已審??:
+      // TODO[P2][lint][parser-error]: 關閉字串引號
+      case '已審??':
         return <CheckCircle className="h-4 w-4 text-green-600" />;
-      case '待審??:
+      // TODO[P2][lint][parser-error]: 關閉字串引號
+      case '待審??':
         return <Clock className="h-4 w-4 text-yellow-600" />;
       default:
         return <AlertCircle className="h-4 w-4 text-gray-400" />;
@@ -120,12 +124,14 @@ export function FileDetailView({
 
   const getStatusBadge = () => {
     switch (file.reviewStatus) {
-      case '已審??:
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">已審??/Badge>;
-      case '待審??:
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">待審??/Badge>;
+      // TODO[P2][lint][parser-error]: 關閉字串與 JSX 標籤
+      case '已審??':
+        return <Badge variant="secondary" className="bg-green-100 text-green-800">已審??</Badge>;
+      case '待審??':
+        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">待審??</Badge>;
       default:
-        return <Badge variant="outline">?�審??/Badge>;
+        // TODO[P2][lint][parser-error]: 修正破損 JSX 標籤
+        return <Badge variant="outline">?�審??</Badge>;
     }
   };
 
@@ -200,7 +206,8 @@ export function FileDetailView({
                 <div className="flex items-center justify-center h-32 text-gray-500">
                   <div className="text-center">
                     <FileText className="h-8 w-8 mx-auto mb-2" />
-                    <p className="text-sm">?��??�覽此�?�?/p>
+                    {/* TODO[P2][lint][parser-error]: 修正破損的關閉標籤 */}
+                    <p className="text-sm">?��??�覽此�?�?</p>
                   </div>
                 </div>
               )}
@@ -217,7 +224,8 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   {getStatusIcon()}
-                  <span className="text-sm text-gray-600">?�??/span>
+                  {/* TODO[P2][lint][parser-error]: 修正破損的關閉標籤 */}
+                  <span className="text-sm text-gray-600">?�?</span>
                 </div>
                 {getStatusBadge()}
               </div>
@@ -283,7 +291,8 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">?�新??/span>
+                  {/* TODO[P2][lint][parser-error]: 修正破損的關閉標籤 */}
+                  <span className="text-sm text-gray-600">?�新?</span>
                 </div>
                 <span className="text-sm font-medium">{file.updater || '--'}</span>
               </div>

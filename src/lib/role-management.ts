@@ -109,9 +109,20 @@ const SYSTEM_ROLES: Record<string, RoleDefinition> = {
   },
 };
 
+// TODO: [P2] REFACTOR src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+// 指南：
+// - 提供 in-memory 快取（弱映射）以減少 getRoleDefinition 重複查詢；
+// - checkPermission 與 getAllRoleDefinitions 共享快取；
+// - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
+// @assignee ai
 export const roleManagementService = {
   // 初始化 Firestore
   db: getFirestore(initializeFirebase().firebaseApp),
+  // TODO: [P2] REFACTOR src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+  // 建議：
+  // 1) 以 pure function + 最小輸出為主，避免在 service 層維持隱藏狀態。
+  // 2) 將 getAllRoleDefinitions 與 checkPermission 的重複查詢合併/快取；避免重複 Firestore round-trip。
+  // 3) 僅回傳渲染所需欄位（id/name/permissions），其餘細節延後查詢。
 
   // 獲取角色定義
   getRoleDefinition: async (roleId: string): Promise<RoleDefinition | null> => {

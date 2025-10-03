@@ -48,7 +48,8 @@ export function DeletedItems({
       description: '?��?建�??��?',
       version: 'V1',
       indicator: '--',
-      tag: '已�???,
+      // TODO[P2][lint][parser-error]: 關閉字串引號，修復 ESLint Parsing error
+      tag: '已�???',
       issue: '--',
       updater: 'ACC Sample P...',
       versionContributor: '--',
@@ -68,6 +69,7 @@ export function DeletedItems({
       description: '?��??��??�件',
       version: 'V2',
       indicator: '--',
+      // TODO[P2][lint][parser-error]: 修復未終止字串
       tag: '?��?',
       issue: '--',
       updater: 'A�?ACC 系統',
@@ -132,7 +134,8 @@ export function DeletedItems({
                     <TableHead>?��?位置</TableHead>
                     <TableHead>大�?</TableHead>
                     <TableHead>?�除?��?</TableHead>
-                    <TableHead>?�除??/TableHead>
+                    {/* TODO[P2][lint][parser-error][低認知]: 修正破損關閉標籤為 </TableHead> 並補齊文案 */}
+                    <TableHead>?�除??</TableHead>
                     <TableHead className="w-32">?��?</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -149,8 +152,10 @@ export function DeletedItems({
                             item.type === 'folder' ? 'bg-blue-100' : 'bg-gray-100'
                           )} />
                           <span className="font-medium">{item.name}</span>
+                          {/* TODO[P2][lint][parser-error][低認知]: 修正三元運算子內的字串引號與冒號位置，避免 ": expected"；建議：
+                              {item.type === 'folder' ? '資�?�?' : '檔�?'} */}
                           <Badge variant="secondary" className="text-xs">
-                            {item.type === 'folder' ? '資�?�? : '檔�?'}
+                            {item.type === 'folder' ? '資�?�?' : '檔�?'}
                           </Badge>
                         </div>
                       </TableCell>

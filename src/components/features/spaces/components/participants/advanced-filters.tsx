@@ -1,6 +1,8 @@
+// TODO: [P0] FIX src/components/features/spaces/components/participants/advanced-filters.tsx - ä¿®å¾©èªæ³•éŒ¯èª¤ï¼ˆç¬¬34è¡Œ ',' ç¼ºå¤±ï¼‰
+// èªªæ˜ï¼šæª¢æŸ¥ç‰©ä»¶/åƒæ•¸åˆ—è¡¨é€—è™Ÿç¼ºå¤±èˆ‡ JSX åˆ†éš”
 /**
- * @fileoverview ?¾ä»£?–é?ç´šé?æ¿¾å™¨çµ„ä»¶
- * ?¯æ?å¤šç¨®?æ¿¾æ¢ä»¶?Œå¯¦?‚æ?ç´?
+ * @fileoverview ?ï¿½ä»£?ï¿½ï¿½?ç´šï¿½?æ¿¾å™¨çµ„ä»¶
+ * ?ï¿½ï¿½?å¤šç¨®?ï¿½æ¿¾æ¢ä»¶?ï¿½å¯¦?ï¿½ï¿½?ï¿½?
  */
 
 'use client';
@@ -29,13 +31,13 @@ import {
 import { useDebounce } from 'use-debounce';
 import { AdvancedFiltersProps, ParticipantRole, ParticipantStatus } from './types';
 
-// æ¨¡æ“¬?„éƒ¨?€?Œæ?ç±¤æ•¸??
+// æ¨¡æ“¬?ï¿½éƒ¨?ï¿½?ï¿½ï¿½?ç±¤æ•¸??
 const DEPARTMENTS = [
-  'å·¥ç???, 'è¨­è???, 'å¸‚å ´??, '?·å”®??, 'äººå?è³‡æ???, 'è²¡å???, '?‹ç???
+  'å·¥ï¿½???, 'è¨­ï¿½???, 'å¸‚å ´??, '?ï¿½å”®??, 'äººï¿½?è³‡ï¿½???, 'è²¡ï¿½???, '?ï¿½ï¿½???
 ];
 
 const TAGS = [
-  '?¸å??˜é?', '?°æ???, 'ç®¡ç?å±?, '?€è¡“å?å®?, 'è¨­è?å¸?, '?¢å?ç¶“ç?', 'å¯¦ç???
+  '?ï¿½ï¿½??ï¿½ï¿½?', '?ï¿½ï¿½???, 'ç®¡ï¿½?ï¿½?, '?ï¿½è¡“ï¿½?ï¿½?, 'è¨­ï¿½?ï¿½?, '?ï¿½ï¿½?ç¶“ï¿½?', 'å¯¦ï¿½???
 ];
 
 export function AdvancedFilters({
@@ -47,7 +49,7 @@ export function AdvancedFilters({
   const [searchInput, setSearchInput] = useState(filters.searchTerm);
   const [debouncedSearch] = useDebounce(searchInput, 300);
 
-  // ?´æ–°?œç´¢æ¢ä»¶
+  // ?ï¿½æ–°?ï¿½ç´¢æ¢ä»¶
   React.useEffect(() => {
     if (debouncedSearch !== filters.searchTerm) {
       onFiltersChange({
@@ -103,24 +105,24 @@ export function AdvancedFilters({
 
   return (
     <div className="space-y-4">
-      {/* ?œç´¢æ¬?*/}
+      {/* ?ï¿½ç´¢ï¿½?*/}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="?œç´¢?å“¡å§“å??é›»å­éƒµä»¶æ??¬å¸..."
+          placeholder="?ï¿½ç´¢?ï¿½å“¡å§“ï¿½??ï¿½é›»å­éƒµä»¶ï¿½??ï¿½å¸..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           className="pl-10 pr-4"
         />
       </div>
 
-      {/* å¿«é€Ÿé?æ¿¾å™¨ */}
+      {/* å¿«é€Ÿï¿½?æ¿¾å™¨ */}
       <div className="flex items-center gap-2 flex-wrap">
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm" className="relative">
               <Filter className="h-4 w-4 mr-2" />
-              ?æ¿¾??
+              ?ï¿½æ¿¾??
               {activeFiltersCount > 0 && (
                 <Badge variant="destructive" className="ml-2 h-5 w-5 p-0 text-xs">
                   {activeFiltersCount}
@@ -131,18 +133,18 @@ export function AdvancedFilters({
           <PopoverContent className="w-80" align="start">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="font-medium">?æ¿¾æ¢ä»¶</h4>
+                <h4 className="font-medium">?ï¿½æ¿¾æ¢ä»¶</h4>
                 {activeFiltersCount > 0 && (
                   <Button variant="ghost" size="sm" onClick={clearAllFilters}>
                     <X className="h-4 w-4 mr-1" />
-                    æ¸…é™¤?¨éƒ¨
+                    æ¸…é™¤?ï¿½éƒ¨
                   </Button>
                 )}
               </div>
 
               <Separator />
 
-              {/* è§’è‰²?æ¿¾ */}
+              {/* è§’è‰²?ï¿½æ¿¾ */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">è§’è‰²</label>
                 <Select
@@ -150,59 +152,59 @@ export function AdvancedFilters({
                   onValueChange={(value) => handleFilterChange('role', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?¸æ?è§’è‰²" />
+                    <SelectValue placeholder="?ï¿½ï¿½?è§’è‰²" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?¨éƒ¨è§’è‰²</SelectItem>
-                    <SelectItem value="owner">?æ???/SelectItem>
-                    <SelectItem value="admin">ç®¡ç???/SelectItem>
-                    <SelectItem value="member">?å“¡</SelectItem>
-                    <SelectItem value="viewer">æª¢è???/SelectItem>
+                    <SelectItem value="">?ï¿½éƒ¨è§’è‰²</SelectItem>
+                    <SelectItem value="owner">?ï¿½ï¿½???/SelectItem>
+                    <SelectItem value="admin">ç®¡ï¿½???/SelectItem>
+                    <SelectItem value="member">?ï¿½å“¡</SelectItem>
+                    <SelectItem value="viewer">æª¢ï¿½???/SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* ?€?‹é?æ¿?*/}
+              {/* ?ï¿½?ï¿½ï¿½?ï¿½?*/}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?€??/label>
+                <label className="text-sm font-medium">?ï¿½??/label>
                 <Select
                   value={filters.status || ''}
                   onValueChange={(value) => handleFilterChange('status', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?¸æ??€?? />
+                    <SelectValue placeholder="?ï¿½ï¿½??ï¿½?? />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?¨éƒ¨?€??/SelectItem>
-                    <SelectItem value="active">ä½¿ç”¨ä¸?/SelectItem>
-                    <SelectItem value="inactive">?æ´»èº?/SelectItem>
+                    <SelectItem value="">?ï¿½éƒ¨?ï¿½??/SelectItem>
+                    <SelectItem value="active">ä½¿ç”¨ï¿½?/SelectItem>
+                    <SelectItem value="inactive">?ï¿½æ´»ï¿½?/SelectItem>
                     <SelectItem value="pending">å¾…å¯©??/SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* ?¬å¸?æ¿¾ */}
+              {/* ?ï¿½å¸?ï¿½æ¿¾ */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?¬å¸</label>
+                <label className="text-sm font-medium">?ï¿½å¸</label>
                 <Input
-                  placeholder="è¼¸å…¥?¬å¸?ç¨±"
+                  placeholder="è¼¸å…¥?ï¿½å¸?ï¿½ç¨±"
                   value={filters.company}
                   onChange={(e) => handleFilterChange('company', e.target.value)}
                 />
               </div>
 
-              {/* ?¨é??æ¿¾ */}
+              {/* ?ï¿½ï¿½??ï¿½æ¿¾ */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?¨é?</label>
+                <label className="text-sm font-medium">?ï¿½ï¿½?</label>
                 <Select
                   value={filters.department || ''}
                   onValueChange={(value) => handleFilterChange('department', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?¸æ??¨é?" />
+                    <SelectValue placeholder="?ï¿½ï¿½??ï¿½ï¿½?" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?¨éƒ¨?¨é?</SelectItem>
+                    <SelectItem value="">?ï¿½éƒ¨?ï¿½ï¿½?</SelectItem>
                     {DEPARTMENTS.map(dept => (
                       <SelectItem key={dept} value={dept}>{dept}</SelectItem>
                     ))}
@@ -210,7 +212,7 @@ export function AdvancedFilters({
                 </Select>
               </div>
 
-              {/* ?¨ç??€??*/}
+              {/* ?ï¿½ï¿½??ï¿½??*/}
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="online-only"
@@ -220,14 +222,14 @@ export function AdvancedFilters({
                   }
                 />
                 <label htmlFor="online-only" className="text-sm font-medium">
-                  ?…é¡¯ç¤ºåœ¨ç·šæ???
+                  ?ï¿½é¡¯ç¤ºåœ¨ç·šï¿½???
                 </label>
               </div>
             </div>
           </PopoverContent>
         </Popover>
 
-        {/* æ¨™ç±¤?æ¿¾ */}
+        {/* æ¨™ç±¤?ï¿½æ¿¾ */}
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm">
@@ -242,9 +244,9 @@ export function AdvancedFilters({
           </PopoverTrigger>
           <PopoverContent className="w-64" align="start">
             <Command>
-              <CommandInput placeholder="?œç´¢æ¨™ç±¤..." />
+              <CommandInput placeholder="?ï¿½ç´¢æ¨™ç±¤..." />
               <CommandList>
-                <CommandEmpty>æ²’æ??¾åˆ°æ¨™ç±¤</CommandEmpty>
+                <CommandEmpty>æ²’ï¿½??ï¿½åˆ°æ¨™ç±¤</CommandEmpty>
                 <CommandGroup>
                   {TAGS.map((tag) => (
                     <CommandItem
@@ -265,7 +267,7 @@ export function AdvancedFilters({
           </PopoverContent>
         </Popover>
 
-        {/* ?’å? */}
+        {/* ?ï¿½ï¿½? */}
         <Select
           value={`${filters.sortBy || 'name'}-${filters.sortOrder || 'asc'}`}
           onValueChange={handleSortChange}
@@ -277,50 +279,50 @@ export function AdvancedFilters({
             <SelectItem value="name-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                å§“å? A-Z
+                å§“ï¿½? A-Z
               </div>
             </SelectItem>
             <SelectItem value="name-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                å§“å? Z-A
+                å§“ï¿½? Z-A
               </div>
             </SelectItem>
             <SelectItem value="role-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                è§’è‰²?‡å?
+                è§’è‰²?ï¿½ï¿½?
               </div>
             </SelectItem>
             <SelectItem value="role-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                è§’è‰²?å?
+                è§’è‰²?ï¿½ï¿½?
               </div>
             </SelectItem>
             <SelectItem value="joinedAt-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                ?€?°å???
+                ?ï¿½?ï¿½ï¿½???
               </div>
             </SelectItem>
             <SelectItem value="joinedAt-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                ?€?©å???
+                ?ï¿½?ï¿½ï¿½???
               </div>
             </SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      {/* æ´»å??æ¿¾?¨æ?ç±?*/}
+      {/* æ´»ï¿½??ï¿½æ¿¾?ï¿½ï¿½?ï¿½?*/}
       {activeFiltersCount > 0 && (
         <div className="flex flex-wrap gap-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
             {filters.searchTerm && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 <Search className="h-3 w-3" />
-                ?œç´¢: {filters.searchTerm}
+                ?ï¿½ç´¢: {filters.searchTerm}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -338,7 +340,7 @@ export function AdvancedFilters({
             {filters.company && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 <Building className="h-3 w-3" />
-                ?¬å¸: {filters.company}
+                ?ï¿½å¸: {filters.company}
                 <Button
                   variant="ghost"
                   size="sm"

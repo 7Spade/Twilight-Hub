@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）
+// 說明：修正模板/普通字串，避免解析錯誤
 /**
  * @fileoverview A modern component that displays files in a responsive thumbnail grid layout.
  * Uses @tanstack/react-virtual for high-performance virtualization and adaptive sizing.
@@ -182,8 +184,8 @@ export function FileThumbnailGrid({
       <div className={cn('flex items-center justify-center h-64 animate-in fade-in-0 slide-in-from-bottom-2 duration-300', className)}>
         <div className="text-center text-muted-foreground">
           <div className="text-4xl mb-4">??</div>
-          <p className="text-lg font-medium">沒�?檔�?</p>
-          <p className="text-sm">上傳檔�??��?使用</p>
+          <p className="text-lg font-medium">沒�?檔�?</p>
+          <p className="text-sm">上傳檔�??��?使用</p>
         </div>
       </div>
     );
@@ -202,8 +204,8 @@ export function FileThumbnailGrid({
           />
           <span className="text-sm text-muted-foreground">
             {selectedItems.length > 0 
-              ? `已選??${selectedItems.length} ?��?案`
-              : `??${files.length} ?��?案`
+              ? `已選??${selectedItems.length} ?��?案`
+              : `??${files.length} ?��?案`
             }
           </span>
         </div>
@@ -256,7 +258,7 @@ export function FileThumbnailGrid({
 
       {/* Grid info */}
       <div className="mt-2 text-xs text-muted-foreground text-center animate-in fade-in-0 duration-300 delay-200">
-        顯示 {files.length} ?��?�???{columnCount} ??? {rowCount} �?
+        顯示 {files.length} ?��?�???{columnCount} ??? {rowCount} �?
       </div>
     </div>
   );

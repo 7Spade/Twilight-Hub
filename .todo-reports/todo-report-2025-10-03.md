@@ -12,17 +12,50 @@
 - FIX: 20 個
 ---
 ## 🔴 P0 (2 個)
-### 1. [FIX] src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）
-**位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:1`
+### 1. [FIX] 多處檔案存在 Parsing error（Unterminated string/Unexpected token/';' expected）需立即修復
+**位置:**
+> src\components\features\spaces\components\file-explorer\context-menu.tsx
+> src\components\features\spaces\components\file-explorer\deleted-items.tsx
+> src\components\features\spaces\components\file-explorer\detail\file-detail-view.tsx
+> src\components\features\spaces\components\file-explorer\empty-folder-state.tsx
+> src\components\features\spaces\components\file-explorer\file-explorer.tsx
+> src\components\features\spaces\components\file-explorer\file-table.tsx（第52行）
+> src\components\features\spaces\components\file-explorer\filter-panel.tsx（第141行）
+> src\components\features\spaces\components\file-explorer\folder-tree.tsx
+> src\components\features\spaces\components\file-explorer\packages-tab.tsx
+> src\components\features\spaces\components\file-explorer\services\file-preview-service.ts
+> src\components\features\spaces\components\file-explorer\thumbnail\file-thumbnail-grid.tsx
+> src\components\features\spaces\components\file-explorer\toolbar.tsx
+> src\components\features\spaces\components\file-explorer\version-history-drawer.tsx
+> src\components\features\spaces\components\issues\issue-details.tsx
+> src\components\features\spaces\components\issues\issue-list.tsx
+> src\components\features\spaces\components\participants\advanced-filters.tsx
+> src\components\features\spaces\components\participants\card-grid.tsx
+> src\components\features\spaces\components\participants\invite-participant-dialog.tsx
+> src\components\features\spaces\components\participants\participant-card.tsx
+> src\components\features\spaces\components\participants\participant-filters.tsx
+> src\components\features\spaces\components\participants\participant-list.tsx
+> src\components\features\spaces\components\participants\participant-role-editor.tsx
+> src\components\features\spaces\components\participants\participant-table.tsx
+> src\components\features\spaces\components\participants\virtualized-table.tsx
 **詳細說明:**
-> 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint
+> 修正未終止字串、意外字元及缺少分號等語法錯誤，確保 ESLint/TS 編譯可通過。
+**@assignee** dev
 ---
-### 2. [FIX] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）
-**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:1`
+## 🟠 P1 (1 個)
+### 1. [FIX] 修復 React Hooks 依賴缺失與不穩定依賴（useEffect/useMemo/useCallback）
+**位置:**
+> src\app\(app)\layout.tsx（useMemo 依賴不穩定）
+> src\app\(app)\organizations\[organizationslug]\inventory\page.tsx（useEffect/useMemo 與 warehouses）
+> src\app\(app)\organizations\[organizationslug]\inventory\[itemId]\page.tsx（useEffect 與 warehouses）
+> src\app\(app)\spaces\page.tsx（多處 useMemo 與 allSpaces）
+> src\components\auth\auth-provider.tsx（useEffect 缺少 fetchUserRoleAssignment）
+> src\components\auth\role-manager.tsx（useEffect 缺少 loadRoles/loadUsers）
+> src\components\features\spaces\hooks\use-file-actions.ts（多處 useCallback 缺少 fileOperations）
+> src\hooks\use-permissions.ts（useCallback 缺少 checkOrganizationPermissionInternal）
 **詳細說明:**
-> 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號
----
-## 🟠 P1 (0 個)
+> 依 React/TanStack Query 最佳實踐，解構 hook 回傳或以 useMemo/useCallback 包裝依賴來源，並補齊缺少的依賴，避免無限重算與潛在記憶體洩漏。
+**@assignee** dev
 ## 🟡 P2 (54 個)
 ### 1. [FEAT] src/app/actions/contracts.ts - 實作合約 AI 分析
 **位置:** `src\app\actions\contracts.ts:89`

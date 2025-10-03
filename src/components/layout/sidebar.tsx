@@ -14,6 +14,11 @@ import {
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 // TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 清理未使用的導入（Settings, Tooltip* 未使用）
+// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄
+// 建議：
+// 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。
+// 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。
+// 3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。
 
 import { cn } from "@/lib/utils";
 import { Logo } from "../logo";

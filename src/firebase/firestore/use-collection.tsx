@@ -34,6 +34,11 @@ export interface UseCollectionResult<T> {
  * The Firestore CollectionReference or Query. Waits if null/undefined.
  * @returns {UseCollectionResult<T>} Object with data, isLoading, error.
  */
+// TODO: [P2] REFACTOR src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+// 建議：
+// - 呼叫端須 useMemo 穩定 Query/Ref，hook 內可檢查相等性避免過度 unsubscribe/subscribe。
+// - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
+// - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 export function useCollection<T = DocumentData>(
     targetRefOrQuery: CollectionReference<DocumentData> | Query<DocumentData> | null | undefined,
 ): UseCollectionResult<T> {

@@ -1,3 +1,8 @@
+// TODO: [P2] REFACTOR src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
+// 建議：
+// 1) 以 props 驅動、單一責任：只渲染必要視圖，不內嵌資料轉換/來源選擇。
+// 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
+// 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
 "use client"
 
 import * as React from "react"

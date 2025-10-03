@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）
+// 說明：修正字串/模板字面量，避免編譯失敗
 /**
  * @fileoverview A component for the "Packages" tab in the file explorer's sidebar.
  * It displays a list of file packages, which are collections of related documents.
@@ -46,8 +48,8 @@ export function PackagesTab({ className }: PackagesTabProps) {
   const [packages] = useState<PackageItem[]>([
     {
       id: 'pkg-1',
-      name: '建�??��?套件 V1.0',
-      description: '?�含?�?�建築相?��?紙�?完整套件',
+      name: '建�??��?套件 V1.0',
+      description: '?�含?�?�建築相?��?紙�?完整套件',
       version: '1.0',
       status: 'published',
       createdAt: '2024-01-15T10:30:00Z',
@@ -57,19 +59,19 @@ export function PackagesTab({ className }: PackagesTabProps) {
     },
     {
       id: 'pkg-2',
-      name: '結�?工�?套件 V2.1',
-      description: '結�?設�??��?算�?件�?�?,
+      name: '結�?工�?套件 V2.1',
+      description: '結�?設�??��?算�?件�?�?,
       version: '2.1',
       status: 'draft',
       createdAt: '2024-01-20T14:20:00Z',
-      createdBy: 'A�?ACC 系統',
+      createdBy: 'A�?ACC 系統',
       fileCount: 18,
       size: 31457280 // 30MB
     },
     {
       id: 'pkg-3',
-      name: '機電設�?套件 V1.5',
-      description: '機電系統設�??��?裝�?�?,
+      name: '機電設�?套件 V1.5',
+      description: '機電系統設�??��?裝�?�?,
       version: '1.5',
       status: 'published',
       createdAt: '2024-01-18T09:15:00Z',
@@ -113,9 +115,9 @@ export function PackagesTab({ className }: PackagesTabProps) {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'published': return '已發�?;
-      case 'draft': return '?�稿';
-      case 'archived': return '已�?�?;
+      case 'published': return '已發�?;
+      case 'draft': return '?�稿';
+      case 'archived': return '已�?�?;
       default: return status;
     }
   };
@@ -128,12 +130,12 @@ export function PackagesTab({ className }: PackagesTabProps) {
 
   return (
     <div className={cn("space-y-6", className)}>
-      {/* 標�??��?作�???*/}
+      {/* 標�??��?作�???*/}
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold">套件</h3>
           <p className="text-sm text-muted-foreground">
-            管�??��?織相?��?件�?套件
+            管�??��?織相?��?件�?套件
           </p>
         </div>
         
@@ -141,34 +143,34 @@ export function PackagesTab({ className }: PackagesTabProps) {
           <DialogTrigger asChild>
             <Button>
               <Plus className="h-4 w-4 mr-2" />
-              建�?套件
+              建�?套件
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>建�??��?�?/DialogTitle>
+              <DialogTitle>建�??��?�?/DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="package-name">套件?�稱</Label>
+                <Label htmlFor="package-name">套件?�稱</Label>
                 <Input
                   id="package-name"
-                  placeholder="輸入套件?�稱"
+                  placeholder="輸入套件?�稱"
                   value={newPackage.name}
                   onChange={(e) => setNewPackage(prev => ({ ...prev, name: e.target.value }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="package-description">?�述</Label>
+                <Label htmlFor="package-description">?�述</Label>
                 <Textarea
                   id="package-description"
-                  placeholder="輸入套件?�述"
+                  placeholder="輸入套件?�述"
                   value={newPackage.description}
                   onChange={(e) => setNewPackage(prev => ({ ...prev, description: e.target.value }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="package-version">?�本</Label>
+                <Label htmlFor="package-version">?�本</Label>
                 <Input
                   id="package-version"
                   placeholder="1.0"
@@ -178,10 +180,10 @@ export function PackagesTab({ className }: PackagesTabProps) {
               </div>
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-                  ?��?
+                  ?��?
                 </Button>
                 <Button onClick={handleCreatePackage}>
-                  建�?
+                  建�?
                 </Button>
               </div>
             </div>
@@ -189,17 +191,17 @@ export function PackagesTab({ className }: PackagesTabProps) {
         </Dialog>
       </div>
 
-      {/* 套件?�表 */}
+      {/* 套件?�表 */}
       {packages.length === 0 ? (
         <div className="text-center py-12">
           <Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-          <h3 className="text-lg font-medium text-gray-700 mb-2">沒�?套件</h3>
+          <h3 className="text-lg font-medium text-gray-700 mb-2">沒�?套件</h3>
           <p className="text-gray-500 mb-6">
-            建�?套件來�?織�?管�??��??�件
+            建�?套件來�?織�?管�??��??�件
           </p>
           <Button onClick={() => setIsCreateDialogOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
-            建�?第�??��?�?
+            建�?第�??��?�?
           </Button>
         </div>
       ) : (
@@ -231,19 +233,19 @@ export function PackagesTab({ className }: PackagesTabProps) {
               <CardContent className="pt-0">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                   <div>
-                    <span className="text-muted-foreground">?�本</span>
+                    <span className="text-muted-foreground">?�本</span>
                     <p className="font-medium">V{pkg.version}</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">檔�??��?</span>
-                    <p className="font-medium">{pkg.fileCount} ?��?�?/p>
+                    <span className="text-muted-foreground">檔�??��?</span>
+                    <p className="font-medium">{pkg.fileCount} ?��?�?/p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">大�?</span>
+                    <span className="text-muted-foreground">大�?</span>
                     <p className="font-medium">{formatFileSize(pkg.size)}</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">建�???/span>
+                    <span className="text-muted-foreground">建�???/span>
                     <p className="font-medium">{pkg.createdBy}</p>
                   </div>
                 </div>
@@ -257,15 +259,15 @@ export function PackagesTab({ className }: PackagesTabProps) {
                   <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm">
                       <Download className="h-3 w-3 mr-1" />
-                      下�?
+                      下�?
                     </Button>
                     <Button variant="outline" size="sm">
                       <Share className="h-3 w-3 mr-1" />
-                      ?�用
+                      ?�用
                     </Button>
                     <Button variant="outline" size="sm">
                       <FileText className="h-3 w-3 mr-1" />
-                      檢�?
+                      檢�?
                     </Button>
                   </div>
                 </div>

@@ -5,6 +5,19 @@
  */
 
 'use client';
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx - 避免列表渲染期昂貴操作
+// 建議：
+// - 將 roles/users 載入改為懶載（按需打開時再查詢）；表格僅顯示前幾個權限，其餘以 lazy 展開。
+// - 對話框抽成小型子元件或同檔內聯，避免 props 鏈過深；重複邏輯 ≥3 次再抽象。
+// - 權限檢查改用 `useAuth()` 的單一 selector，移除本檔重複 hasPermission 調用。
+// @assignee ai
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx - 奧卡姆剃刀精簡角色管理
+// 建議：
+// 1) 合併 Firestore 讀取：批量查詢與最小欄位投影；以單一 hook/context 管理 users/roles 狀態，移除重複 useState。
+// 2) 僅在互動時載入詳情（lazy/load-on-demand），表格只顯示最少欄位；避免在列表渲染時計算聚合。
+// 3) 將對話框組件移至同一檔內的輕量內聯或共用子目錄；重複出現 ≥3 次的表單行為再抽象。
+// 4) 權限判斷集中在 `useAuth()` 暴露的單一 selector，避免在本檔重複 hasPermission。
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -108,6 +121,13 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
     loadRoles();
     loadUsers();
   }, [spaceId]);
+
+// TODO: [P1] PERF src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項
+// 問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項
+// 影響：可能導致過時閉包問題，函數更新不及時
+// 建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數
+// @assignee frontend-team
+// @deadline 2025-01-15
 
   const loadRoles = async () => {
     setLoading(true);

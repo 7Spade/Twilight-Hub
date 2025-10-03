@@ -1,3 +1,5 @@
+// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）
+// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元
 'use client';
 
 import { useState } from 'react';
