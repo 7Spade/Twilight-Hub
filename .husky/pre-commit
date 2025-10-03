@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+set -e
+
+echo "[pre-commit] Updating docs/project-structure.md via scripts/generate-tree.ts"
+npx --yes tsx scripts/generate-tree.ts
+
+echo "[pre-commit] Scanning TODOs via scripts/todo-automation-toolkit.ts"
+npx --yes tsx scripts/todo-automation-toolkit.ts
+
+# If you also want to run lint-staged, uncomment the next line
+# npx --yes lint-staged
+
+echo "[pre-commit] All checks passed. Proceeding with commit."
+
+
