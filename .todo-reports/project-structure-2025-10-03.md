@@ -33,10 +33,11 @@
     ├── reflection/
     ├── activeContext.md (1.8 KB, 今天)
     ├── continuous-collaboration-workflow-v2.md (6.2 KB, 今天)
+    ├── continuous-collaboration-workflow-v3.md (5.7 KB, 今天)
     ├── continuous-collaboration-workflow.md (4.1 KB, 今天)
     ├── memory-clean.json (12 KB, 今天)
     ├── memory.backup.json (13.7 KB, 今天)
-    ├── memory.json (100.5 KB, 今天)
+    ├── memory.json (134.5 KB, 今天)
     ├── monitor.json (245 B, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
@@ -116,7 +117,7 @@
     │   ├── globals.css (2.4 KB, 昨天)
     ├── components/
     │   ├── auth/
-    │   │   ├── auth-provider.tsx (13 KB, 今天)
+    │   │   ├── auth-provider.tsx (13.7 KB, 今天)
     │   │   ├── index.ts (509 B, 今天)
     │   │   ├── permission-guard.tsx (2.3 KB, 今天)
     │   │   ├── role-manager.tsx (21.9 KB, 今天)
@@ -160,7 +161,7 @@
     │   │   │   │   │   ├── context-menu.tsx (7.2 KB, 今天)
     │   │   │   │   │   ├── deleted-items.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── empty-folder-state.tsx (1.9 KB, 今天)
-    │   │   │   │   │   ├── file-explorer.tsx (17.3 KB, 今天)
+    │   │   │   │   │   ├── file-explorer.tsx (23.5 KB, 今天)
     │   │   │   │   │   ├── file-table.tsx (11.6 KB, 今天)
     │   │   │   │   │   ├── filter-panel.tsx (15.5 KB, 今天)
     │   │   │   │   │   ├── folder-tree.tsx (26.6 KB, 今天)

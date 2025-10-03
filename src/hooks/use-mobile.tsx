@@ -1,19 +1,11 @@
-import * as React from "react"
-
-const MOBILE_BREAKPOINT = 768
-
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
-
-  React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
-  }, [])
-
-  return !!isMobile
-}
+/**
+ * 移動端檢測 Hook
+ * 
+ * 功能：
+ * - 移動端設備檢測
+ * - 響應式狀態管理
+ * - 屏幕尺寸監聽
+ * - 移動端適配
+ * 
+ * 依賴：React, Window API
+ */

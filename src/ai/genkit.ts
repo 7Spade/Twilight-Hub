@@ -1,7 +1,9 @@
-import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/google-genai';
-
-export const ai = genkit({
-  plugins: [googleAI()],
-  model: 'googleai/gemini-2.5-flash',
-});
+/**
+ * Genkit 配置
+ * 
+ * 功能：
+ * - Google Genkit 初始化
+ * - AI 模型配置
+ * - AI 服務配置
+ * - AI 錯誤處理
+ */

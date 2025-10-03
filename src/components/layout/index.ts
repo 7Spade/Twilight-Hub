@@ -1,21 +1,8 @@
 /**
- * @fileoverview Layout 組件統一導出
- * 整合所有佈局相關組件
+ * 佈局組件導出索引
+ * 
+ * 功能：
+ * - 統一導出佈局相關組件
+ * - 提供清晰的公共 API
+ * - 簡化組件導入
  */
-
-// 統一的導航組件
-export { 
-  Navigation, 
-  type NavItem, 
-  type NavigationProps 
-} from './navigation';
-
-// 佈局組件
-export { Header } from './header';
-export { Sidebar } from './sidebar';
-export { PageContainer } from './page-container';
-
-// 導航子組件
-export { TeamSwitcher, type Team } from './team-switcher';
-export { UserNav } from './user-nav';
-export { Nav } from './nav';

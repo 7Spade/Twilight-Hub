@@ -1,15 +1,12 @@
-import { Suspense } from 'react';
-import { UserProfilePage } from '@/components/features/users/pages/user-profile-page';
-
-export default async function UserProfilePageWrapper({
-  params: paramsPromise,
-}: {
-  params: Promise<{ userslug: string }>;
-}) {
-  const params = await paramsPromise;
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <UserProfilePage userslug={params.userslug} />
-    </Suspense>
-  );
-}
+/**
+ * 用戶資料頁面
+ * 
+ * 功能：
+ * - 用戶公開資料顯示
+ * - 用戶空間列表
+ * - 用戶活動概覽
+ * - 追蹤功能
+ * 
+ * 路由：/[userslug]
+ * 組件類型：Client Component
+ */

@@ -20,7 +20,6 @@
     "todo:health": "tsx scripts/todo-health-check.ts",
     "todo:conversation": "tsx scripts/generate-ai-conversation.ts",
     "todo:quick": "bash scripts/todo-quickstart.sh",
-    
     "// === Memory Management ===": "",
     "memory:optimize": "tsx scripts/memory-optimizer.ts",
     "memory:cleanup": "tsx scripts/memory-cleanup.ts",
@@ -28,11 +27,9 @@
     "memory:stats": "tsx scripts/memory-stats.ts",
     "memory:monitor": "tsx scripts/memory-auto-monitor.ts",
     "memory:check": "npm run memory:monitor && npm run memory:stats",
-    
     "// === Git Hooks ===": "",
     "prepare": "husky install",
     "pre-commit": "npm run todo:scan && npm run todo:health",
-    
     "// === CI/CD ===": "",
     "ci:todo": "npm run todo:scan && npm run todo:health"
   },
@@ -107,9 +104,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@notionhq/client": "^5.1.0",
-    "nodemon": "^3.1.10",
     "@next/eslint-plugin-next": "^15.5.4",
+    "@notionhq/client": "^5.1.0",
     "@tanstack/react-query-devtools": "^5.51.15",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -123,6 +119,7 @@
     "genkit-cli": "^1.20.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.3",
+    "nodemon": "^3.1.10",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.20.6",

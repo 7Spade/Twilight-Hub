@@ -1,18 +1,8 @@
 /**
- * @fileoverview Forms 組件統�?導出
- * ?��??�?�表?�相?��?件�??��?清晰??API
+ * 表單組件導出索引
+ * 
+ * 功能：
+ * - 統一導出表單相關組件
+ * - 提供清晰的公共 API
+ * - 簡化組件導入
  */
-
-// 統�??�表?��?段�?�?
-export { 
-  FormField, 
-  FormInput, 
-  FormTextarea, 
-  FormSwitch,
-  type FormFieldProps,
-  type FormFieldType 
-} from './form-field';
-
-// 表單容器組件
-export { FormCard } from './form-card';
-

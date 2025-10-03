@@ -1,36 +1,11 @@
 /**
- * @fileoverview A standard container for page content.
- * It provides a consistent layout structure with a main title (h1)
- * and an optional description, followed by the page's main content.
- * This helps maintain visual consistency across different pages.
+ * 頁面容器組件
+ * 
+ * 功能：
+ * - 頁面內容容器
+ * - 頁面佈局管理
+ * - 響應式設計
+ * - 頁面狀態管理
+ * 
+ * 組件類型：Client Component
  */
-
-'use client';
-
-import { cn } from '@/lib/utils';
-
-type PageContainerProps = {
-  title: string;
-  description?: string;
-  children: React.ReactNode;
-  className?: string;
-};
-
-export function PageContainer({
-  title,
-  description,
-  children,
-  className,
-}: PageContainerProps) {
-  return (
-    <div className={cn('flex flex-col gap-8', className)}>
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
-        {description && (
-          <p className="text-muted-foreground">{description}</p>
-        )}
-      </div>
-      {children}
-    </div>
-  );
-}

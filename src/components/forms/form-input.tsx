@@ -1,54 +1,12 @@
 /**
- * @fileoverview A reusable form input component.
- * It integrates a standard `Input` with `react-hook-form`'s `FormField`
- * to provide validation and state management out of the box.
- * It handles displaying labels, descriptions, and error messages.
+ * 表單輸入組件
+ * 
+ * 功能：
+ * - 表單輸入欄位
+ * - 輸入驗證
+ * - 輸入狀態管理
+ * - 輸入樣式
+ * 
+ * 組件類型：Client Component
+ * 依賴：shadcn/ui Input
  */
-
-'use client';
-
-import { Control, FieldPath, FieldValues } from 'react-hook-form';
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input, type InputProps } from '@/components/ui/input';
-
-interface FormInputProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends Omit<InputProps, 'name'> {
-  control: Control<TFieldValues>;
-  name: TName;
-  label: string;
-  description?: string;
-}
-
-export function FormInput<TFieldValues extends FieldValues>({
-  control,
-  name,
-  label,
-  description,
-  ...props
-}: FormInputProps<TFieldValues>) {
-  return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input {...field} {...props} />
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-}

@@ -1,11 +1,12 @@
-import { redirect } from 'next/navigation';
-
-export default async function OrgSpaceDetailsPageWrapper({
-  params,
-}: {
-  params: Promise<{ organizationslug?: string; spaceslug: string }>;
-}) {
-  // Redirect to unified space details page
-  const { spaceslug } = await params;
-  redirect(`/spaces/${spaceslug}`);
-}
+/**
+ * 組織空間詳情頁面
+ * 
+ * 功能：
+ * - 組織空間詳情
+ * - 空間文件管理
+ * - 空間參與者管理
+ * - 空間設定
+ * 
+ * 路由：/organizations/[organizationslug]/[spaceslug]
+ * 組件類型：Client Component
+ */

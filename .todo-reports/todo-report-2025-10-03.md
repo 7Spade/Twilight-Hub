@@ -1,21 +1,21 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 55 個項目
+- 總計: 74 個項目
 - 🔴 緊急: 4 個項目
 ### 依優先級
-- P2: 41 個
-- P1: 14 個
+- P2: 58 個
+- P1: 16 個
 ### 依類型
 - PERF: 1 個
 - REFACTOR: 28 個
-- FEAT: 14 個
+- FEAT: 31 個
 - CLEANUP: 2 個
-- TYPING: 1 個
+- TYPING: 3 個
 - HOOK: 2 個
 - VAN: 7 個
 ---
 ## 🔴 P0 (0 個)
-## 🟠 P1 (14 個)
+## 🟠 P1 (16 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 減少過度抽象的組件層級
 **位置:** `src\components\features\spaces\components\index.ts:7`
 **負責人:** @frontend
@@ -75,7 +75,25 @@
 > - 禁止在 render 期間做 I/O；mutation 走 Server Actions 或明確事件觸發。
 > - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。
 ---
-### 7. [HOOK] deps (L156) [低認知]
+### 7. [TYPING] - 使用類型守衛替代 any [低認知]
+**位置:** `src\components\auth\auth-provider.tsx:199`
+**詳細說明:**
+> 問題：使用 any 類型降低類型安全性
+> 解決方案：使用類型守衛函數驗證數據類型
+> 現代化建議：const isTimestamp = (val: unknown): val is Timestamp => val instanceof Timestamp
+> 效能影響：無，但提升類型安全性和運行時安全性
+> 相關受影響檔案：無（內部重構）
+---
+### 8. [TYPING] - 使用類型守衛替代 any [低認知]
+**位置:** `src\components\auth\auth-provider.tsx:229`
+**詳細說明:**
+> 問題：使用 any 類型降低類型安全性
+> 解決方案：使用類型守衛函數驗證數據類型
+> 現代化建議：const isTimestamp = (val: unknown): val is Timestamp => val instanceof Timestamp
+> 效能影響：無，但提升類型安全性和運行時安全性
+> 相關受影響檔案：無（內部重構）
+---
+### 9. [HOOK] deps (L156) [低認知]
 **位置:** `src\components\auth\role-manager.tsx:9`
 **負責人:** @ai
 **詳細說明:**
@@ -85,7 +103,7 @@
 > - 對話框抽成小型子元件或同檔內聯，避免 props 鏈過深；重複邏輯 ≥3 次再抽象。
 > - 權限檢查改用 `useAuth()` 的單一 selector，移除本檔重複 hasPermission 調用。
 ---
-### 8. [VAN] - 移除未使用的重命名導入
+### 10. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\features\spaces\components\contracts\contract-details.tsx:3`
 **詳細說明:**
 > 問題：Avatar, AvatarFallback, AvatarImage, Phone 導入後從未使用
@@ -94,21 +112,21 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這些導入未在任何地方使用）
 ---
-### 9. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 抽離 UI 與狀態設定
+### 11. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 抽離 UI 與狀態設定
 **位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:9`
 **負責人:** @ai
 **詳細說明:**
 > 說明：將篩選條件狀態 schema 與預設值抽到 `shared`（或 features 專屬 types）集中管理；
 > Panel 僅處理展示與事件回呼，提升模組邊界清晰度與型別一致性。
 ---
-### 10. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx - 抽離 mock 與分層
+### 12. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx - 抽離 mock 與分層
 **位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:9`
 **負責人:** @ai
 **詳細說明:**
 > 說明：將 mockFolders 與 organizeFilesIntoFolders 移到純函數模組（shared/utils 或 features 層 utils），
 > 並以 props 注入結果；本元件專注渲染與互動，降低檔案長度與複雜度。
 ---
-### 11. [VAN] - 移除未使用的重命名導入
+### 13. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\features\spaces\components\file-explorer\packages-tab.tsx:18`
 **詳細說明:**
 > 問題：Table, TableBody, TableCell, TableHead, TableHeader, TableRow, User 導入後從未使用
@@ -117,7 +135,7 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這些導入未在任何地方使用）
 ---
-### 12. [VAN] - 移除未使用的重命名導入
+### 14. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\forms\form-card.tsx:18`
 **詳細說明:**
 > 問題：Skeleton 導入後從未使用
@@ -126,7 +144,7 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這個導入未在任何地方使用）
 ---
-### 13. [REFACTOR] src/components/search-command.tsx - 抽離查詢為 Server Action/API 並以 props 餵入
+### 15. [REFACTOR] src/components/search-command.tsx - 抽離查詢為 Server Action/API 並以 props 餵入
 **位置:** `src\components\search-command.tsx:10`
 **負責人:** @ai
 **詳細說明:**
@@ -134,7 +152,7 @@
 > 建議：建立 server action（或輕量 API route）處理查詢與權限，再以 props 餵入、或使用 Suspense + use 從父層 Server Component 傳資料。
 > 目標：降低認知負擔與邊界複雜度，維持現有效能。
 ---
-### 14. [REFACTOR] src/firebase/provider.tsx - Provider 只做服務注入與極簡使用者狀態
+### 16. [REFACTOR] src/firebase/provider.tsx - Provider 只做服務注入與極簡使用者狀態
 **位置:** `src\firebase\provider.tsx:2`
 **負責人:** @ai
 **詳細說明:**
@@ -143,7 +161,7 @@
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
 ---
-## 🟡 P2 (41 個)
+## 🟡 P2 (58 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 合併重複的組件邏輯
 **位置:** `src\components\features\spaces\components\index.ts:18`
 **負責人:** @frontend
@@ -321,7 +339,160 @@
 > 說明：menuItems 可抽成常數與型別，避免於 render 期建構大型物件；保留動作回呼介面。
 > 影響：無功能變動、降低渲染負擔與閱讀成本。
 ---
-### 24. [VAN] - 現代化類型定義，移除不必要的類型斷言
+### 24. [FEAT] - 實現資料夾點擊導航邏輯 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:226`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的導航功能
+> 解決方案：實現資料夾導航和狀態更新
+> 現代化建議：使用 Next.js router 或狀態管理進行導航
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：folder-tree.tsx, breadcrumb-navigation.tsx
+---
+### 25. [FEAT] - 實現檔案點擊預覽邏輯 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:235`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的檔案預覽功能
+> 解決方案：實現檔案預覽和詳細視圖
+> 現代化建議：使用動態導入和 Suspense 進行檔案預覽
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-detail-view.tsx, file-preview-service.ts
+---
+### 26. [FEAT] - 實現檔案移動功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:259`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的移動功能
+> 解決方案：實現檔案移動到其他資料夾的功能
+> 現代化建議：使用拖拽 API 和狀態管理
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, folder-tree.tsx
+---
+### 27. [FEAT] - 實現檔案重新命名功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:268`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的重新命名功能
+> 解決方案：實現檔案重新命名對話框和狀態更新
+> 現代化建議：使用內聯編輯或對話框模式
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, context-menu.tsx
+---
+### 28. [FEAT] - 實現檔案分享功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:277`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的分享功能
+> 解決方案：實現檔案分享對話框和權限管理
+> 現代化建議：使用 Next.js API routes 和權限系統
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, share-dialog.tsx
+---
+### 29. [FEAT] - 實現通用檔案動作處理 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:290`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的動作處理
+> 解決方案：實現通用的檔案動作處理邏輯
+> 現代化建議：使用策略模式或動作映射表
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, action-handlers.ts
+---
+### 30. [FEAT] - 實現批量檔案移動功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:306`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的批量移動功能
+> 解決方案：實現批量檔案移動到其他資料夾的功能
+> 現代化建議：使用拖拽 API 和批量操作模式
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, batch-operations.ts
+---
+### 31. [FEAT] - 實現更多選項功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:315`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的更多選項功能
+> 解決方案：實現更多選項的下拉選單或彈出視窗
+> 現代化建議：使用 DropdownMenu 組件和動態選項
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：toolbar.tsx, more-options-menu.tsx
+---
+### 32. [FEAT] - 實現檔案匯出功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:324`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的匯出功能
+> 解決方案：實現檔案匯出對話框和格式選擇
+> 現代化建議：使用 Next.js API routes 和檔案下載
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：file-actions.ts, export-dialog.tsx
+---
+### 33. [FEAT] - 實現通用工具列動作處理 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:333`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的動作處理
+> 解決方案：實現通用的工具列動作處理邏輯
+> 現代化建議：使用策略模式或動作映射表
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：toolbar.tsx, action-handlers.ts
+---
+### 34. [FEAT] - 實現搜尋範本儲存功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:386`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的儲存功能
+> 解決方案：實現搜尋範本儲存到後端的功能
+> 現代化建議：使用 Next.js API routes 和 Firestore
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：filter-panel.tsx, search-templates.ts
+---
+### 35. [FEAT] - 實現麵包屑導航功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:401`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的導航功能
+> 解決方案：實現麵包屑點擊導航到對應路徑
+> 現代化建議：使用 Next.js router 或狀態管理
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：breadcrumb-navigation.tsx, navigation-state.ts
+---
+### 36. [FEAT] - 實現檔案還原功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:417`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的還原功能
+> 解決方案：實現檔案從垃圾桶還原的功能
+> 現代化建議：使用 Next.js API routes 和 Firestore
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：deleted-items.tsx, file-actions.ts
+---
+### 37. [FEAT] - 實現檔案永久刪除功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:427`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的永久刪除功能
+> 解決方案：實現檔案永久刪除的確認對話框和功能
+> 現代化建議：使用確認對話框和 API routes
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：deleted-items.tsx, file-actions.ts
+---
+### 38. [FEAT] - 實現檔案分享功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:594`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的分享功能
+> 解決方案：實現檔案分享對話框和權限管理
+> 現代化建議：使用 Next.js API routes 和權限系統
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：share-dialog.tsx, file-actions.ts
+---
+### 39. [FEAT] - 實現檔案編輯功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:603`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的編輯功能
+> 解決方案：實現檔案編輯對話框和內容更新
+> 現代化建議：使用內聯編輯或編輯對話框
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：edit-dialog.tsx, file-actions.ts
+---
+### 40. [FEAT] - 實現檔案標星功能 [低認知]
+**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:613`
+**詳細說明:**
+> 問題：目前只有 console.log，沒有實際的標星功能
+> 解決方案：實現檔案標星/取消標星的功能
+> 現代化建議：使用狀態管理和視覺回饋
+> 效能影響：無，但提升用戶體驗
+> 相關受影響檔案：star-actions.ts, file-actions.ts
+---
+### 41. [VAN] - 現代化類型定義，移除不必要的類型斷言
 **位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:41`
 **詳細說明:**
 > 問題：column.id as SortField 和 checked as boolean 需要類型斷言
@@ -330,29 +501,29 @@
 > 效能影響：無，但提升類型安全性和代碼可讀性
 > 相關受影響檔案：無（內部重構）
 ---
-### 25. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 強化型別與錯誤處理
+### 42. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 強化型別與錯誤處理
 **位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:7`
 **負責人:** @ai
 **詳細說明:**
 > 說明：為 handleError 增加類型守衛，並將 MIME 對照表抽出常數；可提供 `isPreviewError` type guard。
 > 目標：提升型別安全與可測性，降低 AI agent 理解成本。
 ---
-### 26. [FEAT] src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫
+### 43. [FEAT] src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫
 **位置:** `src\components\features\spaces\components\issues\create-issue-form.tsx:69`
 ---
-### 27. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
+### 44. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
 **位置:** `src\components\features\spaces\components\overview\hooks\use-dashboard-data.ts:41`
 **負責人:** @dev
 **詳細說明:**
 > 這裡使用模擬數據
 ---
-### 28. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
+### 45. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
 **位置:** `src\components\features\spaces\components\overview\hooks\use-dashboard-data.ts:60`
 **負責人:** @dev
 **詳細說明:**
 > 這裡使用模擬數據
 ---
-### 29. [VAN] - 現代化類型斷言，使用更安全的類型守衛
+### 46. [VAN] - 現代化類型斷言，使用更安全的類型守衛
 **位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:53`
 **詳細說明:**
 > 問題：value as ViewMode['type'] 使用類型斷言，可能存在類型不安全
@@ -361,7 +532,7 @@
 > 效能影響：無，但提升類型安全性和運行時安全性
 > 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
-### 30. [VAN] - 現代化類型斷言，使用更安全的鍵值訪問
+### 47. [VAN] - 現代化類型斷言，使用更安全的鍵值訪問
 **位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:65`
 **詳細說明:**
 > 問題：mode.icon as keyof typeof ICON_MAP 使用類型斷言，可能存在鍵值不存在的情況
@@ -370,7 +541,7 @@
 > 效能影響：無，但提升類型安全性和運行時安全性
 > 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
-### 31. [VAN] - 現代化 reduce 類型推斷
+### 48. [VAN] - 現代化 reduce 類型推斷
 **位置:** `src\components\features\spaces\components\quality\checklist.tsx:137`
 **詳細說明:**
 > 問題：使用 as Record<string, ChecklistItem[]> 類型斷言
@@ -379,19 +550,19 @@
 > 效能影響：無，但提升類型安全性
 > 相關受影響檔案：無（內部重構）
 ---
-### 32. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
+### 49. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
 **位置:** `src\components\features\spaces\components\quality\create-checklist-template.tsx:88`
 ---
-### 33. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
+### 50. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
 **位置:** `src\components\features\spaces\components\report\create-report-dialog.tsx:90`
 ---
-### 34. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
+### 51. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-dashboard.tsx:124`
 ---
-### 35. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
+### 52. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-viewer.tsx:77`
 ---
-### 36. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
+### 53. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
 **位置:** `src\components\features\spaces\hooks\use-file-actions.ts:8`
 **詳細說明:**
 > 建議：
@@ -399,7 +570,7 @@
 > 2) 僅回傳實際用到的最小 API（如 download/preview/delete），避免暴露整包操作以降低重渲染。
 > 3) 針對重複邏輯（權限/錯誤處理/Toast）抽為 util，避免每個 action 內重複。
 ---
-### 37. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
+### 54. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
 **位置:** `src\components\ui\chart.tsx:1`
 **詳細說明:**
 > 建議：
@@ -407,7 +578,7 @@
 > 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
 > 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
 ---
-### 38. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+### 55. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
 **位置:** `src\firebase\firestore\use-collection.tsx:37`
 **詳細說明:**
 > 建議：
@@ -415,7 +586,7 @@
 > - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
 > - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 ---
-### 39. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+### 56. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
 **位置:** `src\hooks\use-permissions.ts:2`
 **詳細說明:**
 > 建議：
@@ -423,7 +594,7 @@
 > 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
 > 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 ---
-### 40. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+### 57. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
 **位置:** `src\lib\role-management.ts:112`
 **負責人:** @ai
 **詳細說明:**
@@ -432,7 +603,7 @@
 > - checkPermission 與 getAllRoleDefinitions 共享快取；
 > - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
 ---
-### 41. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+### 58. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
 **位置:** `src\lib\role-management.ts:121`
 **詳細說明:**
 > 建議：

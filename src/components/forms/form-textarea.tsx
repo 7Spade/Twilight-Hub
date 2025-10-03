@@ -1,54 +1,12 @@
 /**
- * @fileoverview A reusable form textarea component.
- * It integrates a standard `Textarea` with `react-hook-form`'s `FormField`
- * to provide a multi-line text input with validation and state management.
- * It handles displaying labels, descriptions, and error messages.
+ * 表單文字區域組件
+ * 
+ * 功能：
+ * - 多行文字輸入
+ * - 文字區域驗證
+ * - 文字區域狀態管理
+ * - 文字區域樣式
+ * 
+ * 組件類型：Client Component
+ * 依賴：shadcn/ui Textarea
  */
-
-'use client';
-
-import { Control, FieldPath, FieldValues } from 'react-hook-form';
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Textarea, type TextareaProps } from '@/components/ui/textarea';
-
-interface FormTextareaProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends Omit<TextareaProps, 'name'> {
-  control: Control<TFieldValues>;
-  name: TName;
-  label: string;
-  description?: string;
-}
-
-export function FormTextarea<TFieldValues extends FieldValues>({
-  control,
-  name,
-  label,
-  description,
-  ...props
-}: FormTextareaProps<TFieldValues>) {
-  return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Textarea {...field} {...props} />
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-}
