@@ -17,7 +17,7 @@ npx --yes tsx scripts/generate-tree.ts
 echo "[post-commit] Scanning TODOs..."
 npx --yes tsx scripts/todo-automation-toolkit.ts
 
-# 檢查並提交文檔更新
+# 檢查是否有變化並提交（只檢查文件內容變化，不包括時間戳）
 if ! git diff --quiet docs/project-structure.md .todo-reports/; then
     echo "[post-commit] Documentation updated, committing changes..."
     git add docs/project-structure.md .todo-reports/

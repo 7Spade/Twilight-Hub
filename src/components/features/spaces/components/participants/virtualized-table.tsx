@@ -1,6 +1,6 @@
 /**
- * @fileoverview ?¾ä»£?–è??¬å?è¡¨æ ¼çµ„ä»¶
- * ä½¿ç”¨ @tanstack/react-virtual å¯¦ç¾é«˜æ€§èƒ½?„å¤§?¸æ??æ¸²??
+ * @fileoverview ?ï¿½ä»£?ï¿½ï¿½??ï¿½ï¿½?è¡¨æ ¼çµ„ä»¶
+ * ä½¿ç”¨ @tanstack/react-virtual å¯¦ç¾é«˜æ€§èƒ½?ï¿½å¤§?ï¿½ï¿½??ï¿½æ¸²??
  */
 
 'use client';
@@ -16,7 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { MoreHorizontal, UserCheck, UserX, Crown, Shield, Users, Eye } from 'lucide-react';
 import { VirtualizedTableProps, Participant } from './types';
 
-// è§’è‰²?–æ?? å?
+// è§’è‰²?ï¿½ï¿½??ï¿½ï¿½?
 const ROLE_ICONS = {
   owner: Crown,
   admin: Shield,
@@ -24,7 +24,7 @@ const ROLE_ICONS = {
   viewer: Eye,
 } as const;
 
-// è§’è‰²é¡è‰²? å?
+// è§’è‰²é¡è‰²?ï¿½ï¿½?
 const ROLE_COLORS = {
   owner: 'bg-purple-100 text-purple-800 border-purple-200',
   admin: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -32,7 +32,7 @@ const ROLE_COLORS = {
   viewer: 'bg-gray-100 text-gray-800 border-gray-200',
 } as const;
 
-// ?€?‹é??²æ?å°?
+// ?ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
 const STATUS_COLORS = {
   active: 'text-green-600',
   inactive: 'text-red-600',
@@ -75,17 +75,17 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
       className="flex items-center border-b border-border/50 hover:bg-muted/30 transition-colors animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
     >
       <div className="flex items-center w-full px-4 py-3">
-        {/* ?¸æ?æ¡?*/}
+        {/* ?ï¿½ï¿½?ï¿½?*/}
         <div className="w-8 mr-3">
           <Checkbox
             checked={isSelected}
             onCheckedChange={handleSelect}
             disabled={isCurrentUser}
-            aria-label={`?¸æ? ${participant.name}`}
+            aria-label={`?ï¿½ï¿½? ${participant.name}`}
           />
         </div>
 
-        {/* ?­å??ŒåŸº?¬ä¿¡??*/}
+        {/* ?ï¿½ï¿½??ï¿½åŸº?ï¿½ä¿¡??*/}
         <div className="flex items-center flex-1 min-w-0">
           <div className="relative mr-3">
             <Avatar className="h-10 w-10">
@@ -103,7 +103,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
             <div className="flex items-center gap-2">
               <h3 className="font-medium text-sm truncate">{participant.name}</h3>
               {isCurrentUser && (
-                <Badge variant="outline" className="text-xs">ä½?/Badge>
+                <Badge variant="outline" className="text-xs">ï¿½?/Badge>
               )}
             </div>
             <p className="text-xs text-muted-foreground truncate">{participant.email}</p>
@@ -113,27 +113,27 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
           </div>
         </div>
 
-        {/* è§’è‰²?Œç???*/}
+        {/* è§’è‰²?ï¿½ï¿½???*/}
         <div className="flex items-center gap-3 mr-4">
           <Badge 
             variant="outline" 
             className={`${ROLE_COLORS[participant.role]} text-xs flex items-center gap-1`}
           >
             <RoleIcon className="h-3 w-3" />
-            {participant.role === 'member' ? '?å“¡' : participant.role}
+            {participant.role === 'member' ? '?ï¿½å“¡' : participant.role}
           </Badge>
           
           <span className={`text-xs ${STATUS_COLORS[participant.status]}`}>
-            {participant.status === 'active' ? 'ä½¿ç”¨ä¸? : participant.status}
+            {participant.status === 'active' ? 'ä½¿ç”¨ï¿½? : participant.status}
           </span>
         </div>
 
-        {/* ? å…¥?‚é? */}
+        {/* ?ï¿½å…¥?ï¿½ï¿½? */}
         <div className="text-xs text-muted-foreground mr-4">
           {participant.joinedAt.toLocaleDateString('zh-TW')}
         </div>
 
-        {/* ?ä??‰é? */}
+        {/* ?ï¿½ï¿½??ï¿½ï¿½? */}
         <div className="w-8">
           {canManage && !isCurrentUser && (
             <DropdownMenu>
@@ -145,7 +145,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => handleAction('edit')}>
                   <UserCheck className="h-4 w-4 mr-2" />
-                  ç·¨è¼¯?å“¡
+                  ç·¨è¼¯?ï¿½å“¡
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleAction('role')}>
                   <Shield className="h-4 w-4 mr-2" />
@@ -156,7 +156,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
                   onClick={() => handleAction('remove')}
                 >
                   <UserX className="h-4 w-4 mr-2" />
-                  ç§»é™¤?å“¡
+                  ç§»é™¤?ï¿½å“¡
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -208,15 +208,15 @@ export function VirtualizedTable({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
-        // TODO: ?“é?ç·¨è¼¯å°è©±æ¡?
-        console.log('ç·¨è¼¯?å“¡:', participantId);
+        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - å¯¦ç¾ç·¨è¼¯å°è©±æ¡†
+        console.log('ç·¨è¼¯?ï¿½å“¡:', participantId);
         break;
       case 'role':
-        // TODO: ?“é?è§’è‰²è®Šæ›´å°è©±æ¡?
+        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - å¯¦ç¾è§’è‰²è®Šæ›´å°è©±æ¡†
         console.log('è®Šæ›´è§’è‰²:', participantId);
         break;
       case 'remove':
-        if (confirm('ç¢ºå?è¦ç§»?¤æ­¤?å“¡?ï?')) {
+        if (confirm('ç¢ºï¿½?è¦ç§»?ï¿½æ­¤?ï¿½å“¡?ï¿½ï¿½?')) {
           actions.onRemove(participantId);
         }
         break;
@@ -237,9 +237,9 @@ export function VirtualizedTable({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="text-lg font-medium text-muted-foreground mb-2">æ²’æ??¾åˆ°?å“¡</h3>
+        <h3 className="text-lg font-medium text-muted-foreground mb-2">æ²’ï¿½??ï¿½åˆ°?ï¿½å“¡</h3>
         <p className="text-sm text-muted-foreground">
-          ?—è©¦èª¿æ•´?œç´¢æ¢ä»¶?–é?è«‹æ–°?å“¡
+          ?ï¿½è©¦èª¿æ•´?ï¿½ç´¢æ¢ä»¶?ï¿½ï¿½?è«‹æ–°?ï¿½å“¡
         </p>
       </div>
     );
@@ -257,12 +257,12 @@ export function VirtualizedTable({
                 if (el) el.indeterminate = isIndeterminate;
               }}
               onCheckedChange={handleSelectAll}
-              aria-label="?¸æ??€?‰æ???
+              aria-label="?ï¿½ï¿½??ï¿½?ï¿½ï¿½???
             />
           </div>
           
           <div className="flex-1 text-sm font-medium text-muted-foreground">
-            ?å“¡ ({participants.length})
+            ?ï¿½å“¡ ({participants.length})
           </div>
           
           <div className="text-sm font-medium text-muted-foreground mr-4">
@@ -270,18 +270,18 @@ export function VirtualizedTable({
           </div>
           
           <div className="text-sm font-medium text-muted-foreground mr-4">
-            ?€??
+            ?ï¿½??
           </div>
           
           <div className="text-sm font-medium text-muted-foreground mr-4">
-            ? å…¥?‚é?
+            ?ï¿½å…¥?ï¿½ï¿½?
           </div>
           
           <div className="w-8" />
         </div>
       </div>
 
-      {/* ?›æ“¬?–å?è¡?*/}
+      {/* ?ï¿½æ“¬?ï¿½ï¿½?ï¿½?*/}
       <div
         ref={parentRef}
         className="overflow-auto"
@@ -319,12 +319,12 @@ export function VirtualizedTable({
         </div>
       </div>
 
-      {/* ?¸ä¸­?€?‹é¡¯ç¤?*/}
+      {/* ?ï¿½ä¸­?ï¿½?ï¿½é¡¯ï¿½?*/}
       {selectedParticipants.length > 0 && (
         <div className="flex items-center justify-between bg-muted/50 border border-border rounded-lg p-3 animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">
-              å·²é¸??{selectedParticipants.length} ?‹æ???
+              å·²é¸??{selectedParticipants.length} ?ï¿½ï¿½???
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -333,19 +333,19 @@ export function VirtualizedTable({
               size="sm"
               onClick={() => setSelectedParticipants([])}
             >
-              ?–æ??¸æ?
+              ?ï¿½ï¿½??ï¿½ï¿½?
             </Button>
             <Button
               variant="destructive"
               size="sm"
               onClick={() => {
-                if (confirm(`ç¢ºå?è¦ç§»?¤é¸ä¸­ç? ${selectedParticipants.length} ?‹æ??¡å?ï¼Ÿ`)) {
+                if (confirm(`ç¢ºï¿½?è¦ç§»?ï¿½é¸ä¸­ï¿½? ${selectedParticipants.length} ?ï¿½ï¿½??ï¿½ï¿½?ï¼Ÿ`)) {
                   actions.onBulkRemove(selectedParticipants);
                   setSelectedParticipants([]);
                 }
               }}
             >
-              ?¹é?ç§»é™¤
+              ?ï¿½ï¿½?ç§»é™¤
             </Button>
           </div>
         </div>
