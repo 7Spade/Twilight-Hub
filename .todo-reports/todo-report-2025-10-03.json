@@ -1,51 +1,24 @@
 {
   "summary": {
-    "total": 153,
+    "total": 128,
     "byPriority": {
-      "P2": 102,
-      "P1": 18,
+      "P2": 89,
+      "P1": 17,
       "P3": 4,
-      "P0": 29
+      "P0": 18
     },
     "byType": {
-      "PERF": 13,
-      "REFACTOR": 67,
+      "PERF": 11,
+      "REFACTOR": 56,
       "CLEANUP": 5,
       "FEAT": 20,
-      "FIX": 45,
       "TYPING": 1,
-      "HOOK": 2
+      "HOOK": 2,
+      "FIX": 33
     },
-    "urgent": 48
+    "urgent": 37
   },
   "todos": [
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L138) [低認知][現代化]",
-      "details": [
-        "- 問題：Unterminated string literal",
-        "- 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。",
-        "TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：",
-        "1) 檢查上一行是否缺分號或字串未關閉。",
-        "2) 檢查註解是否破壞字元（如中文全形標點）。",
-        "3) 保持最小改動，先確保程式可被解析再進行重構。",
-        "參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。",
-        "TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構",
-        "問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則",
-        "影響：維護困難、測試複雜、性能問題",
-        "建議：",
-        "1) 將組件拆分為更小的單一職責組件",
-        "2) 移除多層 Context Provider 嵌套",
-        "3) 使用 Next.js 15 Server Components 替代不必要的 Client Components",
-        "4) 統一狀態管理，避免 prop drilling"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
-      "line": 9,
-      "assignee": "frontend",
-      "deadline": "2025-01-15",
-      "context": " * and user actions.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L138) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。\r\n// TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：\r\n// 1) 檢查上一行是否缺分號或字串未關閉。\r\n// 2) 檢查註解是否破壞字元（如中文全形標點）。\r\n// 3) 保持最小改動，先確保程式可被解析再進行重構。\r\n// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\r\n// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\r"
-    },
     {
       "priority": "P0",
       "type": "FIX",
@@ -71,13 +44,13 @@
     {
       "priority": "P0",
       "type": "FIX",
-      "description": "src/components/features/spaces/components/file-explorer/folder-tree.tsx - 修復語法錯誤（第480行 Unexpected token）",
+      "description": "src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)",
       "details": [
-        "說明：檢查 JSX 結構與轉義，修正不合法符號"
+        "Note: Verify JSX structure and escaping; fix any invalid characters"
       ],
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\folder-tree.tsx",
       "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - 修復語法錯誤（第480行 Unexpected token）\r\n// 說明：檢查 JSX 結構與轉義，修正不合法符號\r\n/**\r\n * @fileoverview A component that displays a hierarchical folder structure.\r\n * It allows users to expand and collapse folders, select items, and access\r\n * context-menu actions. It's the primary navigation element on the left side\r\n * of the file explorer.\r\n */\r\n'use client';\r\n\r"
+      "context": "// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)\r\n// Note: Verify JSX structure and escaping; fix any invalid characters\r\n/**\r\n * @fileoverview A component that displays a hierarchical folder structure.\r\n * It allows users to expand and collapse folders, select items, and access\r\n * context-menu actions. It's the primary navigation element on the left side\r\n * of the file explorer.\r\n */\r\n'use client';\r\n\r"
     },
     {
       "priority": "P0",
@@ -116,17 +89,6 @@
     {
       "priority": "P0",
       "type": "FIX",
-      "description": "src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）",
-      "details": [
-        "說明：修正模板/普通字串，避免解析錯誤"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\thumbnail\\file-thumbnail-grid.tsx",
-      "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）\r\n// 說明：修正模板/普通字串，避免解析錯誤\r\n/**\r\n * @fileoverview A modern component that displays files in a responsive thumbnail grid layout.\r\n * Uses @tanstack/react-virtual for high-performance virtualization and adaptive sizing.\r\n */\r\n'use client';\r\n\r\nimport React, { useState, useEffect, useRef } from 'react';\r\n\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
       "description": "src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）",
       "details": [
         "說明：修正字串與 JSX 構造，確保可編譯"
@@ -145,7 +107,7 @@
       ],
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx",
       "line": 10,
-      "context": " * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\r\n\r\nimport React, { useRef } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r"
+      "context": " * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\r\n\r\nimport React, { useRef } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input as _Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r"
     },
     {
       "priority": "P0",
@@ -156,7 +118,7 @@
       ],
       "file": "src\\components\\features\\spaces\\components\\issues\\issue-details.tsx",
       "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r"
+      "context": "// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button as _Button } from '@/components/ui/button';\r"
     },
     {
       "priority": "P0",
@@ -168,7 +130,7 @@
       ],
       "file": "src\\components\\features\\spaces\\components\\issues\\issue-details.tsx",
       "line": 4,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r"
+      "context": "// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button as _Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r"
     },
     {
       "priority": "P0",
@@ -196,52 +158,6 @@
     {
       "priority": "P0",
       "type": "FIX",
-      "description": "src/components/features/spaces/components/participants/advanced-filters.tsx - 修復語法錯誤（第34行 ',' 缺失）",
-      "details": [
-        "說明：檢查物件/參數列表逗號缺失與 JSX 分隔"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\advanced-filters.tsx",
-      "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/participants/advanced-filters.tsx - 修復語法錯誤（第34行 ',' 缺失）\r\n// 說明：檢查物件/參數列表逗號缺失與 JSX 分隔\r\n/**\r\n * @fileoverview ?�代?��?級�?濾器組件\r\n * ?��?多種?�濾條件?�實?��?�?\r\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L36) [低認知][現代化]\r\n// - 問題：\",\" expected（可能缺少逗號/括號）\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L36) [低認知][現代化]",
-      "details": [
-        "- 問題：\",\" expected（可能缺少逗號/括號）",
-        "- 指引：補齊分隔符或簡化 props，先確保可解析再優化。"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\advanced-filters.tsx",
-      "line": 9,
-      "context": " */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L36) [低認知][現代化]\r\n// - 問題：\",\" expected（可能缺少逗號/括號）\r\n// - 指引：補齊分隔符或簡化 props，先確保可解析再優化。\r\n\r\nimport React, { useState, useCallback, useMemo } from 'react';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "src/components/features/spaces/components/participants/card-grid.tsx - 修復語法錯誤（第123行未終止的字串）",
-      "details": [
-        "說明：補齊字串/模板字面量，避免解析錯誤"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\card-grid.tsx",
-      "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/participants/card-grid.tsx - 修復語法錯誤（第123行未終止的字串）\r\n// 說明：補齊字串/模板字面量，避免解析錯誤\r\n/**\r\n * @fileoverview ?��?式卡?�網?��??��?�?\r\n * 使用?�擬?��?術支?�大?�數?��?高性能渲�?\r\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L125) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L125) [低認知][現代化]",
-      "details": [
-        "- 問題：Unterminated string literal",
-        "- 指引：補上結尾引號或用模板字串，避免特殊符號未轉義。"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\card-grid.tsx",
-      "line": 9,
-      "context": " */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L125) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上結尾引號或用模板字串，避免特殊符號未轉義。\r\n\r\nimport React, { useState, useCallback, useMemo } from 'react';\r\nimport { useVirtualizer } from '@tanstack/react-virtual';\r\nimport { ParticipantCard } from './participant-card';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
       "description": "Typo/Parsing (L81) [低認知]",
       "details": [
         "- 指引：修正參數型別宣告錯字 `_spaceId:`"
@@ -264,72 +180,14 @@
     {
       "priority": "P0",
       "type": "FIX",
-      "description": "src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）",
+      "description": "Parsing (L67)",
       "details": [
-        "說明：檢查 JSX 標籤是否缺失閉合或有非法字元"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\invite-participant-dialog.tsx",
-      "line": 1,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）\r\n// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L100) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。\r\n\r\nimport { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L100) [低認知][現代化]",
-      "details": [
-        "- 問題：Unexpected token（可能需 {'>'} 或 &gt;）",
-        "- 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\invite-participant-dialog.tsx",
-      "line": 4,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）\r\n// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L100) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。\r\n\r\nimport { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）",
-      "details": [
-        "說明：檢查 JSX 屬性與標籤閉合，修正不合法符號"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\participant-card.tsx",
-      "line": 6,
-      "context": " * ?��?式設計�??��??�畫?�交互�???\r\n */\r\n\r\n// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）\r\n// 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L111) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。\r\n\r\nimport React, { useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L111) [低認知][現代化]",
-      "details": [
-        "- 問題：Unexpected token（考慮 {'>'} 或 &gt;）",
-        "- 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\participant-card.tsx",
-      "line": 9,
-      "context": "// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）\r\n// 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L111) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。\r\n\r\nimport React, { useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L58) [低認知][現代化]",
-      "details": [
-        "- 問題：Unterminated string literal",
-        "- 指引：補上引號或以 '--' 站位，避免混雜未轉義符號。"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\participants\\participant-filters.tsx",
-      "line": 2,
-      "context": "'use client';\r\n// TODO: [P0] FIX Parsing (L58) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或以 '--' 站位，避免混雜未轉義符號。\r\n\r\nimport { memo } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Search, Filter, X } from 'lucide-react';\r\nimport { ParticipantFiltersProps } from './types';\r"
-    },
-    {
-      "priority": "P0",
-      "type": "FIX",
-      "description": "Parsing (L67) [低認知][現代化]",
-      "details": [
-        "- 問題：Unexpected token（可能需 {'>'} 或 &gt;）",
-        "- 指引：檢查 JSX 標籤/表格單元，使用 {'>'} 取代裸字符。"
+        "- Issue: Unexpected token (might need {'>'} or &gt;)",
+        "- Guidance: Check JSX tag/table cells; use {'>'} instead of bare character."
       ],
       "file": "src\\components\\features\\spaces\\components\\participants\\participant-list.tsx",
       "line": 2,
-      "context": "'use client';\r\n// TODO: [P0] FIX Parsing (L67) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤/表格單元，使用 {'>'} 取代裸字符。\r\n\r\nimport React, { useEffect, useMemo, useState, useCallback } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Plus, Download, Users, AlertCircle } from 'lucide-react';\r\nimport { useParticipants, useParticipantFilters } from './hooks/use-participants';\r\nimport { VirtualizedTable } from './virtualized-table';\r\nimport { CardGrid } from './card-grid';\r"
+      "context": "'use client';\r\n// TODO: [P0] FIX Parsing (L67)\r\n// - Issue: Unexpected token (might need {'>'} or &gt;)\r\n// - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.\r\n\r\nimport React, { useEffect, useMemo, useState, useCallback } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Plus, Download, Users, AlertCircle } from 'lucide-react';\r\nimport { useParticipants, useParticipantFilters } from './hooks/use-participants';\r\nimport { VirtualizedTable } from './virtualized-table';\r\nimport { CardGrid } from './card-grid';\r"
     },
     {
       "priority": "P0",
@@ -370,21 +228,6 @@
     {
       "priority": "P1",
       "type": "PERF",
-      "description": "src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項",
-      "details": [
-        "問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變",
-        "影響：性能問題，不必要的重新渲染",
-        "建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中"
-      ],
-      "file": "src\\app\\(app)\\layout.tsx",
-      "line": 73,
-      "assignee": "frontend",
-      "deadline": "2025-01-15",
-      "context": "  );\n  const organizations = organizationsData || [];\n\n// TODO: [P1] PERF src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項\n// 問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染\n// 建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);\n  \n  const handleSetSelectedTeam = (team: Team) => {"
-    },
-    {
-      "priority": "P1",
-      "type": "PERF",
       "description": "src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項",
       "details": [
         "問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變",
@@ -392,10 +235,10 @@
         "建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中"
       ],
       "file": "src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\page.tsx",
-      "line": 127,
+      "line": 126,
       "assignee": "frontend",
       "deadline": "2025-01-15",
-      "context": "    useCollection<WarehouseType>(warehousesQuery);\n  const warehouses = warehousesData || [];\n\n// TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n// 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n// 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  // Fetch all stock data for all warehouses\n  const [allStock, setAllStock] = useState<Stock[]>([]);\n  const [stockLoading, setStockLoading] = useState(true);"
+      "context": "  const { data: warehousesData, isLoading: warehousesLoading } =\n    useCollection<WarehouseType>(warehousesQuery);\n  \n  // TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n  // 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n  // 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n  // 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n  const warehouses = useMemo(() => warehousesData || [], [warehousesData]);\n\n  // Fetch all stock data for all warehouses\n  const [allStock, setAllStock] = useState<Stock[]>([]);"
     },
     {
       "priority": "P1",
@@ -407,10 +250,10 @@
         "建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中"
       ],
       "file": "src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\[itemId]\\page.tsx",
-      "line": 100,
+      "line": 99,
       "assignee": "frontend",
       "deadline": "2025-01-15",
-      "context": "    useCollection<Warehouse>(warehousesQuery);\n  const warehouses = warehousesData || [];\n\n// TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n// 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染（影響 line 128）\n// 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  // Get stock for this item across all warehouses\n  const [stockData, setStockData] = useState< (Stock & { warehouseName: string })[] >([]);\n  const [stockLoading, setStockLoading] = useState(true);"
+      "context": "  const { data: warehousesData, isLoading: warehousesLoading } =\n    useCollection<Warehouse>(warehousesQuery);\n  \n  // TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n  // 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n  // 影響：性能問題，不必要的重新渲染（影響 line 128）\n  // 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n  const warehouses = useMemo(() => warehousesData || [], [warehousesData]);\n\n  // Get stock for this item across all warehouses\n  const [stockData, setStockData] = useState< (Stock & { warehouseName: string })[] >([]);"
     },
     {
       "priority": "P1",
@@ -422,74 +265,70 @@
         "建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中"
       ],
       "file": "src\\app\\(app)\\spaces\\page.tsx",
-      "line": 47,
+      "line": 46,
       "assignee": "frontend",
       "deadline": "2025-01-15",
-      "context": "    useCollection<Space>(allSpacesQuery);\r\n  const allSpaces = allSpacesData || [];\r\n\r\n// TODO: [P1] PERF src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\r\n// 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\r\n// 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\r\n// 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\r\n// @assignee frontend-team\r\n// @deadline 2025-01-15\r\n\r\n  const allOwnerIds = useMemo(() => {\r\n    if (allSpaces.length === 0) return [];\r\n    const ids = new Set<string>();\r"
+      "context": "  const { data: allSpacesData, isLoading: allSpacesLoading } =\r\n    useCollection<Space>(allSpacesQuery);\r\n  \r\n  // TODO: [P1] PERF src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\r\n  // 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\r\n  // 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\r\n  // 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-15\r\n  const allSpaces = useMemo(() => allSpacesData || [], [allSpacesData]);\r\n\r\n  const allOwnerIds = useMemo(() => {\r\n    if (allSpaces.length === 0) return [];\r"
     },
     {
       "priority": "P1",
       "type": "PERF",
-      "description": "src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項",
+      "description": "src/components/features/spaces/hooks/use-file-actions.ts:105 - 優化 React hooks 依賴項",
       "details": [
-        "問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項",
-        "影響：可能導致過時閉包問題，狀態更新不及時",
-        "建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組"
-      ],
-      "file": "src\\components\\auth\\auth-provider.tsx",
-      "line": 370,
-      "assignee": "frontend",
-      "deadline": "2025-01-15",
-      "context": "    return () => unsubscribe();\n  }, [auth]);\n\n// TODO: [P1] PERF src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項\n// 問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項\n// 影響：可能導致過時閉包問題，狀態更新不及時\n// 建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const value: AuthContext = {\n    ...state,\n    setUser,"
-    },
-    {
-      "priority": "P1",
-      "type": "PERF",
-      "description": "src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項",
-      "details": [
-        "問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項",
-        "影響：可能導致過時閉包問題，函數更新不及時",
-        "建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 160,
-      "assignee": "frontend",
-      "deadline": "2025-01-15",
-      "context": "    loadUsers();\n  }, [spaceId]);\n\n// TODO: [P1] PERF src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項\n// 問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項\n// 影響：可能導致過時閉包問題，函數更新不及時\n// 建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const loadRoles = async () => {\n    setLoading(true);\n    setError(null);"
-    },
-    {
-      "priority": "P1",
-      "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構",
-      "details": [
-        "問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則",
-        "影響：維護困難、測試複雜、性能問題",
-        "建議：",
-        "1) 將組件拆分為更小的單一職責組件",
-        "2) 移除多層 Context Provider 嵌套",
-        "3) 使用 Next.js 15 Server Components 替代不必要的 Client Components",
-        "4) 統一狀態管理，避免 prop drilling"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
-      "line": 17,
-      "assignee": "frontend",
-      "deadline": "2025-01-15",
-      "context": "// 2) 檢查註解是否破壞字元（如中文全形標點）。\r\n// 3) 保持最小改動，先確保程式可被解析再進行重構。\r\n// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\r\n// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\r\n// 影響：維護困難、測試複雜、性能問題\r\n// 建議：\r\n// 1) 將組件拆分為更小的單一職責組件\r\n// 2) 移除多層 Context Provider 嵌套\r\n// 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components\r\n// 4) 統一狀態管理，避免 prop drilling\r\n// @assignee frontend-team\r\n// @deadline 2025-01-15\r"
-    },
-    {
-      "priority": "P1",
-      "type": "PERF",
-      "description": "src/components/features/spaces/hooks/use-file-actions.ts:105 - 修復 React Hook 缺失依賴項",
-      "details": [
-        "問題：useCallback Hook 缺少 'fileOperations' 依賴項",
-        "影響：可能導致過時閉包問題，函數更新不及時",
-        "建議：將 'fileOperations' 添加到依賴數組中，或移除依賴數組"
+        "問題：React Hook useCallback 缺少依賴項 'fileOperations'",
+        "影響：可能導致過時閉包問題",
+        "建議：添加缺失的依賴項或移除依賴數組"
       ],
       "file": "src\\components\\features\\spaces\\hooks\\use-file-actions.ts",
-      "line": 107,
+      "line": 106,
       "assignee": "frontend",
       "deadline": "2025-01-15",
-      "context": "    }\n  }, [toast]);\n\n// TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 修復 React Hook 缺失依賴項\n// 問題：useCallback Hook 缺少 'fileOperations' 依賴項\n// 影響：可能導致過時閉包問題，函數更新不及時\n// 建議：將 'fileOperations' 添加到依賴數組中，或移除依賴數組\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const downloadFile = useCallback(async (\n    fileName: string, \n    spaceId: string, "
+      "context": "      setUploadProgress(null);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const downloadFile = useCallback(async (\n    fileName: string, "
+    },
+    {
+      "priority": "P1",
+      "type": "PERF",
+      "description": "src/components/features/spaces/hooks/use-file-actions.ts:144 - 優化 React hooks 依賴項",
+      "details": [
+        "問題：React Hook useCallback 缺少依賴項 'fileOperations'",
+        "影響：可能導致過時閉包問題",
+        "建議：添加缺失的依賴項或移除依賴數組"
+      ],
+      "file": "src\\components\\features\\spaces\\hooks\\use-file-actions.ts",
+      "line": 145,
+      "assignee": "frontend",
+      "deadline": "2025-01-15",
+      "context": "      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:144 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const deleteFile = useCallback(async (\n    fileName: string, "
+    },
+    {
+      "priority": "P1",
+      "type": "PERF",
+      "description": "src/components/features/spaces/hooks/use-file-actions.ts:178 - 優化 React hooks 依賴項",
+      "details": [
+        "問題：React Hook useCallback 缺少依賴項 'fileOperations'",
+        "影響：可能導致過時閉包問題",
+        "建議：添加缺失的依賴項或移除依賴數組"
+      ],
+      "file": "src\\components\\features\\spaces\\hooks\\use-file-actions.ts",
+      "line": 186,
+      "assignee": "frontend",
+      "deadline": "2025-01-15",
+      "context": "      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:178 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const listFiles = useCallback(async (\n    spaceId: string,"
+    },
+    {
+      "priority": "P1",
+      "type": "PERF",
+      "description": "src/components/features/spaces/hooks/use-file-actions.ts:208 - 優化 React hooks 依賴項",
+      "details": [
+        "問題：React Hook useCallback 缺少依賴項 'fileOperations'",
+        "影響：可能導致過時閉包問題",
+        "建議：添加缺失的依賴項或移除依賴數組"
+      ],
+      "file": "src\\components\\features\\spaces\\hooks\\use-file-actions.ts",
+      "line": 223,
+      "assignee": "frontend",
+      "deadline": "2025-01-15",
+      "context": "      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:208 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  return {\n    uploadFile,\n    downloadFile,"
     },
     {
       "priority": "P1",
@@ -650,89 +489,115 @@
         "建議：添加適當的類型檢查或使用可選鏈操作符"
       ],
       "file": "src\\components\\adjust-stock-dialog.tsx",
-      "line": 142,
+      "line": 138,
       "assignee": "frontend",
       "deadline": "2025-01-25",
-      "context": "              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              \r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\r\n// 問題：使用非空斷言 (!) 可能導致運行時錯誤\r\n// 影響：類型安全問題，可能導致應用崩潰\r\n// 建議：添加適當的類型檢查或使用可選鏈操作符\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n              stockDocRef = doc(collection(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock'));\r"
+      "context": "          let stockDocRef;\r\n\r\n  if (hasExistingStockRecord && stockInfo.stockId) {\r\n              // TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\r\n              // 問題：使用非空斷言 (!) 可能導致運行時錯誤\r\n              // 影響：類型安全問題，可能導致應用崩潰\r\n              // 建議：添加適當的類型檢查或使用可選鏈操作符\r\n              // @assignee frontend-team\r\n              // @deadline 2025-01-25\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId);\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r"
     },
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用",
+      "description": "src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用",
       "details": [
         "問題：使用 any 類型違反類型安全原則",
         "影響：失去類型檢查，可能導致運行時錯誤",
         "建議：定義具體的類型接口替代 any 類型"
       ],
       "file": "src\\components\\auth\\auth-provider.tsx",
-      "line": 197,
+      "line": 195,
       "assignee": "frontend",
       "deadline": "2025-01-25",
-      "context": "      spaceRolesSnapshot.forEach(d => {\n        const data = d.data() as any;\n        \n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用\n// 問題：使用 any 類型違反類型安全原則\n// 影響：失去類型檢查，可能導致運行時錯誤\n// 建議：定義具體的類型接口替代 any 類型\n// @assignee frontend-team\n// @deadline 2025-01-25\n        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'\n          ? data.assignedAt as Timestamp\n          : Timestamp.fromDate(new Date());\n        spaceRoles[data.spaceId] = {"
+      "context": "      const spaceRoles: Record<string, SpaceRoleAssignment> = {};\n      \n      spaceRolesSnapshot.forEach(d => {\n        // TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用\n        // 問題：使用 any 類型違反類型安全原則\n        // 影響：失去類型檢查，可能導致運行時錯誤\n        // 建議：定義具體的類型接口替代 any 類型\n        // @assignee frontend-team\n        // @deadline 2025-01-25\n        const raw = d.data() as Record<string, unknown>;\n        const assignedAtRaw = raw.assignedAt as unknown;\n        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全\n        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'"
     },
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用",
+      "description": "src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用",
       "details": [
         "問題：使用 any 類型違反類型安全原則",
         "影響：失去類型檢查，可能導致運行時錯誤",
         "建議：定義具體的類型接口替代 any 類型"
-      ],
-      "file": "src\\components\\auth\\auth-provider.tsx",
-      "line": 226,
-      "assignee": "frontend",
-      "deadline": "2025-01-25",
-      "context": "      orgRolesSnapshot.forEach(d => {\n        const data = d.data() as any;\n        \n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用\n// 問題：使用 any 類型違反類型安全原則\n// 影響：失去類型檢查，可能導致運行時錯誤\n// 建議：定義具體的類型接口替代 any 類型\n// @assignee frontend-team\n// @deadline 2025-01-25\n        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'\n          ? data.assignedAt as Timestamp\n          : Timestamp.fromDate(new Date());\n        organizationRoles.push({"
-    },
-    {
-      "priority": "P2",
-      "type": "PERF",
-      "description": "src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用",
-      "details": [
-        "問題：過度使用 Client Components，違反 Next.js 15 最佳實踐",
-        "影響：增加 JavaScript bundle 大小、影響首屏性能",
-        "建議：",
-        "1) 將純展示組件改為 Server Components",
-        "2) 使用 Next.js 15 的 'use client' 邊界優化",
-        "3) 實現適當的代碼分割和懶加載",
-        "4) 使用 React 19 的新特性優化渲染"
       ],
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
-      "line": 28,
-      "assignee": "performance",
+      "line": 342,
+      "assignee": "frontend",
       "deadline": "2025-01-25",
-      "context": "// @assignee frontend-team\r\n// @deadline 2025-01-15\r\n\r\n// TODO: [P2] PERF src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用\r\n// 問題：過度使用 Client Components，違反 Next.js 15 最佳實踐\r\n// 影響：增加 JavaScript bundle 大小、影響首屏性能\r\n// 建議：\r\n// 1) 將純展示組件改為 Server Components\r\n// 2) 使用 Next.js 15 的 'use client' 邊界優化\r\n// 3) 實現適當的代碼分割和懶加載\r\n// 4) 使用 React 19 的新特性優化渲染\r\n// @assignee performance-team\r\n// @deadline 2025-01-25\r"
+      "context": "  };\r\n\r\n  const handleRestoreItem = (item: FileItem) => {\r\n    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用\r\n    // 問題：使用 any 類型違反類型安全原則\r\n    // 影響：失去類型檢查，可能導致運行時錯誤\r\n    // 建議：定義具體的類型接口替代 any 類型\r\n    // @assignee frontend-team\r\n    // @deadline 2025-01-25\r\n    console.log('Restore item:', item);\r\n  };\r\n\r\n  const handlePermanentDelete = (item: FileItem) => {\r"
     },
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用",
+      "description": "src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用",
       "details": [
         "問題：使用 any 類型違反類型安全原則",
         "影響：失去類型檢查，可能導致運行時錯誤",
         "建議：定義具體的類型接口替代 any 類型"
       ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx",
-      "line": 80,
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
+      "line": 352,
       "assignee": "frontend",
       "deadline": "2025-01-25",
-      "context": "      let aValue: any;\r\n      let bValue: any;\r\n      \r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用\r\n// 問題：使用 any 類型違反類型安全原則\r\n// 影響：失去類型檢查，可能導致運行時錯誤\r\n// 建議：定義具體的類型接口替代 any 類型\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n\r\n      switch (sortField) {\r\n        case 'name':\r\n          aValue = a.name.toLowerCase();\r"
+      "context": "  };\r\n\r\n  const handlePermanentDelete = (item: FileItem) => {\r\n    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用\r\n    // 問題：使用 any 類型違反類型安全原則\r\n    // 影響：失去類型檢查，可能導致運行時錯誤\r\n    // 建議：定義具體的類型接口替代 any 類型\r\n    // @assignee frontend-team\r\n    // @deadline 2025-01-25\r\n    console.log('Permanent delete item:', item);\r\n  };\r\n\r\n  return (\r"
     },
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/file-explorer/filter-panel.tsx:81 - 修復 TypeScript any 類型使用",
+      "description": "src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用",
       "details": [
         "問題：使用 any 類型違反類型安全原則",
         "影響：失去類型檢查，可能導致運行時錯誤",
         "建議：定義具體的類型接口替代 any 類型"
       ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx",
-      "line": 102,
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts",
+      "line": 67,
       "assignee": "frontend",
       "deadline": "2025-01-25",
-      "context": "\r\n  const handleFilterChange = (key: keyof FilterOptions, value: any) => {\r\n    \r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:81 - 修復 TypeScript any 類型使用\r\n// 問題：使用 any 類型違反類型安全原則\r\n// 影響：失去類型檢查，可能導致運行時錯誤\r\n// 建議：定義具體的類型接口替代 any 類型\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n    setFilters(prev => ({ ...prev, [key]: value }));\r\n  };\r\n\r\n  const handleApply = () => {\r"
+      "context": "  abstract canPreview(file: FileItem): boolean;\r\n  abstract getPreviewConfig(file: FileItem): PreviewConfig;\r\n  abstract toPreviewDocument(file: FileItem): PreviewDocument;\r\n  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用\r\n  // 問題：使用 any 類型違反類型安全原則\r\n  // 影響：失去類型檢查，可能導致運行時錯誤\r\n  // 建議：定義具體的類型接口替代 any 類型\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-25\r\n  abstract handleError(error: unknown): PreviewError;\r\n\r\n  getSupportedTypes(): string[] {\r\n    return this.supportedTypes;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用",
+      "details": [
+        "問題：使用 any 類型違反類型安全原則",
+        "影響：失去類型檢查，可能導致運行時錯誤",
+        "建議：定義具體的錯誤類型接口替代 any 類型"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts",
+      "line": 211,
+      "assignee": "frontend",
+      "deadline": "2025-01-25",
+      "context": "    };\r\n  }\r\n\r\n  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用\r\n  // 問題：使用 any 類型違反類型安全原則\r\n  // 影響：失去類型檢查，可能導致運行時錯誤\r\n  // 建議：定義具體的錯誤類型接口替代 any 類型\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-25\r\n  handleError(error: Error | unknown): PreviewError {\r\n    // TODO: 現代化 - 使用類型守衛處理 unknown 類型，提升類型安全\r\n    const errorObj = error as Error & { code?: string };\r\n    \r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用",
+      "details": [
+        "問題：使用 any 類型違反類型安全原則",
+        "影響：失去類型檢查，可能導致運行時錯誤",
+        "建議：定義具體的類型接口替代 any 類型"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts",
+      "line": 241,
+      "assignee": "frontend",
+      "deadline": "2025-01-25",
+      "context": "    if (errorObj.message?.includes('403')) {\r\n      return {\r\n        code: 'ACCESS_DENIED',\r\n        // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用\r\n        // 問題：使用 any 類型違反類型安全原則\r\n        // 影響：失去類型檢查，可能導致運行時錯誤\r\n        // 建議：定義具體的類型接口替代 any 類型\r\n        // @assignee frontend-team\r\n        // @deadline 2025-01-25\r\n        message: '沒有權限存取此檔案',\r\n        details: error,\r\n      };\r\n    }\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用",
+      "details": [
+        "問題：使用 any 類型違反類型安全原則",
+        "影響：失去類型檢查，可能導致運行時錯誤",
+        "建議：定義具體的類型接口替代 any 類型"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts",
+      "line": 262,
+      "assignee": "frontend",
+      "deadline": "2025-01-25",
+      "context": "\r\n    return {\r\n      code: 'UNKNOWN_ERROR',\r\n      // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用\r\n      // 問題：使用 any 類型違反類型安全原則\r\n      // 影響：失去類型檢查，可能導致運行時錯誤\r\n      // 建議：定義具體的類型接口替代 any 類型\r\n      // @assignee frontend-team\r\n      // @deadline 2025-01-25\r\n      message: '預覽檔案發生未預期錯誤',\r\n      details: error,\r\n    };\r\n  }\r"
     },
     {
       "priority": "P2",
@@ -768,29 +633,10 @@
         "4) 配置適當的圖片優化參數"
       ],
       "file": "next.config.ts",
-      "line": 12,
+      "line": 16,
       "assignee": "performance",
       "deadline": "2025-02-01",
-      "context": "    ignoreDuringBuilds: true,\n  },\n  \n  // TODO: [P2] PERF next.config.ts - 實現 Next.js 15 性能優化配置\n  // 問題：未充分利用 Next.js 15 的性能優化特性\n  // 影響：圖片載入性能差、bundle 大小過大\n  // 建議：\n  // 1) 啟用 optimizePackageImports 減少 bundle 大小\n  // 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n  // 3) 添加 experimental.turbo 配置提升開發體驗\n  // 4) 配置適當的圖片優化參數\n  // @assignee performance-team\n  // @deadline 2025-02-01"
-    },
-    {
-      "priority": "P2",
-      "type": "PERF",
-      "description": "src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐",
-      "details": [
-        "問題：未充分利用 Next.js Image 組件的優化特性",
-        "影響：圖片載入性能差、LCP 指標不佳",
-        "建議：",
-        "1) 使用 next/image 替代所有 <img> 標籤",
-        "2) 配置適當的 priority 和 sizes 屬性",
-        "3) 實現圖片預載入和懶加載策略",
-        "4) 使用 WebP/AVIF 格式優化"
-      ],
-      "file": "src\\components\\ui\\file-type-icon.tsx",
-      "line": 28,
-      "assignee": "performance",
-      "deadline": "2025-02-01",
-      "context": "  FileImage,\n  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）\n  \n// TODO: [P2] PERF src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐\n// 問題：未充分利用 Next.js Image 組件的優化特性\n// 影響：圖片載入性能差、LCP 指標不佳\n// 建議：\n// 1) 使用 next/image 替代所有 <img> 標籤\n// 2) 配置適當的 priority 和 sizes 屬性\n// 3) 實現圖片預載入和懶加載策略\n// 4) 使用 WebP/AVIF 格式優化\n// @assignee performance-team\n// @deadline 2025-02-01"
+      "context": "    esmExternals: true,\n  },\n  \n  // TODO: [P2] PERF next.config.ts - 實現 Next.js 15 性能優化配置\n  // 問題：未充分利用 Next.js 15 的性能優化特性\n  // 影響：圖片載入性能差、bundle 大小過大\n  // 建議：\n  // 1) 啟用 optimizePackageImports 減少 bundle 大小\n  // 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n  // 3) 添加 experimental.turbo 配置提升開發體驗\n  // 4) 配置適當的圖片優化參數\n  // @assignee performance-team\n  // @deadline 2025-02-01"
     },
     {
       "priority": "P2",
@@ -822,7 +668,7 @@
       ],
       "file": "src\\app\\(app)\\organizations\\[organizationslug]\\roles\\page.tsx",
       "line": 2,
-      "context": "'use client';\n// TODO: [P2] CLEANUP unused import (L3) [低認知]\n// - 問題：useCollection 未使用\n// - 指引：移除未使用匯入或以前綴 _ 命名表示暫未用。\n\nimport { useCollection, useFirestore } from '@/firebase';\n\n// TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入\n// 問題：'useCollection' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
+      "context": "'use client';\n// TODO: [P2] CLEANUP unused import (L3) [低認知]\n// - 問題：useCollection 未使用\n// - 指引：移除未使用匯入或以前綴 _ 命名表示暫未用。\n\nimport { useCollection as _useCollection, useFirestore } from '@/firebase';\n\n// TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入\n// 問題：'useCollection' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
     },
     {
       "priority": "P2",
@@ -836,7 +682,7 @@
       "file": "src\\app\\(app)\\organizations\\[organizationslug]\\roles\\page.tsx",
       "line": 8,
       "assignee": "frontend",
-      "context": "\nimport { useCollection, useFirestore } from '@/firebase';\n\n// TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入\n// 問題：'useCollection' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { collection, query, where, getDocs, limit } from 'firebase/firestore';\nimport React, { useEffect, useState } from 'react';\nimport { RoleList } from '@/components/features/organizations/components/roles';\nimport { Skeleton } from '@/components/ui/skeleton';\nimport { type Account } from '@/lib/types-unified';"
+      "context": "\nimport { useCollection as _useCollection, useFirestore } from '@/firebase';\n\n// TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入\n// 問題：'useCollection' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { collection, query, where, getDocs, limit } from 'firebase/firestore';\nimport React, { useEffect, useState } from 'react';\nimport { RoleList } from '@/components/features/organizations/components/roles';\nimport { Skeleton } from '@/components/ui/skeleton';\nimport { type Account } from '@/lib/types-unified';"
     },
     {
       "priority": "P2",
@@ -848,7 +694,7 @@
       ],
       "file": "src\\app\\(app)\\organizations\\[organizationslug]\\spaces\\page.tsx",
       "line": 2,
-      "context": "'use client';\r\n// TODO: [P2] CLEANUP unused arg (L6) [低認知]\r\n// - 問題：params 未使用\r\n// - 指引：移除參數或以前綴 _ 命名。\r\n\r\nimport { redirect } from 'next/navigation';\r\n\r\nexport default function OrgSpacesPageWrapper({\r\n  params,\r\n}: {\r\n  params: { organizationslug: string };\r"
+      "context": "'use client';\r\n// TODO: [P2] CLEANUP unused arg (L6) [低認知]\r\n// - 問題：params 未使用\r\n// - 指引：移除參數或以前綴 _ 命名。\r\n\r\nimport { redirect } from 'next/navigation';\r\n\r\nexport default function OrgSpacesPageWrapper({\r\n  params: _params,\r\n}: {\r\n  params: { organizationslug: string };\r"
     },
     {
       "priority": "P2",
@@ -910,18 +756,7 @@
       "file": "src\\components\\adjust-stock-dialog.tsx",
       "line": 18,
       "assignee": "frontend",
-      "context": "  setDoc,\r\n} from 'firebase/firestore';\r\n\r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:13 - 清理未使用的導入\r\n// 問題：'setDoc' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { useFirestore } from '@/firebase';\r\nimport { useDialogState } from '@/hooks/use-app-state';\r\nimport { useToast } from '@/hooks/use-toast';\r\nimport {\r"
-    },
-    {
-      "priority": "P2",
-      "type": "FIX",
-      "description": "src/components/adjust-stock-dialog.tsx - 修復非空斷言警告",
-      "details": [
-        "說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言"
-      ],
-      "file": "src\\components\\adjust-stock-dialog.tsx",
-      "line": 138,
-      "context": "          let stockDocRef;\r\n\r\n  if (hasExistingStockRecord) {\r\n              // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告\r\n              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              \r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\r\n// 問題：使用非空斷言 (!) 可能導致運行時錯誤\r\n// 影響：類型安全問題，可能導致應用崩潰\r\n// 建議：添加適當的類型檢查或使用可選鏈操作符\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r"
+      "context": "  setDoc as _setDoc,\r\n} from 'firebase/firestore';\r\n\r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:13 - 清理未使用的導入\r\n// 問題：'setDoc' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { useFirestore } from '@/firebase';\r\nimport { useDialogState } from '@/hooks/use-app-state';\r\nimport { useToast } from '@/hooks/use-toast';\r\nimport {\r"
     },
     {
       "priority": "P2",
@@ -953,7 +788,7 @@
       ],
       "file": "src\\components\\auth\\auth-provider.tsx",
       "line": 18,
-      "context": "// - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。\n// @assignee ai\n\n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx - 奧卡姆剃刀精簡權限/認證 Provider\n// 建議：\n// 1) 將 Firestore 讀取拆為最小 API（單一 fetchUserRoleAssignment），其餘聚合邏輯移至 service；Provider 僅保存必要狀態。\n// 2) 僅暴露最小 API（hasPermission / checkPermission / signIn / signOut），其餘輔助函式封裝內部。\n// 3) 避免渲染期副作用；所有 mutation 綁定事件或 Server Actions；避免將完整使用者資料下傳至 client。\n\nimport React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';\nimport { \n  Permission, \n  UserRoleAssignment, "
+      "context": "// - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。\n// @assignee ai\n\n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx - 奧卡姆剃刀精簡權限/認證 Provider\n// 建議：\n// 1) 將 Firestore 讀取拆為最小 API（單一 fetchUserRoleAssignment），其餘聚合邏輯移至 service；Provider 僅保存必要狀態。\n// 2) 僅暴露最小 API（hasPermission / checkPermission / signIn / signOut），其餘輔助函式封裝內部。\n// 3) 避免渲染期副作用；所有 mutation 綁定事件或 Server Actions；避免將完整使用者資料下傳至 client。\n\nimport React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';\nimport { \n  Permission, \n  UserRoleAssignment, "
     },
     {
       "priority": "P2",
@@ -1014,7 +849,7 @@
       ],
       "file": "src\\components\\auth\\role-manager.tsx",
       "line": 17,
-      "context": "// - 權限檢查改用 `useAuth()` 的單一 selector，移除本檔重複 hasPermission 調用。\n// @assignee ai\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx - 奧卡姆剃刀精簡角色管理\n// 建議：\n// 1) 合併 Firestore 讀取：批量查詢與最小欄位投影；以單一 hook/context 管理 users/roles 狀態，移除重複 useState。\n// 2) 僅在互動時載入詳情（lazy/load-on-demand），表格只顯示最少欄位；避免在列表渲染時計算聚合。\n// 3) 將對話框組件移至同一檔內的輕量內聯或共用子目錄；重複出現 ≥3 次的表單行為再抽象。\n// 4) 權限判斷集中在 `useAuth()` 暴露的單一 selector，避免在本檔重複 hasPermission。\n\nimport React, { useState, useEffect } from 'react';\nimport { Button } from '@/components/ui/button';\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';"
+      "context": "// - 權限檢查改用 `useAuth()` 的單一 selector，移除本檔重複 hasPermission 調用。\n// @assignee ai\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx - 奧卡姆剃刀精簡角色管理\n// 建議：\n// 1) 合併 Firestore 讀取：批量查詢與最小欄位投影；以單一 hook/context 管理 users/roles 狀態，移除重複 useState。\n// 2) 僅在互動時載入詳情（lazy/load-on-demand），表格只顯示最少欄位；避免在列表渲染時計算聚合。\n// 3) 將對話框組件移至同一檔內的輕量內聯或共用子目錄；重複出現 ≥3 次的表單行為再抽象。\n// 4) 權限判斷集中在 `useAuth()` 暴露的單一 selector，避免在本檔重複 hasPermission。\n\nimport React, { useState, useEffect, useCallback } from 'react';\nimport { Button } from '@/components/ui/button';\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';"
     },
     {
       "priority": "P2",
@@ -1028,7 +863,7 @@
       "file": "src\\components\\auth\\role-manager.tsx",
       "line": 32,
       "assignee": "frontend",
-      "context": "import { Badge } from '@/components/ui/badge';\nimport { Switch } from '@/components/ui/switch';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:28 - 清理未使用的導入\n// 問題：'Switch' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n\nimport { \n  Dialog, \n  DialogContent, \n  DialogHeader, "
+      "context": "import { Badge } from '@/components/ui/badge';\nimport { Switch as _Switch } from '@/components/ui/switch';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:28 - 清理未使用的導入\n// 問題：'Switch' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n\nimport { \n  Dialog, \n  DialogContent, \n  DialogHeader, "
     },
     {
       "priority": "P2",
@@ -1042,7 +877,7 @@
       "file": "src\\components\\auth\\role-manager.tsx",
       "line": 46,
       "assignee": "frontend",
-      "context": "  DialogTrigger \n} from '@/components/ui/dialog';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:34 - 清理未使用的導入\n// 問題：'DialogTrigger' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { \n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,"
+      "context": "  DialogTrigger as _DialogTrigger \n} from '@/components/ui/dialog';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:34 - 清理未使用的導入\n// 問題：'DialogTrigger' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { \n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,"
     },
     {
       "priority": "P2",
@@ -1070,7 +905,7 @@
       "file": "src\\components\\auth\\role-manager.tsx",
       "line": 84,
       "assignee": "frontend",
-      "context": "\nimport { useAuth } from './auth-provider';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:61 - 清理未使用的導入\n// 問題：'roleManagementService' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n\nimport { roleManagementService } from '@/lib/role-management';\nimport { Permission, UserRoleAssignment } from '@/lib/types-unified';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入"
+      "context": "\nimport { useAuth } from './auth-provider';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:61 - 清理未使用的導入\n// 問題：'roleManagementService' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n\nimport { roleManagementService as _roleManagementService } from '@/lib/role-management';\nimport { Permission, UserRoleAssignment as _UserRoleAssignment } from '@/lib/types-unified';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入"
     },
     {
       "priority": "P2",
@@ -1084,7 +919,7 @@
       "file": "src\\components\\auth\\role-manager.tsx",
       "line": 93,
       "assignee": "frontend",
-      "context": "import { roleManagementService } from '@/lib/role-management';\nimport { Permission, UserRoleAssignment } from '@/lib/types-unified';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入\n// 問題：'UserRoleAssignment' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { \n  getFirestore, \n  collection, \n  doc, \n  getDocs, "
+      "context": "import { roleManagementService as _roleManagementService } from '@/lib/role-management';\nimport { Permission, UserRoleAssignment as _UserRoleAssignment } from '@/lib/types-unified';\n\n// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入\n// 問題：'UserRoleAssignment' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { \n  getFirestore, \n  collection, \n  doc, \n  getDocs, "
     },
     {
       "priority": "P2",
@@ -1098,7 +933,7 @@
       "file": "src\\components\\contribution-breakdown-chart.tsx",
       "line": 12,
       "assignee": "frontend",
-      "context": "import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\n\r\n// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx:10 - 清理未使用的導入\r\n// 問題：'Card', 'CardContent', 'CardHeader', 'CardTitle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\ninterface ContributionData {\r\n    subject: string;\r\n    value: number;\r\n}\r"
+      "context": "import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';\r\nimport { Card as _Card, CardContent as _CardContent, CardHeader as _CardHeader, CardTitle as _CardTitle } from '@/components/ui/card';\r\n\r\n// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx:10 - 清理未使用的導入\r\n// 問題：'Card', 'CardContent', 'CardHeader', 'CardTitle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\ninterface ContributionData {\r\n    subject: string;\r\n    value: number;\r\n}\r"
     },
     {
       "priority": "P2",
@@ -1112,7 +947,7 @@
       "file": "src\\components\\features\\contracts\\contract-list.tsx",
       "line": 17,
       "assignee": "frontend",
-      "context": "import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter, X } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:15 - 清理未使用的導入\r\n// 問題：'Filter' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { Contract, ContractFilters } from '@/lib/types/contract.types';\r\nimport { useState, useMemo } from 'react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入\r"
+      "context": "import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter as _Filter, X } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:15 - 清理未使用的導入\r\n// 問題：'Filter' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { Contract, ContractFilters } from '@/lib/types/contract.types';\r\nimport { useState, useMemo as _useMemo } from 'react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入\r"
     },
     {
       "priority": "P2",
@@ -1126,7 +961,7 @@
       "file": "src\\components\\features\\contracts\\contract-list.tsx",
       "line": 26,
       "assignee": "frontend",
-      "context": "import { Contract, ContractFilters } from '@/lib/types/contract.types';\r\nimport { useState, useMemo } from 'react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入\r\n// 問題：'useMemo' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { useContracts, useDeleteContract, useAnalyzeContract, useGenerateContractPDF } from '@/hooks/use-contracts';\r\nimport { useDebounce } from 'use-debounce';\r\n\r\ninterface ContractListProps {\r\n  spaceId: string;\r"
+      "context": "import { Contract, ContractFilters } from '@/lib/types/contract.types';\r\nimport { useState, useMemo as _useMemo } from 'react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入\r\n// 問題：'useMemo' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { useContracts, useDeleteContract, useAnalyzeContract, useGenerateContractPDF } from '@/hooks/use-contracts';\r\nimport { useDebounce } from 'use-debounce';\r\n\r\ninterface ContractListProps {\r\n  spaceId: string;\r"
     },
     {
       "priority": "P2",
@@ -1167,7 +1002,7 @@
       "file": "src\\components\\features\\spaces\\components\\acceptance\\acceptance-item.tsx",
       "line": 7,
       "assignee": "frontend",
-      "context": "import { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/acceptance/acceptance-item.tsx:5 - 清理未使用的導入\r\n// 問題：'Button' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r"
+      "context": "import { Badge } from '@/components/ui/badge';\r\nimport { Button as _Button } from '@/components/ui/button';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/acceptance/acceptance-item.tsx:5 - 清理未使用的導入\r\n// 問題：'Button' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r"
     },
     {
       "priority": "P2",
@@ -1201,7 +1036,7 @@
       "file": "src\\components\\features\\spaces\\components\\contracts\\contract-details.tsx",
       "line": 5,
       "assignee": "frontend",
-      "context": "\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:3 - 清理未使用的導入\r\n// 問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r"
+      "context": "\r\nimport { Avatar as _Avatar, AvatarFallback as _AvatarFallback, AvatarImage as _AvatarImage } from '@/components/ui/avatar';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:3 - 清理未使用的導入\r\n// 問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r"
     },
     {
       "priority": "P2",
@@ -1215,7 +1050,7 @@
       "file": "src\\components\\features\\spaces\\components\\contracts\\contract-details.tsx",
       "line": 19,
       "assignee": "frontend",
-      "context": "import { Separator } from '@/components/ui/separator';\r\nimport { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:10 - 清理未使用的導入\r\n// 問題：'Phone' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r"
+      "context": "import { Separator } from '@/components/ui/separator';\r\nimport { Calendar, DollarSign, FileText, Mail, Phone as _Phone, User } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:10 - 清理未使用的導入\r\n// 問題：'Phone' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r"
     },
     {
       "priority": "P2",
@@ -1233,7 +1068,7 @@
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
       "line": 3,
-      "context": "'use client';\r\n\r\n// TODO: [P2] FIX src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入\r"
+      "context": "'use client';\r\n\r\n// TODO: [P2] FIX src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText as _FileText, Plus, Search, Filter, Calendar, DollarSign as _DollarSign } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入\r"
     },
     {
       "priority": "P2",
@@ -1252,7 +1087,7 @@
       "file": "src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
       "line": 12,
       "assignee": "frontend",
-      "context": "import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入\r\n// 問題：'FileText', 'DollarSign' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 奧卡姆剃刀精簡列表\r\n// 建議：\r\n// 1) 將統計（total/pending/active）移至 memo 或上層 hook，避免在渲染期反覆計算。\r\n// 2) 類型圖示以 CSS/variant 取代多分支；最小化 UI 條件分支。\r\n// 3) 詳情 `ContractDetails` 採 lazy import（動態載入），減少首屏負擔。\r"
+      "context": "import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText as _FileText, Plus, Search, Filter, Calendar, DollarSign as _DollarSign } from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入\r\n// 問題：'FileText', 'DollarSign' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 奧卡姆剃刀精簡列表\r\n// 建議：\r\n// 1) 將統計（total/pending/active）移至 memo 或上層 hook，避免在渲染期反覆計算。\r\n// 2) 類型圖示以 CSS/variant 取代多分支；最小化 UI 條件分支。\r\n// 3) 詳情 `ContractDetails` 採 lazy import（動態載入），減少首屏負擔。\r"
     },
     {
       "priority": "P2",
@@ -1327,7 +1162,7 @@
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx",
       "line": 28,
       "assignee": "frontend",
-      "context": "  FolderOpen\r\n} from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入\r\n// 問題：'FolderOpen' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { cn } from '@/lib/utils';\r\nimport { type FileItem } from './folder-tree';\r\nimport { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';\r\n\r\ninterface FileTableProps {\r"
+      "context": "  FolderOpen as _FolderOpen\r\n} from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入\r\n// 問題：'FolderOpen' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { cn } from '@/lib/utils';\r\nimport { type FileItem } from './folder-tree';\r\nimport { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';\r\n\r\ninterface FileTableProps {\r"
     },
     {
       "priority": "P2",
@@ -1355,7 +1190,7 @@
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx",
       "line": 41,
       "assignee": "frontend",
-      "context": "// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:29 - 清理未使用的導入\r\n// 問題：'Save' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { cn } from '@/lib/utils';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入\r\n// 問題：'cn' 已導入但從未使用\r"
+      "context": "// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:29 - 清理未使用的導入\r\n// 問題：'Save' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { cn as _cn } from '@/lib/utils';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入\r\n// 問題：'cn' 已導入但從未使用\r"
     },
     {
       "priority": "P2",
@@ -1369,35 +1204,21 @@
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx",
       "line": 49,
       "assignee": "frontend",
-      "context": "\r\nimport { cn } from '@/lib/utils';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入\r\n// 問題：'cn' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { format } from 'date-fns';\r\nimport { zhTW } from 'date-fns/locale';\r\n\r\nexport interface FilterOptions {\r\n  searchQuery: string;\r"
+      "context": "\r\nimport { cn as _cn } from '@/lib/utils';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入\r\n// 問題：'cn' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { format } from 'date-fns';\r\nimport { zhTW } from 'date-fns/locale';\r\n\r\nexport interface FilterOptions {\r\n  searchQuery: string;\r"
     },
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - 清理未使用的導入",
+      "description": "src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports",
       "details": [
-        "問題：'Button' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
+        "Issue: 'Button' is imported but never used",
+        "Impact: Increases bundle size and affects performance",
+        "Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused"
       ],
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\folder-tree.tsx",
       "line": 14,
       "assignee": "frontend",
-      "context": "import React, { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - 清理未使用的導入\r\n// 問題：'Button' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { \r\n  ChevronRight, \r\n  ChevronDown, \r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx:9 - 清理未使用的導入",
-      "details": [
-        "問題：'useMemo' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\file-explorer\\thumbnail\\file-thumbnail-grid.tsx",
-      "line": 11,
-      "assignee": "frontend",
-      "context": "\r\nimport React, { useState, useEffect, useRef } from 'react';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx:9 - 清理未使用的導入\r\n// 問題：'useMemo' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { useVirtualizer } from '@tanstack/react-virtual';\r\nimport { cn } from '@/lib/utils';\r\nimport { FileThumbnailCard } from './file-thumbnail-card';\r\nimport { type FileItem } from '../folder-tree';\r\n\r"
+      "context": "import React, { useState } from 'react';\r\nimport { Button as _Button } from '@/components/ui/button';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports\r\n// Issue: 'Button' is imported but never used\r\n// Impact: Increases bundle size and affects performance\r\n// Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused\r\n// @assignee frontend-team\r\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { \r\n  ChevronRight, \r\n  ChevronDown, \r"
     },
     {
       "priority": "P2",
@@ -1411,7 +1232,7 @@
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx",
       "line": 18,
       "assignee": "frontend",
-      "context": "import { Button } from '@/components/ui/button';\r\nimport { Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport {\r\n  DropdownMenu,\r\n  DropdownMenuContent,\r\n  DropdownMenuItem,\r\n  DropdownMenuTrigger,\r"
+      "context": "import { Button } from '@/components/ui/button';\r\nimport { Input as _Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport {\r\n  DropdownMenu,\r\n  DropdownMenuContent,\r\n  DropdownMenuItem,\r\n  DropdownMenuTrigger,\r"
     },
     {
       "priority": "P2",
@@ -1425,7 +1246,7 @@
       "file": "src\\components\\features\\spaces\\components\\file-explorer\\upload-dialog.tsx",
       "line": 14,
       "assignee": "frontend",
-      "context": "import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/upload-dialog.tsx:12 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Label } from '@/components/ui/label';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { \r\n  Upload, \r"
+      "context": "import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Input as _Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/upload-dialog.tsx:12 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Label } from '@/components/ui/label';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { \r\n  Upload, \r"
     },
     {
       "priority": "P2",
@@ -1497,7 +1318,7 @@
       "description": "src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 顯示錯誤提示",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\participants\\invite-participant-dialog.tsx",
-      "line": 59,
+      "line": 55,
       "assignee": "dev",
       "context": "      onOpenChange(false);\r\n    } catch (error) {\r\n      console.error('Failed to invite participant:', error);\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 顯示錯誤提示\r\n      // @assignee dev\r\n    } finally {\r\n      setIsLoading(false);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <Dialog open={open} onOpenChange={onOpenChange}>\r\n      <DialogContent className=\"sm:max-w-[425px]\">\r"
     },
@@ -1540,7 +1361,7 @@
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx",
       "line": 212,
-      "context": "  const handleAction = useCallback((action: string, participantId: string) => {\r\n    switch (action) {\r\n      case 'edit':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框\r\n        console.log('編輯?�員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確定要移除此成員嗎？')) {\r\n          actions.onRemove(participantId);\r"
+      "context": "  const handleAction = useCallback((action: string, participantId: string) => {\r\n    switch (action) {\r\n      case 'edit':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框\r\n        console.log('編輯成員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確定要移除此成員嗎？')) {\r\n          actions.onRemove(participantId);\r"
     },
     {
       "priority": "P2",
@@ -1549,21 +1370,7 @@
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx",
       "line": 216,
-      "context": "        console.log('編輯?�員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確定要移除此成員嗎？')) {\r\n          actions.onRemove(participantId);\r\n        }\r\n        break;\r\n    }\r\n  }, [actions]);\r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/quality/checklist.tsx:4 - 清理未使用的導入",
-      "details": [
-        "問題：'Button' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\quality\\checklist.tsx",
-      "line": 6,
-      "assignee": "frontend",
-      "context": "import { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/quality/checklist.tsx:4 - 清理未使用的導入\r\n// 問題：'Button' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { CheckCircle, Circle, Clock, AlertCircle } from 'lucide-react';\r"
+      "context": "        console.log('編輯成員:', participantId);\r\n        break;\r\n      case 'role':\r\n        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框\r\n        console.log('變更角色:', participantId);\r\n        break;\r\n      case 'remove':\r\n        if (confirm('確定要移除此成員嗎？')) {\r\n          actions.onRemove(participantId);\r\n        }\r\n        break;\r\n    }\r\n  }, [actions]);\r"
     },
     {
       "priority": "P2",
@@ -1616,40 +1423,12 @@
     },
     {
       "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/report/report-viewer.tsx:3 - 清理未使用的導入",
-      "details": [
-        "問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\report\\report-viewer.tsx",
-      "line": 5,
-      "assignee": "frontend",
-      "context": "\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/report/report-viewer.tsx:3 - 清理未使用的導入\r\n// 問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r"
-    },
-    {
-      "priority": "P2",
       "type": "FEAT",
       "description": "src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\report\\report-viewer.tsx",
-      "line": 84,
+      "line": 80,
       "context": "\r\n  const handleDownload = () => {\r\n    if (report.downloadUrl) {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯\r\n      console.log('Downloading report:', report.title);\r\n      // @assignee dev\r\n      window.open(report.downloadUrl, '_blank');\r\n    }\r\n  };\r\n\r\n  // Mock report content based on type\r\n  const getReportContent = () => {\r\n    switch (report.type) {\r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/features/spaces/components/spaces-list-view.tsx:27 - 清理未使用的導入",
-      "details": [
-        "問題：'cn' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\features\\spaces\\components\\spaces-list-view.tsx",
-      "line": 29,
-      "assignee": "frontend",
-      "context": "import { Skeleton } from '@/components/ui/skeleton';\r\nimport { cn } from '@/lib/utils';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/spaces-list-view.tsx:27 - 清理未使用的導入\r\n// 問題：'cn' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport {\r\n  Tabs,\r\n  TabsContent,\r\n  TabsList,\r\n  TabsTrigger,\r"
     },
     {
       "priority": "P2",
@@ -1672,7 +1451,7 @@
       "details": [],
       "file": "src\\components\\features\\spaces\\hooks\\use-star-actions.ts",
       "line": 14,
-      "context": "import { useToast } from '@/hooks/use-toast';\r\nimport { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';\r\nimport { type Space } from '@/lib/types-unified';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）\r\n\r\ninterface UseStarActionsReturn {\r\n  // Actions\r\n  starSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  unstarSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  toggleStar: (spaceId: string, userId: string, isStarred: boolean) => Promise<boolean>;\r\n  \r\n  // State\r\n  isLoading: boolean;\r"
+      "context": "import { useToast } from '@/hooks/use-toast';\r\nimport { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';\r\nimport { type Space as _Space } from '@/lib/types-unified';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）\r\n\r\ninterface UseStarActionsReturn {\r\n  // Actions\r\n  starSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  unstarSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  toggleStar: (spaceId: string, userId: string, isStarred: boolean) => Promise<boolean>;\r\n  \r\n  // State\r\n  isLoading: boolean;\r"
     },
     {
       "priority": "P2",
@@ -1686,7 +1465,7 @@
       "file": "src\\components\\follower-list.tsx",
       "line": 13,
       "assignee": "frontend",
-      "context": "import Link from 'next/link';\r\nimport { collection, doc, query, where, documentId } from 'firebase/firestore';\r\n\r\n// TODO: [P2] REFACTOR src/components/follower-list.tsx:11 - 清理未使用的導入\r\n// 問題：'doc' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { useFirestore, useCollection } from '@/firebase';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Button } from '@/components/ui/button';\r\nimport {\r"
+      "context": "import Link from 'next/link';\r\nimport { collection, doc as _doc, query, where, documentId } from 'firebase/firestore';\r\n\r\n// TODO: [P2] REFACTOR src/components/follower-list.tsx:11 - 清理未使用的導入\r\n// 問題：'doc' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { useFirestore, useCollection } from '@/firebase';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Button } from '@/components/ui/button';\r\nimport {\r"
     },
     {
       "priority": "P2",
@@ -1700,7 +1479,7 @@
       "file": "src\\components\\forms\\form-card.tsx",
       "line": 20,
       "assignee": "frontend",
-      "context": "} from '@/components/ui/card';\r\nimport { Skeleton } from '@/components/ui/skeleton';\r\n\r\n// TODO: [P2] REFACTOR src/components/forms/form-card.tsx:18 - 清理未使用的導入\r\n// 問題：'Skeleton' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Form } from '@/components/ui/form';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UseFormReturn, FieldValues } from 'react-hook-form';\r\nimport { FormCardSkeleton } from '../form-card-skeleton';\r\n\r"
+      "context": "} from '@/components/ui/card';\r\nimport { Skeleton as _Skeleton } from '@/components/ui/skeleton';\r\n\r\n// TODO: [P2] REFACTOR src/components/forms/form-card.tsx:18 - 清理未使用的導入\r\n// 問題：'Skeleton' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { Form } from '@/components/ui/form';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UseFormReturn, FieldValues } from 'react-hook-form';\r\nimport { FormCardSkeleton } from '../form-card-skeleton';\r\n\r"
     },
     {
       "priority": "P2",
@@ -1719,53 +1498,6 @@
     {
       "priority": "P2",
       "type": "REFACTOR",
-      "description": "src/components/layout/sidebar.tsx:13 - 清理未使用的導入",
-      "details": [
-        "問題：'Settings' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\layout\\sidebar.tsx",
-      "line": 16,
-      "assignee": "frontend",
-      "context": "  Settings,\n} from \"lucide-react\";\n\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx:13 - 清理未使用的導入\n// 問題：'Settings' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@/components/ui/tooltip\";\n\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx:15 - 清理未使用的導入\n// 問題：'Tooltip', 'TooltipContent', 'TooltipProvider', 'TooltipTrigger' 已導入但從未使用"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/layout/sidebar.tsx:15 - 清理未使用的導入",
-      "details": [
-        "問題：'Tooltip', 'TooltipContent', 'TooltipProvider', 'TooltipTrigger' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用",
-        "TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄",
-        "建議：",
-        "1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。",
-        "2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。",
-        "3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。"
-      ],
-      "file": "src\\components\\layout\\sidebar.tsx",
-      "line": 24,
-      "assignee": "frontend",
-      "context": "\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@/components/ui/tooltip\";\n\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx:15 - 清理未使用的導入\n// 問題：'Tooltip', 'TooltipContent', 'TooltipProvider', 'TooltipTrigger' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄\n// 建議：\n// 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。\n// 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。\n// 3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄",
-      "details": [
-        "建議：",
-        "1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。",
-        "2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。",
-        "3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。"
-      ],
-      "file": "src\\components\\layout\\sidebar.tsx",
-      "line": 29,
-      "context": "// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄\n// 建議：\n// 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。\n// 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。\n// 3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。\n\nimport { cn } from \"@/lib/utils\";\nimport { Logo } from \"../logo\";\nimport { Nav } from \"./nav\";\nimport { type NavItem } from \"./navigation\";"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
       "description": "src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層",
       "details": [
         "建議：",
@@ -1776,85 +1508,6 @@
       "file": "src\\components\\ui\\chart.tsx",
       "line": 1,
       "context": "// TODO: [P2] REFACTOR src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層\r\n// 建議：\r\n// 1) 以 props 驅動、單一責任：只渲染必要視圖，不內嵌資料轉換/來源選擇。\r\n// 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。\r\n// 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。\r\n\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport * as RechartsPrimitive from \"recharts\"\r\n\r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入",
-      "details": [
-        "問題：'useEffect' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\ui\\file-type-icon.tsx",
-      "line": 9,
-      "assignee": "frontend",
-      "context": "\nimport React, { useState } from 'react';\n\n// TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入\n// 問題：'useEffect' 已導入但從未使用\n// 影響：增加 bundle 大小，影響性能\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\n// @assignee frontend-team\nimport { cn } from '@/lib/utils';\nimport { \n  File, \n  FileText, \n  Image, "
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）",
-      "details": [],
-      "file": "src\\components\\ui\\file-type-icon.tsx",
-      "line": 26,
-      "context": "  FileSpreadsheet,\n  Presentation,\n  FileImage,\n  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）\n  \n// TODO: [P2] PERF src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐\n// 問題：未充分利用 Next.js Image 組件的優化特性\n// 影響：圖片載入性能差、LCP 指標不佳\n// 建議：\n// 1) 使用 next/image 替代所有 <img> 標籤\n// 2) 配置適當的 priority 和 sizes 屬性\n// 3) 實現圖片預載入和懶加載策略\n// 4) 使用 WebP/AVIF 格式優化"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-upload.tsx:15 - 清理未使用的導入",
-      "details": [
-        "問題：'Badge' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\ui\\file-upload.tsx",
-      "line": 17,
-      "assignee": "frontend",
-      "context": "import { Progress } from '@/components/ui/progress';\r\nimport { Badge } from '@/components/ui/badge';\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:15 - 清理未使用的導入\r\n// 問題：'Badge' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\nimport { FileTypeIcon } from '@/components/ui/file-type-icon';\r\nimport { \r\n  Upload, \r\n  File, \r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-upload.tsx:20 - 清理未使用的導入",
-      "details": [
-        "問題：'X' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\ui\\file-upload.tsx",
-      "line": 35,
-      "assignee": "frontend",
-      "context": "  AlertCircle \r\n} from 'lucide-react';\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:20 - 清理未使用的導入\r\n// 問題：'X' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:24 - 清理未使用的導入\r\n// 問題：'CheckCircle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-upload.tsx:24 - 清理未使用的導入",
-      "details": [
-        "問題：'CheckCircle' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\ui\\file-upload.tsx",
-      "line": 41,
-      "assignee": "frontend",
-      "context": "// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:24 - 清理未使用的導入\r\n// 問題：'CheckCircle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:25 - 清理未使用的導入\r\n// 問題：'AlertCircle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r"
-    },
-    {
-      "priority": "P2",
-      "type": "REFACTOR",
-      "description": "src/components/ui/file-upload.tsx:25 - 清理未使用的導入",
-      "details": [
-        "問題：'AlertCircle' 已導入但從未使用",
-        "影響：增加 bundle 大小，影響性能",
-        "建議：移除未使用的導入或添加下劃線前綴表示有意未使用"
-      ],
-      "file": "src\\components\\ui\\file-upload.tsx",
-      "line": 47,
-      "assignee": "frontend",
-      "context": "// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\n\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:25 - 清理未使用的導入\r\n// 問題：'AlertCircle' 已導入但從未使用\r\n// 影響：增加 bundle 大小，影響性能\r\n// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用\r\n// @assignee frontend-team\r\nimport { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';\r\nimport { ContractDocument } from '@/lib/types/contract.types';\r\n\r\n// Helper functions for file validation (not hooks)\r\nconst isFileTypeSupported = (fileName: string): boolean => {\r"
     },
     {
       "priority": "P2",
@@ -1998,5 +1651,5 @@
       "context": "import { Check, ChevronRight, Circle } from \"lucide-react\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n// TODO: [P3] REFACTOR src/components/ui/menubar.tsx - 奧卡姆剃刀精簡 API 表面\r\n// 建議：\r\n// 1) 僅導出常用組件（Menubar, Trigger, Content, Item, Separator），其餘用到再暴露，降低 API 心智負擔。\r\n// 2) 以範例/Story 取代過度封裝，鼓勵組合而非新增包裝層。\r\n\r\nfunction MenubarMenu({\r\n  ...props\r\n}: React.ComponentProps<typeof MenubarPrimitive.Menu>) {\r\n  return <MenubarPrimitive.Menu {...props} />\r\n}\r"
     }
   ],
-  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 153\n- 🔴 緊急項目: 48\n## ⚠️ 立即處理（P0 或已過期）\n### 1. FIX: Parsing (L138) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx:9`\n- 優先級: P0\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。\n- TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：\n- 1) 檢查上一行是否缺分號或字串未關閉。\n- 2) 檢查註解是否破壞字元（如中文全形標點）。\n- 3) 保持最小改動，先確保程式可被解析再進行重構。\n- 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。\n- TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\n- 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\n- 影響：維護困難、測試複雜、性能問題\n- 建議：\n- 1) 將組件拆分為更小的單一職責組件\n- 2) 移除多層 Context Provider 嵌套\n- 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components\n- 4) 統一狀態管理，避免 prop drilling\n**程式碼上下文:**\n```typescript\n * and user actions.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L138) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。\r\n// TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：\r\n// 1) 檢查上一行是否缺分號或字串未關閉。\r\n// 2) 檢查註解是否破壞字元（如中文全形標點）。\r\n// 3) 保持最小改動，先確保程式可被解析再進行重構。\r\n// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\r\n// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\r\n```\n### 2. FIX: src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\r\n// 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\r\n/**\r\n * @fileoverview A component that renders a table of files and folders.\r\n * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量\r\n * It supports sorting by various columns, selecting multiple items, and triggering\r\n * actions on individual items. It also includes a settings menu to toggle\r\n * the visibility of columns.\r\n */\r\n'use client';\r\n```\n### 3. FIX: src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\r\n// 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\r\n/**\r\n * @fileoverview A slide-out panel for filtering files and folders in the explorer.\r\n * It provides a rich set of filtering options, including keyword search, scope\r\n * selection, file type, status, and date ranges. It allows users to apply these\r\n * filters or save them for later use.\r\n */\r\n'use client';\r\n// TODO[P2][lint][parser-error]: 第143行 Unexpected token，可能為 JSX 標籤未正確關閉或需要使用 {'>'}。\r\n```\n### 4. FIX: src/components/features/spaces/components/file-explorer/folder-tree.tsx - 修復語法錯誤（第480行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\folder-tree.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 結構與轉義，修正不合法符號\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - 修復語法錯誤（第480行 Unexpected token）\r\n// 說明：檢查 JSX 結構與轉義，修正不合法符號\r\n/**\r\n * @fileoverview A component that displays a hierarchical folder structure.\r\n * It allows users to expand and collapse folders, select items, and access\r\n * context-menu actions. It's the primary navigation element on the left side\r\n * of the file explorer.\r\n */\r\n'use client';\r\n\r\n```\n### 5. FIX: src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\packages-tab.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串/模板字面量，避免編譯失敗\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）\r\n// 說明：修正字串/模板字面量，避免編譯失敗\r\n/**\r\n * @fileoverview A component for the \"Packages\" tab in the file explorer's sidebar.\r\n * It displays a list of file packages, which are collections of related documents.\r\n * This component handles the creation and management of these packages.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L156) [低認知][現代化]\r\n// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\r\n```\n### 6. FIX: Parsing (L156) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\packages-tab.tsx:9`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\n- - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。\n**程式碼上下文:**\n```typescript\n * This component handles the creation and management of these packages.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L156) [低認知][現代化]\r\n// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\r\n// - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。\r\n\r\nimport React, { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Label } from '@/components/ui/label';\r\n```\n### 7. FIX: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：補齊引號或移除多餘字元，確保語法正確\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）\r\n// 說明：補齊引號或移除多餘字元，確保語法正確\r\n/**\r\n * @fileoverview Abstract service layer for file preview functionality.\r\n * Provides a unified interface for different file preview libraries.\r\n */\r\n'use client';\r\n\r\nimport { type FileItem } from '../folder-tree';\r\n\r\n```\n### 8. FIX: src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\thumbnail\\file-thumbnail-grid.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正模板/普通字串，避免解析錯誤\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）\r\n// 說明：修正模板/普通字串，避免解析錯誤\r\n/**\r\n * @fileoverview A modern component that displays files in a responsive thumbnail grid layout.\r\n * Uses @tanstack/react-virtual for high-performance virtualization and adaptive sizing.\r\n */\r\n'use client';\r\n\r\nimport React, { useState, useEffect, useRef } from 'react';\r\n\r\n```\n### 9. FIX: src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串與 JSX 構造，確保可編譯\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）\r\n// 說明：修正字串與 JSX 構造，確保可編譯\r\n/**\r\n * @fileoverview The main toolbar for the file explorer.\r\n * It contains primary actions like upload, move, and export, as well as controls\r\n * for searching, changing the view layout (grid/list), and accessing filters and\r\n * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n```\n### 10. FIX: Parsing (L141) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx:10`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\n**程式碼上下文:**\n```typescript\n * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\r\n\r\nimport React, { useRef } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n```\n### 11. FIX: src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-details.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串或模板字面量，避免 Lint 解析錯誤\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n```\n### 12. FIX: Parsing (L109) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-details.tsx:4`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\n```\n### 13. FIX: src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-list.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：補齊引號或修正 JSX 文字，確保通過 Lint\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\r\n// 說明：補齊引號或修正 JSX 文字，確保通過 Lint\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L139) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\n```\n### 14. FIX: Parsing (L139) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-list.tsx:4`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\r\n// 說明：補齊引號或修正 JSX 文字，確保通過 Lint\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L139) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\n```\n### 15. FIX: src/components/features/spaces/components/participants/advanced-filters.tsx - 修復語法錯誤（第34行 ',' 缺失）\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\advanced-filters.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查物件/參數列表逗號缺失與 JSX 分隔\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/participants/advanced-filters.tsx - 修復語法錯誤（第34行 ',' 缺失）\r\n// 說明：檢查物件/參數列表逗號缺失與 JSX 分隔\r\n/**\r\n * @fileoverview ?�代?��?級�?濾器組件\r\n * ?��?多種?�濾條件?�實?��?�?\r\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L36) [低認知][現代化]\r\n// - 問題：\",\" expected（可能缺少逗號/括號）\r\n```\n### 16. FIX: Parsing (L36) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\advanced-filters.tsx:9`\n- 優先級: P0\n**詳細說明:**\n- - 問題：\",\" expected（可能缺少逗號/括號）\n- - 指引：補齊分隔符或簡化 props，先確保可解析再優化。\n**程式碼上下文:**\n```typescript\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L36) [低認知][現代化]\r\n// - 問題：\",\" expected（可能缺少逗號/括號）\r\n// - 指引：補齊分隔符或簡化 props，先確保可解析再優化。\r\n\r\nimport React, { useState, useCallback, useMemo } from 'react';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\n```\n### 17. FIX: src/components/features/spaces/components/participants/card-grid.tsx - 修復語法錯誤（第123行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\card-grid.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：補齊字串/模板字面量，避免解析錯誤\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/participants/card-grid.tsx - 修復語法錯誤（第123行未終止的字串）\r\n// 說明：補齊字串/模板字面量，避免解析錯誤\r\n/**\r\n * @fileoverview ?��?式卡?�網?��??��?�?\r\n * 使用?�擬?��?術支?�大?�數?��?高性能渲�?\r\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L125) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n```\n### 18. FIX: Parsing (L125) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\card-grid.tsx:9`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上結尾引號或用模板字串，避免特殊符號未轉義。\n**程式碼上下文:**\n```typescript\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L125) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上結尾引號或用模板字串，避免特殊符號未轉義。\r\n\r\nimport React, { useState, useCallback, useMemo } from 'react';\r\nimport { useVirtualizer } from '@tanstack/react-virtual';\r\nimport { ParticipantCard } from './participant-card';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r\n```\n### 19. FIX: Typo/Parsing (L81) [低認知]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\data.ts:81`\n- 優先級: P0\n**詳細說明:**\n- - 指引：修正參數型別宣告錯字 `_spaceId:`\n**程式碼上下文:**\n```typescript\n    },\r\n  ];\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L81) [低認知]\r\n  // - 指引：修正參數型別宣告錯字 `_spaceId:`\r\n  static async getParticipants(_spaceId: string): Promise<Participant[]> {\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 100));\r\n    return [...this.participants];\r\n  }\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]\r\n  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\r\n```\n### 20. FIX: Typo/Parsing (L91) [低認知]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\data.ts:89`\n- 優先級: P0\n**詳細說明:**\n- - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\n**程式碼上下文:**\n```typescript\n    return [...this.participants];\r\n  }\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]\r\n  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\r\n  static async inviteParticipant(\r\n    spaceId: string,\r\n    email: string,\r\n    role: Participant['role'],\r\n    _message?: string\r\n  ): Promise<Participant> {\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 500));\r\n```\n### 21. FIX: src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\invite-participant-dialog.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 標籤是否缺失閉合或有非法字元\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）\r\n// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L100) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。\r\n\r\nimport { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\n```\n### 22. FIX: Parsing (L100) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\invite-participant-dialog.tsx:4`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\n- - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）\r\n// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L100) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。\r\n\r\nimport { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\n```\n### 23. FIX: src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-card.tsx:6`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號\n**程式碼上下文:**\n```typescript\n * ?��?式設計�??��??�畫?�交互�???\r\n */\r\n\r\n// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）\r\n// 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L111) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。\r\n\r\nimport React, { useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\n```\n### 24. FIX: Parsing (L111) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-card.tsx:9`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\n- - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）\r\n// 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L111) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。\r\n\r\nimport React, { useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';\r\n```\n### 25. FIX: Parsing (L58) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-filters.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上引號或以 '--' 站位，避免混雜未轉義符號。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L58) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或以 '--' 站位，避免混雜未轉義符號。\r\n\r\nimport { memo } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Search, Filter, X } from 'lucide-react';\r\nimport { ParticipantFiltersProps } from './types';\r\n```\n### 26. FIX: Parsing (L67) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-list.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\n- - 指引：檢查 JSX 標籤/表格單元，使用 {'>'} 取代裸字符。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L67) [低認知][現代化]\r\n// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 標籤/表格單元，使用 {'>'} 取代裸字符。\r\n\r\nimport React, { useEffect, useMemo, useState, useCallback } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Plus, Download, Users, AlertCircle } from 'lucide-react';\r\nimport { useParticipants, useParticipantFilters } from './hooks/use-participants';\r\nimport { VirtualizedTable } from './virtualized-table';\r\nimport { CardGrid } from './card-grid';\r\n```\n### 27. FIX: Parsing (L67) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-role-editor.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補齊引號或簡化字串；避免行內註解破壞字串。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L67) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊引號或簡化字串；避免行內註解破壞字串。\r\n\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { useForm } from 'react-hook-form';\r\nimport { zodResolver } from '@hookform/resolvers/zod';\r\n```\n### 28. FIX: Parsing (L82) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-table.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上結尾引號；若文案未定以 '--' 站位。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L82) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上結尾引號；若文案未定以 '--' 站位。\r\n\r\nimport { memo, useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\n```\n### 29. FIX: Parsing (L106) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx:7`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\n- - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。\n**程式碼上下文:**\n```typescript\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L106) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。\r\n\r\nimport React, { useMemo, useCallback, useState } from 'react';\r\nimport { useVirtualizer } from '@tanstack/react-virtual';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\n```\n### 30. PERF: src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\layout.tsx:73`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染\n- 建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n  );\n  const organizations = organizationsData || [];\n\n// TODO: [P1] PERF src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項\n// 問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染\n// 建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);\n  \n  const handleSetSelectedTeam = (team: Team) => {\n```\n### 31. PERF: src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\page.tsx:127`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n- 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n    useCollection<WarehouseType>(warehousesQuery);\n  const warehouses = warehousesData || [];\n\n// TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n// 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n// 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  // Fetch all stock data for all warehouses\n  const [allStock, setAllStock] = useState<Stock[]>([]);\n  const [stockLoading, setStockLoading] = useState(true);\n```\n### 32. PERF: src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\[itemId]\\page.tsx:100`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 line 128）\n- 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n    useCollection<Warehouse>(warehousesQuery);\n  const warehouses = warehousesData || [];\n\n// TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n// 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n// 影響：性能問題，不必要的重新渲染（影響 line 128）\n// 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  // Get stock for this item across all warehouses\n  const [stockData, setStockData] = useState< (Stock & { warehouseName: string })[] >([]);\n  const [stockLoading, setStockLoading] = useState(true);\n```\n### 33. PERF: src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\spaces\\page.tsx:47`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\n- 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n    useCollection<Space>(allSpacesQuery);\r\n  const allSpaces = allSpacesData || [];\r\n\r\n// TODO: [P1] PERF src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\r\n// 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\r\n// 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\r\n// 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\r\n// @assignee frontend-team\r\n// @deadline 2025-01-15\r\n\r\n  const allOwnerIds = useMemo(() => {\r\n    if (allSpaces.length === 0) return [];\r\n    const ids = new Set<string>();\r\n```\n### 34. PERF: src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項\n- 檔案: `src\\components\\auth\\auth-provider.tsx:370`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項\n- 影響：可能導致過時閉包問題，狀態更新不及時\n- 建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組\n**程式碼上下文:**\n```typescript\n    return () => unsubscribe();\n  }, [auth]);\n\n// TODO: [P1] PERF src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項\n// 問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項\n// 影響：可能導致過時閉包問題，狀態更新不及時\n// 建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const value: AuthContext = {\n    ...state,\n    setUser,\n```\n### 35. PERF: src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項\n- 檔案: `src\\components\\auth\\role-manager.tsx:160`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項\n- 影響：可能導致過時閉包問題，函數更新不及時\n- 建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數\n**程式碼上下文:**\n```typescript\n    loadUsers();\n  }, [spaceId]);\n\n// TODO: [P1] PERF src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項\n// 問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項\n// 影響：可能導致過時閉包問題，函數更新不及時\n// 建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const loadRoles = async () => {\n    setLoading(true);\n    setError(null);\n```\n### 36. REFACTOR: src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx:17`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\n- 影響：維護困難、測試複雜、性能問題\n- 建議：\n- 1) 將組件拆分為更小的單一職責組件\n- 2) 移除多層 Context Provider 嵌套\n- 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components\n- 4) 統一狀態管理，避免 prop drilling\n**程式碼上下文:**\n```typescript\n// 2) 檢查註解是否破壞字元（如中文全形標點）。\r\n// 3) 保持最小改動，先確保程式可被解析再進行重構。\r\n// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構\r\n// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則\r\n// 影響：維護困難、測試複雜、性能問題\r\n// 建議：\r\n// 1) 將組件拆分為更小的單一職責組件\r\n// 2) 移除多層 Context Provider 嵌套\r\n// 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components\r\n// 4) 統一狀態管理，避免 prop drilling\r\n// @assignee frontend-team\r\n// @deadline 2025-01-15\r\n```\n### 37. PERF: src/components/features/spaces/hooks/use-file-actions.ts:105 - 修復 React Hook 缺失依賴項\n- 檔案: `src\\components\\features\\spaces\\hooks\\use-file-actions.ts:107`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：useCallback Hook 缺少 'fileOperations' 依賴項\n- 影響：可能導致過時閉包問題，函數更新不及時\n- 建議：將 'fileOperations' 添加到依賴數組中，或移除依賴數組\n**程式碼上下文:**\n```typescript\n    }\n  }, [toast]);\n\n// TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 修復 React Hook 缺失依賴項\n// 問題：useCallback Hook 缺少 'fileOperations' 依賴項\n// 影響：可能導致過時閉包問題，函數更新不及時\n// 建議：將 'fileOperations' 添加到依賴數組中，或移除依賴數組\n// @assignee frontend-team\n// @deadline 2025-01-15\n\n  const downloadFile = useCallback(async (\n    fileName: string, \n    spaceId: string, \n```\n### 38. REFACTOR: src/components/features/spaces/components/ - 減少過度抽象的組件層級\n- 檔案: `src\\components\\features\\spaces\\components\\index.ts:7`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-20\n- 負責人: @frontend\n**詳細說明:**\n- 問題：70 個文件過度拆分，造成不必要的複雜性\n- 影響：導入路徑過長、維護成本高、認知負擔重\n- 建議：\n- 1) 合併功能相似的組件（如多個 list 組件）\n- 2) 簡化目錄結構，減少嵌套層級\n- 3) 移除不必要的 barrel exports\n- 4) 遵循 Next.js 15 組件組合模式\n**程式碼上下文:**\n```typescript\n * by providing a single, consistent path.\r\n */\r\n\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/ - 減少過度抽象的組件層級\r\n// 問題：70 個文件過度拆分，造成不必要的複雜性\r\n// 影響：導入路徑過長、維護成本高、認知負擔重\r\n// 建議：\r\n// 1) 合併功能相似的組件（如多個 list 組件）\r\n// 2) 簡化目錄結構，減少嵌套層級\r\n// 3) 移除不必要的 barrel exports\r\n// 4) 遵循 Next.js 15 組件組合模式\r\n// @assignee frontend-team\r\n// @deadline 2025-01-20\r\n```\n### 39. REFACTOR: src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\n- 檔案: `src\\components\\adjust-stock-dialog.tsx:142`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用非空斷言 (!) 可能導致運行時錯誤\n- 影響：類型安全問題，可能導致應用崩潰\n- 建議：添加適當的類型檢查或使用可選鏈操作符\n**程式碼上下文:**\n```typescript\n              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              \r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\r\n// 問題：使用非空斷言 (!) 可能導致運行時錯誤\r\n// 影響：類型安全問題，可能導致應用崩潰\r\n// 建議：添加適當的類型檢查或使用可選鏈操作符\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n              stockDocRef = doc(collection(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock'));\r\n```\n### 40. REFACTOR: src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\auth\\auth-provider.tsx:197`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n      spaceRolesSnapshot.forEach(d => {\n        const data = d.data() as any;\n        \n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用\n// 問題：使用 any 類型違反類型安全原則\n// 影響：失去類型檢查，可能導致運行時錯誤\n// 建議：定義具體的類型接口替代 any 類型\n// @assignee frontend-team\n// @deadline 2025-01-25\n        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'\n          ? data.assignedAt as Timestamp\n          : Timestamp.fromDate(new Date());\n        spaceRoles[data.spaceId] = {\n```\n### 41. REFACTOR: src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\auth\\auth-provider.tsx:226`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n      orgRolesSnapshot.forEach(d => {\n        const data = d.data() as any;\n        \n// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用\n// 問題：使用 any 類型違反類型安全原則\n// 影響：失去類型檢查，可能導致運行時錯誤\n// 建議：定義具體的類型接口替代 any 類型\n// @assignee frontend-team\n// @deadline 2025-01-25\n        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'\n          ? data.assignedAt as Timestamp\n          : Timestamp.fromDate(new Date());\n        organizationRoles.push({\n```\n### 42. PERF: src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx:28`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @performance\n**詳細說明:**\n- 問題：過度使用 Client Components，違反 Next.js 15 最佳實踐\n- 影響：增加 JavaScript bundle 大小、影響首屏性能\n- 建議：\n- 1) 將純展示組件改為 Server Components\n- 2) 使用 Next.js 15 的 'use client' 邊界優化\n- 3) 實現適當的代碼分割和懶加載\n- 4) 使用 React 19 的新特性優化渲染\n**程式碼上下文:**\n```typescript\n// @assignee frontend-team\r\n// @deadline 2025-01-15\r\n\r\n// TODO: [P2] PERF src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用\r\n// 問題：過度使用 Client Components，違反 Next.js 15 最佳實踐\r\n// 影響：增加 JavaScript bundle 大小、影響首屏性能\r\n// 建議：\r\n// 1) 將純展示組件改為 Server Components\r\n// 2) 使用 Next.js 15 的 'use client' 邊界優化\r\n// 3) 實現適當的代碼分割和懶加載\r\n// 4) 使用 React 19 的新特性優化渲染\r\n// @assignee performance-team\r\n// @deadline 2025-01-25\r\n```\n### 43. REFACTOR: src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx:80`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n      let aValue: any;\r\n      let bValue: any;\r\n      \r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用\r\n// 問題：使用 any 類型違反類型安全原則\r\n// 影響：失去類型檢查，可能導致運行時錯誤\r\n// 建議：定義具體的類型接口替代 any 類型\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n\r\n      switch (sortField) {\r\n        case 'name':\r\n          aValue = a.name.toLowerCase();\r\n```\n### 44. REFACTOR: src/components/features/spaces/components/file-explorer/filter-panel.tsx:81 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx:102`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n\r\n  const handleFilterChange = (key: keyof FilterOptions, value: any) => {\r\n    \r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:81 - 修復 TypeScript any 類型使用\r\n// 問題：使用 any 類型違反類型安全原則\r\n// 影響：失去類型檢查，可能導致運行時錯誤\r\n// 建議：定義具體的類型接口替代 any 類型\r\n// @assignee frontend-team\r\n// @deadline 2025-01-25\r\n    setFilters(prev => ({ ...prev, [key]: value }));\r\n  };\r\n\r\n  const handleApply = () => {\r\n```\n### 45. REFACTOR: src/components/features/spaces/components/ - 合併重複的組件邏輯\n- 檔案: `src\\components\\features\\spaces\\components\\index.ts:18`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-30\n- 負責人: @frontend\n**詳細說明:**\n- 問題：多個 list/card/dialog 組件存在重複邏輯\n- 影響：代碼重複、維護困難、一致性問題\n- 建議：\n- 1) 創建通用的 List/Card/Dialog 基礎組件\n- 2) 使用 TypeScript 泛型提高類型安全\n- 3) 實現組合模式而非繼承\n- 4) 遵循 DRY 原則和奧卡姆剃刀\n- Spaces feature components exports\n**程式碼上下文:**\n```typescript\n// @assignee frontend-team\r\n// @deadline 2025-01-20\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/ - 合併重複的組件邏輯\r\n// 問題：多個 list/card/dialog 組件存在重複邏輯\r\n// 影響：代碼重複、維護困難、一致性問題\r\n// 建議：\r\n// 1) 創建通用的 List/Card/Dialog 基礎組件\r\n// 2) 使用 TypeScript 泛型提高類型安全\r\n// 3) 實現組合模式而非繼承\r\n// 4) 遵循 DRY 原則和奧卡姆剃刀\r\n// @assignee frontend-team\r\n// @deadline 2025-01-30\r\n```\n### 46. PERF: next.config.ts - 實現 Next.js 15 性能優化配置\n- 檔案: `next.config.ts:12`\n- 優先級: P2\n- ⏰ 截止日期: 2025-02-01\n- 負責人: @performance\n**詳細說明:**\n- 問題：未充分利用 Next.js 15 的性能優化特性\n- 影響：圖片載入性能差、bundle 大小過大\n- 建議：\n- 1) 啟用 optimizePackageImports 減少 bundle 大小\n- 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n- 3) 添加 experimental.turbo 配置提升開發體驗\n- 4) 配置適當的圖片優化參數\n**程式碼上下文:**\n```typescript\n    ignoreDuringBuilds: true,\n  },\n  \n  // TODO: [P2] PERF next.config.ts - 實現 Next.js 15 性能優化配置\n  // 問題：未充分利用 Next.js 15 的性能優化特性\n  // 影響：圖片載入性能差、bundle 大小過大\n  // 建議：\n  // 1) 啟用 optimizePackageImports 減少 bundle 大小\n  // 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n  // 3) 添加 experimental.turbo 配置提升開發體驗\n  // 4) 配置適當的圖片優化參數\n  // @assignee performance-team\n  // @deadline 2025-02-01\n```\n### 47. PERF: src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐\n- 檔案: `src\\components\\ui\\file-type-icon.tsx:28`\n- 優先級: P2\n- ⏰ 截止日期: 2025-02-01\n- 負責人: @performance\n**詳細說明:**\n- 問題：未充分利用 Next.js Image 組件的優化特性\n- 影響：圖片載入性能差、LCP 指標不佳\n- 建議：\n- 1) 使用 next/image 替代所有 <img> 標籤\n- 2) 配置適當的 priority 和 sizes 屬性\n- 3) 實現圖片預載入和懶加載策略\n- 4) 使用 WebP/AVIF 格式優化\n**程式碼上下文:**\n```typescript\n  FileImage,\n  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）\n  \n// TODO: [P2] PERF src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐\n// 問題：未充分利用 Next.js Image 組件的優化特性\n// 影響：圖片載入性能差、LCP 指標不佳\n// 建議：\n// 1) 使用 next/image 替代所有 <img> 標籤\n// 2) 配置適當的 priority 和 sizes 屬性\n// 3) 實現圖片預載入和懶加載策略\n// 4) 使用 WebP/AVIF 格式優化\n// @assignee performance-team\n// @deadline 2025-02-01\n```\n### 48. REFACTOR: src/components/features/spaces/hooks/ - 簡化 hooks 邏輯\n- 檔案: `src\\components\\features\\spaces\\hooks\\index.ts:7`\n- 優先級: P2\n- ⏰ 截止日期: 2025-02-05\n- 負責人: @frontend\n**詳細說明:**\n- 問題：多個 hooks 文件可能包含重複邏輯\n- 影響：代碼重複、狀態管理複雜\n- 建議：\n- 1) 合併相似的 hooks 邏輯\n- 2) 使用 React 19 的新 hooks 特性\n- 3) 實現更簡單的狀態管理模式\n- 4) 減少不必要的 useEffect 使用\n- Spaces feature hooks exports\n**程式碼上下文:**\n```typescript\n * hooks, such as those for handling actions, into other components.\r\n */\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/hooks/ - 簡化 hooks 邏輯\r\n// 問題：多個 hooks 文件可能包含重複邏輯\r\n// 影響：代碼重複、狀態管理複雜\r\n// 建議：\r\n// 1) 合併相似的 hooks 邏輯\r\n// 2) 使用 React 19 的新 hooks 特性\r\n// 3) 實現更簡單的狀態管理模式\r\n// 4) 減少不必要的 useEffect 使用\r\n// @assignee frontend-team\r\n// @deadline 2025-02-05\r\n```\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 128\n- 🔴 緊急項目: 37\n## ⚠️ 立即處理（P0 或已過期）\n### 1. FIX: src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-table.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）\r\n// 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint\r\n/**\r\n * @fileoverview A component that renders a table of files and folders.\r\n * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量\r\n * It supports sorting by various columns, selecting multiple items, and triggering\r\n * actions on individual items. It also includes a settings menu to toggle\r\n * the visibility of columns.\r\n */\r\n'use client';\r\n```\n### 2. FIX: src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\filter-panel.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）\r\n// 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號\r\n/**\r\n * @fileoverview A slide-out panel for filtering files and folders in the explorer.\r\n * It provides a rich set of filtering options, including keyword search, scope\r\n * selection, file type, status, and date ranges. It allows users to apply these\r\n * filters or save them for later use.\r\n */\r\n'use client';\r\n// TODO[P2][lint][parser-error]: 第143行 Unexpected token，可能為 JSX 標籤未正確關閉或需要使用 {'>'}。\r\n```\n### 3. FIX: src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\folder-tree.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- Note: Verify JSX structure and escaping; fix any invalid characters\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)\r\n// Note: Verify JSX structure and escaping; fix any invalid characters\r\n/**\r\n * @fileoverview A component that displays a hierarchical folder structure.\r\n * It allows users to expand and collapse folders, select items, and access\r\n * context-menu actions. It's the primary navigation element on the left side\r\n * of the file explorer.\r\n */\r\n'use client';\r\n\r\n```\n### 4. FIX: src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\packages-tab.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串/模板字面量，避免編譯失敗\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）\r\n// 說明：修正字串/模板字面量，避免編譯失敗\r\n/**\r\n * @fileoverview A component for the \"Packages\" tab in the file explorer's sidebar.\r\n * It displays a list of file packages, which are collections of related documents.\r\n * This component handles the creation and management of these packages.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L156) [低認知][現代化]\r\n// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\r\n```\n### 5. FIX: Parsing (L156) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\packages-tab.tsx:9`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\n- - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。\n**程式碼上下文:**\n```typescript\n * This component handles the creation and management of these packages.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L156) [低認知][現代化]\r\n// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）\r\n// - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。\r\n\r\nimport React, { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Label } from '@/components/ui/label';\r\n```\n### 6. FIX: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：補齊引號或移除多餘字元，確保語法正確\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）\r\n// 說明：補齊引號或移除多餘字元，確保語法正確\r\n/**\r\n * @fileoverview Abstract service layer for file preview functionality.\r\n * Provides a unified interface for different file preview libraries.\r\n */\r\n'use client';\r\n\r\nimport { type FileItem } from '../folder-tree';\r\n\r\n```\n### 7. FIX: src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串與 JSX 構造，確保可編譯\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）\r\n// 說明：修正字串與 JSX 構造，確保可編譯\r\n/**\r\n * @fileoverview The main toolbar for the file explorer.\r\n * It contains primary actions like upload, move, and export, as well as controls\r\n * for searching, changing the view layout (grid/list), and accessing filters and\r\n * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n```\n### 8. FIX: Parsing (L141) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\toolbar.tsx:10`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\n**程式碼上下文:**\n```typescript\n * deleted items.\r\n */\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L141) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。\r\n\r\nimport React, { useRef } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Input as _Input } from '@/components/ui/input';\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入\r\n// 問題：'Input' 已導入但從未使用\r\n```\n### 9. FIX: src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-details.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：修正字串或模板字面量，避免 Lint 解析錯誤\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button as _Button } from '@/components/ui/button';\r\n```\n### 10. FIX: Parsing (L109) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-details.tsx:4`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）\r\n// 說明：修正字串或模板字面量，避免 Lint 解析錯誤\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L109) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button as _Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\n```\n### 11. FIX: src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-list.tsx:1`\n- 優先級: P0\n**詳細說明:**\n- 說明：補齊引號或修正 JSX 文字，確保通過 Lint\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\r\n// 說明：補齊引號或修正 JSX 文字，確保通過 Lint\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L139) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\n```\n### 12. FIX: Parsing (L139) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\issues\\issue-list.tsx:4`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\n**程式碼上下文:**\n```typescript\n// TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）\r\n// 說明：補齊引號或修正 JSX 文字，確保通過 Lint\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L139) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。\r\n\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\n```\n### 13. FIX: Typo/Parsing (L81) [低認知]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\data.ts:81`\n- 優先級: P0\n**詳細說明:**\n- - 指引：修正參數型別宣告錯字 `_spaceId:`\n**程式碼上下文:**\n```typescript\n    },\r\n  ];\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L81) [低認知]\r\n  // - 指引：修正參數型別宣告錯字 `_spaceId:`\r\n  static async getParticipants(_spaceId: string): Promise<Participant[]> {\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 100));\r\n    return [...this.participants];\r\n  }\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]\r\n  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\r\n```\n### 14. FIX: Typo/Parsing (L91) [低認知]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\data.ts:89`\n- 優先級: P0\n**詳細說明:**\n- - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\n**程式碼上下文:**\n```typescript\n    return [...this.participants];\r\n  }\r\n\r\n  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]\r\n  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`\r\n  static async inviteParticipant(\r\n    spaceId: string,\r\n    email: string,\r\n    role: Participant['role'],\r\n    _message?: string\r\n  ): Promise<Participant> {\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 500));\r\n```\n### 15. FIX: Parsing (L67)\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-list.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - Issue: Unexpected token (might need {'>'} or &gt;)\n- - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L67)\r\n// - Issue: Unexpected token (might need {'>'} or &gt;)\r\n// - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.\r\n\r\nimport React, { useEffect, useMemo, useState, useCallback } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Plus, Download, Users, AlertCircle } from 'lucide-react';\r\nimport { useParticipants, useParticipantFilters } from './hooks/use-participants';\r\nimport { VirtualizedTable } from './virtualized-table';\r\nimport { CardGrid } from './card-grid';\r\n```\n### 16. FIX: Parsing (L67) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-role-editor.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補齊引號或簡化字串；避免行內註解破壞字串。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L67) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補齊引號或簡化字串；避免行內註解破壞字串。\r\n\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { useForm } from 'react-hook-form';\r\nimport { zodResolver } from '@hookform/resolvers/zod';\r\n```\n### 17. FIX: Parsing (L82) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\participant-table.tsx:2`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unterminated string literal\n- - 指引：補上結尾引號；若文案未定以 '--' 站位。\n**程式碼上下文:**\n```typescript\n'use client';\r\n// TODO: [P0] FIX Parsing (L82) [低認知][現代化]\r\n// - 問題：Unterminated string literal\r\n// - 指引：補上結尾引號；若文案未定以 '--' 站位。\r\n\r\nimport { memo, useCallback } from 'react';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\n```\n### 18. FIX: Parsing (L106) [低認知][現代化]\n- 檔案: `src\\components\\features\\spaces\\components\\participants\\virtualized-table.tsx:7`\n- 優先級: P0\n**詳細說明:**\n- - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\n- - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。\n**程式碼上下文:**\n```typescript\n */\r\n\r\n'use client';\r\n// TODO: [P0] FIX Parsing (L106) [低認知][現代化]\r\n// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）\r\n// - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。\r\n\r\nimport React, { useMemo, useCallback, useState } from 'react';\r\nimport { useVirtualizer } from '@tanstack/react-virtual';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\n```\n### 19. PERF: src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\page.tsx:126`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n- 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n  const { data: warehousesData, isLoading: warehousesLoading } =\n    useCollection<WarehouseType>(warehousesQuery);\n  \n  // TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項\n  // 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變\n  // 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）\n  // 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n  const warehouses = useMemo(() => warehousesData || [], [warehousesData]);\n\n  // Fetch all stock data for all warehouses\n  const [allStock, setAllStock] = useState<Stock[]>([]);\n```\n### 20. PERF: src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\organizations\\[organizationslug]\\inventory\\[itemId]\\page.tsx:99`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 line 128）\n- 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n  const { data: warehousesData, isLoading: warehousesLoading } =\n    useCollection<Warehouse>(warehousesQuery);\n  \n  // TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項\n  // 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變\n  // 影響：性能問題，不必要的重新渲染（影響 line 128）\n  // 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n  const warehouses = useMemo(() => warehousesData || [], [warehousesData]);\n\n  // Get stock for this item across all warehouses\n  const [stockData, setStockData] = useState< (Stock & { warehouseName: string })[] >([]);\n```\n### 21. PERF: src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\n- 檔案: `src\\app\\(app)\\spaces\\page.tsx:46`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\n- 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\n- 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\n**程式碼上下文:**\n```typescript\n  const { data: allSpacesData, isLoading: allSpacesLoading } =\r\n    useCollection<Space>(allSpacesQuery);\r\n  \r\n  // TODO: [P1] PERF src/app/(app)/spaces/page.tsx:42 - 優化 React hooks 依賴項\r\n  // 問題：allSpaces 邏輯表達式可能導致多個 useMemo Hook 依賴項在每次渲染時改變\r\n  // 影響：性能問題，不必要的重新渲染（影響 lines 49, 70, 77, 82）\r\n  // 建議：將 allSpaces 初始化包裝在獨立的 useMemo Hook 中\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-15\r\n  const allSpaces = useMemo(() => allSpacesData || [], [allSpacesData]);\r\n\r\n  const allOwnerIds = useMemo(() => {\r\n    if (allSpaces.length === 0) return [];\r\n```\n### 22. PERF: src/components/features/spaces/hooks/use-file-actions.ts:105 - 優化 React hooks 依賴項\n- 檔案: `src\\components\\features\\spaces\\hooks\\use-file-actions.ts:106`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n- 影響：可能導致過時閉包問題\n- 建議：添加缺失的依賴項或移除依賴數組\n**程式碼上下文:**\n```typescript\n      setUploadProgress(null);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const downloadFile = useCallback(async (\n    fileName: string, \n```\n### 23. PERF: src/components/features/spaces/hooks/use-file-actions.ts:144 - 優化 React hooks 依賴項\n- 檔案: `src\\components\\features\\spaces\\hooks\\use-file-actions.ts:145`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n- 影響：可能導致過時閉包問題\n- 建議：添加缺失的依賴項或移除依賴數組\n**程式碼上下文:**\n```typescript\n      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:144 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const deleteFile = useCallback(async (\n    fileName: string, \n```\n### 24. PERF: src/components/features/spaces/hooks/use-file-actions.ts:178 - 優化 React hooks 依賴項\n- 檔案: `src\\components\\features\\spaces\\hooks\\use-file-actions.ts:186`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n- 影響：可能導致過時閉包問題\n- 建議：添加缺失的依賴項或移除依賴數組\n**程式碼上下文:**\n```typescript\n      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:178 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包\n  const listFiles = useCallback(async (\n    spaceId: string,\n```\n### 25. PERF: src/components/features/spaces/hooks/use-file-actions.ts:208 - 優化 React hooks 依賴項\n- 檔案: `src\\components\\features\\spaces\\hooks\\use-file-actions.ts:223`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-15\n- 負責人: @frontend\n**詳細說明:**\n- 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n- 影響：可能導致過時閉包問題\n- 建議：添加缺失的依賴項或移除依賴數組\n**程式碼上下文:**\n```typescript\n      setIsLoading(false);\n    }\n  }, [toast, fileOperations]);\n  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:208 - 優化 React hooks 依賴項\n  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'\n  // 影響：可能導致過時閉包問題\n  // 建議：添加缺失的依賴項或移除依賴數組\n  // @assignee frontend-team\n  // @deadline 2025-01-15\n\n  return {\n    uploadFile,\n    downloadFile,\n```\n### 26. REFACTOR: src/components/features/spaces/components/ - 減少過度抽象的組件層級\n- 檔案: `src\\components\\features\\spaces\\components\\index.ts:7`\n- 優先級: P1\n- ⏰ 截止日期: 2025-01-20\n- 負責人: @frontend\n**詳細說明:**\n- 問題：70 個文件過度拆分，造成不必要的複雜性\n- 影響：導入路徑過長、維護成本高、認知負擔重\n- 建議：\n- 1) 合併功能相似的組件（如多個 list 組件）\n- 2) 簡化目錄結構，減少嵌套層級\n- 3) 移除不必要的 barrel exports\n- 4) 遵循 Next.js 15 組件組合模式\n**程式碼上下文:**\n```typescript\n * by providing a single, consistent path.\r\n */\r\n\r\n// TODO: [P1] REFACTOR src/components/features/spaces/components/ - 減少過度抽象的組件層級\r\n// 問題：70 個文件過度拆分，造成不必要的複雜性\r\n// 影響：導入路徑過長、維護成本高、認知負擔重\r\n// 建議：\r\n// 1) 合併功能相似的組件（如多個 list 組件）\r\n// 2) 簡化目錄結構，減少嵌套層級\r\n// 3) 移除不必要的 barrel exports\r\n// 4) 遵循 Next.js 15 組件組合模式\r\n// @assignee frontend-team\r\n// @deadline 2025-01-20\r\n```\n### 27. REFACTOR: src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\n- 檔案: `src\\components\\adjust-stock-dialog.tsx:138`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用非空斷言 (!) 可能導致運行時錯誤\n- 影響：類型安全問題，可能導致應用崩潰\n- 建議：添加適當的類型檢查或使用可選鏈操作符\n**程式碼上下文:**\n```typescript\n          let stockDocRef;\r\n\r\n  if (hasExistingStockRecord && stockInfo.stockId) {\r\n              // TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告\r\n              // 問題：使用非空斷言 (!) 可能導致運行時錯誤\r\n              // 影響：類型安全問題，可能導致應用崩潰\r\n              // 建議：添加適當的類型檢查或使用可選鏈操作符\r\n              // @assignee frontend-team\r\n              // @deadline 2025-01-25\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId);\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n```\n### 28. REFACTOR: src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\auth\\auth-provider.tsx:195`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n      const spaceRoles: Record<string, SpaceRoleAssignment> = {};\n      \n      spaceRolesSnapshot.forEach(d => {\n        // TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用\n        // 問題：使用 any 類型違反類型安全原則\n        // 影響：失去類型檢查，可能導致運行時錯誤\n        // 建議：定義具體的類型接口替代 any 類型\n        // @assignee frontend-team\n        // @deadline 2025-01-25\n        const raw = d.data() as Record<string, unknown>;\n        const assignedAtRaw = raw.assignedAt as unknown;\n        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全\n        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'\n```\n### 29. REFACTOR: src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx:342`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n  };\r\n\r\n  const handleRestoreItem = (item: FileItem) => {\r\n    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用\r\n    // 問題：使用 any 類型違反類型安全原則\r\n    // 影響：失去類型檢查，可能導致運行時錯誤\r\n    // 建議：定義具體的類型接口替代 any 類型\r\n    // @assignee frontend-team\r\n    // @deadline 2025-01-25\r\n    console.log('Restore item:', item);\r\n  };\r\n\r\n  const handlePermanentDelete = (item: FileItem) => {\r\n```\n### 30. REFACTOR: src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx:352`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n  };\r\n\r\n  const handlePermanentDelete = (item: FileItem) => {\r\n    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用\r\n    // 問題：使用 any 類型違反類型安全原則\r\n    // 影響：失去類型檢查，可能導致運行時錯誤\r\n    // 建議：定義具體的類型接口替代 any 類型\r\n    // @assignee frontend-team\r\n    // @deadline 2025-01-25\r\n    console.log('Permanent delete item:', item);\r\n  };\r\n\r\n  return (\r\n```\n### 31. REFACTOR: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:67`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n  abstract canPreview(file: FileItem): boolean;\r\n  abstract getPreviewConfig(file: FileItem): PreviewConfig;\r\n  abstract toPreviewDocument(file: FileItem): PreviewDocument;\r\n  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用\r\n  // 問題：使用 any 類型違反類型安全原則\r\n  // 影響：失去類型檢查，可能導致運行時錯誤\r\n  // 建議：定義具體的類型接口替代 any 類型\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-25\r\n  abstract handleError(error: unknown): PreviewError;\r\n\r\n  getSupportedTypes(): string[] {\r\n    return this.supportedTypes;\r\n```\n### 32. REFACTOR: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:211`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的錯誤類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n    };\r\n  }\r\n\r\n  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用\r\n  // 問題：使用 any 類型違反類型安全原則\r\n  // 影響：失去類型檢查，可能導致運行時錯誤\r\n  // 建議：定義具體的錯誤類型接口替代 any 類型\r\n  // @assignee frontend-team\r\n  // @deadline 2025-01-25\r\n  handleError(error: Error | unknown): PreviewError {\r\n    // TODO: 現代化 - 使用類型守衛處理 unknown 類型，提升類型安全\r\n    const errorObj = error as Error & { code?: string };\r\n    \r\n```\n### 33. REFACTOR: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:241`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n    if (errorObj.message?.includes('403')) {\r\n      return {\r\n        code: 'ACCESS_DENIED',\r\n        // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用\r\n        // 問題：使用 any 類型違反類型安全原則\r\n        // 影響：失去類型檢查，可能導致運行時錯誤\r\n        // 建議：定義具體的類型接口替代 any 類型\r\n        // @assignee frontend-team\r\n        // @deadline 2025-01-25\r\n        message: '沒有權限存取此檔案',\r\n        details: error,\r\n      };\r\n    }\r\n```\n### 34. REFACTOR: src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用\n- 檔案: `src\\components\\features\\spaces\\components\\file-explorer\\services\\file-preview-service.ts:262`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-25\n- 負責人: @frontend\n**詳細說明:**\n- 問題：使用 any 類型違反類型安全原則\n- 影響：失去類型檢查，可能導致運行時錯誤\n- 建議：定義具體的類型接口替代 any 類型\n**程式碼上下文:**\n```typescript\n\r\n    return {\r\n      code: 'UNKNOWN_ERROR',\r\n      // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用\r\n      // 問題：使用 any 類型違反類型安全原則\r\n      // 影響：失去類型檢查，可能導致運行時錯誤\r\n      // 建議：定義具體的類型接口替代 any 類型\r\n      // @assignee frontend-team\r\n      // @deadline 2025-01-25\r\n      message: '預覽檔案發生未預期錯誤',\r\n      details: error,\r\n    };\r\n  }\r\n```\n### 35. REFACTOR: src/components/features/spaces/components/ - 合併重複的組件邏輯\n- 檔案: `src\\components\\features\\spaces\\components\\index.ts:18`\n- 優先級: P2\n- ⏰ 截止日期: 2025-01-30\n- 負責人: @frontend\n**詳細說明:**\n- 問題：多個 list/card/dialog 組件存在重複邏輯\n- 影響：代碼重複、維護困難、一致性問題\n- 建議：\n- 1) 創建通用的 List/Card/Dialog 基礎組件\n- 2) 使用 TypeScript 泛型提高類型安全\n- 3) 實現組合模式而非繼承\n- 4) 遵循 DRY 原則和奧卡姆剃刀\n- Spaces feature components exports\n**程式碼上下文:**\n```typescript\n// @assignee frontend-team\r\n// @deadline 2025-01-20\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/ - 合併重複的組件邏輯\r\n// 問題：多個 list/card/dialog 組件存在重複邏輯\r\n// 影響：代碼重複、維護困難、一致性問題\r\n// 建議：\r\n// 1) 創建通用的 List/Card/Dialog 基礎組件\r\n// 2) 使用 TypeScript 泛型提高類型安全\r\n// 3) 實現組合模式而非繼承\r\n// 4) 遵循 DRY 原則和奧卡姆剃刀\r\n// @assignee frontend-team\r\n// @deadline 2025-01-30\r\n```\n### 36. PERF: next.config.ts - 實現 Next.js 15 性能優化配置\n- 檔案: `next.config.ts:16`\n- 優先級: P2\n- ⏰ 截止日期: 2025-02-01\n- 負責人: @performance\n**詳細說明:**\n- 問題：未充分利用 Next.js 15 的性能優化特性\n- 影響：圖片載入性能差、bundle 大小過大\n- 建議：\n- 1) 啟用 optimizePackageImports 減少 bundle 大小\n- 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n- 3) 添加 experimental.turbo 配置提升開發體驗\n- 4) 配置適當的圖片優化參數\n**程式碼上下文:**\n```typescript\n    esmExternals: true,\n  },\n  \n  // TODO: [P2] PERF next.config.ts - 實現 Next.js 15 性能優化配置\n  // 問題：未充分利用 Next.js 15 的性能優化特性\n  // 影響：圖片載入性能差、bundle 大小過大\n  // 建議：\n  // 1) 啟用 optimizePackageImports 減少 bundle 大小\n  // 2) 配置 bundlePagesRouterDependencies 優化依賴打包\n  // 3) 添加 experimental.turbo 配置提升開發體驗\n  // 4) 配置適當的圖片優化參數\n  // @assignee performance-team\n  // @deadline 2025-02-01\n```\n### 37. REFACTOR: src/components/features/spaces/hooks/ - 簡化 hooks 邏輯\n- 檔案: `src\\components\\features\\spaces\\hooks\\index.ts:7`\n- 優先級: P2\n- ⏰ 截止日期: 2025-02-05\n- 負責人: @frontend\n**詳細說明:**\n- 問題：多個 hooks 文件可能包含重複邏輯\n- 影響：代碼重複、狀態管理複雜\n- 建議：\n- 1) 合併相似的 hooks 邏輯\n- 2) 使用 React 19 的新 hooks 特性\n- 3) 實現更簡單的狀態管理模式\n- 4) 減少不必要的 useEffect 使用\n- Spaces feature hooks exports\n**程式碼上下文:**\n```typescript\n * hooks, such as those for handling actions, into other components.\r\n */\r\n\r\n// TODO: [P2] REFACTOR src/components/features/spaces/hooks/ - 簡化 hooks 邏輯\r\n// 問題：多個 hooks 文件可能包含重複邏輯\r\n// 影響：代碼重複、狀態管理複雜\r\n// 建議：\r\n// 1) 合併相似的 hooks 邏輯\r\n// 2) 使用 React 19 的新 hooks 特性\r\n// 3) 實現更簡單的狀態管理模式\r\n// 4) 減少不必要的 useEffect 使用\r\n// @assignee frontend-team\r\n// @deadline 2025-02-05\r\n```\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
 }
