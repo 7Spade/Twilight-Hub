@@ -1,5 +1,9 @@
 /**
- * @fileoverview 統�??��?證�?權�?管�??��??? * ?��?權�?守�??��??�管?��??? * ?�循奧卡姆�??�?��?，�?供�?簡�??�實?? */
+ * @fileoverview 統一認證與權限管理系統
+ * 提供權限守護和管理的核心功能
+ * 遵循奧卡姆剃刀原則，提供最簡潔實用的實現
+ */
+/* TODO: [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗 */
 
 'use client';
 
@@ -13,14 +17,15 @@ import {
 } from '@/lib/types-unified';
 import { roleManagementService } from '@/lib/role-management';
 
-// 認�??�?�接??interface AuthState {
+// 認證狀態介面
+interface AuthState {
   userId: string | null;
   userRoleAssignment: UserRoleAssignment | null;
   isLoading: boolean;
   error: string | null;
 }
 
-// 認�??��??�口
+// 認證操作介面
 interface AuthActions {
   setUser: (userId: string, roleAssignment: UserRoleAssignment) => void;
   clearUser: () => void;
@@ -29,17 +34,19 @@ interface AuthActions {
   refreshPermissions: () => Promise<void>;
 }
 
-// 完整?��?證�?下�?
+// 完整認證上下文
 interface AuthContext extends AuthState, AuthActions {}
 
 const AuthContext = createContext<AuthContext | undefined>(undefined);
 
-// 認�??��??�屬??export interface AuthProviderProps {
+// 認證提供者屬性
+export interface AuthProviderProps {
   children: ReactNode;
   initialUserId?: string;
 }
 
-// 認�??��??��?�?export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
+// 認證提供者組件
+export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   const [state, setState] = useState<AuthState>({
     userId: initialUserId || null,
     userRoleAssignment: null,
@@ -47,7 +54,7 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
     error: null,
   });
 
-  // 設置?�戶
+  // 設置用戶
   const setUser = (userId: string, roleAssignment: UserRoleAssignment) => {
     setState(prev => ({
       ...prev,
@@ -57,7 +64,7 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
     }));
   };
 
-  // 清除?�戶
+  // 清除用戶
   const clearUser = () => {
     setState(prev => ({
       ...prev,
@@ -67,7 +74,7 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
     }));
   };
 
-  // 檢查權�?
+  // 檢查權限
   const checkPermission = async (permission: Permission, spaceId: string): Promise<PermissionCheckResult> => {
     if (!state.userId || !state.userRoleAssignment) {
       return {
@@ -96,12 +103,14 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
     }
   };
 
-  // 快速�??�檢??  const hasPermission = (permission: Permission, spaceId: string): boolean => {
+  // 快速同步檢查
+  const hasPermission = (permission: Permission, spaceId: string): boolean => {
     if (!state.userId || !state.userRoleAssignment) {
       return false;
     }
 
-    // 簡�??��?步�??�檢??    const spaceRole = state.userRoleAssignment.spaceRoles[spaceId];
+    // 簡化的同步權限檢查
+    const spaceRole = state.userRoleAssignment.spaceRoles[spaceId];
     if (spaceRole) {
       const roleDef = roleManagementService.getRoleDefinition(spaceRole.roleId);
       if (roleDef && roleDef.permissions.includes(permission)) {
@@ -109,7 +118,7 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
       }
     }
 
-    // 檢查組�?角色
+    // 檢查組織角色
     for (const orgRole of state.userRoleAssignment.organizationRoles) {
       const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
       if (roleDef && roleDef.permissions.includes(permission)) {
@@ -120,14 +129,14 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
     return false;
   };
 
-  // ?�新權�?
+  // 刷新權限
   const refreshPermissions = async () => {
     if (!state.userId) return;
 
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      // TODO: 從�??�器?��??�?��?角色?��?
+      // TODO: 從服務器獲取用戶角色分配
       // const roleAssignment = await fetchUserRoleAssignment(state.userId);
       // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));
     } catch (error) {
@@ -156,7 +165,7 @@ const AuthContext = createContext<AuthContext | undefined>(undefined);
   );
 }
 
-// 使用認�??�?��? hook
+// 使用認證上下文的 hook
 export function useAuth(): AuthContext {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -165,7 +174,7 @@ export function useAuth(): AuthContext {
   return context;
 }
 
-// 權�?守�?組件
+// 權限守護組件
 interface PermissionGuardProps {
   permission: Permission;
   spaceId: string;
@@ -194,7 +203,7 @@ export function PermissionGuard({
   return <>{children}</>;
 }
 
-// 權�??��?組件
+// 權限按鈕組件
 interface PermissionButtonProps extends PermissionGuardProps {
   onClick?: () => void;
   disabled?: boolean;

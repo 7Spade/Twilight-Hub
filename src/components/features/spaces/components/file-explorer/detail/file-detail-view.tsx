@@ -3,6 +3,7 @@
  * in a side panel. Integrates with Context7 file viewing libraries.
  */
 'use client';
+/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量 */
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -72,10 +73,10 @@ export function FileDetailView({
           setPreviewDocument(document);
           setPreviewConfig(config);
         } else {
-          setPreviewError('不支?�此檔�?類�??��?�?);
+          setPreviewError('不支?�此檔�?類�??��?�?);
         }
       } catch (error) {
-        setPreviewError('載入?�覽?�發?�錯�?);
+        setPreviewError('載入?�覽?�發?�錯�?);
         console.error('Preview error:', error);
       } finally {
         setIsLoading(false);
@@ -124,7 +125,7 @@ export function FileDetailView({
       case '待審??:
         return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">待審??/Badge>;
       default:
-        return <Badge variant="outline">?�審??/Badge>;
+        return <Badge variant="outline">?�審??/Badge>;
     }
   };
 
@@ -132,10 +133,10 @@ export function FileDetailView({
     if (!file.tag || file.tag === '--') return null;
     
     const tagColors: Record<string, string> = {
-      '?��?': 'bg-red-100 text-red-800',
-      '?�稿': 'bg-yellow-100 text-yellow-800',
-      '?��?': 'bg-blue-100 text-blue-800',
-      '?��?': 'bg-purple-100 text-purple-800',
+      '?��?': 'bg-red-100 text-red-800',
+      '?�稿': 'bg-yellow-100 text-yellow-800',
+      '?��?': 'bg-blue-100 text-blue-800',
+      '?��?': 'bg-purple-100 text-purple-800',
     };
     
     return (
@@ -165,7 +166,7 @@ export function FileDetailView({
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <FileText className="h-4 w-4" />
-                檔�??�覽
+                檔�??�覽
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
@@ -183,23 +184,23 @@ export function FileDetailView({
               ) : previewDocument ? (
                 <div className="border rounded-lg p-2 bg-gray-50">
                   <div className="text-sm text-gray-600 mb-2">
-                    ?�覽: {previewDocument.fileName}
+                    ?�覽: {previewDocument.fileName}
                   </div>
                   <div className="text-xs text-gray-500">
-                    類�?: {previewDocument.fileType}
+                    類�?: {previewDocument.fileType}
                   </div>
                   {/* In a real implementation, this would render the actual preview */}
                   <div className="mt-2 p-4 bg-white rounded border text-center text-gray-500">
                     <FileText className="h-12 w-12 mx-auto mb-2" />
-                    <p>檔�??�覽將在此�?顯示</p>
-                    <p className="text-xs mt-1">?��? Context7 庫�??�用</p>
+                    <p>檔�??�覽將在此�?顯示</p>
+                    <p className="text-xs mt-1">?��? Context7 庫�??�用</p>
                   </div>
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-32 text-gray-500">
                   <div className="text-center">
                     <FileText className="h-8 w-8 mx-auto mb-2" />
-                    <p className="text-sm">?��??�覽此�?�?/p>
+                    <p className="text-sm">?��??�覽此�?�?/p>
                   </div>
                 </div>
               )}
@@ -209,14 +210,14 @@ export function FileDetailView({
           {/* File Information */}
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm">檔�?資�?</CardTitle>
+              <CardTitle className="text-sm">檔�?資�?</CardTitle>
             </CardHeader>
             <CardContent className="pt-0 space-y-3">
               {/* Status */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   {getStatusIcon()}
-                  <span className="text-sm text-gray-600">?�??/span>
+                  <span className="text-sm text-gray-600">?�??/span>
                 </div>
                 {getStatusBadge()}
               </div>
@@ -229,7 +230,7 @@ export function FileDetailView({
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Tag className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-600">標�?</span>
+                      <span className="text-sm text-gray-600">標�?</span>
                     </div>
                     {getTagBadge()}
                   </div>
@@ -241,7 +242,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <HardDrive className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">大�?</span>
+                  <span className="text-sm text-gray-600">大�?</span>
                 </div>
                 <span className="text-sm font-medium">{formatFileSize(file.size)}</span>
               </div>
@@ -250,7 +251,7 @@ export function FileDetailView({
 
               {/* Version */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">?�本</span>
+                <span className="text-sm text-gray-600">?�本</span>
                 <span className="text-sm font-medium">{file.version || 'V1'}</span>
               </div>
 
@@ -260,7 +261,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">建�??��?</span>
+                  <span className="text-sm text-gray-600">建�??��?</span>
                 </div>
                 <span className="text-sm font-medium">{formatDate(file.timeCreated)}</span>
               </div>
@@ -271,7 +272,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">修改?��?</span>
+                  <span className="text-sm text-gray-600">修改?��?</span>
                 </div>
                 <span className="text-sm font-medium">{formatDate(file.updated)}</span>
               </div>
@@ -282,7 +283,7 @@ export function FileDetailView({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">?�新??/span>
+                  <span className="text-sm text-gray-600">?�新??/span>
                 </div>
                 <span className="text-sm font-medium">{file.updater || '--'}</span>
               </div>
@@ -293,7 +294,7 @@ export function FileDetailView({
           {file.description && file.description !== '--' && (
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm">?�述</CardTitle>
+                <CardTitle className="text-sm">?�述</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-gray-700">{file.description}</p>
@@ -312,7 +313,7 @@ export function FileDetailView({
               className="flex-1"
             >
               <Download className="h-4 w-4 mr-2" />
-              下�?
+              下�?
             </Button>
             <Button 
               variant="outline" 
@@ -321,7 +322,7 @@ export function FileDetailView({
               className="flex-1"
             >
               <Share className="h-4 w-4 mr-2" />
-              ?�享
+              ?�享
             </Button>
             <Button 
               variant="outline" 

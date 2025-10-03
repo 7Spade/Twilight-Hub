@@ -1,5 +1,6 @@
 /**
  * @fileoverview A component that renders a table of files and folders.
+ * TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第51行包含未終止的字符串字面量
  * It supports sorting by various columns, selecting multiple items, and triggering
  * actions on individual items. It also includes a settings menu to toggle
  * the visibility of columns.
@@ -39,18 +40,18 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
-  // ?�設定�???
+  // ?�設定�???
   const [columns, setColumns] = useState<ColumnConfig[]>([
-    { id: 'description', label: '?�述', visible: true },
-    { id: 'version', label: '?�本', visible: true },
-    { id: 'indicator', label: '?��?', visible: true },
-    { id: 'tag', label: '標�?', visible: true },
-    { id: 'issue', label: '?��?', visible: true },
-    { id: 'size', label: '大�?', visible: true },
-    { id: 'lastUpdate', label: '上次?�新', visible: true },
-    { id: 'updater', label: '?�新??, visible: true },
-    { id: 'versionContributor', label: '?�本?�入??, visible: true },
-    { id: 'reviewStatus', label: '審閱?�??, visible: true },
+    { id: 'description', label: '?�述', visible: true },
+    { id: 'version', label: '?�本', visible: true },
+    { id: 'indicator', label: '?��?', visible: true },
+    { id: 'tag', label: '標�?', visible: true },
+    { id: 'issue', label: '?��?', visible: true },
+    { id: 'size', label: '大�?', visible: true },
+    { id: 'lastUpdate', label: '上次?�新', visible: true },
+    { id: 'updater', label: '?�新??, visible: true },
+    { id: 'versionContributor', label: '?�本?�入??, visible: true },
+    { id: 'reviewStatus', label: '審閱?�??, visible: true },
   ]);
 
   const handleSort = (field: SortField) => {
@@ -203,7 +204,7 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
               onClick={() => handleSort('name')}
             >
               <div className="flex items-center gap-2">
-                ?�稱
+                ?�稱
                 {getSortIcon('name')}
               </div>
             </TableHead>

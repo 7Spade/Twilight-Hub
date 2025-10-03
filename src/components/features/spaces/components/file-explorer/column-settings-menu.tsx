@@ -4,6 +4,7 @@
  * specific properties, and reset the column configuration to its default state.
  */
 'use client';
+/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量 */
 
 import React, { useState } from 'react';
 import {
@@ -58,12 +59,12 @@ export function ColumnSettingsMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
-        {/* ?��?�?*/}
+        {/* ?��?�?*/}
         <div className="p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="?��?屬�?
+              placeholder="?��?屬�?
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-8"
@@ -71,7 +72,7 @@ export function ColumnSettingsMenu({
           </div>
         </div>
 
-        {/* ?�設定選??*/}
+        {/* ?�設定選??*/}
         <div className="max-h-64 overflow-y-auto">
           {filteredColumns.map((column) => (
             <div
@@ -91,7 +92,7 @@ export function ColumnSettingsMenu({
 
         <Separator />
 
-        {/* 底部?��? */}
+        {/* 底部?��? */}
         <div className="p-2 space-y-1">
           <Button
             variant="ghost"
@@ -99,7 +100,7 @@ export function ColumnSettingsMenu({
             className="w-full justify-start text-blue-600 hover:text-blue-700 hover:bg-blue-50"
             onClick={onPropertySettings}
           >
-            屬性設�?
+            屬性設�?
           </Button>
           <Button
             variant="ghost"
@@ -108,7 +109,7 @@ export function ColumnSettingsMenu({
             onClick={onReset}
           >
             <RotateCcw className="h-4 w-4 mr-2" />
-            ?�置
+            ?�置
           </Button>
         </div>
       </DropdownMenuContent>

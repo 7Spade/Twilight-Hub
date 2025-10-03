@@ -6,6 +6,7 @@
  */
 
 'use client';
+/* TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - 第65、72、252行在回調函數中調用 Hook，必須在組件頂層調用 */
 
 import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -61,12 +62,14 @@ export function FileUpload({
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file) => {
+      // TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useIsFileTypeSupported 不能在回調中調用
       // 檢查文件類型
       if (!useIsFileTypeSupported(file.name)) {
         alert(`不支持的文件類型: ${file.name}`);
         return;
       }
 
+      // TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useFormatFileSize 不能在回調中調用
       // 檢查文件大小
       if (file.size > maxSize) {
         alert(`文件太大: ${file.name} (最大 ${useFormatFileSize(maxSize)})`);

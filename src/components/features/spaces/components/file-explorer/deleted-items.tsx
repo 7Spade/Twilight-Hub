@@ -5,6 +5,7 @@
  * file explorer toolbar.
  */
 'use client';
+/* TODO: [P2] [BUG] [UI] [TODO] ä¿®å¾©å­—ç¬¦ä¸²å­—é¢é‡éŒ¯èª¤ - ç¬¬50è¡ŒåŒ…å«æœªçµ‚æ­¢çš„å­—ç¬¦ä¸²å­—é¢é‡ */
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ export function DeletedItems({
   onRestore, 
   onPermanentDelete 
 }: DeletedItemsProps) {
-  // æ¨¡æ“¬å·²åˆª?¤ç??…ç›®
+  // æ¨¡æ“¬å·²åˆª?ï¿½ï¿½??ï¿½ç›®
   const [deletedItems] = useState<DeletedItem[]>([
     {
       id: 'deleted-1',
@@ -44,17 +45,17 @@ export function DeletedItems({
       contentType: 'application/pdf',
       timeCreated: '2024-01-01T00:00:00Z',
       updated: '2024-01-15T10:30:00Z',
-      description: '?Šç?å»ºç??–ç?',
+      description: '?ï¿½ï¿½?å»ºï¿½??ï¿½ï¿½?',
       version: 'V1',
       indicator: '--',
-      tag: 'å·²é???,
+      tag: 'å·²ï¿½???,
       issue: '--',
       updater: 'ACC Sample P...',
       versionContributor: '--',
       reviewStatus: '--',
       deletedAt: '2024-01-20T14:30:00Z',
       deletedBy: 'ACC Sample P...',
-      originalPath: '/å°ˆæ?æª”æ?/Drawings/'
+      originalPath: '/å°ˆï¿½?æª”ï¿½?/Drawings/'
     },
     {
       id: 'deleted-2',
@@ -64,17 +65,17 @@ export function DeletedItems({
       contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       timeCreated: '2024-01-10T00:00:00Z',
       updated: '2024-01-18T09:15:00Z',
-      description: '?¨æ??ˆç??‡ä»¶',
+      description: '?ï¿½ï¿½??ï¿½ï¿½??ï¿½ä»¶',
       version: 'V2',
       indicator: '--',
-      tag: '?¨æ?',
+      tag: '?ï¿½ï¿½?',
       issue: '--',
-      updater: 'Aç³?ACC ç³»çµ±',
+      updater: 'Aï¿½?ACC ç³»çµ±',
       versionContributor: '--',
       reviewStatus: '--',
       deletedAt: '2024-01-19T16:45:00Z',
-      deletedBy: 'Aç³?ACC ç³»çµ±',
-      originalPath: '/å°ˆæ?æª”æ?/Correspondence/'
+      deletedBy: 'Aï¿½?ACC ç³»çµ±',
+      originalPath: '/å°ˆï¿½?æª”ï¿½?/Correspondence/'
     }
   ]);
 
@@ -103,7 +104,7 @@ export function DeletedItems({
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Trash2 className="h-5 w-5" />
-            ?ªé™¤?„é???
+            ?ï¿½é™¤?ï¿½ï¿½???
           </CardTitle>
           <Button variant="ghost" size="sm" onClick={onClose}>
             ??
@@ -114,25 +115,25 @@ export function DeletedItems({
           {deletedItems.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">
               <Trash2 className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <p className="text-lg font-medium">æ²’æ?å·²åˆª?¤ç??…ç›®</p>
-              <p className="text-sm">å·²åˆª?¤ç?æª”æ??Œè??™å¤¾å°‡åœ¨æ­¤è?é¡¯ç¤º</p>
+              <p className="text-lg font-medium">æ²’ï¿½?å·²åˆª?ï¿½ï¿½??ï¿½ç›®</p>
+              <p className="text-sm">å·²åˆª?ï¿½ï¿½?æª”ï¿½??ï¿½ï¿½??ï¿½å¤¾å°‡åœ¨æ­¤ï¿½?é¡¯ç¤º</p>
             </div>
           ) : (
             <div className="space-y-4">
               <div className="text-sm text-muted-foreground mb-4">
-                é¡¯ç¤º {deletedItems.length} ?‹å·²?ªé™¤?„é???
+                é¡¯ç¤º {deletedItems.length} ?ï¿½å·²?ï¿½é™¤?ï¿½ï¿½???
               </div>
               
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
-                    <TableHead>?ç¨±</TableHead>
-                    <TableHead>?Ÿå?ä½ç½®</TableHead>
-                    <TableHead>å¤§å?</TableHead>
-                    <TableHead>?ªé™¤?‚é?</TableHead>
-                    <TableHead>?ªé™¤??/TableHead>
-                    <TableHead className="w-32">?ä?</TableHead>
+                    <TableHead>?ï¿½ç¨±</TableHead>
+                    <TableHead>?ï¿½ï¿½?ä½ç½®</TableHead>
+                    <TableHead>å¤§ï¿½?</TableHead>
+                    <TableHead>?ï¿½é™¤?ï¿½ï¿½?</TableHead>
+                    <TableHead>?ï¿½é™¤??/TableHead>
+                    <TableHead className="w-32">?ï¿½ï¿½?</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -149,7 +150,7 @@ export function DeletedItems({
                           )} />
                           <span className="font-medium">{item.name}</span>
                           <Badge variant="secondary" className="text-xs">
-                            {item.type === 'folder' ? 'è³‡æ?å¤? : 'æª”æ?'}
+                            {item.type === 'folder' ? 'è³‡ï¿½?ï¿½? : 'æª”ï¿½?'}
                           </Badge>
                         </div>
                       </TableCell>
@@ -184,7 +185,7 @@ export function DeletedItems({
                             className="h-8 px-2"
                           >
                             <RotateCcw className="h-3 w-3 mr-1" />
-                            ?„å?
+                            ?ï¿½ï¿½?
                           </Button>
                           <Button
                             variant="ghost"
@@ -193,7 +194,7 @@ export function DeletedItems({
                             className="h-8 px-2 text-red-600 hover:text-red-700"
                           >
                             <Trash className="h-3 w-3 mr-1" />
-                            æ°¸ä??ªé™¤
+                            æ°¸ï¿½??ï¿½é™¤
                           </Button>
                         </div>
                       </TableCell>

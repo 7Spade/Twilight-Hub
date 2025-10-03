@@ -5,6 +5,7 @@
  * for new or empty directories.
  */
 'use client';
+/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量 */
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
@@ -24,12 +25,12 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
         </div>
         
         <h3 className="text-lg font-semibold text-gray-700 mb-2">
-          沒�?要檢視�?檔�?
+          沒�?要檢視�?檔�?
         </h3>
         
         <p className="text-gray-500 mb-6">
-          {folderName ? `??${folderName} 資�?夾中沒�?檔�??�` : '此�??�夾中�??��?案�?}
-          將�?案�??�到此�??��?載�?案�?
+          {folderName ? `??${folderName} 資�?夾中沒�?檔�??�` : '此�??�夾中�??��?案�?}
+          將�?案�??�到此�??��?載�?案�?
         </p>
         
         <div className="space-y-3">
@@ -38,7 +39,7 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
             className="w-full bg-blue-600 hover:bg-blue-700"
           >
             <UploadCloud className="h-4 w-4 mr-2" />
-            上�?檔�?
+            上�?檔�?
           </Button>
           
           <p className="text-xs text-gray-400">
@@ -48,9 +49,9 @@ export function EmptyFolderState({ onUpload, folderName }: EmptyFolderStateProps
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
-              ?�解?��?
+              ?�解?��?
             </a>
-            ?�於檔�???
+            ?�於檔�???
           </p>
         </div>
       </div>

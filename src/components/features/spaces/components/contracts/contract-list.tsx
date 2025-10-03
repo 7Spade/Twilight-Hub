@@ -1,5 +1,6 @@
 'use client';
 
+/* TODO: [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符 */
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -125,7 +126,7 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return '?��';
+        return '?��';
       case 'license':
         return '??';
       case 'nda':
@@ -133,7 +134,7 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
       case 'partnership':
         return '??';
       case 'employment':
-        return '?��';
+        return '?��';
       default:
         return '??';
     }
@@ -314,7 +315,8 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
                       </p>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span>{contract.documents} documents</span>
-                        <span>??/span>
+                        {/* TODO: [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - span 標籤未正確閉合 */}
+                        <span>•</span>
                         <span>Modified {contract.lastModified.toLocaleDateString()}</span>
                       </div>
                     </div>

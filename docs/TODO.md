@@ -50,6 +50,116 @@
 - `[P1]` `[MEMORY_BANK]` `[DOCS]` `[DONE]` 建立標準化 TODO.md 文件
 - `[P1]` `[MEMORY_BANK]` `[CLEANUP]` `[DONE]` 更新 Memory Bank 與專案同步
 
+### 構建錯誤修復（緊急）
+- `[P1]` `[BUG]` `[AUTH]` `[TODO]` 修復 UTF-8 編碼問題 - auth-provider.tsx, permission-guard.tsx
+  - 問題: 文件包含無效的 UTF-8 字符導致構建失敗
+  - 範圍/影響: src/components/auth/ 目錄，影響所有需要認證的頁面
+  - 何時: 2025-10-03 發現，阻塞構建流程
+  - 為什麼: 文件編輯時引入了非 UTF-8 字符或文件保存編碼錯誤
+  - 解法: 使用支援 UTF-8 的編輯器重新保存文件，確保文件編碼為 UTF-8
+  - 驗證: (1) npm run build 成功 (2) 文件可正常編譯 (3) 無編碼警告
+  - 預防: 在 .editorconfig 中強制 UTF-8 編碼，使用 ESLint 插件檢測編碼問題
+  - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復文件
+
+- `[P1]` `[BUG]` `[AUTH]` `[TODO]` 修復文件完整性問題 - role-manager.tsx 被截斷
+  - 問題: role-manager.tsx 只剩 10 行，原本應有完整的角色管理功能
+  - 範圍/影響: src/components/auth/role-manager.tsx，影響角色管理功能
+  - 何時: 2025-10-03 發現，可能與 UTF-8 編碼問題同時發生
+  - 為什麼: 編碼問題或文件保存時截斷
+  - 解法: 從 git 歷史恢復完整的 role-manager.tsx 文件
+  - 驗證: (1) 文件行數恢復正常 (2) 角色管理功能可用 (3) 無編譯錯誤
+  - 預防: 定期 git commit，使用文件完整性檢查工具
+  - 風險/回滾: 風險低；確保從正確的 commit 恢復
+
+- `[P1]` `[BUG]` `[UI]` `[TODO]` 修復 JSX 語法錯誤 - search-command.tsx
+  - 問題: 第94行 <span> 標籤未正確閉合，包含 "⌘</span>K" 錯誤寫法
+  - 範圍/影響: src/components/search-command.tsx，影響搜尋功能
+  - 何時: 2025-10-03 發現，阻塞構建
+  - 為什麼: JSX 標籤編寫錯誤，</span> 和 K 之間缺少開始標籤
+  - 解法: 修改為 <span className="text-xs">⌘</span><span>K</span> 或 <span>⌘ K</span>
+  - 驗證: (1) npm run build 成功 (2) 搜尋快捷鍵顯示正確 (3) 無 JSX 錯誤
+  - 預防: 使用 ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險低；純前端修改
+
+- `[P1]` `[BUG]` `[UI]` `[TODO]` 修復 React Hooks 規則違反 - file-upload.tsx
+  - 問題: 第65、72、252行在回調函數中調用 Hook（useIsFileTypeSupported, useFormatFileSize）
+  - 範圍/影響: src/components/ui/file-upload.tsx，影響文件上傳功能
+  - 何時: 2025-10-03 lint 檢測到，違反 React Hooks 規則
+  - 為什麼: Hook 必須在組件頂層調用，不能在回調、條件或循環中調用
+  - 解法: 將 Hook 調用移到組件頂層，在回調中使用計算結果
+  - 驗證: (1) npm run lint 無 Hooks 錯誤 (2) 文件上傳功能正常 (3) 無運行時錯誤
+  - 預防: 使用 eslint-plugin-react-hooks，代碼審查時檢查 Hook 使用
+  - 風險/回滾: 風險中；需測試文件上傳流程
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 修復語法錯誤 - use-permissions.ts
+  - 問題: 第66行包含不完整的元素訪問表達式（如 arr[] 缺少索引）
+  - 範圍/影響: src/hooks/use-permissions.ts，影響權限檢查
+  - 何時: 2025-10-03 發現，阻塞構建
+  - 為什麼: 陣列或物件訪問語法不完整
+  - 解法: 檢查第66行，補充完整的訪問表達式
+  - 驗證: (1) TypeScript 編譯成功 (2) 權限檢查功能正常 (3) 無語法錯誤
+  - 預防: TypeScript 嚴格模式，ESLint 語法檢查
+  - 風險/回滾: 風險中；權限系統核心邏輯
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 修復語法錯誤 - role-management.ts
+  - 問題: 第20行缺少分號，導致解析錯誤
+  - 範圍/影響: src/lib/role-management.ts，影響角色管理服務
+  - 何時: 2025-10-03 發現
+  - 為什麼: 語句末尾缺少分號
+  - 解法: 在第20行末尾添加分號
+  - 驗證: (1) npm run lint 成功 (2) TypeScript 編譯成功 (3) 角色管理功能正常
+  - 預防: 使用 Prettier 自動格式化，ESLint 檢查分號
+  - 風險/回滾: 風險低；簡單語法修復
+
+### 構建錯誤修復（中優先級）
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復字符串字面量錯誤 - file-explorer 相關組件
+  - 問題: 多個文件包含未終止的字符串字面量（缺少閉合引號）
+  - 範圍/影響: src/components/features/spaces/components/file-explorer/ 目錄
+  - 受影響文件: column-settings-menu.tsx(L69), context-menu.tsx(L126), deleted-items.tsx(L50), file-detail-view.tsx(L75), empty-folder-state.tsx(L31), file-table.tsx(L51)
+  - 何時: 2025-10-03 發現
+  - 為什麼: 字符串字面量缺少結束引號或包含特殊字符
+  - 解法: 檢查每個文件對應行，補充缺失的引號或轉義特殊字符
+  - 驗證: (1) npm run build 成功 (2) file-explorer 功能正常 (3) 無語法錯誤
+  - 預防: ESLint 語法檢查，編輯器語法高亮
+  - 風險/回滾: 風險低；純語法修復
+
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復 JSX 語法錯誤 - contract-list.tsx
+  - 問題: 第317行包含未閉合的標籤或無效字符
+  - 範圍/影響: src/components/features/spaces/components/contracts/contract-list.tsx
+  - 何時: 2025-10-03 發現
+  - 為什麼: JSX 標籤未正確閉合或包含非法字符
+  - 解法: 檢查第317行，確保所有 JSX 標籤正確閉合
+  - 驗證: (1) npm run build 成功 (2) 合約列表顯示正常 (3) 無 JSX 錯誤
+  - 預防: ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險低；純前端修改
+
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復語法錯誤 - file-explorer.tsx
+  - 問題: 第95行缺少分號
+  - 範圍/影響: src/components/features/spaces/components/file-explorer/file-explorer.tsx
+  - 何時: 2025-10-03 發現
+  - 為什麼: 語句末尾缺少分號
+  - 解法: 在第95行末尾添加分號
+  - 驗證: (1) npm run lint 成功 (2) file-explorer 功能正常 (3) 無語法錯誤
+  - 預防: Prettier 自動格式化，ESLint 檢查分號
+  - 風險/回滾: 風險低；簡單語法修復
+
+### Lint 警告清理（低優先級）
+- `[P3]` `[CLEANUP]` `[REFACTOR]` `[TODO]` 清理未使用的變量和 import
+  - 問題: 多個文件包含未使用的 import 和變量聲明
+  - 範圍/影響: 全專案，影響代碼質量和 bundle size
+  - 解法: 使用 ESLint --fix 自動移除，或手動清理
+  - 驗證: npm run lint 無未使用變量警告
+  - 預防: 使用 ESLint，定期運行 lint --fix
+  - 風險/回滾: 風險極低；自動化清理
+
+- `[P3]` `[PERF]` `[REFACTOR]` `[TODO]` 修復 React Hooks 依賴問題
+  - 問題: 多個組件的 useMemo/useEffect 依賴陣列不完整，可能導致每次渲染都重新計算
+  - 範圍/影響: 多個頁面組件，影響性能
+  - 解法: 根據 ESLint 提示，將依賴包裝在 useMemo 中
+  - 驗證: npm run lint 無 exhaustive-deps 警告，性能無降低
+  - 預防: 遵守 React Hooks 最佳實踐，使用 ESLint 檢查
+  - 風險/回滾: 風險低；性能優化
+
 ### 專案結構優化
 - `[P2]` `[REFACTOR]` `[TODO]` 實施 Next.js 15 標準文件命名規範
 - `[P2]` `[CLEANUP]` `[TODO]` 清理重複文件 (FirebaseErrorListener.tsx)
@@ -62,21 +172,23 @@
 
 ### 按優先級
 - `[P0]`: 0 個
-- `[P1]`: 4 個 (4 完成, 0 進行中, 0 待開始)
-- `[P2]`: 4 個 (全部待開始)
-- `[P3]`: 0 個
+- `[P1]`: 10 個 (4 完成, 6 待開始)
+- `[P2]`: 7 個 (全部待開始)
+- `[P3]`: 2 個 (全部待開始)
 
 ### 按狀態
-- `[TODO]`: 4 個
+- `[TODO]`: 15 個
 - `[IN_PROGRESS]`: 0 個
 - `[DONE]`: 4 個
 - `[BLOCKED]`: 0 個
 - `[CANCELLED]`: 0 個
 
 ### 按類型
+- `[BUG]`: 10 個
+- `[REFACTOR]`: 4 個
 - `[CLEANUP]`: 3 個
-- `[REFACTOR]`: 2 個
 - `[DOCS]`: 1 個
+- `[PERF]`: 1 個
 
 ---
 

@@ -4,6 +4,7 @@
  * selected item. A separate context menu for the toolbar is also defined here.
  */
 'use client';
+/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量 */
 
 import React from 'react';
 import {
@@ -57,95 +58,95 @@ interface ContextMenuProps {
 
 export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
   const menuItems: MenuGroup[] = [
-    // 第�?組�??�本?�件/資�?夾�?�?
+    // 第�?組�??�本?�件/資�?夾�?�?
     {
       group: 'basic',
       items: [
         {
           id: 'add-subfolder',
-          label: '?�入子�??�夾',
+          label: '?�入子�??�夾',
           icon: <Plus className="h-4 w-4" />,
           secondaryIcon: <Folder className="h-4 w-4" />,
         },
         {
           id: 'rename',
-          label: '?��?',
+          label: '?��?',
           icon: <Edit className="h-4 w-4" />,
         },
         {
           id: 'share',
-          label: '?�用',
+          label: '?�用',
           icon: <Share className="h-4 w-4" />,
         },
         {
           id: 'move',
-          label: '移�?',
+          label: '移�?',
           icon: <Move className="h-4 w-4" />,
         },
         {
           id: 'delete',
-          label: '?�除',
+          label: '?�除',
           icon: <Trash2 className="h-4 w-4" />,
         },
         {
           id: 'sort-by',
-          label: '?��?依�?',
+          label: '?��?依�?',
           icon: <ArrowUpDown className="h-4 w-4" />,
           hasArrow: true,
         },
       ]
     },
-    // 第�?組�?上傳?��?載�?�?
+    // 第�?組�?上傳?��?載�?�?
     {
       group: 'upload-download',
       items: [
         {
           id: 'upload',
-          label: '上�?',
+          label: '上�?',
           icon: <Upload className="h-4 w-4" />,
           hasArrow: true,
         },
         {
           id: 'download-original',
-          label: '下�??��?檔�?',
+          label: '下�??��?檔�?',
           icon: <Download className="h-4 w-4" />,
           info: true,
         },
         {
           id: 'export-history',
-          label: '?�出檔�?記�?',
+          label: '?�出檔�?記�?',
           icon: <FileText className="h-4 w-4" />,
         },
         {
           id: 'submit-review',
-          label: '?�交以�?審閱',
+          label: '?�交以�?審閱',
           icon: <UserCheck className="h-4 w-4" />,
         },
         {
           id: 'create-transfer',
-          label: '建�??��?,
+          label: '建�??��?,
           icon: <Package className="h-4 w-4" />,
           info: true,
         },
       ]
     },
-    // 第�?組�?設�??�更多選??
+    // 第�?組�?設�??�更多選??
     {
       group: 'settings',
       items: [
         {
           id: 'permission-settings',
-          label: '權�?設�?',
+          label: '權�?設�?',
           icon: <Settings className="h-4 w-4" />,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱?��?觸發詳細資�?',
+          label: '審閱?��?觸發詳細資�?',
           icon: <Play className="h-4 w-4" />,
         },
         {
           id: 'more',
-          label: '?��?',
+          label: '?��?',
           icon: <MoreVertical className="h-4 w-4" />,
           hasArrow: true,
         },
@@ -203,17 +204,17 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       items: [
         {
           id: 'properties',
-          label: '屬�?,
+          label: '屬�?,
           hasArrow: true,
         },
         {
           id: 'compliance',
-          label: '?��???,
+          label: '?��???,
           hasArrow: true,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱?��?觸發',
+          label: '審閱?��?觸發',
         },
         {
           id: 'packages',
@@ -221,7 +222,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
         },
         {
           id: 'advanced',
-          label: '?��?',
+          label: '?��?',
         },
       ]
     }
@@ -232,7 +233,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <MoreVertical className="h-4 w-4 mr-2" />
-          設�?
+          設�?
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">

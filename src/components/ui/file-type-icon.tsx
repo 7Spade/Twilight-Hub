@@ -193,6 +193,7 @@ export function FileTypeIcon({
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-gray-600"></div>
             </div>
           )}
+          {/* TODO: [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤 */}
           <img
             src={thumbnailUrl}
             alt={fileName}
