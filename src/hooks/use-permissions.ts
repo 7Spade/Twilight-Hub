@@ -53,7 +53,7 @@ export function usePermissions() {
   const checkPermissions = useCallback(async (
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
-    const results: Record<Permission, PermissionCheckResult> = {} as any;
+    const results: Record<Permission, PermissionCheckResult> = {} as unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
     
     for (const permission of permissions) {
       results[permission] = await checkPermission(permission);
@@ -134,7 +134,7 @@ export function usePermissions() {
     spaceId: string,
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
-    const results: Record<Permission, PermissionCheckResult> = {} as any;
+    const results: Record<Permission, PermissionCheckResult> = {} as unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
     
     for (const permission of permissions) {
       results[permission] = await checkSpacePermission(spaceId, permission);

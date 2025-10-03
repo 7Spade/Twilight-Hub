@@ -66,7 +66,7 @@ export function useCollection<T = DocumentData>(
         setError(null);
         setIsLoading(false);
       },
-      (err: FirestoreError) => {
+      (err: FirestoreError) => { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用 */
         let path: string;
         if (targetRefOrQuery.type === 'collection') {
           path = (targetRefOrQuery as CollectionReference).path;

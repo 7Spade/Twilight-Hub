@@ -24,7 +24,7 @@ export function StatCard({
   onClick,
   className
 }: StatCardProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - isVisible 未使用 */
   const [animatedValue, setAnimatedValue] = useState(0);
 
   // ?�画?��?

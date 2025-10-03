@@ -9,7 +9,7 @@ interface ChatState {
 
 interface DialogState {
   type: string | null;
-  data: any;
+  data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
   isOpen: boolean;
 }
 
@@ -23,7 +23,7 @@ interface AppStateActions {
   closeChat: () => void;
   toggleChat: () => void;
   toggleMinimizeChat: () => void;
-  openDialog: (type: string, data?: any) => void;
+  openDialog: (type: string, data?: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
   closeDialog: () => void;
 }
 
@@ -67,7 +67,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));
   }, []);
 
-  const openDialog = useCallback((type: string, data: any = {}) => {
+  const openDialog = useCallback((type: string, data: unknown = {}) => { /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
     setDialog({ type, data, isOpen: true });
   }, []);
 
