@@ -17,20 +17,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { 
   Upload,
-  Move,
   MoreVertical,
-  Search,
   Grid3X3,
   List,
   Download,
   ChevronDown,
-  Filter,
-  Trash2
+  Filter
 } from 'lucide-react';
 
 interface ToolbarProps {
   onUpload: () => void;
-  onMove: () => void;
   onMoreOptions: () => void;
   onExport: () => void;
   onSearch: (query: string) => void;
@@ -44,7 +40,6 @@ interface ToolbarProps {
 
 export function Toolbar({ 
   onUpload, 
-  onMove, 
   onMoreOptions, 
   onExport, 
   onSearch, 
@@ -62,12 +57,12 @@ export function Toolbar({
   };
 
   return (
-    <div className="flex items-center justify-between gap-4 p-4 border-b">
-      <div className="flex items-center gap-2">
-        {/* 上傳按鈕 - 圖1：主按鈕 + 下拉箭頭 */}
+    <div className="flex items-center justify-between gap-4 p-4 border-b bg-white">
+      <div className="flex items-center gap-3">
+        {/* 上傳按鈕 - 匹配 Autodesk 設計 */}
         <div className="flex">
           <Button 
-            className="bg-blue-600 hover:bg-blue-700 rounded-r-none"
+            className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-none px-4 py-2 h-9"
             onClick={handleFileSelect}
           >
             <Upload className="h-4 w-4 mr-2" />
@@ -76,7 +71,7 @@ export function Toolbar({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button 
-                className="bg-blue-600 hover:bg-blue-700 rounded-l-none border-l border-blue-500"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-l-none border-l border-blue-500 px-2 py-2 h-9"
                 size="icon"
               >
                 <ChevronDown className="h-4 w-4" />
@@ -93,15 +88,6 @@ export function Toolbar({
           </DropdownMenu>
         </div>
 
-        {/* 移動按鈕 */}
-        <Button 
-          variant="outline" 
-          onClick={onMove}
-          disabled={selectedCount === 0}
-        >
-          <Move className="h-4 w-4 mr-2" />
-          移動
-        </Button>
 
         {/* 更多選項按鈕 */}
         <Button 
@@ -112,23 +98,15 @@ export function Toolbar({
           <MoreVertical className="h-4 w-4" />
         </Button>
 
-        {/* 篩選按鈕 */}
+        {/* 篩選按鈕 - 匹配 Autodesk 設計 */}
         <Button 
           variant={isFilterActive ? "default" : "outline"}
           onClick={onFilter}
         >
           <Filter className="h-4 w-4 mr-2" />
-          篩選
+          搜尋和篩選
         </Button>
 
-        {/* 刪除的項目按鈕 */}
-        <Button 
-          variant="outline"
-          onClick={onDeletedItems}
-        >
-          <Trash2 className="h-4 w-4 mr-2" />
-          刪除的項目
-        </Button>
 
         {/* 隱藏的文件輸入 */}
         <input
@@ -143,16 +121,23 @@ export function Toolbar({
         />
       </div>
 
-      <div className="flex items-center gap-2">
-        {/* 匯出按鈕 */}
+      <div className="flex items-center gap-3">
+        {/* 匯出按鈕 - 匹配 Autodesk 設計 */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
               匯出
+              <ChevronDown className="h-4 w-4 ml-1" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => console.log('檔案記錄')}>
+              檔案記錄
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log('資料夾權限')}>
+              資料夾權限
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
               匯出為 Excel
             </DropdownMenuItem>
@@ -165,15 +150,6 @@ export function Toolbar({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* 搜索框 */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="搜尋和篩選"
-            className="pl-10 w-64"
-            onChange={(e) => onSearch(e.target.value)}
-          />
-        </div>
 
         {/* 視圖切換按鈕 */}
         <div className="flex items-center border rounded-md">

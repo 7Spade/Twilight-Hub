@@ -14,3 +14,12 @@ export { SpaceVisibilityBadge } from './spaces-visibility-badge';
 export { StarredSpaces } from './spaces-starred-list';
 export { FileManager } from './spaces-files-view';
 export * from './file-explorer';
+
+// Tab components exports
+export * from './overview';
+export * from './participants';
+export * from './issues';
+export * from './quality';
+export * from './report';
+export * from './acceptance';
+export * from './contracts';

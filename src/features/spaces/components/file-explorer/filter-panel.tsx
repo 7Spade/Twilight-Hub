@@ -103,17 +103,12 @@ export function FilterPanel({
   return (
     <div className="absolute right-0 top-0 h-full w-80 bg-white border-l shadow-lg z-40">
       <div className="h-full flex flex-col">
-        {/* 標題欄 */}
+        {/* 標題欄 - 匹配 Autodesk 設計 */}
         <div className="flex items-center justify-between p-4 border-b">
           <h3 className="text-lg font-semibold">搜尋</h3>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => setShowSaveDialog(true)}>
-              <Save className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <Button variant="ghost" size="sm" onClick={onClose}>
+            <X className="h-4 w-4" />
+          </Button>
         </div>
 
         {/* 標籤頁 */}
@@ -140,7 +135,7 @@ export function FilterPanel({
             </div>
           </div>
 
-          {/* 搜尋和篩選設定 */}
+          {/* 搜尋和篩選設定 - 匹配 Autodesk 設計 */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-medium">搜尋和篩選設定</h4>

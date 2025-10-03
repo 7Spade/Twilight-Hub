@@ -20,6 +20,13 @@ import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/features/spaces/components/spaces-star-button';
 import { FileManager } from './spaces-files-view';
 import { useSpaceActions } from '@/features/spaces/hooks';
+import { OverviewDashboard } from './overview';
+import { ParticipantList } from './participants';
+import { IssueList } from './issues';
+import { QualityDashboard } from './quality';
+import { ReportDashboard } from './report';
+import { AcceptanceList } from './acceptance';
+import { ContractList } from './contracts';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
@@ -104,26 +111,60 @@ export function SpaceDetailView({
       <p className="text-muted-foreground text-lg leading-relaxed -mt-2">{space.description}</p>
 
       <Tabs defaultValue="overview">
-        <TabsList>
+        <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
           <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="participants">Participants</TabsTrigger>
+          <TabsTrigger value="issues">Issues</TabsTrigger>
+          <TabsTrigger value="quality">Quality</TabsTrigger>
+          <TabsTrigger value="reports">Reports</TabsTrigger>
+          <TabsTrigger value="acceptance">Acceptance</TabsTrigger>
+          <TabsTrigger value="contracts">Contracts</TabsTrigger>
           <TabsTrigger value="files">Files</TabsTrigger>
           {isOwner && <TabsTrigger value="settings">Settings</TabsTrigger>}
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
-          <div className="space-y-6">
-            <h3 className="text-lg font-medium">Overview</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium text-muted-foreground">Owner</h4>
-                <p className="text-sm">{owner.name}</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium text-muted-foreground">Visibility</h4>
-                <p className="text-sm">{space.isPublic ? 'Public' : 'Private'}</p>
-              </div>
-            </div>
-          </div>
+          <OverviewDashboard spaceId={space.id} />
+        </TabsContent>
+
+        <TabsContent value="participants" className="mt-6">
+          <ParticipantList 
+            spaceId={space.id} 
+            canManage={isOwner}
+            currentUserId={authUser?.uid}
+          />
+        </TabsContent>
+
+        <TabsContent value="issues" className="mt-6">
+          <IssueList 
+            spaceId={space.id} 
+            canCreate={isOwner}
+          />
+        </TabsContent>
+
+        <TabsContent value="quality" className="mt-6">
+          <QualityDashboard spaceId={space.id} />
+        </TabsContent>
+
+        <TabsContent value="reports" className="mt-6">
+          <ReportDashboard 
+            spaceId={space.id} 
+            canCreate={isOwner}
+          />
+        </TabsContent>
+
+        <TabsContent value="acceptance" className="mt-6">
+          <AcceptanceList 
+            spaceId={space.id} 
+            canCreate={isOwner}
+          />
+        </TabsContent>
+
+        <TabsContent value="contracts" className="mt-6">
+          <ContractList 
+            spaceId={space.id} 
+            canCreate={isOwner}
+          />
         </TabsContent>
 
         <TabsContent value="files" className="mt-6">
@@ -133,13 +174,13 @@ export function SpaceDetailView({
         </TabsContent>
 
         {isOwner && (
-            <TabsContent value="settings" className="mt-6">
-                <SpaceSettingsView 
-                    space={space}
-                    isLoading={isPageLoading}
-                    onFormSubmit={handleSettingsSubmit}
-                />
-            </TabsContent>
+          <TabsContent value="settings" className="mt-6">
+            <SpaceSettingsView 
+              space={space}
+              isLoading={isPageLoading}
+              onFormSubmit={handleSettingsSubmit}
+            />
+          </TabsContent>
         )}
       </Tabs>
     </div>

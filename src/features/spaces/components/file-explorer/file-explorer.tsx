@@ -356,7 +356,6 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
       {/* 工具欄 */}
       <Toolbar
         onUpload={() => handleToolbarAction('upload')}
-        onMove={() => handleToolbarAction('move')}
         onMoreOptions={() => handleToolbarAction('more-options')}
         onExport={() => handleToolbarAction('export')}
         onSearch={setSearchQuery}
