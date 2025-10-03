@@ -20,7 +20,7 @@ import {
   FileVideo,
   FileAudio,
   FileCode,
-  FileArchive,
+  FileArchive
 } from 'lucide-react';
 
 export interface FileTypeIconProps {

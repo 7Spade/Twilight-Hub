@@ -1,9 +1,9 @@
 /**
- * @fileoverview Auth 組件統�?導出
- * ?��??�?��?證�?權�??��?組件
+ * @fileoverview Auth 組件統一導出
+ * 提供認證和權限相關組件
  */
 
-// 統�??��?證�?供�?
+// 統一認證提供者
 export { 
   AuthProvider, 
   useAuth,
@@ -14,8 +14,8 @@ export {
   type PermissionButtonProps
 } from './auth-provider';
 
-// 角色管�?組件
+// 角色管理組件
 export { RoleManager, PermissionDisplay } from './role-manager';
 
-// ?��??�容?��??��??�步棄用�?
+// 向後兼容，暫時保留
 export { PermissionGuard as PermissionGuardLegacy } from './permission-guard';
