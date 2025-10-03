@@ -28,24 +28,25 @@
     ├── nextjs15.dev-standard.md (35.5 KB, 今天)
     ├── project.structure.md (17.9 KB, 今天)
 └── memory-bank/
-    ├── archive/
-    ├── creative/
-    ├── reflection/
-    ├── activeContext.md (1.8 KB, 今天)
-    ├── continuous-collaboration-workflow-v2.md (6.2 KB, 今天)
-    ├── continuous-collaboration-workflow-v3.md (5.7 KB, 今天)
-    ├── continuous-collaboration-workflow.md (4.1 KB, 今天)
+    ├── activeContext.md (2.6 KB, 今天)
+    ├── featureInventory.md (11.3 KB, 今天)
+    ├── fileNamingConventions.md (6.7 KB, 今天)
+    ├── finalQaReport.md (5 KB, 今天)
+    ├── functionInventory.md (7.2 KB, 今天)
     ├── memory-clean.json (12 KB, 今天)
     ├── memory.backup.json (13.7 KB, 今天)
     ├── memory.json (134.5 KB, 今天)
     ├── monitor.json (245 B, 今天)
-    ├── productContext.md (269 B, 今天)
-    ├── progress.md (593 B, 今天)
-    ├── projectbrief.md (240 B, 今天)
-    ├── style-guide.md (289 B, 今天)
-    ├── systemPatterns.md (277 B, 今天)
-    ├── tasks.md (9.4 KB, 今天)
-    ├── techContext.md (237 B, 今天)
+    ├── p0FunctionCoverageReport.md (10.2 KB, 今天)
+    ├── progress.md (3 KB, 今天)
+    ├── projectbrief.md (2.7 KB, 今天)
+    ├── projectStructureTree.md (21.5 KB, 今天)
+    ├── qaReport.md (4.3 KB, 今天)
+    ├── systemPatterns.md (4.8 KB, 今天)
+    ├── tasks.md (2.2 KB, 今天)
+    ├── techContext.md (2.5 KB, 今天)
+    ├── technicalImplementationGuide.md (20.8 KB, 今天)
+    ├── zeroCognitionVerification.md (6.4 KB, 今天)
 └── scripts/
     ├── generate-tree.ts (6.8 KB, 今天)
     ├── memory-auto-monitor.ts (7.1 KB, 今天)
@@ -56,6 +57,240 @@
     ├── optimize-word-count.js (4.7 KB, 今天)
     ├── todo-automation-toolkit.ts (11.7 KB, 今天)
 └── src/
+    ├── ai/
+    │   ├── flows/
+    │   │   ├── analyze-contract.ts (142 B, 今天)
+    │   │   ├── extract-engagement-data.ts (142 B, 今天)
+    │   ├── services/
+    │   │   ├── contract-analysis.service.ts (142 B, 今天)
+    │   │   ├── document-analysis.service.ts (145 B, 今天)
+    │   ├── types/
+    │   │   ├── analysis.types.ts (148 B, 今天)
+    │   │   ├── engagement.types.ts (148 B, 今天)
+    │   ├── dev.ts (64 B, 今天)
+    │   ├── genkit.ts (133 B, 今天)
+    ├── app/
+    │   ├── (app)/
+    │   │   ├── [userslug]/
+    │   │   │   ├── [spaceslug]/
+    │   │   │   │   ├── page.tsx (208 B, 今天)
+    │   │   │   ├── page.tsx (205 B, 今天)
+    │   │   ├── dashboard/
+    │   │   │   ├── page.tsx (192 B, 今天)
+    │   │   ├── discover/
+    │   │   │   ├── page.tsx (179 B, 今天)
+    │   │   ├── organizations/
+    │   │   │   ├── [organizationslug]/
+    │   │   │   │   ├── [spaceslug]/
+    │   │   │   │   │   ├── page.tsx (242 B, 今天)
+    │   │   │   │   ├── groups/
+    │   │   │   │   │   ├── page.tsx (237 B, 今天)
+    │   │   │   │   ├── inventory/
+    │   │   │   │   │   ├── [itemId]/
+    │   │   │   │   │   │   ├── page.tsx (240 B, 今天)
+    │   │   │   │   │   ├── page.tsx (225 B, 今天)
+    │   │   │   │   ├── members/
+    │   │   │   │   │   ├── page.tsx (229 B, 今天)
+    │   │   │   │   ├── roles/
+    │   │   │   │   │   ├── page.tsx (236 B, 今天)
+    │   │   │   │   ├── settings/
+    │   │   │   │   │   ├── page.tsx (236 B, 今天)
+    │   │   │   │   ├── spaces/
+    │   │   │   │   │   ├── page.tsx (231 B, 今天)
+    │   │   │   │   ├── page.tsx (209 B, 今天)
+    │   │   │   ├── page.tsx (199 B, 今天)
+    │   │   ├── settings/
+    │   │   │   ├── account/
+    │   │   │   │   ├── page.tsx (199 B, 今天)
+    │   │   │   ├── notifications/
+    │   │   │   │   ├── page.tsx (211 B, 今天)
+    │   │   │   ├── profile/
+    │   │   │   │   └── page.tsx (199 B, 今天)
+    │   │   ├── spaces/
+    │   │   │   └── [spaceslug]/
+    │   │   │       ├── page.tsx (201 B, 今天)
+    │   │   │   └── page.tsx (192 B, 今天)
+    │   ├── (auth)/
+    │   │   ├── login/
+    │   │   │   ├── page.tsx (1.6 KB, 今天)
+    │   │   ├── signup/
+    │   │   │   └── page.tsx (201 B, 今天)
+    │   ├── (public)/
+    │   │   ├── page.tsx (171 B, 今天)
+    │   ├── favicon.ico (14.7 KB, 昨天)
+    │   ├── globals.css (979 B, 今天)
+    ├── components/
+    │   ├── auth/
+    │   │   ├── auth-provider.tsx (844 B, 今天)
+    │   │   ├── index.ts (143 B, 今天)
+    │   │   ├── permission-guard.tsx (209 B, 今天)
+    │   │   ├── role-manager.tsx (220 B, 今天)
+    │   ├── features/
+    │   │   ├── auth/
+    │   │   │   ├── login-form.tsx (222 B, 今天)
+    │   │   ├── contracts/
+    │   │   │   ├── components/
+    │   │   │   ├── hooks/
+    │   │   │   ├── services/
+    │   │   │   ├── types/
+    │   │   ├── organizations/
+    │   │   │   ├── components/
+    │   │   │   ├── hooks/
+    │   │   │   ├── services/
+    │   │   │   ├── types/
+    │   │   ├── spaces/
+    │   │   │   ├── components/
+    │   │   │   │   ├── acceptance/
+    │   │   │   │   ├── contracts/
+    │   │   │   │   ├── file-explorer/
+    │   │   │   │   │   ├── file-breadcrumb.tsx (199 B, 今天)
+    │   │   │   │   │   ├── file-context-menu.tsx (227 B, 今天)
+    │   │   │   │   │   ├── file-deleted.tsx (231 B, 今天)
+    │   │   │   │   │   ├── file-detail.tsx (216 B, 今天)
+    │   │   │   │   │   ├── file-explorer.tsx (231 B, 今天)
+    │   │   │   │   │   ├── file-filter.tsx (187 B, 今天)
+    │   │   │   │   │   ├── file-table.tsx (225 B, 今天)
+    │   │   │   │   │   ├── file-thumbnail.tsx (181 B, 今天)
+    │   │   │   │   │   ├── file-tree.tsx (223 B, 今天)
+    │   │   │   │   │   ├── file-upload.tsx (222 B, 今天)
+    │   │   │   │   │   ├── file-version.tsx (222 B, 今天)
+    │   │   │   │   ├── issues/
+    │   │   │   │   ├── overview/
+    │   │   │   │   ├── participants/
+    │   │   │   │   ├── quality/
+    │   │   │   │   ├── reports/
+    │   │   │   │   ├── space-create.tsx (226 B, 今天)
+    │   │   │   │   ├── space-detail.tsx (214 B, 今天)
+    │   │   │   │   ├── space-list.tsx (211 B, 今天)
+    │   │   │   │   ├── space-settings.tsx (220 B, 今天)
+    │   │   │   │   ├── space-star-button.tsx (217 B, 今天)
+    │   │   │   │   ├── space-visibility.tsx (232 B, 今天)
+    │   │   │   ├── hooks/
+    │   │   │   ├── services/
+    │   │   │   ├── types/
+    │   │   ├── users/
+    │   │   │   └── components/
+    │   │   │   └── hooks/
+    │   │   │   └── services/
+    │   │   │   └── types/
+    │   ├── forms/
+    │   │   ├── form-card.tsx (211 B, 今天)
+    │   │   ├── form-field.tsx (211 B, 今天)
+    │   │   ├── form-input.tsx (197 B, 今天)
+    │   │   ├── form-switch.tsx (198 B, 今天)
+    │   │   ├── form-textarea.tsx (224 B, 今天)
+    │   │   ├── index.ts (143 B, 今天)
+    │   ├── ui/
+    │   │   ├── accordion.tsx (1.9 KB, 今天)
+    │   │   ├── alert.tsx (1.5 KB, 今天)
+    │   │   ├── avatar.tsx (1.4 KB, 今天)
+    │   │   ├── badge.tsx (1.1 KB, 今天)
+    │   │   ├── breadcrumb.tsx (2.6 KB, 今天)
+    │   │   ├── button-group.tsx (2.2 KB, 今天)
+    │   │   ├── button.tsx (1.9 KB, 今天)
+    │   │   ├── calendar.tsx (7.4 KB, 今天)
+    │   │   ├── card.tsx (1.8 KB, 今天)
+    │   │   ├── carousel.tsx (6.1 KB, 今天)
+    │   │   ├── chart.tsx (10.5 KB, 今天)
+    │   │   ├── checkbox.tsx (1 KB, 今天)
+    │   │   ├── collapsible.tsx (329 B, 今天)
+    │   │   ├── command.tsx (4.8 KB, 今天)
+    │   │   ├── context-menu.tsx (7.3 KB, 今天)
+    │   │   ├── drawer.tsx (3 KB, 今天)
+    │   │   ├── dropdown-menu.tsx (7.4 KB, 今天)
+    │   │   ├── empty.tsx (2.3 KB, 今天)
+    │   │   ├── field.tsx (5.9 KB, 今天)
+    │   │   ├── form.tsx (4 KB, 今天)
+    │   │   ├── hover-card.tsx (1.2 KB, 今天)
+    │   │   ├── input-group.tsx (4.9 KB, 今天)
+    │   │   ├── input-otp.tsx (2.1 KB, 今天)
+    │   │   ├── input.tsx (791 B, 今天)
+    │   │   ├── item.tsx (4.4 KB, 今天)
+    │   │   ├── kbd.tsx (862 B, 今天)
+    │   │   ├── label.tsx (724 B, 今天)
+    │   │   ├── menubar.tsx (8.4 KB, 今天)
+    │   │   ├── navigation-menu.tsx (5 KB, 今天)
+    │   │   ├── pagination.tsx (2.7 KB, 今天)
+    │   │   ├── popover.tsx (1.3 KB, 今天)
+    │   │   ├── progress.tsx (791 B, 今天)
+    │   │   ├── radio-group.tsx (1.4 KB, 今天)
+    │   │   ├── resizable.tsx (1.7 KB, 今天)
+    │   │   ├── scroll-area.tsx (1.6 KB, 今天)
+    │   │   ├── select.tsx (5.6 KB, 今天)
+    │   │   ├── separator.tsx (770 B, 今天)
+    │   │   ├── sheet.tsx (4.2 KB, 今天)
+    │   │   ├── sidebar.tsx (23 KB, 今天)
+    │   │   ├── skeleton.tsx (261 B, 今天)
+    │   │   ├── slider.tsx (1.1 KB, 今天)
+    │   │   ├── sonner.tsx (894 B, 今天)
+    │   │   ├── spinner.tsx (331 B, 今天)
+    │   │   ├── switch.tsx (1.1 KB, 今天)
+    │   │   ├── table.tsx (2.7 KB, 今天)
+    │   │   ├── tabs.tsx (1.9 KB, 今天)
+    │   │   ├── textarea.tsx (689 B, 今天)
+    │   │   ├── toast.tsx (4.9 KB, 今天)
+    │   │   ├── toaster.tsx (821 B, 今天)
+    │   │   ├── toggle-group.tsx (1.7 KB, 今天)
+    │   │   ├── toggle.tsx (1.5 KB, 今天)
+    │   │   ├── tooltip.tsx (1.2 KB, 今天)
+    │   ├── logo.tsx (454 B, 今天)
+    ├── firebase/
+    │   ├── errors/
+    │   │   ├── error-boundary.tsx (154 B, 今天)
+    │   │   ├── error-emitter.ts (157 B, 今天)
+    │   │   ├── errors.ts (154 B, 今天)
+    │   ├── firestore/
+    │   │   ├── use-collection.tsx (173 B, 今天)
+    │   │   ├── use-doc.tsx (173 B, 今天)
+    │   │   ├── use-query.tsx (173 B, 今天)
+    │   ├── auth.ts (147 B, 今天)
+    │   ├── client-provider.tsx (164 B, 今天)
+    │   ├── config.ts (395 B, 今天)
+    │   ├── firestore.ts (156 B, 今天)
+    │   ├── index.ts (431 B, 今天)
+    │   ├── provider.tsx (2.1 KB, 今天)
+    │   ├── storage.ts (153 B, 今天)
+    ├── hooks/
+    │   ├── index.ts (140 B, 今天)
+    │   ├── use-app-state.ts (180 B, 今天)
+    │   ├── use-auth.ts (175 B, 今天)
+    │   ├── use-contracts.ts (178 B, 今天)
+    │   ├── use-file-operations.ts (193 B, 今天)
+    │   ├── use-mobile.tsx (181 B, 今天)
+    │   ├── use-permissions.ts (152 B, 今天)
+    │   ├── use-spaces.ts (181 B, 今天)
+    │   ├── use-toast.ts (173 B, 今天)
+    │   ├── use-toast.tsx (679 B, 今天)
+    ├── lib/
+    │   └── schemas/
+    │       ├── auth.schemas.ts (142 B, 今天)
+    │       ├── contract.schemas.ts (142 B, 今天)
+    │       ├── space.schemas.ts (142 B, 今天)
+    │       ├── user.schemas.ts (142 B, 今天)
+    │   └── services/
+    │       ├── api.service.ts (127 B, 今天)
+    │       ├── auth.service.ts (139 B, 今天)
+    │       ├── contract.service.ts (136 B, 今天)
+    │       ├── file.service.ts (136 B, 今天)
+    │       ├── org.service.ts (136 B, 今天)
+    │       ├── space.service.ts (136 B, 今天)
+    │       ├── user.service.ts (136 B, 今天)
+    │   └── types/
+    │       ├── auth.types.ts (142 B, 今天)
+    │       ├── common.types.ts (142 B, 今天)
+    │       ├── contract.types.ts (142 B, 今天)
+    │       ├── file.types.ts (142 B, 今天)
+    │       ├── org.types.ts (142 B, 今天)
+    │       ├── participant.types.ts (157 B, 今天)
+    │       ├── space.types.ts (142 B, 今天)
+    │       ├── user.types.ts (142 B, 今天)
+    │   └── auth.ts (154 B, 今天)
+    │   └── config.ts (124 B, 今天)
+    │   └── constants.ts (124 B, 今天)
+    │   └── formatting.ts (163 B, 今天)
+    │   └── utils.ts (349 B, 今天)
+    │   └── validation.ts (142 B, 今天)
+└── src copy/
     ├── ai/
     │   ├── flows/
     │   │   ├── extract-engagement-data.ts (2.9 KB, 今天)

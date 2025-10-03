@@ -10,3 +10,20 @@
  * 組件類型：Client Component
  * 依賴：AuthProvider
  */
+
+export interface NavItem {
+  title: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isActive?: boolean;
+}
+
+export const defaultNavItems: NavItem[] = [
+  { title: 'Home', href: '/', icon: () => null },
+  { title: 'Dashboard', href: '/dashboard', icon: () => null },
+  { title: 'Discover', href: '/discover', icon: () => null },
+  { title: 'Organizations', href: '/organizations', icon: () => null },
+  { title: 'Spaces', href: '/spaces', icon: () => null },
+  { title: 'Settings', href: '/settings', icon: () => null },
+  { title: 'Profile', href: '/settings/profile', icon: () => null },
+];

@@ -1,3 +1,14 @@
+'use client';
+
+export default function SpacesPage() {
+  return (
+    <div className="space-y-2">
+      <h1 className="text-xl font-semibold">Spaces</h1>
+      <p className="text-sm text-muted-foreground">Your spaces will appear here.</p>
+    </div>
+  );
+}
+
 /**
  * 空間列表頁面
  * 
