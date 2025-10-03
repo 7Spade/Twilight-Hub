@@ -1,3 +1,18 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+
+export default function OrgRolesPage() {
+  const params = useParams();
+  const slug = (params?.organizationslug as string) || '';
+  return (
+    <div className="space-y-2">
+      <h1 className="text-xl font-semibold">Roles</h1>
+      <p className="text-sm text-muted-foreground">Organization: {slug}</p>
+    </div>
+  );
+}
+
 /**
  * 角色管理頁面
  * 

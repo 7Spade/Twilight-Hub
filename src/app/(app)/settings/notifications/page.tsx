@@ -1,3 +1,14 @@
+'use client';
+
+export default function NotificationSettingsPage() {
+  return (
+    <div className="space-y-2">
+      <h1 className="text-xl font-semibold">Notifications</h1>
+      <p className="text-sm text-muted-foreground">Manage how you receive notifications.</p>
+    </div>
+  );
+}
+
 /**
  * 通知設定頁面
  * 

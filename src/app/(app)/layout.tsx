@@ -39,8 +39,16 @@ export default function AppLayout({
       };
       const orgs: Team[] = [];
       try {
-        const ownerQ = query(collection(db, 'organizations'), where('ownerId', '==', user.uid));
-        const memberQ = query(collection(db, 'organizations'), where('memberIds', 'array-contains', user.uid));
+        const ownerQ = query(
+          collection(db, 'accounts'),
+          where('type', '==', 'organization'),
+          where('ownerId', '==', user.uid)
+        );
+        const memberQ = query(
+          collection(db, 'accounts'),
+          where('type', '==', 'organization'),
+          where('memberIds', 'array-contains', user.uid)
+        );
         const [ownerSnap, memberSnap] = await Promise.all([getDocs(ownerQ), getDocs(memberQ)]);
         const seen = new Set<string>();
         for (const d of [...ownerSnap.docs, ...memberSnap.docs]) {

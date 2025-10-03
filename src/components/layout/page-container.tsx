@@ -1,11 +1,25 @@
-/**
- * 頁面容器組件
- * 
- * 功能：
- * - 頁面內容容器
- * - 頁面佈局管理
- * - 響應式設計
- * - 頁面狀態管理
- * 
- * 組件類型：Client Component
- */
+'use client';
+
+export function PageContainer({
+  title,
+  description,
+  children,
+}: {
+  title?: string;
+  description?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-4">
+      {(title || description) && (
+        <div className="space-y-1">
+          {title && <h1 className="text-xl font-semibold">{title}</h1>}
+          {description && (
+            <p className="text-sm text-muted-foreground">{description}</p>
+          )}
+        </div>
+      )}
+      {children}
+    </div>
+  );
+}

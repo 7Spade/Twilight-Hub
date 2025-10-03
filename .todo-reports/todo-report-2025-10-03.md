@@ -1,13 +1,13 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 74 個項目
+- 總計: 73 個項目
 - 🔴 緊急: 4 個項目
 ### 依優先級
-- P2: 58 個
+- P2: 57 個
 - P1: 16 個
 ### 依類型
 - PERF: 1 個
-- REFACTOR: 28 個
+- REFACTOR: 27 個
 - FEAT: 31 個
 - CLEANUP: 2 個
 - TYPING: 3 個
@@ -161,7 +161,7 @@
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
 ---
-## 🟡 P2 (58 個)
+## 🟡 P2 (57 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 合併重複的組件邏輯
 **位置:** `src copy\components\features\spaces\components\index.ts:18`
 **負責人:** @frontend
@@ -570,15 +570,7 @@
 > 2) 僅回傳實際用到的最小 API（如 download/preview/delete），避免暴露整包操作以降低重渲染。
 > 3) 針對重複邏輯（權限/錯誤處理/Toast）抽為 util，避免每個 action 內重複。
 ---
-### 54. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
-**位置:** `src copy\components\ui\chart.tsx:1`
-**詳細說明:**
-> 建議：
-> 1) 以 props 驅動、單一責任：只渲染必要視圖，不內嵌資料轉換/來源選擇。
-> 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
-> 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
----
-### 55. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+### 54. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
 **位置:** `src copy\firebase\firestore\use-collection.tsx:37`
 **詳細說明:**
 > 建議：
@@ -586,7 +578,7 @@
 > - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
 > - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 ---
-### 56. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+### 55. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
 **位置:** `src copy\hooks\use-permissions.ts:2`
 **詳細說明:**
 > 建議：
@@ -594,7 +586,7 @@
 > 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
 > 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 ---
-### 57. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+### 56. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
 **位置:** `src copy\lib\role-management.ts:112`
 **負責人:** @ai
 **詳細說明:**
@@ -603,7 +595,7 @@
 > - checkPermission 與 getAllRoleDefinitions 共享快取；
 > - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
 ---
-### 58. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+### 57. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
 **位置:** `src copy\lib\role-management.ts:121`
 **詳細說明:**
 > 建議：
