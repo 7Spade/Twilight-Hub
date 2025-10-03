@@ -1,12 +1,12 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 122 個項目
-- 🔴 緊急: 37 個項目
+- 總計: 108 個項目
+- 🔴 緊急: 23 個項目
 ### 依優先級
 - P2: 84 個
 - P1: 17 個
 - P3: 3 個
-- P0: 18 個
+- P0: 4 個
 ### 依類型
 - PERF: 11 個
 - REFACTOR: 55 個
@@ -14,102 +14,28 @@
 - FEAT: 16 個
 - TYPING: 1 個
 - HOOK: 2 個
-- FIX: 32 個
+- FIX: 18 個
 ---
-## 🔴 P0 (18 個)
-### 1. [FIX] src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）
-**位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:1`
-**詳細說明:**
-> 說明：修正字串/JSX 轉義，確保語法正確並通過 Lint
----
-### 2. [FIX] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 修復語法錯誤（第141行 Unexpected token）
-**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:1`
-**詳細說明:**
-> 說明：檢查 JSX 標籤與大於號轉義，修正不合法符號
----
-### 3. [FIX] src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)
-**位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:1`
-**詳細說明:**
-> Note: Verify JSX structure and escaping; fix any invalid characters
----
-### 4. [FIX] src/components/features/spaces/components/file-explorer/packages-tab.tsx - 修復語法錯誤（第61行未終止的字串）
-**位置:** `src\components\features\spaces\components\file-explorer\packages-tab.tsx:1`
-**詳細說明:**
-> 說明：修正字串/模板字面量，避免編譯失敗
----
-### 5. [FIX] Parsing (L156) [低認知][現代化]
-**位置:** `src\components\features\spaces\components\file-explorer\packages-tab.tsx:9`
-**詳細說明:**
-> - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）
-> - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。
----
-### 6. [FIX] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts - 修復語法錯誤（第224行未終止的字串）
-**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:1`
-**詳細說明:**
-> 說明：補齊引號或移除多餘字元，確保語法正確
----
-### 7. [FIX] src/components/features/spaces/components/file-explorer/toolbar.tsx - 修復語法錯誤（第138行未終止的字串）
-**位置:** `src\components\features\spaces\components\file-explorer\toolbar.tsx:1`
-**詳細說明:**
-> 說明：修正字串與 JSX 構造，確保可編譯
----
-### 8. [FIX] Parsing (L141) [低認知][現代化]
-**位置:** `src\components\features\spaces\components\file-explorer\toolbar.tsx:10`
-**詳細說明:**
-> - 問題：Unterminated string literal
-> - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。
----
-### 9. [FIX] src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）
-**位置:** `src\components\features\spaces\components\issues\issue-details.tsx:1`
-**詳細說明:**
-> 說明：修正字串或模板字面量，避免 Lint 解析錯誤
----
-### 10. [FIX] Parsing (L109) [低認知][現代化]
-**位置:** `src\components\features\spaces\components\issues\issue-details.tsx:4`
-**詳細說明:**
-> - 問題：Unterminated string literal
-> - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。
----
-### 11. [FIX] src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）
-**位置:** `src\components\features\spaces\components\issues\issue-list.tsx:1`
-**詳細說明:**
-> 說明：補齊引號或修正 JSX 文字，確保通過 Lint
----
-### 12. [FIX] Parsing (L139) [低認知][現代化]
-**位置:** `src\components\features\spaces\components\issues\issue-list.tsx:4`
-**詳細說明:**
-> - 問題：Unterminated string literal
-> - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。
----
-### 13. [FIX] Typo/Parsing (L81) [低認知]
-**位置:** `src\components\features\spaces\components\participants\data.ts:81`
-**詳細說明:**
-> - 指引：修正參數型別宣告錯字 `_spaceId:`
----
-### 14. [FIX] Typo/Parsing (L91) [低認知]
-**位置:** `src\components\features\spaces\components\participants\data.ts:89`
-**詳細說明:**
-> - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`
----
-### 15. [FIX] Parsing (L67)
+## 🔴 P0 (4 個)
+### 1. [FIX] Parsing (L67)
 **位置:** `src\components\features\spaces\components\participants\participant-list.tsx:2`
 **詳細說明:**
 > - Issue: Unexpected token (might need {'>'} or &gt;)
 > - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.
 ---
-### 16. [FIX] Parsing (L67) [低認知][現代化]
+### 2. [FIX] Parsing (L67) [低認知][現代化]
 **位置:** `src\components\features\spaces\components\participants\participant-role-editor.tsx:2`
 **詳細說明:**
 > - 問題：Unterminated string literal
 > - 指引：補齊引號或簡化字串；避免行內註解破壞字串。
 ---
-### 17. [FIX] Parsing (L82) [低認知][現代化]
+### 3. [FIX] Parsing (L82) [低認知][現代化]
 **位置:** `src\components\features\spaces\components\participants\participant-table.tsx:2`
 **詳細說明:**
 > - 問題：Unterminated string literal
 > - 指引：補上結尾引號；若文案未定以 '--' 站位。
 ---
-### 18. [FIX] Parsing (L106) [低認知][現代化]
+### 4. [FIX] Parsing (L106) [低認知][現代化]
 **位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:7`
 **詳細說明:**
 > - 問題：Unexpected token（考慮 {'>'} 或 &gt;）
@@ -306,7 +232,7 @@
 > 建議：定義具體的類型接口替代 any 類型
 ---
 ### 5. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用
-**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:67`
+**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:66`
 **負責人:** @frontend
 **截止日期:** 2025-01-25
 **詳細說明:**
@@ -315,7 +241,7 @@
 > 建議：定義具體的類型接口替代 any 類型
 ---
 ### 6. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用
-**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:211`
+**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:210`
 **負責人:** @frontend
 **截止日期:** 2025-01-25
 **詳細說明:**
@@ -324,7 +250,7 @@
 > 建議：定義具體的錯誤類型接口替代 any 類型
 ---
 ### 7. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用
-**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:241`
+**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:240`
 **負責人:** @frontend
 **截止日期:** 2025-01-25
 **詳細說明:**
@@ -333,7 +259,7 @@
 > 建議：定義具體的類型接口替代 any 類型
 ---
 ### 8. [REFACTOR] src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用
-**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:262`
+**位置:** `src\components\features\spaces\components\file-explorer\services\file-preview-service.ts:261`
 **負責人:** @frontend
 **截止日期:** 2025-01-25
 **詳細說明:**
@@ -638,7 +564,7 @@
 **位置:** `src\components\features\spaces\components\file-explorer\empty-folder-state.tsx:8`
 ---
 ### 50. [REFACTOR] src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:28`
+**位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:27`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'FolderOpen' 已導入但從未使用
@@ -646,7 +572,7 @@
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
 ### 51. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:27 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:35`
+**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:34`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'Filter' 已導入但從未使用
@@ -654,7 +580,7 @@
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
 ### 52. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:29 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:41`
+**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:40`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'Save' 已導入但從未使用
@@ -662,7 +588,7 @@
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
 ### 53. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:49`
+**位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:48`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'cn' 已導入但從未使用
@@ -670,7 +596,7 @@
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
 ### 54. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports
-**位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:14`
+**位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:13`
 **負責人:** @frontend
 **詳細說明:**
 > Issue: 'Button' is imported but never used
@@ -678,7 +604,7 @@
 > Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused
 ---
 ### 55. [REFACTOR] src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\file-explorer\toolbar.tsx:18`
+**位置:** `src\components\features\spaces\components\file-explorer\toolbar.tsx:15`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'Input' 已導入但從未使用

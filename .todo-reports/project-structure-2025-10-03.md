@@ -139,7 +139,7 @@
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-file-explorer-context.tsx (5.3 KB, 今天)
     │   │   │   │   │   ├── services/
-    │   │   │   │   │   │   ├── file-preview-service.ts (9.6 KB, 今天)
+    │   │   │   │   │   │   ├── file-preview-service.ts (9.4 KB, 今天)
     │   │   │   │   │   ├── thumbnail/
     │   │   │   │   │   │   ├── file-thumbnail-card.tsx (5.2 KB, 今天)
     │   │   │   │   │   │   ├── file-thumbnail-grid.tsx (8.2 KB, 今天)
@@ -149,18 +149,18 @@
     │   │   │   │   │   ├── deleted-items.tsx (8 KB, 今天)
     │   │   │   │   │   ├── empty-folder-state.tsx (2 KB, 今天)
     │   │   │   │   │   ├── file-explorer.tsx (18 KB, 今天)
-    │   │   │   │   │   ├── file-table.tsx (11.7 KB, 今天)
-    │   │   │   │   │   ├── filter-panel.tsx (16.6 KB, 今天)
-    │   │   │   │   │   ├── folder-tree.tsx (27.6 KB, 今天)
+    │   │   │   │   │   ├── file-table.tsx (11.6 KB, 今天)
+    │   │   │   │   │   ├── filter-panel.tsx (16.4 KB, 今天)
+    │   │   │   │   │   ├── folder-tree.tsx (27.4 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
-    │   │   │   │   │   ├── packages-tab.tsx (10.5 KB, 今天)
-    │   │   │   │   │   ├── toolbar.tsx (6.1 KB, 今天)
+    │   │   │   │   │   ├── packages-tab.tsx (10.2 KB, 今天)
+    │   │   │   │   │   ├── toolbar.tsx (5.9 KB, 今天)
     │   │   │   │   │   ├── version-history-drawer.tsx (5.6 KB, 今天)
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── index.ts (187 B, 今天)
-    │   │   │   │   │   ├── issue-details.tsx (8.5 KB, 今天)
-    │   │   │   │   │   ├── issue-list.tsx (11.1 KB, 今天)
+    │   │   │   │   │   ├── issue-details.tsx (8.3 KB, 今天)
+    │   │   │   │   │   ├── issue-list.tsx (10.9 KB, 今天)
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-dashboard-data.ts (4.3 KB, 今天)
@@ -175,7 +175,7 @@
     │   │   │   │   │   │   ├── use-participants.ts (4.3 KB, 今天)
     │   │   │   │   │   ├── advanced-filters.tsx (14 KB, 今天)
     │   │   │   │   │   ├── card-grid.tsx (7 KB, 今天)
-    │   │   │   │   │   ├── data.ts (5.5 KB, 今天)
+    │   │   │   │   │   ├── data.ts (5.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
     │   │   │   │   │   ├── participant-card.tsx (8.2 KB, 今天)
     │   │   │   │   │   ├── participant-filters.tsx (5.9 KB, 今天)
