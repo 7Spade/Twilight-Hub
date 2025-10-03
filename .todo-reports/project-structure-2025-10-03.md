@@ -24,6 +24,7 @@
     ├── blueprint.md (1.5 KB, 今天)
     ├── commands.natural-language.md (17.7 KB, 今天)
     ├── import-export-as-syntax-analysis.md (5.9 KB, 今天)
+    ├── memory-system-guide.md (4.1 KB, 今天)
     ├── nextjs15.dev-brief.md (12.2 KB, 今天)
     ├── nextjs15.dev-standard.md (35.5 KB, 今天)
     ├── project.structure.md (17.9 KB, 今天)
@@ -32,8 +33,9 @@
     ├── creative/
     ├── reflection/
     ├── activeContext.md (1.8 KB, 今天)
-    ├── memory.backup.json (2 KB, 今天)
-    ├── memory.json (2.6 KB, 今天)
+    ├── memory-clean.json (12 KB, 今天)
+    ├── memory.backup.json (13.7 KB, 今天)
+    ├── memory.json (12.6 KB, 今天)
     ├── monitor.json (245 B, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
@@ -47,6 +49,9 @@
     ├── memory-auto-monitor.ts (7.1 KB, 今天)
     ├── memory-optimizer.ts (9.3 KB, 今天)
     ├── memory-stats.ts (4.7 KB, 今天)
+    ├── memory-system-manager.ts (10.8 KB, 今天)
+    ├── memory-validator.js (8 KB, 今天)
+    ├── optimize-word-count.js (4.7 KB, 今天)
     ├── todo-automation-toolkit.ts (11.7 KB, 今天)
 └── src/
     ├── ai/
