@@ -10,7 +10,7 @@ import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { collection, query, where, doc } from 'firebase/firestore';
 import { useDoc } from '@/firebase/firestore/use-doc';
-import { SpaceCreateDialog } from '@/features/spaces/components/spaces-create-dialog';
+import { SpaceCreateDialog } from '@/components/features/spaces/components/spaces-create-dialog';
 import { CreateOrganizationDialog } from '@/components/create-organization-dialog';
 import { CreateGroupDialog } from '@/components/create-group-dialog';
 import { ChatDialog } from '@/components/chat-dialog';

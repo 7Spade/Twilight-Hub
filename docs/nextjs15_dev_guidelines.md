@@ -2,7 +2,697 @@
 
 > **版本**: 1.0  
 > **最後更新**: 2025-10-03  
-> **適用範圍**: Next.js 15 + TypeScript + App Router
+> **適用範圍**: Next.js 15 + TypeScript + App Router + Firebase 客戶端
+
+---
+
+## 📋 目錄
+
+- [核心開發原則](#核心開發原則)
+- [架構設計規範](#架構設計規範)
+- [數據管理策略](#數據管理策略)
+- [UI 組件規範](#ui-組件規範)
+- [用戶體驗優化](#用戶體驗優化)
+- [AI 與外部服務整合](#ai-與外部服務整合)
+- [容器化與部署](#容器化與部署)
+- [代碼質量保證](#代碼質量保證)
+- [AI Agent 零認知開發指南](#ai-agent-零認知開發指南)
+
+---
+
+## 🎯 核心開發原則
+
+### 奧卡姆剃刀法則
+**如無必要，勿增實體**
+
+- ✅ **刪除未使用的代碼和依賴**，定期審查所有已安裝的套件
+- ✅ **函數只用一次就內聯**，不預先建立「可能需要」的抽象層
+- ✅ **優先使用平台原生能力**，只在確實需要時才引入第三方庫
+- ❌ 避免過度封裝和過度工程化
+- ❌ 不為未來可能的需求預先設計架構
+
+### 最少代碼開發
+**讓框架和工具完成重複工作**
+
+- 利用 Next.js 自動化特性（路由、渲染、優化）
+- 使用宣告式編程，減少命令式樣板代碼
+- 依賴工具的預設配置，避免過度客製化
+
+---
+
+## 🏗️ 架構設計規範
+
+### 1. Server Actions 與 Firebase 分離策略
+
+**原則**：Server Actions 處理非 Firebase 的服務端邏輯
+
+```
+✅ Server Actions 適用場景：
+- AI 服務調用（Genkit）
+- 第三方 API 整合
+- 複雜計算和數據處理
+- 發送郵件、通知等外部服務
+- 生成 PDF、處理文件等
+
+❌ Server Actions 不能做：
+- 使用 Firebase 客戶端 SDK（會報錯）
+- 直接操作 Firestore、Auth、Storage
+
+✅ Firebase 數據操作：
+- 在 'use client' 組件中直接調用
+- 依賴 Firebase Security Rules 保護
+- 使用 React Query 管理狀態和緩存
+```
+
+### 2. Server Components 預設原則
+
+**原則**：預設使用 Server Components，只在需要互動時標記 `'use client'`
+
+```
+✅ Server Components 適用場景：
+- 數據獲取和展示
+- 靜態內容渲染
+- SEO 關鍵頁面
+- 不需要瀏覽器 API 的組件
+
+✅ Client Components 必要場景：
+- 事件處理（onClick、onChange）
+- 使用 React Hooks（useState、useEffect）
+- 需要瀏覽器 API（localStorage、window）
+- Firebase 操作（Auth、Firestore、Storage）
+- 第三方互動庫（地圖、圖表）
+```
+
+### 3. 前後端清晰分離
+
+**原則**：客戶端只負責 UI 和互動，服務端負責邏輯和數據
+
+```
+前端職責：
+- UI 呈現和用戶互動
+- 表單狀態管理
+- Firebase 數據操作（Auth、Firestore、Storage）
+- 客戶端路由導航
+- 樂觀更新（Optimistic Updates）
+
+後端職責（Server Actions）：
+- AI 服務調用（Genkit）
+- 第三方 API 整合（非 Firebase）
+- 複雜業務邏輯計算
+- 外部服務整合（郵件、支付等）
+```
+
+### 4. 組件就近數據獲取（Colocation）
+
+**原則**：數據獲取邏輯放在需要該數據的組件附近
+
+```
+✅ 推薦結構：
+/app
+  /dashboard
+    page.tsx                    ← 頁面入口
+    dashboard.client.tsx        ← Firebase 數據獲取
+    dashboard.actions.ts        ← AI 分析等 Server Actions
+    dashboard.queries.ts        ← React Query hooks
+    dashboard.schema.ts         ← Zod 驗證
+
+❌ 避免結構：
+/app
+  /api                          ← 不必要的集中式 API 層
+  /lib
+    /data                       ← 過度集中的數據層
+```
+
+---
+
+## 💾 數據管理策略
+
+### 5. TanStack Query 作為客戶端數據中心
+
+**原則**：所有遠程數據獲取通過 React Query 管理
+
+**必裝套件**：
+- `@tanstack/react-query`
+- `@tanstack/react-query-next-experimental`
+- `@tanstack/react-query-devtools`
+
+**進階功能**：
+- `@tanstack/query-broadcast-client-experimental` - 多標籤頁同步
+- `@tanstack/query-sync-storage-persister` - 離線持久化
+- `@tanstack/react-query-persist-client` - 緩存持久化
+
+```
+✅ 使用場景：
+- 所有 Firebase 數據查詢
+- Server Actions 調用
+- 自動處理加載、錯誤、重試
+- 智能緩存和背景重新獲取
+- 多標籤頁狀態同步
+
+❌ 不需要場景：
+- Server Components 的數據獲取
+- 簡單的一次性請求
+```
+
+### 6. 表單狀態管理
+
+**原則**：根據複雜度選擇合適的方案
+
+**簡單表單**（單步、少於 5 個欄位）：
+```
+使用：原生 <form> + Server Actions
+配合：useFormState、useFormStatus
+```
+
+**複雜表單**（多步驟、動態欄位、複雜驗證）：
+```
+使用：@tanstack/react-form 或 react-hook-form
+配合：@hookform/resolvers + Zod
+驗證：前後端共用 Zod schema
+```
+
+### 7. 輕量全域狀態
+
+**原則**：避免過度使用全域狀態管理
+
+**優先順序**：
+1. **URL 狀態** - searchParams、pathname（最優先）
+2. **React Context** - 主題、語言等全域配置
+3. **@tanstack/react-store** - 需要細粒度訂閱的 UI 狀態
+4. ❌ 避免將業務數據放入全域 Store
+
+```
+✅ Store 適用場景：
+- 側邊欄開關狀態
+- 通知中心未讀數
+- 臨時的 UI 交互狀態
+
+❌ 不應該放入 Store：
+- 用戶資料（用 React Query）
+- 列表數據（用 React Query）
+- 表單數據（用 Form 庫）
+```
+
+---
+
+## 🎨 UI 組件規範
+
+### 8. Radix UI 無樣式組件基礎
+
+**原則**：所有交互組件基於 Radix UI 構建
+
+**已安裝組件**：
+- 對話框：Dialog、AlertDialog
+- 下拉菜單：DropdownMenu、ContextMenu、Menubar
+- 表單：Select、RadioGroup、Checkbox、Switch、Slider
+- 導航：NavigationMenu、Tabs、Accordion、Collapsible
+- 反饋：Toast、Tooltip、HoverCard、Progress
+- 其他：Avatar、Separator、ScrollArea、AspectRatio
+
+```
+✅ 使用 Radix UI 的理由：
+- 完整的鍵盤導航和無障礙支持
+- 無樣式設計，完全可客製化
+- 行為邏輯穩定可靠
+
+❌ 不要重複造輪子：
+- 不自己實現下拉菜單邏輯
+- 不自己處理焦點管理
+- 不自己實現鍵盤導航
+```
+
+### 9. 樣式管理系統
+
+**使用套件**：
+- `tailwindcss` - 核心樣式框架
+- `tailwindcss-animate` - 動畫工具
+- `class-variance-authority` - 組件變體管理
+- `tailwind-merge` + `clsx` - 動態類名處理
+- `next-themes` - 主題切換
+
+**組件樣式模式**：
+
+```typescript
+// 使用 CVA 定義組件變體
+import { cva } from "class-variance-authority";
+
+const buttonVariants = cva(
+  "rounded-md font-medium transition-colors", // 基礎樣式
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-white",
+        outline: "border border-gray-300",
+      },
+      size: {
+        sm: "px-3 py-1 text-sm",
+        md: "px-4 py-2",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+    },
+  }
+);
+
+// 使用 cn 處理動態類名
+import { cn } from "@/lib/utils";
+
+<button className={cn(
+  buttonVariants({ variant, size }),
+  className // 允許外部覆蓋
+)} />
+```
+
+### 10. 組件設計原則
+
+**單一職責**：
+```
+✅ 好的組件：
+- <Button> 只負責按鈕行為
+- <Input> 只負責輸入框
+- <Card> 只負責卡片容器
+
+❌ 避免的組件：
+- <SuperForm> 包含所有表單邏輯
+- <DataTable> 包含分頁、篩選、排序所有功能
+```
+
+**組合優於配置**：
+```tsx
+✅ 推薦：組合模式
+<Card>
+  <CardHeader>
+    <CardTitle>標題</CardTitle>
+  </CardHeader>
+  <CardContent>內容</CardContent>
+</Card>
+
+❌ 避免：配置模式
+<Card 
+  title="標題"
+  content="內容"
+  showHeader={true}
+  headerAlign="left"
+  // ... 20 個配置 props
+/>
+```
+
+---
+
+## 📊 數據展示與優化
+
+### 11. TanStack Table 複雜表格
+
+**使用套件**：
+- `@tanstack/react-table` - 表格核心
+- `@tanstack/match-sorter-utils` - 模糊搜尋
+
+**適用場景**：
+```
+✅ 需要使用：
+- 複雜的排序和篩選
+- 多欄位搜尋
+- 分頁和虛擬滾動
+- 可調整欄位順序/寬度
+- 行選擇和批量操作
+
+❌ 不需要使用：
+- 簡單的數據列表（用 map）
+- 靜態表格（用 HTML table）
+- 少於 3 欄的列表
+```
+
+### 12. 虛擬滾動優化
+
+**使用套件**：`@tanstack/react-virtual`
+
+**適用場景**：
+```
+✅ 必須使用的情況：
+- 列表超過 100 項
+- 每項包含圖片或複雜組件
+- 無限滾動加載
+
+實現方式：
+- 配合 React Query 的 infinite queries
+- 只渲染可見區域的元素
+- 動態計算元素高度
+```
+
+### 13. 數據可視化
+
+**使用套件**：`recharts`
+
+**使用原則**：
+```
+✅ 適用場景：
+- 統計儀表板
+- 趨勢分析圖表
+- 數據報表
+
+❌ 避免過度使用：
+- 不是所有數據都需要圖表
+- 簡單數據用數字展示更清晰
+- 考慮圖表庫對 bundle size 的影響
+```
+
+---
+
+## 🎭 用戶體驗優化
+
+### 14. 表單輸入體驗
+
+**專用組件**：
+- `react-day-picker` - 日期選擇器
+- `input-otp` - OTP 驗證碼輸入
+- `use-debounce` - 搜尋輸入防抖
+
+**最佳實踐**：
+```
+日期選擇：
+- 使用本地化日期格式
+- 提供快捷選項（今天、本週、本月）
+- 支持鍵盤導航
+
+搜尋輸入：
+- 300-500ms 防抖延遲
+- 顯示搜尋中狀態
+- 空值時清除結果
+```
+
+### 15. 互動與動畫
+
+**佈局交互**：
+- `react-resizable-panels` - 可調整大小面板
+- `embla-carousel-react` - 輪播圖
+- `react-draggable` - 拖拽功能（謹慎使用）
+- `vaul` - 移動端抽屜
+
+**命令面板**：
+- `cmdk` - 實現 Command+K 快捷操作
+
+**使用原則**：
+```
+✅ 必要的互動：
+- 提升操作效率
+- 改善用戶體驗
+- 符合用戶預期
+
+❌ 避免過度互動：
+- 不必要的動畫效果
+- 炫技式的交互
+- 增加學習成本的設計
+```
+
+### 16. 通知與反饋
+
+**使用套件**：`sonner` (Toast 通知)
+
+**通知策略**：
+```
+成功操作：簡短確認（1-2 秒）
+錯誤提示：清晰說明原因和解決方案
+加載狀態：超過 300ms 才顯示 loading
+樂觀更新：立即反饋，失敗時回滾
+```
+
+---
+
+## 🤖 AI 與外部服務整合
+
+### 17. Genkit AI 整合
+
+**使用套件**：
+- `genkit` - 核心庫
+- `@genkit-ai/google-genai` - Google AI 服務
+- `@genkit-ai/next` - Next.js 整合
+- `genkit-cli` (開發工具)
+
+**整合原則**：
+```
+安全性：
+- AI 調用只在 Server Actions 中執行
+- API 金鑰通過環境變數管理
+- 客戶端永不直接調用 AI API
+
+錯誤處理：
+- 超時重試機制
+- 降級策略（AI 失敗時的備案）
+- 用戶友好的錯誤訊息
+
+成本控制：
+- 實現請求頻率限制
+- 緩存常見查詢結果
+- 監控 API 使用量
+```
+
+### 18. Firebase 客戶端服務
+
+**使用套件**：`firebase` (客戶端 SDK)
+
+**重要限制**：
+```
+⚠️ Firebase 客戶端 SDK 只能在 Client Components 中使用
+- 'use client' 組件中初始化 Firebase
+- 不能在 Server Actions 或 Server Components 中使用
+- 依賴 Firebase Security Rules 保護數據
+```
+
+**服務使用**：
+
+**Authentication（客戶端）**：
+```typescript
+'use client'
+import { auth } from '@/lib/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
+// ✅ 在客戶端組件中處理認證
+async function handleLogin(email: string, password: string) {
+  const userCredential = await signInWithEmailAndPassword(auth, email, password)
+  return userCredential.user
+}
+```
+
+**Firestore（客戶端 + Security Rules）**：
+```typescript
+'use client'
+import { db } from '@/lib/firebase'
+import { collection, query, where, getDocs } from 'firebase/firestore'
+
+// ✅ 客戶端直接查詢，依賴 Security Rules 保護
+async function fetchUserData(userId: string) {
+  const q = query(collection(db, 'users'), where('uid', '==', userId))
+  const snapshot = await getDocs(q)
+  return snapshot.docs.map(doc => doc.data())
+}
+```
+
+**Security Rules 必須嚴格設置**：
+```javascript
+// Firestore Security Rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 只允許用戶訪問自己的數據
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // 公開數據
+    match /public/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
+
+**Storage（客戶端上傳）**：
+```typescript
+'use client'
+import { storage } from '@/lib/firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+
+// ✅ 客戶端直接上傳，依賴 Storage Rules
+async function uploadFile(file: File, userId: string) {
+  const storageRef = ref(storage, `users/${userId}/${file.name}`)
+  await uploadBytes(storageRef, file)
+  return getDownloadURL(storageRef)
+}
+```
+
+**Server Actions 的角色**：
+```typescript
+'use server'
+
+// ❌ 不能在 Server Actions 中使用 Firebase 客戶端 SDK
+// ✅ Server Actions 用於：
+// - 調用第三方 API（非 Firebase）
+// - 複雜的業務邏輯計算
+// - 發送郵件、通知等外部服務
+// - AI 服務調用（Genkit）
+```
+
+---
+
+## 🐳 容器化與部署
+
+### 19. 環境配置管理
+
+**使用套件**：`dotenv`、`cross-env`
+
+**配置原則**：
+```
+環境變數分類：
+- NEXT_PUBLIC_* - 客戶端可見
+- 其他 - 僅服務端可用
+
+安全性：
+- .env 文件不提交到版本控制
+- 使用 .env.example 作為模板
+- 容器啟動時注入環境變數
+
+多環境管理：
+- .env.local - 本地開發
+- .env.production - 生產環境
+- .env.test - 測試環境
+```
+
+### 20. Docker 容器化
+
+**Next.js 配置**：
+```javascript
+// next.config.js
+module.exports = {
+  output: 'standalone', // 生成最小化構建
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+  },
+}
+```
+
+**Dockerfile 最佳實踐**：
+```dockerfile
+# 多階段構建
+FROM node:20-alpine AS deps
+FROM node:20-alpine AS builder
+FROM node:20-alpine AS runner
+
+# 只複製必要文件
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+# 非 root 用戶運行
+USER node
+```
+
+**健康檢查**：
+```typescript
+// app/api/health/route.ts
+export async function GET() {
+  return Response.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString() 
+  });
+}
+```
+
+### 21. 應用無狀態化
+
+**原則**：
+```
+✅ 無狀態設計：
+- 所有持久化數據存儲在 Firebase
+- Session 存儲在數據庫或 Redis
+- 上傳文件直接存到 Firebase Storage
+- 使用外部緩存服務
+
+❌ 避免本地狀態：
+- 不在文件系統存儲數據
+- 不使用內存緩存（多實例問題）
+- 不依賴本地 session
+```
+
+---
+
+## 🔍 代碼質量保證
+
+### 22. TypeScript 嚴格模式
+
+**tsconfig.json 配置**：
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  }
+}
+```
+
+**類型安全原則**：
+```typescript
+✅ 推薦做法：
+- 使用 Zod 定義運行時類型驗證
+- Server Actions 返回類型化結果
+- 避免使用 any 類型
+
+❌ 避免做法：
+- 使用 @ts-ignore 跳過錯誤
+- 過度使用類型斷言 (as)
+- 定義過於寬鬆的類型
+```
+
+### 23. ESLint 配置
+
+**已安裝規則**：
+- `@next/eslint-plugin-next` - Next.js 最佳實踐
+- `@typescript-eslint/*` - TypeScript 檢查
+- `eslint-config-prettier` - 與 Prettier 整合
+
+**關鍵規則**：
+```javascript
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
+  rules: {
+    '@next/next/no-html-link-for-pages': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-unused-vars': 'error',
+  },
+}
+```
+
+### 24. 依賴管理
+
+**使用套件**：`patch-package`
+
+**管理策略**：
+```
+版本鎖定：
+- 使用 package-lock.json
+- 定期但謹慎地更新依賴
+- 測試後再部署更新
+
+依賴修補：
+- 使用 patch-package 修復小問題
+- 避免 fork 整個庫
+- 將 patches/ 目錄提交到版本控制
+
+定期審查：
+- 每月檢查未使用的依賴
+- 評估依賴的安全性
+- 考慮替代方案的必要性
+```
+
+---
 
 ## 🤖 AI Agent 零認知開發指南
 
@@ -528,691 +1218,6 @@ export function RootLayout({ children }: { children: ReactNode }) {
 
 ---
 
-## 📋 目錄
-
-- [核心開發原則](#核心開發原則)
-- [架構設計規範](#架構設計規範)
-- [數據管理策略](#數據管理策略)
-- [UI 組件規範](#ui-組件規範)
-- [用戶體驗優化](#用戶體驗優化)
-- [AI 與外部服務整合](#ai-與外部服務整合)
-- [容器化與部署](#容器化與部署)
-- [代碼質量保證](#代碼質量保證)
-- [AI Agent 零認知開發指南](#ai-agent-零認知開發指南)
-
----
-
-## 🎯 核心開發原則
-
-### 奧卡姆剃刀法則
-**如無必要，勿增實體**
-
-- ✅ **刪除未使用的代碼和依賴**，定期審查所有已安裝的套件
-- ✅ **函數只用一次就內聯**，不預先建立「可能需要」的抽象層
-- ✅ **優先使用平台原生能力**，只在確實需要時才引入第三方庫
-- ❌ 避免過度封裝和過度工程化
-- ❌ 不為未來可能的需求預先設計架構
-
-### 最少代碼開發
-**讓框架和工具完成重複工作**
-
-- 利用 Next.js 自動化特性（路由、渲染、優化）
-- 使用宣告式編程，減少命令式樣板代碼
-- 依賴工具的預設配置，避免過度客製化
-
----
-
-## 🏗️ 架構設計規範
-
-### 1. Server Actions 與 Firebase 分離策略
-
-**原則**：Server Actions 處理非 Firebase 的服務端邏輯
-
-```
-✅ Server Actions 適用場景：
-- AI 服務調用（Genkit）
-- 第三方 API 整合
-- 複雜計算和數據處理
-- 發送郵件、通知等外部服務
-- 生成 PDF、處理文件等
-
-❌ Server Actions 不能做：
-- 使用 Firebase 客戶端 SDK（會報錯）
-- 直接操作 Firestore、Auth、Storage
-
-✅ Firebase 數據操作：
-- 在 'use client' 組件中直接調用
-- 依賴 Firebase Security Rules 保護
-- 使用 React Query 管理狀態和緩存
-```
-
-### 2. Server Components 預設原則
-
-**原則**：預設使用 Server Components，只在需要互動時標記 `'use client'`
-
-```
-✅ Server Components 適用場景：
-- 數據獲取和展示
-- 靜態內容渲染
-- SEO 關鍵頁面
-- 不需要瀏覽器 API 的組件
-
-✅ Client Components 必要場景：
-- 事件處理（onClick、onChange）
-- 使用 React Hooks（useState、useEffect）
-- 需要瀏覽器 API（localStorage、window）
-- 第三方互動庫（地圖、圖表）
-```
-
-### 3. 前後端清晰分離
-
-**原則**：客戶端只負責 UI 和互動，服務端負責邏輯和數據
-
-```
-前端職責：
-- UI 呈現和用戶互動
-- 表單狀態管理
-- Firebase 數據操作（Auth、Firestore、Storage）
-- 客戶端路由導航
-- 樂觀更新（Optimistic Updates）
-
-後端職責（Server Actions）：
-- AI 服務調用（Genkit）
-- 第三方 API 整合（非 Firebase）
-- 複雜業務邏輯計算
-- 外部服務整合（郵件、支付等）
-```
-
-### 4. 組件就近數據獲取（Colocation）
-
-**原則**：數據獲取邏輯放在需要該數據的組件附近
-
-```
-✅ 推薦結構：
-/app
-  /dashboard
-    page.tsx          ← 獲取儀表板數據
-    /stats
-      page.tsx        ← 獲取統計數據
-    /actions.ts       ← 該功能的 Server Actions
-
-❌ 避免結構：
-/app
-  /api               ← 不必要的集中式 API 層
-  /lib
-    /data            ← 過度集中的數據層
-```
-
----
-
-## 💾 數據管理策略
-
-### 5. TanStack Query 作為客戶端數據中心
-
-**原則**：所有遠程數據獲取通過 React Query 管理
-
-**必裝套件**：
-- `@tanstack/react-query`
-- `@tanstack/react-query-next-experimental`
-- `@tanstack/react-query-devtools`
-
-**進階功能**：
-- `@tanstack/query-broadcast-client-experimental` - 多標籤頁同步
-- `@tanstack/query-sync-storage-persister` - 離線持久化
-- `@tanstack/react-query-persist-client` - 緩存持久化
-
-```
-✅ 使用場景：
-- 所有 Server Actions 調用
-- 自動處理加載、錯誤、重試
-- 智能緩存和背景重新獲取
-- 多標籤頁狀態同步
-
-❌ 不需要場景：
-- Server Components 的數據獲取
-- 簡單的一次性請求
-```
-
-### 6. 表單狀態管理
-
-**原則**：根據複雜度選擇合適的方案
-
-**簡單表單**（單步、少於 5 個欄位）：
-```
-使用：原生 <form> + Server Actions
-配合：useFormState、useFormStatus
-```
-
-**複雜表單**（多步驟、動態欄位、複雜驗證）：
-```
-使用：@tanstack/react-form 或 react-hook-form
-配合：@hookform/resolvers + Zod
-驗證：前後端共用 Zod schema
-```
-
-### 7. 輕量全域狀態
-
-**原則**：避免過度使用全域狀態管理
-
-**優先順序**：
-1. **URL 狀態** - searchParams、pathname（最優先）
-2. **React Context** - 主題、語言等全域配置
-3. **@tanstack/react-store** - 需要細粒度訂閱的 UI 狀態
-4. ❌ 避免將業務數據放入全域 Store
-
-```
-✅ Store 適用場景：
-- 側邊欄開關狀態
-- 通知中心未讀數
-- 臨時的 UI 交互狀態
-
-❌ 不應該放入 Store：
-- 用戶資料（用 React Query）
-- 列表數據（用 React Query）
-- 表單數據（用 Form 庫）
-```
-
----
-
-## 🎨 UI 組件規範
-
-### 8. Radix UI 無樣式組件基礎
-
-**原則**：所有交互組件基於 Radix UI 構建
-
-**已安裝組件**：
-- 對話框：Dialog、AlertDialog
-- 下拉菜單：DropdownMenu、ContextMenu、Menubar
-- 表單：Select、RadioGroup、Checkbox、Switch、Slider
-- 導航：NavigationMenu、Tabs、Accordion、Collapsible
-- 反饋：Toast、Tooltip、HoverCard、Progress
-- 其他：Avatar、Separator、ScrollArea、AspectRatio
-
-```
-✅ 使用 Radix UI 的理由：
-- 完整的鍵盤導航和無障礙支持
-- 無樣式設計，完全可客製化
-- 行為邏輯穩定可靠
-
-❌ 不要重複造輪子：
-- 不自己實現下拉菜單邏輯
-- 不自己處理焦點管理
-- 不自己實現鍵盤導航
-```
-
-### 9. 樣式管理系統
-
-**使用套件**：
-- `tailwindcss` - 核心樣式框架
-- `tailwindcss-animate` - 動畫工具
-- `class-variance-authority` - 組件變體管理
-- `tailwind-merge` + `clsx` - 動態類名處理
-- `next-themes` - 主題切換
-
-**組件樣式模式**：
-
-```typescript
-// 使用 CVA 定義組件變體
-import { cva } from "class-variance-authority";
-
-const buttonVariants = cva(
-  "rounded-md font-medium transition-colors", // 基礎樣式
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-white",
-        outline: "border border-gray-300",
-      },
-      size: {
-        sm: "px-3 py-1 text-sm",
-        md: "px-4 py-2",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md",
-    },
-  }
-);
-
-// 使用 cn 處理動態類名
-import { cn } from "@/lib/utils";
-
-<button className={cn(
-  buttonVariants({ variant, size }),
-  className // 允許外部覆蓋
-)} />
-```
-
-### 10. 組件設計原則
-
-**單一職責**：
-```
-✅ 好的組件：
-- <Button> 只負責按鈕行為
-- <Input> 只負責輸入框
-- <Card> 只負責卡片容器
-
-❌ 避免的組件：
-- <SuperForm> 包含所有表單邏輯
-- <DataTable> 包含分頁、篩選、排序所有功能
-```
-
-**組合優於配置**：
-```tsx
-✅ 推薦：組合模式
-<Card>
-  <CardHeader>
-    <CardTitle>標題</CardTitle>
-  </CardHeader>
-  <CardContent>內容</CardContent>
-</Card>
-
-❌ 避免：配置模式
-<Card 
-  title="標題"
-  content="內容"
-  showHeader={true}
-  headerAlign="left"
-  // ... 20 個配置 props
-/>
-```
-
----
-
-## 📊 數據展示與優化
-
-### 11. TanStack Table 複雜表格
-
-**使用套件**：
-- `@tanstack/react-table` - 表格核心
-- `@tanstack/match-sorter-utils` - 模糊搜尋
-
-**適用場景**：
-```
-✅ 需要使用：
-- 複雜的排序和篩選
-- 多欄位搜尋
-- 分頁和虛擬滾動
-- 可調整欄位順序/寬度
-- 行選擇和批量操作
-
-❌ 不需要使用：
-- 簡單的數據列表（用 map）
-- 靜態表格（用 HTML table）
-- 少於 3 欄的列表
-```
-
-### 12. 虛擬滾動優化
-
-**使用套件**：`@tanstack/react-virtual`
-
-**適用場景**：
-```
-✅ 必須使用的情況：
-- 列表超過 100 項
-- 每項包含圖片或複雜組件
-- 無限滾動加載
-
-實現方式：
-- 配合 React Query 的 infinite queries
-- 只渲染可見區域的元素
-- 動態計算元素高度
-```
-
-### 13. 數據可視化
-
-**使用套件**：`recharts`
-
-**使用原則**：
-```
-✅ 適用場景：
-- 統計儀表板
-- 趨勢分析圖表
-- 數據報表
-
-❌ 避免過度使用：
-- 不是所有數據都需要圖表
-- 簡單數據用數字展示更清晰
-- 考慮圖表庫對 bundle size 的影響
-```
-
----
-
-## 🎭 用戶體驗優化
-
-### 14. 表單輸入體驗
-
-**專用組件**：
-- `react-day-picker` - 日期選擇器
-- `input-otp` - OTP 驗證碼輸入
-- `use-debounce` - 搜尋輸入防抖
-
-**最佳實踐**：
-```
-日期選擇：
-- 使用本地化日期格式
-- 提供快捷選項（今天、本週、本月）
-- 支持鍵盤導航
-
-搜尋輸入：
-- 300-500ms 防抖延遲
-- 顯示搜尋中狀態
-- 空值時清除結果
-```
-
-### 15. 互動與動畫
-
-**佈局交互**：
-- `react-resizable-panels` - 可調整大小面板
-- `embla-carousel-react` - 輪播圖
-- `react-draggable` - 拖拽功能（謹慎使用）
-- `vaul` - 移動端抽屜
-
-**命令面板**：
-- `cmdk` - 實現 Command+K 快捷操作
-
-**使用原則**：
-```
-✅ 必要的互動：
-- 提升操作效率
-- 改善用戶體驗
-- 符合用戶預期
-
-❌ 避免過度互動：
-- 不必要的動畫效果
-- 炫技式的交互
-- 增加學習成本的設計
-```
-
-### 16. 通知與反饋
-
-**使用套件**：`sonner` (Toast 通知)
-
-**通知策略**：
-```
-成功操作：簡短確認（1-2 秒）
-錯誤提示：清晰說明原因和解決方案
-加載狀態：超過 300ms 才顯示 loading
-樂觀更新：立即反饋，失敗時回滾
-```
-
----
-
-## 🤖 AI 與外部服務整合
-
-### 17. Genkit AI 整合
-
-**使用套件**：
-- `genkit` - 核心庫
-- `@genkit-ai/google-genai` - Google AI 服務
-- `@genkit-ai/next` - Next.js 整合
-- `genkit-cli` (開發工具)
-
-**整合原則**：
-```
-安全性：
-- AI 調用只在 Server Actions 中執行
-- API 金鑰通過環境變數管理
-- 客戶端永不直接調用 AI API
-
-錯誤處理：
-- 超時重試機制
-- 降級策略（AI 失敗時的備案）
-- 用戶友好的錯誤訊息
-
-成本控制：
-- 實現請求頻率限制
-- 緩存常見查詢結果
-- 監控 API 使用量
-```
-
-### 18. Firebase 客戶端服務
-
-**使用套件**：`firebase` (客戶端 SDK)
-
-**重要限制**：
-```
-⚠️ Firebase 客戶端 SDK 只能在 Client Components 中使用
-- 'use client' 組件中初始化 Firebase
-- 不能在 Server Actions 或 Server Components 中使用
-- 依賴 Firebase Security Rules 保護數據
-```
-
-**服務使用**：
-
-**Authentication（客戶端）**：
-```typescript
-'use client'
-import { auth } from '@/lib/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-
-// ✅ 在客戶端組件中處理認證
-async function handleLogin(email: string, password: string) {
-  const userCredential = await signInWithEmailAndPassword(auth, email, password)
-  return userCredential.user
-}
-```
-
-**Firestore（客戶端 + Security Rules）**：
-```typescript
-'use client'
-import { db } from '@/lib/firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-
-// ✅ 客戶端直接查詢，依賴 Security Rules 保護
-async function fetchUserData(userId: string) {
-  const q = query(collection(db, 'users'), where('uid', '==', userId))
-  const snapshot = await getDocs(q)
-  return snapshot.docs.map(doc => doc.data())
-}
-```
-
-**Security Rules 必須嚴格設置**：
-```javascript
-// Firestore Security Rules
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // 只允許用戶訪問自己的數據
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // 公開數據
-    match /public/{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
-```
-
-**Storage（客戶端上傳）**：
-```typescript
-'use client'
-import { storage } from '@/lib/firebase'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-
-// ✅ 客戶端直接上傳，依賴 Storage Rules
-async function uploadFile(file: File, userId: string) {
-  const storageRef = ref(storage, `users/${userId}/${file.name}`)
-  await uploadBytes(storageRef, file)
-  return getDownloadURL(storageRef)
-}
-```
-
-**Server Actions 的角色**：
-```typescript
-'use server'
-
-// ❌ 不能在 Server Actions 中使用 Firebase 客戶端 SDK
-// ✅ Server Actions 用於：
-// - 調用第三方 API（非 Firebase）
-// - 複雜的業務邏輯計算
-// - 發送郵件、通知等外部服務
-// - AI 服務調用（Genkit）
-```
-
----
-
-## 🐳 容器化與部署
-
-### 19. 環境配置管理
-
-**使用套件**：`dotenv`、`cross-env`
-
-**配置原則**：
-```
-環境變數分類：
-- NEXT_PUBLIC_* - 客戶端可見
-- 其他 - 僅服務端可用
-
-安全性：
-- .env 文件不提交到版本控制
-- 使用 .env.example 作為模板
-- 容器啟動時注入環境變數
-
-多環境管理：
-- .env.local - 本地開發
-- .env.production - 生產環境
-- .env.test - 測試環境
-```
-
-### 20. Docker 容器化
-
-**Next.js 配置**：
-```javascript
-// next.config.js
-module.exports = {
-  output: 'standalone', // 生成最小化構建
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, '../../'),
-  },
-}
-```
-
-**Dockerfile 最佳實踐**：
-```dockerfile
-# 多階段構建
-FROM node:20-alpine AS deps
-FROM node:20-alpine AS builder
-FROM node:20-alpine AS runner
-
-# 只複製必要文件
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
-
-# 非 root 用戶運行
-USER node
-```
-
-**健康檢查**：
-```typescript
-// app/api/health/route.ts
-export async function GET() {
-  return Response.json({ 
-    status: 'ok', 
-    timestamp: new Date().toISOString() 
-  });
-}
-```
-
-### 21. 應用無狀態化
-
-**原則**：
-```
-✅ 無狀態設計：
-- 所有持久化數據存儲在 Firebase
-- Session 存儲在數據庫或 Redis
-- 上傳文件直接存到對象存儲
-- 使用外部緩存服務
-
-❌ 避免本地狀態：
-- 不在文件系統存儲數據
-- 不使用內存緩存（多實例問題）
-- 不依賴本地 session
-```
-
----
-
-## 🔍 代碼質量保證
-
-### 22. TypeScript 嚴格模式
-
-**tsconfig.json 配置**：
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  }
-}
-```
-
-**類型安全原則**：
-```typescript
-✅ 推薦做法：
-- 使用 Zod 定義運行時類型驗證
-- Server Actions 返回類型化結果
-- 避免使用 any 類型
-
-❌ 避免做法：
-- 使用 @ts-ignore 跳過錯誤
-- 過度使用類型斷言 (as)
-- 定義過於寬鬆的類型
-```
-
-### 23. ESLint 配置
-
-**已安裝規則**：
-- `@next/eslint-plugin-next` - Next.js 最佳實踐
-- `@typescript-eslint/*` - TypeScript 檢查
-- `eslint-config-prettier` - 與 Prettier 整合
-
-**關鍵規則**：
-```javascript
-module.exports = {
-  extends: [
-    'next/core-web-vitals',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
-  rules: {
-    '@next/next/no-html-link-for-pages': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    '@typescript-eslint/no-unused-vars': 'error',
-  },
-}
-```
-
-### 24. 依賴管理
-
-**使用套件**：`patch-package`
-
-**管理策略**：
-```
-版本鎖定：
-- 使用 package-lock.json
-- 定期但謹慎地更新依賴
-- 測試後再部署更新
-
-依賴修補：
-- 使用 patch-package 修復小問題
-- 避免 fork 整個庫
-- 將 patches/ 目錄提交到版本控制
-
-定期審查：
-- 每月檢查未使用的依賴
-- 評估依賴的安全性
-- 考慮替代方案的必要性
-```
-
----
-
 ## 📝 文件結構規範
 
 ### 25. 推薦的項目結構
@@ -1220,31 +1225,57 @@ module.exports = {
 ```
 project-root/
 ├── app/
-│   ├── (auth)/              # 路由組：認證相關頁面
-│   │   ├── login/
-│   │   └── register/
-│   ├── (dashboard)/         # 路由組：儀表板
-│   │   ├── layout.tsx
+│   ├── (public)/              # 路由組：公開頁面
 │   │   ├── page.tsx
-│   │   └── actions.ts       # 該區域的 Server Actions
+│   │   ├── about/
+│   │   └── pricing/
+│   ├── (auth)/                # 路由組：認證相關頁面
+│   │   ├── login/
+│   │   │   ├── page.tsx
+│   │   │   ├── login.client.tsx
+│   │   │   └── login.schema.ts
+│   │   └── register/
+│   ├── (app)/                 # 路由組：需認證的應用
+│   │   ├── layout.tsx
+│   │   ├── dashboard/
+│   │   │   ├── page.tsx
+│   │   │   ├── dashboard.client.tsx
+│   │   │   ├── dashboard.actions.ts
+│   │   │   ├── dashboard.queries.ts
+│   │   │   └── dashboard.schema.ts
+│   │   └── profile/
 │   ├── api/
-│   │   └── health/          # 只用於健康檢查等特殊端點
+│   │   └── health/            # 只放健康檢查等特殊端點
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
-│   ├── ui/                  # 基礎 UI 組件（shadcn/ui）
-│   ├── forms/               # 表單組件
-│   ├── layouts/             # 佈局組件
-│   └── features/            # 功能組件
+│   ├── ui/                    # 基礎 UI 組件（shadcn/ui）
+│   ├── layouts/               # 佈局組件
+│   └── features/              # 功能組件
+│       └── [feature]/
+│           ├── [feature].client.tsx
+│           ├── [feature].schema.ts
+│           └── [feature].types.ts
 ├── lib/
-│   ├── utils.ts             # 工具函數
-│   ├── validations/         # Zod schemas
-│   └── firebase/            # Firebase 配置
-├── hooks/                   # 自定義 React Hooks
-├── types/                   # TypeScript 類型定義
-├── public/                  # 靜態資源
-├── .env.local               # 本地環境變數
-├── .env.example             # 環境變數模板
+│   ├── firebase.ts            # Firebase 初始化
+│   ├── genkit.ts              # Genkit 初始化
+│   ├── utils.ts               # 工具函數
+│   ├── errors.ts              # 錯誤處理
+│   ├── env.ts                 # 環境變數管理
+│   ├── query-keys.ts          # React Query keys
+│   └── constants.ts           # 常數定義
+├── hooks/
+│   ├── use-auth.ts            # 認證相關
+│   ├── use-firebase.ts        # Firebase 通用操作
+│   └── use-[feature].ts       # 功能 hooks
+├── schemas/                   # Zod 驗證 schemas
+│   ├── user.schema.ts
+│   └── [feature].schema.ts
+├── types/                     # TypeScript 類型定義
+│   └── index.ts
+├── public/                    # 靜態資源
+├── .env.local                 # 本地環境變數
+├── .env.example               # 環境變數模板
 ├── next.config.js
 ├── tailwind.config.js
 ├── tsconfig.json
@@ -1257,8 +1288,9 @@ project-root/
 
 ### 開發前檢查
 
-- [ ] 環境變數已正確配置
+- [ ] 環境變數已正確配置（.env.local）
 - [ ] Firebase 專案已設置
+- [ ] Firebase Security Rules 已配置
 - [ ] TypeScript 嚴格模式已啟用
 - [ ] ESLint 和 Prettier 已配置
 
@@ -1294,6 +1326,7 @@ project-root/
 - [ ] 環境變數在生產環境配置
 - [ ] 使用 standalone 構建模式
 - [ ] Docker 健康檢查已實現
+- [ ] Firebase Security Rules 已部署
 - [ ] 錯誤追蹤已設置
 - [ ] 性能指標監控已配置
 
@@ -1320,13 +1353,18 @@ project-root/
    const API_KEY = "sk-xxx..."
    
    ✅ 正確：使用環境變數
-   const API_KEY = process.env.API_KEY
+   const API_KEY = process.env.GENKIT_API_KEY
    ```
 
 3. **❌ 過度使用 'use client'**
    ```typescript
    // ❌ 錯誤：不必要的客戶端組件
    'use client'
+   export default function StaticPage() {
+     return <div>靜態內容</div>
+   }
+   
+   ✅ 正確：預設使用 Server Component
    export default function StaticPage() {
      return <div>靜態內容</div>
    }
@@ -1338,6 +1376,11 @@ project-root/
    const data = await fetchData() // 如果失敗呢？
    
    ✅ 正確：使用 try-catch 或 React Query
+   try {
+     const data = await fetchData()
+   } catch (error) {
+     return { success: false, error: error.message }
+   }
    ```
 
 5. **❌ 創建「上帝組件」**
@@ -1346,6 +1389,20 @@ project-root/
    function SuperComponent({ mode, type, variant, ... }) {
      // 500 行代碼...
    }
+   
+   ✅ 正確：拆分成多個小組件
+   function Header() { ... }
+   function Content() { ... }
+   function Footer() { ... }
+   ```
+
+6. **❌ Firebase Security Rules 過於寬鬆**
+   ```javascript
+   // ❌ 危險：允許任何人讀寫
+   allow read, write: if true;
+   
+   ✅ 正確：嚴格的權限控制
+   allow read, write: if request.auth != null && request.auth.uid == userId;
    ```
 
 ---
@@ -1358,11 +1415,13 @@ project-root/
 - [Radix UI 文檔](https://www.radix-ui.com)
 - [Firebase 文檔](https://firebase.google.com/docs)
 - [Genkit 文檔](https://firebase.google.com/docs/genkit)
+- [Zod 文檔](https://zod.dev)
 
 ### 最佳實踐
 - [Next.js App Router 最佳實踐](https://nextjs.org/docs/app/building-your-application)
 - [TypeScript 最佳實踐](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
 - [React 設計模式](https://react.dev/learn/thinking-in-react)
+- [Firebase Security Rules](https://firebase.google.com/docs/rules)
 
 ---
 
@@ -1376,3 +1435,57 @@ project-root/
 
 **最後更新**: 2025-10-03  
 **下次審查**: 2025-11-03
+
+---
+
+## 💡 快速參考卡
+
+### 文件類型速查表
+
+| 文件類型 | 用途 | 可以使用 | 不能使用 |
+|---------|------|---------|---------|
+| `page.tsx` (Server Component) | 頁面渲染 | 靜態內容、環境變數 | Firebase、Hooks、事件 |
+| `.client.tsx` | 客戶端邏輯 | Firebase、Hooks、事件 | Server-only 庫 |
+| `.actions.ts` | 服務端操作 | Genkit、外部 API | Firebase 客戶端 SDK |
+| `.queries.ts` | React Query | useQuery、useMutation | - |
+| `.schema.ts` | Zod 驗證 | z.object、z.string 等 | - |
+
+### 常用命令速查
+
+```bash
+# 開發
+npm run dev              # 啟動開發服務器
+npm run dev:genkit       # 啟動 Genkit 開發工具
+
+# 檢查
+npm run type-check       # TypeScript 類型檢查
+npm run lint             # ESLint 檢查
+npm run lint:fix         # 自動修復 Lint 錯誤
+npm run check-all        # 完整檢查
+
+# 構建
+npm run build            # 生產構建
+npm run start            # 啟動生產服務器
+```
+
+### 環境變數範例
+
+```bash
+# .env.local
+
+# Firebase (客戶端可見)
+NEXT_PUBLIC_FIREBASE_API_KEY=xxx
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=xxx
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=xxx
+
+# Genkit (僅服務端)
+GENKIT_API_KEY=xxx
+
+# 應用配置
+NEXT_PUBLIC_APP_NAME=My App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+---
+
+**🎉 祝開發順利！記住：簡單優於複雜，清晰優於聰明。**

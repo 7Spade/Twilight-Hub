@@ -31,8 +31,8 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
-import { SpaceVisibilityBadge } from '@/features/spaces/components/spaces-visibility-badge';
-import { SpaceStarButton } from '@/features/spaces/components/spaces-star-button';
+import { SpaceVisibilityBadge } from '@/components/features/spaces/components/spaces-visibility-badge';
+import { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';
 import { type Account, type Space } from '@/lib/types';
 
 const SpaceCard = ({

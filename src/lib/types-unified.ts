@@ -275,8 +275,8 @@ export interface FileActionItem {
 
 // ===== 導出所有類型 =====
 
+// 重新導出 React Hook Form 類型
 export type {
-  // 重新導出 React Hook Form 類型
   FieldValues,
   FieldPath,
   Control,

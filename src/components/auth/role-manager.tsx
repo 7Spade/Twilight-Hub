@@ -292,3 +292,4 @@ export function PermissionDisplay({ permissions, title = "權限" }: PermissionD
     </Card>
   );
 }
+

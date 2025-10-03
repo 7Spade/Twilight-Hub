@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { UserProfilePage } from '@/features/users/pages/user-profile-page';
+import { UserProfilePage } from '@/components/features/users/pages/user-profile-page';
 
 export default function UserProfilePageWrapper({
   params: paramsPromise,

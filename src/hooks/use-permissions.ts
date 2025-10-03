@@ -250,3 +250,4 @@ async function fetchUserRoleAssignment(userId: string): Promise<UserRoleAssignme
     effectivePermissions: []
   };
 }
+

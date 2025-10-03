@@ -1,51 +1,36 @@
-/**
- * @fileoverview 應用級狀態管理 hooks
- * 整合聊天、對話框等 UI 狀態管理
- * 遵循奧卡姆剃刀原則，提供最簡潔的實現
- */
-
 'use client';
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode, createElement } from 'react';
 
-// 聊天狀態接口
 interface ChatState {
   isOpen: boolean;
   isMinimized: boolean;
 }
 
-// 對話框狀態接口
 interface DialogState {
   type: string | null;
   data: any;
   isOpen: boolean;
 }
 
-// 應用狀態接口
 interface AppState {
   chat: ChatState;
   dialog: DialogState;
 }
 
-// 應用狀態操作接口
 interface AppStateActions {
-  // 聊天操作
   openChat: () => void;
   closeChat: () => void;
   toggleChat: () => void;
   toggleMinimizeChat: () => void;
-  
-  // 對話框操作
   openDialog: (type: string, data?: any) => void;
   closeDialog: () => void;
 }
 
-// 完整的應用狀態上下文
 interface AppStateContext extends AppState, AppStateActions {}
 
 const AppStateContext = createContext<AppStateContext | undefined>(undefined);
 
-// 應用狀態提供者
 export interface AppStateProviderProps {
   children: ReactNode;
 }
@@ -62,7 +47,6 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     isOpen: false,
   });
 
-  // 聊天操作
   const openChat = useCallback(() => {
     setChat(prev => ({ ...prev, isOpen: true, isMinimized: false }));
   }, []);
@@ -83,7 +67,6 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));
   }, []);
 
-  // 對話框操作
   const openDialog = useCallback((type: string, data: any = {}) => {
     setDialog({ type, data, isOpen: true });
   }, []);
@@ -103,14 +86,9 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     closeDialog,
   };
 
-  return (
-    <AppStateContext.Provider value={value}>
-      {children}
-    </AppStateContext.Provider>
-  );
+  return createElement(AppStateContext.Provider, { value }, children);
 }
 
-// 使用應用狀態的 hook
 export function useAppState(): AppStateContext {
   const context = useContext(AppStateContext);
   if (context === undefined) {
@@ -119,7 +97,6 @@ export function useAppState(): AppStateContext {
   return context;
 }
 
-// 專門的聊天狀態 hook
 export function useChatState() {
   const { chat, openChat, closeChat, toggleChat, toggleMinimizeChat } = useAppState();
   return {
@@ -131,7 +108,6 @@ export function useChatState() {
   };
 }
 
-// 專門的對話框狀態 hook
 export function useDialogState() {
   const { dialog, openDialog, closeDialog } = useAppState();
   return {

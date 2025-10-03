@@ -32,8 +32,8 @@ import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { spaceBaseSchema, type SpaceBaseFormValues } from '@/features/spaces/spaces-schemas';
-import { useSpaceActions } from '@/features/spaces/hooks';
+import { spaceBaseSchema, type SpaceBaseFormValues } from '@/components/features/spaces/spaces-schemas';
+import { useSpaceActions } from '@/components/features/spaces/hooks';
 
 type CreateSpaceFormValues = SpaceBaseFormValues;
 

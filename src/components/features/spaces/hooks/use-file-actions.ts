@@ -14,7 +14,7 @@ import {
   deleteFileAction, 
   listFilesAction,
   type FileActionItem 
-} from '@/features/spaces/actions';
+} from '@/components/features/spaces/actions';
 
 interface UploadProgress {
   progress: number;
