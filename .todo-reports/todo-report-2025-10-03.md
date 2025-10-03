@@ -1,15 +1,15 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 153 個項目
+- 總計: 157 個項目
 - 🔴 緊急: 48 個項目
 ### 依優先級
-- P2: 102 個
+- P2: 106 個
 - P1: 18 個
 - P3: 4 個
 - P0: 29 個
 ### 依類型
 - PERF: 13 個
-- REFACTOR: 66 個
+- REFACTOR: 70 個
 - CLEANUP: 5 個
 - FEAT: 20 個
 - FIX: 46 個
@@ -357,7 +357,7 @@
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
 ---
-## 🟡 P2 (102 個)
+## 🟡 P2 (106 個)
 ### 1. [REFACTOR] src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
 **位置:** `src\components\adjust-stock-dialog.tsx:142`
 **負責人:** @frontend
@@ -444,7 +444,7 @@
 > 4) 配置適當的圖片優化參數
 ---
 ### 9. [PERF] src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐
-**位置:** `src\components\ui\file-type-icon.tsx:34`
+**位置:** `src\components\ui\file-type-icon.tsx:28`
 **負責人:** @performance
 **截止日期:** 2025-02-01
 **詳細說明:**
@@ -860,10 +860,10 @@
 **位置:** `src\components\features\spaces\components\participants\participant-role-editor.tsx:50`
 ---
 ### 71. [FEAT] src/components/features/spaces/components/participants/participant-table.tsx - 打開角色更新對話框
-**位置:** `src\components\features\spaces\components\participants\participant-table.tsx:144`
+**位置:** `src\components\features\spaces\components\participants\participant-table.tsx:145`
 ---
 ### 72. [REFACTOR] src/components/features/spaces/components/participants/view-toggle.tsx:9 - 清理未使用的導入
-**位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:11`
+**位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:10`
 **負責人:** @frontend
 **詳細說明:**
 > 問題：'Button' 已導入但從未使用
@@ -871,10 +871,10 @@
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
 ### 73. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框
-**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:214`
+**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:216`
 ---
 ### 74. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框
-**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:218`
+**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:220`
 ---
 ### 75. [REFACTOR] src/components/features/spaces/components/quality/checklist.tsx:4 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\quality\checklist.tsx:6`
@@ -933,30 +933,60 @@
 ### 85. [REFACTOR] src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）
 **位置:** `src\components\features\spaces\hooks\use-star-actions.ts:14`
 ---
-### 86. [REFACTOR] src/components/follower-list.tsx - 清理未使用的導入（doc 未使用）
-**位置:** `src\components\follower-list.tsx:12`
----
-### 87. [REFACTOR] src/components/forms/form-card.tsx - 清理未使用的導入（Skeleton 未使用）
-**位置:** `src\components\forms\form-card.tsx:19`
----
-### 88. [REFACTOR] src/components/layout/sidebar.tsx - 清理未使用的導入（Settings, Tooltip* 未使用）
-**位置:** `src\components\layout\sidebar.tsx:16`
+### 86. [REFACTOR] src/components/follower-list.tsx:11 - 清理未使用的導入
+**位置:** `src\components\follower-list.tsx:13`
+**負責人:** @frontend
 **詳細說明:**
+> 問題：'doc' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+---
+### 87. [REFACTOR] src/components/forms/form-card.tsx:18 - 清理未使用的導入
+**位置:** `src\components\forms\form-card.tsx:20`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'Skeleton' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+---
+### 88. [REFACTOR] src/components/github-heat-map.tsx:39 - 清理未使用的變數
+**位置:** `src\components\github-heat-map.tsx:41`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'weekDays' 已定義但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的變數或添加下劃線前綴表示有意未使用
+---
+### 89. [REFACTOR] src/components/layout/sidebar.tsx:13 - 清理未使用的導入
+**位置:** `src\components\layout\sidebar.tsx:16`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'Settings' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+---
+### 90. [REFACTOR] src/components/layout/sidebar.tsx:15 - 清理未使用的導入
+**位置:** `src\components\layout\sidebar.tsx:24`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'Tooltip', 'TooltipContent', 'TooltipProvider', 'TooltipTrigger' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 > TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄
 > 建議：
 > 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。
 > 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。
 > 3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。
 ---
-### 89. [REFACTOR] src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄
-**位置:** `src\components\layout\sidebar.tsx:17`
+### 91. [REFACTOR] src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄
+**位置:** `src\components\layout\sidebar.tsx:29`
 **詳細說明:**
 > 建議：
 > 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。
 > 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。
 > 3) 僅保留使用中之交互（hover/tooltip 適度減量），避免不必要的 re-render 與樣式開銷。
 ---
-### 90. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
+### 92. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
 **位置:** `src\components\ui\chart.tsx:1`
 **詳細說明:**
 > 建議：
@@ -964,7 +994,7 @@
 > 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
 > 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
 ---
-### 91. [REFACTOR] src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入
+### 93. [REFACTOR] src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入
 **位置:** `src\components\ui\file-type-icon.tsx:9`
 **負責人:** @frontend
 **詳細說明:**
@@ -972,21 +1002,42 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 92. [REFACTOR] src/components/ui/file-type-icon.tsx:18-22 - 清理未使用的導入
-**位置:** `src\components\ui\file-type-icon.tsx:24`
+### 94. [REFACTOR] src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）
+**位置:** `src\components\ui\file-type-icon.tsx:26`
+---
+### 95. [REFACTOR] src/components/ui/file-upload.tsx:15 - 清理未使用的導入
+**位置:** `src\components\ui\file-upload.tsx:17`
 **負責人:** @frontend
 **詳細說明:**
-> 問題：'Image', 'Video', 'Music', 'Archive', 'Code' 已導入但從未使用
+> 問題：'Badge' 已導入但從未使用
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 93. [REFACTOR] src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）
-**位置:** `src\components\ui\file-type-icon.tsx:32`
+### 96. [REFACTOR] src/components/ui/file-upload.tsx:20 - 清理未使用的導入
+**位置:** `src\components\ui\file-upload.tsx:35`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'X' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 94. [REFACTOR] src/components/ui/file-upload.tsx - 清理未使用的導入（Badge, X, CheckCircle, AlertCircle 未使用）
-**位置:** `src\components\ui\file-upload.tsx:27`
+### 97. [REFACTOR] src/components/ui/file-upload.tsx:24 - 清理未使用的導入
+**位置:** `src\components\ui\file-upload.tsx:41`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'CheckCircle' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 95. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+### 98. [REFACTOR] src/components/ui/file-upload.tsx:25 - 清理未使用的導入
+**位置:** `src\components\ui\file-upload.tsx:47`
+**負責人:** @frontend
+**詳細說明:**
+> 問題：'AlertCircle' 已導入但從未使用
+> 影響：增加 bundle 大小，影響性能
+> 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+---
+### 99. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
 **位置:** `src\firebase\firestore\use-collection.tsx:37`
 **詳細說明:**
 > 建議：
@@ -994,22 +1045,22 @@
 > - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
 > - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 ---
-### 96. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 100. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:12`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 dialog data 建立明確型別
 ---
-### 97. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 101. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:28`
 **詳細說明:**
 > 說明：替換為具名型別或泛型參數，避免使用 unknown
 ---
-### 98. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 102. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:74`
 **詳細說明:**
 > 說明：為 data 提供具名型別或受限泛型，避免使用 unknown
 ---
-### 99. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+### 103. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
 **位置:** `src\hooks\use-permissions.ts:2`
 **詳細說明:**
 > 建議：
@@ -1017,7 +1068,7 @@
 > 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
 > 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 ---
-### 100. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+### 104. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
 **位置:** `src\lib\role-management.ts:112`
 **負責人:** @ai
 **詳細說明:**
@@ -1026,7 +1077,7 @@
 > - checkPermission 與 getAllRoleDefinitions 共享快取；
 > - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
 ---
-### 101. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+### 105. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
 **位置:** `src\lib\role-management.ts:121`
 **詳細說明:**
 > 建議：
@@ -1034,7 +1085,7 @@
 > 2) 將 getAllRoleDefinitions 與 checkPermission 的重複查詢合併/快取；避免重複 Firestore round-trip。
 > 3) 僅回傳渲染所需欄位（id/name/permissions），其餘細節延後查詢。
 ---
-### 102. [FIX] src/lib/types-unified.ts - 修正 unknown/any 類型
+### 106. [FIX] src/lib/types-unified.ts - 修正 unknown/any 類型
 **位置:** `src\lib\types-unified.ts:245`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，或引入泛型以約束資料型別
