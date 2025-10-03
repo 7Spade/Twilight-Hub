@@ -1,0 +1,505 @@
+# TODO 管理系統
+
+> **版本**: 1.0  
+> **更新**: 2024-12-19  
+> **目標**: AI Agent 友好的標準化 TODO 管理
+
+---
+
+## 📋 TODO 標籤標準
+
+### 優先級標籤
+- `[P0]` - 緊急 (Critical) - 立即處理
+- `[P1]` - 高 (High) - 24小時內
+- `[P2]` - 中 (Medium) - 本週內
+- `[P3]` - 低 (Low) - 下週內
+
+### 狀態標籤
+- `[TODO]` - 待開始
+- `[IN_PROGRESS]` - 進行中
+- `[BLOCKED]` - 被阻塞
+- `[DONE]` - 已完成
+- `[CANCELLED]` - 已取消
+
+### 類型標籤
+- `[BUG]` - 錯誤修復
+- `[FEATURE]` - 新功能
+- `[REFACTOR]` - 重構
+- `[DOCS]` - 文檔
+- `[TEST]` - 測試
+- `[PERF]` - 性能優化
+- `[SECURITY]` - 安全
+- `[CLEANUP]` - 清理
+
+### 模組標籤
+- `[AUTH]` - 認證系統
+- `[UI]` - 用戶界面
+- `[API]` - API 接口
+- `[DB]` - 資料庫
+- `[CONFIG]` - 配置
+- `[DEPLOY]` - 部署
+- `[MEMORY_BANK]` - Memory Bank
+
+---
+
+## 🎯 當前活躍 TODO
+
+### VAN 模式 - Memory Bank 同步
+- `[P1]` `[MEMORY_BANK]` `[CLEANUP]` `[DONE]` 清理 Memory Bank 無用內容
+- `[P1]` `[MEMORY_BANK]` `[REFACTOR]` `[DONE]` 優化 Memory Bank 結構降低認知負擔
+- `[P1]` `[MEMORY_BANK]` `[DOCS]` `[DONE]` 建立標準化 TODO.md 文件
+- `[P1]` `[MEMORY_BANK]` `[CLEANUP]` `[DONE]` 更新 Memory Bank 與專案同步
+
+### 構建錯誤修復（緊急）
+
+#### 🚨 緊急修復計劃 (P0 優先級)
+**階段 1: 語法錯誤修復 (立即執行)**
+1. 修復未終止字符串字面量錯誤 (20+ 個文件)
+2. 修復 JSX 標籤未閉合錯誤 (20+ 個文件)
+3. 驗證 TypeScript 編譯成功
+
+**階段 2: 模組匯出修復 (P1 優先級)**
+1. 修復 use-file-actions.ts 模組匯出錯誤
+2. 修復其他 UTF-8 編碼問題
+3. 修復 Next.js 配置問題
+
+**階段 3: 代碼質量優化 (P2 優先級)**
+1. 清理 ESLint 警告
+2. 修復 React Hooks 依賴問題
+3. 清理未使用的變量和導入
+
+**階段 4: 架構優化 (P3 優先級)**
+1. 優化字體配置
+2. 代碼清理和重構
+3. 性能優化
+
+#### 緊急語法錯誤修復（新增 20+ 個）
+- `[P0]` `[BUG]` `[TYPESCRIPT]` `[TODO]` 修復大量未終止字符串字面量錯誤
+  - 問題: 20+ 個文件包含未終止的字符串字面量，導致 TypeScript 編譯失敗
+  - 範圍/影響: file-explorer 相關組件、participants 組件、issues 組件等，阻塞整個項目構建
+  - 何時: 2025-01-03 發現，緊急阻塞開發
+  - 為什麼: 文件保存時編碼問題或編輯器問題導致字符串字面量未正確閉合
+  - 解法: 逐一檢查並修復每個文件的字符串字面量問題
+  - 驗證: (1) npm run typecheck 成功 (2) 所有組件正常渲染 (3) 無語法錯誤
+  - 預防: 使用 ESLint 語法檢查，編輯器自動格式化
+  - 風險/回滾: 風險高；需仔細測試每個修復的文件
+
+- `[P0]` `[BUG]` `[JSX]` `[TODO]` 修復大量 JSX 標籤未閉合錯誤
+  - 問題: 20+ 個文件包含未閉合的 JSX 標籤，導致解析錯誤
+  - 範圍/影響: file-explorer 相關組件、participants 組件等，影響 UI 渲染
+  - 何時: 2025-01-03 發現，緊急阻塞開發
+  - 為什麼: JSX 標籤編寫錯誤或編輯器問題
+  - 解法: 逐一檢查並修復每個文件的 JSX 標籤閉合問題
+  - 驗證: (1) npm run typecheck 成功 (2) 所有組件正常渲染 (3) 無 JSX 錯誤
+  - 預防: 使用 ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險高；需仔細測試每個修復的組件
+
+#### 架構合規性問題（新增 3 個）
+- `[P1]` `[BUG]` `[CONFIG]` `[TODO]` 修復 Next.js 配置掩蓋錯誤問題
+  - 問題: next.config.ts 中設置 ignoreBuildErrors: true 和 ignoreDuringBuilds: true 掩蓋了真正的編譯錯誤
+  - 範圍/影響: 整個項目構建流程，影響錯誤發現和修復
+  - 何時: 2025-01-03 發現，阻礙問題識別
+  - 為什麼: 配置設置不當，掩蓋了真正的 TypeScript 和 ESLint 錯誤
+  - 解法: 移除 ignoreBuildErrors 和 ignoreDuringBuilds 設置，修復真正的錯誤
+  - 驗證: (1) 配置修改後能正確顯示錯誤 (2) 修復所有錯誤後構建成功 (3) 無掩蓋的錯誤
+  - 預防: 避免使用 ignoreBuildErrors，使用嚴格的構建檢查
+  - 風險/回滾: 風險中；需確保所有錯誤都已修復
+
+- `[P2]` `[BUG]` `[CONFIG]` `[TODO]` 修復字體配置問題
+  - 問題: layout.tsx 中手動添加字體連結，而不是使用 next/font
+  - 範圍/影響: src/app/layout.tsx，影響字體載入和性能
+  - 何時: 2025-01-03 發現，ESLint 警告
+  - 為什麼: 未遵循 Next.js 15 最佳實踐，手動添加字體連結
+  - 解法: 移除手動字體連結，使用 next/font 配置
+  - 驗證: (1) ESLint 無字體警告 (2) 字體正常載入 (3) 性能無下降
+  - 預防: 遵循 Next.js 15 字體最佳實踐，使用 next/font
+  - 風險/回滾: 風險低；純配置修改
+
+- `[P2]` `[CLEANUP]` `[CONFIG]` `[TODO]` 清理 Next.js 配置冗餘
+  - 問題: next.config.ts 配置過於簡單，缺少必要的優化設置
+  - 範圍/影響: 整個項目構建和運行配置
+  - 何時: 2025-01-03 發現，配置審查
+  - 為什麼: 配置不完整，缺少性能優化和安全設置
+  - 解法: 添加必要的 Next.js 15 配置選項，如壓縮、安全頭等
+  - 驗證: (1) 構建成功 (2) 性能指標正常 (3) 安全檢查通過
+  - 預防: 定期審查 Next.js 配置，遵循官方最佳實踐
+  - 風險/回滾: 風險低；配置優化
+
+#### TypeScript 模組匯出錯誤（新增 5 個）
+- `[P1]` `[BUG]` `[TYPESCRIPT]` `[TODO]` 修復 use-file-actions.ts 模組匯出錯誤
+  - 問題: 模組 '@/components/features/spaces/actions' 缺少匯出的成員 'uploadFileAction', 'downloadFileAction', 'deleteFileAction', 'listFilesAction', 'FileActionItem'
+  - 範圍/影響: src/components/features/spaces/hooks/use-file-actions.ts (L12-16)，影響文件操作功能
+  - 何時: 2025-01-03 發現，阻塞文件管理功能
+  - 為什麼: actions 目錄重構後，file-actions.ts 只包含 Server Actions，缺少客戶端文件操作函數
+  - 解法: 在 file-actions.ts 中添加缺失的客戶端文件操作函數，或創建新的客戶端 actions 文件
+  - 驗證: (1) TypeScript 編譯成功 (2) 文件操作功能正常 (3) 無模組匯出錯誤
+  - 預防: 使用 TypeScript 嚴格模式，定期檢查模組匯出完整性
+  - 風險/回滾: 風險中；需測試文件操作流程
+
+#### UTF-8 編碼問題（已修復 2/20+）
+- `[P1]` `[BUG]` `[REFACTOR]` `[DONE]` 修復 UTF-8 編碼問題 - types-unified.ts
+  - 問題: 文件包含無效的 UTF-8 字符（亂碼），影響可讀性和維護性
+  - 範圍/影響: src/lib/types-unified.ts，影響整個類型系統
+  - 何時: 2025-10-03 發現，使用 grep 搜索發現
+  - 為什麼: 文件保存時編碼設置錯誤，可能使用了非 UTF-8 編碼
+  - 解法: 以 UTF-8 編碼重新保存文件，修正註釋和類型名稱
+  - 驗證: (1) 文件可正常讀取 (2) 無亂碼字符 (3) TypeScript 編譯成功
+  - 預防: .editorconfig 強制 UTF-8，使用 pre-commit hook 檢測編碼
+  - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復文件
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[DONE]` 修復 UTF-8 編碼問題 - overview/types.ts
+  - 問題: 文件包含無效的 UTF-8 字符（亂碼），影響可讀性
+  - 範圍/影響: src/components/features/spaces/components/overview/types.ts
+  - 何時: 2025-10-03 發現
+  - 為什麼: 文件保存時編碼設置錯誤
+  - 解法: 以 UTF-8 編碼重新保存文件，修正註釋
+  - 驗證: (1) 文件可正常讀取 (2) 無亂碼字符 (3) TypeScript 編譯成功
+  - 預防: .editorconfig 強制 UTF-8，使用 pre-commit hook 檢測編碼
+  - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復文件
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 檢查並修復其他 UTF-8 編碼問題
+  - 受影響文件列表（已通過 grep 搜索發現）:
+    - src/components/ui/file-upload.tsx
+    - src/components/features/spaces/components/contracts/contract-list.tsx
+    - src/components/features/spaces/actions/file-actions.ts
+    - src/components/features/spaces/actions/spaces-file-actions.ts
+    - src/components/features/spaces/hooks/use-file-operations.ts
+    - src/hooks/use-permissions.ts
+    - src/hooks/use-app-state.ts
+    - src/components/features/spaces/components/overview/recent-activity.tsx
+    - src/firebase/firestore/use-doc.tsx
+    - src/firebase/firestore/use-collection.tsx
+    - src/components/features/spaces/components/overview/stat-card.tsx
+    - src/components/features/spaces/components/report/report-viewer.tsx
+    - src/components/features/spaces/components/report/create-report-dialog.tsx
+    - src/components/features/spaces/components/quality/quality-dashboard.tsx
+    - src/components/features/spaces/components/participants/data.ts
+    - src/components/features/spaces/components/quality/checklist.tsx
+  - 注意: 部分文件包含中文註釋是正常的，需要區分亂碼和正常中文
+  - 解法: 逐一檢查每個文件，修復實際的編碼問題
+  - 驗證: (1) 所有文件可正常讀取 (2) 無亂碼字符 (3) 構建成功
+
+- `[P1]` `[BUG]` `[AUTH]` `[TODO]` 修復文件完整性問題 - role-manager.tsx 被截斷
+  - 問題: role-manager.tsx 只剩 10 行，原本應有完整的角色管理功能
+  - 範圍/影響: src/components/auth/role-manager.tsx，影響角色管理功能
+  - 何時: 2025-10-03 發現，可能與 UTF-8 編碼問題同時發生
+  - 為什麼: 編碼問題或文件保存時截斷
+  - 解法: 從 git 歷史恢復完整的 role-manager.tsx 文件
+  - 驗證: (1) 文件行數恢復正常 (2) 角色管理功能可用 (3) 無編譯錯誤
+  - 預防: 定期 git commit，使用文件完整性檢查工具
+  - 風險/回滾: 風險低；確保從正確的 commit 恢復
+
+- `[P1]` `[BUG]` `[UI]` `[TODO]` 修復 JSX 語法錯誤 - search-command.tsx
+  - 問題: 第94行 <span> 標籤未正確閉合，包含 "⌘</span>K" 錯誤寫法
+  - 範圍/影響: src/components/search-command.tsx，影響搜尋功能
+  - 何時: 2025-10-03 發現，阻塞構建
+  - 為什麼: JSX 標籤編寫錯誤，</span> 和 K 之間缺少開始標籤
+  - 解法: 修改為 <span className="text-xs">⌘</span><span>K</span> 或 <span>⌘ K</span>
+  - 驗證: (1) npm run build 成功 (2) 搜尋快捷鍵顯示正確 (3) 無 JSX 錯誤
+  - 預防: 使用 ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險低；純前端修改
+
+- `[P1]` `[BUG]` `[UI]` `[TODO]` 修復 React Hooks 規則違反 - file-upload.tsx
+  - 問題: 第65、72、252行在回調函數中調用 Hook（useIsFileTypeSupported, useFormatFileSize）
+  - 範圍/影響: src/components/ui/file-upload.tsx，影響文件上傳功能
+  - 何時: 2025-10-03 lint 檢測到，違反 React Hooks 規則
+  - 為什麼: Hook 必須在組件頂層調用，不能在回調、條件或循環中調用
+  - 解法: 將 Hook 調用移到組件頂層，在回調中使用計算結果
+  - 驗證: (1) npm run lint 無 Hooks 錯誤 (2) 文件上傳功能正常 (3) 無運行時錯誤
+  - 預防: 使用 eslint-plugin-react-hooks，代碼審查時檢查 Hook 使用
+  - 風險/回滾: 風險中；需測試文件上傳流程
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 修復語法錯誤 - use-permissions.ts
+  - 問題: 第66行包含不完整的元素訪問表達式（如 arr[] 缺少索引）
+  - 範圍/影響: src/hooks/use-permissions.ts，影響權限檢查
+  - 何時: 2025-10-03 發現，阻塞構建
+  - 為什麼: 陣列或物件訪問語法不完整
+  - 解法: 檢查第66行，補充完整的訪問表達式
+  - 驗證: (1) TypeScript 編譯成功 (2) 權限檢查功能正常 (3) 無語法錯誤
+  - 預防: TypeScript 嚴格模式，ESLint 語法檢查
+  - 風險/回滾: 風險中；權限系統核心邏輯
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 修復語法錯誤 - role-management.ts
+  - 問題: 第20行缺少分號，導致解析錯誤
+  - 範圍/影響: src/lib/role-management.ts，影響角色管理服務
+  - 何時: 2025-10-03 發現
+  - 為什麼: 語句末尾缺少分號
+  - 解法: 在第20行末尾添加分號
+  - 驗證: (1) npm run lint 成功 (2) TypeScript 編譯成功 (3) 角色管理功能正常
+  - 預防: 使用 Prettier 自動格式化，ESLint 檢查分號
+  - 風險/回滾: 風險低；簡單語法修復
+
+#### 代碼質量問題（新增 5 個）
+- `[P2]` `[CLEANUP]` `[REFACTOR]` `[TODO]` 清理大量未使用變量和導入
+  - 問題: 50+ 個 ESLint 警告關於未使用的變量和導入，影響代碼質量和 bundle size
+  - 範圍/影響: 全專案多個文件，影響代碼可讀性和性能
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 開發過程中遺留的未使用代碼，缺少自動清理機制
+  - 解法: 使用 ESLint --fix 自動清理，手動檢查重要文件
+  - 驗證: (1) npm run lint 無未使用變量警告 (2) bundle size 減少 (3) 代碼可讀性提升
+  - 預防: 使用 ESLint 自動修復，pre-commit hook 檢查
+  - 風險/回滾: 風險極低；自動化清理
+
+- `[P2]` `[PERF]` `[REFACTOR]` `[TODO]` 修復 React Hooks 依賴問題
+  - 問題: 多個組件的 useMemo/useEffect 依賴陣列不完整，可能導致不必要的重新渲染
+  - 範圍/影響: layout.tsx, spaces/page.tsx, inventory/page.tsx 等，影響性能
+  - 何時: 2025-01-03 發現，ESLint exhaustive-deps 警告
+  - 為什麼: 未遵循 React Hooks 最佳實踐，依賴項未正確聲明
+  - 解法: 根據 ESLint 提示，將依賴包裝在 useMemo 中或添加到依賴陣列
+  - 驗證: (1) ESLint 無 exhaustive-deps 警告 (2) 性能無下降 (3) 組件正常渲染
+  - 預防: 使用 eslint-plugin-react-hooks，代碼審查時檢查
+  - 風險/回滾: 風險低；性能優化
+
+- `[P2]` `[CLEANUP]` `[UI]` `[TODO]` 清理未使用的 UI 組件導入
+  - 問題: 多個組件導入但未使用的 UI 組件，如 Button, Card, Avatar 等
+  - 範圍/影響: 多個 React 組件文件，影響 bundle size
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 重構過程中遺留的導入，未及時清理
+  - 解法: 移除未使用的導入，保留必要的類型導入
+  - 驗證: (1) 無未使用導入警告 (2) 組件功能正常 (3) bundle size 優化
+  - 預防: ESLint 自動檢查，定期清理
+  - 風險/回滾: 風險極低；純清理操作
+
+- `[P2]` `[CLEANUP]` `[AUTH]` `[TODO]` 清理認證相關未使用代碼
+  - 問題: auth-provider.tsx 等認證組件包含未使用的變量和類型
+  - 範圍/影響: src/components/auth/ 目錄，影響認證功能維護
+  - 何時: 2025-01-03 發現，代碼審查
+  - 為什麼: 認證功能重構後遺留的未使用代碼
+  - 解法: 移除未使用的導入和變量，保留核心功能
+  - 驗證: (1) 認證功能正常 (2) 無未使用代碼警告 (3) 代碼簡潔
+  - 預防: 定期代碼審查，移除冗餘代碼
+  - 風險/回滾: 風險低；需測試認證流程
+
+- `[P2]` `[CLEANUP]` `[UI]` `[TODO]` 修復非空斷言警告
+  - 問題: 多個文件使用非空斷言 (!) 操作符，ESLint 警告
+  - 範圍/影響: adjust-stock-dialog.tsx 等組件，影響類型安全
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 使用非空斷言而非安全的類型檢查
+  - 解法: 使用可選鏈操作符或條件檢查替代非空斷言
+  - 驗證: (1) 無非空斷言警告 (2) 類型安全 (3) 運行時無錯誤
+  - 預防: 使用 TypeScript 嚴格模式，避免非空斷言
+  - 風險/回滾: 風險中；需測試相關功能
+
+### 構建錯誤修復（中優先級）
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復字符串字面量錯誤 - file-explorer 相關組件
+  - 問題: 多個文件包含未終止的字符串字面量（缺少閉合引號）
+  - 範圍/影響: src/components/features/spaces/components/file-explorer/ 目錄
+  - 受影響文件: column-settings-menu.tsx(L69), context-menu.tsx(L126), deleted-items.tsx(L50), file-detail-view.tsx(L75), empty-folder-state.tsx(L31), file-table.tsx(L51)
+  - 何時: 2025-10-03 發現
+  - 為什麼: 字符串字面量缺少結束引號或包含特殊字符
+  - 解法: 檢查每個文件對應行，補充缺失的引號或轉義特殊字符
+  - 驗證: (1) npm run build 成功 (2) file-explorer 功能正常 (3) 無語法錯誤
+  - 預防: ESLint 語法檢查，編輯器語法高亮
+  - 風險/回滾: 風險低；純語法修復
+
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復 JSX 語法錯誤 - contract-list.tsx
+  - 問題: 第317行包含未閉合的標籤或無效字符
+  - 範圍/影響: src/components/features/spaces/components/contracts/contract-list.tsx
+  - 何時: 2025-10-03 發現
+  - 為什麼: JSX 標籤未正確閉合或包含非法字符
+  - 解法: 檢查第317行，確保所有 JSX 標籤正確閉合
+  - 驗證: (1) npm run build 成功 (2) 合約列表顯示正常 (3) 無 JSX 錯誤
+  - 預防: ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險低；純前端修改
+
+- `[P2]` `[BUG]` `[UI]` `[TODO]` 修復語法錯誤 - file-explorer.tsx
+  - 問題: 第95行缺少分號
+  - 範圍/影響: src/components/features/spaces/components/file-explorer/file-explorer.tsx
+  - 何時: 2025-10-03 發現
+  - 為什麼: 語句末尾缺少分號
+  - 解法: 在第95行末尾添加分號
+  - 驗證: (1) npm run lint 成功 (2) file-explorer 功能正常 (3) 無語法錯誤
+  - 預防: Prettier 自動格式化，ESLint 檢查分號
+  - 風險/回滾: 風險低；簡單語法修復
+
+### Lint 警告清理（低優先級）
+- `[P3]` `[CLEANUP]` `[REFACTOR]` `[TODO]` 清理未使用的變量和 import
+  - 問題: 多個文件包含未使用的 import 和變量聲明
+  - 範圍/影響: 全專案，影響代碼質量和 bundle size
+  - 解法: 使用 ESLint --fix 自動移除，或手動清理
+  - 驗證: npm run lint 無未使用變量警告
+  - 預防: 使用 ESLint，定期運行 lint --fix
+  - 風險/回滾: 風險極低；自動化清理
+
+- `[P3]` `[PERF]` `[REFACTOR]` `[TODO]` 修復 React Hooks 依賴問題
+  - 問題: 多個組件的 useMemo/useEffect 依賴陣列不完整，可能導致每次渲染都重新計算
+  - 範圍/影響: 多個頁面組件，影響性能
+  - 解法: 根據 ESLint 提示，將依賴包裝在 useMemo 中
+  - 驗證: npm run lint 無 exhaustive-deps 警告，性能無降低
+  - 預防: 遵守 React Hooks 最佳實踐，使用 ESLint 檢查
+  - 風險/回滾: 風險低；性能優化
+
+### 專案結構優化
+- `[P2]` `[REFACTOR]` `[TODO]` 實施 Next.js 15 標準文件命名規範
+- `[P2]` `[CLEANUP]` `[TODO]` 清理重複文件 (FirebaseErrorListener.tsx)
+- `[P2]` `[REFACTOR]` `[TODO]` 重組目錄結構建立清晰邊界
+- `[P2]` `[CLEANUP]` `[TODO]` 統一類型系統 (types.ts vs types-unified.ts)
+
+---
+
+## 📊 TODO 統計
+
+### 按優先級
+- `[P0]`: 2 個 (全部待開始)
+- `[P1]`: 11 個 (4 完成, 7 待開始)
+- `[P2]`: 12 個 (全部待開始)
+- `[P3]`: 2 個 (全部待開始)
+
+### 按狀態
+- `[TODO]`: 25 個
+- `[IN_PROGRESS]`: 0 個
+- `[DONE]`: 4 個
+- `[BLOCKED]`: 0 個
+- `[CANCELLED]`: 0 個
+
+### 按類型
+- `[BUG]`: 14 個
+- `[REFACTOR]`: 4 個
+- `[CLEANUP]`: 8 個
+- `[DOCS]`: 1 個
+- `[PERF]`: 2 個
+- `[CONFIG]`: 3 個
+
+---
+
+## 🔄 TODO 更新規則
+
+### 添加新 TODO
+```markdown
+- `[優先級]` `[模組]` `[類型]` `[狀態]` 描述內容
+```
+
+- 對於 `[BUG]`、`[REFACTOR]` 類型，必須在條目後附上「問題導向模板（RCA）」以利零認知處理。
+
+### 更新 TODO 狀態
+1. 將 `[TODO]` 改為 `[IN_PROGRESS]` 開始工作
+2. 將 `[IN_PROGRESS]` 改為 `[DONE]` 完成工作
+3. 將 `[IN_PROGRESS]` 改為 `[BLOCKED]` 遇到阻塞
+4. 將任何狀態改為 `[CANCELLED]` 取消任務
+
+### 優先級調整
+- 根據業務影響和緊急程度調整
+- 定期審查和重新排序
+- 避免過多 P0 和 P1 任務
+
+---
+
+## 📝 TODO 模板
+
+### 功能開發 TODO
+```markdown
+- `[P2]` `[FEATURE]` `[AUTH]` `[TODO]` 實現用戶登入功能
+  - 子任務: 表單驗證、Firebase 整合、錯誤處理
+  - 預估時間: 4 小時
+  - 依賴: Firebase 配置完成
+```
+
+### 錯誤修復 TODO
+```markdown
+- `[P1]` `[BUG]` `[UI]` `[TODO]` 修復登入頁面樣式問題
+  - 問題描述: 按鈕在移動端顯示異常
+  - 預估時間: 1 小時
+  - 測試: 多設備響應式測試
+```
+
+### 重構 TODO
+```markdown
+- `[P2]` `[REFACTOR]` `[API]` `[TODO]` 重構 API 錯誤處理
+  - 目標: 統一錯誤響應格式
+  - 預估時間: 2 小時
+  - 影響範圍: 所有 API 端點
+```
+
+### 問題導向模板（RCA/5W1H 極簡版）
+> 適用：`[BUG]`、`[REFACTOR]`、任何需要追根究柢與可預防性的任務。
+
+```markdown
+- 問題（What）: 用一句話描述發生了什麼問題？
+- 範圍/影響（Who/Where）: 受影響的用戶/模組/路徑？
+- 何時（When）: 何時首次出現/再次出現？是否可重現？
+- 為什麼（Why/Root Cause）: 最小可驗證的根因陳述（單行）。
+- 解法（How Fix）: 最小解法（單行），如需多步以清單列出。
+- 驗證（How Verify）: 驗證步驟（最多 3 步）；指標/日誌位置。
+- 預防（How Prevent）: 守護欄（Lint/Type/Test/監控/流程規範）。
+- 風險/回滾: 主要風險與回滾條件與步驟（單行）。
+```
+
+示例（附於 TODO 條目下方）：
+```markdown
+- `[P1]` `[BUG]` `[AUTH]` `[IN_PROGRESS]` 登入表單提交間歇性 500
+  - 問題: 提交頻繁時偶發 500
+  - 範圍/影響: `features/auth` 登入流程，行動端影響較大
+  - 何時: 2024-12-19 起，可 80% 重現於弱網
+  - 為什麼: 客戶端重複提交，後端缺少冪等與速率限制
+  - 解法: 前端防抖+按鈕 loading 鎖定；API 增加 429 與冪等鍵
+  - 驗證: (1) 連點 5 次無 500 (2) 日誌無重複處理 (3) 429 呈現正確
+  - 預防: 表單共用 `useSubmitGuard`、API 網關速率限制、監控 5xx 指標
+  - 風險/回滾: 風險低；若轉化率下降>3%，回滾前端鎖定
+```
+
+### AI Agent 最小認知填寫規範（Zero-Cog）
+- **單一來源**: 每個 TODO 條目自包含所有決策所需最小資訊，不跳轉多文件。
+- **結構固定**: 標籤行 +（必要時）RCA 區塊，關鍵字段固定順序、單行敘述。
+- **可執行性**: 解法與驗證可直接行動；避免模糊詞（如「優化」、「調整」）。
+- **可預防性**: 每個問題必給一條守護欄（Lint/型別/測試/監控/流程）。
+- **最少欄位**: 沒有問題就不填 RCA；有問題最少填「問題/為什麼/解法/預防/驗證」。
+
+---
+
+## 🎯 最佳實踐
+
+### 1. 任務粒度
+- 單個 TODO 不超過 4 小時工作量
+- 複雜任務拆分成子任務
+- 明確的完成標準
+
+### 2. 描述清晰
+- 使用動詞開頭 (實現、修復、優化)
+- 包含具體的技術細節
+- 標明預估時間和依賴
+
+### 3. 定期審查
+- 每日檢查 P0 和 P1 任務
+- 每週審查所有任務優先級
+- 及時更新狀態和進度
+
+### 4. 依賴管理
+- 明確標示任務依賴關係
+- 優先處理阻塞其他任務的項目
+- 考慮並行執行的可能性
+
+---
+
+## 🔍 搜尋和過濾
+
+### 快速搜尋
+- `[P1]` - 查看高優先級任務
+- `[IN_PROGRESS]` - 查看進行中任務
+- `[BUG]` - 查看所有錯誤修復
+- `[AUTH]` - 查看認證相關任務
+
+### 組合搜尋
+- `[P1]` `[BUG]` - 高優先級錯誤
+- `[TODO]` `[FEATURE]` - 待開始功能
+- `[BLOCKED]` `[API]` - 被阻塞的 API 任務
+
+---
+
+## 📈 進度追蹤
+
+### 每日檢查
+- [ ] 檢查 P0 任務狀態
+- [ ] 更新進行中任務進度
+- [ ] 識別新的阻塞問題
+- [ ] 調整任務優先級
+
+### 每週回顧
+- [ ] 統計完成任務數量
+- [ ] 分析任務完成時間
+- [ ] 識別重複出現的問題
+- [ ] 優化工作流程
+
+---
+
+**最後更新**: 2024-12-19  
+**下次審查**: 2024-12-20
