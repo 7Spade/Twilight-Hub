@@ -2,6 +2,7 @@
  * 通知相關 Server Actions
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 處理合約相關的通知發送
+ * 位置: src/app/actions/notification-actions.ts
  */
 
 'use server';

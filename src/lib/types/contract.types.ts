@@ -1,6 +1,7 @@
 /**
  * 合約相關類型定義
  * 遵循 Next.js 15 + Firebase 最佳實踐
+ * 位置: src/lib/types/contract.types.ts
  */
 
 export type ContractType = 'service' | 'license' | 'nda' | 'partnership' | 'employment';

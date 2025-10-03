@@ -2,6 +2,7 @@
  * 合約相關 React Query hooks
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供合約數據的查詢、緩存和實時同步
+ * 位置: src/hooks/use-contracts.ts
  */
 
 'use client';

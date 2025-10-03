@@ -2,6 +2,7 @@
  * 文件操作相關 hooks
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供文件上傳、下載、管理功能
+ * 位置: src/hooks/use-file-operations.ts
  */
 
 'use client';

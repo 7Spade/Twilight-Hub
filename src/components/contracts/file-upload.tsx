@@ -2,6 +2,7 @@
  * 合約文件上傳組件
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供文件上傳、預覽、管理功能
+ * 位置: src/components/contracts/file-upload.tsx
  */
 
 'use client';

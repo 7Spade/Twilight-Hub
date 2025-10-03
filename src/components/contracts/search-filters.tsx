@@ -2,6 +2,7 @@
  * 合約搜索和過濾組件
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供搜索、過濾、排序功能
+ * 位置: src/components/contracts/search-filters.tsx
  */
 
 'use client';

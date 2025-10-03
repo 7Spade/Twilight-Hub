@@ -2,6 +2,7 @@
  * 合約相關 Server Actions hooks
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供 Server Actions 的調用和狀態管理
+ * 位置: src/hooks/use-contract-actions.ts
  */
 
 'use client';

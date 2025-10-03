@@ -2,6 +2,7 @@
  * Firebase 服務端操作
  * 用於 Server Actions 中的 Firebase Admin SDK 操作
  * 遵循 Next.js 15 + Firebase 最佳實踐
+ * 位置: src/lib/firebase/admin.ts
  */
 
 import { initializeApp, getApps, cert } from 'firebase-admin/app';

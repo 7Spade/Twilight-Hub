@@ -2,12 +2,13 @@
  * 合約組件統一導出
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 提供所有合約相關組件的統一入口
+ * 位置: src/components/contracts/index.ts
  */
 
 // 現有組件
-export { ContractList } from '../src/components/features/spaces/components/contracts/contract-list';
-export { ContractDetails } from '../src/components/features/spaces/components/contracts/contract-details';
-export { CreateContractDialog } from '../src/components/features/spaces/components/contracts/create-contract-dialog';
+export { ContractList } from '../features/spaces/components/contracts/contract-list';
+export { ContractDetails } from '../features/spaces/components/contracts/contract-details';
+export { CreateContractDialog } from '../features/spaces/components/contracts/create-contract-dialog';
 
 // 新增組件
 export { FileUpload } from './file-upload';

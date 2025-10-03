@@ -2,6 +2,7 @@
  * 合約相關 Server Actions
  * 遵循 Next.js 15 + Firebase 最佳實踐
  * 處理合約的複雜業務邏輯和 AI 分析
+ * 位置: src/app/actions/contract-actions.ts
  */
 
 'use server';
