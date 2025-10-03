@@ -1,13 +1,13 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 59 個項目
+- 總計: 57 個項目
 - 🔴 緊急: 4 個項目
 ### 依優先級
 - P2: 41 個
-- P1: 18 個
+- P1: 16 個
 ### 依類型
 - PERF: 1 個
-- REFACTOR: 30 個
+- REFACTOR: 28 個
 - FEAT: 14 個
 - CLEANUP: 2 個
 - TYPING: 1 個
@@ -15,7 +15,7 @@
 - VAN: 9 個
 ---
 ## 🔴 P0 (0 個)
-## 🟠 P1 (18 個)
+## 🟠 P1 (16 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 減少過度抽象的組件層級
 **位置:** `src\components\features\spaces\components\index.ts:7`
 **負責人:** @frontend
@@ -45,19 +45,7 @@
 > 說明：目前在 client 端以 getDocs/queries 聚合多個集合，建議改為父層 Server Page 聚合輸出，
 > 並以 props 餵入（或分段 Suspense），降低 client 邏輯與狀態，維持效能且更易讀。
 ---
-### 4. [REFACTOR] src/app/(app)/organizations/[organizationslug]/spaces/page.tsx - 統一由伺服端進行 redirect
-**位置:** `src\app\(app)\organizations\[organizationslug]\spaces\page.tsx:2`
-**負責人:** @ai
-**詳細說明:**
-> 說明：改為 server page 直接 redirect('/spaces')，避免在 client 內呼叫 redirect。
----
-### 5. [REFACTOR] src/app/(app)/[userslug]/page.tsx - 將 params 解析改由 server page 處理
-**位置:** `src\app\(app)\[userslug]\page.tsx:6`
-**負責人:** @ai
-**詳細說明:**
-> 說明：避免在 client 端使用 React.use(params)，改為 server page 解析後以 props 傳入，降低邊界與型別負擔。
----
-### 6. [TYPING] no-any (L192, L221) [低認知]
+### 4. [TYPING] no-any (L192, L221) [低認知]
 **位置:** `src\components\auth\auth-provider.tsx:9`
 **負責人:** @ai
 **詳細說明:**
@@ -68,7 +56,7 @@
 > - 禁止在 render 期間做 I/O；mutation 走 Server Actions 或明確事件觸發。
 > - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。
 ---
-### 7. [HOOK] deps (L365) [低認知]
+### 5. [HOOK] deps (L365) [低認知]
 **位置:** `src\components\auth\auth-provider.tsx:10`
 **負責人:** @ai
 **詳細說明:**
@@ -78,7 +66,7 @@
 > - 禁止在 render 期間做 I/O；mutation 走 Server Actions 或明確事件觸發。
 > - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。
 ---
-### 8. [REFACTOR] src/components/auth/auth-provider.tsx - 縮減責任邊界與資料下傳
+### 6. [REFACTOR] src/components/auth/auth-provider.tsx - 縮減責任邊界與資料下傳
 **位置:** `src\components\auth\auth-provider.tsx:11`
 **負責人:** @ai
 **詳細說明:**
@@ -87,7 +75,7 @@
 > - 禁止在 render 期間做 I/O；mutation 走 Server Actions 或明確事件觸發。
 > - 將 `PermissionGuard` 抽至更小 API（例如 useHasPermission(selector)）以便編譯期 tree-shaking。
 ---
-### 9. [HOOK] deps (L156) [低認知]
+### 7. [HOOK] deps (L156) [低認知]
 **位置:** `src\components\auth\role-manager.tsx:9`
 **負責人:** @ai
 **詳細說明:**
@@ -97,7 +85,7 @@
 > - 對話框抽成小型子元件或同檔內聯，避免 props 鏈過深；重複邏輯 ≥3 次再抽象。
 > - 權限檢查改用 `useAuth()` 的單一 selector，移除本檔重複 hasPermission 調用。
 ---
-### 10. [VAN] - 移除未使用的重命名導入
+### 8. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\features\spaces\components\contracts\contract-details.tsx:3`
 **詳細說明:**
 > 問題：Avatar, AvatarFallback, AvatarImage, Phone 導入後從未使用
@@ -106,21 +94,21 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這些導入未在任何地方使用）
 ---
-### 11. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 抽離 UI 與狀態設定
+### 9. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx - 抽離 UI 與狀態設定
 **位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:9`
 **負責人:** @ai
 **詳細說明:**
 > 說明：將篩選條件狀態 schema 與預設值抽到 `shared`（或 features 專屬 types）集中管理；
 > Panel 僅處理展示與事件回呼，提升模組邊界清晰度與型別一致性。
 ---
-### 12. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx - 抽離 mock 與分層
+### 10. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx - 抽離 mock 與分層
 **位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:9`
 **負責人:** @ai
 **詳細說明:**
 > 說明：將 mockFolders 與 organizeFilesIntoFolders 移到純函數模組（shared/utils 或 features 層 utils），
 > 並以 props 注入結果；本元件專注渲染與互動，降低檔案長度與複雜度。
 ---
-### 13. [VAN] - 移除未使用的重命名導入
+### 11. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\features\spaces\components\file-explorer\packages-tab.tsx:18`
 **詳細說明:**
 > 問題：Table, TableBody, TableCell, TableHead, TableHeader, TableRow, User 導入後從未使用
@@ -129,7 +117,7 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這些導入未在任何地方使用）
 ---
-### 14. [VAN] - 移除未使用的重命名導入
+### 12. [VAN] - 移除未使用的重命名導入
 **位置:** `src\components\forms\form-card.tsx:18`
 **詳細說明:**
 > 問題：Skeleton 導入後從未使用
@@ -138,7 +126,7 @@
 > 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 > 相關受影響檔案：無（這個導入未在任何地方使用）
 ---
-### 15. [REFACTOR] src/components/search-command.tsx - 抽離查詢為 Server Action/API 並以 props 餵入
+### 13. [REFACTOR] src/components/search-command.tsx - 抽離查詢為 Server Action/API 並以 props 餵入
 **位置:** `src\components\search-command.tsx:10`
 **負責人:** @ai
 **詳細說明:**
@@ -146,7 +134,7 @@
 > 建議：建立 server action（或輕量 API route）處理查詢與權限，再以 props 餵入、或使用 Suspense + use 從父層 Server Component 傳資料。
 > 目標：降低認知負擔與邊界複雜度，維持現有效能。
 ---
-### 16. [REFACTOR] src/firebase/provider.tsx - Provider 只做服務注入與極簡使用者狀態
+### 14. [REFACTOR] src/firebase/provider.tsx - Provider 只做服務注入與極簡使用者狀態
 **位置:** `src\firebase\provider.tsx:2`
 **負責人:** @ai
 **詳細說明:**
@@ -155,7 +143,7 @@
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
 ---
-### 17. [VAN] - 現代化類型斷言，使用更安全的對象初始化
+### 15. [VAN] - 現代化類型斷言，使用更安全的對象初始化
 **位置:** `src\hooks\use-permissions.ts:128`
 **詳細說明:**
 > 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
@@ -164,7 +152,7 @@
 > 效能影響：無，但提升類型安全性和代碼可讀性
 > 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
-### 18. [VAN] - 現代化類型斷言，使用更安全的對象初始化
+### 16. [VAN] - 現代化類型斷言，使用更安全的對象初始化
 **位置:** `src\hooks\use-permissions.ts:250`
 **詳細說明:**
 > 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
