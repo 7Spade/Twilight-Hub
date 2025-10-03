@@ -1,11 +1,11 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 71 個項目
-- 🔴 緊急: 16 個項目
+- 總計: 62 個項目
+- 🔴 緊急: 7 個項目
 ### 依優先級
 - P2: 41 個
 - P1: 18 個
-- P0: 12 個
+- P0: 3 個
 ### 依類型
 - PERF: 1 個
 - REFACTOR: 33 個
@@ -13,9 +13,9 @@
 - CLEANUP: 2 個
 - TYPING: 1 個
 - HOOK: 2 個
-- VAN: 18 個
+- VAN: 9 個
 ---
-## 🔴 P0 (12 個)
+## 🔴 P0 (3 個)
 ### 1. [REFACTOR] src/app/(app)/organizations/[organizationslug]/[spaceslug]/page.tsx - 伺服端處理 redirect
 **位置:** `src\app\(app)\organizations\[organizationslug]\[spaceslug]\page.tsx:2`
 **負責人:** @ai
@@ -29,23 +29,7 @@
 > 說明：`redirect` 應優先在伺服端執行以降低邊界複雜度；可改為 server page 直接 `await params` 後 redirect。
 > 參考：Next.js App Router（server/client components、redirect、params）。
 ---
-### 3. [VAN] - 移除未使用的 Card 組件導入
-**位置:** `src\components\contribution-breakdown-chart.tsx:10`
-**詳細說明:**
-> 問題：所有 Card 相關組件導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
----
-### 4. [VAN] - 移除未使用的 Button 導入
-**位置:** `src\components\features\spaces\components\acceptance\acceptance-item.tsx:5`
-**詳細說明:**
-> 問題：Button as _Button 導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
----
-### 5. [REFACTOR] src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
+### 3. [REFACTOR] src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
 **位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:9`
 **負責人:** @ai
 **詳細說明:**
@@ -54,64 +38,6 @@
 > 2) 視需要由父層 Server Component 提供序列化資料（或以 Suspense 分段）；
 > 3) 拆分 FileExplorerContent 為更小的展示型子元件，降低 useState/useMemo 密度。
 > 目標：維持效能並大幅降低 AI agent 認知負擔。
----
-### 6. [VAN] - 移除未使用的 UI 組件導入
-**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:18`
-**詳細說明:**
-> 問題：Card, CardContent, Separator 導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
----
-### 7. [VAN] - 移除未使用的 Button 導入
-**位置:** `src\components\features\spaces\components\issues\issue-details.tsx:7`
-**詳細說明:**
-> 問題：Button as _Button 導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
----
-### 8. [VAN] - 移除未使用的類型導入
-**位置:** `src\components\features\spaces\components\participants\advanced-filters.tsx:28`
-**詳細說明:**
-> 問題：ParticipantRole, ParticipantStatus 導入後從未使用
-> 解決方案：直接移除未使用的類型導入
-> 現代化建議：使用 import type 語法和 ESLint no-unused-vars 規則
-> 效能影響：減少 bundle 大小，降低認知負擔
----
-### 9. [VAN] - 移除未使用的類型導入
-**位置:** `src\components\features\spaces\components\participants\invite-participant-dialog.tsx:12`
-**詳細說明:**
-> 問題：ParticipantInviteFormData as _ParticipantInviteFormData 導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
-> 相關受影響檔案：無（類型導入未在任何地方使用）
----
-### 10. [VAN] - 移除未使用的 Table 組件導入
-**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:16`
-**詳細說明:**
-> 問題：所有 Table 相關組件導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
----
-### 11. [VAN] - 移除未使用的 Avatar 組件導入
-**位置:** `src\components\features\spaces\components\report\report-viewer.tsx:3`
-**詳細說明:**
-> 問題：Avatar, AvatarFallback, AvatarImage 導入後從未使用
-> 解決方案：直接移除未使用的導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
-> 相關受影響檔案：無（這些組件未在任何地方使用）
----
-### 12. [VAN] - 移除未使用的類型導入
-**位置:** `src\components\features\spaces\hooks\use-star-actions.ts:13`
-**詳細說明:**
-> 問題：import { type Space as _Space } from '@/lib/types-unified'; 完全未使用
-> 解決方案：直接移除該導入語句
-> 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-> 效能影響：減少 bundle 大小，降低認知負擔
 ---
 ## 🟠 P1 (18 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 減少過度抽象的組件層級
@@ -517,7 +443,7 @@
 **位置:** `src\components\features\spaces\components\report\report-dashboard.tsx:124`
 ---
 ### 35. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
-**位置:** `src\components\features\spaces\components\report\report-viewer.tsx:85`
+**位置:** `src\components\features\spaces\components\report\report-viewer.tsx:77`
 ---
 ### 36. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
 **位置:** `src\components\features\spaces\hooks\use-file-actions.ts:8`

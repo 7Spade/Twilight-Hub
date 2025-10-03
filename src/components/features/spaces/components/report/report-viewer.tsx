@@ -1,13 +1,5 @@
 'use client';
 
-// TODO: [P0] VAN - 移除未使用的 Avatar 組件導入
-// 問題：Avatar, AvatarFallback, AvatarImage 導入後從未使用
-// 解決方案：直接移除未使用的導入語句
-// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
-// 相關受影響檔案：無（這些組件未在任何地方使用）
-
-// @assignee frontend-team
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

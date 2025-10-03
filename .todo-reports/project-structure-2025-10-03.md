@@ -22,7 +22,6 @@
     │   ├── todo.automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
     ├── blueprint.md (1.5 KB, 今天)
-    ├── commands.natural-language.md (17.7 KB, 今天)
     ├── import-export-as-syntax-analysis.md (5.9 KB, 今天)
     ├── memory-system-guide.md (4.1 KB, 今天)
     ├── nextjs15.dev-brief.md (12.2 KB, 今天)
@@ -35,7 +34,7 @@
     ├── activeContext.md (1.8 KB, 今天)
     ├── memory-clean.json (12 KB, 今天)
     ├── memory.backup.json (13.7 KB, 今天)
-    ├── memory.json (18 KB, 今天)
+    ├── memory.json (28 KB, 今天)
     ├── monitor.json (245 B, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
@@ -136,7 +135,7 @@
     │   │   │   │   ├── types.ts (869 B, 今天)
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
-    │   │   │   │   │   ├── acceptance-item.tsx (8.7 KB, 今天)
+    │   │   │   │   │   ├── acceptance-item.tsx (8.4 KB, 今天)
     │   │   │   │   │   ├── acceptance-list.tsx (9.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (219 B, 今天)
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.7 KB, 今天)
@@ -159,7 +158,7 @@
     │   │   │   │   │   ├── context-menu.tsx (7.2 KB, 今天)
     │   │   │   │   │   ├── deleted-items.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── empty-folder-state.tsx (1.9 KB, 今天)
-    │   │   │   │   │   ├── file-explorer.tsx (18.2 KB, 今天)
+    │   │   │   │   │   ├── file-explorer.tsx (17.9 KB, 今天)
     │   │   │   │   │   ├── file-table.tsx (11.6 KB, 今天)
     │   │   │   │   │   ├── filter-panel.tsx (15.5 KB, 今天)
     │   │   │   │   │   ├── folder-tree.tsx (26.6 KB, 今天)
@@ -170,7 +169,7 @@
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx (8.2 KB, 今天)
     │   │   │   │   │   ├── index.ts (187 B, 今天)
-    │   │   │   │   │   ├── issue-details.tsx (8.3 KB, 今天)
+    │   │   │   │   │   ├── issue-details.tsx (8 KB, 今天)
     │   │   │   │   │   ├── issue-list.tsx (10.9 KB, 今天)
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
@@ -184,7 +183,7 @@
     │   │   │   │   ├── participants/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-participants.ts (4.3 KB, 今天)
-    │   │   │   │   │   ├── advanced-filters.tsx (13.8 KB, 今天)
+    │   │   │   │   │   ├── advanced-filters.tsx (13.5 KB, 今天)
     │   │   │   │   │   ├── card-grid.tsx (7.2 KB, 今天)
     │   │   │   │   │   ├── data.ts (5.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
@@ -195,7 +194,7 @@
     │   │   │   │   │   ├── participant-table.tsx (7.4 KB, 今天)
     │   │   │   │   │   ├── types.ts (4.5 KB, 今天)
     │   │   │   │   │   ├── view-toggle.tsx (2.9 KB, 今天)
-    │   │   │   │   │   ├── virtualized-table.tsx (11.8 KB, 今天)
+    │   │   │   │   │   ├── virtualized-table.tsx (11.5 KB, 今天)
     │   │   │   │   ├── quality/
     │   │   │   │   │   ├── checklist.tsx (8.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (211 B, 今天)
@@ -203,7 +202,7 @@
     │   │   │   │   ├── report/
     │   │   │   │   │   ├── index.ts (205 B, 今天)
     │   │   │   │   │   ├── report-dashboard.tsx (9 KB, 今天)
-    │   │   │   │   │   ├── report-viewer.tsx (8.9 KB, 今天)
+    │   │   │   │   │   ├── report-viewer.tsx (8.5 KB, 今天)
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── index.ts (41 B, 今天)
     │   │   │   │   ├── index.ts (2 KB, 今天)
@@ -219,7 +218,7 @@
     │   │   │   │   ├── use-file-actions.ts (6.3 KB, 今天)
     │   │   │   │   ├── use-file-operations.ts (5.6 KB, 今天)
     │   │   │   │   ├── use-space-actions.ts (5 KB, 今天)
-    │   │   │   │   ├── use-star-actions.ts (3.5 KB, 今天)
+    │   │   │   │   ├── use-star-actions.ts (3.2 KB, 今天)
     │   │   │   │   ├── use-visibility-actions.ts (3.9 KB, 今天)
     │   │   │   ├── COMPLIANCE_TODO.md (817 B, 今天)
     │   │   │   ├── index.ts (407 B, 今天)
@@ -276,7 +275,7 @@
     │   │   ├── tooltip.tsx (1.2 KB, 今天)
     │   ├── achievements-list.tsx (3.7 KB, 今天)
     │   ├── activity-overview-chart.tsx (2.9 KB, 今天)
-    │   ├── contribution-breakdown-chart.tsx (3.1 KB, 今天)
+    │   ├── contribution-breakdown-chart.tsx (2.8 KB, 今天)
     │   ├── firebase-error-listener.tsx (1.1 KB, 今天)
     │   ├── follower-list.tsx (3.7 KB, 今天)
     │   ├── following-list.tsx (3.7 KB, 今天)

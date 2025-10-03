@@ -7,11 +7,6 @@
 'use client';
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
-// TODO: [P0] VAN - 移除未使用的 Card 組件導入
-// 問題：所有 Card 相關組件導入後從未使用
-// 解決方案：直接移除未使用的導入語句
-// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 
 interface ContributionData {
     subject: string;

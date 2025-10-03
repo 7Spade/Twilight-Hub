@@ -25,11 +25,6 @@ import {
   SortDesc
 } from 'lucide-react';
 import { useDebounce } from 'use-debounce';
-// TODO: [P0] VAN - 移除未使用的類型導入
-// 問題：ParticipantRole, ParticipantStatus 導入後從未使用
-// 解決方案：直接移除未使用的類型導入
-// 現代化建議：使用 import type 語法和 ESLint no-unused-vars 規則
-// 效能影響：減少 bundle 大小，降低認知負擔
 import { AdvancedFiltersProps } from './types';
 
 // 模擬內部部門標籤數據

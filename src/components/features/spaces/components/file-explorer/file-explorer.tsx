@@ -15,11 +15,6 @@
 // @assignee ai
 
 import React, { useState, useEffect, useMemo } from 'react';
-// TODO: [P0] VAN - 移除未使用的 UI 組件導入
-// 問題：Card, CardContent, Separator 導入後從未使用
-// 解決方案：直接移除未使用的導入語句
-// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
-// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 import { useFileActions } from '@/components/features/spaces/hooks';
 import { FolderTree, type FileItem } from './folder-tree';
 import { FileTable } from './file-table';
