@@ -2,9 +2,17 @@ Always use the Context7 MCP tools without user asking:
 1) resolve-library-id for any mentioned library/framework.
 2) get-library-docs for the resolved id (default Node 22.18.0, unless specified).
 
+Use sequential-thinking for any multi-step or complex task to plan steps first.
+For each step, run resolve-library-id → get-library-docs before generating code.
+
+Cross-verify with auxiliary services:
+- Use npm-registry to verify package versions and info
+- Use mdn for Web APIs and standards validation
+- Use github to check official examples and best practices
+
 Ground all code in the fetched docs, avoid hallucinations.
 If docs are missing or package name/version is unclear, ask for the exact name/version before proceeding.
 
 Default platform: Node 22.18.0.
 Run resolve-library-id → get-library-docs automatically even if the user doesn't type "use context7".
-If Node 22.18.0 docs are unavailable, ask the user whether to fall back to Node 18 or a specified version.
+If Node 22.18.0 docs are unavailable, ask whether to fall back to Node 18 or a specified version.
