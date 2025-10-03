@@ -52,6 +52,59 @@
 
 ### 構建錯誤修復（緊急）
 
+#### 🚨 緊急修復計劃 (P0 優先級)
+**階段 1: 語法錯誤修復 (立即執行)**
+1. 修復未終止字符串字面量錯誤 (20+ 個文件)
+2. 修復 JSX 標籤未閉合錯誤 (20+ 個文件)
+3. 驗證 TypeScript 編譯成功
+
+**階段 2: 模組匯出修復 (P1 優先級)**
+1. 修復 use-file-actions.ts 模組匯出錯誤
+2. 修復其他 UTF-8 編碼問題
+3. 修復 Next.js 配置問題
+
+**階段 3: 代碼質量優化 (P2 優先級)**
+1. 清理 ESLint 警告
+2. 修復 React Hooks 依賴問題
+3. 清理未使用的變量和導入
+
+**階段 4: 架構優化 (P3 優先級)**
+1. 優化字體配置
+2. 代碼清理和重構
+3. 性能優化
+
+#### 緊急語法錯誤修復（新增 20+ 個）
+- `[P0]` `[BUG]` `[TYPESCRIPT]` `[TODO]` 修復大量未終止字符串字面量錯誤
+  - 問題: 20+ 個文件包含未終止的字符串字面量，導致 TypeScript 編譯失敗
+  - 範圍/影響: file-explorer 相關組件、participants 組件、issues 組件等，阻塞整個項目構建
+  - 何時: 2025-01-03 發現，緊急阻塞開發
+  - 為什麼: 文件保存時編碼問題或編輯器問題導致字符串字面量未正確閉合
+  - 解法: 逐一檢查並修復每個文件的字符串字面量問題
+  - 驗證: (1) npm run typecheck 成功 (2) 所有組件正常渲染 (3) 無語法錯誤
+  - 預防: 使用 ESLint 語法檢查，編輯器自動格式化
+  - 風險/回滾: 風險高；需仔細測試每個修復的文件
+
+- `[P0]` `[BUG]` `[JSX]` `[TODO]` 修復大量 JSX 標籤未閉合錯誤
+  - 問題: 20+ 個文件包含未閉合的 JSX 標籤，導致解析錯誤
+  - 範圍/影響: file-explorer 相關組件、participants 組件等，影響 UI 渲染
+  - 何時: 2025-01-03 發現，緊急阻塞開發
+  - 為什麼: JSX 標籤編寫錯誤或編輯器問題
+  - 解法: 逐一檢查並修復每個文件的 JSX 標籤閉合問題
+  - 驗證: (1) npm run typecheck 成功 (2) 所有組件正常渲染 (3) 無 JSX 錯誤
+  - 預防: 使用 ESLint JSX 插件，編輯器 JSX 語法高亮
+  - 風險/回滾: 風險高；需仔細測試每個修復的組件
+
+#### TypeScript 模組匯出錯誤（新增 5 個）
+- `[P1]` `[BUG]` `[TYPESCRIPT]` `[TODO]` 修復 use-file-actions.ts 模組匯出錯誤
+  - 問題: 模組 '@/components/features/spaces/actions' 缺少匯出的成員 'uploadFileAction', 'downloadFileAction', 'deleteFileAction', 'listFilesAction', 'FileActionItem'
+  - 範圍/影響: src/components/features/spaces/hooks/use-file-actions.ts (L12-16)，影響文件操作功能
+  - 何時: 2025-01-03 發現，阻塞文件管理功能
+  - 為什麼: actions 目錄重構後，file-actions.ts 只包含 Server Actions，缺少客戶端文件操作函數
+  - 解法: 在 file-actions.ts 中添加缺失的客戶端文件操作函數，或創建新的客戶端 actions 文件
+  - 驗證: (1) TypeScript 編譯成功 (2) 文件操作功能正常 (3) 無模組匯出錯誤
+  - 預防: 使用 TypeScript 嚴格模式，定期檢查模組匯出完整性
+  - 風險/回滾: 風險中；需測試文件操作流程
+
 #### UTF-8 編碼問題（已修復 2/20+）
 - `[P1]` `[BUG]` `[REFACTOR]` `[DONE]` 修復 UTF-8 編碼問題 - types-unified.ts
   - 問題: 文件包含無效的 UTF-8 字符（亂碼），影響可讀性和維護性
@@ -206,19 +259,19 @@
 
 ### 按優先級
 - `[P0]`: 0 個
-- `[P1]`: 10 個 (4 完成, 6 待開始)
+- `[P1]`: 11 個 (4 完成, 7 待開始)
 - `[P2]`: 7 個 (全部待開始)
 - `[P3]`: 2 個 (全部待開始)
 
 ### 按狀態
-- `[TODO]`: 15 個
+- `[TODO]`: 16 個
 - `[IN_PROGRESS]`: 0 個
 - `[DONE]`: 4 個
 - `[BLOCKED]`: 0 個
 - `[CANCELLED]`: 0 個
 
 ### 按類型
-- `[BUG]`: 10 個
+- `[BUG]`: 11 個
 - `[REFACTOR]`: 4 個
 - `[CLEANUP]`: 3 個
 - `[DOCS]`: 1 個
