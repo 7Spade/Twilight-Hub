@@ -68,14 +68,9 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { data: organizationsData, isLoading: orgsLoading } = useCollection<Account>(
     userOrganizationsQuery
   );
-  const organizations = organizationsData || [];
-
-// TODO: [P1] PERF src/app/(app)/layout.tsx:71 - 優化 React hooks 依賴項
-// 問題：organizations 邏輯表達式可能導致 useMemo Hook 依賴項在每次渲染時改變
-// 影響：性能問題，不必要的重新渲染
-// 建議：將 organizations 初始化包裝在獨立的 useMemo Hook 中
-// @assignee frontend-team
-// @deadline 2025-01-15
+  
+  // TODO: 現代化 - 優化 useMemo 依賴項，避免不必要的重新渲染
+  const organizations = useMemo(() => organizationsData || [], [organizationsData]);
 
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
   

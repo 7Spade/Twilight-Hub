@@ -29,17 +29,17 @@ export function BreadcrumbNavigation({
 }: BreadcrumbNavigationProps) {
   return (
     <nav className={cn("flex items-center space-x-1 text-sm", className)}>
-      {/* 首�??��? */}
+      {/* 首頁 */}
       <Button
         variant="ghost"
         size="sm"
         className="h-6 w-6 p-0 hover:bg-muted"
-        onClick={() => onItemClick({ id: 'root', name: '首�?' })}
+        onClick={() => onItemClick({ id: 'root', name: '首頁' })}
       >
         <Home className="h-3 w-3" />
       </Button>
 
-      {/* 麵�?屑�???*/}
+      {/* 麵包屑 */}
       {items.map((item, index) => (
         <React.Fragment key={item.id}>
           <ChevronRight className="h-3 w-3 text-muted-foreground" />

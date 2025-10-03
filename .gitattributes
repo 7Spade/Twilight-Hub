@@ -1,0 +1,35 @@
+# 確保所有文字檔案使用 UTF-8 編碼
+* text=auto eol=lf
+
+# 強制指定檔案類型使用 UTF-8
+*.ts text eol=lf charset=utf-8
+*.tsx text eol=lf charset=utf-8
+*.js text eol=lf charset=utf-8
+*.jsx text eol=lf charset=utf-8
+*.json text eol=lf charset=utf-8
+*.md text eol=lf charset=utf-8
+*.yml text eol=lf charset=utf-8
+*.yaml text eol=lf charset=utf-8
+*.txt text eol=lf charset=utf-8
+*.css text eol=lf charset=utf-8
+*.scss text eol=lf charset=utf-8
+*.html text eol=lf charset=utf-8
+
+# 二進制檔案
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+
+# 特殊檔案
+package-lock.json text eol=lf charset=utf-8
+yarn.lock text eol=lf charset=utf-8

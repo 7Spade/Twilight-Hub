@@ -117,7 +117,7 @@ const ParticipantRow = memo(function ParticipantRow({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => onUpdateRole(participant.id)}>
-                編輯?�員
+                編輯成員
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onUpdateRole(participant.id)}>
                 變更角色
@@ -126,7 +126,7 @@ const ParticipantRow = memo(function ParticipantRow({
                 className="text-red-600"
                 onClick={() => onRemove(participant.id)}
               >
-                移除?�員
+                移除成員
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

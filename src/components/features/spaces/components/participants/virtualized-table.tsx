@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table as _Table, TableBody as _TableBody, TableCell as _TableCell, TableHead as _TableHead, TableHeader as _TableHeader, TableRow as _TableRow } from '@/components/ui/table';
 import { MoreHorizontal, UserCheck, UserX, Crown, Shield, Users, Eye } from 'lucide-react';
 import { VirtualizedTableProps, Participant } from './types';
 

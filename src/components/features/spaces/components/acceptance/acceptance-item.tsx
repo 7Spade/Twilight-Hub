@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button as _Button } from '@/components/ui/button';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/acceptance/acceptance-item.tsx:5 - 清理未使用的導入
 // 問題：'Button' 已導入但從未使用

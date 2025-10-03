@@ -3,7 +3,7 @@
 // - 問題：useCollection 未使用
 // - 指引：移除未使用匯入或以前綴 _ 命名表示暫未用。
 
-import { useCollection, useFirestore } from '@/firebase';
+import { useCollection as _useCollection, useFirestore } from '@/firebase';
 
 // TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入
 // 問題：'useCollection' 已導入但從未使用

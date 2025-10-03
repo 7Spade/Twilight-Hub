@@ -13,7 +13,7 @@
 
 import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input as _Input } from '@/components/ui/input';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入
 // 問題：'Input' 已導入但從未使用
@@ -70,7 +70,7 @@ export function Toolbar({
   return (
     <div className="flex items-center justify-between gap-4 p-4 border-b bg-white">
       <div className="flex items-center gap-3">
-        {/* 上傳?��? - ?��? Autodesk 設�? */}
+        {/* Upload actions - Autodesk-like UI */}
         <div className="flex">
           <Button 
             className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-none px-4 py-2 h-9"
@@ -96,7 +96,7 @@ export function Toolbar({
         </div>
 
 
-        {/* ?��??��??��? */}
+        {/* More options */}
         <Button 
           variant="outline" 
           size="icon"
@@ -115,21 +115,21 @@ export function Toolbar({
         </Button>
 
 
-        {/* ?��??��?件輸??*/}
+        {/* Hidden file input */}
         <input
           ref={fileInputRef}
           type="file"
           multiple
           className="hidden"
           onChange={(e) => {
-            // ?��??�件上傳?�輯
+            // Handle file selection upload
             console.log('Files selected:', e.target.files);
           }}
         />
       </div>
 
       <div className="flex items-center gap-3">
-        {/* ?�出?��? - ?��? Autodesk 設�? */}
+        {/* Export - Autodesk-like UI */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
@@ -142,8 +142,6 @@ export function Toolbar({
             <DropdownMenuItem onClick={() => console.log('檔案紀錄')}>
               檔案紀錄
             </DropdownMenuItem>
-            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此行存在未終止字串，請補齊引號或拆分字串，僅修正字面量 */}
-            {/* TODO[P2][lint][parser-error]: 關閉 onClick 內的字串引號，避免 Unterminated string literal */}
             <DropdownMenuItem onClick={() => console.log('資料夾匯出')}>
               資料夾匯出
             </DropdownMenuItem>
@@ -160,7 +158,7 @@ export function Toolbar({
         </DropdownMenu>
 
 
-        {/* 視�??��??��? */}
+        {/* View layout switcher */}
         <div className="flex items-center border rounded-md">
           <Button
             variant={currentView === 'grid' ? 'default' : 'ghost'}

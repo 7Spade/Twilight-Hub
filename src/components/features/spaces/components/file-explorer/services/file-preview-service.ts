@@ -25,7 +25,7 @@ export interface PreviewConfig {
 export interface PreviewError {
   code: string;
   message: string;
-  details?: any;
+  details?: unknown;
 }
 
 export interface FilePreviewService {
@@ -47,7 +47,7 @@ export interface FilePreviewService {
   /**
    * Handle preview errors
    */
-  handleError(error: any): PreviewError;
+  handleError(error: unknown): PreviewError;
 
   /**
    * Get supported file types
@@ -64,7 +64,13 @@ export abstract class BaseFilePreviewService implements FilePreviewService {
   abstract canPreview(file: FileItem): boolean;
   abstract getPreviewConfig(file: FileItem): PreviewConfig;
   abstract toPreviewDocument(file: FileItem): PreviewDocument;
-  abstract handleError(error: any): PreviewError;
+  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:52 - 修復 TypeScript any 類型使用
+  // 問題：使用 any 類型違反類型安全原則
+  // 影響：失去類型檢查，可能導致運行時錯誤
+  // 建議：定義具體的類型接口替代 any 類型
+  // @assignee frontend-team
+  // @deadline 2025-01-25
+  abstract handleError(error: unknown): PreviewError;
 
   getSupportedTypes(): string[] {
     return this.supportedTypes;
@@ -202,17 +208,26 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     };
   }
 
-  handleError(error: any): PreviewError {
-    if (error.code) {
+  // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:223 - 修復 TypeScript any 類型使用
+  // 問題：使用 any 類型違反類型安全原則
+  // 影響：失去類型檢查，可能導致運行時錯誤
+  // 建議：定義具體的錯誤類型接口替代 any 類型
+  // @assignee frontend-team
+  // @deadline 2025-01-25
+  handleError(error: Error | unknown): PreviewError {
+    // TODO: 現代化 - 使用類型守衛處理 unknown 類型，提升類型安全
+    const errorObj = error as Error & { code?: string };
+    
+    if (errorObj.code) {
       return {
-        code: error.code,
-        message: error.message || 'Unknown preview error',
+        code: errorObj.code,
+        message: errorObj.message || 'Unknown preview error',
         details: error,
       };
     }
 
     // Handle common error types
-    if (error.message?.includes('404')) {
+    if (errorObj.message?.includes('404')) {
       return {
         code: 'FILE_NOT_FOUND',
         message: '檔案不存在',
@@ -220,10 +235,15 @@ export class ReactDocViewerService extends BaseFilePreviewService {
       };
     }
 
-    if (error.message?.includes('403')) {
+    if (errorObj.message?.includes('403')) {
       return {
         code: 'ACCESS_DENIED',
-        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號以通過 TS 解析
+        // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:28 - 修復 TypeScript any 類型使用
+        // 問題：使用 any 類型違反類型安全原則
+        // 影響：失去類型檢查，可能導致運行時錯誤
+        // 建議：定義具體的類型接口替代 any 類型
+        // @assignee frontend-team
+        // @deadline 2025-01-25
         message: '沒有權限存取此檔案',
         details: error,
       };
@@ -239,7 +259,12 @@ export class ReactDocViewerService extends BaseFilePreviewService {
 
     return {
       code: 'UNKNOWN_ERROR',
-      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+      // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/services/file-preview-service.ts:50 - 修復 TypeScript any 類型使用
+      // 問題：使用 any 類型違反類型安全原則
+      // 影響：失去類型檢查，可能導致運行時錯誤
+      // 建議：定義具體的類型接口替代 any 類型
+      // @assignee frontend-team
+      // @deadline 2025-01-25
       message: '預覽檔案發生未預期錯誤',
       details: error,
     };

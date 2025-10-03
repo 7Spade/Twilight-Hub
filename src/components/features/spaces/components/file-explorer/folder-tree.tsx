@@ -1,5 +1,5 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - 修復語法錯誤（第480行 Unexpected token）
-// 說明：檢查 JSX 結構與轉義，修正不合法符號
+// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/folder-tree.tsx - Fix syntax error (line 480 Unexpected token)
+// Note: Verify JSX structure and escaping; fix any invalid characters
 /**
  * @fileoverview A component that displays a hierarchical folder structure.
  * It allows users to expand and collapse folders, select items, and access
@@ -9,12 +9,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button as _Button } from '@/components/ui/button';
 
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - 清理未使用的導入
-// 問題：'Button' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports
+// Issue: 'Button' is imported but never used
+// Impact: Increases bundle size and affects performance
+// Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused
 // @assignee frontend-team
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -60,25 +60,25 @@ interface FolderTreeProps {
 export function FolderTree({ files, selectedItems, onSelectionChange: _onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['project-files', 'supported']));
 
-  // 將�?實�?案數?��?織�?資�?夾�?�?
+  // Organize real file list into folders
   const organizeFilesIntoFolders = (fileList: FileItem[]) => {
     const folders: { [key: string]: FileItem[] } = {};
     
-    // ?��?檔�?類�??��?稱�?綴�?織�?�?
+    // Infer folder by file name prefix/suffix
     fileList.forEach(file => {
-      let folderName = '?��?檔�?';
+      let folderName = 'Project Files';
       
-      // ?��?檔�??�稱?�綴?�斷資�?�?
+      // Derive by name prefix
       if (file.name.startsWith('A000') || file.name.startsWith('A100')) {
-        folderName = '建�??��?';
+        folderName = 'Architecture';
       } else if (file.name.includes('PDF') || file.name.endsWith('.pdf')) {
         folderName = 'PDFs';
       } else if (file.name.includes('CAD') || file.name.endsWith('.dwg')) {
-        folderName = 'CAD檔�?';
-      } else if (file.name.includes('Contract') || file.name.includes('?��?')) {
-        folderName = '?��??�件';
-      } else if (file.name.includes('Report') || file.name.includes('?��?')) {
-        folderName = '?��?';
+        folderName = 'CAD Files';
+      } else if (file.name.includes('Contract')) {
+        folderName = 'Contracts';
+      } else if (file.name.includes('Report')) {
+        folderName = 'Reports';
       }
       
       if (!folders[folderName]) {
@@ -87,7 +87,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
       folders[folderName].push(file);
     });
 
-    // 轉�???FileItem ?��?
+    // Convert to FileItem structure
     return Object.entries(folders).map(([folderName, folderFiles]) => ({
       id: folderName.toLowerCase().replace(/\s+/g, '-'),
       name: folderName,
@@ -102,10 +102,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
     }));
   };
 
-  // 使用?�實檔�??��?組�??��??�夾結�?
+  // Use real files to build folder structure
   const organizedFolders = organizeFilesIntoFolders(files);
 
-  // 模擬資�?夾數?��??�於測試?��??�能 - ?��?富�?層�?結�?
+  // Mock folders for testing with rich nested structure
   const mockFolders: FileItem[] = [
     { 
       id: 'bids', 
@@ -395,7 +395,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
     }
   ];
 
-  // ?�併模擬資�?夾�??�實檔�?資�?�?
+  // Merge mock folder data with real file data
   const allFolders = [...mockFolders, ...organizedFolders];
 
   const toggleFolder = (folderId: string) => {
@@ -422,7 +422,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
           )}
           style={{ paddingLeft: `${level * 16 + 8}px` }}
         >
-          {/* 展�?/?��?箭頭 */}
+          {/* Expand/Collapse arrow */}
           <div className="w-4 h-4 flex items-center justify-center">
             {hasChildren ? (
               <button
@@ -436,7 +436,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
             )}
           </div>
           
-          {/* 資�?�?檔�??��? */}
+          {/* Item icon */}
           <div className="w-4 h-4 flex items-center justify-center">
             {item.type === 'folder' ? (
               isExpanded ? (
@@ -449,7 +449,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
             )}
           </div>
           
-          {/* 資�?夾�?�?*/}
+          {/* Item name */}
           <span 
             className="text-sm text-gray-700 truncate flex-1"
             onClick={() => onItemClick(item)}
@@ -457,7 +457,7 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
             {item.name}
           </span>
           
-          {/* ?��??��??��? */}
+          {/* Context menu */}
           <ContextMenu
             item={item}
             onAction={(action) => onItemAction?.(item, action)}
@@ -471,12 +471,12 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
           </ContextMenu>
         </div>
         
-        {/* 子�??�夾 */}
+        {/* Children folders */}
         {item.type === 'folder' && isExpanded && hasChildren && (
           <div>
-            {/* TODO: [P2] LINT react/jsx-no-comment-textnodes [低認知][現代化]: 將純文字註解放入花括號內或移出 children */}
-            {/* TODO: [P2] 修復非空斷言：使用可選鏈或顯式判斷 */}
-            {item.children!.map(child => renderFolderItem(child, level + 1))}
+            {/* TODO: [P2] LINT react/jsx-no-comment-textnodes: Move plain text comments into braces or out of children */}
+            {/* TODO: [P2] Fix non-null assertion: use optional chaining or explicit guard */}
+            {(item.children ?? []).map(child => renderFolderItem(child, level + 1))}
           </div>
         )}
       </div>
@@ -487,14 +487,14 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
     <div className="h-full flex flex-col">
       <Tabs defaultValue="folders" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          {/* TODO[P2][lint][parser-error][低認知]: 修正破損的關閉標籤，使 JSX 成對並可被解析 */}
-          <TabsTrigger value="folders">資�?�?</TabsTrigger>
-          <TabsTrigger value="packages">套件</TabsTrigger>
+          {/* Ensure valid JSX closing tags */}
+          <TabsTrigger value="folders">Folders</TabsTrigger>
+          <TabsTrigger value="packages">Packages</TabsTrigger>
         </TabsList>
         
         <TabsContent value="folders" className="mt-2">
           <div className="space-y-1">
-            {/* ?�目??- 專�?檔�? */}
+            {/* Section - Project files */}
             <div className="flex items-center gap-2 py-1.5 px-2 hover:bg-gray-100 cursor-pointer group rounded-sm bg-gray-50">
               <div className="w-4 h-4 flex items-center justify-center">
                 <button
@@ -510,10 +510,10 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
               <div className="w-4 h-4 flex items-center justify-center">
                 <Folder className="h-4 w-4 text-blue-500" />
               </div>
-              <span className="text-sm font-medium text-gray-700">專�?檔�?</span>
+              <span className="text-sm font-medium text-gray-700">Project Files</span>
               <ContextMenu
-                item={{ id: 'project-files', name: '專�?檔�?', type: 'folder', timeCreated: '', updated: '' }}
-                onAction={(action) => onItemAction?.({ id: 'project-files', name: '專�?檔�?', type: 'folder', timeCreated: '', updated: '' }, action)}
+                item={{ id: 'project-files', name: 'Project Files', type: 'folder', timeCreated: '', updated: '' }}
+                onAction={(action) => onItemAction?.({ id: 'project-files', name: 'Project Files', type: 'folder', timeCreated: '', updated: '' }, action)}
               >
                 <button
                   className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-200 rounded-sm flex items-center justify-center ml-auto"

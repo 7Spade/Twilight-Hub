@@ -7,7 +7,7 @@
 'use client';
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card as _Card, CardContent as _CardContent, CardHeader as _CardHeader, CardTitle as _CardTitle } from '@/components/ui/card';
 
 // TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx:10 - 清理未使用的導入
 // 問題：'Card', 'CardContent', 'CardHeader', 'CardTitle' 已導入但從未使用

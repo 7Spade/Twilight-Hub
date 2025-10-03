@@ -1,14 +1,9 @@
-// TODO: [P0] FIX src/components/features/spaces/components/participants/card-grid.tsx - 修復語法錯誤（第123行未終止的字串）
-// 說明：補齊字串/模板字面量，避免解析錯誤
 /**
- * @fileoverview ?��?式卡?�網?��??��?�?
- * 使用?�擬?��?術支?�大?�數?��?高性能渲�?
+ * @fileoverview 響應式卡片網格佈局組件
+ * 使用虛擬化技術支援大數據量高性能渲染
  */
 
 'use client';
-// TODO: [P0] FIX Parsing (L125) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：補上結尾引號或用模板字串，避免特殊符號未轉義。
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -38,11 +33,11 @@ export function CardGrid({
 
   const parentRef = React.useRef<HTMLDivElement>(null);
 
-  // 計�?網格佈�?
-  const containerWidth = 800; // ?�設容器寬度
-  const cardWidth = 320; // ?��?寬度
-  const cardHeight = 200; // ?��?高度
-  const gap = 16; // ?��?
+  // 計算網格佈局
+  const containerWidth = 800; // 預設容器寬度
+  const cardWidth = 320; // 卡片寬度
+  const cardHeight = 200; // 卡片高度
+  const gap = 16; // 間距
   const cardsPerRow = Math.floor((containerWidth + gap) / (cardWidth + gap));
 
   const virtualizer = useVirtualizer({
@@ -74,16 +69,16 @@ export function CardGrid({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
-        console.log('編輯?�員:', participantId);
+        console.log('編輯成員:', participantId);
         break;
       case 'role':
         console.log('變更角色:', participantId);
         break;
       case 'permissions':
-        console.log('管�?權�?:', participantId);
+        console.log('管理權限:', participantId);
         break;
       case 'remove':
-        if (confirm('確�?要移?�此?�員?��?')) {
+        if (confirm('確認要移除此成員嗎？')) {
           actions.onRemove(participantId);
         }
         break;
@@ -104,9 +99,9 @@ export function CardGrid({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒�??�到?�員</h3>
+        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒有找到成員</h3>
         <p className="text-sm text-muted-foreground">
-          ?�試調整?�索條件?��?請新?�員
+          嘗試調整搜索條件或邀請新成員
         </p>
       </div>
     );
@@ -114,7 +109,7 @@ export function CardGrid({
 
   return (
     <div className="space-y-4">
-      {/* ?��??�制 */}
+      {/* 選擇控制 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Checkbox
@@ -123,44 +118,43 @@ export function CardGrid({
               if (el) el.indeterminate = isIndeterminate;
             }}
             onCheckedChange={handleSelectAll}
-            // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: aria-label 的字串未關閉，請補齊引號
-            aria-label="???????
+            aria-label="選擇所有成員"
           />
           <span className="text-sm font-medium">
-            ?�員 ({participants.length})
+            成員 ({participants.length})
           </span>
         </div>
 
         {selectedParticipants.length > 0 && (
           <div className="flex items-center gap-2">
             <Badge variant="secondary">
-              已選??{selectedParticipants.length} ??
+              已選取 {selectedParticipants.length} 個
             </Badge>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setSelectedParticipants([])}
             >
-              ?��??��?
+              清除選擇
             </Button>
             <Button
               variant="destructive"
               size="sm"
               onClick={() => {
-                if (confirm(`確�?要移?�選中�? ${selectedParticipants.length} ?��??��?？`)) {
+                if (confirm(`確認要移除選中的 ${selectedParticipants.length} 個成員嗎？`)) {
                   actions.onBulkRemove(selectedParticipants);
                   setSelectedParticipants([]);
                 }
               }}
             >
               <UserX className="h-4 w-4 mr-1" />
-              ?��?移除
+              批量移除
             </Button>
           </div>
         )}
       </div>
 
-      {/* ?�擬?�網??*/}
+      {/* 虛擬化網格 */}
       <div
         ref={parentRef}
         className="overflow-auto"

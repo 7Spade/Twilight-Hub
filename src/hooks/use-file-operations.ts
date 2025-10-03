@@ -82,10 +82,10 @@ export function useDeleteFile() {
   return useMutation({
     mutationFn: async ({
       document,
-      path,
+      path: _path,
     }: {
       document: ContractDocument;
-      path: _path: string;
+      path: string;
     }) => {
       const { storage } = getSdks();
       
@@ -129,20 +129,20 @@ export function useDocuments(path: string) {
 export function useDownloadFile() {
   return useMutation({
     mutationFn: async ({
-      document,
+      document: fileDoc,
     }: {
       document: ContractDocument;
     }) => {
       // 創建下載鏈接
-      const link = document.createElement('a');
-      link.href = document.url;
-      link.download = document.name;
+      const link = window.document.createElement('a');
+      link.href = fileDoc.url;
+      link.download = fileDoc.name;
       link.target = '_blank';
       
       // 觸發下載
-      document.body.appendChild(link);
+      window.document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      window.document.body.removeChild(link);
     },
     onError: (error) => {
       console.error('Error downloading file:', error);

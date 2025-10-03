@@ -5,36 +5,14 @@
 'use client';
 
 import React, { useState } from 'react';
-
-// TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入
-// 問題：'useEffect' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
+import NextImage from 'next/image';
 import { cn } from '@/lib/utils';
 import { 
   File, 
   FileText, 
-  Image, 
-  Video, 
-  Music, 
-  Archive, 
-  Code,
   FileSpreadsheet,
   Presentation,
   FileImage,
-  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）
-  
-// TODO: [P2] PERF src/components/ui/file-type-icon.tsx - 實現 Next.js 15 圖片優化最佳實踐
-// 問題：未充分利用 Next.js Image 組件的優化特性
-// 影響：圖片載入性能差、LCP 指標不佳
-// 建議：
-// 1) 使用 next/image 替代所有 <img> 標籤
-// 2) 配置適當的 priority 和 sizes 屬性
-// 3) 實現圖片預載入和懶加載策略
-// 4) 使用 WebP/AVIF 格式優化
-// @assignee performance-team
-// @deadline 2025-02-01
   FileVideo,
   FileAudio,
   FileCode,
@@ -211,15 +189,16 @@ export function FileTypeIcon({
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-gray-600"></div>
             </div>
           )}
-          {/* TODO[P2][next/image][低認知]: 以 next/image 取代 <img>（官方建議，改善 LCP/頻寬） */}
-          {/* TODO[P2][PERF]: 使用 next/image + sizes/priority 指南（Next.js 15） */}
-          <img
+          <NextImage
             src={thumbnailUrl}
             alt={fileName}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
             onLoad={handleThumbnailLoad}
             onError={handleThumbnailError}
             style={{ display: isLoading ? 'none' : 'block' }}
+            unoptimized
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       ) : (

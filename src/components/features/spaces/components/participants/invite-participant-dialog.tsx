@@ -1,9 +1,4 @@
-// TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）
-// 說明：檢查 JSX 標籤是否缺失閉合或有非法字元
 'use client';
-// TODO: [P0] FIX Parsing (L100) [低認知][現代化]
-// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）
-// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -17,7 +12,7 @@ import { z } from 'zod';
 import { ParticipantInviteFormData as _ParticipantInviteFormData, ParticipantRole } from './types';
 
 const inviteSchema = z.object({
-  email: z.string().email('請輸?��??��??��??�件?��?'),
+  email: z.string().email('Please enter a valid email address'),
   role: z.enum(['admin', 'member', 'viewer']),
   message: z.string().optional(),
 });
@@ -31,12 +26,13 @@ interface InviteParticipantDialogProps {
   onInvite: (email: string, role: ParticipantRole, message?: string) => Promise<void>;
 }
 
-export function InviteParticipantDialog({
-  _spaceId,
-  open,
-  onOpenChange,
-  onInvite
+export function InviteParticipantDialog({ 
+  spaceId: _spaceId, 
+  open, 
+  onOpenChange, 
+  onInvite 
 }: InviteParticipantDialogProps) {
+  // TODO: 現代化 - 移除未使用的 spaceId 參數或實現相關邏輯
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<InviteFormValues>({

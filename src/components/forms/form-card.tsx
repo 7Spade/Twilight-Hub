@@ -15,7 +15,7 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton as _Skeleton } from '@/components/ui/skeleton';
 
 // TODO: [P2] REFACTOR src/components/forms/form-card.tsx:18 - 清理未使用的導入
 // 問題：'Skeleton' 已導入但從未使用

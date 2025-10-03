@@ -12,7 +12,7 @@ import {
   where,
   writeBatch,
   increment,
-  setDoc,
+  setDoc as _setDoc,
 } from 'firebase/firestore';
 
 // TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:13 - 清理未使用的導入
@@ -134,17 +134,14 @@ export function AdjustStockDialog({
           
           let stockDocRef;
 
-  if (hasExistingStockRecord) {
-              // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告
-              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言
-              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);
-              
-// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
-// 問題：使用非空斷言 (!) 可能導致運行時錯誤
-// 影響：類型安全問題，可能導致應用崩潰
-// 建議：添加適當的類型檢查或使用可選鏈操作符
-// @assignee frontend-team
-// @deadline 2025-01-25
+  if (hasExistingStockRecord && stockInfo.stockId) {
+              // TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
+              // 問題：使用非空斷言 (!) 可能導致運行時錯誤
+              // 影響：類型安全問題，可能導致應用崩潰
+              // 建議：添加適當的類型檢查或使用可選鏈操作符
+              // @assignee frontend-team
+              // @deadline 2025-01-25
+              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId);
               batch.update(stockDocRef, { quantity: increment(adjustment) });
           } else {
               // Create a new stock document

@@ -77,7 +77,13 @@ export function usePermissions() {
     } finally {
       setLoading(false);
     }
-  }, [userId, userRoleAssignment, authCheckPermission]);
+  }, [userId, userRoleAssignment, authCheckPermission, checkOrganizationPermissionInternal]);
+  // TODO: [P1][hooks-deps][低認知]: 將 checkOrganizationPermissionInternal 納入依賴陣列
+  // 問題：React Hook useCallback 缺少依賴項 'checkOrganizationPermissionInternal'
+  // 影響：可能導致過時閉包問題
+  // 建議：添加缺失的依賴項或移除依賴數組
+  // @assignee frontend-team
+  // @deadline 2025-01-15
 
   // 內部組織權限檢查函數
   const checkOrganizationPermissionInternal = useCallback(async (

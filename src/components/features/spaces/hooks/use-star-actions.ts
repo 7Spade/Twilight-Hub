@@ -10,7 +10,7 @@ import { useState, useCallback } from 'react';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { type Space } from '@/lib/types-unified';
+import { type Space as _Space } from '@/lib/types-unified';
 // TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）
 
 interface UseStarActionsReturn {

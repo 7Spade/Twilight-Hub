@@ -1,5 +1,3 @@
-// TODO: [P0] FIX src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx - 修復語法錯誤（第212行未終止的字串）
-// 說明：修正模板/普通字串，避免解析錯誤
 /**
  * @fileoverview A modern component that displays files in a responsive thumbnail grid layout.
  * Uses @tanstack/react-virtual for high-performance virtualization and adaptive sizing.
@@ -7,12 +5,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx:9 - 清理未使用的導入
-// 問題：'useMemo' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { cn } from '@/lib/utils';
 import { FileThumbnailCard } from './file-thumbnail-card';
@@ -189,9 +181,9 @@ export function FileThumbnailGrid({
     return (
       <div className={cn('flex items-center justify-center h-64 animate-in fade-in-0 slide-in-from-bottom-2 duration-300', className)}>
         <div className="text-center text-muted-foreground">
-          <div className="text-4xl mb-4">📄</div>
+          <div className="text-4xl mb-4">📁</div>
           <p className="text-lg font-medium">沒有檔案</p>
-          <p className="text-sm">上傳檔案後即可使用</p>
+          <p className="text-sm">上傳檔案開始使用</p>
         </div>
       </div>
     );
@@ -211,7 +203,8 @@ export function FileThumbnailGrid({
           <span className="text-sm text-muted-foreground">
             {selectedItems.length > 0 
               ? `已選取 ${selectedItems.length} 個檔案`
-              : `共 ${files.length} 個檔案`}
+              : `共 ${files.length} 個檔案`
+            }
           </span>
         </div>
         

@@ -12,43 +12,15 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-
-// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:15 - 清理未使用的導入
-// 問題：'Badge' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
 import { FileTypeIcon } from '@/components/ui/file-type-icon';
 import { 
   Upload, 
   File, 
-  X, 
   Download, 
   Eye, 
-  Trash2,
-  CheckCircle,
-  AlertCircle 
+  Trash2
 } from 'lucide-react';
-
-// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:20 - 清理未使用的導入
-// 問題：'X' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
-// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:24 - 清理未使用的導入
-// 問題：'CheckCircle' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
-// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx:25 - 清理未使用的導入
-// 問題：'AlertCircle' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
+// TODO: 現代化 - 清理未使用的導入，減少 bundle 大小
 import { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';
 import { ContractDocument } from '@/lib/types/contract.types';
 

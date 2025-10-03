@@ -22,7 +22,7 @@ import {
   ArrowUpDown,
   File,
   Folder,
-  FolderOpen
+  FolderOpen as _FolderOpen
 } from 'lucide-react';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
@@ -74,14 +74,9 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
 
   const sortedFiles = useMemo(() => {
     return [...files].sort((a, b) => {
-      let aValue: any;
-      let bValue: any;
-      
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-table.tsx:76-77 - 修復 TypeScript any 類型使用
-// 問題：使用 any 類型違反類型安全原則
-// 影響：失去類型檢查，可能導致運行時錯誤
-// 建議：定義具體的類型接口替代 any 類型
-// @assignee frontend-team
+      // TODO: 現代化 - 使用具體類型替代 any，提升類型安全
+      let aValue: string | number | Date;
+      let bValue: string | number | Date;
 // @deadline 2025-01-25
 
       switch (sortField) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar as _Avatar, AvatarFallback as _AvatarFallback, AvatarImage as _AvatarImage } from '@/components/ui/avatar';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:3 - 清理未使用的導入
 // 問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用
@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';
+import { Calendar, DollarSign, FileText, Mail, Phone as _Phone, User } from 'lucide-react';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:10 - 清理未使用的導入
 // 問題：'Phone' 已導入但從未使用

@@ -24,12 +24,8 @@ import {
 } from '@/components/ui/card';
 import { Globe, Lock, Search, Filter } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils';
+import { cn as _cn } from '@/lib/utils';
 
-// TODO: [P2] REFACTOR src/components/features/spaces/components/spaces-list-view.tsx:27 - 清理未使用的導入
-// 問題：'cn' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 // @assignee frontend-team
 import {
   Tabs,

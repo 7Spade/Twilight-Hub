@@ -6,7 +6,7 @@
 import { redirect } from 'next/navigation';
 
 export default function OrgSpacesPageWrapper({
-  params,
+  params: _params,
 }: {
   params: { organizationslug: string };
 }) {

@@ -24,9 +24,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Separator } from '@/components/ui/separator';
 import { 
   Search, 
-  Filter, 
+  Filter as _Filter, 
   Settings, 
-  Save, 
+  Save as _Save, 
   X,
   Calendar as CalendarIcon,
   Plus
@@ -44,7 +44,7 @@ import {
 // 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 // @assignee frontend-team
 
-import { cn } from '@/lib/utils';
+import { cn as _cn } from '@/lib/utils';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入
 // 問題：'cn' 已導入但從未使用
@@ -97,11 +97,8 @@ export function FilterPanel({
   const [saveSearchName, setSaveSearchName] = useState('');
   const [showSaveDialog, setShowSaveDialog] = useState(false);
 
-  const handleFilterChange = (key: keyof FilterOptions, value: any) => {
-    
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/filter-panel.tsx:81 - 修復 TypeScript any 類型使用
-// 問題：使用 any 類型違反類型安全原則
-// 影響：失去類型檢查，可能導致運行時錯誤
+  const handleFilterChange = (key: keyof FilterOptions, value: string | string[] | boolean) => {
+    // TODO: 現代化 - 使用聯合類型替代 any，提升類型安全
 // 建議：定義具體的類型接口替代 any 類型
 // @assignee frontend-team
 // @deadline 2025-01-25

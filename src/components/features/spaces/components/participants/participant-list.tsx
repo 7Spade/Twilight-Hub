@@ -1,7 +1,7 @@
 'use client';
-// TODO: [P0] FIX Parsing (L67) [低認知][現代化]
-// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）
-// - 指引：檢查 JSX 標籤/表格單元，使用 {'>'} 取代裸字符。
+// TODO: [P0] FIX Parsing (L67)
+// - Issue: Unexpected token (might need {'>'} or &gt;)
+// - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.
 
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ export function ParticipantList({
   const { participants, isLoading, error, loadParticipants, actions: hookActions } = useParticipants(spaceId);
   const { filters, updateFilters, clearFilters, filteredParticipants } = useParticipantFilters();
 
-  // ?�併 actions
+  // 合併 actions
   const actions = useMemo(() => ({
     ...hookActions,
     ...propActions,
@@ -40,7 +40,7 @@ export function ParticipantList({
   // Use initial participants if provided, otherwise use loaded participants
   const displayParticipants = initialParticipants.length > 0 ? initialParticipants : participants;
   const filteredData = useMemo(() => 
-    filteredParticipants(displayParticipants), 
+    filteredParticipants([...displayParticipants]), 
     [displayParticipants, filteredParticipants]
   );
 
@@ -59,7 +59,7 @@ export function ParticipantList({
     try {
       await actions.onExport(format);
     } catch (error) {
-      console.error('導出失敗:', error);
+      console.error('Export failed:', error);
     }
   }, [actions]);
 
@@ -67,11 +67,9 @@ export function ParticipantList({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
         <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
-        <h3 className="text-lg font-medium text-red-600 mb-2">載入成員時發生錯誤</h3>
+        <h3 className="text-lg font-medium text-red-600 mb-2">Error loading participants</h3>
         <p className="text-sm text-muted-foreground mb-4">{error}</p>
-        <Button onClick={loadParticipants} variant="outline">
-          重試
-        </Button>
+        <Button onClick={loadParticipants} variant="outline">Retry</Button>
       </div>
     );
   }
@@ -83,10 +81,10 @@ export function ParticipantList({
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
             <Users className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">成員</h2>
+            <h2 className="text-xl font-semibold">Participants</h2>
           </div>
           <div className="h-4 w-px bg-border" />
-          <span className="text-sm text-muted-foreground">{filteredData.length} 位</span>
+          <span className="text-sm text-muted-foreground">{filteredData.length} members</span>
         </div>
         
         <div className="flex items-center space-x-2">
@@ -98,7 +96,7 @@ export function ParticipantList({
           {canManage && (
             <Button onClick={() => setInviteDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
-              邀請成員
+              Invite
             </Button>
           )}
           
@@ -108,7 +106,7 @@ export function ParticipantList({
             onClick={() => handleExport('csv')}
           >
             <Download className="h-4 w-4 mr-2" />
-            匯出
+            Export
           </Button>
         </div>
       </div>
@@ -127,7 +125,7 @@ export function ParticipantList({
         <div className="flex items-center justify-center py-12 animate-in fade-in-0 duration-200">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-            <span>載入中...</span>
+            <span>Loading...</span>
           </div>
         </div>
       )}
@@ -170,7 +168,7 @@ export function ParticipantList({
 
       {/* Invite Dialog */}
       <InviteParticipantDialog
-        spaceId={spaceId}
+        _spaceId={spaceId}
         open={inviteDialogOpen}
         onOpenChange={setInviteDialogOpen}
         onInvite={actions.onInvite}

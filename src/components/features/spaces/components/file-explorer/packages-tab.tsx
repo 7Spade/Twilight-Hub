@@ -18,7 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table as _Table, TableBody as _TableBody, TableCell as _TableCell, TableHead as _TableHead, TableHeader as _TableHeader, TableRow as _TableRow } from '@/components/ui/table';
 import { 
   Package, 
   Plus, 
@@ -26,7 +26,7 @@ import {
   Share, 
   MoreVertical,
   Calendar,
-  User,
+  User as _User,
   FileText
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -51,8 +51,8 @@ export function PackagesTab({ className }: PackagesTabProps) {
   const [packages] = useState<PackageItem[]>([
     {
       id: 'pkg-1',
-      name: '建�??��?套件 V1.0',
-      description: '?�含?�?�建築相?��?紙�?完整套件',
+      name: 'Architecture Package V1.0',
+      description: 'Includes architectural drawings and related documents',
       version: '1.0',
       status: 'published',
       createdAt: '2024-01-15T10:30:00Z',
@@ -62,21 +62,21 @@ export function PackagesTab({ className }: PackagesTabProps) {
     },
     {
       id: 'pkg-2',
-      name: '結�?工�?套件 V2.1',
-      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號，避免 Unterminated string literal
-      description: '結�?設�??��?算�?件�?�?',
+      name: 'Structural Package V2.1',
+      // Close string literal to avoid Unterminated string literal
+      description: 'Structural design and calculation documents',
       version: '2.1',
       status: 'draft',
       createdAt: '2024-01-20T14:20:00Z',
-      createdBy: 'A�?ACC 系統',
+      createdBy: 'ACC Sample System',
       fileCount: 18,
       size: 31457280 // 30MB
     },
     {
       id: 'pkg-3',
-      name: '機電設�?套件 V1.5',
-      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
-      description: '機電系統設�??��?裝�?�?',
+      name: 'MEP Package V1.5',
+      // Close string literal
+      description: 'MEP system design and installation documents',
       version: '1.5',
       status: 'published',
       createdAt: '2024-01-18T09:15:00Z',
@@ -120,11 +120,9 @@ export function PackagesTab({ className }: PackagesTabProps) {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
-      case 'published': return '已發�?';
-      case 'draft': return '?�稿';
-      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
-      case 'archived': return '已�?�?';
+      case 'published': return 'Published';
+      case 'draft': return 'Draft';
+      case 'archived': return 'Archived';
       default: return status;
     }
   };
@@ -137,12 +135,12 @@ export function PackagesTab({ className }: PackagesTabProps) {
 
   return (
     <div className={cn("space-y-6", className)}>
-      {/* 標�??��?作�???*/}
+      {/* Header actions */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold">套件</h3>
+          <h3 className="text-lg font-semibold">Packages</h3>
           <p className="text-sm text-muted-foreground">
-            管�??��?織相?��?件�?套件
+            Manage organization related file packages
           </p>
         </div>
         
@@ -150,35 +148,34 @@ export function PackagesTab({ className }: PackagesTabProps) {
           <DialogTrigger asChild>
             <Button>
               <Plus className="h-4 w-4 mr-2" />
-              建�?套件
+              Create Package
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 159 DialogTitle 關閉標籤破損；請改為 </DialogTitle> */}
-              <DialogTitle>建????/DialogTitle>
+              <DialogTitle>Create Package</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="package-name">套件?�稱</Label>
+                <Label htmlFor="package-name">Package Name</Label>
                 <Input
                   id="package-name"
-                  placeholder="輸入套件?�稱"
+                  placeholder="Enter package name"
                   value={newPackage.name}
                   onChange={(e) => setNewPackage(prev => ({ ...prev, name: e.target.value }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="package-description">?�述</Label>
+                <Label htmlFor="package-description">Description</Label>
                 <Textarea
                   id="package-description"
-                  placeholder="輸入套件?�述"
+                  placeholder="Enter package description"
                   value={newPackage.description}
                   onChange={(e) => setNewPackage(prev => ({ ...prev, description: e.target.value }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="package-version">?�本</Label>
+                <Label htmlFor="package-version">Version</Label>
                 <Input
                   id="package-version"
                   placeholder="1.0"
@@ -188,28 +185,24 @@ export function PackagesTab({ className }: PackagesTabProps) {
               </div>
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-                  ?��?
+                  Cancel
                 </Button>
-                <Button onClick={handleCreatePackage}>
-                  建�?
-                </Button>
+                <Button onClick={handleCreatePackage}>Create</Button>
               </div>
             </div>
           </DialogContent>
         </Dialog>
       </div>
 
-      {/* 套件?�表 */}
+      {/* Packages list */}
       {packages.length === 0 ? (
         <div className="text-center py-12">
           <Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-          <h3 className="text-lg font-medium text-gray-700 mb-2">沒�?套件</h3>
-          <p className="text-gray-500 mb-6">
-            建�?套件來�?織�?管�??��??�件
-          </p>
+          <h3 className="text-lg font-medium text-gray-700 mb-2">No packages</h3>
+          <p className="text-gray-500 mb-6">Create a package to organize and manage related files</p>
           <Button onClick={() => setIsCreateDialogOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
-            建�?第�??��?�?
+            Create your first package
           </Button>
         </div>
       ) : (
@@ -241,20 +234,19 @@ export function PackagesTab({ className }: PackagesTabProps) {
               <CardContent className="pt-0">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                   <div>
-                    <span className="text-muted-foreground">?�本</span>
+                    <span className="text-muted-foreground">Version</span>
                     <p className="font-medium">V{pkg.version}</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">檔�??��?</span>
-                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 249 文字/標籤破損（</p>），請修正 */}
-                    <p className="font-medium">{pkg.fileCount} ?��?�?/p>
+                    <span className="text-muted-foreground">Files</span>
+                    <p className="font-medium">{pkg.fileCount} files</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">大�?</span>
+                    <span className="text-muted-foreground">Size</span>
                     <p className="font-medium">{formatFileSize(pkg.size)}</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">建�???/span>
+                    <span className="text-muted-foreground">Created By</span>
                     <p className="font-medium">{pkg.createdBy}</p>
                   </div>
                 </div>
@@ -268,15 +260,15 @@ export function PackagesTab({ className }: PackagesTabProps) {
                   <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm">
                       <Download className="h-3 w-3 mr-1" />
-                      下�?
+                      Download
                     </Button>
                     <Button variant="outline" size="sm">
                       <Share className="h-3 w-3 mr-1" />
-                      ?�用
+                      Share
                     </Button>
                     <Button variant="outline" size="sm">
                       <FileText className="h-3 w-3 mr-1" />
-                      檢�?
+                      View
                     </Button>
                   </div>
                 </div>

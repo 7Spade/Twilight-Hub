@@ -9,7 +9,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
+import { Input as _Input } from '@/components/ui/input';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/upload-dialog.tsx:12 - 清理未使用的導入
 // 問題：'Input' 已導入但從未使用
@@ -183,7 +183,7 @@ export function UploadDialog({
             />
           </div>
 
-          {/* ?��??��?件輸??*/}
+          {/* Hidden file input */}
           <input
             ref={fileInputRef}
             type="file"

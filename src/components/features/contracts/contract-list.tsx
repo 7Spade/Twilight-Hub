@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter, X } from 'lucide-react';
+import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter as _Filter, X } from 'lucide-react';
 
 // TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:15 - 清理未使用的導入
 // 問題：'Filter' 已導入但從未使用
@@ -21,7 +21,7 @@ import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter
 // @assignee frontend-team
 
 import { Contract, ContractFilters } from '@/lib/types/contract.types';
-import { useState, useMemo } from 'react';
+import { useState, useMemo as _useMemo } from 'react';
 
 // TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入
 // 問題：'useMemo' 已導入但從未使用
@@ -46,7 +46,7 @@ export function ContractList({
   userEmail: _userEmail = 'user@example.com', 
   userName: _userName = 'Current User' 
 }: ContractListProps) {
-  const [selectedContract, _setSelectedContract] = useState<Contract | null>(null);
+  const [_selectedContract, _setSelectedContract] = useState<Contract | null>(null);
   const [filters, setFilters] = useState<ContractFilters>({});
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);

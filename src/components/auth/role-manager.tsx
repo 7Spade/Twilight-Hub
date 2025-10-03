@@ -21,13 +21,13 @@
 // 3) 將對話框組件移至同一檔內的輕量內聯或共用子目錄；重複出現 ≥3 次的表單行為再抽象。
 // 4) 權限判斷集中在 `useAuth()` 暴露的單一 selector，避免在本檔重複 hasPermission。
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Switch } from '@/components/ui/switch';
+import { Switch as _Switch } from '@/components/ui/switch';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:28 - 清理未使用的導入
 // 問題：'Switch' 已導入但從未使用
@@ -40,7 +40,7 @@ import {
   DialogContent, 
   DialogHeader, 
   DialogTitle, 
-  DialogTrigger 
+  DialogTrigger as _DialogTrigger 
 } from '@/components/ui/dialog';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:34 - 清理未使用的導入
@@ -69,7 +69,7 @@ import {
   Trash2, 
   Users, 
   Shield, 
-  Settings,
+  Settings as _Settings,
   Search
 } from 'lucide-react';
 
@@ -87,8 +87,8 @@ import { useAuth } from './auth-provider';
 // 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 // @assignee frontend-team
 
-import { roleManagementService } from '@/lib/role-management';
-import { Permission, UserRoleAssignment } from '@/lib/types-unified';
+import { roleManagementService as _roleManagementService } from '@/lib/role-management';
+import { Permission, UserRoleAssignment as _UserRoleAssignment } from '@/lib/types-unified';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入
 // 問題：'UserRoleAssignment' 已導入但從未使用
@@ -133,7 +133,7 @@ interface RoleManagerProps {
 }
 
 export function RoleManager({ spaceId, organizationId: _organizationId }: RoleManagerProps) {
-  const { hasPermission, userId } = useAuth();
+  const { hasPermission, userId: _userId } = useAuth();
   const [roles, setRoles] = useState<Role[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
@@ -151,20 +151,7 @@ export function RoleManager({ spaceId, organizationId: _organizationId }: RoleMa
   const canManageRoles = hasPermission('space:manage', spaceId);
   const canAssignRoles = hasPermission('space:manage', spaceId);
 
-  // Load roles and users
-  useEffect(() => {
-    loadRoles();
-    loadUsers();
-  }, [spaceId]);
-
-// TODO: [P1] PERF src/components/auth/role-manager.tsx:123 - 修復 React Hook 缺失依賴項
-// 問題：useEffect Hook 缺少 'loadRoles' 和 'loadUsers' 依賴項
-// 影響：可能導致過時閉包問題，函數更新不及時
-// 建議：將 'loadRoles' 和 'loadUsers' 添加到依賴數組中，或使用 useCallback 包裝函數
-// @assignee frontend-team
-// @deadline 2025-01-15
-
-  const loadRoles = async () => {
+  const loadRoles = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -196,9 +183,10 @@ export function RoleManager({ spaceId, organizationId: _organizationId }: RoleMa
     } finally {
       setLoading(false);
     }
-  };
+  }, [spaceId, db]);
+  // TODO: 現代化 - 使用 useCallback 優化函數性能
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     try {
       // Fetch users from Firestore
       const usersQuery = query(
@@ -233,7 +221,13 @@ export function RoleManager({ spaceId, organizationId: _organizationId }: RoleMa
       console.error('Failed to load users:', error);
       setError(error instanceof Error ? error.message : 'Failed to load users');
     }
-  };
+  }, [db, spaceId]);
+
+  // Load roles and users（宣告完成後再呼叫，避免 TDZ）
+  useEffect(() => {
+    loadRoles();
+    loadUsers();
+  }, [spaceId, loadRoles, loadUsers]);
 
   const handleCreateRole = async (roleData: Omit<Role, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
@@ -307,7 +301,7 @@ export function RoleManager({ spaceId, organizationId: _organizationId }: RoleMa
     }
   };
 
-  const handleAssignRole = async (userId: string, roleId: string) => {
+  const handleAssignRole = useCallback(async (userId: string, roleId: string) => {
     try {
       setError(null);
       
@@ -327,7 +321,8 @@ export function RoleManager({ spaceId, organizationId: _organizationId }: RoleMa
       console.error('Failed to assign role:', error);
       setError(error instanceof Error ? error.message : 'Failed to assign role');
     }
-  };
+  }, [spaceId, loadUsers, db]);
+  // TODO: [P1][hooks-deps][低認知]: 確認依賴完整（含 db/loadUsers/spaceId），避免過時閉包
 
   const filteredRoles = roles.filter(role =>
     role.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -1,14 +1,9 @@
-// TODO: [P0] FIX src/components/features/spaces/components/participants/advanced-filters.tsx - 修復語法錯誤（第34行 ',' 缺失）
-// 說明：檢查物件/參數列表逗號缺失與 JSX 分隔
 /**
- * @fileoverview ?�代?��?級�?濾器組件
- * ?��?多種?�濾條件?�實?��?�?
+ * @fileoverview 現代化高級篩選器組件
+ * 支援多種篩選條件實現精確搜索
  */
 
 'use client';
-// TODO: [P0] FIX Parsing (L36) [低認知][現代化]
-// - 問題："," expected（可能缺少逗號/括號）
-// - 指引：補齊分隔符或簡化 props，先確保可解析再優化。
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
@@ -23,24 +18,22 @@ import {
   Search, 
   Filter, 
   X, 
-  ChevronDown, 
+  ChevronDown as _ChevronDown, 
   Users, 
   Building, 
   Tag, 
-  Clock,
+  Clock as _Clock,
   SortAsc,
   SortDesc
 } from 'lucide-react';
 import { useDebounce } from 'use-debounce';
-import { AdvancedFiltersProps, ParticipantRole, ParticipantStatus } from './types';
+import { AdvancedFiltersProps, ParticipantRole as _ParticipantRole, ParticipantStatus as _ParticipantStatus } from './types';
 
-// 模擬?�部?�?��?籤數??
-// TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 陣列字串引號與逗號缺失，請補齊分隔與引號
+// 模擬內部部門標籤數據
 const DEPARTMENTS = [
   '工程部', '設計部', '市場部', '銷售部', '人力資源部', '財務部', '行政部'
 ];
 
-// TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 陣列字串未終止，請補齊引號
 const TAGS = [
   '高優先', '需回覆', '管理', '技術', '設計', '專案經理', '實習'
 ];
@@ -54,7 +47,7 @@ export function AdvancedFilters({
   const [searchInput, setSearchInput] = useState(filters.searchTerm);
   const [debouncedSearch] = useDebounce(searchInput, 300);
 
-  // ?�新?�索條件
+  // 更新搜索條件
   React.useEffect(() => {
     if (debouncedSearch !== filters.searchTerm) {
       onFiltersChange({
@@ -64,7 +57,7 @@ export function AdvancedFilters({
     }
   }, [debouncedSearch, filters, onFiltersChange]);
 
-  const handleFilterChange = useCallback((key: keyof typeof filters, value: any) => {
+  const handleFilterChange = useCallback((key: keyof typeof filters, value: string | string[] | boolean) => {
     onFiltersChange({
       ...filters,
       [key]: value,
@@ -85,10 +78,11 @@ export function AdvancedFilters({
     handleFilterChange('tags', newTags);
   }, [filters.tags, handleFilterChange]);
 
+  // TODO: [P2][typing][低認知]: 為 sortBy 定義受控字面量型別 'field-order'
   const handleSortChange = useCallback((sortBy: string) => {
     const [field, order] = sortBy.split('-');
-    handleFilterChange('sortBy', field as any);
-    handleFilterChange('sortOrder', order as any);
+    handleFilterChange('sortBy', field);
+    handleFilterChange('sortOrder', order as 'asc' | 'desc');
   }, [handleFilterChange]);
 
   const activeFiltersCount = useMemo(() => {
@@ -110,24 +104,24 @@ export function AdvancedFilters({
 
   return (
     <div className="space-y-4">
-      {/* ?�索�?*/}
+      {/* 搜索欄 */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="?�索?�員姓�??�電子郵件�??�司..."
+          placeholder="搜索成員姓名、電子郵件或公司..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           className="pl-10 pr-4"
         />
       </div>
 
-      {/* 快速�?濾器 */}
+      {/* 快速篩選器 */}
       <div className="flex items-center gap-2 flex-wrap">
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm" className="relative">
               <Filter className="h-4 w-4 mr-2" />
-              ?�濾??
+              篩選器
               {activeFiltersCount > 0 && (
                 <Badge variant="destructive" className="ml-2 h-5 w-5 p-0 text-xs">
                   {activeFiltersCount}
@@ -138,18 +132,18 @@ export function AdvancedFilters({
           <PopoverContent className="w-80" align="start">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="font-medium">?�濾條件</h4>
+                <h4 className="font-medium">篩選條件</h4>
                 {activeFiltersCount > 0 && (
                   <Button variant="ghost" size="sm" onClick={clearAllFilters}>
                     <X className="h-4 w-4 mr-1" />
-                    清除?�部
+                    清除全部
                   </Button>
                 )}
               </div>
 
               <Separator />
 
-              {/* 角色?�濾 */}
+              {/* 角色篩選 */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">角色</label>
                 <Select
@@ -157,62 +151,59 @@ export function AdvancedFilters({
                   onValueChange={(value) => handleFilterChange('role', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?��?角色" />
+                    <SelectValue placeholder="選擇角色" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?�部角色</SelectItem>
-                    <SelectItem value="owner">?��???/SelectItem>
-                    <SelectItem value="admin">管�???/SelectItem>
-                    <SelectItem value="member">?�員</SelectItem>
-                    <SelectItem value="viewer">檢�???/SelectItem>
+                    <SelectItem value="">全部角色</SelectItem>
+                    <SelectItem value="owner">擁有者</SelectItem>
+                    <SelectItem value="admin">管理員</SelectItem>
+                    <SelectItem value="member">成員</SelectItem>
+                    <SelectItem value="viewer">檢視者</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* ?�?��?�?*/}
+              {/* 狀態篩選 */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?�??/label>
-                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 破損的關閉標籤，請改為 </label> */}
+                <label className="text-sm font-medium">狀態</label>
                 <Select
                   value={filters.status || ''}
                   onValueChange={(value) => handleFilterChange('status', value || '')}
                 >
                   <SelectTrigger>
-                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: placeholder 未終止字串，請補齊引號 */}
-                    <SelectValue placeholder="????? />
+                    <SelectValue placeholder="選擇狀態" />
                   </SelectTrigger>
                   <SelectContent>
-                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 多處關閉標籤缺失，請補齊 */}
-                    <SelectItem value="">?部???/SelectItem>
-                    <SelectItem value="active">使用?/SelectItem>
-                    <SelectItem value="inactive">?活?/SelectItem>
-                    <SelectItem value="pending">待審??/SelectItem>
+                    <SelectItem value="">全部狀態</SelectItem>
+                    <SelectItem value="active">使用中</SelectItem>
+                    <SelectItem value="inactive">未活躍</SelectItem>
+                    <SelectItem value="pending">待審核</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* ?�司?�濾 */}
+              {/* 公司篩選 */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?�司</label>
+                <label className="text-sm font-medium">公司</label>
                 <Input
-                  placeholder="輸入?�司?�稱"
+                  placeholder="輸入公司名稱"
                   value={filters.company}
                   onChange={(e) => handleFilterChange('company', e.target.value)}
                 />
               </div>
 
-              {/* ?��??�濾 */}
+              {/* 部門篩選 */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">?��?</label>
+                <label className="text-sm font-medium">部門</label>
                 <Select
                   value={filters.department || ''}
                   onValueChange={(value) => handleFilterChange('department', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?��??��?" />
+                    <SelectValue placeholder="選擇部門" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?�部?��?</SelectItem>
+                    <SelectItem value="">全部部門</SelectItem>
                     {DEPARTMENTS.map(dept => (
                       <SelectItem key={dept} value={dept}>{dept}</SelectItem>
                     ))}
@@ -220,7 +211,7 @@ export function AdvancedFilters({
                 </Select>
               </div>
 
-              {/* ?��??�??*/}
+              {/* 在線狀態 */}
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="online-only"
@@ -230,14 +221,14 @@ export function AdvancedFilters({
                   }
                 />
                 <label htmlFor="online-only" className="text-sm font-medium">
-                  ?�顯示在線�???
+                  只顯示在線成員
                 </label>
               </div>
             </div>
           </PopoverContent>
         </Popover>
 
-        {/* 標籤?�濾 */}
+        {/* 標籤篩選 */}
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm">
@@ -252,9 +243,9 @@ export function AdvancedFilters({
           </PopoverTrigger>
           <PopoverContent className="w-64" align="start">
             <Command>
-              <CommandInput placeholder="?�索標籤..." />
+              <CommandInput placeholder="搜索標籤..." />
               <CommandList>
-                <CommandEmpty>沒�??�到標籤</CommandEmpty>
+                <CommandEmpty>沒有找到標籤</CommandEmpty>
                 <CommandGroup>
                   {TAGS.map((tag) => (
                     <CommandItem
@@ -275,7 +266,7 @@ export function AdvancedFilters({
           </PopoverContent>
         </Popover>
 
-        {/* ?��? */}
+        {/* 排序 */}
         <Select
           value={`${filters.sortBy || 'name'}-${filters.sortOrder || 'asc'}`}
           onValueChange={handleSortChange}
@@ -287,50 +278,50 @@ export function AdvancedFilters({
             <SelectItem value="name-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                姓�? A-Z
+                姓名 A-Z
               </div>
             </SelectItem>
             <SelectItem value="name-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                姓�? Z-A
+                姓名 Z-A
               </div>
             </SelectItem>
             <SelectItem value="role-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                角色?��?
+                角色升序
               </div>
             </SelectItem>
             <SelectItem value="role-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                角色?��?
+                角色降序
               </div>
             </SelectItem>
             <SelectItem value="joinedAt-desc">
               <div className="flex items-center gap-2">
                 <SortDesc className="h-4 w-4" />
-                ?�?��???
+                最新加入
               </div>
             </SelectItem>
             <SelectItem value="joinedAt-asc">
               <div className="flex items-center gap-2">
                 <SortAsc className="h-4 w-4" />
-                ?�?��???
+                最早加入
               </div>
             </SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      {/* 活�??�濾?��?�?*/}
+      {/* 活動篩選標籤 */}
       {activeFiltersCount > 0 && (
         <div className="flex flex-wrap gap-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
             {filters.searchTerm && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 <Search className="h-3 w-3" />
-                ?�索: {filters.searchTerm}
+                搜索: {filters.searchTerm}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -348,7 +339,7 @@ export function AdvancedFilters({
             {filters.company && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 <Building className="h-3 w-3" />
-                ?�司: {filters.company}
+                公司: {filters.company}
                 <Button
                   variant="ghost"
                   size="sm"

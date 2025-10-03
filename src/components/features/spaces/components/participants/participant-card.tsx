@@ -1,14 +1,9 @@
 /**
- * @fileoverview ?�代?��??�者卡?��?�?
- * ?��?式設計�??��??�畫?�交互�???
+ * @fileoverview 現代化參與者卡片組件
+ * 支援響應式設計與動畫交互效果
  */
 
-// TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）
-// 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號
 'use client';
-// TODO: [P0] FIX Parsing (L111) [低認知][現代化]
-// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）
-// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。
 
 import React, { useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -33,7 +28,7 @@ import {
 } from 'lucide-react';
 import { ParticipantCardProps } from './types';
 
-// 角色?��??��?
+// 角色圖標映射
 const ROLE_ICONS = {
   owner: Crown,
   admin: Shield,
@@ -41,7 +36,7 @@ const ROLE_ICONS = {
   viewer: Eye,
 } as const;
 
-// 角色顏色?��?
+// 角色顏色配置
 const ROLE_COLORS = {
   owner: 'bg-purple-100 text-purple-800 border-purple-200',
   admin: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -49,7 +44,7 @@ const ROLE_COLORS = {
   viewer: 'bg-gray-100 text-gray-800 border-gray-200',
 } as const;
 
-// ?�?��??��?�?
+// 狀態顏色配置
 const STATUS_COLORS = {
   active: 'bg-green-100 text-green-800',
   inactive: 'bg-red-100 text-red-800',
@@ -81,19 +76,19 @@ export function ParticipantCard({
         isSelected ? 'ring-2 ring-primary ring-offset-2' : ''
       } ${isCurrentUser ? 'bg-primary/5' : ''}`}>
         <CardContent className="p-4">
-          {/* ?��?�?*/}
+          {/* 選擇框 */}
           {onSelect && (
             <div className="absolute top-3 right-3">
               <Checkbox
                 checked={isSelected}
                 onCheckedChange={handleSelect}
                 disabled={isCurrentUser}
-                aria-label={`?��? ${participant.name}`}
+                aria-label={`選擇 ${participant.name}`}
               />
             </div>
           )}
 
-          {/* ?��??�基?�信??*/}
+          {/* 用戶基本信息 */}
           <div className="flex items-start gap-3 mb-4">
             <div className="relative">
               <Avatar className="h-12 w-12">
@@ -137,7 +132,7 @@ export function ParticipantCard({
             </div>
           </div>
 
-          {/* 角色?��???*/}
+          {/* 角色與狀態 */}
           <div className="flex items-center gap-2 mb-3">
             <Badge 
               variant="outline" 
@@ -189,7 +184,7 @@ export function ParticipantCard({
             )}
           </div>
 
-          {/* ???? */}
+          {/* 操作按鈕 */}
           {canManage && !isCurrentUser && (
             <div className="flex items-center justify-end">
               <DropdownMenu>

@@ -8,7 +8,7 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { collection, doc, query, where, documentId } from 'firebase/firestore';
+import { collection, doc as _doc, query, where, documentId } from 'firebase/firestore';
 
 // TODO: [P2] REFACTOR src/components/follower-list.tsx:11 - 清理未使用的導入
 // 問題：'doc' 已導入但從未使用

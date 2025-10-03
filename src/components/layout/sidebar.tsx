@@ -9,24 +9,7 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  Settings,
-} from "lucide-react";
-
-// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx:13 - 清理未使用的導入
-// 問題：'Settings' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
-// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx:15 - 清理未使用的導入
-// 問題：'Tooltip', 'TooltipContent', 'TooltipProvider', 'TooltipTrigger' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 奧卡姆剃刀精簡側邊欄
+// TODO: 現代化 - 清理未使用的導入，減少 bundle 大小
 // 建議：
 // 1) 刪除未用的視覺裝飾/狀態與條件（保留最小導航能力）。
 // 2) 將動態權限與導覽來源集中於單一 selector/hook，避免多處分支與重複邏輯。

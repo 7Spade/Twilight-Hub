@@ -6,46 +6,17 @@
  * and user actions.
  */
 'use client';
-// TODO: [P0] FIX Parsing (L138) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。
-// TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：
-// 1) 檢查上一行是否缺分號或字串未關閉。
-// 2) 檢查註解是否破壞字元（如中文全形標點）。
-// 3) 保持最小改動，先確保程式可被解析再進行重構。
-// 參考：ESLint CLI 與 Next.js ESLint 規範（`next/core-web-vitals`），TypeScript-ESLint parsing 原則。
-// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 簡化過度複雜的組件結構
-// 問題：FileExplorer 組件超過 540 行，違反奧卡姆剃刀原則
-// 影響：維護困難、測試複雜、性能問題
-// 建議：
-// 1) 將組件拆分為更小的單一職責組件
-// 2) 移除多層 Context Provider 嵌套
-// 3) 使用 Next.js 15 Server Components 替代不必要的 Client Components
-// 4) 統一狀態管理，避免 prop drilling
-// @assignee frontend-team
-// @deadline 2025-01-15
-
-// TODO: [P2] PERF src/components/features/spaces/components/file-explorer/ - 優化 Client/Server Components 使用
-// 問題：過度使用 Client Components，違反 Next.js 15 最佳實踐
-// 影響：增加 JavaScript bundle 大小、影響首屏性能
-// 建議：
-// 1) 將純展示組件改為 Server Components
-// 2) 使用 Next.js 15 的 'use client' 邊界優化
-// 3) 實現適當的代碼分割和懶加載
-// 4) 使用 React 19 的新特性優化渲染
-// @assignee performance-team
-// @deadline 2025-01-25
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card as _Card, CardContent as _CardContent } from '@/components/ui/card';
+import { Separator as _Separator } from '@/components/ui/separator';
 import { useFileActions } from '@/components/features/spaces/hooks';
 import { FolderTree, type FileItem } from './folder-tree';
 import { FileTable } from './file-table';
-import { ContextMenu, ToolbarContextMenu } from './context-menu';
+import { ContextMenu, ToolbarContextMenu as _ToolbarContextMenu } from './context-menu';
 import { Toolbar } from './toolbar';
 import { UploadDialog } from './upload-dialog';
-import { VersionHistoryDrawer, type VersionItem } from './version-history-drawer';
+import { VersionHistoryDrawer, type VersionItem as _VersionItem } from './version-history-drawer';
 import { EmptyFolderState } from './empty-folder-state';
 import { FilterPanel, type FilterOptions } from './filter-panel';
 import { BreadcrumbNavigation, type BreadcrumbItem } from './breadcrumb-navigation';
@@ -81,7 +52,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     detailViewFile,
     isDetailViewOpen 
   } = useFileExplorerContext();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchQuery] = useState('');
   const [contextMenuItem, setContextMenuItem] = useState<FileItem | null>(null);
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [isVersionDrawerOpen, setIsVersionDrawerOpen] = useState(false);
@@ -94,12 +65,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     includeSubfolders: true,
     includeContent: true,
   });
-  const [breadcrumbItems, setBreadcrumbItems] = useState<BreadcrumbItem[]>([
+  // TODO: 現代化 - 移除未使用的 setBreadcrumbItems 別名，簡化狀態管理
+  const [breadcrumbItems] = useState<BreadcrumbItem[]>([
     { id: 'project-files', name: '專案檔案' }
   ]);
   const [isDeletedItemsOpen, setIsDeletedItemsOpen] = useState(false);
 
-  // 轉�??��??�件?��???FileItem ?��?，並添�?一些測試�?�?  const files: FileItem[] = useMemo(() => {
+  // 轉換原始檔案為 FileItem 格式，並添加一些測試資料
+  const files: FileItem[] = useMemo(() => {
     const realFiles = rawFiles.map(file => ({
       id: file.name,
       name: file.name,
@@ -118,8 +91,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       reviewStatus: '--',
     }));
 
-    // TODO[P2][lint][parser-error][低認知]: 這行同時含註解與程式，請換行或補分號。
-    // 添�?一些測試�?案以便�?示收?��???
+    // 添加一些測試檔案以便展示收合功能
     const testFiles: FileItem[] = [
       {
         id: 'test-arch-001',
@@ -129,7 +101,6 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-01T00:00:00Z',
         updated: '2024-01-15T10:30:00Z',
-        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號以通過解析；僅修字串不改邏輯
         description: '建築平面圖',
         version: 'V2',
         indicator: '--',
@@ -137,7 +108,6 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此行字串未關閉導致 Parsing error，僅補齊引號
         reviewStatus: '已審核',
       },
       {
@@ -155,8 +125,6 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
-        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號；建議以常量或 enum 管理狀態字串
         reviewStatus: '待審核',
       },
       {
@@ -174,7 +142,6 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
         reviewStatus: '已審核',
       },
       {
@@ -188,7 +155,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         description: '月度進度報告',
         version: 'V1',
         indicator: '--',
-        tag: '?��?',
+        tag: '--',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
@@ -199,11 +166,11 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     return [...realFiles, ...testFiles];
   }, [rawFiles]);
 
-  // ?�濾?�件
+  // 篩選檔案
   const filteredFiles = useMemo(() => {
     let filtered = files;
 
-    // ?�本?��??�濾
+    // 基本搜索篩選
     if (currentFilters.searchQuery.trim()) {
       const query = currentFilters.searchQuery.toLowerCase();
       filtered = filtered.filter(file =>
@@ -212,12 +179,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       );
     }
 
-    // 類�??�濾
+    // 類型篩選
     if (currentFilters.type) {
       filtered = filtered.filter(file => file.type === currentFilters.type);
     }
 
-    // 檔�?類�??�濾
+    // 檔案類型篩選
     if (currentFilters.fileType) {
       filtered = filtered.filter(file => {
         const extension = file.name.split('.').pop()?.toLowerCase();
@@ -232,27 +199,30 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       });
     }
 
-    // 審閱?�?��?�?    if (currentFilters.reviewStatus) {
+    // 審閱狀態篩選
+    if (currentFilters.reviewStatus) {
       filtered = filtered.filter(file => file.reviewStatus === currentFilters.reviewStatus);
     }
 
-    // ?�新?��?�?    if (currentFilters.updater) {
+    // 更新者篩選
+    if (currentFilters.updater) {
       filtered = filtered.filter(file => file.updater === currentFilters.updater);
     }
 
     return filtered;
   }, [files, currentFilters]);
 
-  // 載入?�件?�表
+  // 載入檔案列表
   useEffect(() => {
     listFiles(spaceId, userId);
   }, [spaceId, userId, listFiles]);
 
   const handleItemClick = (item: FileItem) => {
     if (item.type === 'folder') {
-      // ?��??�件夾�???      console.log('Folder clicked:', item.name);
+      // 處理資料夾點擊
+      console.log('Folder clicked:', item.name);
     } else {
-      // ?��??�件點�?
+      // 處理檔案點擊
       console.log('File clicked:', item.name);
     }
   };
@@ -262,7 +232,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     
     switch (action) {
       case 'menu':
-        // 上�??��??�已?��? ContextMenu 組件?��?
+        // 上下文選單已由 ContextMenu 組件處理
         break;
       case 'download':
         downloadFile(item.name, spaceId, userId);
@@ -314,7 +284,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setIsUploadDialogOpen(false);
   };
 
-  // ?�拽上傳?��?
+  // 拖拽上傳處理
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);
@@ -342,14 +312,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setContextMenuItem(null);
   };
 
-  // 篩選?��??�數
+  // 篩選面板處理
   const handleFilterApply = (filters: FilterOptions) => {
     setCurrentFilters(filters);
     setIsFilterPanelOpen(false);
   };
 
   const handleSaveSearch = (filters: FilterOptions, name: string) => {
-    // ?�裡?�以實現?��??��??�本?�儲存�?後端
+    // 這裡可以實現搜尋範本儲存到後端
     console.log('Saving search:', name, filters);
   };
 
@@ -357,24 +327,35 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     setIsFilterPanelOpen(!isFilterPanelOpen);
   };
 
-  // 麵�?屑�??�函??  const handleBreadcrumbClick = (item: BreadcrumbItem) => {
+  // 麵包屑處理函數
+  const handleBreadcrumbClick = (item: BreadcrumbItem) => {
     console.log('Breadcrumb clicked:', item);
-    // ?�裡?�以實現導航?�輯
+    // 這裡可以實現導航邏輯
   };
 
-  // ?�除?�目?��??�數
+  // 刪除項目處理函數
   const handleDeletedItemsToggle = () => {
     setIsDeletedItemsOpen(!isDeletedItemsOpen);
   };
 
-  const handleRestoreItem = (item: any) => {
+  const handleRestoreItem = (item: FileItem) => {
+    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用
+    // 問題：使用 any 類型違反類型安全原則
+    // 影響：失去類型檢查，可能導致運行時錯誤
+    // 建議：定義具體的類型接口替代 any 類型
+    // @assignee frontend-team
+    // @deadline 2025-01-25
     console.log('Restore item:', item);
-    // ?�裡?�以實現?��??�輯
   };
 
-  const handlePermanentDelete = (item: any) => {
+  const handlePermanentDelete = (item: FileItem) => {
+    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用
+    // 問題：使用 any 類型違反類型安全原則
+    // 影響：失去類型檢查，可能導致運行時錯誤
+    // 建議：定義具體的類型接口替代 any 類型
+    // @assignee frontend-team
+    // @deadline 2025-01-25
     console.log('Permanent delete item:', item);
-    // ?�裡?�以實現永�??�除?�輯
   };
 
   return (
@@ -384,7 +365,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {/* ?�拽上傳?�示 */}
+      {/* 拖拽上傳提示 */}
       {isDragOver && (
         <div className="absolute inset-0 bg-blue-50/90 border-2 border-dashed border-blue-400 flex items-center justify-center z-50">
           <div className="text-center">
@@ -395,7 +376,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         </div>
       )}
 
-      {/* 工具?*/}
+      {/* 工具列 */}
       <Toolbar
         onUpload={() => handleToolbarAction('upload')}
         onMoreOptions={() => handleToolbarAction('more-options')}
@@ -409,7 +390,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isFilterActive={isFilterPanelOpen}
       />
 
-      {/* 麵?屑???*/}
+      {/* 麵包屑導航 */}
       <div className="px-4 py-2 border-b bg-muted/10">
         <BreadcrumbNavigation
           items={breadcrumbItems}
@@ -417,9 +398,9 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         />
       </div>
 
-      {/* 主內容? */}
+      {/* 主內容區 */}
       <div className="flex-1 flex overflow-hidden">
-        {/* 左側?件夾樹 */}
+        {/* 左側資料夾樹 */}
         <div className="w-80 border-r bg-muted/20">
           <div className="p-4">
             <FolderTree
@@ -432,7 +413,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
           </div>
         </div>
 
-        {/* ?側?件視? */}
+        {/* 右側檔案視圖 */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {filteredFiles.length === 0 ? (
             <EmptyFolderState 
@@ -462,9 +443,8 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
                 )}
               </div>
 
-              {/* 底部??? */}
+              {/* 底部統計 */}
               <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
-                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 模板字串/插值附近可能有破損字元，請檢查特殊符號與字串閉合 */}
                 <div className="text-sm text-muted-foreground">
                   顯示 {filteredFiles.length} 個項目（{currentView === 'list' ? '列表視圖' : '縮圖視圖'}）
                 </div>
@@ -478,7 +458,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         </div>
       </div>
 
-      {/* 篩選?板 */}
+      {/* 篩選面板 */}
       <FilterPanel
         isOpen={isFilterPanelOpen}
         onClose={() => setIsFilterPanelOpen(false)}
@@ -487,7 +467,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         initialFilters={currentFilters}
       />
 
-      {/* ?除????*/}
+      {/* 刪除項目 */}
       <DeletedItems
         isOpen={isDeletedItemsOpen}
         onClose={() => setIsDeletedItemsOpen(false)}
@@ -495,7 +475,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         onPermanentDelete={handlePermanentDelete}
       />
 
-      {/* 上傳對話�?*/}
+      {/* 上傳對話框 */}
       <UploadDialog
         isOpen={isUploadDialogOpen}
         onClose={() => setIsUploadDialogOpen(false)}
@@ -504,7 +484,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isUploading={isLoading}
       />
 
-      {/* ?�本歷史記�??��? */}
+      {/* 版本歷史記錄抽屜 */}
       <VersionHistoryDrawer
         isOpen={isVersionDrawerOpen}
         onClose={() => {
@@ -529,7 +509,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         } : undefined}
       />
 
-      {/* 詳細視�? */}
+      {/* 詳細視圖 */}
       <FileDetailView
         file={detailViewFile}
         isOpen={isDetailViewOpen}
@@ -541,7 +521,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         onStar={(file) => console.log('Star file:', file.name)}
       />
 
-      {/* 上�??��???*/}
+      {/* 上下文選單 */}
       {contextMenuItem && (
         <ContextMenu
           item={contextMenuItem}

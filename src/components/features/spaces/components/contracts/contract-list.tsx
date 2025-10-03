@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';
+import { FileText as _FileText, Plus, Search, Filter, Calendar, DollarSign as _DollarSign } from 'lucide-react';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入
 // 問題：'FileText', 'DollarSign' 已導入但從未使用

@@ -21,7 +21,7 @@
 // 2) 僅暴露最小 API（hasPermission / checkPermission / signIn / signOut），其餘輔助函式封裝內部。
 // 3) 避免渲染期副作用；所有 mutation 綁定事件或 Server Actions；避免將完整使用者資料下傳至 client。
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { 
   Permission, 
   UserRoleAssignment, 
@@ -39,7 +39,7 @@ import {
   signOut as firebaseSignOut
 } from 'firebase/auth';
 import { 
-  getFirestore, 
+  getFirestore as _getFirestore, 
   doc, 
   getDoc, 
   collection, 
@@ -165,7 +165,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   };
 
   // Fetch user role assignment from Firestore
-  const fetchUserRoleAssignment = async (userId: string): Promise<UserRoleAssignment> => {
+  const fetchUserRoleAssignment = useCallback(async (userId: string): Promise<UserRoleAssignment> => {
     try {
       // Get user document
       const userDocRef = doc(db, 'users', userId);
@@ -192,21 +192,23 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       const spaceRoles: Record<string, SpaceRoleAssignment> = {};
       
       spaceRolesSnapshot.forEach(d => {
-        const data = d.data() as any;
-        
-// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:192 - 修復 TypeScript any 類型使用
-// 問題：使用 any 類型違反類型安全原則
-// 影響：失去類型檢查，可能導致運行時錯誤
-// 建議：定義具體的類型接口替代 any 類型
-// @assignee frontend-team
-// @deadline 2025-01-25
-        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
-          ? data.assignedAt as Timestamp
+        // TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用
+        // 問題：使用 any 類型違反類型安全原則
+        // 影響：失去類型檢查，可能導致運行時錯誤
+        // 建議：定義具體的類型接口替代 any 類型
+        // @assignee frontend-team
+        // @deadline 2025-01-25
+        const raw = d.data() as Record<string, unknown>;
+        const assignedAtRaw = raw.assignedAt as unknown;
+        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
+        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'
+          ? (assignedAtRaw as Timestamp)
           : Timestamp.fromDate(new Date());
-        spaceRoles[data.spaceId] = {
-          roleId: data.roleId as SpaceRole,
-          assignedAt: ts,
-          assignedBy: (data.assignedBy || '') as string,
+        const spaceIdKey = typeof raw.spaceId === 'string' ? (raw.spaceId as string) : d.id;
+        spaceRoles[spaceIdKey] = {
+          roleId: raw.roleId as SpaceRole,
+          assignedAt: assignedAtTs,
+          assignedBy: (raw.assignedBy || '') as string,
           expiresAt: undefined,
           inheritedFrom: undefined,
         };
@@ -221,21 +223,16 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       const organizationRoles: OrganizationRoleAssignment[] = [];
       
       orgRolesSnapshot.forEach(d => {
-        const data = d.data() as any;
-        
-// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用
-// 問題：使用 any 類型違反類型安全原則
-// 影響：失去類型檢查，可能導致運行時錯誤
-// 建議：定義具體的類型接口替代 any 類型
-// @assignee frontend-team
-// @deadline 2025-01-25
-        const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
-          ? data.assignedAt as Timestamp
+        const raw = d.data() as Record<string, unknown>;
+        const assignedAtRaw = raw.assignedAt as unknown;
+        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
+        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'
+          ? (assignedAtRaw as Timestamp)
           : Timestamp.fromDate(new Date());
         organizationRoles.push({
-          roleId: data.roleId as OrganizationRole,
-          assignedAt: ts,
-          assignedBy: (data.assignedBy || '') as string,
+          roleId: raw.roleId as OrganizationRole,
+          assignedAt: assignedAtTs,
+          assignedBy: (raw.assignedBy || '') as string,
           expiresAt: undefined,
         });
       });
@@ -272,7 +269,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       console.error('Failed to fetch user role assignment:', error);
       throw error;
     }
-  };
+  }, [db]);
 
   // Refresh permissions
   const refreshPermissions = async () => {
@@ -365,14 +362,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     });
 
     return () => unsubscribe();
-  }, [auth]);
-
-// TODO: [P1] PERF src/components/auth/auth-provider.tsx:345 - 修復 React Hook 缺失依賴項
-// 問題：useEffect Hook 缺少 'fetchUserRoleAssignment' 依賴項
-// 影響：可能導致過時閉包問題，狀態更新不及時
-// 建議：將 'fetchUserRoleAssignment' 添加到依賴數組中，或移除依賴數組
-// @assignee frontend-team
-// @deadline 2025-01-15
+  }, [auth, fetchUserRoleAssignment]);
 
   const value: AuthContext = {
     ...state,
