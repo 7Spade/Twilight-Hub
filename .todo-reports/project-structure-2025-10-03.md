@@ -37,7 +37,7 @@
     ├── projectbrief.md (240 B, 今天)
     ├── style-guide.md (289 B, 今天)
     ├── systemPatterns.md (277 B, 今天)
-    ├── tasks.md (1 KB, 今天)
+    ├── tasks.md (5.3 KB, 今天)
     ├── techContext.md (237 B, 今天)
 └── scripts/
     ├── generate-tree.ts (7.1 KB, 今天)
@@ -73,11 +73,11 @@
     │   │   │   │   ├── members/
     │   │   │   │   │   ├── page.tsx (6 KB, 今天)
     │   │   │   │   ├── roles/
-    │   │   │   │   │   ├── page.tsx (3.7 KB, 今天)
+    │   │   │   │   │   ├── page.tsx (4.1 KB, 今天)
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── page.tsx (4.8 KB, 今天)
     │   │   │   │   ├── spaces/
-    │   │   │   │   │   ├── page.tsx (379 B, 今天)
+    │   │   │   │   │   ├── page.tsx (716 B, 今天)
     │   │   │   │   ├── page.tsx (7.4 KB, 今天)
     │   │   │   ├── page.tsx (4.1 KB, 今天)
     │   │   ├── settings/
@@ -90,7 +90,7 @@
     │   │   ├── spaces/
     │   │   │   └── [spaceslug]/
     │   │   │       ├── page.tsx (2.9 KB, 今天)
-    │   │   │   └── page.tsx (3.7 KB, 今天)
+    │   │   │   └── page.tsx (4.1 KB, 今天)
     │   ├── (auth)/
     │   │   ├── login/
     │   │   │   ├── page.tsx (5.2 KB, 今天)
@@ -104,10 +104,10 @@
     │   ├── globals.css (2.4 KB, 昨天)
     ├── components/
     │   ├── auth/
-    │   │   ├── auth-provider.tsx (11.6 KB, 今天)
+    │   │   ├── auth-provider.tsx (13.2 KB, 今天)
     │   │   ├── index.ts (509 B, 今天)
     │   │   ├── permission-guard.tsx (2.3 KB, 今天)
-    │   │   ├── role-manager.tsx (19 KB, 今天)
+    │   │   ├── role-manager.tsx (20.5 KB, 今天)
     │   ├── features/
     │   │   ├── contracts/
     │   │   │   ├── contract-list.tsx (15.6 KB, 今天)
@@ -131,36 +131,36 @@
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.4 KB, 今天)
     │   │   │   │   ├── contracts/
     │   │   │   │   │   ├── contract-details.tsx (10.9 KB, 今天)
-    │   │   │   │   │   ├── contract-list.tsx (14.1 KB, 今天)
+    │   │   │   │   │   ├── contract-list.tsx (14.5 KB, 今天)
     │   │   │   │   │   ├── index.ts (212 B, 今天)
     │   │   │   │   ├── file-explorer/
     │   │   │   │   │   ├── detail/
-    │   │   │   │   │   │   ├── file-detail-view.tsx (12.4 KB, 今天)
+    │   │   │   │   │   │   ├── file-detail-view.tsx (13 KB, 今天)
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-file-explorer-context.tsx (5.3 KB, 今天)
     │   │   │   │   │   ├── services/
-    │   │   │   │   │   │   ├── file-preview-service.ts (7.5 KB, 今天)
+    │   │   │   │   │   │   ├── file-preview-service.ts (7.8 KB, 今天)
     │   │   │   │   │   ├── thumbnail/
     │   │   │   │   │   │   ├── file-thumbnail-card.tsx (5.2 KB, 今天)
-    │   │   │   │   │   │   ├── file-thumbnail-grid.tsx (8.1 KB, 今天)
+    │   │   │   │   │   │   ├── file-thumbnail-grid.tsx (8.4 KB, 今天)
     │   │   │   │   │   ├── breadcrumb-navigation.tsx (1.7 KB, 今天)
     │   │   │   │   │   ├── column-settings-menu.tsx (3.4 KB, 今天)
-    │   │   │   │   │   ├── context-menu.tsx (6.9 KB, 今天)
-    │   │   │   │   │   ├── deleted-items.tsx (8 KB, 今天)
-    │   │   │   │   │   ├── empty-folder-state.tsx (2.1 KB, 今天)
-    │   │   │   │   │   ├── file-explorer.tsx (17.5 KB, 今天)
-    │   │   │   │   │   ├── file-table.tsx (11.2 KB, 今天)
-    │   │   │   │   │   ├── filter-panel.tsx (15.1 KB, 今天)
-    │   │   │   │   │   ├── folder-tree.tsx (26.7 KB, 今天)
+    │   │   │   │   │   ├── context-menu.tsx (7.6 KB, 今天)
+    │   │   │   │   │   ├── deleted-items.tsx (8.6 KB, 今天)
+    │   │   │   │   │   ├── empty-folder-state.tsx (2.3 KB, 今天)
+    │   │   │   │   │   ├── file-explorer.tsx (18.9 KB, 今天)
+    │   │   │   │   │   ├── file-table.tsx (12.3 KB, 今天)
+    │   │   │   │   │   ├── filter-panel.tsx (15.8 KB, 今天)
+    │   │   │   │   │   ├── folder-tree.tsx (27.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
-    │   │   │   │   │   ├── packages-tab.tsx (9.8 KB, 今天)
-    │   │   │   │   │   ├── toolbar.tsx (5.1 KB, 今天)
+    │   │   │   │   │   ├── packages-tab.tsx (10.1 KB, 今天)
+    │   │   │   │   │   ├── toolbar.tsx (5.4 KB, 今天)
     │   │   │   │   │   ├── version-history-drawer.tsx (5.9 KB, 今天)
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── index.ts (187 B, 今天)
-    │   │   │   │   │   ├── issue-details.tsx (7.9 KB, 今天)
-    │   │   │   │   │   ├── issue-list.tsx (10.5 KB, 今天)
+    │   │   │   │   │   ├── issue-details.tsx (8.1 KB, 今天)
+    │   │   │   │   │   ├── issue-list.tsx (10.7 KB, 今天)
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-dashboard-data.ts (4.3 KB, 今天)
@@ -173,11 +173,11 @@
     │   │   │   │   ├── participants/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-participants.ts (4.3 KB, 今天)
-    │   │   │   │   │   ├── advanced-filters.tsx (13.7 KB, 今天)
-    │   │   │   │   │   ├── card-grid.tsx (7 KB, 今天)
+    │   │   │   │   │   ├── advanced-filters.tsx (14.2 KB, 今天)
+    │   │   │   │   │   ├── card-grid.tsx (7.3 KB, 今天)
     │   │   │   │   │   ├── data.ts (5.4 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
-    │   │   │   │   │   ├── participant-card.tsx (8 KB, 今天)
+    │   │   │   │   │   ├── participant-card.tsx (8.4 KB, 今天)
     │   │   │   │   │   ├── participant-filters.tsx (5.9 KB, 今天)
     │   │   │   │   │   ├── participant-list.tsx (6.1 KB, 今天)
     │   │   │   │   │   ├── participant-role-editor.tsx (4.5 KB, 今天)
@@ -195,7 +195,7 @@
     │   │   │   │   │   ├── report-viewer.tsx (9 KB, 今天)
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── index.ts (41 B, 今天)
-    │   │   │   │   ├── index.ts (1 KB, 今天)
+    │   │   │   │   ├── index.ts (2 KB, 今天)
     │   │   │   │   ├── spaces-detail-view.tsx (170 B, 今天)
     │   │   │   │   ├── spaces-files-view.tsx (592 B, 今天)
     │   │   │   │   ├── spaces-list-view.tsx (10.3 KB, 今天)
@@ -204,8 +204,8 @@
     │   │   │   │   ├── spaces-starred-view.tsx (2.2 KB, 今天)
     │   │   │   │   ├── spaces-visibility-badge.tsx (1001 B, 今天)
     │   │   │   ├── hooks/
-    │   │   │   │   ├── index.ts (516 B, 今天)
-    │   │   │   │   ├── use-file-actions.ts (5.8 KB, 今天)
+    │   │   │   │   ├── index.ts (939 B, 今天)
+    │   │   │   │   ├── use-file-actions.ts (6.6 KB, 今天)
     │   │   │   │   ├── use-file-operations.ts (5.6 KB, 今天)
     │   │   │   │   ├── use-space-actions.ts (5 KB, 今天)
     │   │   │   │   ├── use-star-actions.ts (3.5 KB, 今天)
@@ -233,17 +233,17 @@
     │   │   ├── calendar.tsx (2.7 KB, 今天)
     │   │   ├── card.tsx (1.9 KB, 今天)
     │   │   ├── carousel.tsx (6.3 KB, 今天)
-    │   │   ├── chart.tsx (10.6 KB, 今天)
+    │   │   ├── chart.tsx (11 KB, 今天)
     │   │   ├── checkbox.tsx (1.1 KB, 今天)
     │   │   ├── collapsible.tsx (340 B, 今天)
     │   │   ├── command.tsx (4.9 KB, 今天)
     │   │   ├── dropdown-menu.tsx (7.5 KB, 今天)
-    │   │   ├── file-type-icon.tsx (8.4 KB, 今天)
+    │   │   ├── file-type-icon.tsx (9.9 KB, 今天)
     │   │   ├── file-upload.tsx (10.5 KB, 今天)
     │   │   ├── form.tsx (4.2 KB, 今天)
     │   │   ├── input.tsx (869 B, 今天)
     │   │   ├── label.tsx (750 B, 今天)
-    │   │   ├── menubar.tsx (8.6 KB, 今天)
+    │   │   ├── menubar.tsx (8.9 KB, 今天)
     │   │   ├── popover.tsx (1.2 KB, 今天)
     │   │   ├── progress.tsx (819 B, 今天)
     │   │   ├── radio-group.tsx (1.5 KB, 今天)
@@ -280,21 +280,21 @@
     │   ├── user-profile-card.tsx (8.6 KB, 今天)
     ├── firebase/
     │   ├── firestore/
-    │   │   ├── use-collection.tsx (3.3 KB, 今天)
+    │   │   ├── use-collection.tsx (3.6 KB, 今天)
     │   │   ├── use-doc.tsx (3.1 KB, 今天)
     │   ├── client-provider.tsx (834 B, 今天)
     │   ├── config.ts (380 B, 今天)
     │   ├── error-emitter.ts (2.1 KB, 今天)
     │   ├── errors.ts (3.6 KB, 今天)
     │   ├── index.ts (1.8 KB, 今天)
-    │   ├── provider.tsx (5.9 KB, 今天)
+    │   ├── provider.tsx (6.1 KB, 今天)
     ├── hooks/
     │   ├── index.ts (443 B, 今天)
     │   ├── use-app-state.ts (3.2 KB, 今天)
     │   ├── use-contracts.ts (2.7 KB, 今天)
     │   ├── use-file-operations.ts (5.8 KB, 今天)
     │   ├── use-mobile.tsx (584 B, 今天)
-    │   ├── use-permissions.ts (10.2 KB, 今天)
+    │   ├── use-permissions.ts (10.6 KB, 今天)
     │   ├── use-toast.ts (4.2 KB, 今天)
     ├── lib/
     │   └── services/
@@ -304,7 +304,7 @@
     │       ├── contract.types.ts (3.3 KB, 今天)
     │   └── placeholder-images.json (4.3 KB, 昨天)
     │   └── placeholder-images.ts (1.5 KB, 今天)
-    │   └── role-management.ts (11.9 KB, 今天)
+    │   └── role-management.ts (12.6 KB, 今天)
     │   └── types-unified.ts (6.7 KB, 今天)
     │   └── utils.ts (172 B, 今天)
 └── .editorconfig (873 B, 今天)
@@ -314,7 +314,7 @@
 └── apphosting.yaml (277 B, 昨天)
 └── components.json (467 B, 昨天)
 └── firestore.rules (14.9 KB, 昨天)
-└── next.config.ts (645 B, 今天)
+└── next.config.ts (1.1 KB, 今天)
 └── package-lock.json (796.3 KB, 今天)
 └── package.json (4.7 KB, 今天)
 └── postcss.config.mjs (143 B, 昨天)
