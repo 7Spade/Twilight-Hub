@@ -1,6 +1,6 @@
 /**
  * @fileoverview Auth 組件統一導出
- * 提供認證和權限相關組件
+ * 包含所有認證和權限相關組件
  */
 
 // 統一認證提供者
@@ -17,5 +17,5 @@ export {
 // 角色管理組件
 export { RoleManager, PermissionDisplay } from './role-manager';
 
-// 向後兼容，暫時保留
+// 舊版本相容性（逐步棄用）
 export { PermissionGuard as PermissionGuardLegacy } from './permission-guard';

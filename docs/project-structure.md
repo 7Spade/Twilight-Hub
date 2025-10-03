@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午04:43:15
+> 最後更新時間: 2025/10/03 下午05:02:58
 
 ## 目錄結構
 
@@ -52,17 +52,18 @@
     │   │   │   ├── profile/
     │   │   │   │   └── page.tsx
     │   │   ├── spaces/
-    │   │   │   ├── [spaceslug]/
-    │   │   │   │   ├── page.tsx
+    │   │   │   └── [spaceslug]/
+    │   │   │       ├── page.tsx
+    │   │   │   └── page.tsx
+    │   ├── (auth)/
+    │   │   ├── login/
     │   │   │   ├── page.tsx
-    │   │   ├── page.tsx
-    │   ├── login/
-    │   │   ├── page.tsx
-    │   ├── signup/
+    │   │   ├── signup/
+    │   │   │   └── page.tsx
+    │   ├── (public)/
     │   │   ├── page.tsx
     │   ├── favicon.ico
     │   ├── globals.css
-    │   ├── page.tsx
     ├── components/
     │   ├── auth/
     │   │   ├── auth-provider.tsx
@@ -70,6 +71,8 @@
     │   │   ├── permission-guard.tsx
     │   │   ├── role-manager.tsx
     │   ├── features/
+    │   │   ├── contracts/
+    │   │   │   ├── contract-list.tsx
     │   │   ├── organizations/
     │   │   │   ├── components/
     │   │   │   │   ├── roles/
@@ -195,6 +198,7 @@
     │   │   ├── command.tsx
     │   │   ├── dropdown-menu.tsx
     │   │   ├── file-type-icon.tsx
+    │   │   ├── file-upload.tsx
     │   │   ├── form.tsx
     │   │   ├── input.tsx
     │   │   ├── label.tsx
@@ -246,6 +250,7 @@
     ├── hooks/
     │   ├── index.ts
     │   ├── use-app-state.ts
+    │   ├── use-file-operations.ts
     │   ├── use-mobile.tsx
     │   ├── use-permissions.ts
     │   ├── use-toast.ts
@@ -254,6 +259,7 @@
     │       ├── contracts/
     │   └── types/
     │       ├── contracts/
+    │       ├── contract.types.ts
     │   └── placeholder-images.json
     │   └── placeholder-images.ts
     │   └── role-management.ts
