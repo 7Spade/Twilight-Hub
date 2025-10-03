@@ -1,31 +1,25 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:12:18
+> 最後更新時間: 2025/10/03 下午07:34:53
 
 ## 目錄結構
 
 ```
+└── .todo-reports/
+    ├── ai-prompt-2025-10-03.md (39.5 KB, 今天)
+    ├── todo-report-2025-10-03.json (40.3 KB, 今天)
+    ├── todo-report-2025-10-03.md (8 KB, 今天)
 └── docs/
-    ├── Commands/
-    │   ├── 01-core-commands.md (2.9 KB, 今天)
-    │   ├── 02-development-commands.md (4.8 KB, 今天)
-    │   ├── 03-analysis-commands.md (5.5 KB, 今天)
-    │   ├── 04-cleanup-commands.md (6.4 KB, 今天)
-    │   ├── 06-quick-commands.md (5.3 KB, 今天)
-    │   ├── 07-smart-commands.md (6.8 KB, 今天)
-    │   ├── 08-priority-commands.md (7.1 KB, 今天)
-    │   ├── 09-compliance-commands.md (8.4 KB, 今天)
-    │   ├── 10-best-practices.md (6.4 KB, 今天)
-    │   ├── README.md (11.3 KB, 今天)
-    │   ├── TODO-list.md (68.1 KB, 今天)
-    │   ├── TODO.md (23 KB, 今天)
+    ├── TODO/
+    │   ├── todo-automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
     ├── blueprint.md (1.5 KB, 今天)
     ├── natural-language-commands.md (17.7 KB, 今天)
     ├── nextjs15_dev-brief.md (12.2 KB, 今天)
     ├── nextjs15_dev-standard.md (35.5 KB, 今天)
     ├── project-structure.md (17.7 KB, 今天)
+    ├── typescript-migration-guide.md (4.5 KB, 今天)
 └── memory-bank/
     ├── activeContext.md (590 B, 今天)
     ├── creative-architecture-design.md (9.3 KB, 今天)
@@ -40,8 +34,15 @@
     ├── tasks.md (1.9 KB, 今天)
     ├── techContext.md (864 B, 今天)
 └── scripts/
+    ├── .todo-reports/
+    │   ├── ai-prompt-2025-10-03.md (3.7 KB, 今天)
+    │   ├── todo-report-2025-10-03.json (3.6 KB, 今天)
+    │   ├── todo-report-2025-10-03.md (919 B, 今天)
     ├── generate-tree.js (6.5 KB, 今天)
+    ├── generate-tree.ts (7 KB, 今天)
     ├── sync-todos.js (20.7 KB, 今天)
+    ├── todo-automation-toolkit.ts (12.9 KB, 今天)
+    ├── tsconfig.json (556 B, 今天)
 └── src/
     ├── ai/
     │   ├── flows/
@@ -203,7 +204,7 @@
     │   │   │   │   ├── spaces-visibility-badge.tsx (1001 B, 今天)
     │   │   │   ├── hooks/
     │   │   │   │   ├── index.ts (516 B, 今天)
-    │   │   │   │   ├── use-file-actions.ts (6 KB, 今天)
+    │   │   │   │   ├── use-file-actions.ts (5.8 KB, 今天)
     │   │   │   │   ├── use-file-operations.ts (5.6 KB, 今天)
     │   │   │   │   ├── use-space-actions.ts (5 KB, 今天)
     │   │   │   │   ├── use-star-actions.ts (3.4 KB, 今天)
@@ -312,8 +313,8 @@
 └── components.json (467 B, 昨天)
 └── firestore.rules (14.9 KB, 昨天)
 └── next.config.ts (645 B, 今天)
-└── package-lock.json (790.6 KB, 今天)
-└── package.json (4 KB, 今天)
+└── package-lock.json (796.3 KB, 今天)
+└── package.json (4.7 KB, 今天)
 └── postcss.config.mjs (143 B, 昨天)
 └── README.md (119 B, 昨天)
 └── storage.rules (2 KB, 今天)

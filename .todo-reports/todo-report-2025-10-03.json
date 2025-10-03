@@ -1,0 +1,490 @@
+{
+  "summary": {
+    "total": 51,
+    "byPriority": {
+      "P1": 4,
+      "P2": 47
+    },
+    "byType": {
+      "TYPE": 4,
+      "CLEANUP": 27,
+      "BUG": 20
+    },
+    "urgent": 0
+  },
+  "todos": [
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述",
+      "details": [
+        "2) /* TODO: [P1] TYPE 描述 */",
+        "3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)",
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 47,
+      "context": "  \n  // TODO 正則表達式：\n  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述 */",
+      "details": [
+        "3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)",
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 48,
+      "context": "  // TODO 正則表達式：\n  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述 */} (JSX 註解)",
+      "details": [
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 49,
+      "context": "  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};\n"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述",
+      "details": [],
+      "file": "todo-automation-toolkit.ts",
+      "line": 50,
+      "context": "  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};\n\n// ==================== 核心功能 ===================="
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - params 未使用 */",
+      "details": [
+        "Redirect to unified spaces page"
+      ],
+      "file": "..\\src\\app\\(app)\\organizations\\[organizationslug]\\spaces\\page.tsx",
+      "line": 10,
+      "context": "}: {\r\n  params: { organizationslug: string };\r\n}) {\r\n  /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用 */\r\n  // Redirect to unified spaces page\r\n  redirect('/spaces');\r\n}\r\n"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結 */}",
+      "details": [],
+      "file": "..\\src\\app\\layout.tsx",
+      "line": 23,
+      "context": "  return (\r\n    <html lang=\"en\" suppressHydrationWarning>\r\n      <head>\r\n        {/* TODO: [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結 */}\r\n        <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\r\n        <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossOrigin=\"anonymous\" />\r\n        <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\" />\r\n      </head>\r\n      <body className={cn('font-body antialiased', inter.variable)}>\r\n        {children}\r\n        <Toaster />\r\n      </body>\r\n    </html>\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - setDoc 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\adjust-stock-dialog.tsx",
+      "line": 15,
+      "context": "  increment,\r\n  setDoc,\r\n} from 'firebase/firestore';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用 */\r\n\r\nimport { useFirestore } from '@/firebase';\r\nimport { useDialogState } from '@/hooks/use-app-state';\r\nimport { useToast } from '@/hooks/use-toast';\r\nimport {\r\n  Dialog,\r\n  DialogContent,\r\n  DialogDescription,\r\n  DialogHeader,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復非空斷言警告 - 應該先檢查 stockInfo.stockId 是否存在",
+      "details": [],
+      "file": "..\\src\\components\\adjust-stock-dialog.tsx",
+      "line": 131,
+      "context": "          let stockDocRef;\r\n\r\n          if (hasExistingStockRecord) {\r\n              // TODO: [P2] [BUG] [UI] [TODO] 修復非空斷言警告 - 應該先檢查 stockInfo.stockId 是否存在\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n              stockDocRef = doc(collection(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock'));\r\n              const newStockData: Partial<Stock> = {\r\n                  itemId: item.id,\r\n                  warehouseId: warehouseId,\r\n                  quantity: adjustment\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used */",
+      "details": [],
+      "file": "..\\src\\components\\auth\\auth-provider.tsx",
+      "line": 17,
+      "context": "  OrganizationRole,\r\n  SpaceRole \r\n} from '@/lib/types-unified';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used */\r\nimport { roleManagementService } from '@/lib/role-management';\r\n\r\n// Authentication state interface\r\ninterface AuthState {\r\n  userId: string | null;\r\n  userRoleAssignment: UserRoleAssignment | null;\r\n  isLoading: boolean;\r\n  error: string | null;\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\contribution-breakdown-chart.tsx",
+      "line": 11,
+      "context": "\r\nimport { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用 */\r\n\r\ninterface ContributionData {\r\n    subject: string;\r\n    value: number;\r\n}\r\n\r\ninterface ContributionBreakdownChartProps {\r\n    data: ContributionData[];\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Button 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\acceptance\\acceptance-item.tsx",
+      "line": 6,
+      "context": "import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { CheckCircle, Clock, AlertCircle, MessageSquare } from 'lucide-react';\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Comment {\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\acceptance\\initiate-acceptance-flow.tsx",
+      "line": 29,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  onAcceptanceCreated?: (acceptance: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\nexport function InitiateAcceptanceFlow({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onAcceptanceCreated,\r\n}: InitiateAcceptanceFlowProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\contracts\\contract-details.tsx",
+      "line": 11,
+      "context": "import { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用 */\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r\n  description: string;\r\n  type: 'service' | 'license' | 'nda' | 'partnership' | 'employment';\r\n  status: 'draft' | 'pending' | 'active' | 'expired' | 'terminated';\r\n  value?: number;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
+      "line": 3,
+      "context": "'use client';\r\n\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符 */\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用 */\r\nimport { CreateContractDialog } from './create-contract-dialog';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - FileText, DollarSign 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
+      "line": 11,
+      "context": "import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用 */\r\nimport { CreateContractDialog } from './create-contract-dialog';\r\nimport { ContractDetails } from './contract-details';\r\nimport { useState } from 'react';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r\n  description: string;\r\n  type: 'service' | 'license' | 'nda' | 'partnership' | 'employment';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\contracts\\create-contract-dialog.tsx",
+      "line": 36,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  onContractCreated?: (contract: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\nexport function CreateContractDialog({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onContractCreated,\r\n}: CreateContractDialogProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\context-menu.tsx",
+      "line": 7,
+      "context": " * selected item. A separate context menu for the toolbar is also defined here.\r\n */\r\n'use client';\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量 */\r\n\r\nimport React from 'react';\r\nimport {\r\n  DropdownMenu,\r\n  DropdownMenuContent,\r\n  DropdownMenuItem,\r\n  DropdownMenuSeparator,\r\n  DropdownMenuTrigger,\r\n} from '@/components/ui/dropdown-menu';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\deleted-items.tsx",
+      "line": 8,
+      "context": " * file explorer toolbar.\r\n */\r\n'use client';\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量 */\r\n\r\nimport React, { useState } from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Trash2, RotateCcw, Trash, Calendar, User } from 'lucide-react';\r\nimport { cn } from '@/lib/utils';\r\nimport { type FileItem } from './folder-tree';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\detail\\file-detail-view.tsx",
+      "line": 6,
+      "context": " * in a side panel. Integrates with Context7 file viewing libraries.\r\n */\r\n'use client';\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量 */\r\n\r\nimport React, { useState, useEffect } from 'react';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { cn } from '@/lib/utils';\r\nimport { \r\n  Download, \r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\empty-folder-state.tsx",
+      "line": 8,
+      "context": " * for new or empty directories.\r\n */\r\n'use client';\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量 */\r\n\r\nimport React from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UploadCloud, FolderOpen } from 'lucide-react';\r\n\r\ninterface EmptyFolderStateProps {\r\n  onUpload: () => void;\r\n  folderName?: string;\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復語法錯誤 - 第95行缺少分號 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
+      "line": 9,
+      "context": " * and user actions.\r\n */\r\n'use client';\r\n/* TODO: [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號 */\r\n\r\nimport React, { useState, useEffect, useMemo } from 'react';\r\nimport { Card, CardContent } from '@/components/ui/card';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { useFileActions } from '@/components/features/spaces/hooks';\r\nimport { FolderTree, type FileItem } from './folder-tree';\r\nimport { FileTable } from './file-table';\r\nimport { ContextMenu, ToolbarContextMenu } from './context-menu';\r\nimport { Toolbar } from './toolbar';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Input 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\file-explorer\\upload-dialog.tsx",
+      "line": 13,
+      "context": "import { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Input } from '@/components/ui/input';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用 */\r\nimport { Label } from '@/components/ui/label';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { \r\n  Upload, \r\n  X, \r\n  Maximize2, \r\n  Minimize2,\r\n  Monitor,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\issues\\create-issue-form.tsx",
+      "line": 29,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  onIssueCreated?: (issue: any) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\nexport function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }: CreateIssueFormProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r\n\r\n  const form = useForm<CreateIssueFormValues>({\r\n    resolver: zodResolver(createIssueSchema),\r\n    defaultValues: {\r\n      title: '',\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\overview\\recent-activity.tsx",
+      "line": 17,
+      "context": "  };\r\n  description: string;\r\n  timestamp: Date;\r\n  metadata?: Record<string, unknown>; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\ninterface RecentActivityProps {\r\n  spaceId: string;\r\n  activities?: ActivityItem[];\r\n}\r\n\r\nexport function RecentActivity({ spaceId, activities }: RecentActivityProps) {\r\n  /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - spaceId 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\overview\\recent-activity.tsx",
+      "line": 26,
+      "context": "}\r\n\r\nexport function RecentActivity({ spaceId, activities }: RecentActivityProps) {\r\n  /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */\r\n  const defaultActivities: ActivityItem[] = [\r\n    {\r\n      id: '1',\r\n      type: 'file_upload',\r\n      user: { name: 'John Doe', avatar: '/avatars/john.jpg' },\r\n      description: 'uploaded a new file',\r\n      timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago\r\n      metadata: { fileName: 'project-spec.pdf' },\r\n    },\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\overview\\types.ts",
+      "line": 41,
+      "context": "  };\r\n  description: string;\r\n  timestamp: Date;\r\n  metadata?: Record<string, unknown>; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n  status?: 'completed' | 'pending' | 'failed';\r\n}\r\n\r\nexport interface DashboardStats {\r\n  members: number;\r\n  files: number;\r\n  issues: number;\r\n  lastActivity: string;\r\n  storageUsed?: number;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - spaceId 未使用 */",
+      "details": [
+        "Simulate API call"
+      ],
+      "file": "..\\src\\components\\features\\spaces\\components\\participants\\data.ts",
+      "line": 81,
+      "context": "    },\r\n  ];\r\n\r\n  static async getParticipants(spaceId: string): Promise<Participant[]> { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 100));\r\n    return [...this.participants];\r\n  }\r\n\r\n  static async inviteParticipant(\r\n    spaceId: string,\r\n    email: string,\r\n    role: Participant['role'],\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - message 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\participants\\data.ts",
+      "line": 91,
+      "context": "    spaceId: string,\r\n    email: string,\r\n    role: Participant['role'],\r\n    message?: string /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用 */\r\n  ): Promise<Participant> {\r\n    // Simulate API call\r\n    await new Promise(resolve => setTimeout(resolve, 500));\r\n    \r\n    const newParticipant: Participant = {\r\n      id: Date.now().toString(),\r\n      name: email.split('@')[0],\r\n      email,\r\n      role,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Button 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\participants\\view-toggle.tsx",
+      "line": 10,
+      "context": "\r\nimport React from 'react';\r\nimport { Button } from '@/components/ui/button';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */\r\nimport { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';\r\nimport { Table, Grid3X3, List } from 'lucide-react';\r\nimport { ViewMode } from './types';\r\n\r\ninterface ViewToggleProps {\r\n  viewMode: ViewMode['type'];\r\n  onViewModeChange: (mode: ViewMode['type']) => void;\r\n  className?: string;\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Button 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\quality\\checklist.tsx",
+      "line": 5,
+      "context": "\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { CheckCircle, Circle, Clock, AlertCircle } from 'lucide-react';\r\nimport { useState } from 'react';\r\n\r\ninterface ChecklistItem {\r\n  id: string;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\quality\\create-checklist-template.tsx",
+      "line": 33,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  onTemplateCreated?: (template: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\nexport function CreateChecklistTemplate({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onTemplateCreated,\r\n}: CreateChecklistTemplateProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - spaceId 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\quality\\quality-dashboard.tsx",
+      "line": 28,
+      "context": "}\r\n\r\nexport function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {\r\n  /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用 */\r\n  const defaultMetrics: QualityMetrics = {\r\n    overallScore: 85,\r\n    completedChecks: 12,\r\n    totalChecks: 15,\r\n    criticalIssues: 2,\r\n    warnings: 5,\r\n    trends: {\r\n      scoreChange: 5,\r\n      completionRate: 80,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\report\\create-report-dialog.tsx",
+      "line": 36,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  onReportCreated?: (report: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n}\r\n\r\nexport function CreateReportDialog({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onReportCreated,\r\n}: CreateReportDialogProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\report\\report-viewer.tsx",
+      "line": 4,
+      "context": "'use client';\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用 */\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { Download, Calendar, User, FileText, BarChart3 } from 'lucide-react';\r\n\r\ninterface Report {\r\n  id: string;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - cn 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\components\\spaces-list-view.tsx",
+      "line": 28,
+      "context": "import { Globe, Lock, Search, Filter } from 'lucide-react';\r\nimport { Skeleton } from '@/components/ui/skeleton';\r\nimport { cn } from '@/lib/utils';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用 */\r\nimport {\r\n  Tabs,\r\n  TabsContent,\r\n  TabsList,\r\n  TabsTrigger,\r\n} from '@/components/ui/tabs';\r\nimport { SpaceVisibilityBadge } from '@/components/features/spaces/components/spaces-visibility-badge';\r\nimport { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';\r\nimport { type Account, type Space } from '@/lib/types-unified';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Space 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\features\\spaces\\hooks\\use-star-actions.ts",
+      "line": 14,
+      "context": "import { useToast } from '@/hooks/use-toast';\r\nimport { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';\r\nimport { type Space } from '@/lib/types-unified';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用 */\r\n\r\ninterface UseStarActionsReturn {\r\n  // Actions\r\n  starSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  unstarSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  toggleStar: (spaceId: string, userId: string, isStarred: boolean) => Promise<boolean>;\r\n  \r\n  // State\r\n  isLoading: boolean;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - doc 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\follower-list.tsx",
+      "line": 12,
+      "context": "import React, { useMemo } from 'react';\r\nimport Link from 'next/link';\r\nimport { collection, doc, query, where, documentId } from 'firebase/firestore';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用 */\r\n\r\nimport { useFirestore, useCollection } from '@/firebase';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Button } from '@/components/ui/button';\r\nimport {\r\n  Card,\r\n  CardDescription,\r\n  CardFooter,\r\n  CardHeader,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Skeleton 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\forms\\form-card.tsx",
+      "line": 19,
+      "context": "  CardFooter,\r\n} from '@/components/ui/card';\r\nimport { Skeleton } from '@/components/ui/skeleton';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用 */\r\nimport { Form } from '@/components/ui/form';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UseFormReturn, FieldValues } from 'react-hook-form';\r\nimport { FormCardSkeleton } from '../form-card-skeleton';\r\n\r\ninterface FormCardProps<T extends FieldValues> {\r\n  title: string;\r\n  description: string;\r\n  isLoading: boolean;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的變量 - weekDays 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\github-heat-map.tsx",
+      "line": 39,
+      "context": "  return 'bg-primary';\r\n};\r\n\r\nconst weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用 */\r\n\r\nexport const GitHubHeatMap: React.FC<HeatMapProps> = ({\r\n  data,\r\n  endDate = new Date(),\r\n  numDays = 365,\r\n}) => {\r\n  const startDate = addDays(endDate, -numDays + 1);\r\n  const firstDay = startOfWeek(startDate);\r\n\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\layout\\sidebar.tsx",
+      "line": 16,
+      "context": "  Settings,\n} from \"lucide-react\";\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@/components/ui/tooltip\";\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用 */\n\nimport { cn } from \"@/lib/utils\";\nimport { Logo } from \"../logo\";\nimport { Nav } from \"./nav\";\nimport { type NavItem } from \"./navigation\";\nimport { TeamSwitcher, type Team } from \"./team-switcher\";\n\nexport function Sidebar({\n  isCollapsed,"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\ui\\file-type-icon.tsx",
+      "line": 20,
+      "context": "  FileSpreadsheet,\n  Presentation,\n  FileImage,\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用 */\n  FileVideo,\n  FileAudio,\n  FileCode,\n  FileArchive\n} from 'lucide-react';\n\nexport interface FileTypeIconProps {\n  fileName: string;\n  contentType?: string;"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤 */}",
+      "details": [],
+      "file": "..\\src\\components\\ui\\file-type-icon.tsx",
+      "line": 197,
+      "context": "              <div className=\"animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-gray-600\"></div>\n            </div>\n          )}\n          {/* TODO: [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤 */}\n          <img\n            src={thumbnailUrl}\n            alt={fileName}\n            className=\"w-full h-full object-cover\"\n            onLoad={handleThumbnailLoad}\n            onError={handleThumbnailError}\n            style={{ display: isLoading ? 'none' : 'block' }}\n          />\n        </div>"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用 */",
+      "details": [],
+      "file": "..\\src\\components\\ui\\file-upload.tsx",
+      "line": 27,
+      "context": "  CheckCircle,\r\n  AlertCircle \r\n} from 'lucide-react';\r\n/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用 */\r\nimport { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';\r\nimport { ContractDocument } from '@/lib/types/contract.types';\r\n\r\n// Helper functions for file validation (not hooks)\r\nconst isFileTypeSupported = (fileName: string): boolean => {\r\n  const supportedTypes = ['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png', '.gif'];\r\n  const extension = fileName.toLowerCase().substring(fileName.lastIndexOf('.'));\r\n  return supportedTypes.includes(extension);\r\n};\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - err 未使用 */",
+      "details": [],
+      "file": "..\\src\\firebase\\firestore\\use-collection.tsx",
+      "line": 69,
+      "context": "        setError(null);\r\n        setIsLoading(false);\r\n      },\r\n      (err: FirestoreError) => { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用 */\r\n        let path: string;\r\n        if (targetRefOrQuery.type === 'collection') {\r\n          path = (targetRefOrQuery as CollectionReference).path;\r\n        } else {\r\n          // A simplified way to get path from a query. \r\n          // Note: This might not represent complex queries perfectly but is good for most cases.\r\n          path = (targetRefOrQuery as Query)._query.path.toString();\r\n        }\r\n\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - err 未使用 */",
+      "details": [],
+      "file": "..\\src\\firebase\\firestore\\use-doc.tsx",
+      "line": 74,
+      "context": "        setError(null); // Clear any previous error on successful snapshot\r\n        setIsLoading(false); // Loading is complete\r\n      },\r\n      (err: FirestoreError) => { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用 */\r\n        const contextualError = new FirestorePermissionError({\r\n          operation: 'get',\r\n          path: docRef.path,\r\n        })\r\n        \r\n        console.error(\"useDoc error:\", contextualError);\r\n        setError(contextualError)\r\n        setData(null)\r\n        setIsLoading(false)\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\hooks\\use-app-state.ts",
+      "line": 12,
+      "context": "\r\ninterface DialogState {\r\n  type: string | null;\r\n  data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n  isOpen: boolean;\r\n}\r\n\r\ninterface AppState {\r\n  chat: ChatState;\r\n  dialog: DialogState;\r\n}\r\n\r\ninterface AppStateActions {\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\hooks\\use-app-state.ts",
+      "line": 26,
+      "context": "  closeChat: () => void;\r\n  toggleChat: () => void;\r\n  toggleMinimizeChat: () => void;\r\n  openDialog: (type: string, data?: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n  closeDialog: () => void;\r\n}\r\n\r\ninterface AppStateContext extends AppState, AppStateActions {}\r\n\r\nconst AppStateContext = createContext<AppStateContext | undefined>(undefined);\r\n\r\nexport interface AppStateProviderProps {\r\n  children: ReactNode;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\hooks\\use-app-state.ts",
+      "line": 70,
+      "context": "    setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));\r\n  }, []);\r\n\r\n  const openDialog = useCallback((type: string, data: unknown = {}) => { /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n    setDialog({ type, data, isOpen: true });\r\n  }, []);\r\n\r\n  const closeDialog = useCallback(() => {\r\n    setDialog({ type: null, data: {}, isOpen: false });\r\n  }, []);\r\n\r\n  const value: AppStateContext = {\r\n    chat,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的參數 - path 未使用 */",
+      "details": [],
+      "file": "..\\src\\hooks\\use-file-operations.ts",
+      "line": 88,
+      "context": "      path,\r\n    }: {\r\n      document: ContractDocument;\r\n      path: string; /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用 */\r\n    }) => {\r\n      const { storage } = getSdks();\r\n      \r\n      // 從 Firebase Storage 刪除文件\r\n      const fileRef = ref(storage, document.url);\r\n      await deleteObject(fileRef);\r\n\r\n      return document.id;\r\n    },\r"
+    },
+    {
+      "priority": "P2",
+      "type": "CLEANUP",
+      "description": "清理未使用的變量 - actionTypes 僅用作類型 */",
+      "details": [],
+      "file": "..\\src\\hooks\\use-toast.ts",
+      "line": 21,
+      "context": "  action?: ToastActionElement\r\n}\r\n\r\nconst actionTypes = { /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型 */\r\n  ADD_TOAST: \"ADD_TOAST\",\r\n  UPDATE_TOAST: \"UPDATE_TOAST\",\r\n  DISMISS_TOAST: \"DISMISS_TOAST\",\r\n  REMOVE_TOAST: \"REMOVE_TOAST\",\r\n} as const\r\n\r\nlet count = 0\r\n\r\nfunction genId() {\r"
+    },
+    {
+      "priority": "P2",
+      "type": "BUG",
+      "description": "修復 TypeScript any 類型警告 */",
+      "details": [],
+      "file": "..\\src\\lib\\types-unified.ts",
+      "line": 245,
+      "context": "  };\r\n  dialog: {\r\n    type: string | null;\r\n    data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */\r\n    isOpen: boolean;\r\n  };\r\n}\r\n\r\nexport interface AuthState {\r\n  userId: string | null;\r\n  userRoleAssignment: UserRoleAssignment | null;\r\n  isLoading: boolean;\r\n  error: string | null;\r"
+    }
+  ],
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 51\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+}

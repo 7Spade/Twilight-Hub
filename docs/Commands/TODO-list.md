@@ -1,18 +1,18 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:12:19
+> 最後更新時間: 2025/10/03 下午07:34:54
 
 ## 📊 統計信息
 
-- **總計**: 196 個 TODO
-- **高優先級**: 4 個
-- **中優先級**: 192 個  
+- **總計**: 261 個 TODO
+- **高優先級**: 42 個
+- **中優先級**: 219 個  
 - **低優先級**: 0 個
 
 ## 📈 狀態分布
 
-- **待處理**: 196 個
+- **待處理**: 261 個
 - **進行中**: 0 個
 - **已完成**: 0 個
 - **被阻塞**: 0 個
@@ -27,86 +27,149 @@
 > 
 > 請在處理 TODO 後添加適當的狀態標記，避免重複累積。
 
-## 🔴 高優先級 (4 個)
+## 🔴 高優先級 (42 個)
 
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:21` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:22` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:27` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:34` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:39` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:50` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:59` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:19` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:20` ⏳ [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:26` ⏳ [P1] TYPE 描述
 - [ ] `docs/natural-language-commands.md:554` ⏳ `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` ⏳ `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
 - [ ] `docs/natural-language-commands.md:558` ⏳ `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤
 - [ ] `docs/natural-language-commands.md:559` ⏳ `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反
+- [ ] `docs/TODO/todo-automation-guide.md:284` ⏳ [P1] TEST app/api/users/route.ts
+- [ ] `docs/TODO/todo-automation-guide.md:805` ⏳ [P1] FEAT 實作使用者個人資料編輯
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:18` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:19` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:24` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:31` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:36` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:47` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:56` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:16` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:17` ⏳ [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:23` ⏳ [P1] TYPE 描述
+- [ ] `scripts/todo-automation-toolkit.ts:48` ⏳ [P1] TYPE 描述
+- [ ] `scripts/todo-automation-toolkit.ts:49` ⏳ [P1] TYPE 描述
 
-## 🟡 中優先級 (192 個)
+## 🟡 中優先級 (219 個)
 
-- [ ] `docs/Commands/04-cleanup-commands.md:216` ⏳ 移除未使用的導入
-- [ ] `docs/Commands/04-cleanup-commands.md:217` ⏳ 移除未使用的變數
-- [ ] `docs/Commands/04-cleanup-commands.md:218` ⏳ 移除未使用的參數
-- [ ] `docs/Commands/04-cleanup-commands.md:219` ⏳ 移除重複的代碼
-- [ ] `docs/Commands/04-cleanup-commands.md:220` ⏳ 統一代碼風格
-- [ ] `docs/Commands/04-cleanup-commands.md:221` ⏳ 規範命名約定
-- [ ] `docs/Commands/04-cleanup-commands.md:222` ⏳ 標準化註釋格式
-- [ ] `docs/Commands/04-cleanup-commands.md:223` ⏳ 優化結構布局
-- [ ] `docs/Commands/04-cleanup-commands.md:226` ⏳ 格式化所有文件
-- [ ] `docs/Commands/04-cleanup-commands.md:227` ⏳ 整理目錄結構
-- [ ] `docs/Commands/04-cleanup-commands.md:228` ⏳ 清理模組依賴
-- [ ] `docs/Commands/04-cleanup-commands.md:229` ⏳ 移除空文件
-- [ ] `docs/Commands/04-cleanup-commands.md:230` ⏳ 統一文件命名
-- [ ] `docs/Commands/04-cleanup-commands.md:231` ⏳ 優化文件組織
-- [ ] `docs/Commands/04-cleanup-commands.md:232` ⏳ 清理臨時文件
-- [ ] `docs/Commands/04-cleanup-commands.md:233` ⏳ 更新文件文檔
-- [ ] `docs/Commands/04-cleanup-commands.md:236` ⏳ 清理構建產物
-- [ ] `docs/Commands/04-cleanup-commands.md:237` ⏳ 清理緩存文件
-- [ ] `docs/Commands/04-cleanup-commands.md:238` ⏳ 清理日誌文件
-- [ ] `docs/Commands/04-cleanup-commands.md:239` ⏳ 清理測試產物
-- [ ] `docs/Commands/04-cleanup-commands.md:240` ⏳ 清理依賴冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:241` ⏳ 清理配置冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:242` ⏳ 清理文檔冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:243` ⏳ 清理版本控制冗餘
-- [ ] `docs/Commands/06-quick-commands.md:272` ⏳ 確認指令目標明確
-- [ ] `docs/Commands/06-quick-commands.md:273` ⏳ 確認操作範圍適當
-- [ ] `docs/Commands/06-quick-commands.md:274` ⏳ 確認不會破壞現有功能
-- [ ] `docs/Commands/06-quick-commands.md:275` ⏳ 確認有適當的回滾方案
-- [ ] `docs/Commands/06-quick-commands.md:278` ⏳ 監控操作進度
-- [ ] `docs/Commands/06-quick-commands.md:279` ⏳ 檢查錯誤和警告
-- [ ] `docs/Commands/06-quick-commands.md:280` ⏳ 驗證中間結果
-- [ ] `docs/Commands/06-quick-commands.md:281` ⏳ 記錄操作日誌
-- [ ] `docs/Commands/06-quick-commands.md:284` ⏳ 驗證操作結果
-- [ ] `docs/Commands/06-quick-commands.md:285` ⏳ 檢查功能完整性
-- [ ] `docs/Commands/06-quick-commands.md:286` ⏳ 確認性能影響
-- [ ] `docs/Commands/06-quick-commands.md:287` ⏳ 更新相關文檔
-- [ ] `docs/Commands/07-smart-commands.md:246` ⏳ 確認上下文信息完整
-- [ ] `docs/Commands/07-smart-commands.md:247` ⏳ 確認目標明確具體
-- [ ] `docs/Commands/07-smart-commands.md:248` ⏳ 確認範圍適當合理
-- [ ] `docs/Commands/07-smart-commands.md:249` ⏳ 確認有學習和適應能力
-- [ ] `docs/Commands/07-smart-commands.md:252` ⏳ 監控智能決策過程
-- [ ] `docs/Commands/07-smart-commands.md:253` ⏳ 檢查模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:254` ⏳ 驗證批量操作效果
-- [ ] `docs/Commands/07-smart-commands.md:255` ⏳ 記錄學習和改進過程
-- [ ] `docs/Commands/07-smart-commands.md:258` ⏳ 評估智能指令效果
-- [ ] `docs/Commands/07-smart-commands.md:259` ⏳ 分析模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:260` ⏳ 檢查批量操作效率
-- [ ] `docs/Commands/07-smart-commands.md:261` ⏳ 更新學習和適應策略
-- [ ] `docs/Commands/08-priority-commands.md:294` ⏳ 確認優先級標記正確
-- [ ] `docs/Commands/08-priority-commands.md:295` ⏳ 確認類型標記適當
-- [ ] `docs/Commands/08-priority-commands.md:296` ⏳ 確認影響範圍評估
-- [ ] `docs/Commands/08-priority-commands.md:297` ⏳ 確認緊急程度判斷
-- [ ] `docs/Commands/08-priority-commands.md:300` ⏳ 監控優先級執行順序
-- [ ] `docs/Commands/08-priority-commands.md:301` ⏳ 檢查任務完成進度
-- [ ] `docs/Commands/08-priority-commands.md:302` ⏳ 驗證優先級調整合理性
-- [ ] `docs/Commands/08-priority-commands.md:303` ⏳ 記錄優先級變更原因
-- [ ] `docs/Commands/08-priority-commands.md:306` ⏳ 評估優先級評估準確性
-- [ ] `docs/Commands/08-priority-commands.md:307` ⏳ 分析任務執行效率
-- [ ] `docs/Commands/08-priority-commands.md:308` ⏳ 檢查優先級管理效果
-- [ ] `docs/Commands/08-priority-commands.md:309` ⏳ 優化優先級評估標準
-- [ ] `docs/Commands/09-compliance-commands.md:268` ⏳ `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
-- [ ] `docs/Commands/09-compliance-commands.md:266` ⏳ 項目格式
-- [ ] `docs/Commands/TODO.md:491` ⏳ 檢查 P0 任務狀態
-- [ ] `docs/Commands/TODO.md:492` ⏳ 更新進行中任務進度
-- [ ] `docs/Commands/TODO.md:493` ⏳ 識別新的阻塞問題
-- [ ] `docs/Commands/TODO.md:494` ⏳ 調整任務優先級
-- [ ] `docs/Commands/TODO.md:497` ⏳ 統計完成任務數量
-- [ ] `docs/Commands/TODO.md:498` ⏳ 分析任務完成時間
-- [ ] `docs/Commands/TODO.md:499` ⏳ 識別重複出現的問題
-- [ ] `docs/Commands/TODO.md:500` ⏳ 優化工作流程
-- [ ] `docs/Commands/TODO.md:1` ⏳ 管理系統
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:73` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:82` ⏳ [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:91` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:109` ⏳ [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:118` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:127` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:136` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:145` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:163` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:172` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:181` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:190` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:199` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:208` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:217` ⏳ [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:226` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:235` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:253` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:262` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:273` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:282` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:291` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:300` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:309` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:318` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:327` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:336` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:345` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:354` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:363` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:372` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:381` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:390` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:399` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:408` ⏳ [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:417` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:426` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:435` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:444` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:453` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:462` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:471` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:480` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:489` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:70` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:79` ⏳ [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/todo-report-2025-10-03.json:88` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:106` ⏳ [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/todo-report-2025-10-03.json:115` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:124` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:133` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:142` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:160` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:169` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:178` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:187` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:196` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:205` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:214` ⏳ [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/todo-report-2025-10-03.json:223` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:232` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:250` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:259` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:270` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:279` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:288` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:297` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:306` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:315` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:324` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:333` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:342` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:351` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:360` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:369` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:378` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:387` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:396` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:405` ⏳ [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/todo-report-2025-10-03.json:414` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:423` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:432` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:441` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:450` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:459` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:468` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:477` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/todo-report-2025-10-03.json:486` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `docs/natural-language-commands.md:522` ⏳ `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:562` ⏳ `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
 - [ ] `docs/natural-language-commands.md:563` ⏳ `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
@@ -141,10 +204,12 @@
 - [ ] `docs/nextjs15_dev-standard.md:1329` ⏳ Firebase Security Rules 已部署
 - [ ] `docs/nextjs15_dev-standard.md:1330` ⏳ 錯誤追蹤已設置
 - [ ] `docs/nextjs15_dev-standard.md:1331` ⏳ 性能指標監控已配置
+- [ ] `docs/TODO/todo-automation-guide.md:472` ⏳ 詳情
 - [ ] `scripts/sync-todos.js:107` ⏳ 正則表達式模式 - 改進版本，避免重複匹配
 - [ ] `scripts/sync-todos.js:127` ⏳ 狀態標記模式
 - [ ] `scripts/sync-todos.js:718` ⏳ 內容
 - [ ] `scripts/sync-todos.js:720` ⏳ 內容
+- [ ] `scripts/todo-automation-toolkit.ts:45` ⏳ 正則表達式：
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
 - [ ] `src/components/auth/auth-provider.tsx:139` ⏳ Fetch user role assignment from server
 - [ ] `src/components/auth/auth-provider.tsx:17` ⏳ [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
@@ -231,8 +296,46 @@
 
 ## 🏷️ 按分類分組
 
-### BUG (19 個)
+### BUG (57 個)
 
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:82` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:136` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:172` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:181` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:190` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:199` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:208` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:217` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:235` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:262` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:309` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:327` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:408` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:444` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:453` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:462` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:489` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:79` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/todo-report-2025-10-03.json:133` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/todo-report-2025-10-03.json:169` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:178` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:187` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:196` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:205` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:214` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/todo-report-2025-10-03.json:232` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:259` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:306` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:324` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:405` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/todo-report-2025-10-03.json:441` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:450` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:459` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:486` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `docs/natural-language-commands.md:554` ⏳ 🔴 `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` ⏳ 🔴 `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
 - [ ] `docs/natural-language-commands.md:558` ⏳ 🔴 `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤
@@ -253,8 +356,66 @@
 - [ ] `src/hooks/use-app-state.ts:70` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/lib/types-unified.ts:245` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
-### CLEANUP (26 個)
+### CLEANUP (84 個)
 
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:73` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:91` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:109` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:118` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:127` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:145` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:163` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:226` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:253` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:273` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:282` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:291` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:300` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:318` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:336` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:345` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:354` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:363` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:372` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:381` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:390` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:399` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:417` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:426` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:435` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:471` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:480` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/todo-report-2025-10-03.json:70` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:88` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:106` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/todo-report-2025-10-03.json:115` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:124` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:142` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:160` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:223` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:250` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:270` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:279` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:288` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:297` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:315` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:333` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:342` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:351` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:360` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:369` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:378` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:387` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:396` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:414` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:423` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:432` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:468` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:477` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
 - [ ] `docs/natural-language-commands.md:562` ⏳ 🟡 `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
 - [ ] `docs/natural-language-commands.md:563` ⏳ 🟡 `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
@@ -287,8 +448,102 @@
 - [ ] `docs/natural-language-commands.md:554` ⏳ 🔴 `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` ⏳ 🔴 `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
 
-### UI (43 個)
+### UI (137 個)
 
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:73` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:91` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:109` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:118` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:127` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:136` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:145` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:163` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:172` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:181` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:190` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:199` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:208` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:217` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:226` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:235` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:253` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:262` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:273` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:282` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:291` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:300` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:309` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:318` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:327` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:336` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:345` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:354` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:363` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:372` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:381` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:390` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:399` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:408` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:417` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:426` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:435` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:444` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:453` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:462` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:471` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:480` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:489` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:70` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:88` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:106` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/todo-report-2025-10-03.json:115` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:124` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:133` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:142` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:160` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:169` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:178` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:187` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:196` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:205` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:214` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/todo-report-2025-10-03.json:223` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:232` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:250` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:259` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:270` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:279` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:288` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:297` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:306` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:315` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:324` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:333` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:342` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:351` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:360` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:369` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:378` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:387` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:396` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:405` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/todo-report-2025-10-03.json:414` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:423` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:432` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:441` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:450` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:459` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:468` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:477` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/todo-report-2025-10-03.json:486` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `docs/natural-language-commands.md:558` ⏳ 🔴 `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤
 - [ ] `docs/natural-language-commands.md:559` ⏳ 🔴 `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反
 - [ ] `docs/natural-language-commands.md:562` ⏳ 🟡 `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
@@ -333,79 +588,30 @@
 - [ ] `src/hooks/use-toast.ts:21` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
 - [ ] `src/lib/types-unified.ts:245` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
-### 未分類 (151 個)
+### CONFIG (2 個)
 
-- [ ] `docs/Commands/04-cleanup-commands.md:216` ⏳ 🟡 移除未使用的導入
-- [ ] `docs/Commands/04-cleanup-commands.md:217` ⏳ 🟡 移除未使用的變數
-- [ ] `docs/Commands/04-cleanup-commands.md:218` ⏳ 🟡 移除未使用的參數
-- [ ] `docs/Commands/04-cleanup-commands.md:219` ⏳ 🟡 移除重複的代碼
-- [ ] `docs/Commands/04-cleanup-commands.md:220` ⏳ 🟡 統一代碼風格
-- [ ] `docs/Commands/04-cleanup-commands.md:221` ⏳ 🟡 規範命名約定
-- [ ] `docs/Commands/04-cleanup-commands.md:222` ⏳ 🟡 標準化註釋格式
-- [ ] `docs/Commands/04-cleanup-commands.md:223` ⏳ 🟡 優化結構布局
-- [ ] `docs/Commands/04-cleanup-commands.md:226` ⏳ 🟡 格式化所有文件
-- [ ] `docs/Commands/04-cleanup-commands.md:227` ⏳ 🟡 整理目錄結構
-- [ ] `docs/Commands/04-cleanup-commands.md:228` ⏳ 🟡 清理模組依賴
-- [ ] `docs/Commands/04-cleanup-commands.md:229` ⏳ 🟡 移除空文件
-- [ ] `docs/Commands/04-cleanup-commands.md:230` ⏳ 🟡 統一文件命名
-- [ ] `docs/Commands/04-cleanup-commands.md:231` ⏳ 🟡 優化文件組織
-- [ ] `docs/Commands/04-cleanup-commands.md:232` ⏳ 🟡 清理臨時文件
-- [ ] `docs/Commands/04-cleanup-commands.md:233` ⏳ 🟡 更新文件文檔
-- [ ] `docs/Commands/04-cleanup-commands.md:236` ⏳ 🟡 清理構建產物
-- [ ] `docs/Commands/04-cleanup-commands.md:237` ⏳ 🟡 清理緩存文件
-- [ ] `docs/Commands/04-cleanup-commands.md:238` ⏳ 🟡 清理日誌文件
-- [ ] `docs/Commands/04-cleanup-commands.md:239` ⏳ 🟡 清理測試產物
-- [ ] `docs/Commands/04-cleanup-commands.md:240` ⏳ 🟡 清理依賴冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:241` ⏳ 🟡 清理配置冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:242` ⏳ 🟡 清理文檔冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:243` ⏳ 🟡 清理版本控制冗餘
-- [ ] `docs/Commands/06-quick-commands.md:272` ⏳ 🟡 確認指令目標明確
-- [ ] `docs/Commands/06-quick-commands.md:273` ⏳ 🟡 確認操作範圍適當
-- [ ] `docs/Commands/06-quick-commands.md:274` ⏳ 🟡 確認不會破壞現有功能
-- [ ] `docs/Commands/06-quick-commands.md:275` ⏳ 🟡 確認有適當的回滾方案
-- [ ] `docs/Commands/06-quick-commands.md:278` ⏳ 🟡 監控操作進度
-- [ ] `docs/Commands/06-quick-commands.md:279` ⏳ 🟡 檢查錯誤和警告
-- [ ] `docs/Commands/06-quick-commands.md:280` ⏳ 🟡 驗證中間結果
-- [ ] `docs/Commands/06-quick-commands.md:281` ⏳ 🟡 記錄操作日誌
-- [ ] `docs/Commands/06-quick-commands.md:284` ⏳ 🟡 驗證操作結果
-- [ ] `docs/Commands/06-quick-commands.md:285` ⏳ 🟡 檢查功能完整性
-- [ ] `docs/Commands/06-quick-commands.md:286` ⏳ 🟡 確認性能影響
-- [ ] `docs/Commands/06-quick-commands.md:287` ⏳ 🟡 更新相關文檔
-- [ ] `docs/Commands/07-smart-commands.md:246` ⏳ 🟡 確認上下文信息完整
-- [ ] `docs/Commands/07-smart-commands.md:247` ⏳ 🟡 確認目標明確具體
-- [ ] `docs/Commands/07-smart-commands.md:248` ⏳ 🟡 確認範圍適當合理
-- [ ] `docs/Commands/07-smart-commands.md:249` ⏳ 🟡 確認有學習和適應能力
-- [ ] `docs/Commands/07-smart-commands.md:252` ⏳ 🟡 監控智能決策過程
-- [ ] `docs/Commands/07-smart-commands.md:253` ⏳ 🟡 檢查模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:254` ⏳ 🟡 驗證批量操作效果
-- [ ] `docs/Commands/07-smart-commands.md:255` ⏳ 🟡 記錄學習和改進過程
-- [ ] `docs/Commands/07-smart-commands.md:258` ⏳ 🟡 評估智能指令效果
-- [ ] `docs/Commands/07-smart-commands.md:259` ⏳ 🟡 分析模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:260` ⏳ 🟡 檢查批量操作效率
-- [ ] `docs/Commands/07-smart-commands.md:261` ⏳ 🟡 更新學習和適應策略
-- [ ] `docs/Commands/08-priority-commands.md:294` ⏳ 🟡 確認優先級標記正確
-- [ ] `docs/Commands/08-priority-commands.md:295` ⏳ 🟡 確認類型標記適當
-- [ ] `docs/Commands/08-priority-commands.md:296` ⏳ 🟡 確認影響範圍評估
-- [ ] `docs/Commands/08-priority-commands.md:297` ⏳ 🟡 確認緊急程度判斷
-- [ ] `docs/Commands/08-priority-commands.md:300` ⏳ 🟡 監控優先級執行順序
-- [ ] `docs/Commands/08-priority-commands.md:301` ⏳ 🟡 檢查任務完成進度
-- [ ] `docs/Commands/08-priority-commands.md:302` ⏳ 🟡 驗證優先級調整合理性
-- [ ] `docs/Commands/08-priority-commands.md:303` ⏳ 🟡 記錄優先級變更原因
-- [ ] `docs/Commands/08-priority-commands.md:306` ⏳ 🟡 評估優先級評估準確性
-- [ ] `docs/Commands/08-priority-commands.md:307` ⏳ 🟡 分析任務執行效率
-- [ ] `docs/Commands/08-priority-commands.md:308` ⏳ 🟡 檢查優先級管理效果
-- [ ] `docs/Commands/08-priority-commands.md:309` ⏳ 🟡 優化優先級評估標準
-- [ ] `docs/Commands/09-compliance-commands.md:268` ⏳ 🟡 `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
-- [ ] `docs/Commands/09-compliance-commands.md:266` ⏳ 🟡 項目格式
-- [ ] `docs/Commands/TODO.md:491` ⏳ 🟡 檢查 P0 任務狀態
-- [ ] `docs/Commands/TODO.md:492` ⏳ 🟡 更新進行中任務進度
-- [ ] `docs/Commands/TODO.md:493` ⏳ 🟡 識別新的阻塞問題
-- [ ] `docs/Commands/TODO.md:494` ⏳ 🟡 調整任務優先級
-- [ ] `docs/Commands/TODO.md:497` ⏳ 🟡 統計完成任務數量
-- [ ] `docs/Commands/TODO.md:498` ⏳ 🟡 分析任務完成時間
-- [ ] `docs/Commands/TODO.md:499` ⏳ 🟡 識別重複出現的問題
-- [ ] `docs/Commands/TODO.md:500` ⏳ 🟡 優化工作流程
-- [ ] `docs/Commands/TODO.md:1` ⏳ 🟡 管理系統
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:82` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/todo-report-2025-10-03.json:79` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+
+### 未分類 (120 個)
+
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:21` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:22` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:27` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:34` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:39` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:50` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:59` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:19` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:20` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:26` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `docs/natural-language-commands.md:522` ⏳ 🟡 `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:392` ⏳ 🟡 生成指令 (TODO Generation)
 - [ ] `docs/natural-language-commands.md:520` ⏳ 🟡 項目格式
@@ -438,10 +644,33 @@
 - [ ] `docs/nextjs15_dev-standard.md:1329` ⏳ 🟡 Firebase Security Rules 已部署
 - [ ] `docs/nextjs15_dev-standard.md:1330` ⏳ 🟡 錯誤追蹤已設置
 - [ ] `docs/nextjs15_dev-standard.md:1331` ⏳ 🟡 性能指標監控已配置
+- [ ] `docs/TODO/todo-automation-guide.md:284` ⏳ 🔴 [P1] TEST app/api/users/route.ts
+- [ ] `docs/TODO/todo-automation-guide.md:472` ⏳ 🟡 詳情
+- [ ] `docs/TODO/todo-automation-guide.md:805` ⏳ 🔴 [P1] FEAT 實作使用者個人資料編輯
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:18` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:19` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:31` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:36` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:47` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:56` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:16` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:17` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:23` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `scripts/sync-todos.js:107` ⏳ 🟡 正則表達式模式 - 改進版本，避免重複匹配
 - [ ] `scripts/sync-todos.js:127` ⏳ 🟡 狀態標記模式
 - [ ] `scripts/sync-todos.js:718` ⏳ 🟡 內容
 - [ ] `scripts/sync-todos.js:720` ⏳ 🟡 內容
+- [ ] `scripts/todo-automation-toolkit.ts:45` ⏳ 🟡 正則表達式：
+- [ ] `scripts/todo-automation-toolkit.ts:48` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/todo-automation-toolkit.ts:49` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `src/components/auth/auth-provider.tsx:139` ⏳ 🟡 Fetch user role assignment from server
 - [ ] `src/components/auth/permission-guard.tsx:18` ⏳ 🟡 Implement permission checking logic
 - [ ] `src/components/auth/role-manager.tsx:97` ⏳ 🟡 Implement actual API call
@@ -489,6 +718,71 @@
 
 ## 📁 按文件類型分組
 
+### JSON (62 個)
+
+- [ ] `.todo-reports/todo-report-2025-10-03.json:21` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:22` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:27` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:34` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:39` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:50` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:59` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.json:70` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:79` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/todo-report-2025-10-03.json:88` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:106` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/todo-report-2025-10-03.json:115` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:124` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:133` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:142` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/todo-report-2025-10-03.json:151` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:160` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:169` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:178` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:187` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:196` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:205` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/todo-report-2025-10-03.json:214` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/todo-report-2025-10-03.json:223` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:232` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:241` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:250` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:259` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:270` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:279` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:288` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:297` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:306` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:315` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:324` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:333` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:342` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:351` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:360` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:369` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:378` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:387` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:396` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:405` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/todo-report-2025-10-03.json:414` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:423` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:432` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:441` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:450` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:459` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.json:468` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/todo-report-2025-10-03.json:477` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/todo-report-2025-10-03.json:486` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:18` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:19` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:31` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:36` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:47` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.json:56` ⏳ 🔴 [P1] TYPE 描述
+
 ### JavaScript (4 個)
 
 - [ ] `scripts/sync-todos.js:107` ⏳ 🟡 正則表達式模式 - 改進版本，避免重複匹配
@@ -498,77 +792,64 @@
 
 ### Markdown (120 個)
 
-- [ ] `docs/Commands/04-cleanup-commands.md:216` ⏳ 🟡 移除未使用的導入
-- [ ] `docs/Commands/04-cleanup-commands.md:217` ⏳ 🟡 移除未使用的變數
-- [ ] `docs/Commands/04-cleanup-commands.md:218` ⏳ 🟡 移除未使用的參數
-- [ ] `docs/Commands/04-cleanup-commands.md:219` ⏳ 🟡 移除重複的代碼
-- [ ] `docs/Commands/04-cleanup-commands.md:220` ⏳ 🟡 統一代碼風格
-- [ ] `docs/Commands/04-cleanup-commands.md:221` ⏳ 🟡 規範命名約定
-- [ ] `docs/Commands/04-cleanup-commands.md:222` ⏳ 🟡 標準化註釋格式
-- [ ] `docs/Commands/04-cleanup-commands.md:223` ⏳ 🟡 優化結構布局
-- [ ] `docs/Commands/04-cleanup-commands.md:226` ⏳ 🟡 格式化所有文件
-- [ ] `docs/Commands/04-cleanup-commands.md:227` ⏳ 🟡 整理目錄結構
-- [ ] `docs/Commands/04-cleanup-commands.md:228` ⏳ 🟡 清理模組依賴
-- [ ] `docs/Commands/04-cleanup-commands.md:229` ⏳ 🟡 移除空文件
-- [ ] `docs/Commands/04-cleanup-commands.md:230` ⏳ 🟡 統一文件命名
-- [ ] `docs/Commands/04-cleanup-commands.md:231` ⏳ 🟡 優化文件組織
-- [ ] `docs/Commands/04-cleanup-commands.md:232` ⏳ 🟡 清理臨時文件
-- [ ] `docs/Commands/04-cleanup-commands.md:233` ⏳ 🟡 更新文件文檔
-- [ ] `docs/Commands/04-cleanup-commands.md:236` ⏳ 🟡 清理構建產物
-- [ ] `docs/Commands/04-cleanup-commands.md:237` ⏳ 🟡 清理緩存文件
-- [ ] `docs/Commands/04-cleanup-commands.md:238` ⏳ 🟡 清理日誌文件
-- [ ] `docs/Commands/04-cleanup-commands.md:239` ⏳ 🟡 清理測試產物
-- [ ] `docs/Commands/04-cleanup-commands.md:240` ⏳ 🟡 清理依賴冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:241` ⏳ 🟡 清理配置冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:242` ⏳ 🟡 清理文檔冗餘
-- [ ] `docs/Commands/04-cleanup-commands.md:243` ⏳ 🟡 清理版本控制冗餘
-- [ ] `docs/Commands/06-quick-commands.md:272` ⏳ 🟡 確認指令目標明確
-- [ ] `docs/Commands/06-quick-commands.md:273` ⏳ 🟡 確認操作範圍適當
-- [ ] `docs/Commands/06-quick-commands.md:274` ⏳ 🟡 確認不會破壞現有功能
-- [ ] `docs/Commands/06-quick-commands.md:275` ⏳ 🟡 確認有適當的回滾方案
-- [ ] `docs/Commands/06-quick-commands.md:278` ⏳ 🟡 監控操作進度
-- [ ] `docs/Commands/06-quick-commands.md:279` ⏳ 🟡 檢查錯誤和警告
-- [ ] `docs/Commands/06-quick-commands.md:280` ⏳ 🟡 驗證中間結果
-- [ ] `docs/Commands/06-quick-commands.md:281` ⏳ 🟡 記錄操作日誌
-- [ ] `docs/Commands/06-quick-commands.md:284` ⏳ 🟡 驗證操作結果
-- [ ] `docs/Commands/06-quick-commands.md:285` ⏳ 🟡 檢查功能完整性
-- [ ] `docs/Commands/06-quick-commands.md:286` ⏳ 🟡 確認性能影響
-- [ ] `docs/Commands/06-quick-commands.md:287` ⏳ 🟡 更新相關文檔
-- [ ] `docs/Commands/07-smart-commands.md:246` ⏳ 🟡 確認上下文信息完整
-- [ ] `docs/Commands/07-smart-commands.md:247` ⏳ 🟡 確認目標明確具體
-- [ ] `docs/Commands/07-smart-commands.md:248` ⏳ 🟡 確認範圍適當合理
-- [ ] `docs/Commands/07-smart-commands.md:249` ⏳ 🟡 確認有學習和適應能力
-- [ ] `docs/Commands/07-smart-commands.md:252` ⏳ 🟡 監控智能決策過程
-- [ ] `docs/Commands/07-smart-commands.md:253` ⏳ 🟡 檢查模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:254` ⏳ 🟡 驗證批量操作效果
-- [ ] `docs/Commands/07-smart-commands.md:255` ⏳ 🟡 記錄學習和改進過程
-- [ ] `docs/Commands/07-smart-commands.md:258` ⏳ 🟡 評估智能指令效果
-- [ ] `docs/Commands/07-smart-commands.md:259` ⏳ 🟡 分析模式識別準確性
-- [ ] `docs/Commands/07-smart-commands.md:260` ⏳ 🟡 檢查批量操作效率
-- [ ] `docs/Commands/07-smart-commands.md:261` ⏳ 🟡 更新學習和適應策略
-- [ ] `docs/Commands/08-priority-commands.md:294` ⏳ 🟡 確認優先級標記正確
-- [ ] `docs/Commands/08-priority-commands.md:295` ⏳ 🟡 確認類型標記適當
-- [ ] `docs/Commands/08-priority-commands.md:296` ⏳ 🟡 確認影響範圍評估
-- [ ] `docs/Commands/08-priority-commands.md:297` ⏳ 🟡 確認緊急程度判斷
-- [ ] `docs/Commands/08-priority-commands.md:300` ⏳ 🟡 監控優先級執行順序
-- [ ] `docs/Commands/08-priority-commands.md:301` ⏳ 🟡 檢查任務完成進度
-- [ ] `docs/Commands/08-priority-commands.md:302` ⏳ 🟡 驗證優先級調整合理性
-- [ ] `docs/Commands/08-priority-commands.md:303` ⏳ 🟡 記錄優先級變更原因
-- [ ] `docs/Commands/08-priority-commands.md:306` ⏳ 🟡 評估優先級評估準確性
-- [ ] `docs/Commands/08-priority-commands.md:307` ⏳ 🟡 分析任務執行效率
-- [ ] `docs/Commands/08-priority-commands.md:308` ⏳ 🟡 檢查優先級管理效果
-- [ ] `docs/Commands/08-priority-commands.md:309` ⏳ 🟡 優化優先級評估標準
-- [ ] `docs/Commands/09-compliance-commands.md:268` ⏳ 🟡 `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
-- [ ] `docs/Commands/09-compliance-commands.md:266` ⏳ 🟡 項目格式
-- [ ] `docs/Commands/TODO.md:491` ⏳ 🟡 檢查 P0 任務狀態
-- [ ] `docs/Commands/TODO.md:492` ⏳ 🟡 更新進行中任務進度
-- [ ] `docs/Commands/TODO.md:493` ⏳ 🟡 識別新的阻塞問題
-- [ ] `docs/Commands/TODO.md:494` ⏳ 🟡 調整任務優先級
-- [ ] `docs/Commands/TODO.md:497` ⏳ 🟡 統計完成任務數量
-- [ ] `docs/Commands/TODO.md:498` ⏳ 🟡 分析任務完成時間
-- [ ] `docs/Commands/TODO.md:499` ⏳ 🟡 識別重複出現的問題
-- [ ] `docs/Commands/TODO.md:500` ⏳ 🟡 優化工作流程
-- [ ] `docs/Commands/TODO.md:1` ⏳ 🟡 管理系統
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:73` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:82` ⏳ 🟡 [P2] [BUG] [CONFIG] [TODO] 修復 Next.js 字體警告 - 應該使用 next/font 而不是手動添加字體連結
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:91` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - setDoc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:109` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:118` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:127` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:136` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:145` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:154` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:163` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:172` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:181` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:190` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:199` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:208` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:217` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:226` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Input 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:235` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:244` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:253` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:262` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:273` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:282` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:291` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:300` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:309` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:318` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:327` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:336` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:345` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:354` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:363` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:372` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:381` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:390` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Settings, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:399` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:408` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:417` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:426` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:435` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:444` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:453` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:462` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:471` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:480` ⏳ 🟡 [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
+- [ ] `.todo-reports/ai-prompt-2025-10-03.md:489` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `.todo-reports/todo-report-2025-10-03.md:19` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:20` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `.todo-reports/todo-report-2025-10-03.md:26` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `docs/natural-language-commands.md:522` ⏳ 🟡 `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:554` ⏳ 🔴 `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` ⏳ 🔴 `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
@@ -607,6 +888,19 @@
 - [ ] `docs/nextjs15_dev-standard.md:1329` ⏳ 🟡 Firebase Security Rules 已部署
 - [ ] `docs/nextjs15_dev-standard.md:1330` ⏳ 🟡 錯誤追蹤已設置
 - [ ] `docs/nextjs15_dev-standard.md:1331` ⏳ 🟡 性能指標監控已配置
+- [ ] `docs/TODO/todo-automation-guide.md:284` ⏳ 🔴 [P1] TEST app/api/users/route.ts
+- [ ] `docs/TODO/todo-automation-guide.md:472` ⏳ 🟡 詳情
+- [ ] `docs/TODO/todo-automation-guide.md:805` ⏳ 🔴 [P1] FEAT 實作使用者個人資料編輯
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:24` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:25` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:30` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:37` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:42` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:53` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/ai-prompt-2025-10-03.md:62` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:16` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:17` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/.todo-reports/todo-report-2025-10-03.md:23` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:6` ⏳ 🟡 `spaces.actions.ts` - 缺少統一的 Server Actions 文件
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:7` ⏳ 🟡 `spaces.client.tsx` - 缺少統一的 Client Components 文件
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:8` ⏳ 🟡 `spaces.queries.ts` - 缺少統一的 React Query hooks 文件
@@ -619,8 +913,11 @@
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:21` ⏳ 🟡 修復所有語法錯誤
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:22` ⏳ 🟡 清理未使用的導入和參數
 
-### TypeScript (16 個)
+### TypeScript (19 個)
 
+- [ ] `scripts/todo-automation-toolkit.ts:45` ⏳ 🟡 正則表達式：
+- [ ] `scripts/todo-automation-toolkit.ts:48` ⏳ 🔴 [P1] TYPE 描述
+- [ ] `scripts/todo-automation-toolkit.ts:49` ⏳ 🔴 [P1] TYPE 描述
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` ⏳ 🟡 替換為實際的 API 調用
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:59` ⏳ 🟡 替換為實際的 API 調用
 - [ ] `src/components/features/spaces/components/overview/types.ts:41` ⏳ 🟡 [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告

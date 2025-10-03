@@ -1,0 +1,60 @@
+{
+  "summary": {
+    "total": 4,
+    "byPriority": {
+      "P1": 4
+    },
+    "byType": {
+      "TYPE": 4
+    },
+    "urgent": 0
+  },
+  "todos": [
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述",
+      "details": [
+        "2) /* TODO: [P1] TYPE 描述 */",
+        "3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)",
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 47,
+      "context": "  \n  // TODO 正則表達式：\n  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述 */",
+      "details": [
+        "3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)",
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 48,
+      "context": "  // TODO 正則表達式：\n  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述 */} (JSX 註解)",
+      "details": [
+        "4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述"
+      ],
+      "file": "todo-automation-toolkit.ts",
+      "line": 49,
+      "context": "  // 支援：\n  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};\n"
+    },
+    {
+      "priority": "P1",
+      "type": "TYPE",
+      "description": "描述",
+      "details": [],
+      "file": "todo-automation-toolkit.ts",
+      "line": 50,
+      "context": "  // 1) // TODO: [P1] TYPE 描述\n  // 2) /* TODO: [P1] TYPE 描述 */\n  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)\n  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述\n  todoRegex: /(?:\\/\\/|\\/\\*|\\{\\s*\\/\\*)\\s*TODO:\\s*\\[([^\\]]+)\\]\\s*(.+)/,\n  \n  // 詳細資訊正則\n  detailRegex: /\\/\\/\\s*(.+)/,\n  assigneeRegex: /\\/\\/\\s*@assignee\\s+(\\w+)/,\n  deadlineRegex: /\\/\\/\\s*@deadline\\s+(\\d{4}-\\d{2}-\\d{2})/,\n};\n\n// ==================== 核心功能 ===================="
+    }
+  ],
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 4\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+}

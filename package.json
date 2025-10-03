@@ -13,9 +13,19 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
-    "docs:update": "node scripts/generate-tree.js",
+    "docs:update": "tsx scripts/generate-tree.ts",
     "todos:sync": "node scripts/sync-todos.js",
-    "prepare": "husky"
+    "todo:scan": "tsx scripts/todo-scanner.ts",
+    "todo:watch": "nodemon --watch 'src/**/*.{ts,tsx}' --watch 'app/**/*.{ts,tsx}' --exec 'npm run todo:scan'",
+    "todo:ai": "cat .todo-reports/ai-prompt-$(date +%Y-%m-%d).md | pbcopy && echo '✅ AI 指令已複製到剪貼簿'",
+    "todo:health": "tsx scripts/todo-health-check.ts",
+    "todo:conversation": "tsx scripts/generate-ai-conversation.ts",
+    "todo:quick": "bash scripts/todo-quickstart.sh",
+    "// === Git Hooks ===": "",
+    "prepare": "husky install",
+    "pre-commit": "npm run todo:scan && npm run todo:health",
+    "// === CI/CD ===": "",
+    "ci:todo": "npm run todo:scan && npm run todo:health"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.20.0",
@@ -88,6 +98,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@notionhq/client": "^5.1.0",
+    "nodemon": "^3.1.10",
     "@next/eslint-plugin-next": "^15.5.4",
     "@tanstack/react-query-devtools": "^5.51.15",
     "@types/node": "^20",
@@ -104,6 +116,7 @@
     "lint-staged": "^16.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.20.6",
     "typescript": "5.9.3"
   },
   "lint-staged": {

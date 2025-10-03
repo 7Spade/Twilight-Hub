@@ -1,0 +1,61 @@
+// .vscode/settings.json
+{
+  "// === TODO 高亮設定 ===": "",
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME",
+    "DONE"
+  ],
+  "todo-tree.regex.regex": "//\\s*(TODO|FIXME|DONE):\\s*\\[([^\\]]+)\\]\\s*(\\w+)\\s*(.+)",
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "foreground": "#000000",
+    "opacity": 80
+  },
+  "todo-tree.highlights.customHighlight": {
+    "P0": {
+      "background": "#FF0000",
+      "foreground": "#FFFFFF",
+      "icon": "flame",
+      "iconColour": "#FF0000"
+    },
+    "P1": {
+      "background": "#FF9800",
+      "foreground": "#000000",
+      "icon": "alert",
+      "iconColour": "#FF9800"
+    },
+    "P2": {
+      "background": "#FFEB3B",
+      "foreground": "#000000",
+      "icon": "info",
+      "iconColour": "#FFEB3B"
+    },
+    "P3": {
+      "background": "#4CAF50",
+      "foreground": "#FFFFFF",
+      "icon": "check",
+      "iconColour": "#4CAF50"
+    },
+    "DONE": {
+      "background": "#9E9E9E",
+      "foreground": "#FFFFFF",
+      "icon": "check-circle",
+      "iconColour": "#9E9E9E",
+      "textDecoration": "line-through"
+    }
+  },
+  "todo-tree.general.statusBar": "total",
+  "todo-tree.filtering.ignoreGitSubmodules": true,
+  "todo-tree.filtering.excludeGlobs": [
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**",
+    "**/build/**"
+  ],
+  
+  "// === 程式碼片段 ===": "",
+  "editor.quickSuggestions": {
+    "comments": true
+  },
