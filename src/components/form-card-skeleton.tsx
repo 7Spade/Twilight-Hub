@@ -5,6 +5,8 @@
  * while form data is being loaded.
  */
 
+'use client';
+
 import {
   Card,
   CardContent,

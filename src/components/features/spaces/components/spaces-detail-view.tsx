@@ -14,21 +14,21 @@ import { SpaceVisibilityBadge } from '@/components/features/spaces/components/sp
 import { Skeleton } from '@/components/ui/skeleton';
 
 import { User } from 'firebase/auth';
-import { type Account, type Space } from '@/lib/types-unified';
+import { type Account, type Space } from '@/lib/types';
 import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settings-view';
 import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';
 import { FileManager } from './spaces-files-view';
-import { useSpaceActions } from '@/components/features/spaces/hooks/use-space-actions';
-import { OverviewDashboard } from './overview/overview-dashboard';
-import { ParticipantList } from './participants/participant-list';
-import { IssueList } from './issues/issue-list';
-import { QualityDashboard } from './quality/quality-dashboard';
-import { ReportDashboard } from './report/report-dashboard';
-import { AcceptanceList } from './acceptance/acceptance-list';
-import { ContractList } from './contracts/contract-list';
+import { useSpaceActions } from '@/components/features/spaces/hooks';
+import { OverviewDashboard } from './overview';
+import { ParticipantList } from './participants';
+import { IssueList } from './issues';
+import { QualityDashboard } from './quality';
+import { ReportDashboard } from './report';
+import { AcceptanceList } from './acceptance';
+import { ContractList } from './contracts';
 import { PermissionGuard, PermissionTab } from '@/components/auth/permission-guard';
-import { Permission } from '@/lib/types-unified';
+import { Permission } from '@/lib/types';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;

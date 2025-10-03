@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
-import { type UserAchievement, type Achievement } from '@/lib/types-unified';
+import { type UserAchievement, type Achievement } from '@/lib/types';
 import { Trophy } from 'lucide-react';
 
 

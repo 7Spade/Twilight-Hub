@@ -13,7 +13,7 @@ import {
   PermissionCheckResult,
   OrganizationRole,
   SpaceRole 
-} from '@/lib/types-unified';
+} from '@/lib/types';
 import { roleManagementService } from '@/lib/role-management';
 
 // 認證狀態接口

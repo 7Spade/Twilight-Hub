@@ -1,9 +1,3 @@
-/**
- * 創建合約對話框 - 整合新架構
- * 遵循 Next.js 15 + Firebase 最佳實踐
- * 使用 Server Actions 和新的類型定義
- */
-
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -16,26 +10,21 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState } from 'react';
-import { useCreateContract } from '@/hooks/use-contracts';
-import { useSendContractCreatedNotification } from '@/hooks/use-contract-actions';
-import { CreateContractData, contractTypeOptions, contractStatusOptions, currencyOptions } from '@/lib/types/contract.types';
 
 const createContractSchema = z.object({
-  title: z.string().min(1, '標題是必填的'),
-  description: z.string().min(1, '描述是必填的'),
+  title: z.string().min(1, 'Title is required'),
+  description: z.string().min(1, 'Description is required'),
   type: z.enum(['service', 'license', 'nda', 'partnership', 'employment']),
   status: z.enum(['draft', 'pending', 'active']).default('draft'),
   value: z.number().optional(),
   currency: z.string().default('USD'),
-  startDate: z.string().min(1, '開始日期是必填的'),
+  startDate: z.string().min(1, 'Start date is required'),
   endDate: z.string().optional(),
   counterparty: z.object({
-    name: z.string().min(1, '公司名稱是必填的'),
-    contact: z.string().min(1, '聯絡人是必填的'),
-    email: z.string().email('請輸入有效的電子郵件'),
+    name: z.string().min(1, 'Company name is required'),
+    contact: z.string().min(1, 'Contact person is required'),
+    email: z.string().email('Valid email is required'),
   }),
-  tags: z.array(z.string()).optional(),
-  notes: z.string().optional(),
 });
 
 type CreateContractFormValues = z.infer<typeof createContractSchema>;
@@ -45,9 +34,6 @@ interface CreateContractDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onContractCreated?: (contract: any) => void;
-  userId?: string;
-  userEmail?: string;
-  userName?: string;
 }
 
 export function CreateContractDialog({
@@ -55,14 +41,8 @@ export function CreateContractDialog({
   open,
   onOpenChange,
   onContractCreated,
-  userId = 'current-user',
-  userEmail = 'user@example.com',
-  userName = 'Current User',
 }: CreateContractDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
-
-  const createContract = useCreateContract();
-  const sendNotification = useSendContractCreatedNotification();
 
   const form = useForm<CreateContractFormValues>({
     resolver: zodResolver(createContractSchema),
@@ -73,189 +53,168 @@ export function CreateContractDialog({
       status: 'draft',
       value: undefined,
       currency: 'USD',
-      startDate: '',
+      startDate: new Date().toISOString().split('T')[0],
       endDate: '',
       counterparty: {
         name: '',
         contact: '',
         email: '',
       },
-      tags: [],
-      notes: '',
     },
   });
 
   const onSubmit = async (data: CreateContractFormValues) => {
     setIsLoading(true);
-    
     try {
-      // 準備合約數據
-      const contractData: CreateContractData = {
-        title: data.title,
-        description: data.description,
-        type: data.type,
-        status: data.status,
-        value: data.value,
-        currency: data.currency,
-        startDate: data.startDate,
-        endDate: data.endDate,
-        counterparty: {
-          name: data.counterparty.name,
-          contact: data.counterparty.contact,
-          email: data.counterparty.email,
-        },
-        tags: data.tags || [],
-        notes: data.notes,
+      // TODO: Implement create contract API call
+      console.log('Creating contract:', { spaceId, ...data });
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      
+      const newContract = {
+        id: Date.now().toString(),
+        ...data,
+        startDate: new Date(data.startDate),
+        endDate: data.endDate ? new Date(data.endDate) : undefined,
+        createdBy: { id: 'current-user', name: 'Current User' },
+        createdAt: new Date(),
+        lastModified: new Date(),
+        documents: 0,
       };
-
-      // 創建合約
-      const result = await createContract.mutateAsync({
-        spaceId,
-        data: contractData,
-        userId,
-        userEmail,
-        userName,
-      });
-
-      if (result.success && result.contract) {
-        // 發送通知
-        await sendNotification.mutateAsync({
-          contractId: result.contract.id,
-          spaceId,
-          userId,
-        });
-
-        // 重置表單
-        form.reset();
-        
-        // 關閉對話框
-        onOpenChange(false);
-        
-        // 回調
-        onContractCreated?.(result.contract);
-      } else {
-        // 處理錯誤
-        console.error('創建合約失敗:', result.error);
-        alert('創建合約失敗: ' + (result.error || '未知錯誤'));
-      }
+      
+      onContractCreated?.(newContract);
+      form.reset();
+      onOpenChange(false);
     } catch (error) {
-      console.error('創建合約時發生錯誤:', error);
-      alert('創建合約時發生錯誤');
+      console.error('Failed to create contract:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const getTypeDescription = (type: string) => {
+    switch (type) {
+      case 'service':
+        return 'Agreement for providing services';
+      case 'license':
+        return 'License agreement for software or intellectual property';
+      case 'nda':
+        return 'Non-disclosure agreement for confidential information';
+      case 'partnership':
+        return 'Partnership or collaboration agreement';
+      case 'employment':
+        return 'Employment or contractor agreement';
+      default:
+        return '';
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>創建新合約</DialogTitle>
+          <DialogTitle>Create New Contract</DialogTitle>
           <DialogDescription>
-            填寫以下信息來創建一個新的合約
+            Create a new contract to track agreements and legal documents.
           </DialogDescription>
         </DialogHeader>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* 合約標題 */}
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem className="md:col-span-2">
-                    <FormLabel>合約標題 *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="輸入合約標題" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Contract Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g., Software Development Agreement" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Brief description of the contract"
+                      className="min-h-[80px]"
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              {/* 合約描述 */}
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem className="md:col-span-2">
-                    <FormLabel>合約描述 *</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        placeholder="輸入合約描述" 
-                        className="min-h-[100px]"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* 合約類型 */}
+            <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>合約類型 *</FormLabel>
+                    <FormLabel>Contract Type</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="選擇合約類型" />
+                          <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {contractTypeOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="service">🔧 Service Agreement</SelectItem>
+                        <SelectItem value="license">📄 License Agreement</SelectItem>
+                        <SelectItem value="nda">🔒 Non-Disclosure Agreement</SelectItem>
+                        <SelectItem value="partnership">🤝 Partnership Agreement</SelectItem>
+                        <SelectItem value="employment">👤 Employment Agreement</SelectItem>
                       </SelectContent>
                     </Select>
+                    <p className="text-sm text-muted-foreground">
+                      {getTypeDescription(form.watch('type'))}
+                    </p>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {/* 合約狀態 */}
               <FormField
                 control={form.control}
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>合約狀態</FormLabel>
+                    <FormLabel>Status</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="選擇合約狀態" />
+                          <SelectValue placeholder="Select status" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {contractStatusOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="active">Active</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+            </div>
 
-              {/* 合約價值 */}
+            <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="value"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>合約價值</FormLabel>
+                    <FormLabel>Contract Value (Optional)</FormLabel>
                     <FormControl>
                       <Input 
                         type="number" 
-                        placeholder="輸入合約價值" 
+                        placeholder="50000"
                         {...field}
                         onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
                       />
@@ -265,39 +224,39 @@ export function CreateContractDialog({
                 )}
               />
 
-              {/* 貨幣 */}
               <FormField
                 control={form.control}
                 name="currency"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>貨幣</FormLabel>
+                    <FormLabel>Currency</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="選擇貨幣" />
+                          <SelectValue placeholder="Select currency" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {currencyOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="USD">USD</SelectItem>
+                        <SelectItem value="EUR">EUR</SelectItem>
+                        <SelectItem value="GBP">GBP</SelectItem>
+                        <SelectItem value="JPY">JPY</SelectItem>
+                        <SelectItem value="CNY">CNY</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+            </div>
 
-              {/* 開始日期 */}
+            <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="startDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>開始日期 *</FormLabel>
+                    <FormLabel>Start Date</FormLabel>
                     <FormControl>
                       <Input type="date" {...field} />
                     </FormControl>
@@ -306,13 +265,12 @@ export function CreateContractDialog({
                 )}
               />
 
-              {/* 結束日期 */}
               <FormField
                 control={form.control}
                 name="endDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>結束日期</FormLabel>
+                    <FormLabel>End Date (Optional)</FormLabel>
                     <FormControl>
                       <Input type="date" {...field} />
                     </FormControl>
@@ -322,32 +280,32 @@ export function CreateContractDialog({
               />
             </div>
 
-            {/* 對方信息 */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">對方信息</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <FormField
-                  control={form.control}
-                  name="counterparty.name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>公司名稱 *</FormLabel>
-                      <FormControl>
-                        <Input placeholder="輸入公司名稱" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <h3 className="text-sm font-medium">Counterparty Information</h3>
+              
+              <FormField
+                control={form.control}
+                name="counterparty.name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Company Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., TechCorp Inc." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
+              <div className="grid grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="counterparty.contact"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>聯絡人 *</FormLabel>
+                      <FormLabel>Contact Person</FormLabel>
                       <FormControl>
-                        <Input placeholder="輸入聯絡人姓名" {...field} />
+                        <Input placeholder="e.g., John Smith" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -359,9 +317,9 @@ export function CreateContractDialog({
                   name="counterparty.email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>電子郵件 *</FormLabel>
+                      <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="輸入電子郵件" {...field} />
+                        <Input type="email" placeholder="john@techcorp.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -370,36 +328,12 @@ export function CreateContractDialog({
               </div>
             </div>
 
-            {/* 備註 */}
-            <FormField
-              control={form.control}
-              name="notes"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>備註</FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="輸入備註信息" 
-                      className="min-h-[80px]"
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => onOpenChange(false)}
-                disabled={isLoading}
-              >
-                取消
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                Cancel
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '創建中...' : '創建合約'}
+                {isLoading ? 'Creating...' : 'Create Contract'}
               </Button>
             </DialogFooter>
           </form>

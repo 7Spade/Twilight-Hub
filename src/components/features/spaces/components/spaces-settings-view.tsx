@@ -12,7 +12,7 @@ import { FormCard } from '@/components/forms/form-card';
 import { FormInput } from '@/components/forms/form-input';
 import { FormTextarea } from '@/components/forms/form-textarea';
 import { FormSwitch } from '@/components/forms/form-switch';
-import { type Space } from '@/lib/types-unified';
+import { type Space } from '@/lib/types';
 import { spaceBaseSchema, type SpaceBaseFormValues } from '@/components/features/spaces/spaces-schemas';
 
 export type SpaceSettingsFormValues = SpaceBaseFormValues;

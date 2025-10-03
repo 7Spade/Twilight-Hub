@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
-import { type Account } from '@/lib/types-unified';
+import { type Account } from '@/lib/types';
 
 function FollowingSkeleton() {
   return (

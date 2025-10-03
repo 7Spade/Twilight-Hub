@@ -30,7 +30,7 @@ import {
   type Item,
   type Warehouse as WarehouseType,
   type Stock,
-} from '@/lib/types-unified';
+} from '@/lib/types';
 import {
   Table,
   TableBody,

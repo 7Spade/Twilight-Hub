@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { TeamSwitcher, type Team } from './team-switcher';
 import { UserNav } from './user-nav';
-import { type Account } from '@/lib/types-unified';
+import { type Account } from '@/lib/types';
 
 // 導航項目類型
 export interface NavItem {

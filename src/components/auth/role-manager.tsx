@@ -18,7 +18,7 @@ import {
   SpaceRole, 
   Permission, 
   UserRoleAssignment 
-} from '@/lib/types-unified';
+} from '@/lib/types';
 import { roleManagementService } from '@/lib/role-management';
 import { useRoleManagement } from '@/hooks/use-permissions';
 

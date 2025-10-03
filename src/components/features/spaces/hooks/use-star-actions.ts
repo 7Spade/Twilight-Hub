@@ -10,7 +10,7 @@ import { useState, useCallback } from 'react';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { type Space } from '@/lib/types-unified';
+import { type Space } from '@/lib/types';
 
 interface UseStarActionsReturn {
   // Actions

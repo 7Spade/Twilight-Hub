@@ -33,7 +33,7 @@ import {
 } from '@/components/ui/tabs';
 import { SpaceVisibilityBadge } from '@/components/features/spaces/components/spaces-visibility-badge';
 import { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';
-import { type Account, type Space } from '@/lib/types-unified';
+import { type Account, type Space } from '@/lib/types';
 
 const SpaceCard = ({
   space,

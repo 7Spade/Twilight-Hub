@@ -10,7 +10,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { useFileActions } from '@/components/features/spaces/hooks/use-file-actions';
+import { useFileActions } from '@/components/features/spaces/hooks';
 import { FolderTree, type FileItem } from './folder-tree';
 import { FileTable } from './file-table';
 import { ContextMenu, ToolbarContextMenu } from './context-menu';

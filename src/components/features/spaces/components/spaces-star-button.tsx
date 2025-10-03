@@ -10,7 +10,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Star } from 'lucide-react';
-import { useStarActions } from '@/components/features/spaces/hooks/use-star-actions';
+import { useStarActions } from '@/components/features/spaces/hooks';
 
 interface SpaceStarButtonProps {
   spaceId: string;

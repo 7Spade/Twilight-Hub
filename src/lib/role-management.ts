@@ -14,7 +14,7 @@ import {
   SpaceRoleAssignment, 
   PermissionCheckResult,
   RoleManagementConfig 
-} from './types-unified';
+} from './types';
 
 // 預定義角色配置
 export const ROLE_DEFINITIONS: Record<string, RoleDefinition> = {

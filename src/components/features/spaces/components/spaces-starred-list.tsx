@@ -11,7 +11,7 @@ import { collection, query, where, documentId } from 'firebase/firestore';
 
 import { useFirestore, useCollection } from '@/firebase';
 import { SpaceListView } from '@/components/features/spaces/components/spaces-list-view';
-import { type Account, type Space } from '@/lib/types-unified';
+import { type Account, type Space } from '@/lib/types';
 
 export function StarredSpaces({ userId }: { userId: string }) {
   const firestore = useFirestore();

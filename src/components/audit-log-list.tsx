@@ -13,7 +13,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { useFirestore, useCollection } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
-import { type AuditLog } from '@/lib/types-unified';
+import { type AuditLog } from '@/lib/types';
 
 function generateLogMessage(log: AuditLog) {
   const actionText = log.action.toLowerCase();
