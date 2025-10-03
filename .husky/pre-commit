@@ -1,21 +1,60 @@
-# 1. 先執行 lint-staged（快速檢查已暫存檔案）
+#!/bin/sh
+
+# 設置錯誤處理
+set -e
+
+# 記錄開始時間
+start_time=$(date +%s)
+
+echo "🚀 開始 pre-commit 檢查..."
+
+# 1. 檢查必要腳本是否存在
+if [ ! -f "scripts/sync-todos.js" ]; then
+  echo "❌ 錯誤: scripts/sync-todos.js 不存在"
+  exit 1
+fi
+
+if [ ! -f "scripts/generate-tree.js" ]; then
+  echo "❌ 錯誤: scripts/generate-tree.js 不存在"
+  exit 1
+fi
+
+# 2. 先執行 lint-staged（快速檢查已暫存檔案）
 echo "🔍 執行 lint-staged 檢查..."
-npx lint-staged
+if ! npx lint-staged; then
+  echo "❌ lint-staged 檢查失敗，請修復錯誤後重試"
+  exit 1
+fi
 
-# 2. 執行 TypeScript 類型檢查（暫時跳過，待修復語法錯誤後啟用）
+# 3. 執行 TypeScript 類型檢查（暫時跳過，待修復語法錯誤後啟用）
 # echo "🔍 執行 TypeScript 類型檢查..."
-# npm run typecheck
+# if ! npm run typecheck; then
+#   echo "❌ TypeScript 類型檢查失敗，請修復錯誤後重試"
+#   exit 1
+# fi
 
-# 3. 更新項目結構文檔
+# 4. 更新項目結構文檔
 echo "🔄 更新項目結構文檔..."
-npm run docs:update
+if ! npm run docs:update; then
+  echo "❌ 更新項目結構文檔失敗"
+  exit 1
+fi
 
-# 4. 同步 TODO 列表
+# 5. 同步 TODO 列表
 echo "🔄 同步 TODO 列表..."
-npm run todos:sync
+if ! npm run todos:sync; then
+  echo "❌ 同步 TODO 列表失敗"
+  exit 1
+fi
 
-# 5. 將變更檔案加入到暫存（若無變更則不影響）
+# 6. 將變更檔案加入到暫存（若無變更則不影響）
+echo "📝 將更新的文檔加入暫存..."
 git add docs/project-structure.md 2>/dev/null || true
-git add docs/TODO-list.md 2>/dev/null || true
+git add docs/Commands/TODO-list.md 2>/dev/null || true
+
+# 7. 計算執行時間
+end_time=$(date +%s)
+duration=$((end_time - start_time))
 
 echo "✅ 所有檢查完成，文檔已更新並加入提交"
+echo "⏱️  總執行時間: ${duration} 秒"

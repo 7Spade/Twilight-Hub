@@ -8,13 +8,7 @@
 
 import { useState, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  uploadFileAction, 
-  downloadFileAction, 
-  deleteFileAction, 
-  listFilesAction,
-  type FileActionItem 
-} from '@/components/features/spaces/actions';
+import { useFileOperations, type FileItem as FileActionItem } from './use-file-operations';
 
 interface UploadProgress {
   progress: number;
@@ -37,6 +31,7 @@ interface UseFileActionsReturn {
 
 export function useFileActions(): UseFileActionsReturn {
   const { toast } = useToast();
+  const fileOperations = useFileOperations();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<UploadProgress | null>(null);
   const [files, setFiles] = useState<FileActionItem[]>([]);
@@ -75,7 +70,7 @@ export function useFileActions(): UseFileActionsReturn {
       formData.append('spaceId', spaceId);
       formData.append('userId', userId);
 
-      const result = await uploadFileAction(formData);
+      const result = await fileOperations.uploadFile(file, spaceId, userId);
 
       clearInterval(progressInterval);
       setUploadProgress(prev => prev ? { ...prev, progress: 100 } : null);
@@ -113,7 +108,7 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(true);
       setError(null);
 
-      const result = await downloadFileAction(spaceId, userId, fileName);
+      const result = await fileOperations.downloadFile(spaceId, userId, fileName);
 
       if (result.success && result.downloadURL) {
         // Open download URL in new tab
@@ -145,7 +140,7 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(true);
       setError(null);
 
-      const result = await deleteFileAction(spaceId, userId, fileName);
+      const result = await fileOperations.deleteFile(spaceId, userId, fileName);
 
       if (result.success) {
         toast({
@@ -178,7 +173,7 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(true);
       setError(null);
 
-      const result = await listFilesAction(spaceId, userId);
+      const result = await fileOperations.listFiles(spaceId, userId);
       
       if (result.success && result.files) {
         setFiles(result.files);

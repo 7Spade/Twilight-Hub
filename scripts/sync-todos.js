@@ -104,33 +104,24 @@ const SUPPORTED_EXTENSIONS = [
   '.kt', '.scala', '.clj', '.hs', '.ml'
 ];
 
-// TODO 正則表達式模式
+// TODO 正則表達式模式 - 改進版本，避免重複匹配
 const TODO_PATTERNS = [
-  // JavaScript/TypeScript 單行註解
-  { pattern: /\/\/\s*TODO:?\s*(.+)/gi, type: 'js-single' },
-  { pattern: /\/\/\s*FIXME:?\s*(.+)/gi, type: 'js-single' },
-  { pattern: /\/\/\s*HACK:?\s*(.+)/gi, type: 'js-single' },
-  { pattern: /\/\/\s*NOTE:?\s*(.+)/gi, type: 'js-single' },
+  // JavaScript/TypeScript 單行註解 - 更精確的匹配
+  { pattern: /^[ \t]*\/\/\s*(TODO|FIXME|HACK|NOTE):?\s*(.+)$/gm, type: 'js-single' },
   
-  // JavaScript/TypeScript 多行註解
-  { pattern: /\/\*\s*TODO:?\s*(.+?)\s*\*\//gi, type: 'js-multi' },
-  { pattern: /\/\*\s*FIXME:?\s*(.+?)\s*\*\//gi, type: 'js-multi' },
-  { pattern: /\/\*\s*HACK:?\s*(.+?)\s*\*\//gi, type: 'js-multi' },
-  { pattern: /\/\*\s*NOTE:?\s*(.+?)\s*\*\//gi, type: 'js-multi' },
+  // JavaScript/TypeScript 多行註解 - 改進匹配
+  { pattern: /\/\*\s*(TODO|FIXME|HACK|NOTE):?\s*(.+?)\s*\*\//gs, type: 'js-multi' },
   
-  // Markdown TODO 列表
+  // Markdown TODO 列表 - 更精確的匹配
   { pattern: /^[-*+]\s*\[\s*\]\s*(.+)$/gm, type: 'md-checkbox' },
   { pattern: /^[-*+]\s*\[\s*x\s*\]\s*(.+)$/gm, type: 'md-checkbox-done' },
   
-  // Markdown 標題 TODO
-  { pattern: /^#+\s*TODO:?\s*(.+)$/gm, type: 'md-heading' },
-  { pattern: /^#+\s*FIXME:?\s*(.+)$/gm, type: 'md-heading' },
+  // Markdown 標題 TODO - 改進匹配
+  { pattern: /^#+\s*(TODO|FIXME|HACK|NOTE):?\s*(.+)$/gm, type: 'md-heading' },
   
-  // 其他格式
-  { pattern: /#\s*TODO:?\s*(.+)/gi, type: 'hash' },
-  { pattern: /<!--\s*TODO:?\s*(.+?)\s*-->/gi, type: 'html-comment' },
-  { pattern: /#\s*FIXME:?\s*(.+)/gi, type: 'hash' },
-  { pattern: /#\s*HACK:?\s*(.+)/gi, type: 'hash' }
+  // 其他格式 - 改進匹配
+  { pattern: /^[ \t]*#\s*(TODO|FIXME|HACK|NOTE):?\s*(.+)$/gm, type: 'hash' },
+  { pattern: /<!--\s*(TODO|FIXME|HACK|NOTE):?\s*(.+?)\s*-->/gs, type: 'html-comment' }
 ];
 
 // TODO 狀態標記模式
@@ -158,25 +149,33 @@ const TODO_STATUS_PATTERNS = [
   { pattern: /\[SKIP\]/gi, status: 'cancelled' }
 ];
 
-// 自動清理的 TODO 模式（這些會被自動標記為完成）
+// 自動清理的 TODO 模式（這些會被自動標記為完成）- 更保守的策略
 const AUTO_CLEANUP_PATTERNS = [
-  // 已修復的編碼問題
-  /修復 UTF-8 編碼問題.*已修復/gi,
-  /修復.*編碼問題.*已修復/gi,
+  // 明確標記為已完成的項目
+  /\[DONE\]/gi,
+  /\[COMPLETED\]/gi,
+  /\[FIXED\]/gi,
+  /\[RESOLVED\]/gi,
+  /\[CLOSED\]/gi,
   
-  // 已完成的清理工作
-  /清理.*已完成/gi,
-  /移除.*已完成/gi,
-  /修復.*已完成/gi,
+  // 明確標記為已取消的項目
+  /\[CANCELLED\]/gi,
+  /\[CANCELED\]/gi,
+  /\[SKIP\]/gi,
   
-  // 已實現的功能
-  /實現.*已完成/gi,
-  /添加.*已完成/gi,
-  /創建.*已完成/gi,
+  // 已修復的編碼問題（更精確的匹配）
+  /修復 UTF-8 編碼問題.*\[DONE\]/gi,
+  /修復.*編碼問題.*\[DONE\]/gi,
   
-  // 已更新的文檔
-  /更新.*文檔.*已完成/gi,
-  /更新.*文件.*已完成/gi
+  // 已完成的清理工作（需要明確標記）
+  /清理.*\[DONE\]/gi,
+  /移除.*\[DONE\]/gi,
+  /修復.*\[DONE\]/gi,
+  
+  // 已實現的功能（需要明確標記）
+  /實現.*\[DONE\]/gi,
+  /添加.*\[DONE\]/gi,
+  /創建.*\[DONE\]/gi
 ];
 
 /**
@@ -259,21 +258,85 @@ function extractTodoStatus(todoText) {
 }
 
 /**
- * 從文件內容中提取 TODO
+ * 提取優先級和分類標籤
+ */
+function extractPriorityAndTags(todoText) {
+  const priorityPatterns = [
+    { pattern: /\[P0\]/gi, priority: 'high' },
+    { pattern: /\[P1\]/gi, priority: 'high' },
+    { pattern: /\[P2\]/gi, priority: 'medium' },
+    { pattern: /\[P3\]/gi, priority: 'low' },
+    { pattern: /\[CRITICAL\]/gi, priority: 'high' },
+    { pattern: /\[URGENT\]/gi, priority: 'high' }
+  ];
+  
+  const categoryPatterns = [
+    { pattern: /\[BUG\]/gi, category: 'bug' },
+    { pattern: /\[FEATURE\]/gi, category: 'feature' },
+    { pattern: /\[REFACTOR\]/gi, category: 'refactor' },
+    { pattern: /\[DOCS\]/gi, category: 'docs' },
+    { pattern: /\[TEST\]/gi, category: 'test' },
+    { pattern: /\[PERF\]/gi, category: 'performance' },
+    { pattern: /\[SECURITY\]/gi, category: 'security' },
+    { pattern: /\[CLEANUP\]/gi, category: 'cleanup' },
+    { pattern: /\[AUTH\]/gi, category: 'auth' },
+    { pattern: /\[UI\]/gi, category: 'ui' },
+    { pattern: /\[API\]/gi, category: 'api' },
+    { pattern: /\[DB\]/gi, category: 'database' },
+    { pattern: /\[CONFIG\]/gi, category: 'config' },
+    { pattern: /\[DEPLOY\]/gi, category: 'deploy' }
+  ];
+  
+  let priority = 'medium';
+  const categories = [];
+  
+  // 檢查優先級
+  for (const { pattern, priority: p } of priorityPatterns) {
+    if (pattern.test(todoText)) {
+      priority = p;
+      break;
+    }
+  }
+  
+  // 檢查分類
+  for (const { pattern, category } of categoryPatterns) {
+    if (pattern.test(todoText)) {
+      categories.push(category);
+    }
+  }
+  
+  return { priority, categories };
+}
+
+/**
+ * 從文件內容中提取 TODO - 改進版本，支持去重和更好的解析
  */
 function extractTodosFromContent(content, filePath) {
   const todos = [];
+  const seenTodos = new Set(); // 用於去重
   
   TODO_PATTERNS.forEach(({ pattern, type }) => {
     let match;
-    const lines = content.split('\n');
+    
+    // 重置正則表達式的 lastIndex
+    pattern.lastIndex = 0;
     
     while ((match = pattern.exec(content)) !== null) {
-      const todoText = match[1].trim();
-      if (todoText) {
+      const todoType = match[1] || 'TODO';
+      const todoText = match[2] || match[1] || '';
+      
+      if (todoText.trim()) {
         // 計算行號
         const beforeMatch = content.substring(0, match.index);
         const lineNumber = beforeMatch.split('\n').length;
+        
+        // 創建唯一標識符用於去重
+        const uniqueId = `${filePath}:${lineNumber}:${todoText.trim()}`;
+        
+        if (seenTodos.has(uniqueId)) {
+          continue; // 跳過重複的 TODO
+        }
+        seenTodos.add(uniqueId);
         
         // 檢查是否應該自動清理
         if (shouldAutoCleanup(todoText)) {
@@ -284,13 +347,8 @@ function extractTodosFromContent(content, filePath) {
         // 提取狀態標記
         const status = extractTodoStatus(todoText);
         
-        // 確定優先級
-        let priority = 'medium';
-        if (type.includes('FIXME') || type.includes('HACK')) {
-          priority = 'high';
-        } else if (type.includes('NOTE')) {
-          priority = 'low';
-        }
+        // 提取優先級和分類
+        const { priority, categories } = extractPriorityAndTags(todoText);
         
         // 如果 TODO 已標記為完成，調整優先級
         if (status === 'completed') {
@@ -298,13 +356,16 @@ function extractTodosFromContent(content, filePath) {
         }
         
         todos.push({
-          text: todoText,
+          text: todoText.trim(),
           file: filePath,
           line: lineNumber,
           type: type,
+          todoType: todoType,
           priority: priority,
+          categories: categories,
           status: status,
-          raw: match[0]
+          raw: match[0],
+          uniqueId: uniqueId
         });
       }
     }
@@ -479,7 +540,34 @@ function getFileCategory(ext) {
 }
 
 /**
- * 生成 TODO 列表 Markdown 內容
+ * 按分類分組 TODO
+ */
+function groupTodosByCategory(todos) {
+  const groups = {};
+  
+  todos.forEach(todo => {
+    if (todo.status !== 'completed' && todo.status !== 'cancelled') {
+      if (todo.categories.length === 0) {
+        if (!groups['uncategorized']) {
+          groups['uncategorized'] = [];
+        }
+        groups['uncategorized'].push(todo);
+      } else {
+        todo.categories.forEach(category => {
+          if (!groups[category]) {
+            groups[category] = [];
+          }
+          groups[category].push(todo);
+        });
+      }
+    }
+  });
+  
+  return groups;
+}
+
+/**
+ * 生成 TODO 列表 Markdown 內容 - 改進版本
  */
 function generateTodoListMarkdown(todos) {
   const timestamp = new Date().toLocaleString('zh-TW', {
@@ -495,6 +583,7 @@ function generateTodoListMarkdown(todos) {
   const priorityGroups = groupTodosByPriority(todos);
   const statusGroups = groupTodosByStatus(todos);
   const fileTypeGroups = groupTodosByFileType(todos);
+  const categoryGroups = groupTodosByCategory(todos);
   
   const totalCount = todos.length;
   const highCount = priorityGroups.high.length;
@@ -572,6 +661,26 @@ function generateTodoListMarkdown(todos) {
     content += '\n';
   }
 
+  // 按分類分組顯示
+  content += `## 🏷️ 按分類分組
+
+`;
+  const categoryOrder = ['bug', 'feature', 'refactor', 'cleanup', 'docs', 'test', 'performance', 'security', 'auth', 'ui', 'api', 'database', 'config', 'deploy', 'uncategorized'];
+  categoryOrder.forEach(category => {
+    if (categoryGroups[category] && categoryGroups[category].length > 0) {
+      const categoryName = category === 'uncategorized' ? '未分類' : category.toUpperCase();
+      content += `### ${categoryName} (${categoryGroups[category].length} 個)
+
+`;
+      categoryGroups[category].forEach(todo => {
+        const statusIcon = getStatusIcon(todo.status);
+        const priorityIcon = todo.priority === 'high' ? '🔴' : todo.priority === 'medium' ? '🟡' : '🟢';
+        content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${priorityIcon} ${todo.text}\n`;
+      });
+      content += '\n';
+    }
+  });
+
   // 按文件類型分組顯示
   content += `## 📁 按文件類型分組
 
@@ -584,7 +693,8 @@ function generateTodoListMarkdown(todos) {
 `;
       categoryTodos.forEach(todo => {
         const statusIcon = getStatusIcon(todo.status);
-        content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${todo.text}\n`;
+        const priorityIcon = todo.priority === 'high' ? '🔴' : todo.priority === 'medium' ? '🟡' : '🟢';
+        content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${priorityIcon} ${todo.text}\n`;
       });
       content += '\n';
     }

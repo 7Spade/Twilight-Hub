@@ -32,10 +32,10 @@ const EXCLUDE_PATTERNS = [
   '.husky',
   '.github',
   
-  // Agent 和文檔目錄
-  'docs',
-  'memory-bank',
-  'scripts',
+  // 排除自動生成的文檔，但保留重要目錄結構
+  // 'docs', // 保留 docs 目錄，但排除生成的文件
+  // 'memory-bank', // 保留 memory-bank 目錄
+  // 'scripts', // 保留 scripts 目錄
   
   // 測試和覆蓋率
   'coverage',
@@ -79,6 +79,10 @@ const EXCLUDE_PATTERNS = [
   '*.md.map',
   'tsconfig.tsbuildinfo',
   'next-env.d.ts',
+  
+  // 排除自動生成的文檔文件
+  'docs/project-structure.md',
+  'docs/Commands/TODO-list.md',
   
   // 其他開發工具
   '.genkit',
@@ -167,7 +171,35 @@ function shouldExclude(filePath, fileName) {
 }
 
 /**
- * 生成樹狀結構
+ * 格式化文件大小
+ */
+function formatFileSize(bytes) {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+}
+
+/**
+ * 格式化修改時間
+ */
+function formatModTime(stats) {
+  const now = new Date();
+  const modTime = new Date(stats.mtime);
+  const diffMs = now - modTime;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return '今天';
+  if (diffDays === 1) return '昨天';
+  if (diffDays < 7) return `${diffDays}天前`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)}週前`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)}個月前`;
+  return `${Math.floor(diffDays / 365)}年前`;
+}
+
+/**
+ * 生成樹狀結構 - 改進版本，包含文件信息
  */
 function generateTree(dirPath, prefix = '', isLast = true, depth = 0, maxDepth = 10) {
   if (depth > maxDepth) {
@@ -196,7 +228,16 @@ function generateTree(dirPath, prefix = '', isLast = true, depth = 0, maxDepth =
       const subPath = path.join(dirPath, item.name);
       result += generateTree(subPath, prefix + nextPrefix, isLastItem, depth + 1, maxDepth);
     } else {
-      result += '\n';
+      // 添加文件信息
+      try {
+        const fullPath = path.join(dirPath, item.name);
+        const stats = fs.statSync(fullPath);
+        const size = formatFileSize(stats.size);
+        const modTime = formatModTime(stats);
+        result += ` (${size}, ${modTime})\n`;
+      } catch (error) {
+        result += '\n';
+      }
     }
   });
 
