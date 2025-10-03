@@ -16,7 +16,7 @@ export { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';
 // Thumbnail view components
 export { FileThumbnailGrid } from './thumbnail/file-thumbnail-grid';
 export { FileThumbnailCard } from './thumbnail/file-thumbnail-card';
-export { FileTypeIcon } from './thumbnail/file-type-icon';
+export { FileTypeIcon } from '@/components/ui/file-type-icon';
 
 // Detail view components
 export { FileDetailView } from './detail/file-detail-view';

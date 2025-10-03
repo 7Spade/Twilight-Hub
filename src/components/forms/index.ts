@@ -16,7 +16,3 @@ export {
 // 表單容器組件
 export { FormCard } from './form-card';
 
-// 向後兼容的導出（逐步棄用）
-export { FormInput as FormInputLegacy } from './form-input';
-export { FormTextarea as FormTextareaLegacy } from './form-textarea';
-export { FormSwitch as FormSwitchLegacy } from './form-switch';

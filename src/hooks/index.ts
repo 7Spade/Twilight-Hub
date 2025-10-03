@@ -18,6 +18,3 @@ export { usePermissions, useRoleManagement, usePermissionGuard } from './use-per
 export { useToast } from './use-toast';
 export { useIsMobile } from './use-mobile';
 
-// 向後兼容的導出（逐步棄用）
-// 注意：useChatStore 和 useDialogStore 已被 useAppState 整合
-// 請使用 useChatState 和 useDialogState 替代

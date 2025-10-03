@@ -22,7 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { type Account } from '@/lib/types';
+import { type Account } from '@/lib/types-unified';
 
 export default function AuditLogPage({
   params: paramsPromise,

@@ -14,7 +14,7 @@ import { SpaceVisibilityBadge } from '@/components/features/spaces/components/sp
 import { Skeleton } from '@/components/ui/skeleton';
 
 import { User } from 'firebase/auth';
-import { type Account, type Space } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types-unified';
 import { SpaceSettingsView, type SpaceSettingsFormValues } from './spaces-settings-view';
 import { cn } from '@/lib/utils';
 import { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';
@@ -28,7 +28,7 @@ import { ReportDashboard } from './report';
 import { AcceptanceList } from './acceptance';
 import { ContractList } from './contracts';
 import { PermissionGuard, PermissionTab } from '@/components/auth/permission-guard';
-import { Permission } from '@/lib/types';
+import { Permission } from '@/lib/types-unified';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;

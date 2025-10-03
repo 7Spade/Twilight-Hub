@@ -8,7 +8,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { FileTypeIcon } from './file-type-icon';
+import { FileTypeIcon } from '@/components/ui/file-type-icon';
 import { type FileItem } from '../folder-tree';
 
 export interface FileThumbnailCardProps {
