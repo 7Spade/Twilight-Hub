@@ -68,9 +68,8 @@ export function CreateContractDialog({
   const onSubmit = async (data: CreateContractFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫
+      // TODO: 現代化 - 實現真實的合約創建 API，移除模擬延遲
       console.log('Creating contract:', { spaceId, ...data });
-      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       
       const newContract = {

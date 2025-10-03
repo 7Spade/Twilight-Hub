@@ -123,6 +123,7 @@ export function Toolbar({
           className="hidden"
           onChange={(e) => {
             // Handle file selection upload
+            // TODO: 現代化 - 移除調試代碼或實現正式的文件上傳邏輯
             console.log('Files selected:', e.target.files);
           }}
         />
@@ -139,10 +140,16 @@ export function Toolbar({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => console.log('檔案紀錄')}>
+            <DropdownMenuItem onClick={() => {
+              // TODO: 現代化 - 實現檔案紀錄功能，移除調試代碼
+              console.log('檔案紀錄');
+            }}>
               檔案紀錄
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log('資料夾匯出')}>
+            <DropdownMenuItem onClick={() => {
+              // TODO: 現代化 - 實現資料夾匯出功能，移除調試代碼
+              console.log('資料夾匯出');
+            }}>
               資料夾匯出
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>

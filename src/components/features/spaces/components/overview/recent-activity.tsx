@@ -14,8 +14,7 @@ interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  // TODO: [P2] FIX src/components/features/spaces/components/overview/recent-activity.tsx - 修正 unknown/any 類型
-  // 說明：定義 metadata 結構或使用更嚴格的型別映射
+  // TODO: 現代化 - 定義具體的 metadata 結構，提升類型安全
   metadata?: Record<string, unknown>;
 }
 
@@ -25,7 +24,7 @@ interface RecentActivityProps {
 }
 
 export function RecentActivity({ spaceId: _spaceId, activities }: RecentActivityProps) {
-  // TODO: [P3] REFACTOR src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數
+  // TODO: 現代化 - 移除未使用的 spaceId 參數或實現相關邏輯
   const defaultActivities: ActivityItem[] = [
     {
       id: '1',
@@ -94,18 +93,18 @@ export function RecentActivity({ spaceId: _spaceId, activities }: RecentActivity
             <Avatar className="h-8 w-8">
               <AvatarImage src={activity.user.avatar} />
               <AvatarFallback>
-                {activity.user.name.split(' ').map(n => n[0]).join('')}
+                {(activity.user.name || 'U').split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 space-y-1">
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium">{activity.user.name}</span>
+                <span className="text-sm font-medium">{activity.user.name || 'Unknown User'}</span>
                 <Badge variant="secondary" className={`text-xs ${getActivityColor(activity.type)}`}>
                   {getActivityIcon(activity.type)} {activity.type.replace('_', ' ')}
                 </Badge>
               </div>
               <p className="text-sm text-muted-foreground">
-                {activity.description}
+                {activity.description || 'No description available'}
                 {activity.metadata?.fileName && (
                   <span className="font-medium ml-1">"{activity.metadata.fileName}"</span>
                 )}

@@ -188,10 +188,10 @@ export function IssueDetails({ issue, open, onOpenChange, comments }: IssueDetai
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={issue.assignee.avatar} />
                       <AvatarFallback>
-                        {issue.assignee.name.split(' ').map(n => n[0]).join('')}
+                        {(issue.assignee.name || 'U').split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
-                    <span>{issue.assignee.name}</span>
+                    <span>{issue.assignee.name || 'Unknown User'}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -213,12 +213,12 @@ export function IssueDetails({ issue, open, onOpenChange, comments }: IssueDetai
                         <Avatar className="h-8 w-8">
                           <AvatarImage src={comment.author.avatar} />
                           <AvatarFallback>
-                            {comment.author.name.split(' ').map(n => n[0]).join('')}
+                            {(comment.author.name || 'U').split(' ').map(n => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1 space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-sm">{comment.author.name}</span>
+                            <span className="font-medium text-sm">{comment.author.name || 'Unknown User'}</span>
                             <span className="text-xs text-muted-foreground">
                               {formatDistanceToNow(comment.createdAt, { addSuffix: true })}
                             </span>

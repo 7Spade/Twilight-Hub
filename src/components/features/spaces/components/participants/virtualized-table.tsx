@@ -94,7 +94,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
             <Avatar className="h-10 w-10">
               <AvatarImage src={participant.avatar} alt={participant.name} />
               <AvatarFallback className="text-sm font-medium">
-                {participant.name.split(' ').map(n => n[0]).join('')}
+                {(participant.name || 'U').split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
             {participant.isOnline && (
@@ -209,11 +209,11 @@ export function VirtualizedTable({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
-        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框
+        // TODO: 現代化 - 實現編輯對話框，移除調試代碼
         console.log('編輯成員:', participantId);
         break;
       case 'role':
-        // TODO: [P2] FEAT src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框
+        // TODO: 現代化 - 實現角色變更對話框，移除調試代碼
         console.log('變更角色:', participantId);
         break;
       case 'remove':
@@ -252,12 +252,9 @@ export function VirtualizedTable({
       <div className="flex items-center border-b border-border pb-3">
         <div className="flex items-center w-full px-4">
           <div className="w-8 mr-3">
-              <Checkbox
-              checked={isAllSelected}
-              ref={(el) => {
-                if (el) el.indeterminate = isIndeterminate;
-              }}
-              onCheckedChange={handleSelectAll}
+            <Checkbox
+              checked={isIndeterminate ? 'indeterminate' : isAllSelected}
+              onCheckedChange={(v) => handleSelectAll(Boolean(v))}
               aria-label="全選參與者"
             />
           </div>

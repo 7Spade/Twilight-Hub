@@ -83,7 +83,7 @@ export function ParticipantCard({
                 checked={isSelected}
                 onCheckedChange={handleSelect}
                 disabled={isCurrentUser}
-                aria-label={`選擇 ${participant.name}`}
+                aria-label={`選擇 ${participant.name || 'Unknown User'}`}
               />
             </div>
           )}
@@ -92,9 +92,9 @@ export function ParticipantCard({
           <div className="flex items-start gap-3 mb-4">
             <div className="relative">
               <Avatar className="h-12 w-12">
-                <AvatarImage src={participant.avatar} alt={participant.name} />
+                <AvatarImage src={participant.avatar} alt={participant.name || 'Unknown User'} />
                 <AvatarFallback className="text-sm font-medium">
-                  {participant.name.split(' ').map(n => n[0]).join('')}
+                  {(participant.name || 'U').split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
               {participant.isOnline && (
@@ -104,7 +104,7 @@ export function ParticipantCard({
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-semibold text-base truncate">{participant.name}</h3>
+                <h3 className="font-semibold text-base truncate">{participant.name || 'Unknown User'}</h3>
                 {isCurrentUser && (
                   <Badge variant="outline" className="text-xs">你</Badge>
                 )}

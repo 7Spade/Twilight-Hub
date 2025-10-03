@@ -68,13 +68,13 @@ const ParticipantRow = memo(function ParticipantRow({
       <TableCell>
         <div className="flex items-center space-x-3">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={participant.avatar} alt={participant.name} />
+            <AvatarImage src={participant.avatar} alt={participant.name || 'Unknown User'} />
             <AvatarFallback className="text-xs">
-              {participant.name.split(' ').map(n => n[0]).join('')}
+              {(participant.name || 'U').split(' ').map(n => n[0]).join('')}
             </AvatarFallback>
           </Avatar>
           <div>
-            <div className="font-medium">{participant.name}</div>
+            <div className="font-medium">{participant.name || 'Unknown User'}</div>
           </div>
         </div>
       </TableCell>
@@ -142,7 +142,7 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   }, [actions]);
 
   const handleUpdateRole = useCallback((participantId: string) => {
-    // TODO: [P2] FEAT src/components/features/spaces/components/participants/participant-table.tsx - 打開角色更新對話框
+    // TODO: 現代化 - 實現角色更新對話框，移除調試代碼
     console.log('Update role for participant:', participantId);
     // @assignee dev
   }, []);

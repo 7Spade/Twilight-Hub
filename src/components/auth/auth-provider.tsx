@@ -56,6 +56,15 @@ import {
 } from 'firebase/firestore';
 import { initializeFirebase } from '@/firebase';
 
+// TODO: 現代化 - 用最小型 type guard 移除 any，維持低認知與效能
+const isFirestoreTimestamp = (value: unknown): value is Timestamp => {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as { toDate?: () => Date }).toDate === 'function'
+  );
+};
+
 // Authentication state interface
 interface AuthState {
   userId: string | null;
@@ -201,8 +210,8 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
         const raw = d.data() as Record<string, unknown>;
         const assignedAtRaw = raw.assignedAt as unknown;
         // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
-        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'
-          ? (assignedAtRaw as Timestamp)
+        const assignedAtTs: Timestamp = isFirestoreTimestamp(assignedAtRaw)
+          ? assignedAtRaw
           : Timestamp.fromDate(new Date());
         const spaceIdKey = typeof raw.spaceId === 'string' ? (raw.spaceId as string) : d.id;
         spaceRoles[spaceIdKey] = {
@@ -226,8 +235,8 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
         const raw = d.data() as Record<string, unknown>;
         const assignedAtRaw = raw.assignedAt as unknown;
         // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
-        const assignedAtTs: Timestamp = assignedAtRaw && typeof (assignedAtRaw as { toDate?: () => Date }).toDate === 'function'
-          ? (assignedAtRaw as Timestamp)
+        const assignedAtTs: Timestamp = isFirestoreTimestamp(assignedAtRaw)
+          ? assignedAtRaw
           : Timestamp.fromDate(new Date());
         organizationRoles.push({
           roleId: raw.roleId as OrganizationRole,

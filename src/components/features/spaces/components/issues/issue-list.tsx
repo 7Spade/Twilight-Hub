@@ -262,9 +262,9 @@ export function IssueList({ spaceId, issues, canCreate = false }: IssueListProps
                     {issue.assignee ? (
                       <div className="flex items-center gap-2">
                         <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center text-xs">
-                          {issue.assignee.name.split(' ').map(n => n[0]).join('')}
+                          {(issue.assignee.name || 'U').split(' ').map(n => n[0]).join('')}
                         </div>
-                        <span className="text-sm">{issue.assignee.name}</span>
+                        <span className="text-sm">{issue.assignee.name || 'Unknown User'}</span>
                       </div>
                     ) : (
                       <span className="text-sm text-muted-foreground">Unassigned</span>
