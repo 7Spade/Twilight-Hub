@@ -4,7 +4,7 @@
  * selected item. A separate context menu for the toolbar is also defined here.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量 */
+// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）
 
 import React from 'react';
 import {

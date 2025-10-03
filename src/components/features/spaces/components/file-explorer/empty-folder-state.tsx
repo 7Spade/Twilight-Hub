@@ -5,7 +5,7 @@
  * for new or empty directories.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第31行包含未終止的字符串字面量 */
+// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/empty-folder-state.tsx - 修復字符串字面量錯誤（第31行未終止）
 
 import React from 'react';
 import { Button } from '@/components/ui/button';

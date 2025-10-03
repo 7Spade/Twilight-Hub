@@ -5,7 +5,7 @@
  * file explorer toolbar.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量 */
+// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/deleted-items.tsx - 修復字符串字面量錯誤（第50行未終止）
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';

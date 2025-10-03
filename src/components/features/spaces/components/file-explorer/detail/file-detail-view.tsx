@@ -3,7 +3,7 @@
  * in a side panel. Integrates with Context7 file viewing libraries.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量 */
+// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/detail/file-detail-view.tsx - 修復字符串字面量錯誤（第75行未終止）
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
