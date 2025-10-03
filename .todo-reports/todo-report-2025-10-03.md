@@ -1,20 +1,20 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 128 個項目
+- 總計: 122 個項目
 - 🔴 緊急: 37 個項目
 ### 依優先級
-- P2: 89 個
+- P2: 84 個
 - P1: 17 個
-- P3: 4 個
+- P3: 3 個
 - P0: 18 個
 ### 依類型
 - PERF: 11 個
-- REFACTOR: 56 個
+- REFACTOR: 55 個
 - CLEANUP: 5 個
-- FEAT: 20 個
+- FEAT: 16 個
 - TYPING: 1 個
 - HOOK: 2 個
-- FIX: 33 個
+- FIX: 32 個
 ---
 ## 🔴 P0 (18 個)
 ### 1. [FIX] src/components/features/spaces/components/file-explorer/file-table.tsx - 修復語法錯誤（第52行未終止的字串）
@@ -268,7 +268,7 @@
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
 ---
-## 🟡 P2 (89 個)
+## 🟡 P2 (84 個)
 ### 1. [REFACTOR] src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
 **位置:** `src\components\adjust-stock-dialog.tsx:138`
 **負責人:** @frontend
@@ -279,7 +279,7 @@
 > 建議：添加適當的類型檢查或使用可選鏈操作符
 ---
 ### 2. [REFACTOR] src/components/auth/auth-provider.tsx:195 - 修復 TypeScript any 類型使用
-**位置:** `src\components\auth\auth-provider.tsx:195`
+**位置:** `src\components\auth\auth-provider.tsx:204`
 **負責人:** @frontend
 **截止日期:** 2025-01-25
 **詳細說明:**
@@ -628,19 +628,16 @@
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 contract 建立明確型別介面
 ---
-### 47. [FEAT] src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫
-**位置:** `src\components\features\spaces\components\contracts\create-contract-dialog.tsx:71`
----
-### 48. [FIX] src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）
+### 47. [FIX] src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）
 **位置:** `src\components\features\spaces\components\file-explorer\context-menu.tsx:7`
 ---
-### 49. [FIX] src/components/features/spaces/components/file-explorer/deleted-items.tsx - 修復字符串字面量錯誤（第50行未終止）
+### 48. [FIX] src/components/features/spaces/components/file-explorer/deleted-items.tsx - 修復字符串字面量錯誤（第50行未終止）
 **位置:** `src\components\features\spaces\components\file-explorer\deleted-items.tsx:8`
 ---
-### 50. [FIX] src/components/features/spaces/components/file-explorer/empty-folder-state.tsx - 修復字符串字面量錯誤（第31行未終止）
+### 49. [FIX] src/components/features/spaces/components/file-explorer/empty-folder-state.tsx - 修復字符串字面量錯誤（第31行未終止）
 **位置:** `src\components\features\spaces\components\file-explorer\empty-folder-state.tsx:8`
 ---
-### 51. [REFACTOR] src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
+### 50. [REFACTOR] src/components/features/spaces/components/file-explorer/file-table.tsx:29 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\file-table.tsx:28`
 **負責人:** @frontend
 **詳細說明:**
@@ -648,7 +645,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 52. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:27 - 清理未使用的導入
+### 51. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:27 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:35`
 **負責人:** @frontend
 **詳細說明:**
@@ -656,7 +653,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 53. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:29 - 清理未使用的導入
+### 52. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:29 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:41`
 **負責人:** @frontend
 **詳細說明:**
@@ -664,7 +661,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 54. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入
+### 53. [REFACTOR] src/components/features/spaces/components/file-explorer/filter-panel.tsx:34 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\filter-panel.tsx:49`
 **負責人:** @frontend
 **詳細說明:**
@@ -672,7 +669,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 55. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports
+### 54. [REFACTOR] src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports
 **位置:** `src\components\features\spaces\components\file-explorer\folder-tree.tsx:14`
 **負責人:** @frontend
 **詳細說明:**
@@ -680,7 +677,7 @@
 > Impact: Increases bundle size and affects performance
 > Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused
 ---
-### 56. [REFACTOR] src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入
+### 55. [REFACTOR] src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\toolbar.tsx:18`
 **負責人:** @frontend
 **詳細說明:**
@@ -688,7 +685,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 57. [REFACTOR] src/components/features/spaces/components/file-explorer/upload-dialog.tsx:12 - 清理未使用的導入
+### 56. [REFACTOR] src/components/features/spaces/components/file-explorer/upload-dialog.tsx:12 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\file-explorer\upload-dialog.tsx:14`
 **負責人:** @frontend
 **詳細說明:**
@@ -696,45 +693,37 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 58. [FIX] src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型
+### 57. [FIX] src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型
 **位置:** `src\components\features\spaces\components\issues\create-issue-form.tsx:29`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 issue 建立明確型別介面
 ---
-### 59. [FEAT] src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫
+### 58. [FEAT] src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫
 **位置:** `src\components\features\spaces\components\issues\create-issue-form.tsx:52`
 ---
-### 60. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
+### 59. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
 **位置:** `src\components\features\spaces\components\overview\hooks\use-dashboard-data.ts:41`
 **負責人:** @dev
 **詳細說明:**
 > 這裡使用模擬數據
 ---
-### 61. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
+### 60. [FEAT] src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
 **位置:** `src\components\features\spaces\components\overview\hooks\use-dashboard-data.ts:60`
 **負責人:** @dev
 **詳細說明:**
 > 這裡使用模擬數據
 ---
-### 62. [FIX] src/components/features/spaces/components/overview/recent-activity.tsx - 修正 unknown/any 類型
-**位置:** `src\components\features\spaces\components\overview\recent-activity.tsx:17`
-**詳細說明:**
-> 說明：定義 metadata 結構或使用更嚴格的型別映射
----
-### 63. [FIX] src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）
+### 61. [FIX] src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）
 **位置:** `src\components\features\spaces\components\overview\types.ts:41`
 ---
-### 64. [FEAT] src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 顯示錯誤提示
+### 62. [FEAT] src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 顯示錯誤提示
 **位置:** `src\components\features\spaces\components\participants\invite-participant-dialog.tsx:55`
 **負責人:** @dev
 ---
-### 65. [FEAT] src/components/features/spaces/components/participants/participant-role-editor.tsx - 實現角色變更 API 調用
+### 63. [FEAT] src/components/features/spaces/components/participants/participant-role-editor.tsx - 實現角色變更 API 調用
 **位置:** `src\components\features\spaces\components\participants\participant-role-editor.tsx:50`
 ---
-### 66. [FEAT] src/components/features/spaces/components/participants/participant-table.tsx - 打開角色更新對話框
-**位置:** `src\components\features\spaces\components\participants\participant-table.tsx:145`
----
-### 67. [REFACTOR] src/components/features/spaces/components/participants/view-toggle.tsx:9 - 清理未使用的導入
+### 64. [REFACTOR] src/components/features/spaces/components/participants/view-toggle.tsx:9 - 清理未使用的導入
 **位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:10`
 **負責人:** @frontend
 **詳細說明:**
@@ -742,35 +731,29 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 68. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框
-**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:212`
----
-### 69. [FEAT] src/components/features/spaces/components/participants/virtualized-table.tsx - 實現角色變更對話框
-**位置:** `src\components\features\spaces\components\participants\virtualized-table.tsx:216`
----
-### 70. [FIX] src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型
+### 65. [FIX] src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型
 **位置:** `src\components\features\spaces\components\quality\create-checklist-template.tsx:33`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 template 建立明確型別介面
 ---
-### 71. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
+### 66. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
 **位置:** `src\components\features\spaces\components\quality\create-checklist-template.tsx:71`
 ---
-### 72. [FIX] src/components/features/spaces/components/report/create-report-dialog.tsx - 修正 unknown/any 類型
+### 67. [FIX] src/components/features/spaces/components/report/create-report-dialog.tsx - 修正 unknown/any 類型
 **位置:** `src\components\features\spaces\components\report\create-report-dialog.tsx:36`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 report 建立明確型別介面
 ---
-### 73. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
+### 68. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
 **位置:** `src\components\features\spaces\components\report\create-report-dialog.tsx:70`
 ---
-### 74. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
+### 69. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-dashboard.tsx:124`
 ---
-### 75. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
+### 70. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-viewer.tsx:80`
 ---
-### 76. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
+### 71. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
 **位置:** `src\components\features\spaces\hooks\use-file-actions.ts:8`
 **詳細說明:**
 > 建議：
@@ -778,10 +761,10 @@
 > 2) 僅回傳實際用到的最小 API（如 download/preview/delete），避免暴露整包操作以降低重渲染。
 > 3) 針對重複邏輯（權限/錯誤處理/Toast）抽為 util，避免每個 action 內重複。
 ---
-### 77. [REFACTOR] src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）
+### 72. [REFACTOR] src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）
 **位置:** `src\components\features\spaces\hooks\use-star-actions.ts:14`
 ---
-### 78. [REFACTOR] src/components/follower-list.tsx:11 - 清理未使用的導入
+### 73. [REFACTOR] src/components/follower-list.tsx:11 - 清理未使用的導入
 **位置:** `src\components\follower-list.tsx:13`
 **負責人:** @frontend
 **詳細說明:**
@@ -789,7 +772,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 79. [REFACTOR] src/components/forms/form-card.tsx:18 - 清理未使用的導入
+### 74. [REFACTOR] src/components/forms/form-card.tsx:18 - 清理未使用的導入
 **位置:** `src\components\forms\form-card.tsx:20`
 **負責人:** @frontend
 **詳細說明:**
@@ -797,7 +780,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 ---
-### 80. [REFACTOR] src/components/github-heat-map.tsx:39 - 清理未使用的變數
+### 75. [REFACTOR] src/components/github-heat-map.tsx:39 - 清理未使用的變數
 **位置:** `src\components\github-heat-map.tsx:41`
 **負責人:** @frontend
 **詳細說明:**
@@ -805,7 +788,7 @@
 > 影響：增加 bundle 大小，影響性能
 > 建議：移除未使用的變數或添加下劃線前綴表示有意未使用
 ---
-### 81. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
+### 76. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
 **位置:** `src\components\ui\chart.tsx:1`
 **詳細說明:**
 > 建議：
@@ -813,7 +796,7 @@
 > 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
 > 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
 ---
-### 82. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+### 77. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
 **位置:** `src\firebase\firestore\use-collection.tsx:37`
 **詳細說明:**
 > 建議：
@@ -821,22 +804,22 @@
 > - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
 > - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 ---
-### 83. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 78. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:12`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，為 dialog data 建立明確型別
 ---
-### 84. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 79. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:28`
 **詳細說明:**
 > 說明：替換為具名型別或泛型參數，避免使用 unknown
 ---
-### 85. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
+### 80. [FIX] src/hooks/use-app-state.ts - 修正 unknown/any 類型
 **位置:** `src\hooks\use-app-state.ts:74`
 **詳細說明:**
 > 說明：為 data 提供具名型別或受限泛型，避免使用 unknown
 ---
-### 86. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+### 81. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
 **位置:** `src\hooks\use-permissions.ts:2`
 **詳細說明:**
 > 建議：
@@ -844,7 +827,7 @@
 > 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
 > 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 ---
-### 87. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+### 82. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
 **位置:** `src\lib\role-management.ts:112`
 **負責人:** @ai
 **詳細說明:**
@@ -853,7 +836,7 @@
 > - checkPermission 與 getAllRoleDefinitions 共享快取；
 > - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
 ---
-### 88. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+### 83. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
 **位置:** `src\lib\role-management.ts:121`
 **詳細說明:**
 > 建議：
@@ -861,22 +844,19 @@
 > 2) 將 getAllRoleDefinitions 與 checkPermission 的重複查詢合併/快取；避免重複 Firestore round-trip。
 > 3) 僅回傳渲染所需欄位（id/name/permissions），其餘細節延後查詢。
 ---
-### 89. [FIX] src/lib/types-unified.ts - 修正 unknown/any 類型
+### 84. [FIX] src/lib/types-unified.ts - 修正 unknown/any 類型
 **位置:** `src\lib\types-unified.ts:245`
 **詳細說明:**
 > 說明：以具名型別替代 unknown，或引入泛型以約束資料型別
 ---
-## 🟢 P3 (4 個)
+## 🟢 P3 (3 個)
 ### 1. [REFACTOR] src/app/(app)/organizations/[organizationslug]/spaces/page.tsx - 清理未使用的參數（params 未使用）
 **位置:** `src\app\(app)\organizations\[organizationslug]\spaces\page.tsx:13`
 ---
-### 2. [REFACTOR] src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數
-**位置:** `src\components\features\spaces\components\overview\recent-activity.tsx:28`
----
-### 3. [REFACTOR] src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）
+### 2. [REFACTOR] src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）
 **位置:** `src\components\features\spaces\components\quality\quality-dashboard.tsx:28`
 ---
-### 4. [REFACTOR] src/components/ui/menubar.tsx - 奧卡姆剃刀精簡 API 表面
+### 3. [REFACTOR] src/components/ui/menubar.tsx - 奧卡姆剃刀精簡 API 表面
 **位置:** `src\components\ui\menubar.tsx:8`
 **詳細說明:**
 > 建議：

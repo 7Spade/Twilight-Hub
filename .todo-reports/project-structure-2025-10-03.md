@@ -104,7 +104,7 @@
     │   ├── globals.css (2.4 KB, 昨天)
     ├── components/
     │   ├── auth/
-    │   │   ├── auth-provider.tsx (13.5 KB, 今天)
+    │   │   ├── auth-provider.tsx (13.7 KB, 今天)
     │   │   ├── index.ts (509 B, 今天)
     │   │   ├── permission-guard.tsx (2.3 KB, 今天)
     │   │   ├── role-manager.tsx (22.2 KB, 今天)
@@ -125,7 +125,7 @@
     │   │   │   │   ├── types.ts (869 B, 今天)
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
-    │   │   │   │   │   ├── acceptance-item.tsx (8.9 KB, 今天)
+    │   │   │   │   │   ├── acceptance-item.tsx (9 KB, 今天)
     │   │   │   │   │   ├── acceptance-list.tsx (9.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (219 B, 今天)
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.4 KB, 今天)
@@ -154,7 +154,7 @@
     │   │   │   │   │   ├── folder-tree.tsx (27.6 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
     │   │   │   │   │   ├── packages-tab.tsx (10.5 KB, 今天)
-    │   │   │   │   │   ├── toolbar.tsx (5.8 KB, 今天)
+    │   │   │   │   │   ├── toolbar.tsx (6.1 KB, 今天)
     │   │   │   │   │   ├── version-history-drawer.tsx (5.6 KB, 今天)
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx (7.8 KB, 今天)
@@ -167,7 +167,7 @@
     │   │   │   │   │   ├── index.ts (747 B, 今天)
     │   │   │   │   │   ├── loading-skeleton.tsx (2.5 KB, 今天)
     │   │   │   │   │   ├── overview-dashboard.tsx (7.1 KB, 今天)
-    │   │   │   │   │   ├── recent-activity.tsx (4.3 KB, 今天)
+    │   │   │   │   │   ├── recent-activity.tsx (4.2 KB, 今天)
     │   │   │   │   │   ├── stat-card.tsx (5.9 KB, 今天)
     │   │   │   │   │   ├── types.ts (3.8 KB, 今天)
     │   │   │   │   ├── participants/
@@ -177,14 +177,14 @@
     │   │   │   │   │   ├── card-grid.tsx (7 KB, 今天)
     │   │   │   │   │   ├── data.ts (5.5 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
-    │   │   │   │   │   ├── participant-card.tsx (8.1 KB, 今天)
+    │   │   │   │   │   ├── participant-card.tsx (8.2 KB, 今天)
     │   │   │   │   │   ├── participant-filters.tsx (5.9 KB, 今天)
     │   │   │   │   │   ├── participant-list.tsx (6.2 KB, 今天)
     │   │   │   │   │   ├── participant-role-editor.tsx (4.8 KB, 今天)
     │   │   │   │   │   ├── participant-table.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── types.ts (4.5 KB, 今天)
     │   │   │   │   │   ├── view-toggle.tsx (2.1 KB, 今天)
-    │   │   │   │   │   ├── virtualized-table.tsx (12.3 KB, 今天)
+    │   │   │   │   │   ├── virtualized-table.tsx (12.2 KB, 今天)
     │   │   │   │   ├── quality/
     │   │   │   │   │   ├── checklist.tsx (8 KB, 今天)
     │   │   │   │   │   ├── index.ts (211 B, 今天)
