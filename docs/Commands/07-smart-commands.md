@@ -60,11 +60,26 @@
 - `修復所有 ESLint 警告` - 修復所有 ESLint 警告
 
 **範例:**
-```
-修復所有 P1 認證錯誤
-清理所有 UI 組件未使用導入
-修復所有 API 相關 TypeScript 錯誤
-修復所有 Firebase 相關 ESLint 警告
+```typescript
+// TODO: [P1] FIX 修復所有認證錯誤
+// 問題：認證模組存在多個錯誤
+// 影響：用戶無法正常登入
+// @assignee auth-team
+
+// TODO: [P2] REFACTOR 清理所有 UI 組件未使用導入
+// 問題：UI 組件存在未使用的 import
+// 影響：增加 bundle 大小
+// @assignee ui-team
+
+// TODO: [P1] FIX 修復所有 API 相關 TypeScript 錯誤
+// 問題：API 相關代碼存在類型錯誤
+// 影響：編譯失敗
+// @assignee backend-team
+
+// TODO: [P2] FIX 修復所有 Firebase 相關 ESLint 警告
+// 問題：Firebase 代碼存在風格警告
+// 影響：代碼風格不統一
+// @assignee firebase-team
 ```
 
 ### 批量創建
@@ -233,9 +248,9 @@
 ❌ "自動優化" - 沒有優化策略
 ❌ "智能重構" - 缺少重構方向
 
-✅ "基於當前認證模組智能修復 TypeScript 錯誤"
-✅ "根據性能分析自動優化組件渲染"
-✅ "基於架構模式智能重構文件管理模組"
+✅ "// TODO: [P1] FIX 基於當前認證模組智能修復 TypeScript 錯誤"
+✅ "// TODO: [P2] PERF 根據性能分析自動優化組件渲染"
+✅ "// TODO: [P2] REFACTOR 基於架構模式智能重構文件管理模組"
 ```
 
 ---
