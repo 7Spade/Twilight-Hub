@@ -147,6 +147,43 @@
         "get_current_time",
         "convert_time"
       ]
+    },
+    "nextjs-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@taiyokimura/nextjs-docs-mcp@latest"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "get_nextjs_docs",
+        "search_nextjs_docs",
+        "list_nextjs_docs"
+      ],
+      "autoTrigger": {
+        "keywords": ["nextjs", "next.js", "app router", "server component"],
+        "conditions": ["documentation", "reference", "guide"]
+      }
+    },
+    "nextjs-manager": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ld338/nextjs-mcp-server"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "start_server",
+        "stop_server",
+        "restart_server",
+        "list_servers",
+        "get_server_logs",
+        "get_server_status"
+      ],
+      "autoTrigger": {
+        "keywords": ["dev server", "development", "start", "stop", "restart"],
+        "conditions": ["server management", "development workflow"]
+      }
     }
   }
 }

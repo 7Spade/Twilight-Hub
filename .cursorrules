@@ -15,4 +15,23 @@ If docs are missing or package name/version is unclear, ask for the exact name/v
 
 Default platform: Node 22.18.0.
 Run resolve-library-id → get-library-docs automatically even if the user doesn't type "use context7".
-If Node 22.18.0 docs are unavailable, ask whether to fall back to Node 18 or a specified version.
+
+// 新增：Next.js 專用自動化
+For Next.js related tasks, automatically use:
+- nextjs-docs for documentation queries
+- nextjs-manager for development server management
+- filesystem for file operations
+- git for version control operations
+
+// 新增：極簡主義自動應用
+Always apply minimalism principles from minimalism.mdc:
+- Prefer built-in features over third-party dependencies
+- Keep components single-purpose and minimal
+- Use composition over complex configuration
+- Follow "less is more" philosophy in all code generation
+
+// 新增：自動模式判斷
+Based on task complexity, automatically:
+- Level 1-2: Use basic workflow
+- Level 3-4: Use comprehensive planning and creative phases
+- Always verify file structure before operations
