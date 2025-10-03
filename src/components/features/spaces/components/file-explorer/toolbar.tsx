@@ -77,7 +77,7 @@ export function Toolbar({
             onClick={handleFileSelect}
           >
             <Upload className="h-4 w-4 mr-2" />
-            上�?檔�?
+            上傳檔案
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -89,12 +89,8 @@ export function Toolbar({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              <DropdownMenuItem onClick={handleFileSelect}>
-                上�?檔�?
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleFileSelect}>
-                上傳????��?�?
-              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleFileSelect}>上傳檔案</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleFileSelect}>上傳資料夾</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -109,13 +105,13 @@ export function Toolbar({
           <MoreVertical className="h-4 w-4" />
         </Button>
 
-        {/* 篩選?��? - ?��? Autodesk 設�? */}
+        {/* 篩選按鈕 */}
         <Button 
           variant={isFilterActive ? "default" : "outline"}
           onClick={onFilter}
         >
           <Filter className="h-4 w-4 mr-2" />
-          ?��??�篩??
+          進階篩選
         </Button>
 
 

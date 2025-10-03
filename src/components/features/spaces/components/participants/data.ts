@@ -80,7 +80,7 @@ export class ParticipantDataService {
 
   // TODO: [P0] FIX Typo/Parsing (L81) [低認知]
   // - 指引：修正參數型別宣告錯字 `_spaceId:`
-  static async getParticipants(spaceId: _spaceId: string): Promise<Participant[]> {
+  static async getParticipants(_spaceId: string): Promise<Participant[]> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100));
     return [...this.participants];
@@ -92,7 +92,7 @@ export class ParticipantDataService {
     spaceId: string,
     email: string,
     role: Participant['role'],
-    message?: _message: string
+    _message?: string
   ): Promise<Participant> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));

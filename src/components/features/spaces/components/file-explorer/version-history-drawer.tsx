@@ -9,36 +9,13 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:12 - 清理未使用的導入
-// 問題：'Avatar', 'AvatarFallback' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
 import { Badge } from '@/components/ui/badge';
 import { 
   X, 
   FileText, 
   MoreVertical,
-  Calendar,
-  User
+  Calendar
 } from 'lucide-react';
-
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:19 - 清理未使用的導入
-// 問題：'User' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
-import { cn } from '@/lib/utils';
-
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:21 - 清理未使用的導入
-// 問題：'cn' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 
 export interface VersionItem {
   id: string;
@@ -67,10 +44,6 @@ export function VersionHistoryDrawer({
   versions, 
   currentFile 
 }: VersionHistoryDrawerProps) {
-  const _getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('zh-TW', {
       year: 'numeric',
@@ -113,7 +86,7 @@ export function VersionHistoryDrawer({
           {/* 版本清單 */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-muted-foreground">
-              ?�本歷史
+              版本歷史
             </h4>
             
             <div className="border rounded-lg">
@@ -147,7 +120,7 @@ export function VersionHistoryDrawer({
                           </div>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3" />
-                            <span>已由??{formatDate(version.updatedAt)}</span>
+                            <span>已由 {formatDate(version.updatedAt)}</span>
                           </div>
                         </div>
                       </TableCell>
@@ -177,10 +150,10 @@ export function VersionHistoryDrawer({
             </div>
           </div>
 
-          {/* 底部?�??*/}
+          {/* 底部統計 */}
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground text-center">
-              �?��展示 {versions.length} ?��???
+              共展示 {versions.length} 個版本
             </p>
           </div>
         </div>

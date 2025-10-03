@@ -71,7 +71,7 @@ export function useCollection<T = DocumentData>(
         setError(null);
         setIsLoading(false);
       },
-      (err: FirestoreError) => { /* TODO: [P3] REFACTOR src/firebase/firestore/use-collection.tsx - 清理未使用的參數 */
+      (_err: FirestoreError) => {
         let path: string;
         if (targetRefOrQuery.type === 'collection') {
           path = (targetRefOrQuery as CollectionReference).path;

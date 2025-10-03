@@ -290,7 +290,7 @@ export function usePermissions() {
   }, [hasPermission]);
 
   // 檢查用戶是否為組織管理員
-  const isOrganizationAdmin = useCallback((organizationId: string): boolean => {
+  const isOrganizationAdmin = useCallback((_organizationId: string): boolean => {
     return hasPermission({ id: 'org_admin', name: 'Organization Administrator' }, undefined);
   }, [hasPermission]);
 

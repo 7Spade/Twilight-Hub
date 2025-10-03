@@ -14,7 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ParticipantInviteFormData, ParticipantRole } from './types';
+import { ParticipantInviteFormData as _ParticipantInviteFormData, ParticipantRole } from './types';
 
 const inviteSchema = z.object({
   email: z.string().email('請輸?��??��??��??�件?��?'),
@@ -25,17 +25,17 @@ const inviteSchema = z.object({
 type InviteFormValues = z.infer<typeof inviteSchema>;
 
 interface InviteParticipantDialogProps {
-  spaceId: string;
+  _spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onInvite: (email: string, role: ParticipantRole, message?: string) => Promise<void>;
 }
 
-export function InviteParticipantDialog({ 
-  spaceId, 
-  open, 
-  onOpenChange, 
-  onInvite 
+export function InviteParticipantDialog({
+  _spaceId,
+  open,
+  onOpenChange,
+  onInvite
 }: InviteParticipantDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
 

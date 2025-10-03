@@ -143,10 +143,10 @@ export function CreateReportDialog({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="summary">?? Summary Report</SelectItem>
-                      <SelectItem value="detailed">?? Detailed Report</SelectItem>
-                      <SelectItem value="analytics">?? Analytics Report</SelectItem>
-                      <SelectItem value="export">?�� Data Export</SelectItem>
+                      <SelectItem value="summary">📄 Summary Report</SelectItem>
+                      <SelectItem value="detailed">📘 Detailed Report</SelectItem>
+                      <SelectItem value="analytics">📊 Analytics Report</SelectItem>
+                      <SelectItem value="export">⬇️ Data Export</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-sm text-muted-foreground">

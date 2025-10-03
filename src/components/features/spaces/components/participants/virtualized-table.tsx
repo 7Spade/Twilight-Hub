@@ -106,7 +106,6 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
             <div className="flex items-center gap-2">
               <h3 className="font-medium text-sm truncate">{participant.name}</h3>
               {isCurrentUser && (
-                // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 修正破損的關閉標籤 </Badge>
                 <Badge variant="outline" className="text-xs">我</Badge>
               )}
             </div>
@@ -127,10 +126,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
             {participant.role === 'member' ? '成員' : participant.role}
           </Badge>
           
-          <span className={`text-xs ${STATUS_COLORS[participant.status]}`}>
-            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串 */}
-            {participant.status === 'active' ? '使用中' : participant.status}
-          </span>
+          <span className={`text-xs ${STATUS_COLORS[participant.status]}`}>{participant.status === 'active' ? '使用中' : participant.status}</span>
         </div>
 
         {/* 加入日期 */}
@@ -256,32 +252,25 @@ export function VirtualizedTable({
       <div className="flex items-center border-b border-border pb-3">
         <div className="flex items-center w-full px-4">
           <div className="w-8 mr-3">
-            <Checkbox
+              <Checkbox
               checked={isAllSelected}
               ref={(el) => {
                 if (el) el.indeterminate = isIndeterminate;
               }}
               onCheckedChange={handleSelectAll}
-              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: aria-label 字串未終止 */}
               aria-label="全選參與者"
             />
           </div>
           
-          <div className="flex-1 text-sm font-medium text-muted-foreground">
-            ?�員 ({participants.length})
-          </div>
+          <div className="flex-1 text-sm font-medium text-muted-foreground">成員 ({participants.length})</div>
           
           <div className="text-sm font-medium text-muted-foreground mr-4">
             角色
           </div>
           
-          <div className="text-sm font-medium text-muted-foreground mr-4">
-            ?�??
-          </div>
+          <div className="text-sm font-medium text-muted-foreground mr-4">狀態</div>
           
-          <div className="text-sm font-medium text-muted-foreground mr-4">
-            ?�入?��?
-          </div>
+          <div className="text-sm font-medium text-muted-foreground mr-4">加入日期</div>
           
           <div className="w-8" />
         </div>

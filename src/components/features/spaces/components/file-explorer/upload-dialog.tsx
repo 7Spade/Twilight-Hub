@@ -91,7 +91,7 @@ export function UploadDialog({
         )}
       >
         <DialogHeader className="flex flex-row items-center justify-between">
-          <DialogTitle className="text-lg font-semibold">上�?檔�?</DialogTitle>
+          <DialogTitle className="text-lg font-semibold">上傳檔案</DialogTitle>
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
@@ -117,20 +117,20 @@ export function UploadDialog({
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* 上傳來�??��? */}
+          {/* 上傳來源 */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium">?��?上傳來�?</Label>
+            <Label className="text-sm font-medium">選擇上傳來源</Label>
             <Button
               variant="outline"
               className="w-full justify-start"
               onClick={handleFileSelect}
             >
               <Monitor className="h-4 w-4 mr-2" />
-              從您?�電??
+              從您的電腦
             </Button>
           </div>
 
-          {/* ?�放?�??*/}
+          {/* 拖放區域 */}
           <div
             className={cn(
               "border-2 border-dashed rounded-lg p-8 text-center transition-colors",
@@ -155,33 +155,27 @@ export function UploadDialog({
               </div>
               
               <div className="space-y-2">
-                <p className="text-sm text-gray-600">
-                  將�?案�??�至此�??�選?��?述選??
-                </p>
-                <p className="text-xs text-gray-500">
-                  ?�援多個�?案�??��???
-                </p>
+                <p className="text-sm text-gray-600">將檔案拖放到此處，或選擇以上方式上傳</p>
+                <p className="text-xs text-gray-500">支援多個檔案同時上傳</p>
               </div>
             </div>
           </div>
 
-          {/* 上傳?�度 */}
+          {/* 上傳進度 */}
           {isUploading && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span>上傳�?..</span>
+                <span>上傳中...</span>
                 <span>{uploadProgress}%</span>
               </div>
               <Progress value={uploadProgress} className="w-full" />
             </div>
           )}
 
-          {/* ?�步?��? */}
+          {/* 同步選項 */}
           <div className="flex items-center space-x-2">
             <HelpCircle className="h-4 w-4 text-blue-500" />
-            <Label htmlFor="sync-mobile" className="text-sm text-blue-600">
-              ?��?檔�??�否?�步?��??��?置�?
-            </Label>
+            <Label htmlFor="sync-mobile" className="text-sm text-blue-600">是否同步已上傳檔案到行動裝置</Label>
             <Switch
               id="sync-mobile"
               checked={syncToMobile}
@@ -199,17 +193,15 @@ export function UploadDialog({
           />
         </div>
 
-        {/* 底部?��? */}
+        {/* 底部操作 */}
         <div className="flex justify-end space-x-2 pt-4 border-t">
-          <Button variant="outline" onClick={onClose}>
-            ?��?
-          </Button>
+          <Button variant="outline" onClick={onClose}>取消</Button>
           <Button 
             onClick={handleFileSelect}
             disabled={isUploading}
             className="bg-blue-600 hover:bg-blue-700"
           >
-            完�?
+            完成
           </Button>
         </div>
       </DialogContent>

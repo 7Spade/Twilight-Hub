@@ -22,8 +22,8 @@ import { OverviewDashboardProps } from './types';
 import { cn } from '@/lib/utils';
 
 /**
- * ?∞‰ª£?ñÁ?‰ª™Ë°®?ø‰∏ªÁªÑ‰ª∂
- * ?ê‰?ÂÆåÊï¥?ÑÁ©∫?¥Ê?ËßàÂ?‰∫§‰??üËÉΩ
+ * Overview dashboard main component
+ * Provides space overview metrics and recent activity
  */
 export function OverviewDashboard({ 
   spaceId, 
@@ -42,13 +42,13 @@ export function OverviewDashboard({
   } = useDashboardData({ 
     spaceId, 
     autoRefresh: true,
-    refreshInterval: 60000 // 1?ÜÈ??™Âä®?∑Êñ∞
+    refreshInterval: 60000 // auto refresh every 60s
   });
 
   const isLoading = externalLoading || dataLoading;
   const error = externalError || dataError;
 
-  // ‰ΩøÁî®Â§ñÈÉ®‰º†ÂÖ•?Ñstats?ñÂ??®Ëé∑?ñÁ?stats
+  // Prefer external stats if provided
   const displayStats = externalStats || stats;
 
   const handleRefresh = async () => {
@@ -80,7 +80,7 @@ export function OverviewDashboard({
 
   return (
     <div className="space-y-6">
-      {/* Â§¥ÈÉ®‰ø°ÊÅØ */}
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
@@ -105,7 +105,7 @@ export function OverviewDashboard({
         </div>
       </div>
 
-      {/* ?áÊ?ÁΩëÊ†º */}
+      {/* Primary metrics grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
@@ -169,7 +169,7 @@ export function OverviewDashboard({
         ) : null}
       </div>
 
-      {/* Ê¨°Ë??áÊ? */}
+      {/* Secondary metrics */}
       {displayStats && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatCard
@@ -204,7 +204,7 @@ export function OverviewDashboard({
         </div>
       )}
 
-      {/* ?ÄËøëÊ¥ª??*/}
+      {/* Recent activity */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">

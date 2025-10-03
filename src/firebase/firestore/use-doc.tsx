@@ -71,7 +71,7 @@ export function useDoc<T = DocumentData>(
         setError(null); // Clear any previous error on successful snapshot
         setIsLoading(false); // Loading is complete
       },
-      (err: FirestoreError) => { /* TODO: [P3] REFACTOR src/firebase/firestore/use-doc.tsx - 清理未使用的參數 */
+      (_err: FirestoreError) => {
         const contextualError = new FirestorePermissionError({
           operation: 'get',
           path: docRef.path,

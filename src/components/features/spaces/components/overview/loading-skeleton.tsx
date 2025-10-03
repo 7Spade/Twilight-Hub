@@ -5,8 +5,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { LoadingSkeletonProps } from './types';
 
 /**
- * ?°ä»£?–ç?? è½½éª¨æ¶å±ç?ä»?
- * ?ä?æµç??„å?è½½ä?éªŒå?ä¸€?´ç?è®¾è®¡è¯­è?
+ * Loading skeletons for overview section.
+ * Provides consistent loading experience with minimal design.
  */
 export function LoadingSkeleton({ 
   className = '', 
@@ -32,7 +32,7 @@ export function LoadingSkeleton({
 }
 
 /**
- * ?‡æ??¡ç?éª¨æ¶å±?
+ * Metric card skeleton.
  */
 export function MetricCardSkeleton() {
   return (
@@ -50,7 +50,7 @@ export function MetricCardSkeleton() {
 }
 
 /**
- * æ´»åŠ¨?—è¡¨éª¨æ¶å±?
+ * Recent activity list skeleton.
  */
 export function ActivitySkeleton({ count = 3 }: { count?: number }) {
   return (
@@ -73,7 +73,7 @@ export function ActivitySkeleton({ count = 3 }: { count?: number }) {
 }
 
 /**
- * ?¾è¡¨éª¨æ¶å±?
+ * Chart area skeleton.
  */
 export function ChartSkeleton() {
   return (

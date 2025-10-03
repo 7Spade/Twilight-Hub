@@ -127,7 +127,7 @@ export function ParticipantList({
         <div className="flex items-center justify-center py-12 animate-in fade-in-0 duration-200">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-            <span>載入�?..</span>
+            <span>載入中...</span>
           </div>
         </div>
       )}
