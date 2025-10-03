@@ -392,71 +392,12 @@ class ReportGenerator {
 
     return grouped;
   }
-
-  /**
-   * 生成不包含時間戳的 Markdown 內容用於比較
-   */
-  static generateMarkdownWithoutTimestamp(report: TodoReport): string {
-    const lines: string[] = [
-      '# 📝 TODO 報告',
-      '',
-      // 不包含時間戳
-      '## 📊 統計摘要',
-      '',
-      `- 總計: ${report.summary.total} 個項目`,
-      `- 🔴 緊急: ${report.summary.urgent} 個項目`,
-      '',
-      '### 依優先級',
-      '',
-      ...Object.entries(report.summary.byPriority).map(
-        ([p, count]) => `- ${p}: ${count} 個`
-      ),
-      '',
-      '### 依類型',
-      '',
-      ...Object.entries(report.summary.byType).map(
-        ([type, count]) => `- ${type}: ${count} 個`
-      ),
-      '',
-      '---',
-      '',
-    ];
-
-    // 分組顯示
-    const grouped = this.groupByPriority(report.todos);
-
-    for (const [priority, todos] of Object.entries(grouped)) {
-      const emoji = { P0: '🔴', P1: '🟠', P2: '🟡', P3: '🟢' }[priority] || '';
-      lines.push(`## ${emoji} ${priority} (${todos.length} 個)`, '');
-
-      todos.forEach((todo, index) => {
-        lines.push(
-          `### ${index + 1}. [${todo.type}] ${todo.description}`,
-          '',
-          `**位置:** \`${todo.file}:${todo.line}\``,
-          todo.assignee ? `**負責人:** @${todo.assignee}` : '',
-          todo.deadline ? `**截止日期:** ${todo.deadline}` : '',
-          '',
-        );
-
-        if (todo.details.length > 0) {
-          lines.push('**詳細說明:**', '');
-          todo.details.forEach(d => lines.push(`> ${d}`));
-          lines.push('');
-        }
-
-        lines.push('---', '');
-      });
-    }
-
-    return lines.filter(Boolean).join('\n');
-  }
 }
 
 // ==================== CLI 主程式 ====================
 
 function main() {
-  console.log('�� 開始掃描 TODO...\n');
+  console.log('🔍 開始掃描 TODO...\n');
 
   const scanner = new TodoScanner();
   const rootDir = process.cwd();
@@ -473,91 +414,37 @@ function main() {
   // 生成報告
   const timestamp = new Date().toISOString().split('T')[0];
 
-  // 1. 檢查是否需要更新 Markdown 報告
-  const markdownPath = path.join(reportsDir, `todo-report-${timestamp}.md`);
-  let shouldUpdateMarkdown = true;
+  // 1. Markdown 報告（人類閱讀）
+  const markdownReport = ReportGenerator.generateMarkdown(report);
+  fs.writeFileSync(
+    path.join(reportsDir, `todo-report-${timestamp}.md`),
+    markdownReport
+  );
 
-  if (fs.existsSync(markdownPath)) {
-    // 生成不包含時間戳的內容用於比較
-    const contentWithoutTimestamp = ReportGenerator.generateMarkdownWithoutTimestamp(report);
-    const existingContent = fs.readFileSync(markdownPath, 'utf8');
-    
-    // 移除現有文件中的時間戳行進行比較
-    const existingContentWithoutTimestamp = existingContent
-      .split('\n')
-      .filter(line => !line.includes('生成時間:'))
-      .join('\n');
-    
-    if (existingContentWithoutTimestamp === contentWithoutTimestamp) {
-      shouldUpdateMarkdown = false;
-      console.log(`📝 TODO 內容未變化，跳過 Markdown 更新`);
-    }
-  }
-
-  if (shouldUpdateMarkdown) {
-    const markdownReport = ReportGenerator.generateMarkdown(report);
-    fs.writeFileSync(markdownPath, markdownReport);
-    console.log(`✅ Markdown 報告已更新: ${markdownPath}`);
-  }
-
-  // 2. 檢查是否需要更新 JSON 報告
-  const jsonPath = path.join(reportsDir, `todo-report-${timestamp}.json`);
+  // 2. JSON 報告（程式處理）
   const jsonReport = ReportGenerator.generateJson(report);
-  
-  let shouldUpdateJson = true;
-  if (fs.existsSync(jsonPath)) {
-    const existingContent = fs.readFileSync(jsonPath, 'utf8');
-    if (existingContent === jsonReport) {
-      shouldUpdateJson = false;
-      console.log(`📝 TODO 內容未變化，跳過 JSON 更新`);
-    }
-  }
+  fs.writeFileSync(
+    path.join(reportsDir, `todo-report-${timestamp}.json`),
+    jsonReport
+  );
 
-  if (shouldUpdateJson) {
-    fs.writeFileSync(jsonPath, jsonReport);
-    console.log(`✅ JSON 報告已更新: ${jsonPath}`);
-  }
-
-  // 3. 檢查是否需要更新 AI 指令檔案
-  const aiPromptPath = path.join(reportsDir, `ai-prompt-${timestamp}.md`);
+  // 3. AI 指令檔案（AI Agent 閱讀）
   const aiPrompt = ReportGenerator.generateAiPrompt(report);
-  
-  let shouldUpdateAiPrompt = true;
-  if (fs.existsSync(aiPromptPath)) {
-    const existingContent = fs.readFileSync(aiPromptPath, 'utf8');
-    
-    // 比較 TODO 清單部分（排除時間戳）
-    const existingTodos = existingContent.match(/```json\n([\s\S]*?)\n```/)?.[1] || '';
-    const newTodos = aiPrompt.match(/```json\n([\s\S]*?)\n```/)?.[1] || '';
-    
-    if (existingTodos === newTodos) {
-      shouldUpdateAiPrompt = false;
-      console.log(`📝 TODO 內容未變化，跳過 AI 指令更新`);
-    }
-  }
-
-  if (shouldUpdateAiPrompt) {
-    fs.writeFileSync(aiPromptPath, aiPrompt);
-    console.log(`✅ AI 指令檔案已更新: ${aiPromptPath}`);
-  }
+  fs.writeFileSync(
+    path.join(reportsDir, `ai-prompt-${timestamp}.md`),
+    aiPrompt
+  );
 
   // 輸出摘要
-  console.log('\n✅ 掃描完成！\n');
+  console.log('✅ 掃描完成！\n');
   console.log('📊 統計摘要:');
   console.log(`   總計: ${report.summary.total} 個 TODO`);
   console.log(`   🔴 緊急: ${report.summary.urgent} 個`);
   console.log('');
-
-  if (!shouldUpdateMarkdown && !shouldUpdateJson && !shouldUpdateAiPrompt) {
-    console.log('📝 所有報告都是最新的，無需更新');
-    // 如果沒有任何更新，退出時返回特殊代碼，讓 post-commit 知道沒有變化
-    process.exit(2);
-  } else {
-    console.log('📁 報告已更新:');
-    if (shouldUpdateMarkdown) console.log(`   - .todo-reports/todo-report-${timestamp}.md`);
-    if (shouldUpdateJson) console.log(`   - .todo-reports/todo-report-${timestamp}.json`);
-    if (shouldUpdateAiPrompt) console.log(`   - .todo-reports/ai-prompt-${timestamp}.md`);
-  }
+  console.log('📁 報告已生成:');
+  console.log(`   - .todo-reports/todo-report-${timestamp}.md`);
+  console.log(`   - .todo-reports/todo-report-${timestamp}.json`);
+  console.log(`   - .todo-reports/ai-prompt-${timestamp}.md`);
   console.log('');
 
   if (report.summary.urgent > 0) {
