@@ -94,6 +94,37 @@
   - 預防: 使用 ESLint JSX 插件，編輯器 JSX 語法高亮
   - 風險/回滾: 風險高；需仔細測試每個修復的組件
 
+#### 架構合規性問題（新增 3 個）
+- `[P1]` `[BUG]` `[CONFIG]` `[TODO]` 修復 Next.js 配置掩蓋錯誤問題
+  - 問題: next.config.ts 中設置 ignoreBuildErrors: true 和 ignoreDuringBuilds: true 掩蓋了真正的編譯錯誤
+  - 範圍/影響: 整個項目構建流程，影響錯誤發現和修復
+  - 何時: 2025-01-03 發現，阻礙問題識別
+  - 為什麼: 配置設置不當，掩蓋了真正的 TypeScript 和 ESLint 錯誤
+  - 解法: 移除 ignoreBuildErrors 和 ignoreDuringBuilds 設置，修復真正的錯誤
+  - 驗證: (1) 配置修改後能正確顯示錯誤 (2) 修復所有錯誤後構建成功 (3) 無掩蓋的錯誤
+  - 預防: 避免使用 ignoreBuildErrors，使用嚴格的構建檢查
+  - 風險/回滾: 風險中；需確保所有錯誤都已修復
+
+- `[P2]` `[BUG]` `[CONFIG]` `[TODO]` 修復字體配置問題
+  - 問題: layout.tsx 中手動添加字體連結，而不是使用 next/font
+  - 範圍/影響: src/app/layout.tsx，影響字體載入和性能
+  - 何時: 2025-01-03 發現，ESLint 警告
+  - 為什麼: 未遵循 Next.js 15 最佳實踐，手動添加字體連結
+  - 解法: 移除手動字體連結，使用 next/font 配置
+  - 驗證: (1) ESLint 無字體警告 (2) 字體正常載入 (3) 性能無下降
+  - 預防: 遵循 Next.js 15 字體最佳實踐，使用 next/font
+  - 風險/回滾: 風險低；純配置修改
+
+- `[P2]` `[CLEANUP]` `[CONFIG]` `[TODO]` 清理 Next.js 配置冗餘
+  - 問題: next.config.ts 配置過於簡單，缺少必要的優化設置
+  - 範圍/影響: 整個項目構建和運行配置
+  - 何時: 2025-01-03 發現，配置審查
+  - 為什麼: 配置不完整，缺少性能優化和安全設置
+  - 解法: 添加必要的 Next.js 15 配置選項，如壓縮、安全頭等
+  - 驗證: (1) 構建成功 (2) 性能指標正常 (3) 安全檢查通過
+  - 預防: 定期審查 Next.js 配置，遵循官方最佳實踐
+  - 風險/回滾: 風險低；配置優化
+
 #### TypeScript 模組匯出錯誤（新增 5 個）
 - `[P1]` `[BUG]` `[TYPESCRIPT]` `[TODO]` 修復 use-file-actions.ts 模組匯出錯誤
   - 問題: 模組 '@/components/features/spaces/actions' 缺少匯出的成員 'uploadFileAction', 'downloadFileAction', 'deleteFileAction', 'listFilesAction', 'FileActionItem'
@@ -198,6 +229,57 @@
   - 預防: 使用 Prettier 自動格式化，ESLint 檢查分號
   - 風險/回滾: 風險低；簡單語法修復
 
+#### 代碼質量問題（新增 5 個）
+- `[P2]` `[CLEANUP]` `[REFACTOR]` `[TODO]` 清理大量未使用變量和導入
+  - 問題: 50+ 個 ESLint 警告關於未使用的變量和導入，影響代碼質量和 bundle size
+  - 範圍/影響: 全專案多個文件，影響代碼可讀性和性能
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 開發過程中遺留的未使用代碼，缺少自動清理機制
+  - 解法: 使用 ESLint --fix 自動清理，手動檢查重要文件
+  - 驗證: (1) npm run lint 無未使用變量警告 (2) bundle size 減少 (3) 代碼可讀性提升
+  - 預防: 使用 ESLint 自動修復，pre-commit hook 檢查
+  - 風險/回滾: 風險極低；自動化清理
+
+- `[P2]` `[PERF]` `[REFACTOR]` `[TODO]` 修復 React Hooks 依賴問題
+  - 問題: 多個組件的 useMemo/useEffect 依賴陣列不完整，可能導致不必要的重新渲染
+  - 範圍/影響: layout.tsx, spaces/page.tsx, inventory/page.tsx 等，影響性能
+  - 何時: 2025-01-03 發現，ESLint exhaustive-deps 警告
+  - 為什麼: 未遵循 React Hooks 最佳實踐，依賴項未正確聲明
+  - 解法: 根據 ESLint 提示，將依賴包裝在 useMemo 中或添加到依賴陣列
+  - 驗證: (1) ESLint 無 exhaustive-deps 警告 (2) 性能無下降 (3) 組件正常渲染
+  - 預防: 使用 eslint-plugin-react-hooks，代碼審查時檢查
+  - 風險/回滾: 風險低；性能優化
+
+- `[P2]` `[CLEANUP]` `[UI]` `[TODO]` 清理未使用的 UI 組件導入
+  - 問題: 多個組件導入但未使用的 UI 組件，如 Button, Card, Avatar 等
+  - 範圍/影響: 多個 React 組件文件，影響 bundle size
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 重構過程中遺留的導入，未及時清理
+  - 解法: 移除未使用的導入，保留必要的類型導入
+  - 驗證: (1) 無未使用導入警告 (2) 組件功能正常 (3) bundle size 優化
+  - 預防: ESLint 自動檢查，定期清理
+  - 風險/回滾: 風險極低；純清理操作
+
+- `[P2]` `[CLEANUP]` `[AUTH]` `[TODO]` 清理認證相關未使用代碼
+  - 問題: auth-provider.tsx 等認證組件包含未使用的變量和類型
+  - 範圍/影響: src/components/auth/ 目錄，影響認證功能維護
+  - 何時: 2025-01-03 發現，代碼審查
+  - 為什麼: 認證功能重構後遺留的未使用代碼
+  - 解法: 移除未使用的導入和變量，保留核心功能
+  - 驗證: (1) 認證功能正常 (2) 無未使用代碼警告 (3) 代碼簡潔
+  - 預防: 定期代碼審查，移除冗餘代碼
+  - 風險/回滾: 風險低；需測試認證流程
+
+- `[P2]` `[CLEANUP]` `[UI]` `[TODO]` 修復非空斷言警告
+  - 問題: 多個文件使用非空斷言 (!) 操作符，ESLint 警告
+  - 範圍/影響: adjust-stock-dialog.tsx 等組件，影響類型安全
+  - 何時: 2025-01-03 發現，ESLint 檢查
+  - 為什麼: 使用非空斷言而非安全的類型檢查
+  - 解法: 使用可選鏈操作符或條件檢查替代非空斷言
+  - 驗證: (1) 無非空斷言警告 (2) 類型安全 (3) 運行時無錯誤
+  - 預防: 使用 TypeScript 嚴格模式，避免非空斷言
+  - 風險/回滾: 風險中；需測試相關功能
+
 ### 構建錯誤修復（中優先級）
 - `[P2]` `[BUG]` `[UI]` `[TODO]` 修復字符串字面量錯誤 - file-explorer 相關組件
   - 問題: 多個文件包含未終止的字符串字面量（缺少閉合引號）
@@ -258,24 +340,25 @@
 ## 📊 TODO 統計
 
 ### 按優先級
-- `[P0]`: 0 個
+- `[P0]`: 2 個 (全部待開始)
 - `[P1]`: 11 個 (4 完成, 7 待開始)
-- `[P2]`: 7 個 (全部待開始)
+- `[P2]`: 12 個 (全部待開始)
 - `[P3]`: 2 個 (全部待開始)
 
 ### 按狀態
-- `[TODO]`: 16 個
+- `[TODO]`: 25 個
 - `[IN_PROGRESS]`: 0 個
 - `[DONE]`: 4 個
 - `[BLOCKED]`: 0 個
 - `[CANCELLED]`: 0 個
 
 ### 按類型
-- `[BUG]`: 11 個
+- `[BUG]`: 14 個
 - `[REFACTOR]`: 4 個
-- `[CLEANUP]`: 3 個
+- `[CLEANUP]`: 8 個
 - `[DOCS]`: 1 個
-- `[PERF]`: 1 個
+- `[PERF]`: 2 個
+- `[CONFIG]`: 3 個
 
 ---
 
