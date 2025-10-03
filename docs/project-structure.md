@@ -1,26 +1,11 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午03:13:00
+> 最後更新時間: 2025/10/03 下午03:13:59
 
 ## 目錄結構
 
 ```
-└── docs/
-    ├── backend.json
-    ├── blueprint.md
-    ├── nextjs15_dev_guidelines.md
-    ├── project-structure.md
-└── memory-bank/
-    ├── activeContext.md
-    ├── productContext.md
-    ├── progress.md
-    ├── projectbrief.md
-    ├── systemPatterns.md
-    ├── tasks.md
-    ├── techContext.md
-└── scripts/
-    ├── generate-tree.js
 └── src/
     ├── ai/
     │   ├── flows/
@@ -317,6 +302,11 @@
 - `.git` - Git 版本控制文件
 - `.husky` - Git hooks 配置
 - `.github` - GitHub 配置目錄
+
+#### Agent 和文檔目錄
+- `docs` - 項目文檔目錄
+- `memory-bank` - Agent 記憶庫目錄
+- `scripts` - 自動化腳本目錄
 
 #### 測試和覆蓋率
 - `coverage` - 測試覆蓋率報告

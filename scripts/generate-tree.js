@@ -32,6 +32,11 @@ const EXCLUDE_PATTERNS = [
   '.husky',
   '.github',
   
+  // Agent 和文檔目錄
+  'docs',
+  'memory-bank',
+  'scripts',
+  
   // 測試和覆蓋率
   'coverage',
   '.nyc_output',
@@ -259,6 +264,11 @@ ${tree}
 - \`.git\` - Git 版本控制文件
 - \`.husky\` - Git hooks 配置
 - \`.github\` - GitHub 配置目錄
+
+#### Agent 和文檔目錄
+- \`docs\` - 項目文檔目錄
+- \`memory-bank\` - Agent 記憶庫目錄
+- \`scripts\` - 自動化腳本目錄
 
 #### 測試和覆蓋率
 - \`coverage\` - 測試覆蓋率報告
