@@ -1,12 +1,13 @@
 /**
- * @fileoverview 視�??��?組件
- * ?��?表格?�卡?�、�?表�?種�??�模�?
+ * @fileoverview 視�??��?組件
+ * ?��?表格?�卡?�、�?表�?種�??�模�?
  */
 
 'use client';
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用 */
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Table, Grid3X3, List } from 'lucide-react';
 import { ViewMode } from './types';
@@ -20,17 +21,17 @@ interface ViewToggleProps {
 const VIEW_MODES: ViewMode[] = [
   {
     type: 'table',
-    label: '表格視�?',
+    label: '表格視�?',
     icon: 'Table',
   },
   {
     type: 'card',
-    label: '?��?視�?',
+    label: '?��?視�?',
     icon: 'Grid3X3',
   },
   {
     type: 'list',
-    label: '?�表視�?',
+    label: '?�表視�?',
     icon: 'List',
   },
 ];

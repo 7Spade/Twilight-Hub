@@ -1,16 +1,16 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:19:33
+> 最後更新時間: 2025/10/03 下午05:23:55
 
 ## 統計信息
 
-- **總計**: 117 個 TODO
+- **總計**: 121 個 TODO
 - **高優先級**: 0 個
-- **中優先級**: 117 個  
+- **中優先級**: 121 個  
 - **低優先級**: 0 個
 
-## 🟡 中優先級 (117 個)
+## 🟡 中優先級 (121 個)
 
 - [ ] `docs/nextjs15_dev-standard.md:1291` - 環境變數已正確配置（.env.local）
 - [ ] `docs/nextjs15_dev-standard.md:1292` - Firebase 專案已設置
@@ -58,10 +58,7 @@
 - [ ] `scripts/sync-todos.js:458` - 內容\`
 - [ ] `scripts/sync-todos.js:459` - 內容\`, \`<!-- TODO: 內容 -->\`
 - [ ] `scripts/sync-todos.js:459` - 內容
-- [ ] `src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:7` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
-- [ ] `src/app/(app)/organizations/[organizationslug]/roles/page.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useCollection, useMemo 未使用
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
-- [ ] `src/app/(app)/settings/profile/page.tsx:17` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - CardContent, CardFooter, CardHeader 未使用
 - [ ] `src/components/auth/auth-provider.tsx:140` - 從服務器獲取用戶角色分配
 - [ ] `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗
 - [ ] `src/components/auth/auth-provider.tsx:18` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用
@@ -97,14 +94,21 @@
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` - ?�换为�?实�?API调用
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:61` - ?�换为�?实�?API调用
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:17` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:26` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用
 - [ ] `src/components/features/spaces/components/overview/types.ts:31` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/participants/data.ts:81` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `src/components/features/spaces/components/participants/data.ts:91` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
 - [ ] `src/components/features/spaces/components/participants/participant-role-editor.tsx:47` - Implement role change API call
 - [ ] `src/components/features/spaces/components/participants/participant-table.tsx:141` - Open role update dialog
+- [ ] `src/components/features/spaces/components/participants/view-toggle.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
 - [ ] `src/components/features/spaces/components/participants/virtualized-table.tsx:211` - ?��?編輯對話�?
 - [ ] `src/components/features/spaces/components/participants/virtualized-table.tsx:215` - ?��?角色變更對話�?
+- [ ] `src/components/features/spaces/components/quality/checklist.tsx:5` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `src/components/features/spaces/components/quality/quality-dashboard.tsx:28` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/report/report-dashboard.tsx:124` - Implement actual download logic
-- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:78` - Implement actual download logic
+- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:79` - Implement actual download logic
+- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:4` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
 - [ ] `src/components/features/spaces/components/spaces-list-view.tsx:28` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
 - [ ] `src/components/features/spaces/hooks/use-star-actions.ts:14` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
 - [ ] `src/components/follower-list.tsx:12` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
@@ -184,11 +188,13 @@
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `docs/TODO.md:1` - 管理系統
 
-### TypeScript (15 個)
+### TypeScript (17 個)
 
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` - ?�换为�?实�?API调用
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:61` - ?�换为�?实�?API调用
 - [ ] `src/components/features/spaces/components/overview/types.ts:31` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/participants/data.ts:81` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
+- [ ] `src/components/features/spaces/components/participants/data.ts:91` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
 - [ ] `src/components/features/spaces/hooks/use-star-actions.ts:14` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
 - [ ] `src/hooks/use-file-operations.ts:88` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
 - [ ] `src/hooks/use-permissions.ts:23` - 實現實際的權限檢查邏輯
@@ -202,12 +208,9 @@
 - [ ] `src/lib/role-management.ts:19` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用
 - [ ] `src/lib/types-unified.ts:234` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
-### TypeScript React (56 個)
+### TypeScript React (58 個)
 
-- [ ] `src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:7` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
-- [ ] `src/app/(app)/organizations/[organizationslug]/roles/page.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useCollection, useMemo 未使用
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
-- [ ] `src/app/(app)/settings/profile/page.tsx:17` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - CardContent, CardFooter, CardHeader 未使用
 - [ ] `src/components/auth/auth-provider.tsx:140` - 從服務器獲取用戶角色分配
 - [ ] `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗
 - [ ] `src/components/auth/auth-provider.tsx:18` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用
@@ -241,13 +244,18 @@
 - [ ] `src/components/features/spaces/components/issues/create-issue-form.tsx:50` - Implement create issue API call
 - [ ] `src/components/features/spaces/components/issues/create-issue-form.tsx:29` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:17` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:26` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用
 - [ ] `src/components/features/spaces/components/participants/participant-role-editor.tsx:47` - Implement role change API call
 - [ ] `src/components/features/spaces/components/participants/participant-table.tsx:141` - Open role update dialog
+- [ ] `src/components/features/spaces/components/participants/view-toggle.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
 - [ ] `src/components/features/spaces/components/participants/virtualized-table.tsx:211` - ?��?編輯對話�?
 - [ ] `src/components/features/spaces/components/participants/virtualized-table.tsx:215` - ?��?角色變更對話�?
+- [ ] `src/components/features/spaces/components/quality/checklist.tsx:5` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
+- [ ] `src/components/features/spaces/components/quality/quality-dashboard.tsx:28` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/report/report-dashboard.tsx:124` - Implement actual download logic
-- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:78` - Implement actual download logic
+- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:79` - Implement actual download logic
+- [ ] `src/components/features/spaces/components/report/report-viewer.tsx:4` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用
 - [ ] `src/components/features/spaces/components/spaces-list-view.tsx:28` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - cn 未使用
 - [ ] `src/components/follower-list.tsx:12` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
 - [ ] `src/components/forms/form-card.tsx:19` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用

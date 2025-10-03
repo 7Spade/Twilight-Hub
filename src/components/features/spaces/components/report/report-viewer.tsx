@@ -1,6 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage 未使用 */
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -231,7 +232,7 @@ export function ReportViewer({ report, open, onOpenChange }: ReportViewerProps) 
               </div>
             ) : (
               <div className="text-center py-8">
-                <div className="text-red-600 mb-4">?��?</div>
+                <div className="text-red-600 mb-4">?��?</div>
                 <p className="text-muted-foreground">Report generation failed</p>
                 <p className="text-sm text-muted-foreground mt-2">
                   There was an error generating this report. Please try again.

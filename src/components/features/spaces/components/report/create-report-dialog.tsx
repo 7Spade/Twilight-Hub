@@ -33,7 +33,7 @@ interface CreateReportDialogProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onReportCreated?: (report: any) => void;
+  onReportCreated?: (report: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
 }
 
 export function CreateReportDialog({
@@ -143,7 +143,7 @@ export function CreateReportDialog({
                       <SelectItem value="summary">?? Summary Report</SelectItem>
                       <SelectItem value="detailed">?? Detailed Report</SelectItem>
                       <SelectItem value="analytics">?? Analytics Report</SelectItem>
-                      <SelectItem value="export">?�� Data Export</SelectItem>
+                      <SelectItem value="export">?�� Data Export</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-sm text-muted-foreground">

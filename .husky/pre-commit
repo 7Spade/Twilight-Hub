@@ -1,14 +1,21 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+# 1. 先執行 lint-staged（快速檢查已暫存檔案）
+echo "🔍 執行 lint-staged 檢查..."
+npx lint-staged
 
-# 先運行兩個生成腳本，避免循環與漏加
+# 2. 執行 TypeScript 類型檢查（暫時跳過，待修復語法錯誤後啟用）
+# echo "🔍 執行 TypeScript 類型檢查..."
+# npm run typecheck
+
+# 3. 更新項目結構文檔
 echo "🔄 更新項目結構文檔..."
 npm run docs:update
+
+# 4. 同步 TODO 列表
 echo "🔄 同步 TODO 列表..."
 npm run todos:sync
 
-# 將變更檔案加入到暫存（若無變更則不影響）
+# 5. 將變更檔案加入到暫存（若無變更則不影響）
 git add docs/project-structure.md 2>/dev/null || true
 git add docs/TODO-list.md 2>/dev/null || true
 
-echo "✅ 文檔與 TODO 已更新並加入提交"
+echo "✅ 所有檢查完成，文檔已更新並加入提交"

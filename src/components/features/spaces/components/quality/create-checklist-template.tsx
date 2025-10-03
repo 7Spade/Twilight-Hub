@@ -30,7 +30,7 @@ interface CreateChecklistTemplateProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onTemplateCreated?: (template: any) => void;
+  onTemplateCreated?: (template: unknown) => void; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
 }
 
 export function CreateChecklistTemplate({
