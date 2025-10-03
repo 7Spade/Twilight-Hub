@@ -86,27 +86,76 @@
 ## ⚡ 一鍵修復指令
 
 ### 緊急修復
-```
-[P0] 修復所有阻塞性錯誤
-[P0] 修復所有安全漏洞
-[P0] 修復所有構建失敗
-[P0] 修復所有部署失敗
+```typescript
+// TODO: [P0] FIX 修復所有阻塞性錯誤
+// 問題：存在阻塞開發的錯誤
+// 影響：無法繼續開發工作
+// @assignee dev-team
+// @deadline 2025-01-10
+
+// TODO: [P0] SECURITY 修復所有安全漏洞
+// 問題：發現嚴重安全漏洞
+// 影響：可能導致數據洩露
+// @assignee security-team
+// @deadline 2025-01-10
+
+// TODO: [P0] FIX 修復所有構建失敗
+// 問題：構建過程失敗
+// 影響：無法生成生產版本
+// @assignee dev-team
+// @deadline 2025-01-10
+
+// TODO: [P0] FIX 修復所有部署失敗
+// 問題：部署過程失敗
+// 影響：無法發布新版本
+// @assignee dev-team
+// @deadline 2025-01-10
 ```
 
 ### 高優先級修復
-```
-[P1] 修復所有功能錯誤
-[P1] 修復所有性能問題
-[P1] 修復所有 UI 問題
-[P1] 修復所有 API 問題
+```typescript
+// TODO: [P1] FIX 修復所有功能錯誤
+// 問題：核心功能存在錯誤
+// 影響：影響用戶正常使用
+// @assignee dev-team
+
+// TODO: [P1] PERF 修復所有性能問題
+// 問題：性能瓶頸影響用戶體驗
+// 影響：用戶體驗較差
+// @assignee performance-team
+
+// TODO: [P1] FIX 修復所有 UI 問題
+// 問題：用戶界面存在問題
+// 影響：影響用戶操作
+// @assignee ui-team
+
+// TODO: [P1] FIX 修復所有 API 問題
+// 問題：API 接口存在問題
+// 影響：前端無法正常獲取數據
+// @assignee backend-team
 ```
 
 ### 中優先級修復
-```
-[P2] 修復所有代碼質量問題
-[P2] 修復所有警告
-[P2] 修復所有格式問題
-[P2] 修復所有文檔問題
+```typescript
+// TODO: [P2] REFACTOR 修復所有代碼質量問題
+// 問題：代碼質量需要改善
+// 影響：影響代碼可維護性
+// @assignee dev-team
+
+// TODO: [P2] FIX 修復所有警告
+// 問題：存在編譯警告
+// 影響：可能隱藏潛在問題
+// @assignee dev-team
+
+// TODO: [P2] STYLE 修復所有格式問題
+// 問題：代碼格式不統一
+// 影響：影響代碼可讀性
+// @assignee dev-team
+
+// TODO: [P2] DOCS 修復所有文檔問題
+// 問題：文檔不完整或過時
+// 影響：影響開發效率
+// @assignee docs-team
 ```
 
 ---
@@ -124,13 +173,37 @@
 ```
 
 ### 批量修復
-```
-修復所有 P0 錯誤
-修復所有 P1 錯誤
-修復所有架構違規
-修復所有命名違規
-修復所有 TypeScript 錯誤
-修復所有 ESLint 警告
+```typescript
+// TODO: [P0] FIX 修復所有緊急錯誤
+// 問題：存在阻塞開發的緊急錯誤
+// 影響：無法繼續開發工作
+// @assignee dev-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FIX 修復所有高優先級錯誤
+// 問題：存在影響功能的高優先級錯誤
+// 影響：影響核心功能使用
+// @assignee dev-team
+
+// TODO: [P1] REFACTOR 修復所有架構違規
+// 問題：代碼架構不符合規範
+// 影響：影響代碼可維護性
+// @assignee architecture-team
+
+// TODO: [P2] STYLE 修復所有命名違規
+// 問題：命名不符合約定
+// 影響：影響代碼可讀性
+// @assignee dev-team
+
+// TODO: [P1] FIX 修復所有 TypeScript 錯誤
+// 問題：存在 TypeScript 類型錯誤
+// 影響：編譯失敗
+// @assignee dev-team
+
+// TODO: [P2] FIX 修復所有 ESLint 警告
+// 問題：存在 ESLint 代碼風格警告
+// 影響：代碼風格不統一
+// @assignee dev-team
 ```
 
 ### 批量清理
@@ -259,9 +332,9 @@
 ❌ "優化所有" - 沒有具體目標
 ❌ "清理項目" - 缺少清理策略
 
-✅ "修復所有 P0 和 P1 錯誤"
-✅ "優化所有組件的渲染性能"
-✅ "清理所有未使用的導入和變數"
+✅ "// TODO: [P0] FIX 修復所有緊急錯誤"
+✅ "// TODO: [P1] PERF 優化所有組件的渲染性能"
+✅ "// TODO: [P2] REFACTOR 清理所有未使用的導入和變數"
 ```
 
 ---

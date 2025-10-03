@@ -149,10 +149,22 @@
 - `[API]` - API 相關
 
 ### 範例
-```
-[P1][BUG][AUTH] 修復登入頁面的認證錯誤
-[P2][CLEANUP][UI] 清理未使用的導入
-[P0][FEATURE][API] 創建用戶管理 API
+```typescript
+// TODO: [P1] FIX 修復登入頁面的認證錯誤
+// 問題：認證邏輯存在錯誤
+// 影響：用戶無法正常登入
+// @assignee auth-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小
+// @assignee cleanup-team
+
+// TODO: [P0] FEAT 創建用戶管理 API
+// 需求：實現完整的用戶 CRUD 操作
+// 影響：核心功能缺失
+// @assignee backend-team
+// @deadline 2025-01-10
 ```
 
 ---

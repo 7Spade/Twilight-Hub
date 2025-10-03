@@ -118,10 +118,22 @@
 ```
 
 ### 帶優先級的操作
-```
-[P0][BUG][AUTH] 修復登入頁面的認證錯誤
-[P1][FEATURE][API] 創建用戶管理 API
-[P2][CLEANUP][UI] 清理未使用的導入
+```typescript
+// TODO: [P0] SECURITY 修復登入頁面的認證錯誤
+// 問題：認證邏輯存在安全漏洞
+// 影響：用戶可能繞過身份驗證
+// @assignee security-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FEAT 創建用戶管理 API
+// 需求：實現完整的用戶 CRUD 操作
+// 包含：創建、讀取、更新、刪除用戶
+// @assignee backend-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小
+// @assignee cleanup-team
 ```
 
 ### 智能操作
@@ -133,10 +145,21 @@
 ```
 
 ### 批量操作
-```
-修復所有 P1 錯誤
-清理所有未使用導入
-優化所有組件性能
+```typescript
+// TODO: [P1] FIX 修復所有高優先級錯誤
+// 問題：存在多個高優先級錯誤
+// 影響：影響核心功能使用
+// @assignee dev-team
+
+// TODO: [P2] REFACTOR 清理所有未使用導入
+// 問題：存在大量未使用的 import
+// 影響：增加 bundle 大小
+// @assignee cleanup-team
+
+// TODO: [P2] PERF 優化所有組件性能
+// 問題：組件渲染性能需要優化
+// 影響：用戶體驗較差
+// @assignee performance-team
 ```
 
 ---

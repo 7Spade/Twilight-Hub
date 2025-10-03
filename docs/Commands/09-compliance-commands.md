@@ -256,36 +256,64 @@
 ## 📊 規範檢查結果格式
 
 ### 檢查結果結構
-```
-[P0] [CRITICAL] [ARCHITECTURE] - 架構分離違規
-[P1] [HIGH] [TYPESCRIPT] - TypeScript 類型錯誤
-[P2] [MEDIUM] [CLEANUP] - 未使用的導入
-[P3] [LOW] [OPTIMIZATION] - 性能優化建議
+```typescript
+// TODO: [P0] SECURITY 架構分離違規
+// 問題：Server Actions 與 Firebase 未正確分離
+// 影響：可能導致安全漏洞和性能問題
+// @assignee dev-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FIX TypeScript 類型錯誤
+// 問題：缺少必要的類型定義
+// 影響：編譯錯誤，影響開發體驗
+// @assignee frontend-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小，影響性能
+// @assignee cleanup-team
+
+// TODO: [P3] PERF 性能優化建議
+// 問題：組件渲染性能可優化
+// 影響：用戶體驗較差
+// @assignee performance-team
 ```
 
 ### TODO 項目格式
-```
-- [ ] `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
+```typescript
+// TODO: [優先級] [類型] 簡短描述
+// 詳細說明（可選）
+// @assignee 負責人（可選）
+// @deadline YYYY-MM-DD（可選）
 ```
 
 ### 報告格式
-```
-## 規範合規報告
+```typescript
+// 規範合規報告範例
+// TODO: [P0] SECURITY 修復架構分離違規
+// 問題：app/api/auth/route.ts 中直接使用 Firebase Admin SDK
+// 影響：違反 Next.js 15 App Router 架構分離原則
+// 建議：將 Firebase 操作移至 Server Actions
+// @assignee security-team
+// @deadline 2025-01-10
 
-### 總體狀況
-- 合規率: 85%
-- 待修復: 15 個問題
-- 緊急問題: 2 個
+// TODO: [P1] FIX 修正 TypeScript 類型錯誤
+// 問題：components/auth/auth-provider.tsx 缺少類型定義
+// 影響：編譯失敗，阻塞開發流程
+// 建議：添加完整的 TypeScript 類型定義
+// @assignee frontend-team
 
-### 分類統計
-- 架構問題: 3 個
-- 代碼質量: 8 個
-- UI/UX 問題: 4 個
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：lib/utils.ts 中存在未使用的 import
+// 影響：增加 bundle 大小
+// 建議：移除未使用的導入語句
+// @assignee cleanup-team
 
-### 修復建議
-1. 優先修復 P0 問題
-2. 批量處理 P1 問題
-3. 逐步改善 P2 問題
+// TODO: [P3] PERF 優化組件渲染性能
+// 問題：dashboard/page.tsx 渲染時間過長
+// 影響：用戶體驗較差
+// 建議：實作 React.memo 和 useMemo 優化
+// @assignee performance-team
 ```
 
 ---
@@ -313,4 +341,19 @@
 ✅ "檢查 Next.js 15 App Router 架構分離合規性"
 ✅ "檢查 TypeScript 嚴格模式配置和類型錯誤"
 ✅ "檢查 Firebase 安全規則和環境變數配置"
+```
+
+### TODO 格式檢查清單
+```typescript
+// ✅ 正確的 TODO 格式
+// TODO: [P1] FIX 修正登入驗證邏輯錯誤
+// 問題：auth-provider.tsx 中驗證邏輯有漏洞
+// 影響：用戶可能繞過身份驗證
+// @assignee auth-team
+// @deadline 2025-01-15
+
+// ❌ 錯誤的 TODO 格式
+// TODO: 修這個問題
+// TODO: [HIGH] 檢查規範
+// TODO: [P1] [FIX] 修正錯誤 - 缺少具體描述
 ```

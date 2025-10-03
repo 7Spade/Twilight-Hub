@@ -14,7 +14,7 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
     "docs:update": "tsx scripts/generate-tree.ts",
-    "todo:scan": "tsx scripts/todo-scanner.ts",
+    "todo:scan": "tsx scripts/todo-automation-toolkit.ts",
     "todo:watch": "nodemon --watch 'src/**/*.{ts,tsx}' --watch 'app/**/*.{ts,tsx}' --exec 'npm run todo:scan'",
     "todo:ai": "cat .todo-reports/ai-prompt-$(date +%Y-%m-%d).md | pbcopy && echo '✅ AI 指令已複製到剪貼簿'",
     "todo:health": "tsx scripts/todo-health-check.ts",

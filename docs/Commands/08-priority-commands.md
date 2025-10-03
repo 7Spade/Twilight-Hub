@@ -25,11 +25,27 @@
 - `[SEC]` - 安全相關
 
 ### 範例
-```
-[P0][BUG][AUTH] 修復登入頁面的認證錯誤
-[P1][FEATURE][API] 創建用戶管理 API
-[P2][CLEANUP][UI] 清理未使用的導入
-[P3][PERF][UI] 優化組件渲染性能
+```typescript
+// TODO: [P0] SECURITY 修復登入頁面的認證錯誤
+// 問題：認證邏輯存在安全漏洞
+// 影響：用戶可能繞過身份驗證
+// @assignee security-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FEAT 創建用戶管理 API
+// 需求：實現完整的用戶 CRUD 操作
+// 包含：創建、讀取、更新、刪除用戶
+// @assignee backend-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小
+// @assignee cleanup-team
+
+// TODO: [P3] PERF 優化組件渲染性能
+// 問題：組件渲染時間過長
+// 建議：使用 React.memo 和 useMemo
+// @assignee performance-team
 ```
 
 ---
@@ -47,10 +63,24 @@
 ```
 
 **範例:**
-```
-[P0][BUG][AUTH] 修復用戶無法登入的緊急問題
-[P0][BUG][API] 修復 API 服務器崩潰問題
-[P0][SEC][AUTH] 修復安全漏洞
+```typescript
+// TODO: [P0] SECURITY 修復用戶無法登入的緊急問題
+// 問題：認證服務完全無法使用
+// 影響：所有用戶無法登入系統
+// @assignee auth-team
+// @deadline 2025-01-10
+
+// TODO: [P0] FIX 修復 API 服務器崩潰問題
+// 問題：API 服務器頻繁崩潰
+// 影響：所有 API 請求失敗
+// @assignee backend-team
+// @deadline 2025-01-10
+
+// TODO: [P0] SECURITY 修復安全漏洞
+// 問題：發現嚴重安全漏洞
+// 影響：可能導致數據洩露
+// @assignee security-team
+// @deadline 2025-01-10
 ```
 
 ### P1 高優先級流程
@@ -64,10 +94,21 @@
 ```
 
 **範例:**
-```
-[P1][FEATURE][API] 創建用戶管理 API 接口
-[P1][BUG][UI] 修復文件上傳組件錯誤
-[P1][PERF][API] 優化數據查詢性能
+```typescript
+// TODO: [P1] FEAT 創建用戶管理 API 接口
+// 需求：實現完整的用戶 CRUD 操作
+// 包含：創建、讀取、更新、刪除用戶
+// @assignee backend-team
+
+// TODO: [P1] FIX 修復文件上傳組件錯誤
+// 問題：文件上傳功能無法正常工作
+// 影響：用戶無法上傳文件
+// @assignee frontend-team
+
+// TODO: [P1] PERF 優化數據查詢性能
+// 問題：數據查詢響應時間過長
+// 影響：用戶體驗較差
+// @assignee backend-team
 ```
 
 ### P2 中優先級流程
@@ -81,10 +122,21 @@
 ```
 
 **範例:**
-```
-[P2][CLEANUP][UI] 清理未使用的導入
-[P2][REFACTOR][AUTH] 重構認證邏輯
-[P2][PERF][UI] 優化組件渲染性能
+```typescript
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小
+// @assignee cleanup-team
+
+// TODO: [P2] REFACTOR 重構認證邏輯
+// 問題：認證邏輯過於複雜
+// 建議：簡化認證流程
+// @assignee auth-team
+
+// TODO: [P2] PERF 優化組件渲染性能
+// 問題：組件渲染時間過長
+// 建議：使用 React.memo 和 useMemo
+// @assignee performance-team
 ```
 
 ### P3 低優先級流程
@@ -98,10 +150,21 @@
 ```
 
 **範例:**
-```
-[P3][PERF][UI] 優化動畫效果
-[P3][CLEANUP][API] 清理未使用的 API
-[P3][UI] 改進用戶界面細節
+```typescript
+// TODO: [P3] PERF 優化動畫效果
+// 問題：動畫效果不夠流暢
+// 建議：使用 CSS 動畫優化
+// @assignee ui-team
+
+// TODO: [P3] REFACTOR 清理未使用的 API
+// 問題：存在未使用的 API 端點
+// 影響：增加維護成本
+// @assignee backend-team
+
+// TODO: [P3] STYLE 改進用戶界面細節
+// 問題：界面細節需要優化
+// 建議：提升視覺效果
+// @assignee ui-team
 ```
 
 ---
@@ -281,9 +344,9 @@
 ❌ "優化所有組件" - 缺少優先級評估
 ❌ "清理所有代碼" - 沒有緊急程度區分
 
-✅ "[P0] 修復用戶無法登入的緊急問題"
-✅ "[P1] 優化文件上傳組件性能"
-✅ "[P2] 清理未使用的導入和變數"
+✅ "// TODO: [P0] SECURITY 修復用戶無法登入的緊急問題"
+✅ "// TODO: [P1] PERF 優化文件上傳組件性能"
+✅ "// TODO: [P2] REFACTOR 清理未使用的導入和變數"
 ```
 
 ---

@@ -81,7 +81,7 @@ const EXCLUDE_PATTERNS: readonly string[] = [
   'next-env.d.ts',
   
   // 排除自動生成的文檔文件
-  'docs/project-structure.md',
+  '.todo-reports',
   'docs/Commands/TODO-list.md',
   
   // 其他開發工具
@@ -255,37 +255,29 @@ function generateTree(
  */
 function generateProjectStructure(): void {
   const rootPath = process.cwd();
-  const outputPath = path.join(rootPath, 'docs', 'project-structure.md');
   
-  // 確保 docs 目錄存在
-  const docsDir = path.dirname(outputPath);
-  if (!fs.existsSync(docsDir)) {
-    fs.mkdirSync(docsDir, { recursive: true });
+  // 確保 .todo-reports 目錄存在
+  const reportsDir = path.join(rootPath, '.todo-reports');
+  if (!fs.existsSync(reportsDir)) {
+    fs.mkdirSync(reportsDir, { recursive: true });
   }
 
   const tree = generateTree(rootPath);
-  const timestamp = new Date().toLocaleString('zh-TW', {
-    timeZone: 'Asia/Taipei',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
+  const timestamp = new Date().toISOString().split('T')[0]; // 使用 YYYY-MM-DD 格式
+  const outputPath = path.join(reportsDir, `project-structure-${timestamp}.md`);
 
-  const content = `# 項目結構
+  const content = `# 📁 項目結構報告
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: ${timestamp}
+> 生成日期: ${timestamp}
 
-## 目錄結構
+## 📊 目錄結構
 
 \`\`\`
 ${tree}
 \`\`\`
 
-## 自動化說明
+## 🔄 自動化說明
 
 此文件通過 Git pre-commit hook 自動更新，確保項目結構文檔始終保持最新狀態。
 
@@ -298,6 +290,11 @@ ${tree}
 \`\`\`bash
 npm run docs:update
 \`\`\`
+
+### 相關報告
+- TODO 報告: \`todo-report-${timestamp}.md\`
+- AI 指令: \`ai-prompt-${timestamp}.md\`
+- JSON 數據: \`todo-report-${timestamp}.json\`
 `;
 
   fs.writeFileSync(outputPath, content, 'utf8');
