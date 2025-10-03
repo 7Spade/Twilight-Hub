@@ -115,6 +115,33 @@
         "MEMORY_FILE_PATH": "./memory-bank/memory.json"
       },
       "disabled": false
+    },
+    "everything": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "print_env",
+        "get_environment_variable",
+        "list_tools",
+        "list_resources",
+        "list_prompts"
+      ]
+    },
+    "time": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "time-mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "get_current_time",
+        "convert_time"
+      ]
     }
   }
 }

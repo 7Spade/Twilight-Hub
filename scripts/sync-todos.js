@@ -133,6 +133,52 @@ const TODO_PATTERNS = [
   { pattern: /#\s*HACK:?\s*(.+)/gi, type: 'hash' }
 ];
 
+// TODO 狀態標記模式
+const TODO_STATUS_PATTERNS = [
+  // 已完成的標記
+  { pattern: /\[DONE\]/gi, status: 'completed' },
+  { pattern: /\[COMPLETED\]/gi, status: 'completed' },
+  { pattern: /\[FIXED\]/gi, status: 'completed' },
+  { pattern: /\[RESOLVED\]/gi, status: 'completed' },
+  { pattern: /\[CLOSED\]/gi, status: 'completed' },
+  
+  // 進行中的標記
+  { pattern: /\[IN_PROGRESS\]/gi, status: 'in_progress' },
+  { pattern: /\[WIP\]/gi, status: 'in_progress' },
+  { pattern: /\[WORKING\]/gi, status: 'in_progress' },
+  
+  // 被阻塞的標記
+  { pattern: /\[BLOCKED\]/gi, status: 'blocked' },
+  { pattern: /\[WAITING\]/gi, status: 'blocked' },
+  { pattern: /\[PENDING\]/gi, status: 'blocked' },
+  
+  // 已取消的標記
+  { pattern: /\[CANCELLED\]/gi, status: 'cancelled' },
+  { pattern: /\[CANCELED\]/gi, status: 'cancelled' },
+  { pattern: /\[SKIP\]/gi, status: 'cancelled' }
+];
+
+// 自動清理的 TODO 模式（這些會被自動標記為完成）
+const AUTO_CLEANUP_PATTERNS = [
+  // 已修復的編碼問題
+  /修復 UTF-8 編碼問題.*已修復/gi,
+  /修復.*編碼問題.*已修復/gi,
+  
+  // 已完成的清理工作
+  /清理.*已完成/gi,
+  /移除.*已完成/gi,
+  /修復.*已完成/gi,
+  
+  // 已實現的功能
+  /實現.*已完成/gi,
+  /添加.*已完成/gi,
+  /創建.*已完成/gi,
+  
+  // 已更新的文檔
+  /更新.*文檔.*已完成/gi,
+  /更新.*文件.*已完成/gi
+];
+
 /**
  * 檢查路徑是否應該被排除
  */
@@ -194,6 +240,25 @@ function shouldExcludeDir(dirPath, dirName) {
 }
 
 /**
+ * 檢查 TODO 是否應該被自動清理
+ */
+function shouldAutoCleanup(todoText) {
+  return AUTO_CLEANUP_PATTERNS.some(pattern => pattern.test(todoText));
+}
+
+/**
+ * 提取 TODO 狀態標記
+ */
+function extractTodoStatus(todoText) {
+  for (const { pattern, status } of TODO_STATUS_PATTERNS) {
+    if (pattern.test(todoText)) {
+      return status;
+    }
+  }
+  return 'pending';
+}
+
+/**
  * 從文件內容中提取 TODO
  */
 function extractTodosFromContent(content, filePath) {
@@ -210,11 +275,25 @@ function extractTodosFromContent(content, filePath) {
         const beforeMatch = content.substring(0, match.index);
         const lineNumber = beforeMatch.split('\n').length;
         
+        // 檢查是否應該自動清理
+        if (shouldAutoCleanup(todoText)) {
+          console.log(`🧹 自動清理 TODO: ${filePath}:${lineNumber} - ${todoText.substring(0, 50)}...`);
+          continue; // 跳過這個 TODO
+        }
+        
+        // 提取狀態標記
+        const status = extractTodoStatus(todoText);
+        
         // 確定優先級
         let priority = 'medium';
         if (type.includes('FIXME') || type.includes('HACK')) {
           priority = 'high';
         } else if (type.includes('NOTE')) {
+          priority = 'low';
+        }
+        
+        // 如果 TODO 已標記為完成，調整優先級
+        if (status === 'completed') {
           priority = 'low';
         }
         
@@ -224,6 +303,7 @@ function extractTodosFromContent(content, filePath) {
           line: lineNumber,
           type: type,
           priority: priority,
+          status: status,
           raw: match[0]
         });
       }
@@ -290,10 +370,48 @@ function groupTodosByPriority(todos) {
   };
 
   todos.forEach(todo => {
-    groups[todo.priority].push(todo);
+    // 只顯示未完成的 TODO
+    if (todo.status !== 'completed' && todo.status !== 'cancelled') {
+      groups[todo.priority].push(todo);
+    }
   });
 
   return groups;
+}
+
+/**
+ * 按狀態分組 TODO
+ */
+function groupTodosByStatus(todos) {
+  const groups = {
+    pending: [],
+    in_progress: [],
+    completed: [],
+    blocked: [],
+    cancelled: []
+  };
+
+  todos.forEach(todo => {
+    if (groups[todo.status]) {
+      groups[todo.status].push(todo);
+    }
+  });
+
+  return groups;
+}
+
+/**
+ * 獲取狀態圖標
+ */
+function getStatusIcon(status) {
+  const icons = {
+    pending: '⏳',
+    in_progress: '🔄',
+    completed: '✅',
+    blocked: '🚫',
+    cancelled: '❌'
+  };
+  return icons[status] || '⏳';
 }
 
 /**
@@ -303,13 +421,16 @@ function groupTodosByFileType(todos) {
   const groups = {};
 
   todos.forEach(todo => {
-    const ext = path.extname(todo.file);
-    const category = getFileCategory(ext);
-    
-    if (!groups[category]) {
-      groups[category] = [];
+    // 只顯示未完成的 TODO
+    if (todo.status !== 'completed' && todo.status !== 'cancelled') {
+      const ext = path.extname(todo.file);
+      const category = getFileCategory(ext);
+      
+      if (!groups[category]) {
+        groups[category] = [];
+      }
+      groups[category].push(todo);
     }
-    groups[category].push(todo);
   });
 
   return groups;
@@ -372,24 +493,48 @@ function generateTodoListMarkdown(todos) {
   });
 
   const priorityGroups = groupTodosByPriority(todos);
+  const statusGroups = groupTodosByStatus(todos);
   const fileTypeGroups = groupTodosByFileType(todos);
   
   const totalCount = todos.length;
   const highCount = priorityGroups.high.length;
   const mediumCount = priorityGroups.medium.length;
   const lowCount = priorityGroups.low.length;
+  
+  const pendingCount = statusGroups.pending.length;
+  const inProgressCount = statusGroups.in_progress.length;
+  const completedCount = statusGroups.completed.length;
+  const blockedCount = statusGroups.blocked.length;
+  const cancelledCount = statusGroups.cancelled.length;
 
   let content = `# TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
 > 最後更新時間: ${timestamp}
 
-## 統計信息
+## 📊 統計信息
 
 - **總計**: ${totalCount} 個 TODO
 - **高優先級**: ${highCount} 個
 - **中優先級**: ${mediumCount} 個  
 - **低優先級**: ${lowCount} 個
+
+## 📈 狀態分布
+
+- **待處理**: ${pendingCount} 個
+- **進行中**: ${inProgressCount} 個
+- **已完成**: ${completedCount} 個
+- **被阻塞**: ${blockedCount} 個
+- **已取消**: ${cancelledCount} 個
+
+## 🧹 自動清理提醒
+
+> **注意**: 腳本會自動清理以下類型的 TODO：
+> - 包含「已修復」、「已完成」、「已實現」等完成標記的項目
+> - 標記為 \`[DONE]\`、\`[COMPLETED]\`、\`[FIXED]\` 的項目
+> - 標記為 \`[CANCELLED]\`、\`[SKIP]\` 的項目
+> 
+> 請在處理 TODO 後添加適當的狀態標記，避免重複累積。
 
 `;
 
@@ -399,7 +544,8 @@ function generateTodoListMarkdown(todos) {
 
 `;
     priorityGroups.high.forEach(todo => {
-      content += `- [ ] \`${todo.file}:${todo.line}\` - ${todo.text}\n`;
+      const statusIcon = getStatusIcon(todo.status);
+      content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${todo.text}\n`;
     });
     content += '\n';
   }
@@ -409,7 +555,8 @@ function generateTodoListMarkdown(todos) {
 
 `;
     priorityGroups.medium.forEach(todo => {
-      content += `- [ ] \`${todo.file}:${todo.line}\` - ${todo.text}\n`;
+      const statusIcon = getStatusIcon(todo.status);
+      content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${todo.text}\n`;
     });
     content += '\n';
   }
@@ -419,27 +566,31 @@ function generateTodoListMarkdown(todos) {
 
 `;
     priorityGroups.low.forEach(todo => {
-      content += `- [ ] \`${todo.file}:${todo.line}\` - ${todo.text}\n`;
+      const statusIcon = getStatusIcon(todo.status);
+      content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${todo.text}\n`;
     });
     content += '\n';
   }
 
   // 按文件類型分組顯示
-  content += `## 按文件類型分組
+  content += `## 📁 按文件類型分組
 
 `;
   Object.keys(fileTypeGroups).sort().forEach(category => {
     const categoryTodos = fileTypeGroups[category];
-    content += `### ${category} (${categoryTodos.length} 個)
+    if (categoryTodos.length > 0) {
+      content += `### ${category} (${categoryTodos.length} 個)
 
 `;
-    categoryTodos.forEach(todo => {
-      content += `- [ ] \`${todo.file}:${todo.line}\` - ${todo.text}\n`;
-    });
-    content += '\n';
+      categoryTodos.forEach(todo => {
+        const statusIcon = getStatusIcon(todo.status);
+        content += `- [ ] \`${todo.file}:${todo.line}\` ${statusIcon} ${todo.text}\n`;
+      });
+      content += '\n';
+    }
   });
 
-  content += `## 自動化說明
+  content += `## 🤖 自動化說明
 
 此文件通過 Git pre-commit hook 自動更新，確保 TODO 列表始終保持最新狀態。
 
@@ -457,6 +608,25 @@ npm run todos:sync
 - JavaScript/TypeScript: \`// TODO: 內容\`, \`/* TODO: 內容 */\`
 - Markdown: \`- [ ] 內容\`, \`# TODO: 內容\`
 - 其他: \`# TODO: 內容\`, \`<!-- TODO: 內容 -->\`
+
+### 狀態標記支持
+- **完成**: \`[DONE]\`, \`[COMPLETED]\`, \`[FIXED]\`, \`[RESOLVED]\`, \`[CLOSED]\`
+- **進行中**: \`[IN_PROGRESS]\`, \`[WIP]\`, \`[WORKING]\`
+- **被阻塞**: \`[BLOCKED]\`, \`[WAITING]\`, \`[PENDING]\`
+- **已取消**: \`[CANCELLED]\`, \`[CANCELED]\`, \`[SKIP]\`
+
+### 自動清理功能
+腳本會自動清理以下類型的 TODO：
+- 包含「已修復」、「已完成」、「已實現」等完成標記的項目
+- 標記為完成狀態的項目
+- 標記為已取消的項目
+
+### 使用建議
+1. 處理 TODO 後，請添加適當的狀態標記
+2. 使用 \`[DONE]\` 標記已完成的項目
+3. 使用 \`[IN_PROGRESS]\` 標記正在處理的項目
+4. 使用 \`[BLOCKED]\` 標記被阻塞的項目
+5. 定期檢查和更新 TODO 狀態，避免累積過多
 `;
 
   return content;
@@ -476,13 +646,26 @@ function syncTodos() {
   }
 
   console.log('🔍 掃描專案中的 TODO...');
-  const todos = scanTodos(rootPath);
+  const allTodos = scanTodos(rootPath);
   
-  if (todos.length === 0) {
+  // 統計清理的 TODO
+  let cleanedCount = 0;
+  const todos = allTodos.filter(todo => {
+    if (shouldAutoCleanup(todo.text)) {
+      cleanedCount++;
+      return false;
+    }
+    return true;
+  });
+  
+  if (allTodos.length === 0) {
     console.log('✅ 未發現任何 TODO');
-    // 仍然生成空的 TODO 列表
   } else {
-    console.log(`✅ 發現 ${todos.length} 個 TODO`);
+    console.log(`✅ 發現 ${allTodos.length} 個 TODO`);
+    if (cleanedCount > 0) {
+      console.log(`🧹 自動清理了 ${cleanedCount} 個已完成的 TODO`);
+    }
+    console.log(`📋 顯示 ${todos.length} 個活躍的 TODO`);
   }
 
   const content = generateTodoListMarkdown(todos);
