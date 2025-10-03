@@ -29,13 +29,33 @@ const createReportSchema = z.object({
 
 type CreateReportFormValues = z.infer<typeof createReportSchema>;
 
+// TODO: 現代化 - 定義完整的報告類型接口，提升類型安全
+interface Report {
+  id: string;
+  title: string;
+  type: 'summary' | 'detailed' | 'analytics' | 'export';
+  description?: string;
+  dateRange: {
+    start: string;
+    end: string;
+  };
+  includeFiles: boolean;
+  includeActivity: boolean;
+  includeMetrics: boolean;
+  includeIssues: boolean;
+  format: 'pdf' | 'excel' | 'csv';
+  status: 'generating' | 'completed' | 'failed';
+  downloadUrl?: string;
+  createdAt: Date;
+  createdBy: string;
+}
+
 interface CreateReportDialogProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // TODO: [P2] FIX src/components/features/spaces/components/report/create-report-dialog.tsx - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 report 建立明確型別介面
-  onReportCreated?: (report: unknown) => void;
+  // TODO: 現代化 - 定義具體的報告類型接口，提升類型安全
+  onReportCreated?: (report: Report) => void;
 }
 
 export function CreateReportDialog({

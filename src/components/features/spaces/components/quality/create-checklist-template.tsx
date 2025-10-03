@@ -26,13 +26,30 @@ const checklistTemplateSchema = z.object({
 
 type ChecklistTemplateFormValues = z.infer<typeof checklistTemplateSchema>;
 
+// TODO: 現代化 - 定義完整的檢查清單模板類型接口，提升類型安全
+interface ChecklistTemplate {
+  id: string;
+  name: string;
+  description?: string;
+  category: string;
+  items: Array<{
+    id: string;
+    title: string;
+    description?: string;
+    priority: 'low' | 'medium' | 'high';
+    category: string;
+  }>;
+  createdAt: Date;
+  createdBy: string;
+  updatedAt: Date;
+}
+
 interface CreateChecklistTemplateProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // TODO: [P2] FIX src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 template 建立明確型別介面
-  onTemplateCreated?: (template: unknown) => void;
+  // TODO: 現代化 - 定義具體的檢查清單模板類型接口，提升類型安全
+  onTemplateCreated?: (template: ChecklistTemplate) => void;
 }
 
 export function CreateChecklistTemplate({

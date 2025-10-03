@@ -15,7 +15,12 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card';
-import { Skeleton as _Skeleton } from '@/components/ui/skeleton';
+// TODO: [P1] VAN - 移除未使用的重命名導入
+// 問題：Skeleton 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
+// 相關受影響檔案：無（這個導入未在任何地方使用）
 
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';

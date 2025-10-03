@@ -50,12 +50,24 @@ export function ViewToggle({ viewMode, onViewModeChange, className }: ViewToggle
         value={viewMode}
         onValueChange={(value) => {
           if (value) {
+            // TODO: [P2] VAN - 現代化類型斷言，使用更安全的類型守衛
+            // 問題：value as ViewMode['type'] 使用類型斷言，可能存在類型不安全
+            // 解決方案：使用類型守衛函數驗證 value 是否為有效的 ViewMode['type']
+            // 現代化建議：const isValidViewMode = (val: string): val is ViewMode['type'] => VIEW_MODES.some(m => m.type === val)
+            // 效能影響：無，但提升類型安全性和運行時安全性
+            // 相關受影響檔案：無（內部重構，不影響外部接口）
             onViewModeChange(value as ViewMode['type']);
           }
         }}
         className="border rounded-lg p-1"
       >
         {VIEW_MODES.map((mode) => {
+          // TODO: [P2] VAN - 現代化類型斷言，使用更安全的鍵值訪問
+          // 問題：mode.icon as keyof typeof ICON_MAP 使用類型斷言，可能存在鍵值不存在的情況
+          // 解決方案：使用 Object.hasOwn() 或 in 運算符驗證鍵值存在
+          // 現代化建議：const IconComponent = Object.hasOwn(ICON_MAP, mode.icon) ? ICON_MAP[mode.icon] : DefaultIcon
+          // 效能影響：無，但提升類型安全性和運行時安全性
+          // 相關受影響檔案：無（內部重構，不影響外部接口）
           const IconComponent = ICON_MAP[mode.icon as keyof typeof ICON_MAP];
           
           return (

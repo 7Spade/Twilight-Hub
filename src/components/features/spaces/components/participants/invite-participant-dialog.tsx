@@ -9,7 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ParticipantInviteFormData as _ParticipantInviteFormData, ParticipantRole } from './types';
+// TODO: [P0] VAN - 移除未使用的類型導入
+// 問題：ParticipantInviteFormData as _ParticipantInviteFormData 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
+// 相關受影響檔案：無（類型導入未在任何地方使用）
+import { ParticipantRole } from './types';
 
 const inviteSchema = z.object({
   email: z.string().email('Please enter a valid email address'),

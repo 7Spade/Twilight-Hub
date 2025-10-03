@@ -22,13 +22,30 @@ const initiateAcceptanceSchema = z.object({
 
 type InitiateAcceptanceFormValues = z.infer<typeof initiateAcceptanceSchema>;
 
+// TODO: 現代化 - 定義完整的驗收項目類型接口，提升類型安全
+interface AcceptanceItem {
+  id: string;
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high';
+  assignee?: string;
+  dueDate?: string;
+  acceptanceCriteria: string;
+  status: 'pending' | 'in_progress' | 'completed' | 'rejected';
+  requester: {
+    id: string;
+    name: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 interface InitiateAcceptanceFlowProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // TODO: [P2] FIX src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 acceptance 建立明確型別介面
-  onAcceptanceCreated?: (acceptance: unknown) => void;
+  // TODO: 現代化 - 定義具體的驗收類型接口，提升類型安全
+  onAcceptanceCreated?: (acceptance: AcceptanceItem) => void;
 }
 
 export function InitiateAcceptanceFlow({

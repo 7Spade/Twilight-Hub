@@ -1,7 +1,9 @@
 'use client';
-// TODO: [P1] PERF Hooks deps (L122, L157, L183) [低認知][現代化]
-// - 問題：'warehouses' 的邏輯表達式導致 useEffect/useMemo 依賴可能每次變更
-// - 指引：以 useMemo 包裝初始化或將計算移入對應 useMemo/Effect 回呼中。
+
+// TODO: [P1] REFACTOR src/app/(app)/organizations/[organizationslug]/inventory/page.tsx - 以 Server 取得 org 與清單
+// 說明：目前在 client 端以 getDocs/queries 聚合多個集合，建議改為父層 Server Page 聚合輸出，
+// 並以 props 餵入（或分段 Suspense），降低 client 邏輯與狀態，維持效能且更易讀。
+// @assignee ai
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';

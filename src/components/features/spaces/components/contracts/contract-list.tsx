@@ -1,19 +1,16 @@
 'use client';
 
-// TODO: [P2] FIX src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileText as _FileText, Plus, Search, Filter, Calendar, DollarSign as _DollarSign } from 'lucide-react';
+import { Plus, Search, Filter, Calendar } from 'lucide-react';
 
-// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入
-// 問題：'FileText', 'DollarSign' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
+// ✅ [COMPLETED] 已清理未使用的重命名導入：FileText as _FileText, DollarSign as _DollarSign
+// 現代化改進：移除未使用的導入，降低認知負擔，減少 bundle 大小
+// 建議：配置 ESLint no-unused-vars 規則自動檢測未使用的導入
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 奧卡姆剃刀精簡列表
 // 建議：
 // 1) 將統計（total/pending/active）移至 memo 或上層 hook，避免在渲染期反覆計算。

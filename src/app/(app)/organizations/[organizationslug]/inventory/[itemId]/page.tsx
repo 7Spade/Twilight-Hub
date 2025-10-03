@@ -1,7 +1,4 @@
 'use client';
-// TODO: [P1] PERF Hooks deps (L95, L135) [低認知][現代化]
-// - 問題：'warehouses' 的邏輯表達式可能使 useEffect 依賴每次改變
-// - 指引：用 useMemo 固定引用或把初始化移入 effect 回呼。
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';

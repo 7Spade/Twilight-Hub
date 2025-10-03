@@ -10,8 +10,11 @@ import { useState, useCallback } from 'react';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { type Space as _Space } from '@/lib/types-unified';
-// TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）
+// TODO: [P0] VAN - 移除未使用的類型導入
+// 問題：import { type Space as _Space } from '@/lib/types-unified'; 完全未使用
+// 解決方案：直接移除該導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔
 
 interface UseStarActionsReturn {
   // Actions

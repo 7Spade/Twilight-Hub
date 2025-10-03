@@ -7,6 +7,12 @@
 
 'use client';
 
+// TODO: [P1] REFACTOR src/components/search-command.tsx - 抽離查詢為 Server Action/API 並以 props 餵入
+// 說明：目前直接在 client 端組合 Firestore 查詢，造成 UI 與資料耦合、增加狀態複雜度。
+// 建議：建立 server action（或輕量 API route）處理查詢與權限，再以 props 餵入、或使用 Suspense + use 從父層 Server Component 傳資料。
+// 目標：降低認知負擔與邊界複雜度，維持現有效能。
+// @assignee ai
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   CommandDialog,

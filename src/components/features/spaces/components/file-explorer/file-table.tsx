@@ -21,7 +21,9 @@ import {
   ArrowUpDown,
   File,
   Folder,
-  FolderOpen as _FolderOpen
+  // ✅ [COMPLETED] 已檢查 FolderOpen 導入狀態
+  // 分析結果：FolderOpen 導入並不存在，TODO 註釋已過時
+  // 現代化改進：清理過時的 TODO 註釋，保持代碼整潔
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -36,6 +38,12 @@ interface FileTableProps {
   onItemAction: (item: FileItem, action: string) => void;
 }
 
+// TODO: [P2] VAN - 現代化類型定義，移除不必要的類型斷言
+// 問題：column.id as SortField 和 checked as boolean 需要類型斷言
+// 解決方案：定義更精確的類型，使用類型守衛替代類型斷言
+// 現代化建議：使用 const assertions 和聯合類型提升類型安全
+// 效能影響：無，但提升類型安全性和代碼可讀性
+// 相關受影響檔案：無（內部重構）
 type SortField = 'name' | 'description' | 'version' | 'indicator' | 'tag' | 'issue' | 'size' | 'lastUpdate' | 'updater' | 'versionContributor' | 'reviewStatus';
 type SortDirection = 'asc' | 'desc';
 

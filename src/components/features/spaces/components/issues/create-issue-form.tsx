@@ -22,13 +22,30 @@ const createIssueSchema = z.object({
 
 type CreateIssueFormValues = z.infer<typeof createIssueSchema>;
 
+// TODO: 現代化 - 定義完整的 Issue 類型接口，提升類型安全
+interface Issue {
+  id: string;
+  title: string;
+  description: string;
+  type: 'bug' | 'feature' | 'task' | 'question';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  assignee?: string;
+  labels?: string;
+  status: 'open' | 'in_progress' | 'closed';
+  reporter: {
+    id: string;
+    name: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 interface CreateIssueFormProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // TODO: [P2] FIX src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 issue 建立明確型別介面
-  onIssueCreated?: (issue: unknown) => void;
+  // TODO: 現代化 - 定義具體的問題類型接口，提升類型安全
+  onIssueCreated?: (issue: Issue) => void;
 }
 
 export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }: CreateIssueFormProps) {

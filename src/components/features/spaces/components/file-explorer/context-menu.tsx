@@ -4,7 +4,10 @@
  * selected item. A separate context menu for the toolbar is also defined here.
  */
 'use client';
-// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/context-menu.tsx - 修復字符串字面量錯誤（第126行未終止）
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/context-menu.tsx - 將靜態選單結構抽為常數
+// 說明：menuItems 可抽成常數與型別，避免於 render 期建構大型物件；保留動作回呼介面。
+// 影響：無功能變動、降低渲染負擔與閱讀成本。
+// @assignee ai
 
 import React from 'react';
 import {

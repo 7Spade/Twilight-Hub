@@ -126,12 +126,6 @@ export function AdjustStockDialog({
           let stockDocRef;
 
   if (hasExistingStockRecord && stockInfo.stockId) {
-              // TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
-              // 問題：使用非空斷言 (!) 可能導致運行時錯誤
-              // 影響：類型安全問題，可能導致應用崩潰
-              // 建議：添加適當的類型檢查或使用可選鏈操作符
-              // @assignee frontend-team
-              // @deadline 2025-01-25
               stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId);
               batch.update(stockDocRef, { quantity: increment(adjustment) });
           } else {

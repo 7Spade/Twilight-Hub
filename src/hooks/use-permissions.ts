@@ -125,6 +125,12 @@ export function usePermissions() {
   const checkPermissions = useCallback(async (
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
+    // TODO: [P1] VAN - 現代化類型斷言，使用更安全的對象初始化
+    // 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
+    // 解決方案：使用 Object.fromEntries() 或 reduce() 來創建類型安全的對象
+    // 現代化建議：const results = Object.fromEntries(permissions.map(p => [p, null])) as Record<Permission, PermissionCheckResult>
+    // 效能影響：無，但提升類型安全性和代碼可讀性
+    // 相關受影響檔案：無（內部重構，不影響外部接口）
     const results: Record<Permission, PermissionCheckResult> = {} as Record<Permission, PermissionCheckResult>;
     
     for (const permission of permissions) {
@@ -241,6 +247,12 @@ export function usePermissions() {
     spaceId: string,
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
+    // TODO: [P1] VAN - 現代化類型斷言，使用更安全的對象初始化
+    // 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
+    // 解決方案：使用 Object.fromEntries() 或 reduce() 來創建類型安全的對象
+    // 現代化建議：const results = Object.fromEntries(permissions.map(p => [p, null])) as Record<Permission, PermissionCheckResult>
+    // 效能影響：無，但提升類型安全性和代碼可讀性
+    // 相關受影響檔案：無（內部重構，不影響外部接口）
     const results: Record<Permission, PermissionCheckResult> = {} as Record<Permission, PermissionCheckResult>;
     
     for (const permission of permissions) {

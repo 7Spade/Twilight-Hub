@@ -27,7 +27,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Switch as _Switch } from '@/components/ui/switch';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:28 - 清理未使用的導入
 // 問題：'Switch' 已導入但從未使用
@@ -39,8 +38,7 @@ import {
   Dialog, 
   DialogContent, 
   DialogHeader, 
-  DialogTitle, 
-  DialogTrigger as _DialogTrigger 
+  DialogTitle 
 } from '@/components/ui/dialog';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:34 - 清理未使用的導入
@@ -69,7 +67,6 @@ import {
   Trash2, 
   Users, 
   Shield, 
-  Settings as _Settings,
   Search
 } from 'lucide-react';
 
@@ -87,8 +84,7 @@ import { useAuth } from './auth-provider';
 // 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
 // @assignee frontend-team
 
-import { roleManagementService as _roleManagementService } from '@/lib/role-management';
-import { Permission, UserRoleAssignment as _UserRoleAssignment } from '@/lib/types-unified';
+import { Permission } from '@/lib/types-unified';
 
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入
 // 問題：'UserRoleAssignment' 已導入但從未使用

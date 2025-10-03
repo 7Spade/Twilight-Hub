@@ -1,4 +1,9 @@
 'use client';
+
+// TODO: [P2] REFACTOR src/app/(app)/dashboard/page.tsx - 將 Firestore 資料抓取下沉至 Server 組件
+// 說明：目前多個 useMemo + useCollection 於 client 端，建議由父層 Server Page 取得序列化資料後以 props 傳入，
+// 並將 Dashboard 純化為展示，減少 client 邊界與效能負擔，提升 AI agent 可讀性。
+// @assignee ai
 import Link from 'next/link';
 import {
   Activity,

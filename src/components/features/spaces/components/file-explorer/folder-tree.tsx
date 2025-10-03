@@ -6,15 +6,13 @@
  * of the file explorer.
  */
 'use client';
+// TODO: [P1] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx - 抽離 mock 與分層
+// 說明：將 mockFolders 與 organizeFilesIntoFolders 移到純函數模組（shared/utils 或 features 層 utils），
+// 並以 props 注入結果；本元件專注渲染與互動，降低檔案長度與複雜度。
+// @assignee ai
 
 import React, { useState } from 'react';
-import { Button as _Button } from '@/components/ui/button';
 
-// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - Clean up unused imports
-// Issue: 'Button' is imported but never used
-// Impact: Increases bundle size and affects performance
-// Suggestion: Remove the unused import or prefix with underscore to indicate intentional unused
-// @assignee frontend-team
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { 
@@ -473,8 +471,6 @@ export function FolderTree({ files, selectedItems, onSelectionChange: _onSelecti
         {/* Children folders */}
         {item.type === 'folder' && isExpanded && hasChildren && (
           <div>
-            {/* TODO: [P2] LINT react/jsx-no-comment-textnodes: Move plain text comments into braces or out of children */}
-            {/* TODO: [P2] Fix non-null assertion: use optional chaining or explicit guard */}
             {(item.children ?? []).map(child => renderFolderItem(child, level + 1))}
           </div>
         )}

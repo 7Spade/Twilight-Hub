@@ -2,7 +2,11 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Button as _Button } from '@/components/ui/button';
+// TODO: [P0] VAN - 移除未使用的 Button 導入
+// 問題：Button as _Button 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

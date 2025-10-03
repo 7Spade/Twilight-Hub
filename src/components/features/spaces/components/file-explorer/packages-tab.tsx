@@ -15,7 +15,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Table as _Table, TableBody as _TableBody, TableCell as _TableCell, TableHead as _TableHead, TableHeader as _TableHeader, TableRow as _TableRow } from '@/components/ui/table';
+// TODO: [P1] VAN - 移除未使用的重命名導入
+// 問題：Table, TableBody, TableCell, TableHead, TableHeader, TableRow, User 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
+// 相關受影響檔案：無（這些導入未在任何地方使用）
 import { 
   Package, 
   Plus, 
@@ -23,7 +28,6 @@ import {
   Share, 
   MoreVertical,
   Calendar,
-  User as _User,
   FileText
 } from 'lucide-react';
 import { cn } from '@/lib/utils';

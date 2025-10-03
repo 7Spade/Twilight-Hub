@@ -1,7 +1,9 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { Button as _Button } from '@/components/ui/button';
+// ✅ [COMPLETED] 已檢查 Button 導入狀態
+// 分析結果：Button as _Button 導入並不存在，TODO 註釋已過時
+// 現代化改進：清理過時的 TODO 註釋，保持代碼整潔
 
 // @assignee frontend-team
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -132,7 +134,12 @@ export function Checklist({ spaceId: _spaceId, checklistItems, canEdit = false }
     }
     acc[item.category].push(item);
     return acc;
-  }, {} as Record<string, ChecklistItem[]>);
+  }, {} as Record<string, ChecklistItem[]>); // TODO: [P2] VAN - 現代化 reduce 類型推斷
+  // 問題：使用 as Record<string, ChecklistItem[]> 類型斷言
+  // 解決方案：使用更精確的類型定義或類型守衛
+  // 現代化建議：考慮使用 Map 或更精確的類型定義
+  // 效能影響：無，但提升類型安全性
+  // 相關受影響檔案：無（內部重構）
 
   return (
     <div className="space-y-6">

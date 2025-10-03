@@ -6,17 +6,32 @@
  * and user actions.
  */
 'use client';
+// TODO: [P0] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
+// 說明：目前元件同時負責資料抓取、狀態、呈現與互動。建議：
+// 1) 將 listFiles/upload/download/delete 等 IO 行為抽離至專用 hook/service；
+// 2) 視需要由父層 Server Component 提供序列化資料（或以 Suspense 分段）；
+// 3) 拆分 FileExplorerContent 為更小的展示型子元件，降低 useState/useMemo 密度。
+// 目標：維持效能並大幅降低 AI agent 認知負擔。
+// @assignee ai
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Card as _Card, CardContent as _CardContent } from '@/components/ui/card';
-import { Separator as _Separator } from '@/components/ui/separator';
+// TODO: [P0] VAN - 移除未使用的 UI 組件導入
+// 問題：Card, CardContent, Separator 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
 import { useFileActions } from '@/components/features/spaces/hooks';
 import { FolderTree, type FileItem } from './folder-tree';
 import { FileTable } from './file-table';
-import { ContextMenu, ToolbarContextMenu as _ToolbarContextMenu } from './context-menu';
+import { ContextMenu } from './context-menu';
 import { Toolbar } from './toolbar';
 import { UploadDialog } from './upload-dialog';
-import { VersionHistoryDrawer, type VersionItem as _VersionItem } from './version-history-drawer';
+import { VersionHistoryDrawer } from './version-history-drawer';
+
+// ✅ [COMPLETED] 已清理未使用的重命名導入
+// 現代化改進：移除未使用的導入，降低認知負擔，減少 bundle 大小
+// 效能提升：減少不必要的模組載入，提升 AI agent 代碼理解效率
+// 建議：配置 ESLint no-unused-vars 規則自動檢測未使用的導入
 import { EmptyFolderState } from './empty-folder-state';
 import { FilterPanel, type FilterOptions } from './filter-panel';
 import { BreadcrumbNavigation, type BreadcrumbItem } from './breadcrumb-navigation';
@@ -339,22 +354,10 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
   };
 
   const handleRestoreItem = (item: FileItem) => {
-    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:341 - 修復 TypeScript any 類型使用
-    // 問題：使用 any 類型違反類型安全原則
-    // 影響：失去類型檢查，可能導致運行時錯誤
-    // 建議：定義具體的類型接口替代 any 類型
-    // @assignee frontend-team
-    // @deadline 2025-01-25
     console.log('Restore item:', item);
   };
 
   const handlePermanentDelete = (item: FileItem) => {
-    // TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/file-explorer.tsx:346 - 修復 TypeScript any 類型使用
-    // 問題：使用 any 類型違反類型安全原則
-    // 影響：失去類型檢查，可能導致運行時錯誤
-    // 建議：定義具體的類型接口替代 any 類型
-    // @assignee frontend-team
-    // @deadline 2025-01-25
     console.log('Permanent delete item:', item);
   };
 

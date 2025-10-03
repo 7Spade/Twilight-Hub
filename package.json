@@ -26,6 +26,8 @@
     "memory:cleanup": "tsx scripts/memory-cleanup.ts",
     "memory:backup": "cp memory-bank/memory.json memory-bank/memory.backup.json",
     "memory:stats": "tsx scripts/memory-stats.ts",
+    "memory:monitor": "tsx scripts/memory-auto-monitor.ts",
+    "memory:check": "npm run memory:monitor && npm run memory:stats",
     
     "// === Git Hooks ===": "",
     "prepare": "husky install",

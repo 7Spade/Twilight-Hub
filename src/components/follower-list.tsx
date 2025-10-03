@@ -8,8 +8,11 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { collection, doc as _doc, query, where, documentId } from 'firebase/firestore';
+import { collection, query, where, documentId } from 'firebase/firestore';
 
+// ✅ [COMPLETED] 已移除未使用的 Firebase 導入：doc as _doc
+// 現代化改進：移除未使用的導入，降低認知負擔
+// 效能影響：減少 bundle 大小，提升 AI agent 代碼理解
 import { useFirestore, useCollection } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';

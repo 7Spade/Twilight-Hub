@@ -1,6 +1,11 @@
 'use client';
 
-import { Avatar as _Avatar, AvatarFallback as _AvatarFallback, AvatarImage as _AvatarImage } from '@/components/ui/avatar';
+// TODO: [P1] VAN - 移除未使用的重命名導入
+// 問題：Avatar, AvatarFallback, AvatarImage, Phone 導入後從未使用
+// 解決方案：直接移除未使用的導入語句
+// 現代化建議：使用 ESLint no-unused-vars 規則自動檢測
+// 效能影響：減少 bundle 大小，降低認知負擔，提升 AI agent 代碼理解
+// 相關受影響檔案：無（這些導入未在任何地方使用）
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -8,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { Calendar, DollarSign, FileText, Mail, Phone as _Phone, User } from 'lucide-react';
+import { Calendar, DollarSign, FileText, Mail, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 
 interface Contract {

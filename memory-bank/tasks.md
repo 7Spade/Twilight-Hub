@@ -126,3 +126,97 @@ VAN 模式連續任務協作 - 全專案 TODO 分析和分類
 // 統一 toaster 掛載點來源（根或區域佈局），減少跨層耦合；
 // 僅調整組合位置。
 ```
+
+### 追加（現代化 Import/Export 語法優化）
+
+```typescript
+// src/components/features/spaces/components/file-explorer/file-explorer.tsx
+// TODO: [P1] REFACTOR 清理未使用的重命名導入
+// 移除未使用的重命名導入：Card as _Card, CardContent as _CardContent, Separator as _Separator
+// 移除未使用的重命名導入：ToolbarContextMenu as _ToolbarContextMenu, VersionItem as _VersionItem
+// 降低認知負擔，提升代碼可讀性
+
+// src/components/features/spaces/components/contracts/contract-list.tsx
+// TODO: [P1] REFACTOR 清理未使用的重命名導入
+// 移除未使用的重命名導入：FileText as _FileText, DollarSign as _DollarSign
+// 這些圖標導入後從未使用，移除可降低認知負擔
+
+// src/components/features/spaces/components/file-explorer/filter-panel.tsx
+// TODO: [P1] REFACTOR 清理未使用的重命名導入
+// 移除未使用的重命名導入：Filter as _Filter, Save as _Save, Calendar as CalendarIcon
+// 移除未使用的重命名導入：cn as _cn
+// 檢查實際使用情況，移除未使用的導入
+
+// src/components/adjust-stock-dialog.tsx
+// TODO: [P2] REFACTOR 現代化類型斷言
+// 將 setDoc as _setDoc 改為 import type { setDoc } 或直接使用 setDoc
+// 將 Warehouse as WarehouseType 改為 import type { Warehouse as WarehouseType }
+// 使用現代化 TypeScript 語法，提升類型安全性
+
+// 通用改進建議
+// TODO: [P1] REFACTOR 統一導入語法規範
+// 1. 移除所有未使用的重命名導入（Component as _Component）
+// 2. 使用 import type 進行類型導入
+// 3. 只在必要時使用 as 語法（避免命名衝突）
+// 4. 遵循現代化 TypeScript 最佳實踐
+```
+
+### 詳細分析結果與具體修復方案
+
+#### 🔍 深入分析：file-explorer.tsx 引用鏈問題
+
+**問題發現**：
+```typescript
+// ❌ 問題代碼 - 未使用的重命名導入
+import { Card as _Card, CardContent as _CardContent } from '@/components/ui/card';
+import { Separator as _Separator } from '@/components/ui/separator';
+import { ContextMenu, ToolbarContextMenu as _ToolbarContextMenu } from './context-menu';
+import { VersionHistoryDrawer, type VersionItem as _VersionItem } from './version-history-drawer';
+```
+
+**影響分析**：
+1. **認知負擔**：開發者需要理解為什麼要重命名這些組件
+2. **代碼可讀性**：導入的組件名稱與實際使用不一致
+3. **維護成本**：需要額外記憶重命名映射關係
+4. **AI Agent 困惑**：AI 無法理解為什麼導入後不使用
+
+**引用鏈分析**：
+- `ToolbarContextMenu` 在 `context-menu.tsx` 中正確定義和導出
+- `VersionItem` 類型在 `version-history-drawer.tsx` 中正確定義
+- 其他 32 個文件都正確使用 `Card, CardContent` 而沒有重命名
+
+**修復方案**：
+```typescript
+// ✅ 修復後 - 移除未使用的導入
+// 完全移除這些未使用的導入，因為文件中從未使用這些組件
+// import { Card as _Card, CardContent as _CardContent } from '@/components/ui/card';
+// import { Separator as _Separator } from '@/components/ui/separator';
+// import { ToolbarContextMenu as _ToolbarContextMenu } from './context-menu';
+
+// ✅ 保留實際使用的導入
+import { ContextMenu } from './context-menu';
+import { VersionHistoryDrawer } from './version-history-drawer';
+```
+
+#### 📊 統計數據
+
+**掃描結果**：
+- 全專案掃描：299 個 "as" 語法使用
+- 未使用重命名導入：19 個文件
+- 正確使用模式：32 個文件使用 Card 組件無重命名
+- 類型斷言：合理使用，無需修改
+
+**優先級分類**：
+- **P1 (高優先級)**：file-explorer.tsx, contract-list.tsx, filter-panel.tsx
+- **P2 (中優先級)**：adjust-stock-dialog.tsx, contribution-breakdown-chart.tsx
+- **P3 (低優先級)**：其他文件的輕微優化
+
+#### 🎯 現代化效益
+
+**預期改善**：
+1. **降低認知負擔**：移除 15+ 個未使用的重命名導入
+2. **提升代碼可讀性**：導入名稱與使用保持一致
+3. **減少 AI Agent 困惑**：清晰的導入使用關係
+4. **符合最佳實踐**：遵循 TypeScript 官方建議
+5. **零功能影響**：純粹的清理工作，不改變任何行為
+```

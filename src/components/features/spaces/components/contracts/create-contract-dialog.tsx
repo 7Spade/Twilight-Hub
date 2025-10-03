@@ -29,13 +29,32 @@ const createContractSchema = z.object({
 
 type CreateContractFormValues = z.infer<typeof createContractSchema>;
 
+// TODO: 現代化 - 定義完整的 Contract 類型接口，提升類型安全
+interface Contract {
+  id: string;
+  title: string;
+  description: string;
+  type: 'service' | 'license' | 'nda' | 'partnership' | 'employment';
+  status: 'draft' | 'pending' | 'active';
+  value?: number;
+  currency: string;
+  startDate: string;
+  endDate?: string;
+  counterparty: {
+    name: string;
+    contact: string;
+    email: string;
+  };
+  createdAt: Date;
+  createdBy: string;
+}
+
 interface CreateContractDialogProps {
   spaceId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // TODO: [P2] FIX src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 修正 unknown/any 類型
-  // 說明：以具名型別替代 unknown，為 contract 建立明確型別介面
-  onContractCreated?: (contract: unknown) => void;
+  // TODO: 現代化 - 定義具體的合約類型接口，提升類型安全
+  onContractCreated?: (contract: Contract) => void;
 }
 
 export function CreateContractDialog({

@@ -38,8 +38,8 @@ export interface ActivityItem {
   };
   description: string;
   timestamp: Date;
-  // TODO: [P2] FIX src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）
-  metadata?: Record<string, unknown>;
+  // TODO: 現代化 - 定義具體的 metadata 結構，提升類型安全
+  metadata?: Record<string, string | number | boolean>;
   status?: 'completed' | 'pending' | 'failed';
 }
 
