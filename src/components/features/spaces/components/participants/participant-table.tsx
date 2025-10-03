@@ -1,7 +1,4 @@
 'use client';
-// TODO: [P0] FIX Parsing (L82) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：補上結尾引號；若文案未定以 '--' 站位。
 
 import { memo, useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -82,7 +79,6 @@ const ParticipantRow = memo(function ParticipantRow({
       <TableCell>{participant.phone || '-'}</TableCell>
       <TableCell>
         <span className={getStatusColor(participant.status)}>
-          {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串 */}
           {participant.status === 'active' ? '使用中' : participant.status}
         </span>
       </TableCell>
@@ -142,7 +138,7 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   }, [actions]);
 
   const handleUpdateRole = useCallback((participantId: string) => {
-    // TODO: 現代化 - 實現角色更新對話框，移除調試代碼
+    // TODO: 實現角色更新對話框
     console.log('Update role for participant:', participantId);
     // @assignee dev
   }, []);
@@ -169,7 +165,6 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
             <TableHead className="cursor-pointer">名稱</TableHead>
             <TableHead className="cursor-pointer">電子郵件</TableHead>
             <TableHead className="cursor-pointer">電話</TableHead>
-            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 修正破損標籤，補齊 </TableHead> */}
             <TableHead className="cursor-pointer">狀態</TableHead>
             <TableHead className="cursor-pointer">公司</TableHead>
             <TableHead>角色</TableHead>

@@ -52,8 +52,7 @@ export function InviteParticipantDialog({
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to invite participant:', error);
-      // TODO: [P2] FEAT src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 顯示錯誤提示
-      // @assignee dev
+      // TODO: 顯示錯誤提示
     } finally {
       setIsLoading(false);
     }

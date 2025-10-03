@@ -69,12 +69,15 @@ export function CardGrid({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
+        // TODO: 實現編輯對話框
         console.log('編輯成員:', participantId);
         break;
       case 'role':
+        // TODO: 實現角色變更對話框
         console.log('變更角色:', participantId);
         break;
       case 'permissions':
+        // TODO: 實現權限管理對話框
         console.log('管理權限:', participantId);
         break;
       case 'remove':

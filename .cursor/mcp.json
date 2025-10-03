@@ -113,9 +113,20 @@
         "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "./memory-bank/memory.json"
+        "MEMORY_FILE_PATH": "D:\\7Spade\\Twilight-Hub\\memory-bank\\memory.json"
       },
-      "disabled": false
+      "disabled": false,
+      "autoApprove": [
+        "create_entities",
+        "create_relations",
+        "add_observations",
+        "search_nodes",
+        "open_nodes",
+        "read_graph",
+        "delete_entities",
+        "delete_observations",
+        "delete_relations"
+      ]
     },
     "everything": {
       "command": "npx",

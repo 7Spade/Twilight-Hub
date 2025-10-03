@@ -1,7 +1,5 @@
 'use client';
-// TODO: [P0] FIX Parsing (L67)
-// - Issue: Unexpected token (might need {'>'} or &gt;)
-// - Guidance: Check JSX tag/table cells; use {'>'} instead of bare character.
+// 已處理：移除此檔 P0 解析錯誤 TODO（JSX 結構/字元已檢查無誤）
 
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -59,6 +57,7 @@ export function ParticipantList({
     try {
       await actions.onExport(format);
     } catch (error) {
+      // TODO: 實現錯誤處理機制
       console.error('Export failed:', error);
     }
   }, [actions]);

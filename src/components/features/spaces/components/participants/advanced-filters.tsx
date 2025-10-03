@@ -78,7 +78,7 @@ export function AdvancedFilters({
     handleFilterChange('tags', newTags);
   }, [filters.tags, handleFilterChange]);
 
-  // TODO: [P2][typing][低認知]: 為 sortBy 定義受控字面量型別 'field-order'
+  // TODO: 為 sortBy 定義受控字面量型別
   const handleSortChange = useCallback((sortBy: string) => {
     const [field, order] = sortBy.split('-');
     handleFilterChange('sortBy', field);

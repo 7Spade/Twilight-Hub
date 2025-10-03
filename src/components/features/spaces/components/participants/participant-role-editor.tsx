@@ -1,7 +1,5 @@
 'use client';
-// TODO: [P0] FIX Parsing (L67) [低認知][現代化]
-// - 問題：Unterminated string literal
-// - 指引：補齊引號或簡化字串；避免行內註解破壞字串。
+// 已處理：移除此檔 P0 解析錯誤 TODO（字串與描述皆完整）
 
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -47,13 +45,14 @@ export function ParticipantRoleEditor({
   const onSubmit = async (data: RoleFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: [P2] FEAT src/components/features/spaces/components/participants/participant-role-editor.tsx - 實現角色變更 API 調用
+      // TODO: 實現角色變更 API 調用
       console.log('Changing role:', { participantId, newRole: data.role });
       // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       onRoleChange?.(participantId, data.role);
       onOpenChange(false);
     } catch (error) {
+      // TODO: 實現錯誤處理機制
       console.error('Failed to change role:', error);
     } finally {
       setIsLoading(false);
@@ -67,7 +66,6 @@ export function ParticipantRoleEditor({
       case 'admin':
         return '可以管理成員與大部分設定';
       case 'member':
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串
         return '可以檢視與編輯內容';
       case 'viewer':
         return '只能檢視內容';

@@ -79,7 +79,7 @@ export class ParticipantDataService {
   ];
 
   // 已處理：修正參數命名，保留語義與最小 API
-  static async getParticipants(spaceId: string): Promise<Participant[]> {
+  static async getParticipants(_spaceId: string): Promise<Participant[]> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100));
     return [...this.participants];
@@ -87,10 +87,10 @@ export class ParticipantDataService {
 
   // 已處理：修正可選參數宣告，維持簡潔
   static async inviteParticipant(
-    spaceId: string,
+    _spaceId: string,
     email: string,
     role: Participant['role'],
-    message?: string
+    _message?: string
   ): Promise<Participant> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));

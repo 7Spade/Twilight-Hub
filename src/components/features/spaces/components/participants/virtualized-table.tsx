@@ -4,9 +4,6 @@
  */
 
 'use client';
-// TODO: [P0] FIX Parsing (L106) [低認知][現代化]
-// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）
-// - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。
 
 import React, { useMemo, useCallback, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -209,11 +206,11 @@ export function VirtualizedTable({
   const handleAction = useCallback((action: string, participantId: string) => {
     switch (action) {
       case 'edit':
-        // TODO: 現代化 - 實現編輯對話框，移除調試代碼
+        // TODO: 實現編輯對話框
         console.log('編輯成員:', participantId);
         break;
       case 'role':
-        // TODO: 現代化 - 實現角色變更對話框，移除調試代碼
+        // TODO: 實現角色變更對話框
         console.log('變更角色:', participantId);
         break;
       case 'remove':
