@@ -1,0 +1,251 @@
+---
+alwaysApply: true
+---
+
+# 高級記憶觸發系統
+
+## 🚀 健壯強大的關鍵字觸發機制
+
+### 1. 多層級關鍵字匹配
+
+#### 精確匹配 (Exact Match)
+```yaml
+exact_triggers:
+  user_preferences:
+    chinese: ["我喜歡", "我偏好", "我習慣"]
+    english: ["I like", "I prefer", "I usually"]
+    confidence: 1.0
+    
+  project_requirements:
+    chinese: ["需要", "要求", "必須"]
+    english: ["need", "require", "must"]
+    confidence: 1.0
+```
+
+#### 模糊匹配 (Fuzzy Match)
+```yaml
+fuzzy_triggers:
+  user_preferences:
+    chinese: ["傾向", "習慣", "風格", "偏好"]
+    english: ["tend", "style", "preference", "habit"]
+    confidence: 0.8
+    
+  technical_decisions:
+    chinese: ["選用", "採用", "決定使用"]
+    english: ["choose to use", "decide to use", "opt for"]
+    confidence: 0.9
+```
+
+#### 上下文匹配 (Context Match)
+```yaml
+context_triggers:
+  user_preferences:
+    patterns:
+      - "我[動詞][技術/工具]"
+      - "我習慣[動詞][對象]"
+      - "我傾向於[選擇/使用][選項]"
+    confidence: 0.7
+    
+  project_requirements:
+    patterns:
+      - "[專案]需要[功能]"
+      - "我們需要[實現/開發][功能]"
+      - "要求[性能/功能]達到[標準]"
+    confidence: 0.8
+```
+
+### 2. 智能關鍵字擴展
+
+#### 同義詞擴展
+```yaml
+synonym_expansion:
+  user_preferences:
+    base: ["喜歡", "偏好"]
+    synonyms:
+      chinese: ["愛用", "常用", "慣用", "傾向", "鍾愛"]
+      english: ["love", "enjoy", "favor", "adore", "cherish"]
+    
+  technical_decisions:
+    base: ["使用", "選擇"]
+    synonyms:
+      chinese: ["採用", "選用", "決定用", "選定", "配置"]
+      english: ["adopt", "select", "choose", "implement", "configure"]
+```
+
+#### 技術術語擴展
+```yaml
+tech_term_expansion:
+  frameworks:
+    chinese: ["框架", "庫", "工具", "技術"]
+    english: ["framework", "library", "tool", "technology"]
+    
+  patterns:
+    chinese: ["模式", "架構", "設計", "方案"]
+    english: ["pattern", "architecture", "design", "solution"]
+```
+
+### 3. 動態關鍵字學習
+
+#### 自適應關鍵字
+```yaml
+adaptive_learning:
+  new_keywords:
+    detection_threshold: 3  # 出現3次才加入
+    confidence_threshold: 0.6
+    
+  keyword_evolution:
+    boost_frequency: true   # 常用關鍵字優先級提升
+    decay_unused: true      # 未使用關鍵字優先級降低
+```
+
+### 4. 上下文感知觸發
+
+#### 對話上下文分析
+```yaml
+context_awareness:
+  conversation_flow:
+    - "開頭提及" -> 提高相關關鍵字權重
+    - "重複提及" -> 標記為重要信息
+    - "詳細說明" -> 增加記憶詳細度
+    
+  topic_continuity:
+    - 同一話題連續對話 -> 自動關聯記憶
+    - 話題切換 -> 建立話題間關係
+```
+
+## 🔍 高級記憶去重機制
+
+### 1. 智能重複檢測
+
+#### 內容相似度檢測
+```yaml
+duplicate_detection:
+  similarity_threshold: 0.8
+  
+  comparison_methods:
+    - semantic_similarity    # 語義相似度
+    - keyword_overlap       # 關鍵字重疊
+    - context_similarity    # 上下文相似度
+    
+  merge_strategies:
+    - combine_observations   # 合併觀察結果
+    - update_timestamp      # 更新時間戳
+    - preserve_both         # 保留兩個版本
+```
+
+#### 實體去重規則
+```yaml
+entity_deduplication:
+  name_similarity:
+    threshold: 0.9
+    methods: ["edit_distance", "phonetic", "semantic"]
+    
+  observation_deduplication:
+    merge_similar: true
+    keep_latest: true
+    preserve_context: true
+```
+
+### 2. 記憶整合策略
+
+#### 自動整合規則
+```yaml
+integration_rules:
+  same_entity_type:
+    action: "merge_observations"
+    threshold: 0.85
+    
+  related_entities:
+    action: "create_relation"
+    threshold: 0.7
+    
+  conflicting_info:
+    action: "version_control"
+    strategy: "timestamp_priority"
+```
+
+## 📊 記憶質量評估
+
+### 1. 記憶價值評分
+```yaml
+memory_scoring:
+  factors:
+    relevance: 0.3      # 相關性
+    specificity: 0.25   # 具體性
+    frequency: 0.2      # 頻率
+    recency: 0.15       # 新近性
+    context: 0.1        # 上下文豐富度
+    
+  quality_threshold: 0.6
+  auto_cleanup_threshold: 0.3
+```
+
+### 2. 記憶生命週期管理
+```yaml
+lifecycle_management:
+  creation:
+    initial_score: 0.5
+    boost_new_info: true
+    
+  maintenance:
+    decay_rate: 0.1     # 每月衰減10%
+    boost_usage: 0.05   # 每次使用提升5%
+    
+  cleanup:
+    archive_threshold: 0.2
+    delete_threshold: 0.1
+```
+
+## 🎯 智能觸發優化
+
+### 1. 觸發器性能優化
+```yaml
+performance_optimization:
+  keyword_indexing:
+    enabled: true
+    update_frequency: "daily"
+    
+  caching:
+    enabled: true
+    ttl: 3600  # 1小時
+    
+  parallel_processing:
+    enabled: true
+    max_workers: 4
+```
+
+### 2. 自適應觸發調整
+```yaml
+adaptive_triggers:
+  user_behavior_learning:
+    enabled: true
+    learning_rate: 0.1
+    
+  context_sensitivity:
+    dynamic_threshold: true
+    user_specific: true
+    
+  feedback_integration:
+    explicit_feedback: true
+    implicit_feedback: true
+```
+
+## 🔧 配置集成
+
+### 與現有系統集成
+```yaml
+integration:
+  mcp_memory_server:
+    enhanced_triggers: true
+    smart_deduplication: true
+    
+  package_json_scripts:
+    memory_optimize: "node scripts/memory-optimizer.js"
+    memory_cleanup: "node scripts/memory-cleanup.js"
+    
+  automation:
+    auto_trigger_learning: true
+    periodic_optimization: true
+```
+
+這個高級系統將讓您的記憶觸發機制更加健壯、智能和強大！

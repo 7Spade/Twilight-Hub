@@ -21,6 +21,12 @@
     "todo:conversation": "tsx scripts/generate-ai-conversation.ts",
     "todo:quick": "bash scripts/todo-quickstart.sh",
     
+    "// === Memory Management ===": "",
+    "memory:optimize": "tsx scripts/memory-optimizer.ts",
+    "memory:cleanup": "tsx scripts/memory-cleanup.ts",
+    "memory:backup": "cp memory-bank/memory.json memory-bank/memory.backup.json",
+    "memory:stats": "tsx scripts/memory-stats.ts",
+    
     "// === Git Hooks ===": "",
     "prepare": "husky install",
     "pre-commit": "npm run todo:scan && npm run todo:health",
