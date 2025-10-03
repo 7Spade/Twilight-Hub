@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P2] CLEANUP unused import (L3) [低認知]
+// - 問題：useCollection 未使用
+// - 指引：移除未使用匯入或以前綴 _ 命名表示暫未用。
 
 import { useCollection, useFirestore } from '@/firebase';
 

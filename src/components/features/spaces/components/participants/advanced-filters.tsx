@@ -6,6 +6,9 @@
  */
 
 'use client';
+// TODO: [P0] FIX Parsing (L36) [低認知][現代化]
+// - 問題："," expected（可能缺少逗號/括號）
+// - 指引：補齊分隔符或簡化 props，先確保可解析再優化。
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
@@ -32,12 +35,14 @@ import { useDebounce } from 'use-debounce';
 import { AdvancedFiltersProps, ParticipantRole, ParticipantStatus } from './types';
 
 // 模擬?�部?�?��?籤數??
+// TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 陣列字串引號與逗號缺失，請補齊分隔與引號
 const DEPARTMENTS = [
-  '工�???, '設�???, '市場??, '?�售??, '人�?資�???, '財�???, '?��???
+  '工程部', '設計部', '市場部', '銷售部', '人力資源部', '財務部', '行政部'
 ];
 
+// TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 陣列字串未終止，請補齊引號
 const TAGS = [
-  '?��??��?', '?��???, '管�?�?, '?�術�?�?, '設�?�?, '?��?經�?', '實�???
+  '高優先', '需回覆', '管理', '技術', '設計', '專案經理', '實習'
 ];
 
 export function AdvancedFilters({
@@ -167,17 +172,20 @@ export function AdvancedFilters({
               {/* ?�?��?�?*/}
               <div className="space-y-2">
                 <label className="text-sm font-medium">?�??/label>
+                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 破損的關閉標籤，請改為 </label> */}
                 <Select
                   value={filters.status || ''}
                   onValueChange={(value) => handleFilterChange('status', value || '')}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="?��??�?? />
+                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: placeholder 未終止字串，請補齊引號 */}
+                    <SelectValue placeholder="????? />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">?�部?�??/SelectItem>
-                    <SelectItem value="active">使用�?/SelectItem>
-                    <SelectItem value="inactive">?�活�?/SelectItem>
+                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 多處關閉標籤缺失，請補齊 */}
+                    <SelectItem value="">?部???/SelectItem>
+                    <SelectItem value="active">使用?/SelectItem>
+                    <SelectItem value="inactive">?活?/SelectItem>
                     <SelectItem value="pending">待審??/SelectItem>
                   </SelectContent>
                 </Select>

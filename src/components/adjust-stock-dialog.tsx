@@ -1,5 +1,7 @@
 
 'use client';
+// TODO: [P2] CLEANUP unused import/ops (L13, L138) [低認知]
+// - 指引：移除未使用 setDoc；避免 non-null assertion，改以條件判斷。
 
 import { useMemo, useState, useEffect } from 'react';
 import {
@@ -12,7 +14,12 @@ import {
   increment,
   setDoc,
 } from 'firebase/firestore';
-// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx - 清理未使用的導入（setDoc 未使用）
+
+// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:13 - 清理未使用的導入
+// 問題：'setDoc' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 
 import { useFirestore } from '@/firebase';
 import { useDialogState } from '@/hooks/use-app-state';
@@ -131,6 +138,13 @@ export function AdjustStockDialog({
               // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告
               // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言
               stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);
+              
+// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:133 - 修復非空斷言警告
+// 問題：使用非空斷言 (!) 可能導致運行時錯誤
+// 影響：類型安全問題，可能導致應用崩潰
+// 建議：添加適當的類型檢查或使用可選鏈操作符
+// @assignee frontend-team
+// @deadline 2025-01-25
               batch.update(stockDocRef, { quantity: increment(adjustment) });
           } else {
               // Create a new stock document

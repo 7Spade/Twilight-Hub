@@ -7,6 +7,12 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/thumbnail/file-thumbnail-grid.tsx:9 - 清理未使用的導入
+// 問題：'useMemo' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { cn } from '@/lib/utils';
 import { FileThumbnailCard } from './file-thumbnail-card';
@@ -72,7 +78,7 @@ function GridRow({
       style={style}
       className="flex gap-2 px-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
     >
-      {rowFiles.map((file, columnIndex) => {
+      {rowFiles.map((file, _columnIndex) => {
         const isSelected = selectedItems.includes(file.id);
         
         return (
@@ -149,7 +155,7 @@ export function FileThumbnailGrid({
 
   // Calculate grid configuration based on screen size
   const config = GRID_CONFIG[screenSize];
-  const columnCount = Math.floor(gridDimensions.width / config.itemWidth);
+  const columnCount = Math.max(1, Math.floor(gridDimensions.width / config.itemWidth));
   const rowCount = Math.ceil(files.length / columnCount);
 
   // Create virtualizer for rows
@@ -204,17 +210,17 @@ export function FileThumbnailGrid({
           />
           <span className="text-sm text-muted-foreground">
             {selectedItems.length > 0 
-              ? `已選??${selectedItems.length} ?��?案`
-              : `??${files.length} ?��?案`
+              ? `已選取 ${selectedItems.length} 個檔案`
+              : `共 ${files.length} 個檔案`
             }
           </span>
         </div>
         
         <div className="text-sm text-muted-foreground">
-          {screenSize === 'sm' && '2 ??}
-          {screenSize === 'md' && '3 ??}
-          {screenSize === 'lg' && '4 ??}
-          {screenSize === 'xl' && '6 ??}
+          {screenSize === 'sm' && '2 欄'}
+          {screenSize === 'md' && '3 欄'}
+          {screenSize === 'lg' && '4 欄'}
+          {screenSize === 'xl' && '6 欄'}
         </div>
       </div>
 
@@ -258,7 +264,7 @@ export function FileThumbnailGrid({
 
       {/* Grid info */}
       <div className="mt-2 text-xs text-muted-foreground text-center animate-in fade-in-0 duration-300 delay-200">
-        顯示 {files.length} ?��?�???{columnCount} ??? {rowCount} �?
+        顯示 {files.length} 個項目，{columnCount} 欄 × {rowCount} 列
       </div>
     </div>
   );

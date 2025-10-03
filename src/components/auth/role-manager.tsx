@@ -5,6 +5,8 @@
  */
 
 'use client';
+// TODO: [P2] CLEANUP unused imports/vars (L28, L41, L70, L88, L89, L134) [低認知]
+// TODO: [P1] HOOK deps (L156) [低認知]
 // TODO: [P2] REFACTOR src/components/auth/role-manager.tsx - 避免列表渲染期昂貴操作
 // 建議：
 // - 將 roles/users 載入改為懶載（按需打開時再查詢）；表格僅顯示前幾個權限，其餘以 lazy 展開。
@@ -26,6 +28,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:28 - 清理未使用的導入
+// 問題：'Switch' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { 
   Dialog, 
   DialogContent, 
@@ -33,6 +42,12 @@ import {
   DialogTitle, 
   DialogTrigger 
 } from '@/components/ui/dialog';
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:34 - 清理未使用的導入
+// 問題：'DialogTrigger' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { 
   Select,
   SelectContent,
@@ -57,9 +72,29 @@ import {
   Settings,
   Search
 } from 'lucide-react';
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:57 - 清理未使用的導入
+// 問題：'Settings' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { useAuth } from './auth-provider';
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:61 - 清理未使用的導入
+// 問題：'roleManagementService' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { roleManagementService } from '@/lib/role-management';
 import { Permission, UserRoleAssignment } from '@/lib/types-unified';
+
+// TODO: [P2] REFACTOR src/components/auth/role-manager.tsx:62 - 清理未使用的導入
+// 問題：'UserRoleAssignment' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { 
   getFirestore, 
   collection, 
@@ -97,7 +132,7 @@ interface RoleManagerProps {
   organizationId?: string;
 }
 
-export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
+export function RoleManager({ spaceId, organizationId: _organizationId }: RoleManagerProps) {
   const { hasPermission, userId } = useAuth();
   const [roles, setRoles] = useState<Role[]>([]);
   const [users, setUsers] = useState<User[]>([]);

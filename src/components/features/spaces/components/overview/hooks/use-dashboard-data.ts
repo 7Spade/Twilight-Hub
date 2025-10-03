@@ -26,7 +26,7 @@ interface UseDashboardDataReturn {
  * 提供統一的數據獲取和狀態管理
  */
 export function useDashboardData({
-  spaceId,
+  spaceId: _spaceId,
   autoRefresh = false,
   refreshInterval = 30000 // 30秒
 }: UseDashboardDataProps): UseDashboardDataReturn {

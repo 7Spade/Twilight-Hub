@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P2] CLEANUP unused arg (L6) [低認知]
+// - 問題：params 未使用
+// - 指引：移除參數或以前綴 _ 命名。
 
 import { redirect } from 'next/navigation';
 

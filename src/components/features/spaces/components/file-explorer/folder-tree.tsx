@@ -10,6 +10,12 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/folder-tree.tsx:12 - 清理未使用的導入
+// 問題：'Button' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { 
@@ -51,7 +57,7 @@ interface FolderTreeProps {
   onItemAction?: (item: FileItem, action: string) => void;
 }
 
-export function FolderTree({ files, selectedItems, onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
+export function FolderTree({ files, selectedItems, onSelectionChange: _onSelectionChange, onItemClick, onItemAction }: FolderTreeProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['project-files', 'supported']));
 
   // 將�?實�?案數?��?織�?資�?夾�?�?
@@ -468,6 +474,8 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
         {/* 子�??�夾 */}
         {item.type === 'folder' && isExpanded && hasChildren && (
           <div>
+            {/* TODO: [P2] LINT react/jsx-no-comment-textnodes [低認知][現代化]: 將純文字註解放入花括號內或移出 children */}
+            {/* TODO: [P2] 修復非空斷言：使用可選鏈或顯式判斷 */}
             {item.children!.map(child => renderFolderItem(child, level + 1))}
           </div>
         )}
@@ -479,7 +487,8 @@ export function FolderTree({ files, selectedItems, onSelectionChange, onItemClic
     <div className="h-full flex flex-col">
       <Tabs defaultValue="folders" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="folders">資�?�?/TabsTrigger>
+          {/* TODO[P2][lint][parser-error][低認知]: 修正破損的關閉標籤，使 JSX 成對並可被解析 */}
+          <TabsTrigger value="folders">資�?�?</TabsTrigger>
           <TabsTrigger value="packages">套件</TabsTrigger>
         </TabsList>
         

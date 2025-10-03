@@ -217,14 +217,8 @@ export function FileTypeIcon({
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-gray-600"></div>
             </div>
           )}
-          {/* TODO: [P2] FIX src/components/ui/file-type-icon.tsx - 修復 Next.js 圖片警告（改用 next/image） */}
-          
-// TODO: [P2] PERF src/components/ui/file-type-icon.tsx:221 - 實現 Next.js 15 圖片優化最佳實踐
-// 問題：使用 <img> 標籤可能導致較慢的 LCP 和更高的頻寬使用
-// 影響：圖片載入性能差、LCP 指標不佳
-// 建議：使用 next/image 組件自動優化圖片，考慮使用自定義圖片載入器
-// @assignee performance-team
-// @deadline 2025-02-01
+          {/* TODO[P2][next/image][低認知]: 以 next/image 取代 <img>（官方建議，改善 LCP/頻寬） */}
+          {/* TODO[P2][PERF]: 使用 next/image + sizes/priority 指南（Next.js 15） */}
           <img
             src={thumbnailUrl}
             alt={fileName}

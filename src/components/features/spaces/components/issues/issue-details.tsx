@@ -1,6 +1,9 @@
 // TODO: [P0] FIX src/components/features/spaces/components/issues/issue-details.tsx - 修復語法錯誤（第106行未終止的字串）
 // 說明：修正字串或模板字面量，避免 Lint 解析錯誤
 'use client';
+// TODO: [P0] FIX Parsing (L109) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：補齊字串引號或替換為 '--' 站位，避免註解與程式碼同一行。
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -105,10 +108,12 @@ export function IssueDetails({ issue, open, onOpenChange, comments }: IssueDetai
       case 'bug':
         return '??';
       case 'feature':
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
         return '??;
       case 'task':
         return '??';
       case 'question':
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
         return '??;
       default:
         return '??';

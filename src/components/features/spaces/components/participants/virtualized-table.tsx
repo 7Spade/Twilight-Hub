@@ -4,6 +4,9 @@
  */
 
 'use client';
+// TODO: [P0] FIX Parsing (L106) [低認知][現代化]
+// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）
+// - 指引：檢查 JSX 中的 '>' 與屬性，必要時以 {'>'} 顯示文字箭頭。
 
 import React, { useMemo, useCallback, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';

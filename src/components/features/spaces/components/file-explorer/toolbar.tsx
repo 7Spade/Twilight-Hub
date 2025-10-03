@@ -7,10 +7,19 @@
  * deleted items.
  */
 'use client';
+// TODO: [P0] FIX Parsing (L141) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：補上引號或改為模板字串；避免在字串中混入未轉義的特殊符號。
 
 import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/toolbar.tsx:13 - 清理未使用的導入
+// 問題：'Input' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,16 +50,16 @@ interface ToolbarProps {
 }
 
 export function Toolbar({ 
-  onUpload, 
+  onUpload: _onUpload, 
   onMoreOptions, 
   onExport, 
-  onSearch, 
-  onViewChange,
-  onFilter,
-  onDeletedItems,
+  onSearch: _onSearch, 
+  onViewChange, 
+  onFilter, 
+  onDeletedItems: _onDeletedItems, 
   currentView, 
-  selectedCount,
-  isFilterActive = false
+  selectedCount: _selectedCount, 
+  isFilterActive = false 
 }: ToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -129,25 +138,27 @@ export function Toolbar({
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
-              ?�出
+              匯出
               <ChevronDown className="h-4 w-4 ml-1" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => console.log('檔�?記�?')}>
-              檔�?記�?
+            <DropdownMenuItem onClick={() => console.log('檔案紀錄')}>
+              檔案紀錄
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log('資�?夾�???)}>
-              資�?夾�???
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={onExport}>
-              ?�出??Excel
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={onExport}>
-              ?�出??CSV
+            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此行存在未終止字串，請補齊引號或拆分字串，僅修正字面量 */}
+            {/* TODO[P2][lint][parser-error]: 關閉 onClick 內的字串引號，避免 Unterminated string literal */}
+            <DropdownMenuItem onClick={() => console.log('資料夾匯出')}>
+              資料夾匯出
             </DropdownMenuItem>
             <DropdownMenuItem onClick={onExport}>
-              ?�出??PDF
+              匯出為 Excel
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onExport}>
+              匯出為 CSV
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onExport}>
+              匯出為 PDF
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

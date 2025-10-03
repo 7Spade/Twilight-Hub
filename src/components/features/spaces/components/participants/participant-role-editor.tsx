@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P0] FIX Parsing (L67) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：補齊引號或簡化字串；避免行內註解破壞字串。
 
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';

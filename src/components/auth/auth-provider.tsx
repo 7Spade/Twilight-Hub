@@ -5,6 +5,9 @@
  */
 
 'use client';
+// TODO: [P2] CLEANUP unused import (L39) [低認知]
+// TODO: [P1] TYPING no-any (L192, L221) [低認知]
+// TODO: [P1] HOOK deps (L365) [低認知]
 // TODO: [P1] REFACTOR src/components/auth/auth-provider.tsx - 縮減責任邊界與資料下傳
 // 原則（Next.js App Router / Firebase）：
 // - Firestore 聚合轉服務層；Provider 僅保留 userId/effectivePermissions 等最小必要。
@@ -153,7 +156,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   };
 
   // Quick synchronous check
-  const hasPermission = (permission: Permission, spaceId: string): boolean => {
+  const hasPermission = (permission: Permission, _spaceId: string): boolean => {
     if (!state.userId || !state.userRoleAssignment) {
       return false;
     }
@@ -178,7 +181,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
         } as UserRoleAssignment;
       }
 
-      const userData = userDoc.data();
+      const _userData = userDoc.data();
       
       // Get space roles
       const spaceRolesQuery = query(
@@ -219,6 +222,13 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       
       orgRolesSnapshot.forEach(d => {
         const data = d.data() as any;
+        
+// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:221 - 修復 TypeScript any 類型使用
+// 問題：使用 any 類型違反類型安全原則
+// 影響：失去類型檢查，可能導致運行時錯誤
+// 建議：定義具體的類型接口替代 any 類型
+// @assignee frontend-team
+// @deadline 2025-01-25
         const ts: Timestamp = data.assignedAt && typeof data.assignedAt.toDate === 'function'
           ? data.assignedAt as Timestamp
           : Timestamp.fromDate(new Date());

@@ -8,7 +8,12 @@
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx - 清理未使用的導入（Card* 未使用）
+
+// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx:10 - 清理未使用的導入
+// 問題：'Card', 'CardContent', 'CardHeader', 'CardTitle' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 
 interface ContributionData {
     subject: string;

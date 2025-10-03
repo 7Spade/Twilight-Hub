@@ -8,7 +8,12 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';
-// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx:10 - 清理未使用的導入
+// 問題：'FileText', 'DollarSign' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 // TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 奧卡姆剃刀精簡列表
 // 建議：
 // 1) 將統計（total/pending/active）移至 memo 或上層 hook，避免在渲染期反覆計算。
@@ -132,17 +137,17 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return '?��';
+        return '服';
       case 'license':
-        return '??';
+        return '許';
       case 'nda':
-        return '??';
+        return '保';
       case 'partnership':
-        return '??';
+        return '合';
       case 'employment':
-        return '?��';
+        return '僱';
       default:
-        return '??';
+        return '合';
     }
   };
 

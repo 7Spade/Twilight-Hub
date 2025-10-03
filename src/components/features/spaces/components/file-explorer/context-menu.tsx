@@ -56,98 +56,97 @@ interface ContextMenuProps {
   children: React.ReactNode;
 }
 
-export function ContextMenu({ item, onAction, children }: ContextMenuProps) {
+export function ContextMenu({ item: _item, onAction, children }: ContextMenuProps) {
   const menuItems: MenuGroup[] = [
-    // 第�?組�??�本?�件/資�?夾�?�?
+    // 第一組：基本檔案/資料夾操作
     {
       group: 'basic',
       items: [
         {
           id: 'add-subfolder',
-          label: '?�入子�??�夾',
+          label: '新增子資料夾',
           icon: <Plus className="h-4 w-4" />,
           secondaryIcon: <Folder className="h-4 w-4" />,
         },
         {
           id: 'rename',
-          label: '?��?',
+          label: '重新命名',
           icon: <Edit className="h-4 w-4" />,
         },
         {
           id: 'share',
-          label: '?�用',
+          label: '共用',
           icon: <Share className="h-4 w-4" />,
         },
         {
           id: 'move',
-          label: '移�?',
+          label: '移動',
           icon: <Move className="h-4 w-4" />,
         },
         {
           id: 'delete',
-          label: '?�除',
+          label: '刪除',
           icon: <Trash2 className="h-4 w-4" />,
         },
         {
           id: 'sort-by',
-          label: '?��?依�?',
+          label: '排序依據',
           icon: <ArrowUpDown className="h-4 w-4" />,
           hasArrow: true,
         },
       ]
     },
-    // 第�?組�?上傳?��?載�?�?
+    // 第二組：上傳/下載操作
     {
       group: 'upload-download',
       items: [
         {
           id: 'upload',
-          label: '上�?',
+          label: '上傳',
           icon: <Upload className="h-4 w-4" />,
           hasArrow: true,
         },
         {
           id: 'download-original',
-          label: '下�??��?檔�?',
+          label: '下載原始檔案',
           icon: <Download className="h-4 w-4" />,
           info: true,
         },
         {
           id: 'export-history',
-          label: '?�出檔�?記�?',
+          label: '匯出檔案紀錄',
           icon: <FileText className="h-4 w-4" />,
         },
         {
           id: 'submit-review',
-          label: '?�交以�?審閱',
+          label: '提交以供審閱',
           icon: <UserCheck className="h-4 w-4" />,
         },
         {
           id: 'create-transfer',
-          // TODO[P2][lint][parser-error]: 關閉字串引號，避免 ESLint Parsing error: Unterminated string literal（參考 ESLint parsing 與 TS 語法規則）
-          label: '建�??��?',
+          label: '建立傳輸',
           icon: <Package className="h-4 w-4" />,
           info: true,
         },
       ]
     },
-    // 第�?組�?設�??�更多選??
+    // 第三組：設定與更多選項
     {
       group: 'settings',
       items: [
         {
           id: 'permission-settings',
-          label: '權�?設�?',
+          label: '權限設定',
           icon: <Settings className="h-4 w-4" />,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱?��?觸發詳細資�?',
+          label: '審閱自動觸發詳細資訊',
           icon: <Play className="h-4 w-4" />,
         },
         {
           id: 'more',
-          label: '?��?',
+          label: '更多',
           icon: <MoreVertical className="h-4 w-4" />,
           hasArrow: true,
         },
@@ -205,19 +204,17 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       items: [
         {
           id: 'properties',
-          // TODO[P2][lint][parser-error]: 修正未終止字串，確保 JSX/TSX 能正確解析
-          label: '屬�?',
+          label: '屬性',
           hasArrow: true,
         },
         {
           id: 'compliance',
-          // TODO[P2][lint][parser-error]: 修正未終止字串
-          label: '?��???',
+          label: '合規',
           hasArrow: true,
         },
         {
           id: 'review-auto-trigger',
-          label: '審閱?��?觸發',
+          label: '審閱自動觸發',
         },
         {
           id: 'packages',
@@ -225,7 +222,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
         },
         {
           id: 'advanced',
-          label: '?��?',
+          label: '進階',
         },
       ]
     }

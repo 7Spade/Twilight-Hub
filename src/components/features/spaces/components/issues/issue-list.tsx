@@ -1,6 +1,9 @@
 // TODO: [P0] FIX src/components/features/spaces/components/issues/issue-list.tsx - 修復語法錯誤（第137行未終止的字串）
 // 說明：補齊引號或修正 JSX 文字，確保通過 Lint
 'use client';
+// TODO: [P0] FIX Parsing (L139) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：關閉引號；若文案不明先以 '--' 站位，稍後再補。
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -136,10 +139,12 @@ export function IssueList({ spaceId, issues, canCreate = false }: IssueListProps
       case 'bug':
         return '??';
       case 'feature':
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
         return '??;
       case 'task':
         return '??';
       case 'question':
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
         return '??;
       default:
         return '??';

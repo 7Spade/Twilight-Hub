@@ -1,6 +1,13 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:3 - 清理未使用的導入
+// 問題：'Avatar', 'AvatarFallback', 'AvatarImage' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +15,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';
-// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage, Phone 未使用）
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx:10 - 清理未使用的導入
+// 問題：'Phone' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { formatDistanceToNow } from 'date-fns';
 
 interface Contract {
@@ -46,17 +58,17 @@ export function ContractDetails({ contract, open, onOpenChange }: ContractDetail
   const getTypeIcon = (type: Contract['type']) => {
     switch (type) {
       case 'service':
-        return '?��';
+        return '服';
       case 'license':
-        return '??';
+        return '許';
       case 'nda':
-        return '??';
+        return '保';
       case 'partnership':
-        return '??';
+        return '合';
       case 'employment':
-        return '?��';
+        return '僱';
       default:
-        return '??';
+        return '合';
     }
   };
 

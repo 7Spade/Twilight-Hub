@@ -55,7 +55,7 @@ export function FileDetailView({
   className
 }: FileDetailViewProps) {
   const [previewDocument, setPreviewDocument] = useState<PreviewDocument | null>(null);
-  const [previewConfig, setPreviewConfig] = useState<PreviewConfig>({});
+  const [previewConfig, _setPreviewConfig] = useState<PreviewConfig>({});
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -6,6 +6,9 @@
 // TODO: [P0] FIX src/components/features/spaces/components/participants/participant-card.tsx - 修復語法錯誤（第109行 Unexpected token）
 // 說明：檢查 JSX 屬性與標籤閉合，修正不合法符號
 'use client';
+// TODO: [P0] FIX Parsing (L111) [低認知][現代化]
+// - 問題：Unexpected token（考慮 {'>'} 或 &gt;）
+// - 指引：關閉 JSX 標籤或使用轉義，優先確保可解析。
 
 import React, { useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -108,6 +111,7 @@ export function ParticipantCard({
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold text-base truncate">{participant.name}</h3>
                 {isCurrentUser && (
+                  // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此處 Badge 關閉標籤破損（</Badge>），請補齊以避免 Unexpected token
                   <Badge variant="outline" className="text-xs">�?/Badge>
                 )}
               </div>
@@ -148,7 +152,8 @@ export function ParticipantCard({
               variant="outline" 
               className={`${STATUS_COLORS[participant.status]} text-xs`}
             >
-              {participant.status === 'active' ? '使用�? : participant.status}
+              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 字串未終止，請補齊引號 */}
+              {participant.status === 'active' ? '使用? : participant.status}
             </Badge>
 
             <Badge variant="outline" className="text-xs">
@@ -172,21 +177,21 @@ export function ParticipantCard({
             </div>
           )}
 
-          {/* ?��?信息 */}
+          {/* ??信息 */}
           <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              <span>?�入??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
+              <span>?入??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
             </div>
             {participant.lastActive && (
               <div className="flex items-center gap-1">
                 <Globe className="h-3 w-3" />
-                <span>?�後活??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
+                <span>?後活??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
               </div>
             )}
           </div>
 
-          {/* ?��??��? */}
+          {/* ???? */}
           {canManage && !isCurrentUser && (
             <div className="flex items-center justify-end">
               <DropdownMenu>
@@ -198,7 +203,7 @@ export function ParticipantCard({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleAction('edit')}>
                     <UserCheck className="h-4 w-4 mr-2" />
-                    編輯?�員
+                    編輯?員
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('role')}>
                     <Shield className="h-4 w-4 mr-2" />
@@ -206,14 +211,14 @@ export function ParticipantCard({
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('permissions')}>
                     <Shield className="h-4 w-4 mr-2" />
-                    管�?權�?
+                    管?權?
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     className="text-red-600"
                     onClick={() => handleAction('remove')}
                   >
                     <UserX className="h-4 w-4 mr-2" />
-                    移除?�員
+                    移除?員
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

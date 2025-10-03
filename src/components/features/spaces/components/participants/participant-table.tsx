@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P0] FIX Parsing (L82) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：補上結尾引號；若文案未定以 '--' 站位。
 
 import { memo, useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

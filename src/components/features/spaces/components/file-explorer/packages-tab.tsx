@@ -6,6 +6,9 @@
  * This component handles the creation and management of these packages.
  */
 'use client';
+// TODO: [P0] FIX Parsing (L156) [低認知][現代化]
+// - 問題：Unexpected token（可能缺少 {'>'} 或需使用 &gt;）
+// - 指引：檢查 JSX 標籤關閉與大於號轉義，先以簡化標籤/文字替代。
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -60,7 +63,8 @@ export function PackagesTab({ className }: PackagesTabProps) {
     {
       id: 'pkg-2',
       name: '結�?工�?套件 V2.1',
-      description: '結�?設�??��?算�?件�?�?,
+      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號，避免 Unterminated string literal
+      description: '結�?設�??��?算�?件�?�?',
       version: '2.1',
       status: 'draft',
       createdAt: '2024-01-20T14:20:00Z',
@@ -71,7 +75,8 @@ export function PackagesTab({ className }: PackagesTabProps) {
     {
       id: 'pkg-3',
       name: '機電設�?套件 V1.5',
-      description: '機電系統設�??��?裝�?�?,
+      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+      description: '機電系統設�??��?裝�?�?',
       version: '1.5',
       status: 'published',
       createdAt: '2024-01-18T09:15:00Z',
@@ -115,9 +120,11 @@ export function PackagesTab({ className }: PackagesTabProps) {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'published': return '已發�?;
+      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+      case 'published': return '已發�?';
       case 'draft': return '?�稿';
-      case 'archived': return '已�?�?;
+      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+      case 'archived': return '已�?�?';
       default: return status;
     }
   };
@@ -148,6 +155,7 @@ export function PackagesTab({ className }: PackagesTabProps) {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
+              {/* TODO[P2][lint][parser-error][低認知]: 修正破損的關閉標籤，應為 </DialogTitle>；目前保留以利標記問題 */}
               <DialogTitle>建�??��?�?/DialogTitle>
             </DialogHeader>
             <div className="space-y-4">

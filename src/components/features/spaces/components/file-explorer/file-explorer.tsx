@@ -6,6 +6,9 @@
  * and user actions.
  */
 'use client';
+// TODO: [P0] FIX Parsing (L138) [低認知][現代化]
+// - 問題：Unterminated string literal
+// - 指引：關閉模板/單雙引號；避免註解與程式同行；必要時先以佔位字串 '--'。
 // TODO[P2][lint][parser-error]: 第95行附近缺少分號或換行，導致 Parsing error。請：
 // 1) 檢查上一行是否缺分號或字串未關閉。
 // 2) 檢查註解是否破壞字元（如中文全形標點）。
@@ -92,7 +95,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
     includeContent: true,
   });
   const [breadcrumbItems, setBreadcrumbItems] = useState<BreadcrumbItem[]>([
-    { id: 'project-files', name: '專�?檔�?' }
+    { id: 'project-files', name: '專案檔案' }
   ]);
   const [isDeletedItemsOpen, setIsDeletedItemsOpen] = useState(false);
 
@@ -126,14 +129,16 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-01T00:00:00Z',
         updated: '2024-01-15T10:30:00Z',
-        description: '建�?平面??,
+        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號以通過解析；僅修字串不改邏輯
+        description: '建築平面圖',
         version: 'V2',
         indicator: '--',
-        tag: '?��?',
+        tag: '已審核',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '已審??,
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此行字串未關閉導致 Parsing error，僅補齊引號
+        reviewStatus: '已審核',
       },
       {
         id: 'test-office-001',
@@ -143,14 +148,16 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/dwg',
         timeCreated: '2024-01-02T00:00:00Z',
         updated: '2024-01-16T14:20:00Z',
-        description: '辦公室平?��?',
+        description: '辦公室平面圖',
         version: 'V1',
         indicator: '--',
-        tag: '?�稿',
+        tag: '草稿',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '待審??,
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
+        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號；建議以常量或 enum 管理狀態字串
+        reviewStatus: '待審核',
       },
       {
         id: 'test-contract-001',
@@ -160,14 +167,15 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-03T00:00:00Z',
         updated: '2024-01-17T09:15:00Z',
-        description: '建�??��?',
+        description: '建築合約',
         version: 'V3',
         indicator: '--',
-        tag: '?��?',
+        tag: '已審核',
         issue: '--',
         updater: 'ACC Sample P...',
         versionContributor: '--',
-        reviewStatus: '已審??,
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
+        reviewStatus: '已審核',
       },
       {
         id: 'test-report-001',
@@ -177,7 +185,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         contentType: 'application/pdf',
         timeCreated: '2024-01-04T00:00:00Z',
         updated: '2024-01-18T16:45:00Z',
-        description: '?�度?�度?��?',
+        description: '月度進度報告',
         version: 'V1',
         indicator: '--',
         tag: '?��?',
@@ -380,14 +388,14 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
       {isDragOver && (
         <div className="absolute inset-0 bg-blue-50/90 border-2 border-dashed border-blue-400 flex items-center justify-center z-50">
           <div className="text-center">
-            <div className="text-4xl mb-4">??</div>
-            <div className="text-lg font-semibold text-blue-600">?��?檔�?以�???/div>
-            <div className="text-sm text-blue-500">將�?案�??�至此�?</div>
+            <div className="text-4xl mb-4">↥</div>
+            <div className="text-lg font-semibold text-blue-600">拖放檔案以上傳</div>
+            <div className="text-sm text-blue-500">將檔案拖放至此</div>
           </div>
         </div>
       )}
 
-      {/* 工具�?*/}
+      {/* 工具?*/}
       <Toolbar
         onUpload={() => handleToolbarAction('upload')}
         onMoreOptions={() => handleToolbarAction('more-options')}
@@ -401,7 +409,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isFilterActive={isFilterPanelOpen}
       />
 
-      {/* 麵�?屑�???*/}
+      {/* 麵?屑???*/}
       <div className="px-4 py-2 border-b bg-muted/10">
         <BreadcrumbNavigation
           items={breadcrumbItems}
@@ -409,9 +417,9 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         />
       </div>
 
-      {/* 主內容�? */}
+      {/* 主內容? */}
       <div className="flex-1 flex overflow-hidden">
-        {/* 左側?�件夾樹 */}
+        {/* 左側?件夾樹 */}
         <div className="w-80 border-r bg-muted/20">
           <div className="p-4">
             <FolderTree
@@ -424,12 +432,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
           </div>
         </div>
 
-        {/* ?�側?�件視�? */}
+        {/* ?側?件視? */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {filteredFiles.length === 0 ? (
             <EmptyFolderState 
               onUpload={() => handleToolbarAction('upload')}
-              folderName="專�?檔�?"
+              folderName="專案檔案"
             />
           ) : (
             <>
@@ -454,16 +462,15 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
                 )}
               </div>
 
-              {/* 底部?�?��? */}
+              {/* 底部??? */}
               <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
+                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 模板字串/插值附近可能有破損字元，請檢查特殊符號與字串閉合 */}
                 <div className="text-sm text-muted-foreground">
-                  顯示 {filteredFiles.length} ?��?????{currentView === 'list' ? '?�表視�?' : '縮�?視�?'}
+                  顯示 {filteredFiles.length} 個項目（{currentView === 'list' ? '列表視圖' : '縮圖視圖'}）
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-1 hover:bg-muted rounded">
-                    ??                  </button>
-                  <button className="p-1 hover:bg-muted rounded">
-                    ??                  </button>
+                  <button className="p-1 hover:bg-muted rounded">‹</button>
+                  <button className="p-1 hover:bg-muted rounded">›</button>
                 </div>
               </div>
             </>
@@ -471,7 +478,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         </div>
       </div>
 
-      {/* 篩選?�板 */}
+      {/* 篩選?板 */}
       <FilterPanel
         isOpen={isFilterPanelOpen}
         onClose={() => setIsFilterPanelOpen(false)}
@@ -480,7 +487,7 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         initialFilters={currentFilters}
       />
 
-      {/* ?�除?��???*/}
+      {/* ?除????*/}
       <DeletedItems
         isOpen={isDeletedItemsOpen}
         onClose={() => setIsDeletedItemsOpen(false)}

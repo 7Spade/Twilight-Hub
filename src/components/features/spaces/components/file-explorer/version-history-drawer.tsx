@@ -10,6 +10,13 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:12 - 清理未使用的導入
+// 問題：'Avatar', 'AvatarFallback' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { Badge } from '@/components/ui/badge';
 import { 
   X, 
@@ -18,7 +25,20 @@ import {
   Calendar,
   User
 } from 'lucide-react';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:19 - 清理未使用的導入
+// 問題：'User' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
+
 import { cn } from '@/lib/utils';
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/version-history-drawer.tsx:21 - 清理未使用的導入
+// 問題：'cn' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 
 export interface VersionItem {
   id: string;
@@ -47,7 +67,7 @@ export function VersionHistoryDrawer({
   versions, 
   currentFile 
 }: VersionHistoryDrawerProps) {
-  const getInitials = (name: string) => {
+  const _getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
@@ -65,7 +85,8 @@ export function VersionHistoryDrawer({
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent side="right" className="w-[400px] sm:w-[540px]">
         <SheetHeader className="flex flex-row items-center justify-between">
-          <SheetTitle className="text-lg font-semibold">?�本歷史紀??/SheetTitle>
+          {/* TODO[P2][lint][parser-error][低認知]: 修正未終止標籤，應為 </SheetTitle> */}
+          <SheetTitle className="text-lg font-semibold">?�本歷史紀??</SheetTitle>
           <Button
             variant="ghost"
             size="icon"
@@ -77,7 +98,7 @@ export function VersionHistoryDrawer({
         </SheetHeader>
 
         <div className="mt-6 space-y-6">
-          {/* ?��??�件信息 */}
+          {/* ?��??�件信息 */}
           {currentFile && (
             <div className="p-4 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-3">
@@ -85,17 +106,17 @@ export function VersionHistoryDrawer({
                 <div>
                   <h3 className="font-medium">{currentFile.name}</h3>
                   <p className="text-sm text-muted-foreground">
-                    ?��??�本: {currentFile.version}
+                    ?��??�本: {currentFile.version}
                   </p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* ?�本?�表 */}
+          {/* ?�本?�表 */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-muted-foreground">
-              ?�本歷史
+              ?�本歷史
             </h4>
             
             <div className="border rounded-lg">
@@ -103,10 +124,10 @@ export function VersionHistoryDrawer({
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
-                    <TableHead>?�本</TableHead>
-                    <TableHead>?�稱</TableHead>
-                    <TableHead>?��?</TableHead>
-                    <TableHead>標�?</TableHead>
+                    <TableHead>?�本</TableHead>
+                    <TableHead>?�稱</TableHead>
+                    <TableHead>?��?</TableHead>
+                    <TableHead>標�?</TableHead>
                     <TableHead className="w-12"></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -159,10 +180,10 @@ export function VersionHistoryDrawer({
             </div>
           </div>
 
-          {/* 底部?�??*/}
+          {/* 底部?�??*/}
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground text-center">
-              �?��展示 {versions.length} ?��???
+              �?��展示 {versions.length} ?��???
             </p>
           </div>
         </div>

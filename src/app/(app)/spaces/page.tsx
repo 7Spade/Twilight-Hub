@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P1] PERF Hooks deps (L42, L56, L77, L84, L89) [低認知]
+// - 問題：'allSpaces' 邏輯表達式導致 useMemo 依賴變動
+// - 指引：以 useMemo 包裝初始化或移入對應 useMemo 回呼。
 
 import { useMemo } from 'react';
 import { collection, query, where, documentId } from 'firebase/firestore';

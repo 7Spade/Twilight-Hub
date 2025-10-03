@@ -8,11 +8,7 @@
  * the visibility of columns.
  */
 'use client';
-// TODO[P2][lint][parser-error]: 第54行未終止字串，請關閉引號或修正 JSX 轉義。
-// - 建議：
-//   1) 檢查 `columns` 陣列中 label 的字串是否有未關閉引號。
-//   2) 檢查中文標點或全形符號是否破壞了 JSX/TSX。
-//   3) 僅修字串與標籤，不改動邏輯。
+// 已校正：columns 內的字串/轉義
 
 import React, { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
@@ -53,19 +49,18 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
-  // ?�設定�???
+  // 欄位設定
   const [columns, setColumns] = useState<ColumnConfig[]>([
-    { id: 'description', label: '?�述', visible: true },
-    { id: 'version', label: '?�本', visible: true },
-    { id: 'indicator', label: '?��?', visible: true },
-    { id: 'tag', label: '標�?', visible: true },
-    { id: 'issue', label: '?��?', visible: true },
-    { id: 'size', label: '大�?', visible: true },
-    { id: 'lastUpdate', label: '上次?�新', visible: true },
-    // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
-    { id: 'updater', label: '?�新??', visible: true },
-    { id: 'versionContributor', label: '?�本?�入??', visible: true },
-    { id: 'reviewStatus', label: '審閱?�??', visible: true },
+    { id: 'description', label: '描述', visible: true },
+    { id: 'version', label: '版本', visible: true },
+    { id: 'indicator', label: '指標', visible: true },
+    { id: 'tag', label: '標籤', visible: true },
+    { id: 'issue', label: '議題', visible: true },
+    { id: 'size', label: '大小', visible: true },
+    { id: 'lastUpdate', label: '上次更新', visible: true },
+    { id: 'updater', label: '更新者', visible: true },
+    { id: 'versionContributor', label: '版本貢獻者', visible: true },
+    { id: 'reviewStatus', label: '審閱狀態', visible: true },
   ]);
 
   const handleSort = (field: SortField) => {
@@ -224,8 +219,8 @@ export function FileTable({ files, selectedItems, onSelectionChange, onItemClick
               className="cursor-pointer hover:bg-muted/50"
               onClick={() => handleSort('name')}
             >
-              <div className="flex items-center gap-2">
-                ?�稱
+                <div className="flex items-center gap-2">
+                  名稱
                 {getSortIcon('name')}
               </div>
             </TableHead>

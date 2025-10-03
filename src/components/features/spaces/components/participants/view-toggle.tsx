@@ -7,7 +7,12 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-// TODO: [P2] REFACTOR src/components/features/spaces/components/participants/view-toggle.tsx - 清理未使用的導入（Button 未使用）
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/participants/view-toggle.tsx:9 - 清理未使用的導入
+// 問題：'Button' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Table, Grid3X3, List } from 'lucide-react';
 import { ViewMode } from './types';

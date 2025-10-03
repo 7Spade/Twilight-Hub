@@ -215,7 +215,7 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('404')) {
       return {
         code: 'FILE_NOT_FOUND',
-        message: '檔�?不�??��??��?存�?',
+        message: '檔案不存在',
         details: error,
       };
     }
@@ -223,7 +223,8 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('403')) {
       return {
         code: 'ACCESS_DENIED',
-        message: '沒�?權�?存�?此�?�?,
+        // TODO[P2][lint][parser-error][低認知]: 關閉字串引號以通過 TS 解析
+        message: '沒有權限存取此檔案',
         details: error,
       };
     }
@@ -231,14 +232,15 @@ export class ReactDocViewerService extends BaseFilePreviewService {
     if (error.message?.includes('network')) {
       return {
         code: 'NETWORK_ERROR',
-        message: '網路????�誤，�?檢查網路???',
+        message: '網路錯誤，請檢查網路連線',
         details: error,
       };
     }
 
     return {
       code: 'UNKNOWN_ERROR',
-      message: '?�覽檔�??�發?�未?�錯�?,
+      // TODO[P2][lint][parser-error][低認知]: 關閉字串引號
+      message: '預覽檔案發生未預期錯誤',
       details: error,
     };
   }

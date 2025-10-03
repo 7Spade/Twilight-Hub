@@ -1,4 +1,7 @@
 'use client';
+// TODO: [P1] PERF Hooks deps (L122, L157, L183) [低認知][現代化]
+// - 問題：'warehouses' 的邏輯表達式導致 useEffect/useMemo 依賴可能每次變更
+// - 指引：以 useMemo 包裝初始化或將計算移入對應 useMemo/Effect 回呼中。
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -120,6 +123,13 @@ export default function InventoryPage({
   const { data: warehousesData, isLoading: warehousesLoading } =
     useCollection<WarehouseType>(warehousesQuery);
   const warehouses = warehousesData || [];
+
+// TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/page.tsx:122 - 優化 React hooks 依賴項
+// 問題：warehouses 邏輯表達式可能導致 useEffect 和 useMemo Hook 依賴項在每次渲染時改變
+// 影響：性能問題，不必要的重新渲染（影響 lines 150, 176）
+// 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中
+// @assignee frontend-team
+// @deadline 2025-01-15
 
   // Fetch all stock data for all warehouses
   const [allStock, setAllStock] = useState<Stock[]>([]);

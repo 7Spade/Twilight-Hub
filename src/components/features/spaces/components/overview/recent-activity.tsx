@@ -24,7 +24,7 @@ interface RecentActivityProps {
   activities?: ActivityItem[];
 }
 
-export function RecentActivity({ spaceId, activities }: RecentActivityProps) {
+export function RecentActivity({ spaceId: _spaceId, activities }: RecentActivityProps) {
   // TODO: [P3] REFACTOR src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數
   const defaultActivities: ActivityItem[] = [
     {

@@ -78,17 +78,21 @@ export class ParticipantDataService {
     },
   ];
 
-  static async getParticipants(spaceId: string): Promise<Participant[]> { /* TODO: [P3] REFACTOR src/components/features/spaces/components/participants/data.ts - 清理未使用的參數 */
+  // TODO: [P0] FIX Typo/Parsing (L81) [低認知]
+  // - 指引：修正參數型別宣告錯字 `_spaceId:`
+  static async getParticipants(spaceId: string): Promise<Participant[]> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100));
     return [...this.participants];
   }
 
+  // TODO: [P0] FIX Typo/Parsing (L91) [低認知]
+  // - 指引：修正可選參數宣告 `message?: _message: string` => `message?: string`
   static async inviteParticipant(
     spaceId: string,
     email: string,
     role: Participant['role'],
-    message?: string /* TODO: [P3] REFACTOR src/components/features/spaces/components/participants/data.ts - 清理未使用的參數 */
+    message?: string
   ): Promise<Participant> {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));

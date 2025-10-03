@@ -1,6 +1,9 @@
 // TODO: [P0] FIX src/components/features/spaces/components/participants/invite-participant-dialog.tsx - 修復語法錯誤（第98行 Unexpected token）
 // 說明：檢查 JSX 標籤是否缺失閉合或有非法字元
 'use client';
+// TODO: [P0] FIX Parsing (L100) [低認知][現代化]
+// - 問題：Unexpected token（可能需 {'>'} 或 &gt;）
+// - 指引：檢查 JSX 標籤閉合，將裸 '>' 轉義為 {'>'}。
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -97,9 +100,11 @@ export function InviteParticipantDialog({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="admin">管�???/SelectItem>
-                      <SelectItem value="member">?�員</SelectItem>
-                      <SelectItem value="viewer">檢�???/SelectItem>
+                      {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 103 之後 SelectItem 標籤關閉不正確，請補齊 </SelectItem> */}
+                      <SelectItem value="admin">管???/SelectItem>
+                      <SelectItem value="member">?員</SelectItem>
+                      {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 105 未正確關閉標籤，請修正 JSX 結構 */}
+                      <SelectItem value="viewer">檢???/SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -124,7 +129,8 @@ export function InviteParticipantDialog({
                 ?��?
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '?�送中...' : '?�送�?�?}
+                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 130 字串未終止，請補齊引號或用常量 */}
+                {isLoading ? '?送中...' : '?送??}
               </Button>
             </DialogFooter>
           </form>

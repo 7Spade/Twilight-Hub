@@ -2,7 +2,12 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-// TODO: [P2] REFACTOR src/components/features/spaces/components/quality/checklist.tsx - 清理未使用的導入（Button 未使用）
+
+// TODO: [P2] REFACTOR src/components/features/spaces/components/quality/checklist.tsx:4 - 清理未使用的導入
+// 問題：'Button' 已導入但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
@@ -31,7 +36,7 @@ interface ChecklistProps {
   canEdit?: boolean;
 }
 
-export function Checklist({ spaceId, checklistItems, canEdit = false }: ChecklistProps) {
+export function Checklist({ spaceId: _spaceId, checklistItems, canEdit = false }: ChecklistProps) {
   const [items, setItems] = useState<ChecklistItem[]>(
     checklistItems || [
       {
