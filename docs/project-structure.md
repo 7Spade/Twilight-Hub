@@ -1,15 +1,15 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:51:05
+> 最後更新時間: 2025/10/03 下午07:55:08
 
 ## 目錄結構
 
 ```
 └── .todo-reports/
-    ├── ai-prompt-2025-10-03.md (715 B, 今天)
-    ├── todo-report-2025-10-03.json (447 B, 今天)
-    ├── todo-report-2025-10-03.md (237 B, 今天)
+    ├── ai-prompt-2025-10-03.md (28.6 KB, 今天)
+    ├── todo-report-2025-10-03.json (29.1 KB, 今天)
+    ├── todo-report-2025-10-03.md (7.7 KB, 今天)
 └── docs/
     ├── TODO/
     │   ├── todo-automation-guide.md (19.4 KB, 今天)
@@ -18,7 +18,7 @@
     ├── natural-language-commands.md (17.7 KB, 今天)
     ├── nextjs15_dev-brief.md (12.2 KB, 今天)
     ├── nextjs15_dev-standard.md (35.5 KB, 今天)
-    ├── project-structure.md (16.8 KB, 今天)
+    ├── project-structure.md (17.2 KB, 今天)
 └── memory-bank/
     ├── archive/
     ├── creative/
@@ -97,16 +97,16 @@
     │   ├── auth/
     │   │   ├── auth-provider.tsx (6.3 KB, 今天)
     │   │   ├── index.ts (509 B, 今天)
-    │   │   ├── permission-guard.tsx (401 B, 今天)
-    │   │   ├── role-manager.tsx (16.9 KB, 今天)
+    │   │   ├── permission-guard.tsx (519 B, 今天)
+    │   │   ├── role-manager.tsx (17.4 KB, 今天)
     │   ├── features/
     │   │   ├── contracts/
-    │   │   │   ├── contract-list.tsx (11.3 KB, 今天)
+    │   │   │   ├── contract-list.tsx (11.7 KB, 今天)
     │   │   ├── organizations/
     │   │   │   ├── components/
     │   │   │   │   ├── roles/
     │   │   │   │   │   ├── index.ts (150 B, 今天)
-    │   │   │   │   │   ├── role-list.tsx (14.1 KB, 今天)
+    │   │   │   │   │   ├── role-list.tsx (14.3 KB, 今天)
     │   │   │   │   ├── index.ts (71 B, 今天)
     │   │   │   ├── index.ts (73 B, 今天)
     │   │   ├── spaces/
@@ -119,9 +119,9 @@
     │   │   │   │   │   ├── acceptance-item.tsx (8.7 KB, 今天)
     │   │   │   │   │   ├── acceptance-list.tsx (9.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (219 B, 今天)
-    │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.2 KB, 今天)
+    │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.3 KB, 今天)
     │   │   │   │   ├── contracts/
-    │   │   │   │   │   ├── contract-details.tsx (10.8 KB, 今天)
+    │   │   │   │   │   ├── contract-details.tsx (10.9 KB, 今天)
     │   │   │   │   │   ├── contract-list.tsx (14 KB, 今天)
     │   │   │   │   │   ├── index.ts (212 B, 今天)
     │   │   │   │   ├── file-explorer/
@@ -148,13 +148,13 @@
     │   │   │   │   │   ├── toolbar.tsx (5.1 KB, 今天)
     │   │   │   │   │   ├── version-history-drawer.tsx (5.9 KB, 今天)
     │   │   │   │   ├── issues/
-    │   │   │   │   │   ├── create-issue-form.tsx (7.6 KB, 今天)
+    │   │   │   │   │   ├── create-issue-form.tsx (7.7 KB, 今天)
     │   │   │   │   │   ├── index.ts (187 B, 今天)
     │   │   │   │   │   ├── issue-details.tsx (7.9 KB, 今天)
     │   │   │   │   │   ├── issue-list.tsx (10.5 KB, 今天)
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
-    │   │   │   │   │   │   ├── use-dashboard-data.ts (4.1 KB, 今天)
+    │   │   │   │   │   │   ├── use-dashboard-data.ts (4.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (747 B, 今天)
     │   │   │   │   │   ├── loading-skeleton.tsx (2.5 KB, 今天)
     │   │   │   │   │   ├── overview-dashboard.tsx (7 KB, 今天)
@@ -171,8 +171,8 @@
     │   │   │   │   │   ├── participant-card.tsx (8 KB, 今天)
     │   │   │   │   │   ├── participant-filters.tsx (5.9 KB, 今天)
     │   │   │   │   │   ├── participant-list.tsx (6.1 KB, 今天)
-    │   │   │   │   │   ├── participant-role-editor.tsx (4.3 KB, 今天)
-    │   │   │   │   │   ├── participant-table.tsx (7.3 KB, 今天)
+    │   │   │   │   │   ├── participant-role-editor.tsx (4.5 KB, 今天)
+    │   │   │   │   │   ├── participant-table.tsx (7.4 KB, 今天)
     │   │   │   │   │   ├── types.ts (4.5 KB, 今天)
     │   │   │   │   │   ├── view-toggle.tsx (2 KB, 今天)
     │   │   │   │   │   ├── virtualized-table.tsx (11.9 KB, 今天)
@@ -182,8 +182,8 @@
     │   │   │   │   │   ├── quality-dashboard.tsx (6.5 KB, 今天)
     │   │   │   │   ├── report/
     │   │   │   │   │   ├── index.ts (205 B, 今天)
-    │   │   │   │   │   ├── report-dashboard.tsx (8.9 KB, 今天)
-    │   │   │   │   │   ├── report-viewer.tsx (8.8 KB, 今天)
+    │   │   │   │   │   ├── report-dashboard.tsx (9 KB, 今天)
+    │   │   │   │   │   ├── report-viewer.tsx (8.9 KB, 今天)
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── index.ts (41 B, 今天)
     │   │   │   │   ├── index.ts (1 KB, 今天)
