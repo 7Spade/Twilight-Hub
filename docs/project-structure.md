@@ -1,16 +1,18 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午07:34:53
+> 最後更新時間: 2025/10/03 下午07:38:14
 
 ## 目錄結構
 
 ```
 └── .todo-reports/
-    ├── ai-prompt-2025-10-03.md (39.5 KB, 今天)
-    ├── todo-report-2025-10-03.json (40.3 KB, 今天)
-    ├── todo-report-2025-10-03.md (8 KB, 今天)
+    ├── ai-prompt-2025-10-03.md (39.4 KB, 今天)
+    ├── todo-report-2025-10-03.json (40.1 KB, 今天)
+    ├── todo-report-2025-10-03.md (7.9 KB, 今天)
 └── docs/
+    ├── Commands/
+    │   ├── TODO-list.md (113.1 KB, 今天)
     ├── TODO/
     │   ├── todo-automation-guide.md (19.4 KB, 今天)
     ├── backend.json (13.7 KB, 今天)
@@ -18,30 +20,18 @@
     ├── natural-language-commands.md (17.7 KB, 今天)
     ├── nextjs15_dev-brief.md (12.2 KB, 今天)
     ├── nextjs15_dev-standard.md (35.5 KB, 今天)
-    ├── project-structure.md (17.7 KB, 今天)
+    ├── project-structure.md (17.6 KB, 今天)
     ├── typescript-migration-guide.md (4.5 KB, 今天)
 └── memory-bank/
-    ├── activeContext.md (590 B, 今天)
-    ├── creative-architecture-design.md (9.3 KB, 今天)
-    ├── creative-ui-design.md (5.8 KB, 今天)
     ├── memory.json (2 B, 今天)
-    ├── productContext.md (852 B, 今天)
-    ├── progress.md (1.1 KB, 今天)
-    ├── projectbrief.md (734 B, 今天)
-    ├── README.md (965 B, 今天)
-    ├── style-guide.md (4.5 KB, 今天)
-    ├── systemPatterns.md (1.2 KB, 今天)
-    ├── tasks.md (1.9 KB, 今天)
-    ├── techContext.md (864 B, 今天)
 └── scripts/
     ├── .todo-reports/
     │   ├── ai-prompt-2025-10-03.md (3.7 KB, 今天)
     │   ├── todo-report-2025-10-03.json (3.6 KB, 今天)
     │   ├── todo-report-2025-10-03.md (919 B, 今天)
-    ├── generate-tree.js (6.5 KB, 今天)
     ├── generate-tree.ts (7 KB, 今天)
-    ├── sync-todos.js (20.7 KB, 今天)
     ├── todo-automation-toolkit.ts (12.9 KB, 今天)
+    ├── todo-scanner.ts (195 B, 今天)
     ├── tsconfig.json (556 B, 今天)
 └── src/
     ├── ai/

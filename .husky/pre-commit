@@ -9,13 +9,13 @@ start_time=$(date +%s)
 echo "🚀 開始 pre-commit 檢查..."
 
 # 1. 檢查必要腳本是否存在
-if [ ! -f "scripts/sync-todos.js" ]; then
-  echo "❌ 錯誤: scripts/sync-todos.js 不存在"
+if [ ! -f "scripts/generate-tree.ts" ]; then
+  echo "❌ 錯誤: scripts/generate-tree.ts 不存在"
   exit 1
 fi
 
-if [ ! -f "scripts/generate-tree.js" ]; then
-  echo "❌ 錯誤: scripts/generate-tree.js 不存在"
+if [ ! -f "scripts/todo-automation-toolkit.ts" ]; then
+  echo "❌ 錯誤: scripts/todo-automation-toolkit.ts 不存在"
   exit 1
 fi
 
@@ -40,17 +40,17 @@ if ! npm run docs:update; then
   exit 1
 fi
 
-# 5. 同步 TODO 列表
-echo "🔄 同步 TODO 列表..."
-if ! npm run todos:sync; then
-  echo "❌ 同步 TODO 列表失敗"
+# 5. 掃描 TODO 列表
+echo "🔄 掃描 TODO 列表..."
+if ! npm run todo:scan; then
+  echo "❌ TODO 掃描失敗"
   exit 1
 fi
 
 # 6. 將變更檔案加入到暫存（若無變更則不影響）
 echo "📝 將更新的文檔加入暫存..."
 git add docs/project-structure.md 2>/dev/null || true
-git add docs/Commands/TODO-list.md 2>/dev/null || true
+git add .todo-reports/ 2>/dev/null || true
 
 # 7. 計算執行時間
 end_time=$(date +%s)
