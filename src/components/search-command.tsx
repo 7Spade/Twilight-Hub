@@ -94,7 +94,6 @@ export function SearchCommand() {
                 <span className="text-xs">⌘</span>K
             </kbd>
         </button>
-        {/* TODO: [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第86行缺少 Fragment 開始標籤，第94行 span 標籤未正確閉合 */}
         <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
             placeholder="Search for users, organizations, or spaces..."

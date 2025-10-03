@@ -5,3 +5,4 @@
  */
 // Spaces feature actions exports
 export * from './file-actions';
+export * from './types';

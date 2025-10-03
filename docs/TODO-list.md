@@ -1,18 +1,18 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午06:37:48
+> 最後更新時間: 2025/10/03 下午06:51:10
 
 ## 📊 統計信息
 
-- **總計**: 215 個 TODO
+- **總計**: 205 個 TODO
 - **高優先級**: 0 個
-- **中優先級**: 215 個  
+- **中優先級**: 205 個  
 - **低優先級**: 0 個
 
 ## 📈 狀態分布
 
-- **待處理**: 215 個
+- **待處理**: 205 個
 - **進行中**: 0 個
 - **已完成**: 0 個
 - **被阻塞**: 0 個
@@ -27,7 +27,7 @@
 > 
 > 請在處理 TODO 後添加適當的狀態標記，避免重複累積。
 
-## 🟡 中優先級 (215 個)
+## 🟡 中優先級 (205 個)
 
 - [ ] `docs/Commands/04-cleanup-commands.md:216` ⏳ 移除未使用的導入
 - [ ] `docs/Commands/04-cleanup-commands.md:217` ⏳ 移除未使用的變數
@@ -189,7 +189,6 @@
 - [ ] `src/components/features/spaces/components/contracts/contract-details.tsx:11` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:3` ⏳ [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:11` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
-- [ ] `src/components/features/spaces/components/file-explorer/column-settings-menu.tsx:7` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/context-menu.tsx:7` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/deleted-items.tsx:8` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/detail/file-detail-view.tsx:6` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
@@ -197,12 +196,10 @@
 - [ ] `src/components/features/spaces/components/file-explorer/file-explorer.tsx:9` ⏳ [P2] [BUG] [UI] [TODO] 修復語法錯誤 - 第95行缺少分號
 - [ ] `src/components/features/spaces/components/issues/create-issue-form.tsx:50` ⏳ Implement create issue API call
 - [ ] `src/components/features/spaces/components/issues/create-issue-form.tsx:29` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
-- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` ⏳ ?�换为�?实�?API调用
-- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:61` ⏳ ?�换为�?实�?API调用
+- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` ⏳ 替換為實際的 API 調用
+- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:59` ⏳ 替換為實際的 API 調用
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:17` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:26` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
-- [ ] `src/components/features/spaces/components/overview/stat-card.tsx:6` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用
-- [ ] `src/components/features/spaces/components/overview/stat-card.tsx:27` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - isVisible 未使用
 - [ ] `src/components/features/spaces/components/overview/types.ts:41` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/participants/data.ts:81` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/participants/data.ts:91` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
@@ -221,7 +218,6 @@
 - [ ] `src/components/follower-list.tsx:12` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
 - [ ] `src/components/forms/form-card.tsx:19` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
 - [ ] `src/components/github-heat-map.tsx:39` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
-- [ ] `src/components/search-command.tsx:97` ⏳ [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第86行缺少 Fragment 開始標籤，第94行 span 標籤未正確閉合
 - [ ] `src/components/ui/file-type-icon.tsx:20` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
 - [ ] `src/components/ui/file-type-icon.tsx:197` ⏳ [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
 - [ ] `src/components/ui/file-upload.tsx:27` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
@@ -233,16 +229,10 @@
 - [ ] `src/hooks/use-app-state.ts:70` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/hooks/use-file-operations.ts:88` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
 - [ ] `src/hooks/use-permissions.ts:23` ⏳ 實現實際的權限檢查邏輯
-- [ ] `src/hooks/use-permissions.ts:51` ⏳ [P1] [BUG] [AUTH] [TODO] 修復 TypeScript 解析錯誤 - 字串編碼問題導致語法錯誤
-- [ ] `src/hooks/use-permissions.ts:128` ⏳ 實現組織權限檢查
-- [ ] `src/hooks/use-permissions.ts:56` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
-- [ ] `src/hooks/use-permissions.ts:137` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/hooks/use-permissions.ts:127` ⏳ 實現組織權限檢查
 - [ ] `src/hooks/use-toast.ts:21` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
-- [ ] `src/lib/role-management.ts:1` ⏳ [P1] [BUG] [REFACTOR] [TODO] 修復語法錯誤 - 第20行缺少分號，導致解析錯誤
-- [ ] `src/lib/role-management.ts:16` ⏳ Implement role definition lookup
-- [ ] `src/lib/role-management.ts:20` ⏳ Implement permission checking
-- [ ] `src/lib/role-management.ts:15` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - roleId 未使用
-- [ ] `src/lib/role-management.ts:19` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用
+- [ ] `src/lib/role-management.ts:15` ⏳ Implement role definition lookup
+- [ ] `src/lib/role-management.ts:19` ⏳ Implement permission checking
 - [ ] `src/lib/types-unified.ts:245` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
 ## 📁 按文件類型分組
@@ -385,10 +375,10 @@
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:21` ⏳ 修復所有語法錯誤
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:22` ⏳ 清理未使用的導入和參數
 
-### TypeScript (22 個)
+### TypeScript (16 個)
 
-- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` ⏳ ?�换为�?实�?API调用
-- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:61` ⏳ ?�换为�?实�?API调用
+- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` ⏳ 替換為實際的 API 調用
+- [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:59` ⏳ 替換為實際的 API 調用
 - [ ] `src/components/features/spaces/components/overview/types.ts:41` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/participants/data.ts:81` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/participants/data.ts:91` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
@@ -398,19 +388,13 @@
 - [ ] `src/hooks/use-app-state.ts:70` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/hooks/use-file-operations.ts:88` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - path 未使用
 - [ ] `src/hooks/use-permissions.ts:23` ⏳ 實現實際的權限檢查邏輯
-- [ ] `src/hooks/use-permissions.ts:51` ⏳ [P1] [BUG] [AUTH] [TODO] 修復 TypeScript 解析錯誤 - 字串編碼問題導致語法錯誤
-- [ ] `src/hooks/use-permissions.ts:128` ⏳ 實現組織權限檢查
-- [ ] `src/hooks/use-permissions.ts:56` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
-- [ ] `src/hooks/use-permissions.ts:137` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/hooks/use-permissions.ts:127` ⏳ 實現組織權限檢查
 - [ ] `src/hooks/use-toast.ts:21` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - actionTypes 僅用作類型
-- [ ] `src/lib/role-management.ts:1` ⏳ [P1] [BUG] [REFACTOR] [TODO] 修復語法錯誤 - 第20行缺少分號，導致解析錯誤
-- [ ] `src/lib/role-management.ts:16` ⏳ Implement role definition lookup
-- [ ] `src/lib/role-management.ts:20` ⏳ Implement permission checking
-- [ ] `src/lib/role-management.ts:15` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - roleId 未使用
-- [ ] `src/lib/role-management.ts:19` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用
+- [ ] `src/lib/role-management.ts:15` ⏳ Implement role definition lookup
+- [ ] `src/lib/role-management.ts:19` ⏳ Implement permission checking
 - [ ] `src/lib/types-unified.ts:245` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
-### TypeScript React (61 個)
+### TypeScript React (57 個)
 
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
 - [ ] `src/components/auth/auth-provider.tsx:139` ⏳ Fetch user role assignment from server
@@ -440,7 +424,6 @@
 - [ ] `src/components/features/spaces/components/contracts/contract-details.tsx:11` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:3` ⏳ [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:11` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
-- [ ] `src/components/features/spaces/components/file-explorer/column-settings-menu.tsx:7` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/context-menu.tsx:7` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/deleted-items.tsx:8` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/detail/file-detail-view.tsx:6` ⏳ [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第75行包含未終止的字符串字面量
@@ -450,8 +433,6 @@
 - [ ] `src/components/features/spaces/components/issues/create-issue-form.tsx:29` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:17` ⏳ [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:26` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
-- [ ] `src/components/features/spaces/components/overview/stat-card.tsx:6` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用
-- [ ] `src/components/features/spaces/components/overview/stat-card.tsx:27` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - isVisible 未使用
 - [ ] `src/components/features/spaces/components/participants/participant-role-editor.tsx:47` ⏳ Implement role change API call
 - [ ] `src/components/features/spaces/components/participants/participant-table.tsx:141` ⏳ Open role update dialog
 - [ ] `src/components/features/spaces/components/participants/view-toggle.tsx:10` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Button 未使用
@@ -466,7 +447,6 @@
 - [ ] `src/components/follower-list.tsx:12` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - doc 未使用
 - [ ] `src/components/forms/form-card.tsx:19` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Skeleton 未使用
 - [ ] `src/components/github-heat-map.tsx:39` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - weekDays 未使用
-- [ ] `src/components/search-command.tsx:97` ⏳ [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第86行缺少 Fragment 開始標籤，第94行 span 標籤未正確閉合
 - [ ] `src/components/ui/file-type-icon.tsx:20` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
 - [ ] `src/components/ui/file-type-icon.tsx:197` ⏳ [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
 - [ ] `src/components/ui/file-upload.tsx:27` ⏳ [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用

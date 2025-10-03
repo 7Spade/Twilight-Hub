@@ -48,12 +48,11 @@ export function usePermissions() {
     }
   }, []);
 
-  // TODO: [P1] [BUG] [AUTH] [TODO] 修復 TypeScript 解析錯誤 - 字串編碼問題導致語法錯誤
   // 檢查多個權限
   const checkPermissions = useCallback(async (
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
-    const results: Record<Permission, PermissionCheckResult> = {} as unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+    const results: Record<Permission, PermissionCheckResult> = {} as Record<Permission, PermissionCheckResult>;
     
     for (const permission of permissions) {
       results[permission] = await checkPermission(permission);
@@ -134,7 +133,7 @@ export function usePermissions() {
     spaceId: string,
     permissions: Permission[]
   ): Promise<Record<Permission, PermissionCheckResult>> => {
-    const results: Record<Permission, PermissionCheckResult> = {} as unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+    const results: Record<Permission, PermissionCheckResult> = {} as Record<Permission, PermissionCheckResult>;
     
     for (const permission of permissions) {
       results[permission] = await checkSpacePermission(spaceId, permission);

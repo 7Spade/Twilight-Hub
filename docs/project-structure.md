@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午06:37:48
+> 最後更新時間: 2025/10/03 下午06:51:10
 
 ## 目錄結構
 
@@ -84,7 +84,7 @@
     │   │   │   ├── actions/
     │   │   │   │   ├── file-actions.ts
     │   │   │   │   ├── index.ts
-    │   │   │   │   ├── spaces-file-actions.ts
+    │   │   │   │   ├── types.ts
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
     │   │   │   │   │   ├── acceptance-item.tsx

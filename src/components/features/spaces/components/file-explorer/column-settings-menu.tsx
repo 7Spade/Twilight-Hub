@@ -4,7 +4,6 @@
  * specific properties, and reset the column configuration to its default state.
  */
 'use client';
-/* TODO: [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量 */
 
 import React, { useState } from 'react';
 import {
@@ -59,12 +58,12 @@ export function ColumnSettingsMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
-        {/* ?��?�?*/}
+        {/* 搜索欄 */}
         <div className="p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="?��?屬�?
+              placeholder="搜索屬性"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-8"
@@ -72,7 +71,7 @@ export function ColumnSettingsMenu({
           </div>
         </div>
 
-        {/* ?�設定選??*/}
+        {/* 列設定選項 */}
         <div className="max-h-64 overflow-y-auto">
           {filteredColumns.map((column) => (
             <div
@@ -83,7 +82,6 @@ export function ColumnSettingsMenu({
               <Checkbox
                 checked={column.visible}
                 onChange={() => onColumnToggle(column.id, !column.visible)}
-                onClick={(e) => e.stopPropagation()}
               />
               <span className="text-sm">{column.label}</span>
             </div>
@@ -92,24 +90,25 @@ export function ColumnSettingsMenu({
 
         <Separator />
 
-        {/* 底部?��? */}
+        {/* 操作按鈕 */}
         <div className="p-2 space-y-1">
           <Button
             variant="ghost"
             size="sm"
-            className="w-full justify-start text-blue-600 hover:text-blue-700 hover:bg-blue-50"
             onClick={onPropertySettings}
+            className="w-full justify-start text-sm"
           >
-            屬性設�?
+            <Settings className="mr-2 h-4 w-4" />
+            屬性設定
           </Button>
           <Button
             variant="ghost"
             size="sm"
-            className="w-full justify-start text-gray-600 hover:text-gray-700 hover:bg-gray-50"
             onClick={onReset}
+            className="w-full justify-start text-sm"
           >
-            <RotateCcw className="h-4 w-4 mr-2" />
-            ?�置
+            <RotateCcw className="mr-2 h-4 w-4" />
+            重置為預設
           </Button>
         </div>
       </DropdownMenuContent>

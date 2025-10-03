@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LucideIcon, TrendingUp, TrendingDown, Minus } from 'lucide-react';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用 */
+import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StatCardProps } from './types';
 import { useState, useEffect } from 'react';
@@ -24,7 +23,7 @@ export function StatCard({
   onClick,
   className
 }: StatCardProps) {
-  const [isVisible, setIsVisible] = useState(false); /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - isVisible 未使用 */
+  const [, setIsVisible] = useState(false);
   const [animatedValue, setAnimatedValue] = useState(0);
 
   // ?�画?��?
