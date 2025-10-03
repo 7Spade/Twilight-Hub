@@ -196,7 +196,12 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       spaceRolesSnapshot.forEach(d => {
         const raw = d.data() as Record<string, unknown>;
         const assignedAtRaw = raw.assignedAt as unknown;
-        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
+        // TODO: [P1] TYPING - 使用類型守衛替代 any [低認知]
+        // 問題：使用 any 類型降低類型安全性
+        // 解決方案：使用類型守衛函數驗證數據類型
+        // 現代化建議：const isTimestamp = (val: unknown): val is Timestamp => val instanceof Timestamp
+        // 效能影響：無，但提升類型安全性和運行時安全性
+        // 相關受影響檔案：無（內部重構）
         const assignedAtTs: Timestamp = isFirestoreTimestamp(assignedAtRaw)
           ? assignedAtRaw
           : Timestamp.fromDate(new Date());
@@ -221,7 +226,12 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       orgRolesSnapshot.forEach(d => {
         const raw = d.data() as Record<string, unknown>;
         const assignedAtRaw = raw.assignedAt as unknown;
-        // TODO: 現代化 - 使用類型守衛替代 any，提升類型安全
+        // TODO: [P1] TYPING - 使用類型守衛替代 any [低認知]
+        // 問題：使用 any 類型降低類型安全性
+        // 解決方案：使用類型守衛函數驗證數據類型
+        // 現代化建議：const isTimestamp = (val: unknown): val is Timestamp => val instanceof Timestamp
+        // 效能影響：無，但提升類型安全性和運行時安全性
+        // 相關受影響檔案：無（內部重構）
         const assignedAtTs: Timestamp = isFirestoreTimestamp(assignedAtRaw)
           ? assignedAtRaw
           : Timestamp.fromDate(new Date());

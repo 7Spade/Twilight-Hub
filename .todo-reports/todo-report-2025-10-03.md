@@ -1,10 +1,10 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 57 個項目
+- 總計: 55 個項目
 - 🔴 緊急: 4 個項目
 ### 依優先級
 - P2: 41 個
-- P1: 16 個
+- P1: 14 個
 ### 依類型
 - PERF: 1 個
 - REFACTOR: 28 個
@@ -12,10 +12,10 @@
 - CLEANUP: 2 個
 - TYPING: 1 個
 - HOOK: 2 個
-- VAN: 9 個
+- VAN: 7 個
 ---
 ## 🔴 P0 (0 個)
-## 🟠 P1 (16 個)
+## 🟠 P1 (14 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 減少過度抽象的組件層級
 **位置:** `src\components\features\spaces\components\index.ts:7`
 **負責人:** @frontend
@@ -142,24 +142,6 @@
 > 1) 移除非必要邏輯（如聚合/轉換），避免與授權/角色耦合；與 `components/auth` 分離。
 > 2) 嚴格作為 Client Provider，被 Server Layout 包裹；避免在此放置 UI 或多重副作用。
 > 3) 將錯誤呈現交由上層 global-error，僅維護 user/isUserLoading/userError 的最小狀態。
----
-### 15. [VAN] - 現代化類型斷言，使用更安全的對象初始化
-**位置:** `src\hooks\use-permissions.ts:128`
-**詳細說明:**
-> 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
-> 解決方案：使用 Object.fromEntries() 或 reduce() 來創建類型安全的對象
-> 現代化建議：const results = Object.fromEntries(permissions.map(p => [p, null])) as Record<Permission, PermissionCheckResult>
-> 效能影響：無，但提升類型安全性和代碼可讀性
-> 相關受影響檔案：無（內部重構，不影響外部接口）
----
-### 16. [VAN] - 現代化類型斷言，使用更安全的對象初始化
-**位置:** `src\hooks\use-permissions.ts:250`
-**詳細說明:**
-> 問題：{} as Record<Permission, PermissionCheckResult> 使用類型斷言初始化空對象
-> 解決方案：使用 Object.fromEntries() 或 reduce() 來創建類型安全的對象
-> 現代化建議：const results = Object.fromEntries(permissions.map(p => [p, null])) as Record<Permission, PermissionCheckResult>
-> 效能影響：無，但提升類型安全性和代碼可讀性
-> 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
 ## 🟡 P2 (41 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 合併重複的組件邏輯

@@ -223,9 +223,21 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
   const handleItemClick = (item: FileItem) => {
     if (item.type === 'folder') {
       // 處理資料夾點擊
+      // TODO: [P2] FEAT - 實現資料夾點擊導航邏輯 [低認知]
+      // 問題：目前只有 console.log，沒有實際的導航功能
+      // 解決方案：實現資料夾導航和狀態更新
+      // 現代化建議：使用 Next.js router 或狀態管理進行導航
+      // 效能影響：無，但提升用戶體驗
+      // 相關受影響檔案：folder-tree.tsx, breadcrumb-navigation.tsx
       console.log('Folder clicked:', item.name);
     } else {
       // 處理檔案點擊
+      // TODO: [P2] FEAT - 實現檔案點擊預覽邏輯 [低認知]
+      // 問題：目前只有 console.log，沒有實際的檔案預覽功能
+      // 解決方案：實現檔案預覽和詳細視圖
+      // 現代化建議：使用動態導入和 Suspense 進行檔案預覽
+      // 效能影響：無，但提升用戶體驗
+      // 相關受影響檔案：file-detail-view.tsx, file-preview-service.ts
       console.log('File clicked:', item.name);
     }
   };
@@ -244,12 +256,30 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         deleteFile(item.name, spaceId, userId);
         break;
       case 'move':
+        // TODO: [P2] FEAT - 實現檔案移動功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的移動功能
+        // 解決方案：實現檔案移動到其他資料夾的功能
+        // 現代化建議：使用拖拽 API 和狀態管理
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, folder-tree.tsx
         console.log('Move item:', item.name);
         break;
       case 'rename':
+        // TODO: [P2] FEAT - 實現檔案重新命名功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的重新命名功能
+        // 解決方案：實現檔案重新命名對話框和狀態更新
+        // 現代化建議：使用內聯編輯或對話框模式
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, context-menu.tsx
         console.log('Rename item:', item.name);
         break;
       case 'share':
+        // TODO: [P2] FEAT - 實現檔案分享功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的分享功能
+        // 解決方案：實現檔案分享對話框和權限管理
+        // 現代化建議：使用 Next.js API routes 和權限系統
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, share-dialog.tsx
         console.log('Share item:', item.name);
         break;
       case 'version-history':
@@ -257,6 +287,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         setIsVersionDrawerOpen(true);
         break;
       default:
+        // TODO: [P2] FEAT - 實現通用檔案動作處理 [低認知]
+        // 問題：目前只有 console.log，沒有實際的動作處理
+        // 解決方案：實現通用的檔案動作處理邏輯
+        // 現代化建議：使用策略模式或動作映射表
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, action-handlers.ts
         console.log('Action:', action, 'for item:', item.name);
     }
   };
@@ -267,15 +303,39 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         setIsUploadDialogOpen(true);
         break;
       case 'move':
+        // TODO: [P2] FEAT - 實現批量檔案移動功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的批量移動功能
+        // 解決方案：實現批量檔案移動到其他資料夾的功能
+        // 現代化建議：使用拖拽 API 和批量操作模式
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, batch-operations.ts
         console.log('Move selected items:', selectedItems);
         break;
       case 'more-options':
+        // TODO: [P2] FEAT - 實現更多選項功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的更多選項功能
+        // 解決方案：實現更多選項的下拉選單或彈出視窗
+        // 現代化建議：使用 DropdownMenu 組件和動態選項
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：toolbar.tsx, more-options-menu.tsx
         console.log('More options');
         break;
       case 'export':
+        // TODO: [P2] FEAT - 實現檔案匯出功能 [低認知]
+        // 問題：目前只有 console.log，沒有實際的匯出功能
+        // 解決方案：實現檔案匯出對話框和格式選擇
+        // 現代化建議：使用 Next.js API routes 和檔案下載
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：file-actions.ts, export-dialog.tsx
         console.log('Export files');
         break;
       default:
+        // TODO: [P2] FEAT - 實現通用工具列動作處理 [低認知]
+        // 問題：目前只有 console.log，沒有實際的動作處理
+        // 解決方案：實現通用的工具列動作處理邏輯
+        // 現代化建議：使用策略模式或動作映射表
+        // 效能影響：無，但提升用戶體驗
+        // 相關受影響檔案：toolbar.tsx, action-handlers.ts
         console.log('Toolbar action:', action);
     }
   };
@@ -323,6 +383,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
 
   const handleSaveSearch = (filters: FilterOptions, name: string) => {
     // 這裡可以實現搜尋範本儲存到後端
+    // TODO: [P2] FEAT - 實現搜尋範本儲存功能 [低認知]
+    // 問題：目前只有 console.log，沒有實際的儲存功能
+    // 解決方案：實現搜尋範本儲存到後端的功能
+    // 現代化建議：使用 Next.js API routes 和 Firestore
+    // 效能影響：無，但提升用戶體驗
+    // 相關受影響檔案：filter-panel.tsx, search-templates.ts
     console.log('Saving search:', name, filters);
   };
 
@@ -332,6 +398,12 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
 
   // 麵包屑處理函數
   const handleBreadcrumbClick = (item: BreadcrumbItem) => {
+    // TODO: [P2] FEAT - 實現麵包屑導航功能 [低認知]
+    // 問題：目前只有 console.log，沒有實際的導航功能
+    // 解決方案：實現麵包屑點擊導航到對應路徑
+    // 現代化建議：使用 Next.js router 或狀態管理
+    // 效能影響：無，但提升用戶體驗
+    // 相關受影響檔案：breadcrumb-navigation.tsx, navigation-state.ts
     console.log('Breadcrumb clicked:', item);
     // 這裡可以實現導航邏輯
   };
@@ -342,10 +414,22 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
   };
 
   const handleRestoreItem = (item: FileItem) => {
+    // TODO: [P2] FEAT - 實現檔案還原功能 [低認知]
+    // 問題：目前只有 console.log，沒有實際的還原功能
+    // 解決方案：實現檔案從垃圾桶還原的功能
+    // 現代化建議：使用 Next.js API routes 和 Firestore
+    // 效能影響：無，但提升用戶體驗
+    // 相關受影響檔案：deleted-items.tsx, file-actions.ts
     console.log('Restore item:', item);
   };
 
   const handlePermanentDelete = (item: FileItem) => {
+    // TODO: [P2] FEAT - 實現檔案永久刪除功能 [低認知]
+    // 問題：目前只有 console.log，沒有實際的永久刪除功能
+    // 解決方案：實現檔案永久刪除的確認對話框和功能
+    // 現代化建議：使用確認對話框和 API routes
+    // 效能影響：無，但提升用戶體驗
+    // 相關受影響檔案：deleted-items.tsx, file-actions.ts
     console.log('Permanent delete item:', item);
   };
 
@@ -506,10 +590,34 @@ function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
         isOpen={isDetailViewOpen}
         onClose={closeDetailView}
         onDownload={(file) => downloadFile(file.name, spaceId, userId)}
-        onShare={(file) => console.log('Share file:', file.name)}
-        onEdit={(file) => console.log('Edit file:', file.name)}
+        onShare={(file) => {
+          // TODO: [P2] FEAT - 實現檔案分享功能 [低認知]
+          // 問題：目前只有 console.log，沒有實際的分享功能
+          // 解決方案：實現檔案分享對話框和權限管理
+          // 現代化建議：使用 Next.js API routes 和權限系統
+          // 效能影響：無，但提升用戶體驗
+          // 相關受影響檔案：share-dialog.tsx, file-actions.ts
+          console.log('Share file:', file.name);
+        }}
+        onEdit={(file) => {
+          // TODO: [P2] FEAT - 實現檔案編輯功能 [低認知]
+          // 問題：目前只有 console.log，沒有實際的編輯功能
+          // 解決方案：實現檔案編輯對話框和內容更新
+          // 現代化建議：使用內聯編輯或編輯對話框
+          // 效能影響：無，但提升用戶體驗
+          // 相關受影響檔案：edit-dialog.tsx, file-actions.ts
+          console.log('Edit file:', file.name);
+        }}
         onDelete={(file) => deleteFile(file.name, spaceId, userId)}
-        onStar={(file) => console.log('Star file:', file.name)}
+        onStar={(file) => {
+          // TODO: [P2] FEAT - 實現檔案標星功能 [低認知]
+          // 問題：目前只有 console.log，沒有實際的標星功能
+          // 解決方案：實現檔案標星/取消標星的功能
+          // 現代化建議：使用狀態管理和視覺回饋
+          // 效能影響：無，但提升用戶體驗
+          // 相關受影響檔案：star-actions.ts, file-actions.ts
+          console.log('Star file:', file.name);
+        }}
       />
 
       {/* 上下文選單 */}
