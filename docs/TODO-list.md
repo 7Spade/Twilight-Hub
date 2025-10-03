@@ -1,17 +1,28 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:30:35
+> 最後更新時間: 2025/10/03 下午05:34:34
 
 ## 統計信息
 
-- **總計**: 129 個 TODO
+- **總計**: 140 個 TODO
 - **高優先級**: 0 個
-- **中優先級**: 129 個  
+- **中優先級**: 140 個  
 - **低優先級**: 0 個
 
-## 🟡 中優先級 (129 個)
+## 🟡 中優先級 (140 個)
 
+- [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
+- [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
+- [ ] `docs/natural-language-commands.md:555` - `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
+- [ ] `docs/natural-language-commands.md:558` - `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤
+- [ ] `docs/natural-language-commands.md:559` - `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反
+- [ ] `docs/natural-language-commands.md:562` - `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
+- [ ] `docs/natural-language-commands.md:563` - `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
+- [ ] `docs/natural-language-commands.md:392` - 生成指令 (TODO Generation)
+- [ ] `docs/natural-language-commands.md:520` - 項目格式
+- [ ] `docs/natural-language-commands.md:392` - 生成指令 (TODO Generation)
+- [ ] `docs/natural-language-commands.md:520` - 項目格式
 - [ ] `docs/nextjs15_dev-standard.md:1291` - 環境變數已正確配置（.env.local）
 - [ ] `docs/nextjs15_dev-standard.md:1292` - Firebase 專案已設置
 - [ ] `docs/nextjs15_dev-standard.md:1293` - Firebase Security Rules 已配置
@@ -154,8 +165,19 @@
 - [ ] `scripts/sync-todos.js:459` - 內容\`, \`<!-- TODO: 內容 -->\`
 - [ ] `scripts/sync-todos.js:459` - 內容
 
-### Markdown (39 個)
+### Markdown (50 個)
 
+- [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
+- [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
+- [ ] `docs/natural-language-commands.md:555` - `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
+- [ ] `docs/natural-language-commands.md:558` - `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤
+- [ ] `docs/natural-language-commands.md:559` - `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反
+- [ ] `docs/natural-language-commands.md:562` - `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
+- [ ] `docs/natural-language-commands.md:563` - `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入
+- [ ] `docs/natural-language-commands.md:392` - 生成指令 (TODO Generation)
+- [ ] `docs/natural-language-commands.md:520` - 項目格式
+- [ ] `docs/natural-language-commands.md:392` - 生成指令 (TODO Generation)
+- [ ] `docs/natural-language-commands.md:520` - 項目格式
 - [ ] `docs/nextjs15_dev-standard.md:1291` - 環境變數已正確配置（.env.local）
 - [ ] `docs/nextjs15_dev-standard.md:1292` - Firebase 專案已設置
 - [ ] `docs/nextjs15_dev-standard.md:1293` - Firebase Security Rules 已配置
