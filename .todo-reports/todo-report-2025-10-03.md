@@ -1,31 +1,20 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 60 個項目
-- 🔴 緊急: 5 個項目
+- 總計: 59 個項目
+- 🔴 緊急: 4 個項目
 ### 依優先級
 - P2: 41 個
 - P1: 18 個
-- P0: 1 個
 ### 依類型
 - PERF: 1 個
-- REFACTOR: 31 個
+- REFACTOR: 30 個
 - FEAT: 14 個
 - CLEANUP: 2 個
 - TYPING: 1 個
 - HOOK: 2 個
 - VAN: 9 個
 ---
-## 🔴 P0 (1 個)
-### 1. [REFACTOR] src/components/features/spaces/components/file-explorer/file-explorer.tsx - 縮小 client 邊界與拆分職責
-**位置:** `src\components\features\spaces\components\file-explorer\file-explorer.tsx:9`
-**負責人:** @ai
-**詳細說明:**
-> 說明：目前元件同時負責資料抓取、狀態、呈現與互動。建議：
-> 1) 將 listFiles/upload/download/delete 等 IO 行為抽離至專用 hook/service；
-> 2) 視需要由父層 Server Component 提供序列化資料（或以 Suspense 分段）；
-> 3) 拆分 FileExplorerContent 為更小的展示型子元件，降低 useState/useMemo 密度。
-> 目標：維持效能並大幅降低 AI agent 認知負擔。
----
+## 🔴 P0 (0 個)
 ## 🟠 P1 (18 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 減少過度抽象的組件層級
 **位置:** `src\components\features\spaces\components\index.ts:7`
