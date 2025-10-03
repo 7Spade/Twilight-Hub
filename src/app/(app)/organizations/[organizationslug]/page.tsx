@@ -1,19 +1,50 @@
-import { use } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+"use client";
+
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
 
-export default async function OrganizationPage({
-  params,
-}: {
-  params: Promise<{ organizationslug: string }>
-}) {
-  const { organizationslug } = await params;
-  // Minimal server component: fetch via client helper not available; display slug.
-  // For Occam, just render slug; list page already pulls data.
+type Org = { id: string; name?: string; slug?: string };
+
+export default function OrganizationPage() {
+  const params = useParams();
+  const slug = (params?.organizationslug as string) || '';
+  const db = useFirestore();
+  const [org, setOrg] = useState<Org | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!slug) return;
+    const load = async () => {
+      try {
+        setError(null);
+        const q = query(collection(db, 'organizations'), where('slug', '==', slug));
+        const snap = await getDocs(q);
+        if (!snap.empty) {
+          const d = snap.docs[0];
+          setOrg({ id: d.id, ...(d.data() as any) });
+        } else {
+          setOrg(null);
+        }
+      } catch (e: any) {
+        setError(e?.message || 'Failed to load organization');
+      }
+    };
+    load();
+  }, [db, slug]);
+
   return (
     <div className="space-y-2">
       <h1 className="text-xl font-semibold">Organization</h1>
-      <p className="text-sm text-muted-foreground">{organizationslug}</p>
+      {error && <p className="text-sm text-red-600">{error}</p>}
+      {org ? (
+        <div>
+          <p className="text-sm text-muted-foreground">{org.name || org.slug || org.id}</p>
+        </div>
+      ) : (
+        <p className="text-sm text-muted-foreground">{slug}</p>
+      )}
     </div>
   );
 }

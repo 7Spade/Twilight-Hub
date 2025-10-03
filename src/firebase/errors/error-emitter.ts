@@ -1,9 +1,12 @@
-/**
- * Firebase 錯誤發射器
- * 
- * 功能：
- * - Firebase 錯誤事件發射
- * - 錯誤狀態管理
- * - 錯誤處理邏輯
- * - 錯誤通知系統
- */
+type Listener = (error: Error) => void;
+
+const listeners = new Set<Listener>();
+
+export function emitFirebaseError(error: Error) {
+  listeners.forEach((l) => l(error));
+}
+
+export function onFirebaseError(listener: Listener) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}

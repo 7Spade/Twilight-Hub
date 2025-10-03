@@ -1,12 +1,15 @@
-/**
- * 頁首組件
- * 
- * 功能：
- * - 應用標題和導航
- * - 用戶導航菜單
- * - 通知和搜索
- * - 響應式設計
- * 
- * 組件類型：Client Component
- * 依賴：AuthProvider
- */
+'use client';
+
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { UserNav } from './user-nav';
+
+export function Header() {
+  return (
+    <header className={cn('flex h-14 items-center border-b px-4 lg:px-6')}>
+      <div className="ml-auto">
+        <UserNav />
+      </div>
+    </header>
+  );
+}

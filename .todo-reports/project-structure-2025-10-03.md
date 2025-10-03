@@ -37,7 +37,6 @@
     ├── memory.backup.json (13.7 KB, 今天)
     ├── memory.json (134.5 KB, 今天)
     ├── monitor.json (245 B, 今天)
-    ├── p0FunctionCoverageReport.md (10.2 KB, 今天)
     ├── progress.md (3 KB, 今天)
     ├── projectbrief.md (2.7 KB, 今天)
     ├── projectStructureTree.md (21.5 KB, 今天)
@@ -46,7 +45,6 @@
     ├── tasks.md (2.2 KB, 今天)
     ├── techContext.md (2.5 KB, 今天)
     ├── technicalImplementationGuide.md (20.8 KB, 今天)
-    ├── zeroCognitionVerification.md (6.4 KB, 今天)
 └── scripts/
     ├── generate-tree.ts (6.8 KB, 今天)
     ├── memory-auto-monitor.ts (7.1 KB, 今天)
@@ -76,9 +74,9 @@
     │   │   │   │   ├── page.tsx (208 B, 今天)
     │   │   │   ├── page.tsx (205 B, 今天)
     │   │   ├── dashboard/
-    │   │   │   ├── page.tsx (192 B, 今天)
+    │   │   │   ├── page.tsx (439 B, 今天)
     │   │   ├── discover/
-    │   │   │   ├── page.tsx (179 B, 今天)
+    │   │   │   ├── page.tsx (438 B, 今天)
     │   │   ├── organizations/
     │   │   │   ├── [organizationslug]/
     │   │   │   │   ├── [spaceslug]/
@@ -97,28 +95,29 @@
     │   │   │   │   │   ├── page.tsx (236 B, 今天)
     │   │   │   │   ├── spaces/
     │   │   │   │   │   ├── page.tsx (231 B, 今天)
-    │   │   │   │   ├── page.tsx (209 B, 今天)
-    │   │   │   ├── page.tsx (199 B, 今天)
+    │   │   │   │   ├── page.tsx (849 B, 今天)
+    │   │   │   ├── page.tsx (1.3 KB, 今天)
     │   │   ├── settings/
     │   │   │   ├── account/
     │   │   │   │   ├── page.tsx (199 B, 今天)
     │   │   │   ├── notifications/
     │   │   │   │   ├── page.tsx (211 B, 今天)
     │   │   │   ├── profile/
-    │   │   │   │   └── page.tsx (199 B, 今天)
+    │   │   │   │   └── page.tsx (891 B, 今天)
     │   │   ├── spaces/
     │   │   │   └── [spaceslug]/
     │   │   │       ├── page.tsx (201 B, 今天)
-    │   │   │   └── page.tsx (192 B, 今天)
+    │   │   │   └── page.tsx (449 B, 今天)
     │   ├── (auth)/
     │   │   ├── login/
-    │   │   │   ├── page.tsx (1.6 KB, 今天)
+    │   │   │   ├── page.tsx (1.7 KB, 今天)
     │   │   ├── signup/
     │   │   │   └── page.tsx (201 B, 今天)
     │   ├── (public)/
-    │   │   ├── page.tsx (171 B, 今天)
+    │   │   ├── page.tsx (937 B, 今天)
     │   ├── favicon.ico (14.7 KB, 昨天)
-    │   ├── globals.css (979 B, 今天)
+    │   ├── globals.css (2.3 KB, 今天)
+    │   ├── page.tsx (120 B, 今天)
     ├── components/
     │   ├── auth/
     │   │   ├── auth-provider.tsx (844 B, 今天)
@@ -245,7 +244,7 @@
     │   │   ├── use-query.tsx (173 B, 今天)
     │   ├── auth.ts (147 B, 今天)
     │   ├── client-provider.tsx (164 B, 今天)
-    │   ├── config.ts (395 B, 今天)
+    │   ├── config.ts (336 B, 今天)
     │   ├── firestore.ts (156 B, 今天)
     │   ├── index.ts (431 B, 今天)
     │   ├── provider.tsx (2.1 KB, 今天)
@@ -529,12 +528,12 @@
     ├── firebase/
     │   ├── firestore/
     │   │   ├── use-collection.tsx (3.5 KB, 今天)
-    │   │   ├── use-doc.tsx (3 KB, 今天)
-    │   ├── client-provider.tsx (834 B, 今天)
-    │   ├── config.ts (380 B, 今天)
+    │   │   ├── use-doc.tsx (2.9 KB, 今天)
+    │   ├── client-provider.tsx (807 B, 今天)
+    │   ├── config.ts (371 B, 今天)
     │   ├── error-emitter.ts (2.1 KB, 今天)
-    │   ├── errors.ts (3.6 KB, 今天)
-    │   ├── index.ts (1.8 KB, 今天)
+    │   ├── errors.ts (3.5 KB, 今天)
+    │   ├── index.ts (1.7 KB, 今天)
     │   ├── provider.tsx (6.1 KB, 今天)
     ├── hooks/
     │   ├── index.ts (443 B, 今天)

@@ -1,9 +1,9 @@
-/**
- * Firebase 錯誤定義
- * 
- * 功能：
- * - Firebase 錯誤類型定義
- * - 錯誤代碼定義
- * - 錯誤消息定義
- * - 錯誤處理策略
- */
+export type FirebaseErrorInfo = {
+  code: string;
+  message: string;
+};
+
+export const FIREBASE_GENERIC_ERROR: FirebaseErrorInfo = {
+  code: 'firebase/error',
+  message: 'Unexpected Firebase error',
+};
