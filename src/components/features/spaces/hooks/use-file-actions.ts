@@ -103,14 +103,6 @@ export function useFileActions(): UseFileActionsReturn {
       setUploadProgress(null);
     }
   }, [toast, fileOperations]);
-  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:105 - 優化 React hooks 依賴項
-  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'
-  // 影響：可能導致過時閉包問題
-  // 建議：添加缺失的依賴項或移除依賴數組
-  // @assignee frontend-team
-  // @deadline 2025-01-15
-
-  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包
   const downloadFile = useCallback(async (
     fileName: string, 
     spaceId: string, 
@@ -142,14 +134,6 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(false);
     }
   }, [toast, fileOperations]);
-  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:144 - 優化 React hooks 依賴項
-  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'
-  // 影響：可能導致過時閉包問題
-  // 建議：添加缺失的依賴項或移除依賴數組
-  // @assignee frontend-team
-  // @deadline 2025-01-15
-
-  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包
   const deleteFile = useCallback(async (
     fileName: string, 
     spaceId: string, 
@@ -183,14 +167,6 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(false);
     }
   }, [toast, fileOperations]);
-  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:178 - 優化 React hooks 依賴項
-  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'
-  // 影響：可能導致過時閉包問題
-  // 建議：添加缺失的依賴項或移除依賴數組
-  // @assignee frontend-team
-  // @deadline 2025-01-15
-
-  // TODO: [P1][hooks-deps][低認知]: 加入 fileOperations 至依賴陣列，避免過時閉包
   const listFiles = useCallback(async (
     spaceId: string,
     userId: string
@@ -220,12 +196,6 @@ export function useFileActions(): UseFileActionsReturn {
       setIsLoading(false);
     }
   }, [toast, fileOperations]);
-  // TODO: [P1] PERF src/components/features/spaces/hooks/use-file-actions.ts:208 - 優化 React hooks 依賴項
-  // 問題：React Hook useCallback 缺少依賴項 'fileOperations'
-  // 影響：可能導致過時閉包問題
-  // 建議：添加缺失的依賴項或移除依賴數組
-  // @assignee frontend-team
-  // @deadline 2025-01-15
 
   return {
     uploadFile,

@@ -1,8 +1,5 @@
 
 'use client';
-// TODO: [P2] CLEANUP unused import/ops (L13, L138) [低認知]
-// - 指引：移除未使用 setDoc；避免 non-null assertion，改以條件判斷。
-
 import { useMemo, useState, useEffect } from 'react';
 import {
   collection,
@@ -14,12 +11,6 @@ import {
   increment,
   setDoc as _setDoc,
 } from 'firebase/firestore';
-
-// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx:13 - 清理未使用的導入
-// 問題：'setDoc' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 
 import { useFirestore } from '@/firebase';
 import { useDialogState } from '@/hooks/use-app-state';

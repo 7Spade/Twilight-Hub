@@ -46,17 +46,10 @@ import {
   query, 
   where,
   
-// TODO: [P2] REFACTOR src/components/auth/auth-provider.tsx:39 - 清理未使用的導入
-// 問題：'getFirestore' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team 
   getDocs,
   Timestamp 
 } from 'firebase/firestore';
 import { initializeFirebase } from '@/firebase';
-
-// TODO: 現代化 - 用最小型 type guard 移除 any，維持低認知與效能
 const isFirestoreTimestamp = (value: unknown): value is Timestamp => {
   return (
     typeof value === 'object' &&

@@ -14,20 +14,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FileText, Plus, Calendar, DollarSign, Eye, Edit, Trash2, Search, Filter as _Filter, X } from 'lucide-react';
 
-// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:15 - 清理未使用的導入
-// 問題：'Filter' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
 import { Contract, ContractFilters } from '@/lib/types/contract.types';
 import { useState, useMemo as _useMemo } from 'react';
-
-// TODO: [P2] REFACTOR src/components/features/contracts/contract-list.tsx:17 - 清理未使用的導入
-// 問題：'useMemo' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 import { useContracts, useDeleteContract, useAnalyzeContract, useGenerateContractPDF } from '@/hooks/use-contracts';
 import { useDebounce } from 'use-debounce';
 

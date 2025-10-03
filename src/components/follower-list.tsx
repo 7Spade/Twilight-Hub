@@ -10,12 +10,6 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { collection, doc as _doc, query, where, documentId } from 'firebase/firestore';
 
-// TODO: [P2] REFACTOR src/components/follower-list.tsx:11 - 清理未使用的導入
-// 問題：'doc' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
-
 import { useFirestore, useCollection } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';

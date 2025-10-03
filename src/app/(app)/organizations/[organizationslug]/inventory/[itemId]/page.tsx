@@ -96,12 +96,6 @@ export default function ItemStockPage({
   const { data: warehousesData, isLoading: warehousesLoading } =
     useCollection<Warehouse>(warehousesQuery);
   
-  // TODO: [P1] PERF src/app/(app)/organizations/[organizationslug]/inventory/[itemId]/page.tsx:95 - 優化 React hooks 依賴項
-  // 問題：warehouses 邏輯表達式可能導致 useEffect Hook 依賴項在每次渲染時改變
-  // 影響：性能問題，不必要的重新渲染（影響 line 128）
-  // 建議：將 warehouses 初始化包裝在獨立的 useMemo Hook 中
-  // @assignee frontend-team
-  // @deadline 2025-01-15
   const warehouses = useMemo(() => warehousesData || [], [warehousesData]);
 
   // Get stock for this item across all warehouses

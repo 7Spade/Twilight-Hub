@@ -1,15 +1,5 @@
 'use client';
-// TODO: [P2] CLEANUP unused import (L3) [低認知]
-// - 問題：useCollection 未使用
-// - 指引：移除未使用匯入或以前綴 _ 命名表示暫未用。
-
 import { useFirestore } from '@/firebase';
-
-// TODO: [P2] REFACTOR src/app/(app)/organizations/[organizationslug]/roles/page.tsx:3 - 清理未使用的導入
-// 問題：'useCollection' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { RoleList } from '@/components/features/organizations/components/roles';
