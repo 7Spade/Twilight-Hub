@@ -66,14 +66,15 @@
       ]
     },
     "fetch": {
-      "command": "uvx",
+      "command": "npx",
       "args": [
-        "mcp-server-fetch"
+        "-y",
+        "@kazuph/mcp-fetch"
       ],
-      "env": {},
       "disabled": false,
       "autoApprove": [
-        "fetch_url"
+        "fetch_url",
+        "fetch_content"
       ]
     },
     "git": {
@@ -128,7 +129,11 @@
         "get_environment_variable",
         "list_tools",
         "list_resources",
-        "list_prompts"
+        "list_prompts",
+        "add",
+        "echo",
+        "getTinyImage",
+        "sampleLLM"
       ]
     },
     "time": {
