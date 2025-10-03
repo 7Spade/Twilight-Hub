@@ -1,9 +1,106 @@
-{"type":"entity","name":"user_preferences","entityType":"user_preference","observations":["用戶偏好中文回應","使用 Next.js 15 + TypeScript + App Router","遵循極簡主義設計原則","優先使用 shadcn/ui 組件","基於模組化、內聚、單一職責原則","希望 Agent 自動記憶功能，無需手動調用","偏好全自動化的記憶系統","詢問自動觸發關鍵字是否支持中英文","需要中英文雙語記憶系統支持"]}
-{"type":"entity","name":"project_context","entityType":"project","observations":["Twilight-Hub 專案","使用 Firebase 作為後端服務","整合 Genkit AI 服務","採用 App Router 架構","專注於用戶體驗和現代化設計","使用 MCP (Model Context Protocol) 記憶服務器","記憶系統配置在 .cursor/mcp.json","記憶文件位置: memory-bank/memory.json"]}
-{"type":"entity","name":"memory_system_issue","entityType":"problem_solution","observations":["Memory.json 沒有自動積累數據","缺少 autoApprove 配置導致需要手動批准","路徑配置問題導致記憶無法正確保存","修復了 MCP 記憶服務器配置","添加了自動記憶系統配置文件"]}
-{"type":"entity","name":"bilingual_memory_system","entityType":"technical_decision","observations":["擴展記憶系統支持中英文雙語關鍵字觸發","添加了中文和英文關鍵字對應關係","支持混合語言對話的記憶提取","配置了語言檢測和優先級處理","新增代碼模式和工作流程觸發器"]}
-{"type":"relation","from":"user_preferences","to":"project_context","relationType":"prefers_working_on"}
-{"type":"relation","from":"memory_system_issue","to":"project_context","relationType":"solved_for"}
-{"type":"relation","from":"user_preferences","to":"memory_system_issue","relationType":"requested_solution_for"}
-{"type":"relation","from":"bilingual_memory_system","to":"project_context","relationType":"enhances"}
-{"type":"relation","from":"user_preferences","to":"bilingual_memory_system","relationType":"requested"}
+{"type":"entity","name":"user_preferences","entityType":"user_preference","observations":["偏好中文回應","Next.js 15 + TypeScript 5","React 19 + App Router","極簡主義設計","shadcn/ui 優先","模組化架構原則","自動記憶功能","中英雙語支持"]}
+{"type":"entity","name":"project_twilight_hub","entityType":"project","observations":["Twilight-Hub 專案","Firebase 後端平台","Genkit AI 整合","多租戶 Spaces 架構","MCP 記憶服務器","現代化用戶體驗","企業級權限系統"]}
+// ==================== Next.js 15 核心 ====================
+{"type":"entity","name":"nextjs15_app_router","entityType":"framework_core","observations":["App Router 架構","Server Components 優先","async/await 數據獲取","Nested Layouts 支持","Dynamic Routes 動態路由","Parallel Routes 並行路由","Intercepting Routes 攔截路由","Route Groups 路由分組","Loading UI 自動處理","Error Boundaries 錯誤邊界","Not Found 頁面處理","Metadata API SEO 優化"]}
+
+{"type":"entity","name":"nextjs15_rendering","entityType":"rendering_strategy","observations":["Server Components 默認","Client Components 'use client'","Streaming SSR 流式渲染","Suspense 邊界處理","PPR 部分預渲染","ISR 增量靜態再生","Dynamic Rendering 動態渲染","Static Export 靜態導出","Edge Runtime 邊緣運行","Middleware 中間件","Server Actions 服務端操作"]}
+
+{"type":"entity","name":"nextjs15_data_fetching","entityType":"data_pattern","observations":["fetch 擴展 API","Request Memoization 請求記憶化","Data Cache 數據緩存","revalidate 重新驗證","unstable_cache 緩存控制","generateStaticParams 靜態參數","Dynamic API 動態函數","cookies/headers 訪問","searchParams 查詢參數","Server Actions 表單處理"]}
+
+{"type":"entity","name":"nextjs15_caching","entityType":"performance","observations":["Request Memoization 層","Data Cache 層","Full Route Cache 層","Router Cache 層","fetch cache 選項","revalidatePath 路徑刷新","revalidateTag 標籤刷新","no-store 選項","force-cache 選項","CDN 緩存策略"]}
+
+// ==================== TypeScript 最佳實踐 ====================
+{"type":"entity","name":"typescript_nextjs","entityType":"type_system","observations":["嚴格模式啟用","類型推斷優先","統一類型定義文件","泛型組件模式","類型守衛使用","Zod Schema 驗證","類型安全 API","Server Actions 類型","Metadata 類型定義","Route Handler 類型"]}
+
+{"type":"entity","name":"typescript_patterns","entityType":"coding_pattern","observations":["Props 接口定義","泛型約束使用","Discriminated Unions","Type Predicates 使用","as const 斷言","satisfies 操作符","Template Literal Types","Utility Types 活用","never 類型使用","unknown 優於 any"]}
+
+// ==================== React 19 特性 ====================
+{"type":"entity","name":"react19_features","entityType":"framework_feature","observations":["use Hook 數據獲取","useFormStatus 表單狀態","useFormState 表單管理","useOptimistic 樂觀更新","Server Components 原生","Actions 表單處理","ref as prop 傳遞","Context Provider 簡化","Error Boundaries 改進","Suspense 增強"]}
+
+{"type":"entity","name":"react19_patterns","entityType":"react_pattern","observations":["Composition Pattern 組合","Compound Components 複合","Render Props 模式","Custom Hooks 封裝","HOC 高階組件","Provider Pattern 狀態","Controlled Components 受控","Uncontrolled Components 非受控","Lazy Loading 懶加載","Code Splitting 代碼分割"]}
+
+// ==================== Firebase 整合 ====================
+{"type":"entity","name":"firebase_architecture","entityType":"backend_integration","observations":["Client SDK 客戶端","Admin SDK 服務端","Firestore 數據庫","Authentication 認證","Storage 文件存儲","Realtime 實時監聽","Security Rules 規則","Indexes 索引優化","Composite Queries 組合查詢","Batched Writes 批量寫入"]}
+
+{"type":"entity","name":"firebase_server_client","entityType":"integration_pattern","observations":["Server Components 用 Admin","Client Components 用 Client","Provider Pattern 封裝","Custom Hooks 抽象","Error Handling 統一","Loading States 處理","Optimistic Updates 樂觀","Cache Invalidation 緩存","Real-time Subscriptions 訂閱","Environment Variables 環境變量"]}
+
+{"type":"entity","name":"firebase_security","entityType":"security_pattern","observations":["Service Account 認證","Firebase Admin 初始化","Security Rules 設置","RBAC 角色權限","Row Level Security","API Route Protection","Middleware Auth Check","Token Verification","Session Management","CSRF Protection"]}
+
+// ==================== Supabase 整合 ====================
+{"type":"entity","name":"supabase_integration","entityType":"backend_service","observations":["Postgres 數據庫","RLS 行級安全","Real-time 訂閱","Storage 文件管理","Edge Functions 邊緣函數","Auth 認證系統","Server Client 分離","Type Generation 類型生成","Database Types 類型","Query Builder 查詢構建器"]}
+
+// ==================== Redis 緩存 ====================
+{"type":"entity","name":"redis_caching","entityType":"caching_layer","observations":["Session 存儲","API Response 緩存","Rate Limiting 限流","Pub/Sub 發布訂閱","Sorted Sets 排行榜","Geospatial 地理位置","TTL 過期策略","Pipeline 批量操作","Transactions 事務","Upstash Redis 邊緣"]}
+
+// ==================== Shadcn/UI 系統 ====================
+{"type":"entity","name":"shadcn_architecture","entityType":"ui_system","observations":["Radix UI 基礎","Tailwind CSS 樣式","Copy-Paste 安裝","組件可定制化","Composition 優先","Accessible 無障礙","TypeScript 類型","Variants API 變體","Slots Pattern 插槽","Compound Pattern 複合"]}
+
+{"type":"entity","name":"shadcn_components","entityType":"ui_components","observations":["Form 表單系統","Dialog 對話框","Sheet 側邊欄","Popover 彈出層","Dropdown Menu 下拉","Command 命令面板","Data Table 數據表格","Toast 通知","Alert Dialog 確認框","Skeleton 骨架屏"]}
+
+// ==================== Tailwind CSS v4 ====================
+{"type":"entity","name":"tailwind_v4","entityType":"styling_system","observations":["CSS 變量優先","@theme 指令","無需配置文件","Lightning CSS 引擎","Container Queries 支持","CSS Cascade Layers","Color Mix 函數","3D Transforms 優化","Arbitrary Values 任意值","JIT 即時編譯"]}
+
+// ==================== 權限系統 ====================
+{"type":"entity","name":"permission_system","entityType":"authorization","observations":["RBAC 角色權限","組織級權限","空間級權限","PermissionGuard 組件","usePermissions Hook","權限繼承機制","權限覆蓋規則","Server Actions 權限檢查","Middleware 權限驗證","動態權限加載"]}
+
+{"type":"entity","name":"multi_tenancy","entityType":"architecture_pattern","observations":["Spaces 多租戶","數據隔離策略","參與者管理","可見性控制","公開私有模式","跨 Space 權限","組織層級隔離","數據分片策略","租戶上下文","資源配額管理"]}
+
+// ==================== 文件管理 ====================
+{"type":"entity","name":"file_system","entityType":"feature_module","observations":["文件瀏覽器 UI","上傳下載功能","版本控制系統","預覽多格式","拖拽上傳支持","批量操作處理","搜索篩選功能","權限控制集成","縮略圖生成","進度條顯示"]}
+
+// ==================== AI 整合 ====================
+{"type":"entity","name":"genkit_integration","entityType":"ai_service","observations":["Genkit Framework","Flow 工作流程","Prompt 模板管理","Model 模型調用","Tool 工具定義","Streaming 流式輸出","Context 上下文管理","合約分析功能","文檔智能處理","Vector Search 向量搜索"]}
+
+// ==================== 設計模式 ====================
+{"type":"entity","name":"design_patterns","entityType":"code_pattern","observations":["Provider Pattern 全局狀態","Custom Hooks 邏輯封裝","Composition 組件組合","Factory Pattern 工廠","Singleton Pattern 單例","Observer Pattern 觀察者","Strategy Pattern 策略","Adapter Pattern 適配器","Repository Pattern 倉儲","Dependency Injection 依賴注入"]}
+
+// ==================== 錯誤處理 ====================
+{"type":"entity","name":"error_handling","entityType":"error_pattern","observations":["Error Boundaries 邊界","try-catch 包裝","Global Error Handler","API Error 統一處理","Validation Errors 驗證錯誤","Toast 錯誤提示","Error Logging 日誌","Sentry 錯誤追蹤","Fallback UI 降級","Retry 機制"]}
+
+// ==================== 性能優化 ====================
+{"type":"entity","name":"performance_optimization","entityType":"optimization","observations":["Code Splitting 代碼分割","Dynamic Import 動態導入","Image Optimization 圖片優化","Font Optimization 字體優化","Bundle Analysis 打包分析","Lazy Loading 懶加載","Prefetching 預加載","Memoization 記憶化","Debounce Throttle 防抖節流","Virtual Scrolling 虛擬滾動"]}
+
+// ==================== 測試策略 ====================
+{"type":"entity","name":"testing_strategy","entityType":"quality_assurance","observations":["Jest 單元測試","React Testing Library","Playwright E2E 測試","MSW API Mock","Component Testing 組件測試","Integration Testing 集成測試","Snapshot Testing 快照測試","Coverage Reports 覆蓋率","CI/CD Pipeline","Test Data Factories"]}
+
+// ==================== 部署配置 ====================
+{"type":"entity","name":"deployment","entityType":"devops","observations":["Vercel 部署平台","Environment Variables 環境變量","Preview Deployments 預覽","Production Builds 生產構建","Edge Functions 邊緣","Middleware 中間件","Analytics 分析","Monitoring 監控","Log Drains 日誌","Domain Configuration 域名"]}
+
+// ==================== 常見陷阱避免 ====================
+{"type":"entity","name":"common_pitfalls","entityType":"best_practice","observations":["避免 Client 用 Admin SDK","避免過度 Client Components","避免阻塞 Server Components","避免 Prop Drilling","避免直接修改 State","避免忘記 Key Props","避免忽略 Loading States","避免忽略 Error States","避免大型 Bundle","避免不必要的 Re-renders"]}
+
+{"type":"entity","name":"nextjs_gotchas","entityType":"framework_warning","observations":["Server Components 無 useState","Client Components 需聲明","Dynamic Import 動態組件","Metadata 僅 Server Components","cookies headers 僅服務端","searchParams 會觸發動態渲染","generateMetadata 異步函數","Route Handlers 獨立文件","Server Actions 'use server'","Hydration Errors 水合錯誤"]}
+
+// ==================== 開發工具 ====================
+{"type":"entity","name":"dev_tools","entityType":"development","observations":["ESLint 代碼檢查","Prettier 代碼格式化","TypeScript 類型檢查","Husky Git Hooks","Lint-staged 暫存區檢查","Commitlint 提交規範","VSCode Extensions 擴展","Chrome DevTools","React DevTools","Turbopack 打包工具"]}
+
+// ==================== 關係圖譜 ====================
+{"type":"relation","from":"user_preferences","to":"project_twilight_hub","relationType":"works_on"}
+{"type":"relation","from":"project_twilight_hub","to":"nextjs15_app_router","relationType":"uses"}
+{"type":"relation","from":"project_twilight_hub","to":"firebase_architecture","relationType":"uses"}
+{"type":"relation","from":"project_twilight_hub","to":"supabase_integration","relationType":"uses"}
+{"type":"relation","from":"project_twilight_hub","to":"redis_caching","relationType":"uses"}
+{"type":"relation","from":"nextjs15_app_router","to":"nextjs15_rendering","relationType":"implements"}
+{"type":"relation","from":"nextjs15_app_router","to":"nextjs15_data_fetching","relationType":"implements"}
+{"type":"relation","from":"nextjs15_app_router","to":"nextjs15_caching","relationType":"implements"}
+{"type":"relation","from":"nextjs15_app_router","to":"react19_features","relationType":"leverages"}
+{"type":"relation","from":"nextjs15_rendering","to":"react19_patterns","relationType":"uses"}
+{"type":"relation","from":"firebase_architecture","to":"firebase_server_client","relationType":"follows"}
+{"type":"relation","from":"firebase_server_client","to":"firebase_security","relationType":"requires"}
+{"type":"relation","from":"shadcn_architecture","to":"tailwind_v4","relationType":"uses"}
+{"type":"relation","from":"shadcn_architecture","to":"shadcn_components","relationType":"provides"}
+{"type":"relation","from":"shadcn_components","to":"react19_patterns","relationType":"implements"}
+{"type":"relation","from":"permission_system","to":"multi_tenancy","relationType":"enables"}
+{"type":"relation","from":"permission_system","to":"firebase_security","relationType":"integrates"}
+{"type":"relation","from":"file_system","to":"firebase_architecture","relationType":"uses"}
+{"type":"relation","from":"file_system","to":"permission_system","relationType":"enforces"}
+{"type":"relation","from":"genkit_integration","to":"typescript_nextjs","relationType":"uses"}
+{"type":"relation","from":"design_patterns","to":"react19_patterns","relationType":"complements"}
+{"type":"relation","from":"design_patterns","to":"typescript_patterns","relationType":"complements"}
+{"type":"relation","from":"error_handling","to":"nextjs15_rendering","relationType":"integrates"}
+{"type":"relation","from":"performance_optimization","to":"nextjs15_caching","relationType":"leverages"}
+{"type":"relation","from":"testing_strategy","to":"typescript_nextjs","relationType":"requires"}
+{"type":"relation","from":"common_pitfalls","to":"nextjs_gotchas","relationType":"includes"}
+{"type":"relation","from":"nextjs_gotchas","to":"nextjs15_app_router","relationType":"warns_about"}
+{"type":"relation","from":"dev_tools","to":"typescript_nextjs","relationType":"supports"}
+{"type":"relation","from":"deployment","to":"nextjs15_app_router","relationType":"hosts"}

@@ -31,7 +31,7 @@
     ├── archive/
     ├── creative/
     ├── reflection/
-    ├── activeContext.md (1.6 KB, 今天)
+    ├── activeContext.md (1.8 KB, 今天)
     ├── memory.backup.json (2 KB, 今天)
     ├── memory.json (2.6 KB, 今天)
     ├── monitor.json (245 B, 今天)
