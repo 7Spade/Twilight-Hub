@@ -1,191 +1,68 @@
 {
   "summary": {
-    "total": 35,
+    "total": 54,
     "byPriority": {
-      "P2": 24,
-      "P1": 11
+      "P3": 3,
+      "P2": 51
     },
     "byType": {
-      "FIX": 1,
-      "FEAT": 34
+      "REFACTOR": 19,
+      "FEAT": 20,
+      "FIX": 15
     },
     "urgent": 0
   },
   "todos": [
     {
-      "priority": "P1",
+      "priority": "P2",
       "type": "FEAT",
-      "description": "src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配",
+      "description": "src/app/actions/contracts.ts - 實作合約 AI 分析",
       "details": [
-        "const roleAssignment = await fetchUserRoleAssignment(state.userId);",
-        "setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));"
+        "說明：整合 Genkit AI 或其他 AI 服務，輸出摘要與風險點"
       ],
-      "file": "src\\components\\auth\\auth-provider.tsx",
-      "line": 139,
-      "assignee": "dev",
-      "context": "    setState(prev => ({ ...prev, isLoading: true, error: null }));\r\n\r\n    try {\r\n      // TODO: [P1] FEAT src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配\r\n      // const roleAssignment = await fetchUserRoleAssignment(state.userId);\r\n      // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));\r\n      // @assignee dev\r\n    } catch (error) {\r\n      setState(prev => ({ \r\n        ...prev, \r\n        error: error instanceof Error ? error.message : 'Failed to refresh permissions' \r\n      }));\r\n    } finally {\r"
+      "file": "src\\app\\actions\\contracts.ts",
+      "line": 89,
+      "context": "\r\nexport async function analyzeContract(spaceId: string, contractId: string) {\r\n  try {\r\n    // TODO: [P2] FEAT src/app/actions/contracts.ts - 實作合約 AI 分析\r\n    // 說明：整合 Genkit AI 或其他 AI 服務，輸出摘要與風險點\r\n    console.log('Analyzing contract:', contractId);\r\n    \r\n    return { success: true, data: { analysis: 'Contract analysis completed' } };\r\n  } catch (error) {\r\n    console.error('Error analyzing contract:', error);\r\n    return { success: false, error: 'Failed to analyze contract' };\r\n  }\r\n}\r"
     },
     {
-      "priority": "P1",
+      "priority": "P2",
       "type": "FEAT",
-      "description": "src/components/auth/permission-guard.tsx - 實現權限檢查邏輯",
+      "description": "src/app/actions/contracts.ts - 實作合約 PDF 生成",
       "details": [
-        "需要根據用戶權限決定是否顯示子組件"
+        "說明：整合 PDF 生成服務（含標題、雙方、金額、日期、簽名）"
       ],
-      "file": "src\\components\\auth\\permission-guard.tsx",
-      "line": 18,
-      "assignee": "dev",
-      "context": "  children, \n  fallback = null \n}: PermissionGuardProps) {\n  // TODO: [P1] FEAT src/components/auth/permission-guard.tsx - 實現權限檢查邏輯\n  // 需要根據用戶權限決定是否顯示子組件\n  // @assignee dev\n  return <>{children}</>;\n}"
+      "file": "src\\app\\actions\\contracts.ts",
+      "line": 102,
+      "context": "\r\nexport async function generateContractPDF(spaceId: string, contractId: string) {\r\n  try {\r\n    // TODO: [P2] FEAT src/app/actions/contracts.ts - 實作合約 PDF 生成\r\n    // 說明：整合 PDF 生成服務（含標題、雙方、金額、日期、簽名）\r\n    console.log('Generating PDF for contract:', contractId);\r\n    \r\n    return { success: true, data: { pdfUrl: 'https://example.com/contract.pdf' } };\r\n  } catch (error) {\r\n    console.error('Error generating PDF:', error);\r\n    return { success: false, error: 'Failed to generate PDF' };\r\n  }\r\n}\r"
     },
     {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "const rolesData = await fetchRoles(spaceId);",
-        "setRoles(rolesData);"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 97,
-      "assignee": "dev",
-      "context": "  const loadRoles = async () => {\n    setLoading(true);\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // const rolesData = await fetchRoles(spaceId);\n      // setRoles(rolesData);\n      // @assignee dev\n      \n      // Mock data for now\n      setRoles([\n        {\n          id: 'admin',\n          name: 'Administrator',"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "const usersData = await fetchUsers(spaceId);",
-        "setUsers(usersData);"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 141,
-      "assignee": "dev",
-      "context": "\n  const loadUsers = async () => {\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // const usersData = await fetchUsers(spaceId);\n      // setUsers(usersData);\n      // @assignee dev\n      \n      // Mock data for now\n      setUsers([\n        {\n          id: 'user1',\n          name: 'John Doe',"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "const newRole = await createRole(spaceId, roleData);",
-        "setRoles(prev => [...prev, newRole]);"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 168,
-      "assignee": "dev",
-      "context": "\n  const handleCreateRole = async (roleData: Omit<Role, 'id' | 'createdAt' | 'updatedAt'>) => {\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // const newRole = await createRole(spaceId, roleData);\n      // setRoles(prev => [...prev, newRole]);\n      // @assignee dev\n      \n      console.log('Creating role:', roleData);\n      setIsCreateDialogOpen(false);\n    } catch (error) {\n      console.error('Failed to create role:', error);\n    }"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "const updatedRole = await updateRole(spaceId, roleId, roleData);",
-        "setRoles(prev => prev.map(role => role.id === roleId ? updatedRole : role));"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 182,
-      "assignee": "dev",
-      "context": "\n  const handleUpdateRole = async (roleId: string, roleData: Partial<Role>) => {\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // const updatedRole = await updateRole(spaceId, roleId, roleData);\n      // setRoles(prev => prev.map(role => role.id === roleId ? updatedRole : role));\n      // @assignee dev\n      \n      console.log('Updating role:', roleId, roleData);\n      setIsEditDialogOpen(false);\n      setSelectedRole(null);\n    } catch (error) {\n      console.error('Failed to update role:', error);"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "await deleteRole(spaceId, roleId);",
-        "setRoles(prev => prev.filter(role => role.id !== roleId));"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 197,
-      "assignee": "dev",
-      "context": "\n  const handleDeleteRole = async (roleId: string) => {\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // await deleteRole(spaceId, roleId);\n      // setRoles(prev => prev.filter(role => role.id !== roleId));\n      // @assignee dev\n      \n      console.log('Deleting role:', roleId);\n    } catch (error) {\n      console.error('Failed to delete role:', error);\n    }\n  };"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/auth/role-manager.tsx - 實現實際的 API 調用",
-      "details": [
-        "await assignRole(spaceId, userId, roleId);",
-        "loadUsers(); // Reload users to reflect changes"
-      ],
-      "file": "src\\components\\auth\\role-manager.tsx",
-      "line": 210,
-      "assignee": "dev",
-      "context": "\n  const handleAssignRole = async (userId: string, roleId: string) => {\n    try {\n      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用\n      // await assignRole(spaceId, userId, roleId);\n      // loadUsers(); // Reload users to reflect changes\n      // @assignee dev\n      \n      console.log('Assigning role:', userId, roleId);\n      setIsAssignDialogOpen(false);\n    } catch (error) {\n      console.error('Failed to assign role:', error);\n    }"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/components/features/contracts/contract-list.tsx - 整合 React Query hooks 和 Server Actions",
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/adjust-stock-dialog.tsx - 清理未使用的導入（setDoc 未使用）",
       "details": [],
-      "file": "src\\components\\features\\contracts\\contract-list.tsx",
-      "line": 36,
-      "context": "  const [filters, setFilters] = useState<ContractFilters>({});\r\n  const [searchTerm, setSearchTerm] = useState('');\r\n\r\n  // TODO: [P1] FEAT src/components/features/contracts/contract-list.tsx - 整合 React Query hooks 和 Server Actions\r\n  const contracts: Contract[] = [];\r\n  const isLoading = false;\r\n  // @assignee dev\r\n  const error = null;\r\n\r\n  // 處理搜索\r\n  const handleSearch = (term: string) => {\r\n    setSearchTerm(term);\r\n    setFilters(prev => ({ ...prev, search: term }));\r"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯",
-      "details": [
-        "這裡應該調用 Firebase 或 API 來檢查權限"
-      ],
-      "file": "src\\hooks\\use-permissions.ts",
-      "line": 23,
-      "assignee": "dev",
-      "context": "    setError(null);\r\n\r\n    try {\r\n      // TODO: [P1] FEAT src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯\r\n      // 這裡應該調用 Firebase 或 API 來檢查權限\r\n      // @assignee dev\r\n      \r\n      // 模擬 API 調用\r\n      await new Promise(resolve => setTimeout(resolve, 100));\r\n      \r\n      // 暫時返回默認結果\r\n      return {\r\n        hasPermission: false,\r"
-    },
-    {
-      "priority": "P1",
-      "type": "FEAT",
-      "description": "src/lib/role-management.ts - 實作權限檢查邏輯",
-      "details": [
-        "需要根據用戶角色和權限配置進行檢查"
-      ],
-      "file": "src\\lib\\role-management.ts",
-      "line": 21,
-      "assignee": "dev",
-      "context": "    return null;\n  },\n  checkPermission: async (_userId: string, _spaceId: string, _permission: Permission, _userRoleAssignment: unknown) => {\n    // TODO: [P1] FEAT src/lib/role-management.ts - 實作權限檢查邏輯\n    // 需要根據用戶角色和權限配置進行檢查\n    // @assignee dev\n    return {\n      hasPermission: false,\n      reason: 'not_implemented',\n      source: 'space',\n      roleId: undefined,\n    };\n  }"
+      "file": "src\\components\\adjust-stock-dialog.tsx",
+      "line": 15,
+      "context": "  increment,\r\n  setDoc,\r\n} from 'firebase/firestore';\r\n// TODO: [P2] REFACTOR src/components/adjust-stock-dialog.tsx - 清理未使用的導入（setDoc 未使用）\r\n\r\nimport { useFirestore } from '@/firebase';\r\nimport { useDialogState } from '@/hooks/use-app-state';\r\nimport { useToast } from '@/hooks/use-toast';\r\nimport {\r\n  Dialog,\r\n  DialogContent,\r\n  DialogDescription,\r\n  DialogHeader,\r"
     },
     {
       "priority": "P2",
       "type": "FIX",
       "description": "src/components/adjust-stock-dialog.tsx - 修復非空斷言警告",
       "details": [
-        "應該先檢查 stockInfo.stockId 是否存在"
+        "說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言"
       ],
       "file": "src\\components\\adjust-stock-dialog.tsx",
       "line": 131,
-      "assignee": "dev",
-      "context": "          let stockDocRef;\r\n\r\n          if (hasExistingStockRecord) {\r\n              // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告\r\n              // 應該先檢查 stockInfo.stockId 是否存在\r\n              // @assignee dev\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n              stockDocRef = doc(collection(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock'));\r\n              const newStockData: Partial<Stock> = {\r\n                  itemId: item.id,\r"
+      "context": "          let stockDocRef;\r\n\r\n  if (hasExistingStockRecord) {\r\n              // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告\r\n              // 說明：在使用 stockInfo.stockId 前進行存在性檢查，移除非空斷言\r\n              stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);\r\n              batch.update(stockDocRef, { quantity: increment(adjustment) });\r\n          } else {\r\n              // Create a new stock document\r\n              stockDocRef = doc(collection(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock'));\r\n              const newStockData: Partial<Stock> = {\r\n                  itemId: item.id,\r\n                  warehouseId: warehouseId,\r"
     },
     {
       "priority": "P2",
-      "type": "FEAT",
-      "description": "src/components/features/contracts/contract-list.tsx - 實現刪除邏輯",
+      "type": "REFACTOR",
+      "description": "src/components/contribution-breakdown-chart.tsx - 清理未使用的導入（Card* 未使用）",
       "details": [],
-      "file": "src\\components\\features\\contracts\\contract-list.tsx",
-      "line": 62,
-      "context": "  // 處理合約操作\r\n  const handleDeleteContract = (contractId: string) => {\r\n    if (confirm('確定要刪除這個合約嗎？')) {\r\n      // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現刪除邏輯\r\n      console.log('Delete contract:', contractId);\r\n      // @assignee dev\r\n    }\r\n  };\r\n\r\n  const handleAnalyzeContract = (contractId: string) => {\r\n    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 AI 分析邏輯\r\n    console.log('Analyze contract:', contractId);\r\n    // @assignee dev\r"
-    },
-    {
-      "priority": "P2",
-      "type": "FEAT",
-      "description": "src/components/features/contracts/contract-list.tsx - 實現 AI 分析邏輯",
-      "details": [],
-      "file": "src\\components\\features\\contracts\\contract-list.tsx",
-      "line": 69,
-      "context": "  };\r\n\r\n  const handleAnalyzeContract = (contractId: string) => {\r\n    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 AI 分析邏輯\r\n    console.log('Analyze contract:', contractId);\r\n    // @assignee dev\r\n  };\r\n\r\n  const handleGeneratePDF = (contractId: string) => {\r\n    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 PDF 生成邏輯\r\n    console.log('Generate PDF for contract:', contractId);\r\n    // @assignee dev\r\n  };\r"
-    },
-    {
-      "priority": "P2",
-      "type": "FEAT",
-      "description": "src/components/features/contracts/contract-list.tsx - 實現 PDF 生成邏輯",
-      "details": [],
-      "file": "src\\components\\features\\contracts\\contract-list.tsx",
-      "line": 75,
-      "context": "  };\r\n\r\n  const handleGeneratePDF = (contractId: string) => {\r\n    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 PDF 生成邏輯\r\n    console.log('Generate PDF for contract:', contractId);\r\n    // @assignee dev\r\n  };\r\n\r\n  const getStatusColor = (status: string) => {\r\n    switch (status) {\r\n      case 'draft':\r\n        return 'bg-gray-100 text-gray-800';\r\n      case 'pending':\r"
+      "file": "src\\components\\contribution-breakdown-chart.tsx",
+      "line": 11,
+      "context": "\r\nimport { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\n// TODO: [P2] REFACTOR src/components/contribution-breakdown-chart.tsx - 清理未使用的導入（Card* 未使用）\r\n\r\ninterface ContributionData {\r\n    subject: string;\r\n    value: number;\r\n}\r\n\r\ninterface ContributionBreakdownChartProps {\r\n    data: ContributionData[];\r\n}\r"
     },
     {
       "priority": "P2",
@@ -216,12 +93,41 @@
     },
     {
       "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/acceptance/acceptance-item.tsx - 清理未使用的導入（Button 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\acceptance\\acceptance-item.tsx",
+      "line": 6,
+      "context": "import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/acceptance/acceptance-item.tsx - 清理未使用的導入（Button 未使用）\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { CheckCircle, Clock, AlertCircle, MessageSquare } from 'lucide-react';\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Comment {\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，為 acceptance 建立明確型別介面"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\acceptance\\initiate-acceptance-flow.tsx",
+      "line": 29,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 acceptance 建立明確型別介面\r\n  onAcceptanceCreated?: (acceptance: unknown) => void;\r\n}\r\n\r\nexport function InitiateAcceptanceFlow({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onAcceptanceCreated,\r"
+    },
+    {
+      "priority": "P2",
       "type": "FEAT",
-      "description": "src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實現創建驗收 API 調用",
+      "description": "src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實作創建驗收 API 呼叫",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\acceptance\\initiate-acceptance-flow.tsx",
-      "line": 55,
-      "context": "  const onSubmit = async (data: InitiateAcceptanceFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實現創建驗收 API 調用\r\n      console.log('Creating acceptance item:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newAcceptance = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        status: 'pending' as const,\r\n        requester: { id: 'current-user', name: 'Current User' },\r"
+      "line": 57,
+      "context": "  const onSubmit = async (data: InitiateAcceptanceFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實作創建驗收 API 呼叫\r\n      console.log('Creating acceptance item:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newAcceptance = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        status: 'pending' as const,\r\n        requester: { id: 'current-user', name: 'Current User' },\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/contracts/contract-details.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage, Phone 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\contracts\\contract-details.tsx",
+      "line": 11,
+      "context": "import { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { Calendar, DollarSign, FileText, Mail, Phone, User } from 'lucide-react';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-details.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage, Phone 未使用）\r\nimport { formatDistanceToNow } from 'date-fns';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r\n  description: string;\r\n  type: 'service' | 'license' | 'nda' | 'partnership' | 'employment';\r\n  status: 'draft' | 'pending' | 'active' | 'expired' | 'terminated';\r\n  value?: number;\r"
     },
     {
       "priority": "P2",
@@ -234,21 +140,88 @@
     },
     {
       "priority": "P2",
-      "type": "FEAT",
-      "description": "src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實現創建合約 API 調用",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）",
       "details": [],
+      "file": "src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
+      "line": 3,
+      "context": "'use client';\r\n\r\n// TODO: [P2] FIX src/components/features/spaces/components/contracts/contract-list.tsx - 修復 JSX 語法錯誤（第317行未閉合標籤或無效字元）\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Input } from '@/components/ui/input';\r\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）\r\nimport { CreateContractDialog } from './create-contract-dialog';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\contracts\\contract-list.tsx",
+      "line": 11,
+      "context": "import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';\r\nimport { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';\r\nimport { FileText, Plus, Search, Filter, Calendar, DollarSign } from 'lucide-react';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/contracts/contract-list.tsx - 清理未使用的導入（FileText, DollarSign 未使用）\r\nimport { CreateContractDialog } from './create-contract-dialog';\r\nimport { ContractDetails } from './contract-details';\r\nimport { useState } from 'react';\r\n\r\ninterface Contract {\r\n  id: string;\r\n  title: string;\r\n  description: string;\r\n  type: 'service' | 'license' | 'nda' | 'partnership' | 'employment';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，為 contract 建立明確型別介面"
+      ],
       "file": "src\\components\\features\\spaces\\components\\contracts\\create-contract-dialog.tsx",
-      "line": 69,
-      "context": "  const onSubmit = async (data: CreateContractFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實現創建合約 API 調用\r\n      console.log('Creating contract:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newContract = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        startDate: new Date(data.startDate),\r\n        endDate: data.endDate ? new Date(data.endDate) : undefined,\r"
+      "line": 36,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 contract 建立明確型別介面\r\n  onContractCreated?: (contract: unknown) => void;\r\n}\r\n\r\nexport function CreateContractDialog({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onContractCreated,\r"
     },
     {
       "priority": "P2",
       "type": "FEAT",
-      "description": "src/components/features/spaces/components/issues/create-issue-form.tsx - 實現創建問題 API 調用",
+      "description": "src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\contracts\\create-contract-dialog.tsx",
+      "line": 71,
+      "context": "  const onSubmit = async (data: CreateContractFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/contracts/create-contract-dialog.tsx - 實作創建合約 API 呼叫\r\n      console.log('Creating contract:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newContract = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        startDate: new Date(data.startDate),\r\n        endDate: data.endDate ? new Date(data.endDate) : undefined,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/empty-folder-state.tsx - 修復字符串字面量錯誤（第31行未終止）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\empty-folder-state.tsx",
+      "line": 8,
+      "context": " * for new or empty directories.\r\n */\r\n'use client';\r\n// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/empty-folder-state.tsx - 修復字符串字面量錯誤（第31行未終止）\r\n\r\nimport React from 'react';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UploadCloud, FolderOpen } from 'lucide-react';\r\n\r\ninterface EmptyFolderStateProps {\r\n  onUpload: () => void;\r\n  folderName?: string;\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/file-explorer/file-explorer.tsx - 修復語法錯誤（第95行缺少分號）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\file-explorer.tsx",
+      "line": 9,
+      "context": " * and user actions.\r\n */\r\n'use client';\r\n// TODO: [P2] FIX src/components/features/spaces/components/file-explorer/file-explorer.tsx - 修復語法錯誤（第95行缺少分號）\r\n\r\nimport React, { useState, useEffect, useMemo } from 'react';\r\nimport { Card, CardContent } from '@/components/ui/card';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { useFileActions } from '@/components/features/spaces/hooks';\r\nimport { FolderTree, type FileItem } from './folder-tree';\r\nimport { FileTable } from './file-table';\r\nimport { ContextMenu, ToolbarContextMenu } from './context-menu';\r\nimport { Toolbar } from './toolbar';\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/file-explorer/upload-dialog.tsx - 清理未使用的導入（Input 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\file-explorer\\upload-dialog.tsx",
+      "line": 13,
+      "context": "import { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { Input } from '@/components/ui/input';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/file-explorer/upload-dialog.tsx - 清理未使用的導入（Input 未使用）\r\nimport { Label } from '@/components/ui/label';\r\nimport { Switch } from '@/components/ui/switch';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { \r\n  Upload, \r\n  X, \r\n  Maximize2, \r\n  Minimize2,\r\n  Monitor,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，為 issue 建立明確型別介面"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\issues\\create-issue-form.tsx",
+      "line": 29,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/issues/create-issue-form.tsx - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 issue 建立明確型別介面\r\n  onIssueCreated?: (issue: unknown) => void;\r\n}\r\n\r\nexport function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }: CreateIssueFormProps) {\r\n  const [isLoading, setIsLoading] = useState(false);\r\n\r\n  const form = useForm<CreateIssueFormValues>({\r\n    resolver: zodResolver(createIssueSchema),\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FEAT",
+      "description": "src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\issues\\create-issue-form.tsx",
-      "line": 50,
-      "context": "  const onSubmit = async (data: CreateIssueFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/issues/create-issue-form.tsx - 實現創建問題 API 調用\r\n      console.log('Creating issue:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newIssue = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        status: 'open' as const,\r\n        reporter: { id: 'current-user', name: 'Current User' },\r"
+      "line": 52,
+      "context": "  const onSubmit = async (data: CreateIssueFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/issues/create-issue-form.tsx - 實作創建問題 API 呼叫\r\n      console.log('Creating issue:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newIssue = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        status: 'open' as const,\r\n        reporter: { id: 'current-user', name: 'Current User' },\r"
     },
     {
       "priority": "P2",
@@ -273,6 +246,26 @@
       "line": 60,
       "assignee": "dev",
       "context": "\r\n  // 獲取活動數據\r\n  const fetchActivities = useCallback(async (): Promise<ActivityItem[]> => {\r\n    // TODO: [P2] FEAT src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用\r\n    // 這裡使用模擬數據\r\n    // @assignee dev\r\n    return new Promise((resolve) => {\r\n      setTimeout(() => {\r\n        const mockActivities: ActivityItem[] = [\r\n          {\r\n            id: '1',\r\n            type: 'file_upload',\r\n            user: 'John Doe',\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/overview/recent-activity.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：定義 metadata 結構或使用更嚴格的型別映射"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\overview\\recent-activity.tsx",
+      "line": 17,
+      "context": "  };\r\n  description: string;\r\n  timestamp: Date;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/overview/recent-activity.tsx - 修正 unknown/any 類型\r\n  // 說明：定義 metadata 結構或使用更嚴格的型別映射\r\n  metadata?: Record<string, unknown>;\r\n}\r\n\r\ninterface RecentActivityProps {\r\n  spaceId: string;\r\n  activities?: ActivityItem[];\r\n}\r\n\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\overview\\types.ts",
+      "line": 41,
+      "context": "  };\r\n  description: string;\r\n  timestamp: Date;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/overview/types.ts - 修正 unknown/any 類型（定義 metadata 結構）\r\n  metadata?: Record<string, unknown>;\r\n  status?: 'completed' | 'pending' | 'failed';\r\n}\r\n\r\nexport interface DashboardStats {\r\n  members: number;\r\n  files: number;\r\n  issues: number;\r\n  lastActivity: string;\r"
     },
     {
       "priority": "P2",
@@ -304,6 +297,15 @@
     },
     {
       "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/participants/view-toggle.tsx - 清理未使用的導入（Button 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\participants\\view-toggle.tsx",
+      "line": 10,
+      "context": "\r\nimport React from 'react';\r\nimport { Button } from '@/components/ui/button';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/participants/view-toggle.tsx - 清理未使用的導入（Button 未使用）\r\nimport { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';\r\nimport { Table, Grid3X3, List } from 'lucide-react';\r\nimport { ViewMode } from './types';\r\n\r\ninterface ViewToggleProps {\r\n  viewMode: ViewMode['type'];\r\n  onViewModeChange: (mode: ViewMode['type']) => void;\r\n  className?: string;\r\n}\r"
+    },
+    {
+      "priority": "P2",
       "type": "FEAT",
       "description": "src/components/features/spaces/components/participants/virtualized-table.tsx - 實現編輯對話框",
       "details": [],
@@ -322,12 +324,43 @@
     },
     {
       "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/quality/checklist.tsx - 清理未使用的導入（Button 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\quality\\checklist.tsx",
+      "line": 5,
+      "context": "\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/quality/checklist.tsx - 清理未使用的導入（Button 未使用）\r\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\r\nimport { Checkbox } from '@/components/ui/checkbox';\r\nimport { Progress } from '@/components/ui/progress';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { CheckCircle, Circle, Clock, AlertCircle } from 'lucide-react';\r\nimport { useState } from 'react';\r\n\r\ninterface ChecklistItem {\r\n  id: string;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，為 template 建立明確型別介面"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\quality\\create-checklist-template.tsx",
+      "line": 33,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/quality/create-checklist-template.tsx - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 template 建立明確型別介面\r\n  onTemplateCreated?: (template: unknown) => void;\r\n}\r\n\r\nexport function CreateChecklistTemplate({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onTemplateCreated,\r"
+    },
+    {
+      "priority": "P2",
       "type": "FEAT",
       "description": "src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\quality\\create-checklist-template.tsx",
-      "line": 69,
+      "line": 71,
       "context": "  const onSubmit = async (data: ChecklistTemplateFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用\r\n      console.log('Creating checklist template:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call\r\n      \r\n      const newTemplate = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        createdAt: new Date(),\r\n        createdBy: 'current-user',\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/components/features/spaces/components/report/create-report-dialog.tsx - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，為 report 建立明確型別介面"
+      ],
+      "file": "src\\components\\features\\spaces\\components\\report\\create-report-dialog.tsx",
+      "line": 36,
+      "context": "  spaceId: string;\r\n  open: boolean;\r\n  onOpenChange: (open: boolean) => void;\r\n  // TODO: [P2] FIX src/components/features/spaces/components/report/create-report-dialog.tsx - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 report 建立明確型別介面\r\n  onReportCreated?: (report: unknown) => void;\r\n}\r\n\r\nexport function CreateReportDialog({\r\n  spaceId,\r\n  open,\r\n  onOpenChange,\r\n  onReportCreated,\r"
     },
     {
       "priority": "P2",
@@ -335,7 +368,7 @@
       "description": "src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用",
       "details": [],
       "file": "src\\components\\features\\spaces\\components\\report\\create-report-dialog.tsx",
-      "line": 68,
+      "line": 70,
       "context": "  const onSubmit = async (data: CreateReportFormValues) => {\r\n    setIsLoading(true);\r\n    try {\r\n      // TODO: [P2] FEAT src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用\r\n      console.log('Creating report:', { spaceId, ...data });\r\n      // @assignee dev\r\n      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call\r\n      \r\n      const newReport = {\r\n        id: Date.now().toString(),\r\n        ...data,\r\n        status: 'generating' as const,\r\n        createdAt: new Date(),\r"
     },
     {
@@ -349,6 +382,15 @@
     },
     {
       "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/report/report-viewer.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\report\\report-viewer.tsx",
+      "line": 4,
+      "context": "'use client';\r\n\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/report/report-viewer.tsx - 清理未使用的導入（Avatar, AvatarFallback, AvatarImage 未使用）\r\nimport { Badge } from '@/components/ui/badge';\r\nimport { Button } from '@/components/ui/button';\r\nimport { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';\r\nimport { ScrollArea } from '@/components/ui/scroll-area';\r\nimport { Separator } from '@/components/ui/separator';\r\nimport { Download, Calendar, User, FileText, BarChart3 } from 'lucide-react';\r\n\r\ninterface Report {\r\n  id: string;\r"
+    },
+    {
+      "priority": "P2",
       "type": "FEAT",
       "description": "src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯",
       "details": [],
@@ -358,28 +400,140 @@
     },
     {
       "priority": "P2",
-      "type": "FEAT",
-      "description": "src/hooks/use-permissions.ts - 實現組織權限檢查",
-      "details": [
-        "需要根據組織層級的權限配置進行檢查"
-      ],
-      "file": "src\\hooks\\use-permissions.ts",
-      "line": 128,
-      "assignee": "dev",
-      "context": "    organizationId: string,\r\n    permission: Permission\r\n  ): Promise<PermissionCheckResult> => {\r\n    // TODO: [P2] FEAT src/hooks/use-permissions.ts - 實現組織權限檢查\r\n    // 需要根據組織層級的權限配置進行檢查\r\n    // @assignee dev\r\n    return checkPermission(permission);\r\n  }, [checkPermission]);\r\n\r\n  // 批量檢查空間權限\r\n  const checkSpacePermissions = useCallback(async (\r\n    spaceId: string,\r\n    permissions: Permission[]\r"
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/spaces-list-view.tsx - 清理未使用的導入（cn 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\spaces-list-view.tsx",
+      "line": 28,
+      "context": "import { Globe, Lock, Search, Filter } from 'lucide-react';\r\nimport { Skeleton } from '@/components/ui/skeleton';\r\nimport { cn } from '@/lib/utils';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/components/spaces-list-view.tsx - 清理未使用的導入（cn 未使用）\r\nimport {\r\n  Tabs,\r\n  TabsContent,\r\n  TabsList,\r\n  TabsTrigger,\r\n} from '@/components/ui/tabs';\r\nimport { SpaceVisibilityBadge } from '@/components/features/spaces/components/spaces-visibility-badge';\r\nimport { SpaceStarButton } from '@/components/features/spaces/components/spaces-star-button';\r\nimport { type Account, type Space } from '@/lib/types-unified';\r"
     },
     {
       "priority": "P2",
-      "type": "FEAT",
-      "description": "src/lib/role-management.ts - 實作角色定義查詢功能",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\hooks\\use-star-actions.ts",
+      "line": 14,
+      "context": "import { useToast } from '@/hooks/use-toast';\r\nimport { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';\r\nimport { type Space } from '@/lib/types-unified';\r\n// TODO: [P2] REFACTOR src/components/features/spaces/hooks/use-star-actions.ts - 清理未使用的導入（Space 未使用）\r\n\r\ninterface UseStarActionsReturn {\r\n  // Actions\r\n  starSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  unstarSpace: (spaceId: string, userId: string) => Promise<boolean>;\r\n  toggleStar: (spaceId: string, userId: string, isStarred: boolean) => Promise<boolean>;\r\n  \r\n  // State\r\n  isLoading: boolean;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/follower-list.tsx - 清理未使用的導入（doc 未使用）",
+      "details": [],
+      "file": "src\\components\\follower-list.tsx",
+      "line": 12,
+      "context": "import React, { useMemo } from 'react';\r\nimport Link from 'next/link';\r\nimport { collection, doc, query, where, documentId } from 'firebase/firestore';\r\n// TODO: [P2] REFACTOR src/components/follower-list.tsx - 清理未使用的導入（doc 未使用）\r\n\r\nimport { useFirestore, useCollection } from '@/firebase';\r\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\r\nimport { Button } from '@/components/ui/button';\r\nimport {\r\n  Card,\r\n  CardDescription,\r\n  CardFooter,\r\n  CardHeader,\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/forms/form-card.tsx - 清理未使用的導入（Skeleton 未使用）",
+      "details": [],
+      "file": "src\\components\\forms\\form-card.tsx",
+      "line": 19,
+      "context": "  CardFooter,\r\n} from '@/components/ui/card';\r\nimport { Skeleton } from '@/components/ui/skeleton';\r\n// TODO: [P2] REFACTOR src/components/forms/form-card.tsx - 清理未使用的導入（Skeleton 未使用）\r\nimport { Form } from '@/components/ui/form';\r\nimport { Button } from '@/components/ui/button';\r\nimport { UseFormReturn, FieldValues } from 'react-hook-form';\r\nimport { FormCardSkeleton } from '../form-card-skeleton';\r\n\r\ninterface FormCardProps<T extends FieldValues> {\r\n  title: string;\r\n  description: string;\r\n  isLoading: boolean;\r"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/layout/sidebar.tsx - 清理未使用的導入（Settings, Tooltip* 未使用）",
+      "details": [],
+      "file": "src\\components\\layout\\sidebar.tsx",
+      "line": 16,
+      "context": "  Settings,\n} from \"lucide-react\";\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@/components/ui/tooltip\";\n// TODO: [P2] REFACTOR src/components/layout/sidebar.tsx - 清理未使用的導入（Settings, Tooltip* 未使用）\n\nimport { cn } from \"@/lib/utils\";\nimport { Logo } from \"../logo\";\nimport { Nav } from \"./nav\";\nimport { type NavItem } from \"./navigation\";\nimport { TeamSwitcher, type Team } from \"./team-switcher\";\n\nexport function Sidebar({\n  isCollapsed,"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）",
+      "details": [],
+      "file": "src\\components\\ui\\file-type-icon.tsx",
+      "line": 20,
+      "context": "  FileSpreadsheet,\n  Presentation,\n  FileImage,\n  // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx - 清理未使用的導入（useEffect, Image, Video, Music, Archive, Code 未使用）\n  FileVideo,\n  FileAudio,\n  FileCode,\n  FileArchive\n} from 'lucide-react';\n\nexport interface FileTypeIconProps {\n  fileName: string;\n  contentType?: string;"
+    },
+    {
+      "priority": "P2",
+      "type": "REFACTOR",
+      "description": "src/components/ui/file-upload.tsx - 清理未使用的導入（Badge, X, CheckCircle, AlertCircle 未使用）",
+      "details": [],
+      "file": "src\\components\\ui\\file-upload.tsx",
+      "line": 27,
+      "context": "  CheckCircle,\r\n  AlertCircle \r\n} from 'lucide-react';\r\n// TODO: [P2] REFACTOR src/components/ui/file-upload.tsx - 清理未使用的導入（Badge, X, CheckCircle, AlertCircle 未使用）\r\nimport { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';\r\nimport { ContractDocument } from '@/lib/types/contract.types';\r\n\r\n// Helper functions for file validation (not hooks)\r\nconst isFileTypeSupported = (fileName: string): boolean => {\r\n  const supportedTypes = ['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png', '.gif'];\r\n  const extension = fileName.toLowerCase().substring(fileName.lastIndexOf('.'));\r\n  return supportedTypes.includes(extension);\r\n};\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/hooks/use-app-state.ts - 修正 unknown/any 類型",
       "details": [
-        "需要從資料庫或配置中獲取角色定義"
+        "說明：以具名型別替代 unknown，為 dialog data 建立明確型別"
       ],
-      "file": "src\\lib\\role-management.ts",
-      "line": 15,
-      "assignee": "dev",
-      "context": "\nexport const roleManagementService = {\n  getRoleDefinition: (_roleId: string): RoleDefinition | null => {\n    // TODO: [P2] FEAT src/lib/role-management.ts - 實作角色定義查詢功能\n    // 需要從資料庫或配置中獲取角色定義\n    // @assignee dev\n    return null;\n  },\n  checkPermission: async (_userId: string, _spaceId: string, _permission: Permission, _userRoleAssignment: unknown) => {\n    // TODO: [P1] FEAT src/lib/role-management.ts - 實作權限檢查邏輯\n    // 需要根據用戶角色和權限配置進行檢查\n    // @assignee dev\n    return {"
+      "file": "src\\hooks\\use-app-state.ts",
+      "line": 12,
+      "context": "\r\ninterface DialogState {\r\n  type: string | null;\r\n  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型\r\n  // 說明：以具名型別替代 unknown，為 dialog data 建立明確型別\r\n  data: unknown;\r\n  isOpen: boolean;\r\n}\r\n\r\ninterface AppState {\r\n  chat: ChatState;\r\n  dialog: DialogState;\r\n}\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/hooks/use-app-state.ts - 修正 unknown/any 類型",
+      "details": [
+        "說明：替換為具名型別或泛型參數，避免使用 unknown"
+      ],
+      "file": "src\\hooks\\use-app-state.ts",
+      "line": 28,
+      "context": "  closeChat: () => void;\r\n  toggleChat: () => void;\r\n  toggleMinimizeChat: () => void;\r\n  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型\r\n  // 說明：替換為具名型別或泛型參數，避免使用 unknown\r\n  openDialog: (type: string, data?: unknown) => void;\r\n  closeDialog: () => void;\r\n}\r\n\r\ninterface AppStateContext extends AppState, AppStateActions {}\r\n\r\nconst AppStateContext = createContext<AppStateContext | undefined>(undefined);\r\n\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/hooks/use-app-state.ts - 修正 unknown/any 類型",
+      "details": [
+        "說明：為 data 提供具名型別或受限泛型，避免使用 unknown"
+      ],
+      "file": "src\\hooks\\use-app-state.ts",
+      "line": 74,
+      "context": "    setChat(prev => ({ ...prev, isMinimized: !prev.isMinimized }));\r\n  }, []);\r\n\r\n  // TODO: [P2] FIX src/hooks/use-app-state.ts - 修正 unknown/any 類型\r\n  // 說明：為 data 提供具名型別或受限泛型，避免使用 unknown\r\n  const openDialog = useCallback((type: string, data: unknown = {}) => {\r\n    setDialog({ type, data, isOpen: true });\r\n  }, []);\r\n\r\n  const closeDialog = useCallback(() => {\r\n    setDialog({ type: null, data: {}, isOpen: false });\r\n  }, []);\r\n\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FIX",
+      "description": "src/lib/types-unified.ts - 修正 unknown/any 類型",
+      "details": [
+        "說明：以具名型別替代 unknown，或引入泛型以約束資料型別"
+      ],
+      "file": "src\\lib\\types-unified.ts",
+      "line": 245,
+      "context": "  };\r\n  dialog: {\r\n    type: string | null;\r\n    // TODO: [P2] FIX src/lib/types-unified.ts - 修正 unknown/any 類型\r\n    // 說明：以具名型別替代 unknown，或引入泛型以約束資料型別\r\n    data: unknown;\r\n    isOpen: boolean;\r\n  };\r\n}\r\n\r\nexport interface AuthState {\r\n  userId: string | null;\r\n  userRoleAssignment: UserRoleAssignment | null;\r"
+    },
+    {
+      "priority": "P3",
+      "type": "REFACTOR",
+      "description": "src/app/(app)/organizations/[organizationslug]/spaces/page.tsx - 清理未使用的參數（params 未使用）",
+      "details": [
+        "Redirect to unified spaces page"
+      ],
+      "file": "src\\app\\(app)\\organizations\\[organizationslug]\\spaces\\page.tsx",
+      "line": 10,
+      "context": "}: {\r\n  params: { organizationslug: string };\r\n}) {\r\n  // TODO: [P3] REFACTOR src/app/(app)/organizations/[organizationslug]/spaces/page.tsx - 清理未使用的參數（params 未使用）\r\n  // Redirect to unified spaces page\r\n  redirect('/spaces');\r\n}\r\n"
+    },
+    {
+      "priority": "P3",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\overview\\recent-activity.tsx",
+      "line": 28,
+      "context": "}\r\n\r\nexport function RecentActivity({ spaceId, activities }: RecentActivityProps) {\r\n  // TODO: [P3] REFACTOR src/components/features/spaces/components/overview/recent-activity.tsx - 清理未使用的參數\r\n  const defaultActivities: ActivityItem[] = [\r\n    {\r\n      id: '1',\r\n      type: 'file_upload',\r\n      user: { name: 'John Doe', avatar: '/avatars/john.jpg' },\r\n      description: 'uploaded a new file',\r\n      timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago\r\n      metadata: { fileName: 'project-spec.pdf' },\r\n    },\r"
+    },
+    {
+      "priority": "P3",
+      "type": "REFACTOR",
+      "description": "src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）",
+      "details": [],
+      "file": "src\\components\\features\\spaces\\components\\quality\\quality-dashboard.tsx",
+      "line": 28,
+      "context": "}\r\n\r\nexport function QualityDashboard({ spaceId, metrics }: QualityDashboardProps) {\r\n  // TODO: [P3] REFACTOR src/components/features/spaces/components/quality/quality-dashboard.tsx - 清理未使用的參數（spaceId 未使用）\r\n  const defaultMetrics: QualityMetrics = {\r\n    overallScore: 85,\r\n    completedChecks: 12,\r\n    totalChecks: 15,\r\n    criticalIssues: 2,\r\n    warnings: 5,\r\n    trends: {\r\n      scoreChange: 5,\r\n      completionRate: 80,\r"
     }
   ],
-  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 35\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 54\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
 }
