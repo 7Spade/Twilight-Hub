@@ -20,9 +20,11 @@
     "todo:health": "tsx scripts/todo-health-check.ts",
     "todo:conversation": "tsx scripts/generate-ai-conversation.ts",
     "todo:quick": "bash scripts/todo-quickstart.sh",
+    
     "// === Git Hooks ===": "",
     "prepare": "husky install",
     "pre-commit": "npm run todo:scan && npm run todo:health",
+    
     "// === CI/CD ===": "",
     "ci:todo": "npm run todo:scan && npm run todo:health"
   },

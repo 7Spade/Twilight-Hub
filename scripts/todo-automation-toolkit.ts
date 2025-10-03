@@ -42,13 +42,8 @@ const CONFIG = {
   // 忽略的目錄
   ignoreDirs: ['node_modules', '.next', 'dist', 'build', '.git'],
   
-  // TODO 正則表達式：
-  // 支援：
-  // 1) // TODO: [P1] TYPE 描述
-  // 2) /* TODO: [P1] TYPE 描述 */
-  // 3) {/* TODO: [P1] TYPE 描述 */} (JSX 註解)
-  // 4) 括號標籤：// TODO: [P1] [TAG] [TAG] TYPE 描述
-  todoRegex: /(?:\/\/|\/\*|\{\s*\/\*)\s*TODO:\s*\[([^\]]+)\]\s*(.+)/,
+  // TODO 正則表達式
+  todoRegex: /\/\/\s*TODO:\s*\[([^\]]+)\]\s*(\w+)\s+(.+)/,
   
   // 詳細資訊正則
   detailRegex: /\/\/\s*(.+)/,
@@ -120,41 +115,8 @@ class TodoScanner {
     filePath: string,
     match: RegExpMatchArray
   ): TodoItem {
-    const [, priority, restRaw] = match;
-
-    // 解析 TYPE 與描述，容錯括號標籤
-    // rest 可能為："FIX 修正問題" 或 "[BUG] [CONFIG] FIX 修正問題" 或 "[BUG] [CONFIG] 修正問題"
-    const rest = restRaw.trim();
-    const tokens = rest.split(/\s+/);
-
-    const bracketTags: string[] = [];
-    let type: string | undefined;
-    let descriptionStartIndex = 0;
-
-    for (let i = 0; i < tokens.length; i++) {
-      const t = tokens[i];
-      if (t.startsWith('[') && t.endsWith(']')) {
-        bracketTags.push(t.slice(1, -1));
-        continue;
-      }
-      // 第一個非括號 token 視為 type（全大寫或字母數字底線）
-      if (!type && /^[A-Z][A-Z0-9_]*$/.test(t)) {
-        type = t;
-        descriptionStartIndex = i + 1;
-        break;
-      }
-      // 若第一個非括號 token 不是明確 TYPE，則將其作為描述起始
-      descriptionStartIndex = i;
-      break;
-    }
-
-    if (!type) {
-      // 若未找到明確 TYPE，退回第一個括號標籤，否則使用 UNKNOWN
-      type = bracketTags[0] || 'UNKNOWN';
-    }
-
-    const description = tokens.slice(descriptionStartIndex).join(' ').trim();
-
+    const [, priority, type, description] = match;
+    
     // 收集詳細資訊（接下來的註解行）
     const details: string[] = [];
     let assignee: string | undefined;
@@ -162,8 +124,11 @@ class TodoScanner {
 
     for (let i = lineIndex + 1; i < lines.length; i++) {
       const detailLine = lines[i].trim();
+      
+      // 如果不是註解行，停止
       if (!detailLine.startsWith('//')) break;
 
+      // 檢查特殊標記
       const assigneeMatch = detailLine.match(CONFIG.assigneeRegex);
       if (assigneeMatch) {
         assignee = assigneeMatch[1];
@@ -176,6 +141,7 @@ class TodoScanner {
         continue;
       }
 
+      // 一般詳細資訊
       const detailMatch = detailLine.match(CONFIG.detailRegex);
       if (detailMatch && detailMatch[1]) {
         details.push(detailMatch[1]);
@@ -433,8 +399,7 @@ function main() {
   console.log('🔍 開始掃描 TODO...\n');
 
   const scanner = new TodoScanner();
-  // 固定掃描根目錄為專案根目錄（與執行位置無關）
-  const rootDir = path.resolve(__dirname, '..');
+  const rootDir = process.cwd();
 
   scanner.scan(rootDir);
   const report = scanner.generateReport();

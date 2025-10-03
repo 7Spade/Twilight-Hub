@@ -9,7 +9,7 @@
 ## 🎯 基本格式
 
 ```typescript
-// TODO: [P1] FEAT 簡短描述
+// TODO: [優先級] [類型] 簡短描述
 // 詳細說明（可選）
 // @assignee 負責人（可選）
 // @deadline YYYY-MM-DD（可選）
@@ -190,13 +190,25 @@ AI 可使用以下 RegEx 搜尋 TODO：
 
 ```json
 {
-  "todo-tree.general.tags": ["TODO", "FIXME", "NOTE", "SECURITY", "FEAT", "FIX", "REFACTOR"],
-  "todo-tree.regex.regex": "//\\s*(TODO|FIXME|NOTE):\\s*\\[(P[0-3])\\]\\s*(.+)",
+  "todo-tree.general.tags": ["TODO", "FIXME", "NOTE"],
+  "todo-tree.regex.regex": "//\\s*(TODO|FIXME|NOTE):\\s*\\[(P[0-3])\\]\\s*(\\w+)",
   "todo-tree.highlights.customHighlight": {
-    "P0": { "background": "#ff0000", "foreground": "#ffffff" },
-    "P1": { "background": "#ff9800", "foreground": "#000000" },
-    "P2": { "background": "#ffeb3b", "foreground": "#000000" },
-    "P3": { "background": "#4caf50", "foreground": "#ffffff" }
+    "P0": {
+      "background": "#ff0000",
+      "foreground": "#ffffff"
+    },
+    "P1": {
+      "background": "#ff9800",
+      "foreground": "#000000"
+    },
+    "P2": {
+      "background": "#ffeb3b",
+      "foreground": "#000000"
+    },
+    "P3": {
+      "background": "#4caf50",
+      "foreground": "#ffffff"
+    }
   }
 }
 ```
