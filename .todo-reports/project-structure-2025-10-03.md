@@ -35,7 +35,7 @@
     ├── activeContext.md (1.8 KB, 今天)
     ├── memory-clean.json (12 KB, 今天)
     ├── memory.backup.json (13.7 KB, 今天)
-    ├── memory.json (12.6 KB, 今天)
+    ├── memory.json (18 KB, 今天)
     ├── monitor.json (245 B, 今天)
     ├── productContext.md (269 B, 今天)
     ├── progress.md (593 B, 今天)
