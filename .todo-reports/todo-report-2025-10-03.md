@@ -1,9 +1,9 @@
 # 📝 TODO 報告
 ## 📊 統計摘要
-- 總計: 70 個項目
+- 總計: 71 個項目
 - 🔴 緊急: 16 個項目
 ### 依優先級
-- P2: 40 個
+- P2: 41 個
 - P1: 18 個
 - P0: 12 個
 ### 依類型
@@ -13,7 +13,7 @@
 - CLEANUP: 2 個
 - TYPING: 1 個
 - HOOK: 2 個
-- VAN: 17 個
+- VAN: 18 個
 ---
 ## 🔴 P0 (12 個)
 ### 1. [REFACTOR] src/app/(app)/organizations/[organizationslug]/[spaceslug]/page.tsx - 伺服端處理 redirect
@@ -271,7 +271,7 @@
 > 效能影響：無，但提升類型安全性和代碼可讀性
 > 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
-## 🟡 P2 (40 個)
+## 🟡 P2 (41 個)
 ### 1. [REFACTOR] src/components/features/spaces/components/ - 合併重複的組件邏輯
 **位置:** `src\components\features\spaces\components\index.ts:18`
 **負責人:** @frontend
@@ -489,7 +489,16 @@
 > 效能影響：無，但提升類型安全性和運行時安全性
 > 相關受影響檔案：無（內部重構，不影響外部接口）
 ---
-### 30. [VAN] - 現代化 reduce 類型推斷
+### 30. [VAN] - 現代化類型斷言，使用更安全的鍵值訪問
+**位置:** `src\components\features\spaces\components\participants\view-toggle.tsx:65`
+**詳細說明:**
+> 問題：mode.icon as keyof typeof ICON_MAP 使用類型斷言，可能存在鍵值不存在的情況
+> 解決方案：使用 Object.hasOwn() 或 in 運算符驗證鍵值存在
+> 現代化建議：const IconComponent = Object.hasOwn(ICON_MAP, mode.icon) ? ICON_MAP[mode.icon] : DefaultIcon
+> 效能影響：無，但提升類型安全性和運行時安全性
+> 相關受影響檔案：無（內部重構，不影響外部接口）
+---
+### 31. [VAN] - 現代化 reduce 類型推斷
 **位置:** `src\components\features\spaces\components\quality\checklist.tsx:137`
 **詳細說明:**
 > 問題：使用 as Record<string, ChecklistItem[]> 類型斷言
@@ -498,19 +507,19 @@
 > 效能影響：無，但提升類型安全性
 > 相關受影響檔案：無（內部重構）
 ---
-### 31. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
+### 32. [FEAT] src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
 **位置:** `src\components\features\spaces\components\quality\create-checklist-template.tsx:88`
 ---
-### 32. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
+### 33. [FEAT] src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
 **位置:** `src\components\features\spaces\components\report\create-report-dialog.tsx:90`
 ---
-### 33. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
+### 34. [FEAT] src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-dashboard.tsx:124`
 ---
-### 34. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
+### 35. [FEAT] src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
 **位置:** `src\components\features\spaces\components\report\report-viewer.tsx:85`
 ---
-### 35. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
+### 36. [REFACTOR] src/components/features/spaces/hooks/use-file-actions.ts - 奧卡姆剃刀精簡檔案動作 Hook
 **位置:** `src\components\features\spaces\hooks\use-file-actions.ts:8`
 **詳細說明:**
 > 建議：
@@ -518,7 +527,7 @@
 > 2) 僅回傳實際用到的最小 API（如 download/preview/delete），避免暴露整包操作以降低重渲染。
 > 3) 針對重複邏輯（權限/錯誤處理/Toast）抽為 util，避免每個 action 內重複。
 ---
-### 36. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
+### 37. [REFACTOR] src/components/ui/chart.tsx - 奧卡姆剃刀精簡圖表層
 **位置:** `src\components\ui\chart.tsx:1`
 **詳細說明:**
 > 建議：
@@ -526,7 +535,7 @@
 > 2) 將重複的 formatter/mapper 提升為 util，避免在多圖表內重複實作。
 > 3) 禁止於渲染期間觸發副作用或資料拉取，將副作用遷至上層 hook。
 ---
-### 37. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
+### 38. [REFACTOR] src/firebase/firestore/use-collection.tsx - 控制快取與依賴穩定，降低重新訂閱
 **位置:** `src\firebase\firestore\use-collection.tsx:37`
 **詳細說明:**
 > 建議：
@@ -534,7 +543,7 @@
 > - 提供選項：{ listen?: boolean; cache?: 'no-store'|'memory' }，與 App Router 快取策略對齊。
 > - 僅回傳必要欄位，錯誤統一由 errorEmitter 傳遞。
 ---
-### 38. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
+### 39. [REFACTOR] src/hooks/use-permissions.ts - 奧卡姆剃刀精簡權限 Hook
 **位置:** `src\hooks\use-permissions.ts:2`
 **詳細說明:**
 > 建議：
@@ -542,7 +551,7 @@
 > 2) 僅回傳呼叫端實際需要的最小資料（布林/字串），降低重渲染與心智負擔。
 > 3) 以穩定依賴陣列與衍生值 memo 化，移除多餘依賴導致的 hooks 警告。
 ---
-### 39. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
+### 40. [REFACTOR] src/lib/role-management.ts - 合併查詢與快取，僅回傳最小資料
 **位置:** `src\lib\role-management.ts:112`
 **負責人:** @ai
 **詳細說明:**
@@ -551,7 +560,7 @@
 > - checkPermission 與 getAllRoleDefinitions 共享快取；
 > - 僅暴露 id/name/permissions；將非必要欄位延後查詢。
 ---
-### 40. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
+### 41. [REFACTOR] src/lib/role-management.ts - 奧卡姆剃刀精簡服務層
 **位置:** `src\lib\role-management.ts:121`
 **詳細說明:**
 > 建議：
