@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "[post-commit] Updating documentation..."
+
+# 更新項目結構文檔
+npx --yes tsx scripts/generate-tree.ts
+
+# 檢查並提交文檔更新
+if ! git diff --quiet docs/project-structure.md .todo-reports/; then
+    echo "[post-commit] Documentation updated, committing changes..."
+    git add docs/project-structure.md .todo-reports/
+    git commit -m "docs: auto-update project structure and TODO reports [skip ci]"
+    echo "[post-commit] Documentation commit created"
+else
+    echo "[post-commit] No documentation changes detected"
+fi

@@ -52,8 +52,9 @@ export function InitiateAcceptanceFlow({
   const onSubmit = async (data: InitiateAcceptanceFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: Implement create acceptance API call
+      // TODO: [P2] FEAT src/components/features/spaces/components/acceptance/initiate-acceptance-flow.tsx - 實現創建驗收 API 調用
       console.log('Creating acceptance item:', { spaceId, ...data });
+      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       
       const newAcceptance = {

@@ -166,13 +166,15 @@ export function RoleList({ organizationId, roles = defaultRoles, canManage = fal
   );
 
   const handlePermissionToggle = (roleId: string, permission: keyof Role['permissions']) => {
-    // TODO: Implement permission update logic
+    // TODO: [P2] FEAT src/components/features/organizations/components/roles/role-list.tsx - 實現權限更新邏輯
     console.log(`Toggle ${permission} for role ${roleId}`);
+    // @assignee dev
   };
 
   const handleAccessLevelChange = (roleId: string, accessLevel: string) => {
-    // TODO: Implement access level update logic
+    // TODO: [P2] FEAT src/components/features/organizations/components/roles/role-list.tsx - 實現訪問級別更新邏輯
     console.log(`Change access level to ${accessLevel} for role ${roleId}`);
+    // @assignee dev
   };
 
   return (

@@ -128,7 +128,9 @@ export function AdjustStockDialog({
           let stockDocRef;
 
           if (hasExistingStockRecord) {
-              // TODO: [P2] [BUG] [UI] [TODO] 修復非空斷言警告 - 應該先檢查 stockInfo.stockId 是否存在
+              // TODO: [P2] FIX src/components/adjust-stock-dialog.tsx - 修復非空斷言警告
+              // 應該先檢查 stockInfo.stockId 是否存在
+              // @assignee dev
               stockDocRef = doc(firestore, 'accounts', organizationId, 'warehouses', warehouseId, 'stock', stockInfo.stockId!);
               batch.update(stockDocRef, { quantity: increment(adjustment) });
           } else {

@@ -47,8 +47,9 @@ export function CreateIssueForm({ spaceId, open, onOpenChange, onIssueCreated }:
   const onSubmit = async (data: CreateIssueFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: Implement create issue API call
+      // TODO: [P2] FEAT src/components/features/spaces/components/issues/create-issue-form.tsx - 實現創建問題 API 調用
       console.log('Creating issue:', { spaceId, ...data });
+      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       
       const newIssue = {

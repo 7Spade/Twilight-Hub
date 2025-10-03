@@ -33,9 +33,10 @@ export function ContractList({
   const [filters, setFilters] = useState<ContractFilters>({});
   const [searchTerm, setSearchTerm] = useState('');
 
-  // TODO: 整合 React Query hooks 和 Server Actions
+  // TODO: [P1] FEAT src/components/features/contracts/contract-list.tsx - 整合 React Query hooks 和 Server Actions
   const contracts: Contract[] = [];
   const isLoading = false;
+  // @assignee dev
   const error = null;
 
   // 處理搜索
@@ -58,19 +59,22 @@ export function ContractList({
   // 處理合約操作
   const handleDeleteContract = (contractId: string) => {
     if (confirm('確定要刪除這個合約嗎？')) {
-      // TODO: 實現刪除邏輯
+      // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現刪除邏輯
       console.log('Delete contract:', contractId);
+      // @assignee dev
     }
   };
 
   const handleAnalyzeContract = (contractId: string) => {
-    // TODO: 實現 AI 分析邏輯
+    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 AI 分析邏輯
     console.log('Analyze contract:', contractId);
+    // @assignee dev
   };
 
   const handleGeneratePDF = (contractId: string) => {
-    // TODO: 實現 PDF 生成邏輯
+    // TODO: [P2] FEAT src/components/features/contracts/contract-list.tsx - 實現 PDF 生成邏輯
     console.log('Generate PDF for contract:', contractId);
+    // @assignee dev
   };
 
   const getStatusColor = (status: string) => {

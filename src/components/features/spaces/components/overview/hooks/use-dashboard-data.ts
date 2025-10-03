@@ -38,8 +38,9 @@ export function useDashboardData({
 
   // 獲取儀表板統計數據
   const fetchStats = useCallback(async (): Promise<DashboardStats> => {
-    // TODO: 替換為實際的 API 調用
+    // TODO: [P2] FEAT src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
     // 這裡使用模擬數據
+    // @assignee dev
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -56,8 +57,9 @@ export function useDashboardData({
 
   // 獲取活動數據
   const fetchActivities = useCallback(async (): Promise<ActivityItem[]> => {
-    // TODO: 替換為實際的 API 調用
+    // TODO: [P2] FEAT src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts - 替換為實際的 API 調用
     // 這裡使用模擬數據
+    // @assignee dev
     return new Promise((resolve) => {
       setTimeout(() => {
         const mockActivities: ActivityItem[] = [

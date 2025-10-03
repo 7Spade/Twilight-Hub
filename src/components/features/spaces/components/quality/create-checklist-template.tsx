@@ -66,8 +66,9 @@ export function CreateChecklistTemplate({
   const onSubmit = async (data: ChecklistTemplateFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: Implement create template API call
+      // TODO: [P2] FEAT src/components/features/spaces/components/quality/create-checklist-template.tsx - 實現創建模板 API 調用
       console.log('Creating checklist template:', { spaceId, ...data });
+      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       
       const newTemplate = {

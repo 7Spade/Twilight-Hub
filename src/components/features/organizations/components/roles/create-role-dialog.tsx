@@ -67,8 +67,9 @@ export function CreateRoleDialog({ open, onOpenChange, organizationId }: CreateR
   const onSubmit = async (data: RoleFormData) => {
     setIsLoading(true);
     try {
-      // TODO: Implement role creation API call
+      // TODO: [P2] FEAT src/components/features/organizations/components/roles/create-role-dialog.tsx - 實現角色創建 API 調用
       console.log('Creating role for organization:', organizationId, data);
+      // @assignee dev
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));

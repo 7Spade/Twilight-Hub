@@ -65,8 +65,9 @@ export function CreateReportDialog({
   const onSubmit = async (data: CreateReportFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: Implement create report API call
+      // TODO: [P2] FEAT src/components/features/spaces/components/report/create-report-dialog.tsx - 實現創建報告 API 調用
       console.log('Creating report:', { spaceId, ...data });
+      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
       
       const newReport = {

@@ -79,13 +79,13 @@ const ParticipantRow = memo(function ParticipantRow({
       <TableCell>{participant.phone || '-'}</TableCell>
       <TableCell>
         <span className={getStatusColor(participant.status)}>
-          {participant.status === 'active' ? '使用�? : participant.status}
+          {participant.status === 'active' ? '使用�? : participant.status}
         </span>
       </TableCell>
       <TableCell>{participant.company || '-'}</TableCell>
       <TableCell>
         <Badge variant="secondary" className={getRoleColor(participant.role)}>
-          {participant.role === 'member' ? '專�??�員' : participant.role}
+          {participant.role === 'member' ? '專�??�員' : participant.role}
         </Badge>
       </TableCell>
       <TableCell>{participant.accessLevel}</TableCell>
@@ -113,7 +113,7 @@ const ParticipantRow = memo(function ParticipantRow({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => onUpdateRole(participant.id)}>
-                編輯?�員
+                編輯?�員
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onUpdateRole(participant.id)}>
                 變更角色
@@ -122,7 +122,7 @@ const ParticipantRow = memo(function ParticipantRow({
                 className="text-red-600"
                 onClick={() => onRemove(participant.id)}
               >
-                移除?�員
+                移除?�員
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -138,12 +138,13 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   }, [actions]);
 
   const handleUpdateRole = useCallback((participantId: string) => {
-    // TODO: Open role update dialog
+    // TODO: [P2] FEAT src/components/features/spaces/components/participants/participant-table.tsx - 打開角色更新對話框
     console.log('Update role for participant:', participantId);
+    // @assignee dev
   }, []);
 
   const handleRemove = useCallback((participantId: string) => {
-    if (confirm('確�?要移?�此?�員?��?')) {
+    if (confirm('確�?要移?�此?�員?��?')) {
       actions.onRemove(participantId);
     }
   }, [actions]);
@@ -151,7 +152,7 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   if (participants.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
-        沒�??�到?�員
+        沒�??�到?�員
       </div>
     );
   }
@@ -161,14 +162,14 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="cursor-pointer">?�稱</TableHead>
-            <TableHead className="cursor-pointer">?��??�件</TableHead>
-            <TableHead className="cursor-pointer">?�話</TableHead>
-            <TableHead className="cursor-pointer">?�??/TableHead>
-            <TableHead className="cursor-pointer">?�司</TableHead>
+            <TableHead className="cursor-pointer">?�稱</TableHead>
+            <TableHead className="cursor-pointer">?��??�件</TableHead>
+            <TableHead className="cursor-pointer">?�話</TableHead>
+            <TableHead className="cursor-pointer">?�??/TableHead>
+            <TableHead className="cursor-pointer">?�司</TableHead>
             <TableHead>角色</TableHead>
-            <TableHead>存�?層�?</TableHead>
-            <TableHead className="cursor-pointer">?�入?��?</TableHead>
+            <TableHead>存�?層�?</TableHead>
+            <TableHead className="cursor-pointer">?�入?��?</TableHead>
             <TableHead>Docs</TableHead>
             <TableHead>Design Collaboration</TableHead>
             <TableHead>Model Coordination</TableHead>

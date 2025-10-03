@@ -44,8 +44,9 @@ export function ParticipantRoleEditor({
   const onSubmit = async (data: RoleFormValues) => {
     setIsLoading(true);
     try {
-      // TODO: Implement role change API call
+      // TODO: [P2] FEAT src/components/features/spaces/components/participants/participant-role-editor.tsx - å¯¦ç¾è§’è‰²è®Šæ›´ API èª¿ç”¨
       console.log('Changing role:', { participantId, newRole: data.role });
+      // @assignee dev
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       onRoleChange?.(participantId, data.role);
       onOpenChange(false);
@@ -59,13 +60,13 @@ export function ParticipantRoleEditor({
   const getRoleDescription = (role: string) => {
     switch (role) {
       case 'owner':
-        return '?æ??€?‰å??½å?è¨­å??„å??´å??–æ?';
+        return '?ï¿½ï¿½??ï¿½?ï¿½ï¿½??ï¿½ï¿½?è¨­ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?';
       case 'admin':
-        return '?¯ä»¥ç®¡ç??å“¡?Œå¤§?¨å?è¨­å?';
+        return '?ï¿½ä»¥ç®¡ï¿½??ï¿½å“¡?ï¿½å¤§?ï¿½ï¿½?è¨­ï¿½?';
       case 'member':
-        return '?¯ä»¥æª¢è??Œç·¨è¼¯å…§å®?;
+        return '?ï¿½ä»¥æª¢ï¿½??ï¿½ç·¨è¼¯å…§ï¿½?;
       case 'viewer':
-        return '?ªèƒ½æª¢è??§å®¹';
+        return '?ï¿½èƒ½æª¢ï¿½??ï¿½å®¹';
       default:
         return '';
     }
@@ -77,7 +78,7 @@ export function ParticipantRoleEditor({
         <DialogHeader>
           <DialogTitle>è®Šæ›´è§’è‰²</DialogTitle>
           <DialogDescription>
-            ?´æ–° {participantName} ?„è??²ã€‚é€™å?è®Šæ›´ä»–å€‘åœ¨æ­¤ç©º?“ä¸­?„æ??ã€?
+            ?ï¿½æ–° {participantName} ?ï¿½ï¿½??ï¿½ã€‚é€™ï¿½?è®Šæ›´ä»–å€‘åœ¨æ­¤ç©º?ï¿½ä¸­?ï¿½ï¿½??ï¿½ï¿½?
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -91,14 +92,14 @@ export function ParticipantRoleEditor({
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="?¸å?è§’è‰²" />
+                        <SelectValue placeholder="?ï¿½ï¿½?è§’è‰²" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="owner">?æ???/SelectItem>
-                      <SelectItem value="admin">ç®¡ç???/SelectItem>
-                      <SelectItem value="member">?å“¡</SelectItem>
-                      <SelectItem value="viewer">æª¢è???/SelectItem>
+                      <SelectItem value="owner">?ï¿½ï¿½???/SelectItem>
+                      <SelectItem value="admin">ç®¡ï¿½???/SelectItem>
+                      <SelectItem value="member">?ï¿½å“¡</SelectItem>
+                      <SelectItem value="viewer">æª¢ï¿½???/SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -114,10 +115,10 @@ export function ParticipantRoleEditor({
             )}
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                ?–æ?
+                ?ï¿½ï¿½?
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '?´æ–°ä¸?..' : '?´æ–°è§’è‰²'}
+                {isLoading ? '?ï¿½æ–°ï¿½?..' : '?ï¿½æ–°è§’è‰²'}
               </Button>
             </DialogFooter>
           </form>

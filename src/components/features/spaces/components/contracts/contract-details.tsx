@@ -95,8 +95,9 @@ export function ContractDetails({ contract, open, onOpenChange }: ContractDetail
   };
 
   const handleDownload = () => {
-    // TODO: Implement contract download logic
+    // TODO: [P2] FEAT src/components/features/spaces/components/contracts/contract-details.tsx - 實現合約下載邏輯
     console.log('Downloading contract:', contract.title);
+    // @assignee dev
   };
 
   return (

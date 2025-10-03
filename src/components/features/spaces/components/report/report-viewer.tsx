@@ -76,8 +76,9 @@ export function ReportViewer({ report, open, onOpenChange }: ReportViewerProps) 
 
   const handleDownload = () => {
     if (report.downloadUrl) {
-      // TODO: Implement actual download logic
+      // TODO: [P2] FEAT src/components/features/spaces/components/report/report-viewer.tsx - 實現實際下載邏輯
       console.log('Downloading report:', report.title);
+      // @assignee dev
       window.open(report.downloadUrl, '_blank');
     }
   };

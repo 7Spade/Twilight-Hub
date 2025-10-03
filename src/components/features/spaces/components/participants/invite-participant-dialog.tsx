@@ -12,7 +12,7 @@ import { z } from 'zod';
 import { ParticipantInviteFormData, ParticipantRole } from './types';
 
 const inviteSchema = z.object({
-  email: z.string().email('è«‹è¼¸?¥æ??ˆç??»å??µä»¶?°å?'),
+  email: z.string().email('è«‹è¼¸?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ä»¶?ï¿½ï¿½?'),
   role: z.enum(['admin', 'member', 'viewer']),
   message: z.string().optional(),
 });
@@ -51,7 +51,8 @@ export function InviteParticipantDialog({
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to invite participant:', error);
-      // TODO: Show error toast
+      // TODO: [P2] FEAT src/components/features/spaces/components/participants/invite-participant-dialog.tsx - é¡¯ç¤ºéŒ¯èª¤æç¤º
+      // @assignee dev
     } finally {
       setIsLoading(false);
     }
@@ -61,9 +62,9 @@ export function InviteParticipantDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>?°å??å“¡</DialogTitle>
+          <DialogTitle>?ï¿½ï¿½??ï¿½å“¡</DialogTitle>
           <DialogDescription>
-            ?³é€é?è«‹ä»¥? å…¥æ­¤ç©º?“ã€‚ä??‘å??¶åˆ°?…å«?€è«‹ç??»å??µä»¶??
+            ?ï¿½é€ï¿½?è«‹ä»¥?ï¿½å…¥æ­¤ç©º?ï¿½ã€‚ï¿½??ï¿½ï¿½??ï¿½åˆ°?ï¿½å«?ï¿½è«‹ï¿½??ï¿½ï¿½??ï¿½ä»¶??
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -73,7 +74,7 @@ export function InviteParticipantDialog({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>?»å??µä»¶?°å?</FormLabel>
+                  <FormLabel>?ï¿½ï¿½??ï¿½ä»¶?ï¿½ï¿½?</FormLabel>
                   <FormControl>
                     <Input placeholder="colleague@example.com" {...field} />
                   </FormControl>
@@ -90,13 +91,13 @@ export function InviteParticipantDialog({
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="?¸å?è§’è‰²" />
+                        <SelectValue placeholder="?ï¿½ï¿½?è§’è‰²" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="admin">ç®¡ç???/SelectItem>
-                      <SelectItem value="member">?å“¡</SelectItem>
-                      <SelectItem value="viewer">æª¢è???/SelectItem>
+                      <SelectItem value="admin">ç®¡ï¿½???/SelectItem>
+                      <SelectItem value="member">?ï¿½å“¡</SelectItem>
+                      <SelectItem value="viewer">æª¢ï¿½???/SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -108,9 +109,9 @@ export function InviteParticipantDialog({
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>?‹äººè¨Šæ¯ (?¸å¡«)</FormLabel>
+                  <FormLabel>?ï¿½äººè¨Šæ¯ (?ï¿½å¡«)</FormLabel>
                   <FormControl>
-                    <Input placeholder="?°å??‹äººè¨Šæ¯..." {...field} />
+                    <Input placeholder="?ï¿½ï¿½??ï¿½äººè¨Šæ¯..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -118,10 +119,10 @@ export function InviteParticipantDialog({
             />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                ?–æ?
+                ?ï¿½ï¿½?
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? '?³é€ä¸­...' : '?³é€é?è«?}
+                {isLoading ? '?ï¿½é€ä¸­...' : '?ï¿½é€ï¿½?ï¿½?}
               </Button>
             </DialogFooter>
           </form>

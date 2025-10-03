@@ -3,10 +3,9 @@
 
 set -e
 
-echo "[pre-commit] Updating docs/project-structure.md via scripts/generate-tree.ts"
-npx --yes tsx scripts/generate-tree.ts
-git add docs/project-structure.md 2>/dev/null || true
+echo "[pre-commit] Running pre-commit checks..."
 
+# 只運行掃描，不更新文件
 echo "[pre-commit] Scanning TODOs via scripts/todo-automation-toolkit.ts"
 npx --yes tsx scripts/todo-automation-toolkit.ts
 

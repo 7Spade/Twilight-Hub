@@ -94,9 +94,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
   const loadRoles = async () => {
     setLoading(true);
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // const rolesData = await fetchRoles(spaceId);
       // setRoles(rolesData);
+      // @assignee dev
       
       // Mock data for now
       setRoles([
@@ -137,9 +138,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const loadUsers = async () => {
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // const usersData = await fetchUsers(spaceId);
       // setUsers(usersData);
+      // @assignee dev
       
       // Mock data for now
       setUsers([
@@ -163,9 +165,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const handleCreateRole = async (roleData: Omit<Role, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // const newRole = await createRole(spaceId, roleData);
       // setRoles(prev => [...prev, newRole]);
+      // @assignee dev
       
       console.log('Creating role:', roleData);
       setIsCreateDialogOpen(false);
@@ -176,9 +179,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const handleUpdateRole = async (roleId: string, roleData: Partial<Role>) => {
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // const updatedRole = await updateRole(spaceId, roleId, roleData);
       // setRoles(prev => prev.map(role => role.id === roleId ? updatedRole : role));
+      // @assignee dev
       
       console.log('Updating role:', roleId, roleData);
       setIsEditDialogOpen(false);
@@ -190,9 +194,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const handleDeleteRole = async (roleId: string) => {
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // await deleteRole(spaceId, roleId);
       // setRoles(prev => prev.filter(role => role.id !== roleId));
+      // @assignee dev
       
       console.log('Deleting role:', roleId);
     } catch (error) {
@@ -202,9 +207,10 @@ export function RoleManager({ spaceId, organizationId }: RoleManagerProps) {
 
   const handleAssignRole = async (userId: string, roleId: string) => {
     try {
-      // TODO: Implement actual API call
+      // TODO: [P1] FEAT src/components/auth/role-manager.tsx - 實現實際的 API 調用
       // await assignRole(spaceId, userId, roleId);
       // loadUsers(); // Reload users to reflect changes
+      // @assignee dev
       
       console.log('Assigning role:', userId, roleId);
       setIsAssignDialogOpen(false);

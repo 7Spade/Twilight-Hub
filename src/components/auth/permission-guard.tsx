@@ -15,6 +15,8 @@ export function PermissionGuard({
   children, 
   fallback = null 
 }: PermissionGuardProps) {
-  // TODO: Implement permission checking logic
+  // TODO: [P1] FEAT src/components/auth/permission-guard.tsx - 實現權限檢查邏輯
+  // 需要根據用戶權限決定是否顯示子組件
+  // @assignee dev
   return <>{children}</>;
 }

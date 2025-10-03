@@ -121,8 +121,9 @@ export function ReportDashboard({ spaceId, reports, canCreate = false }: ReportD
 
   const handleDownload = (report: Report) => {
     if (report.downloadUrl) {
-      // TODO: Implement actual download logic
+      // TODO: [P2] FEAT src/components/features/spaces/components/report/report-dashboard.tsx - 實現實際下載邏輯
       console.log('Downloading report:', report.title);
+      // @assignee dev
       window.open(report.downloadUrl, '_blank');
     }
   };

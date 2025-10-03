@@ -1,10 +1,77 @@
 {
   "summary": {
-    "total": 0,
-    "byPriority": {},
-    "byType": {},
+    "total": 5,
+    "byPriority": {
+      "P1": 3,
+      "P2": 2
+    },
+    "byType": {
+      "FEAT": 5
+    },
     "urgent": 0
   },
-  "todos": [],
-  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 0\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
+  "todos": [
+    {
+      "priority": "P1",
+      "type": "FEAT",
+      "description": "src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配",
+      "details": [
+        "const roleAssignment = await fetchUserRoleAssignment(state.userId);",
+        "setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));"
+      ],
+      "file": "src\\components\\auth\\auth-provider.tsx",
+      "line": 139,
+      "assignee": "dev",
+      "context": "    setState(prev => ({ ...prev, isLoading: true, error: null }));\r\n\r\n    try {\r\n      // TODO: [P1] FEAT src/components/auth/auth-provider.tsx - 從伺服器獲取用戶角色分配\r\n      // const roleAssignment = await fetchUserRoleAssignment(state.userId);\r\n      // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));\r\n      // @assignee dev\r\n    } catch (error) {\r\n      setState(prev => ({ \r\n        ...prev, \r\n        error: error instanceof Error ? error.message : 'Failed to refresh permissions' \r\n      }));\r\n    } finally {\r"
+    },
+    {
+      "priority": "P1",
+      "type": "FEAT",
+      "description": "src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯",
+      "details": [
+        "這裡應該調用 Firebase 或 API 來檢查權限"
+      ],
+      "file": "src\\hooks\\use-permissions.ts",
+      "line": 23,
+      "assignee": "dev",
+      "context": "    setError(null);\r\n\r\n    try {\r\n      // TODO: [P1] FEAT src/hooks/use-permissions.ts - 實現實際的權限檢查邏輯\r\n      // 這裡應該調用 Firebase 或 API 來檢查權限\r\n      // @assignee dev\r\n      \r\n      // 模擬 API 調用\r\n      await new Promise(resolve => setTimeout(resolve, 100));\r\n      \r\n      // 暫時返回默認結果\r\n      return {\r\n        hasPermission: false,\r"
+    },
+    {
+      "priority": "P1",
+      "type": "FEAT",
+      "description": "src/lib/role-management.ts - 實作權限檢查邏輯",
+      "details": [
+        "需要根據用戶角色和權限配置進行檢查"
+      ],
+      "file": "src\\lib\\role-management.ts",
+      "line": 21,
+      "assignee": "dev",
+      "context": "    return null;\n  },\n  checkPermission: async (_userId: string, _spaceId: string, _permission: Permission, _userRoleAssignment: unknown) => {\n    // TODO: [P1] FEAT src/lib/role-management.ts - 實作權限檢查邏輯\n    // 需要根據用戶角色和權限配置進行檢查\n    // @assignee dev\n    return {\n      hasPermission: false,\n      reason: 'not_implemented',\n      source: 'space',\n      roleId: undefined,\n    };\n  }"
+    },
+    {
+      "priority": "P2",
+      "type": "FEAT",
+      "description": "src/hooks/use-permissions.ts - 實現組織權限檢查",
+      "details": [
+        "需要根據組織層級的權限配置進行檢查"
+      ],
+      "file": "src\\hooks\\use-permissions.ts",
+      "line": 128,
+      "assignee": "dev",
+      "context": "    organizationId: string,\r\n    permission: Permission\r\n  ): Promise<PermissionCheckResult> => {\r\n    // TODO: [P2] FEAT src/hooks/use-permissions.ts - 實現組織權限檢查\r\n    // 需要根據組織層級的權限配置進行檢查\r\n    // @assignee dev\r\n    return checkPermission(permission);\r\n  }, [checkPermission]);\r\n\r\n  // 批量檢查空間權限\r\n  const checkSpacePermissions = useCallback(async (\r\n    spaceId: string,\r\n    permissions: Permission[]\r"
+    },
+    {
+      "priority": "P2",
+      "type": "FEAT",
+      "description": "src/lib/role-management.ts - 實作角色定義查詢功能",
+      "details": [
+        "需要從資料庫或配置中獲取角色定義"
+      ],
+      "file": "src\\lib\\role-management.ts",
+      "line": 15,
+      "assignee": "dev",
+      "context": "\nexport const roleManagementService = {\n  getRoleDefinition: (_roleId: string): RoleDefinition | null => {\n    // TODO: [P2] FEAT src/lib/role-management.ts - 實作角色定義查詢功能\n    // 需要從資料庫或配置中獲取角色定義\n    // @assignee dev\n    return null;\n  },\n  checkPermission: async (_userId: string, _spaceId: string, _permission: Permission, _userRoleAssignment: unknown) => {\n    // TODO: [P1] FEAT src/lib/role-management.ts - 實作權限檢查邏輯\n    // 需要根據用戶角色和權限配置進行檢查\n    // @assignee dev\n    return {"
+    }
+  ],
+  "aiInstructions": "# AI Agent 工作指令\n## 📊 專案狀態\n- 總 TODO 數量: 5\n- 🔴 緊急項目: 0\n## 📋 建議處理順序\n依照以下順序處理 TODO：\n1. P0 - SECURITY（安全性問題）\n2. P0 - FIX（緊急修復）\n3. P1 - SECURITY\n4. P1 - FIX\n5. P1 - FEAT（重要功能）\n6. P2 項目\n7. P3 項目"
 }
