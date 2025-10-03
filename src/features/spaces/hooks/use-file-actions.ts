@@ -13,7 +13,7 @@ import {
   downloadFileAction, 
   deleteFileAction, 
   listFilesAction,
-  type FileItem 
+  type FileActionItem 
 } from '@/features/spaces/actions';
 
 interface UploadProgress {
@@ -26,12 +26,12 @@ interface UseFileActionsReturn {
   uploadFile: (file: File, spaceId: string, userId: string) => Promise<boolean>;
   downloadFile: (fileName: string, spaceId: string, userId: string) => Promise<boolean>;
   deleteFile: (fileName: string, spaceId: string, userId: string) => Promise<boolean>;
-  listFiles: (spaceId: string, userId: string) => Promise<FileItem[]>;
+  listFiles: (spaceId: string, userId: string) => Promise<FileActionItem[]>;
   
   // State
   isLoading: boolean;
   uploadProgress: UploadProgress | null;
-  files: FileItem[];
+  files: FileActionItem[];
   error: string | null;
 }
 
@@ -39,7 +39,7 @@ export function useFileActions(): UseFileActionsReturn {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<UploadProgress | null>(null);
-  const [files, setFiles] = useState<FileItem[]>([]);
+  const [files, setFiles] = useState<FileActionItem[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const uploadFile = useCallback(async (
@@ -173,7 +173,7 @@ export function useFileActions(): UseFileActionsReturn {
   const listFiles = useCallback(async (
     spaceId: string,
     userId: string
-  ): Promise<FileItem[]> => {
+  ): Promise<FileActionItem[]> => {
     try {
       setIsLoading(true);
       setError(null);

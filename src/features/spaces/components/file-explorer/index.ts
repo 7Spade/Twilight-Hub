@@ -12,3 +12,24 @@ export { Toolbar } from './toolbar';
 export { UploadDialog } from './upload-dialog';
 export { VersionHistoryDrawer, type VersionItem } from './version-history-drawer';
 export { ColumnSettingsMenu, type ColumnConfig } from './column-settings-menu';
+
+// Thumbnail view components
+export { FileThumbnailGrid } from './thumbnail/file-thumbnail-grid';
+export { FileThumbnailCard } from './thumbnail/file-thumbnail-card';
+export { FileTypeIcon } from './thumbnail/file-type-icon';
+
+// Detail view components
+export { FileDetailView } from './detail/file-detail-view';
+
+// Services
+export { FilePreviewServiceFactory } from './services/file-preview-service';
+
+// Hooks and Context
+export { 
+  FileExplorerProvider, 
+  useFileExplorerContext,
+  useViewMode,
+  useSelection,
+  useDetailView,
+  useFileExplorerUI
+} from './hooks/use-file-explorer-context';

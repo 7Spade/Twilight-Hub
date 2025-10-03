@@ -11,7 +11,7 @@ import { collection, query, where, documentId } from 'firebase/firestore';
 
 import { useFirestore, useCollection } from '@/firebase';
 import { SpaceListView } from '@/features/spaces/components/spaces-list-view';
-import { type Account } from '@/lib/types';
+import { type Account, type Space } from '@/lib/types';
 
 export function StarredSpaces({ userId }: { userId: string }) {
   const firestore = useFirestore();
@@ -27,7 +27,7 @@ export function StarredSpaces({ userId }: { userId: string }) {
     [firestore, userId]
   );
 
-  const { data: starredSpaces, isLoading } = useCollection(starredSpacesQuery);
+  const { data: starredSpaces, isLoading } = useCollection<Space>(starredSpacesQuery);
 
   // We need to fetch the owners of these spaces to generate correct links
   const ownerIds = useMemo(() => {

@@ -21,13 +21,17 @@ import { EmptyFolderState } from './empty-folder-state';
 import { FilterPanel, type FilterOptions } from './filter-panel';
 import { BreadcrumbNavigation, type BreadcrumbItem } from './breadcrumb-navigation';
 import { DeletedItems } from './deleted-items';
+import { FileThumbnailGrid } from './thumbnail/file-thumbnail-grid';
+import { FileDetailView } from './detail/file-detail-view';
+import { FileExplorerProvider, useFileExplorerContext } from './hooks/use-file-explorer-context';
 
 interface FileExplorerProps {
   spaceId: string;
   userId: string;
 }
 
-export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
+// Internal component that uses the context
+function FileExplorerContent({ spaceId, userId }: FileExplorerProps) {
   const { 
     uploadFile, 
     downloadFile, 
@@ -38,8 +42,16 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
     files: rawFiles 
   } = useFileActions();
 
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [currentView, setCurrentView] = useState<'grid' | 'list'>('list');
+  const { 
+    currentView, 
+    setCurrentView,
+    selectedItems, 
+    setSelectedItems, 
+    openDetailView, 
+    closeDetailView,
+    detailViewFile,
+    isDetailViewOpen 
+  } = useFileExplorerContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [contextMenuItem, setContextMenuItem] = useState<FileItem | null>(null);
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
@@ -390,7 +402,7 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
           </div>
         </div>
 
-        {/* 右側文件表格 */}
+        {/* 右側文件視圖 */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {filteredFiles.length === 0 ? (
             <EmptyFolderState 
@@ -400,19 +412,30 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
           ) : (
             <>
               <div className="flex-1 overflow-auto p-4">
-                <FileTable
-                  files={filteredFiles}
-                  selectedItems={selectedItems}
-                  onSelectionChange={setSelectedItems}
-                  onItemClick={handleItemClick}
-                  onItemAction={handleItemAction}
-                />
+                {currentView === 'list' ? (
+                  <FileTable
+                    files={filteredFiles}
+                    selectedItems={selectedItems}
+                    onSelectionChange={setSelectedItems}
+                    onItemClick={handleItemClick}
+                    onItemAction={handleItemAction}
+                  />
+                ) : (
+                  <FileThumbnailGrid
+                    files={filteredFiles}
+                    selectedItems={selectedItems}
+                    onSelectionChange={setSelectedItems}
+                    onItemClick={handleItemClick}
+                    onItemDoubleClick={openDetailView}
+                    containerHeight={600}
+                  />
+                )}
               </div>
 
               {/* 底部狀態欄 */}
               <div className="flex items-center justify-between px-4 py-2 border-t bg-muted/20">
                 <div className="text-sm text-muted-foreground">
-                  顯示 {filteredFiles.length} 個項目
+                  顯示 {filteredFiles.length} 個項目 • {currentView === 'list' ? '列表視圖' : '縮圖視圖'}
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="p-1 hover:bg-muted rounded">
@@ -479,6 +502,18 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
         } : undefined}
       />
 
+      {/* 詳細視圖 */}
+      <FileDetailView
+        file={detailViewFile}
+        isOpen={isDetailViewOpen}
+        onClose={closeDetailView}
+        onDownload={(file) => downloadFile(file.name, spaceId, userId)}
+        onShare={(file) => console.log('Share file:', file.name)}
+        onEdit={(file) => console.log('Edit file:', file.name)}
+        onDelete={(file) => deleteFile(file.name, spaceId, userId)}
+        onStar={(file) => console.log('Star file:', file.name)}
+      />
+
       {/* 上下文菜單 */}
       {contextMenuItem && (
         <ContextMenu
@@ -489,5 +524,14 @@ export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
         </ContextMenu>
       )}
     </div>
+  );
+}
+
+// Main component with provider
+export function FileExplorer({ spaceId, userId }: FileExplorerProps) {
+  return (
+    <FileExplorerProvider initialView="list">
+      <FileExplorerContent spaceId={spaceId} userId={userId} />
+    </FileExplorerProvider>
   );
 }

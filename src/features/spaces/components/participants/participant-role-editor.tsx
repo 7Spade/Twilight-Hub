@@ -59,13 +59,13 @@ export function ParticipantRoleEditor({
   const getRoleDescription = (role: string) => {
     switch (role) {
       case 'owner':
-        return 'Full access to all features and settings';
+        return '擁有所有功能和設定的完整存取權';
       case 'admin':
-        return 'Can manage members and most settings';
+        return '可以管理成員和大部分設定';
       case 'member':
-        return 'Can view and edit content';
+        return '可以檢視和編輯內容';
       case 'viewer':
-        return 'Can only view content';
+        return '只能檢視內容';
       default:
         return '';
     }
@@ -75,9 +75,9 @@ export function ParticipantRoleEditor({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Change Role</DialogTitle>
+          <DialogTitle>變更角色</DialogTitle>
           <DialogDescription>
-            Update the role for {participantName}. This will change their permissions in this space.
+            更新 {participantName} 的角色。這將變更他們在此空間中的權限。
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -87,18 +87,18 @@ export function ParticipantRoleEditor({
               name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Role</FormLabel>
+                  <FormLabel>角色</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a role" />
+                        <SelectValue placeholder="選取角色" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="owner">Owner</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                      <SelectItem value="member">Member</SelectItem>
-                      <SelectItem value="viewer">Viewer</SelectItem>
+                      <SelectItem value="owner">擁有者</SelectItem>
+                      <SelectItem value="admin">管理員</SelectItem>
+                      <SelectItem value="member">成員</SelectItem>
+                      <SelectItem value="viewer">檢視者</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -114,10 +114,10 @@ export function ParticipantRoleEditor({
             )}
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                Cancel
+                取消
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? 'Updating...' : 'Update Role'}
+                {isLoading ? '更新中...' : '更新角色'}
               </Button>
             </DialogFooter>
           </form>

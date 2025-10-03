@@ -111,3 +111,94 @@ export interface Achievement {
     description: string;
     icon: string;
 }
+
+// ===== 角色管理系統 =====
+
+// 權限枚舉
+export type Permission = 
+  | 'space:read'
+  | 'space:write'
+  | 'space:delete'
+  | 'space:manage'
+  | 'participant:read'
+  | 'participant:invite'
+  | 'participant:remove'
+  | 'participant:manage'
+  | 'file:read'
+  | 'file:upload'
+  | 'file:delete'
+  | 'file:manage'
+  | 'issue:read'
+  | 'issue:create'
+  | 'issue:update'
+  | 'issue:delete'
+  | 'report:read'
+  | 'report:create'
+  | 'report:manage'
+  | 'settings:read'
+  | 'settings:update';
+
+// 組織層級角色
+export type OrganizationRole = 
+  | 'super_admin'
+  | 'organization_admin'
+  | 'organization_member'
+  | 'organization_viewer';
+
+// 空間層級角色
+export type SpaceRole = 
+  | 'space_owner'
+  | 'space_admin'
+  | 'space_member'
+  | 'space_viewer';
+
+// 角色定義
+export interface RoleDefinition {
+  id: string;
+  name: string;
+  description: string;
+  permissions: Permission[];
+  level: 'organization' | 'space';
+  inheritable: boolean; // 是否可以繼承到空間
+}
+
+// 用戶角色分配
+export interface UserRoleAssignment {
+  userId: string;
+  organizationRoles: OrganizationRoleAssignment[];
+  spaceRoles: Record<string, SpaceRoleAssignment>; // spaceId -> role
+  effectivePermissions: Permission[]; // 計算後的有效權限
+}
+
+// 組織角色分配
+export interface OrganizationRoleAssignment {
+  roleId: OrganizationRole;
+  assignedAt: Timestamp;
+  assignedBy: string;
+  expiresAt?: Timestamp;
+}
+
+// 空間角色分配
+export interface SpaceRoleAssignment {
+  roleId: SpaceRole;
+  assignedAt: Timestamp;
+  assignedBy: string;
+  inheritedFrom?: OrganizationRole; // 如果從組織角色繼承
+  expiresAt?: Timestamp;
+}
+
+// 權限檢查結果
+export interface PermissionCheckResult {
+  hasPermission: boolean;
+  reason: 'granted' | 'denied' | 'expired' | 'not_assigned';
+  source: 'organization' | 'space' | 'inherited';
+  roleId?: string;
+}
+
+// 角色管理配置
+export interface RoleManagementConfig {
+  enableInheritance: boolean;
+  enableOverride: boolean;
+  defaultSpaceRole: SpaceRole;
+  requireApprovalForRoleChange: boolean;
+}

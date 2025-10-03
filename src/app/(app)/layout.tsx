@@ -24,11 +24,14 @@ import {
   Group,
   ScrollText,
   Compass,
+  Shield,
 } from 'lucide-react';
 import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
 import { type Account } from '@/lib/types';
+import { DialogProvider } from '@/hooks/use-dialog-store';
+import { ChatProvider } from '@/hooks/use-chat-store';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -140,6 +143,11 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
         },
         { href: `/organizations/${orgSlug}/groups`, icon: Group, label: 'Groups' },
         {
+          href: `/organizations/${orgSlug}/roles`,
+          icon: Shield,
+          label: 'Roles',
+        },
+        {
           href: `/organizations/${orgSlug}/audit-log`,
           icon: ScrollText,
           label: 'Audit Log',
@@ -200,7 +208,11 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <FirebaseClientProvider>
-      <AppLayoutContent>{children}</AppLayoutContent>
+      <DialogProvider>
+        <ChatProvider>
+          <AppLayoutContent>{children}</AppLayoutContent>
+        </ChatProvider>
+      </DialogProvider>
     </FirebaseClientProvider>
   );
 }

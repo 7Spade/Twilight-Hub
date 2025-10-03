@@ -17,7 +17,7 @@ if (!getApps().length) {
 
 const storage = getStorage();
 
-export interface FileItem {
+export interface FileActionItem {
   name: string;
   size: number;
   contentType: string;
@@ -48,7 +48,7 @@ export interface DeleteResult {
 
 export interface ListResult {
   success: boolean;
-  files?: FileItem[];
+  files?: FileActionItem[];
   error?: string;
 }
 

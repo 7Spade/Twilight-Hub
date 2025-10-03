@@ -27,6 +27,8 @@ import { QualityDashboard } from './quality';
 import { ReportDashboard } from './report';
 import { AcceptanceList } from './acceptance';
 import { ContractList } from './contracts';
+import { PermissionGuard, PermissionTab } from '@/components/auth/permission-guard';
+import { Permission } from '@/lib/types';
 
 interface SpaceDetailViewProps {
   isLoading: boolean;
@@ -113,67 +115,208 @@ export function SpaceDetailView({
       <Tabs defaultValue="overview">
         <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="participants">Participants</TabsTrigger>
-          <TabsTrigger value="issues">Issues</TabsTrigger>
-          <TabsTrigger value="quality">Quality</TabsTrigger>
-          <TabsTrigger value="reports">Reports</TabsTrigger>
-          <TabsTrigger value="acceptance">Acceptance</TabsTrigger>
-          <TabsTrigger value="contracts">Contracts</TabsTrigger>
-          <TabsTrigger value="files">Files</TabsTrigger>
-          {isOwner && <TabsTrigger value="settings">Settings</TabsTrigger>}
+          
+          <PermissionTab
+            permission="file:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="files"
+          >
+            <TabsTrigger value="files">Files</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="participant:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="participants"
+          >
+            <TabsTrigger value="participants">Participants</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="issue:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="issues"
+          >
+            <TabsTrigger value="issues">Issues</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="report:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="quality"
+          >
+            <TabsTrigger value="quality">Quality</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="report:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="reports"
+          >
+            <TabsTrigger value="reports">Reports</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="space:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="acceptance"
+          >
+            <TabsTrigger value="acceptance">Acceptance</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="space:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="contracts"
+          >
+            <TabsTrigger value="contracts">Contracts</TabsTrigger>
+          </PermissionTab>
+          
+          <PermissionTab
+            permission="settings:read"
+            userId={authUser?.uid || ''}
+            spaceId={space.id}
+            value="settings"
+          >
+            <TabsTrigger value="settings">Settings</TabsTrigger>
+          </PermissionTab>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
           <OverviewDashboard spaceId={space.id} />
         </TabsContent>
 
-        <TabsContent value="participants" className="mt-6">
-          <ParticipantList 
-            spaceId={space.id} 
-            canManage={isOwner}
-            currentUserId={authUser?.uid}
-          />
-        </TabsContent>
+        <PermissionGuard
+          permission="file:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="files" className="mt-6">
+            {authUser && (
+              <FileManager spaceId={space.id} userId={authUser.uid} />
+            )}
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="issues" className="mt-6">
-          <IssueList 
-            spaceId={space.id} 
-            canCreate={isOwner}
-          />
-        </TabsContent>
+        <PermissionGuard
+          permission="participant:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="participants" className="mt-6">
+            <ParticipantList 
+              spaceId={space.id} 
+              participants={[]} // TODO: 從數據庫載入參與者
+              canManage={isOwner}
+              currentUserId={authUser?.uid}
+              actions={{
+                onInvite: async (email, role, message) => {
+                  // TODO: 實現邀請邏輯
+                  console.log('邀請參與者:', { email, role, message });
+                },
+                onUpdateRole: async (participantId, role) => {
+                  // TODO: 實現角色更新邏輯
+                  console.log('更新角色:', { participantId, role });
+                },
+                onUpdatePermissions: async (participantId, permissions) => {
+                  // TODO: 實現權限更新邏輯
+                  console.log('更新權限:', { participantId, permissions });
+                },
+                onRemove: async (participantId) => {
+                  // TODO: 實現移除邏輯
+                  console.log('移除參與者:', participantId);
+                },
+                onBulkUpdate: async (participantIds, updates) => {
+                  // TODO: 實現批量更新邏輯
+                  console.log('批量更新參與者:', { participantIds, updates });
+                },
+                onBulkRemove: async (participantIds) => {
+                  // TODO: 實現批量移除邏輯
+                  console.log('批量移除參與者:', participantIds);
+                },
+                onExport: async (format) => {
+                  // TODO: 實現導出邏輯
+                  console.log('導出參與者:', format);
+                },
+              }}
+            />
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="quality" className="mt-6">
-          <QualityDashboard spaceId={space.id} />
-        </TabsContent>
+        <PermissionGuard
+          permission="issue:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="issues" className="mt-6">
+            <IssueList 
+              spaceId={space.id} 
+              canCreate={isOwner}
+            />
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="reports" className="mt-6">
-          <ReportDashboard 
-            spaceId={space.id} 
-            canCreate={isOwner}
-          />
-        </TabsContent>
+        <PermissionGuard
+          permission="report:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="quality" className="mt-6">
+            <QualityDashboard spaceId={space.id} />
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="acceptance" className="mt-6">
-          <AcceptanceList 
-            spaceId={space.id} 
-            canCreate={isOwner}
-          />
-        </TabsContent>
+        <PermissionGuard
+          permission="report:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="reports" className="mt-6">
+            <ReportDashboard 
+              spaceId={space.id} 
+              canCreate={isOwner}
+            />
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="contracts" className="mt-6">
-          <ContractList 
-            spaceId={space.id} 
-            canCreate={isOwner}
-          />
-        </TabsContent>
+        <PermissionGuard
+          permission="space:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="acceptance" className="mt-6">
+            <AcceptanceList 
+              spaceId={space.id} 
+              canCreate={isOwner}
+            />
+          </TabsContent>
+        </PermissionGuard>
 
-        <TabsContent value="files" className="mt-6">
-          {authUser && (
-            <FileManager spaceId={space.id} userId={authUser.uid} />
-          )}
-        </TabsContent>
+        <PermissionGuard
+          permission="space:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
+          <TabsContent value="contracts" className="mt-6">
+            <ContractList 
+              spaceId={space.id} 
+              canCreate={isOwner}
+            />
+          </TabsContent>
+        </PermissionGuard>
 
-        {isOwner && (
+        <PermissionGuard
+          permission="settings:read"
+          userId={authUser?.uid || ''}
+          spaceId={space.id}
+        >
           <TabsContent value="settings" className="mt-6">
             <SpaceSettingsView 
               space={space}
@@ -181,7 +324,7 @@ export function SpaceDetailView({
               onFormSubmit={handleSettingsSubmit}
             />
           </TabsContent>
-        )}
+        </PermissionGuard>
       </Tabs>
     </div>
   );

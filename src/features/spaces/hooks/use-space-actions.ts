@@ -10,7 +10,8 @@ import { useState, useCallback } from 'react';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { collection, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { type Space, type SpaceSettingsFormValues } from '@/lib/types';
+import { type Space } from '@/lib/types';
+import { type SpaceSettingsFormValues } from '../components/spaces-settings-view';
 import { spaceBaseSchema } from '../spaces-schemas';
 
 interface CreateSpaceData {
