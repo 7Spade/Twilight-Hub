@@ -65,16 +65,16 @@
     │   ├── (app)/
     │   │   ├── [userslug]/
     │   │   │   ├── [spaceslug]/
-    │   │   │   │   ├── page.tsx (720 B, 今天)
-    │   │   │   ├── page.tsx (724 B, 今天)
+    │   │   │   │   ├── page.tsx (702 B, 今天)
+    │   │   │   ├── page.tsx (703 B, 今天)
     │   │   ├── dashboard/
-    │   │   │   ├── page.tsx (6.7 KB, 今天)
+    │   │   │   ├── page.tsx (6.5 KB, 今天)
     │   │   ├── discover/
     │   │   │   ├── page.tsx (8.1 KB, 今天)
     │   │   ├── organizations/
     │   │   │   ├── [organizationslug]/
     │   │   │   │   ├── [spaceslug]/
-    │   │   │   │   │   ├── page.tsx (623 B, 今天)
+    │   │   │   │   │   ├── page.tsx (606 B, 今天)
     │   │   │   │   ├── groups/
     │   │   │   │   │   ├── page.tsx (5.5 KB, 今天)
     │   │   │   │   ├── inventory/
@@ -88,7 +88,7 @@
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── page.tsx (4.8 KB, 今天)
     │   │   │   │   ├── spaces/
-    │   │   │   │   │   ├── page.tsx (488 B, 今天)
+    │   │   │   │   │   ├── page.tsx (474 B, 今天)
     │   │   │   │   ├── page.tsx (7.4 KB, 今天)
     │   │   │   ├── page.tsx (4.1 KB, 今天)
     │   │   ├── settings/
@@ -136,13 +136,13 @@
     │   │   │   │   ├── types.ts (869 B, 今天)
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
-    │   │   │   │   │   ├── acceptance-item.tsx (8.9 KB, 今天)
+    │   │   │   │   │   ├── acceptance-item.tsx (8.7 KB, 今天)
     │   │   │   │   │   ├── acceptance-list.tsx (9.1 KB, 今天)
     │   │   │   │   │   ├── index.ts (219 B, 今天)
     │   │   │   │   │   ├── initiate-acceptance-flow.tsx (7.7 KB, 今天)
     │   │   │   │   ├── contracts/
     │   │   │   │   │   ├── contract-details.tsx (11.1 KB, 今天)
-    │   │   │   │   │   ├── contract-list.tsx (14.4 KB, 今天)
+    │   │   │   │   │   ├── contract-list.tsx (14 KB, 今天)
     │   │   │   │   │   ├── index.ts (212 B, 今天)
     │   │   │   │   ├── file-explorer/
     │   │   │   │   │   ├── detail/
@@ -150,19 +150,19 @@
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-file-explorer-context.tsx (5.3 KB, 今天)
     │   │   │   │   │   ├── services/
-    │   │   │   │   │   │   ├── file-preview-service.ts (8.2 KB, 今天)
+    │   │   │   │   │   │   ├── file-preview-service.ts (7.9 KB, 今天)
     │   │   │   │   │   ├── thumbnail/
     │   │   │   │   │   │   ├── file-thumbnail-card.tsx (5.2 KB, 今天)
     │   │   │   │   │   │   ├── file-thumbnail-grid.tsx (8.2 KB, 今天)
     │   │   │   │   │   ├── breadcrumb-navigation.tsx (1.7 KB, 今天)
     │   │   │   │   │   ├── column-settings-menu.tsx (3.4 KB, 今天)
-    │   │   │   │   │   ├── context-menu.tsx (7.4 KB, 今天)
+    │   │   │   │   │   ├── context-menu.tsx (7.2 KB, 今天)
     │   │   │   │   │   ├── deleted-items.tsx (7.8 KB, 今天)
     │   │   │   │   │   ├── empty-folder-state.tsx (1.9 KB, 今天)
     │   │   │   │   │   ├── file-explorer.tsx (18.2 KB, 今天)
-    │   │   │   │   │   ├── file-table.tsx (11.9 KB, 今天)
-    │   │   │   │   │   ├── filter-panel.tsx (15.9 KB, 今天)
-    │   │   │   │   │   ├── folder-tree.tsx (27.2 KB, 今天)
+    │   │   │   │   │   ├── file-table.tsx (11.6 KB, 今天)
+    │   │   │   │   │   ├── filter-panel.tsx (15.5 KB, 今天)
+    │   │   │   │   │   ├── folder-tree.tsx (26.6 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
     │   │   │   │   │   ├── packages-tab.tsx (10.4 KB, 今天)
     │   │   │   │   │   ├── toolbar.tsx (5.5 KB, 今天)
@@ -170,7 +170,7 @@
     │   │   │   │   ├── issues/
     │   │   │   │   │   ├── create-issue-form.tsx (8.2 KB, 今天)
     │   │   │   │   │   ├── index.ts (187 B, 今天)
-    │   │   │   │   │   ├── issue-details.tsx (8.5 KB, 今天)
+    │   │   │   │   │   ├── issue-details.tsx (8.3 KB, 今天)
     │   │   │   │   │   ├── issue-list.tsx (10.9 KB, 今天)
     │   │   │   │   ├── overview/
     │   │   │   │   │   ├── hooks/
@@ -184,7 +184,7 @@
     │   │   │   │   ├── participants/
     │   │   │   │   │   ├── hooks/
     │   │   │   │   │   │   ├── use-participants.ts (4.3 KB, 今天)
-    │   │   │   │   │   ├── advanced-filters.tsx (14.2 KB, 今天)
+    │   │   │   │   │   ├── advanced-filters.tsx (13.8 KB, 今天)
     │   │   │   │   │   ├── card-grid.tsx (7.2 KB, 今天)
     │   │   │   │   │   ├── data.ts (5.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (1.3 KB, 今天)
@@ -194,16 +194,16 @@
     │   │   │   │   │   ├── participant-role-editor.tsx (4.5 KB, 今天)
     │   │   │   │   │   ├── participant-table.tsx (7.4 KB, 今天)
     │   │   │   │   │   ├── types.ts (4.5 KB, 今天)
-    │   │   │   │   │   ├── view-toggle.tsx (3 KB, 今天)
-    │   │   │   │   │   ├── virtualized-table.tsx (12.1 KB, 今天)
+    │   │   │   │   │   ├── view-toggle.tsx (2.9 KB, 今天)
+    │   │   │   │   │   ├── virtualized-table.tsx (11.8 KB, 今天)
     │   │   │   │   ├── quality/
-    │   │   │   │   │   ├── checklist.tsx (8.5 KB, 今天)
+    │   │   │   │   │   ├── checklist.tsx (8.3 KB, 今天)
     │   │   │   │   │   ├── index.ts (211 B, 今天)
     │   │   │   │   │   ├── quality-dashboard.tsx (6.5 KB, 今天)
     │   │   │   │   ├── report/
     │   │   │   │   │   ├── index.ts (205 B, 今天)
     │   │   │   │   │   ├── report-dashboard.tsx (9 KB, 今天)
-    │   │   │   │   │   ├── report-viewer.tsx (9.2 KB, 今天)
+    │   │   │   │   │   ├── report-viewer.tsx (8.9 KB, 今天)
     │   │   │   │   ├── settings/
     │   │   │   │   │   ├── index.ts (41 B, 今天)
     │   │   │   │   ├── index.ts (2 KB, 今天)
@@ -219,7 +219,7 @@
     │   │   │   │   ├── use-file-actions.ts (6.3 KB, 今天)
     │   │   │   │   ├── use-file-operations.ts (5.6 KB, 今天)
     │   │   │   │   ├── use-space-actions.ts (5 KB, 今天)
-    │   │   │   │   ├── use-star-actions.ts (3.6 KB, 今天)
+    │   │   │   │   ├── use-star-actions.ts (3.5 KB, 今天)
     │   │   │   │   ├── use-visibility-actions.ts (3.9 KB, 今天)
     │   │   │   ├── COMPLIANCE_TODO.md (817 B, 今天)
     │   │   │   ├── index.ts (407 B, 今天)
@@ -276,9 +276,9 @@
     │   │   ├── tooltip.tsx (1.2 KB, 今天)
     │   ├── achievements-list.tsx (3.7 KB, 今天)
     │   ├── activity-overview-chart.tsx (2.9 KB, 今天)
-    │   ├── contribution-breakdown-chart.tsx (3.2 KB, 今天)
+    │   ├── contribution-breakdown-chart.tsx (3.1 KB, 今天)
     │   ├── firebase-error-listener.tsx (1.1 KB, 今天)
-    │   ├── follower-list.tsx (3.8 KB, 今天)
+    │   ├── follower-list.tsx (3.7 KB, 今天)
     │   ├── following-list.tsx (3.7 KB, 今天)
     │   ├── form-card-skeleton.tsx (1.2 KB, 今天)
     │   ├── github-heat-map.tsx (5.2 KB, 今天)
@@ -287,7 +287,7 @@
     │   ├── membership-list.tsx (3.8 KB, 今天)
     │   ├── notification-popover.tsx (4.7 KB, 今天)
     │   ├── recent-activity-timeline.tsx (2.9 KB, 今天)
-    │   ├── search-command.tsx (5.7 KB, 今天)
+    │   ├── search-command.tsx (5.6 KB, 今天)
     │   ├── user-profile-card.tsx (8.6 KB, 今天)
     ├── firebase/
     │   ├── firestore/
@@ -305,7 +305,7 @@
     │   ├── use-contracts.ts (2.7 KB, 今天)
     │   ├── use-file-operations.ts (5.7 KB, 今天)
     │   ├── use-mobile.tsx (584 B, 今天)
-    │   ├── use-permissions.ts (12.1 KB, 今天)
+    │   ├── use-permissions.ts (11.8 KB, 今天)
     │   ├── use-toast.ts (4 KB, 今天)
     ├── lib/
     │   └── services/
