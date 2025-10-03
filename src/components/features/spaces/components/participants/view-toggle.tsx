@@ -6,7 +6,6 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
 
 // TODO: [P2] REFACTOR src/components/features/spaces/components/participants/view-toggle.tsx:9 - 清理未使用的導入
 // 問題：'Button' 已導入但從未使用
@@ -26,17 +25,17 @@ interface ViewToggleProps {
 const VIEW_MODES: ViewMode[] = [
   {
     type: 'table',
-    label: '表格視�?',
+    label: '表格視圖',
     icon: 'Table',
   },
   {
     type: 'card',
-    label: '?��?視�?',
+    label: '卡片視圖',
     icon: 'Grid3X3',
   },
   {
     type: 'list',
-    label: '?�表視�?',
+    label: '列表視圖',
     icon: 'List',
   },
 ];

@@ -82,13 +82,14 @@ const ParticipantRow = memo(function ParticipantRow({
       <TableCell>{participant.phone || '-'}</TableCell>
       <TableCell>
         <span className={getStatusColor(participant.status)}>
-          {participant.status === 'active' ? '使用�? : participant.status}
+          {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串 */}
+          {participant.status === 'active' ? '使用中' : participant.status}
         </span>
       </TableCell>
       <TableCell>{participant.company || '-'}</TableCell>
       <TableCell>
         <Badge variant="secondary" className={getRoleColor(participant.role)}>
-          {participant.role === 'member' ? '專�??�員' : participant.role}
+          {participant.role === 'member' ? '專案成員' : participant.role}
         </Badge>
       </TableCell>
       <TableCell>{participant.accessLevel}</TableCell>
@@ -147,7 +148,7 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   }, []);
 
   const handleRemove = useCallback((participantId: string) => {
-    if (confirm('確�?要移?�此?�員?��?')) {
+    if (confirm('確定要移除此成員嗎？')) {
       actions.onRemove(participantId);
     }
   }, [actions]);
@@ -155,7 +156,7 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
   if (participants.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
-        沒�??�到?�員
+        沒有找到成員
       </div>
     );
   }
@@ -165,14 +166,15 @@ export function ParticipantTable({ participants, currentUserId, canManage, actio
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="cursor-pointer">?�稱</TableHead>
-            <TableHead className="cursor-pointer">?��??�件</TableHead>
-            <TableHead className="cursor-pointer">?�話</TableHead>
-            <TableHead className="cursor-pointer">?�??/TableHead>
-            <TableHead className="cursor-pointer">?�司</TableHead>
+            <TableHead className="cursor-pointer">名稱</TableHead>
+            <TableHead className="cursor-pointer">電子郵件</TableHead>
+            <TableHead className="cursor-pointer">電話</TableHead>
+            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 修正破損標籤，補齊 </TableHead> */}
+            <TableHead className="cursor-pointer">狀態</TableHead>
+            <TableHead className="cursor-pointer">公司</TableHead>
             <TableHead>角色</TableHead>
-            <TableHead>存�?層�?</TableHead>
-            <TableHead className="cursor-pointer">?�入?��?</TableHead>
+            <TableHead>存取層級</TableHead>
+            <TableHead className="cursor-pointer">加入日期</TableHead>
             <TableHead>Docs</TableHead>
             <TableHead>Design Collaboration</TableHead>
             <TableHead>Model Coordination</TableHead>

@@ -111,8 +111,7 @@ export function ParticipantCard({
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold text-base truncate">{participant.name}</h3>
                 {isCurrentUser && (
-                  // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 此處 Badge 關閉標籤破損（</Badge>），請補齊以避免 Unexpected token
-                  <Badge variant="outline" className="text-xs">�?/Badge>
+                  <Badge variant="outline" className="text-xs">你</Badge>
                 )}
               </div>
               
@@ -145,15 +144,14 @@ export function ParticipantCard({
               className={`${ROLE_COLORS[participant.role]} text-xs flex items-center gap-1`}
             >
               <RoleIcon className="h-3 w-3" />
-              {participant.role === 'member' ? '?�員' : participant.role}
+              {participant.role === 'member' ? '成員' : participant.role}
             </Badge>
             
             <Badge 
               variant="outline" 
               className={`${STATUS_COLORS[participant.status]} text-xs`}
             >
-              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 字串未終止，請補齊引號 */}
-              {participant.status === 'active' ? '使用? : participant.status}
+              {participant.status === 'active' ? '啟用' : participant.status}
             </Badge>
 
             <Badge variant="outline" className="text-xs">
@@ -177,16 +175,16 @@ export function ParticipantCard({
             </div>
           )}
 
-          {/* ??信息 */}
+          {/* 狀態資訊 */}
           <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              <span>?入??{participant.joinedAt.toLocaleDateString('zh-TW')}</span>
+              <span>加入於 {participant.joinedAt.toLocaleDateString('zh-TW')}</span>
             </div>
             {participant.lastActive && (
               <div className="flex items-center gap-1">
                 <Globe className="h-3 w-3" />
-                <span>?後活??{participant.lastActive.toLocaleDateString('zh-TW')}</span>
+                <span>最後活躍 {participant.lastActive.toLocaleDateString('zh-TW')}</span>
               </div>
             )}
           </div>
@@ -203,7 +201,7 @@ export function ParticipantCard({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleAction('edit')}>
                     <UserCheck className="h-4 w-4 mr-2" />
-                    編輯?員
+                    編輯成員
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('role')}>
                     <Shield className="h-4 w-4 mr-2" />
@@ -211,14 +209,14 @@ export function ParticipantCard({
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAction('permissions')}>
                     <Shield className="h-4 w-4 mr-2" />
-                    管?權?
+                    權限設定
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     className="text-red-600"
                     onClick={() => handleAction('remove')}
                   >
                     <UserX className="h-4 w-4 mr-2" />
-                    移除?員
+                    移除成員
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

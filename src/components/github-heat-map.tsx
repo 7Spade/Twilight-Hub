@@ -36,7 +36,13 @@ const getColorClass = (count: number): string => {
   return 'bg-primary';
 };
 
-const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; /* TODO: [P3] REFACTOR src/components/github-heat-map.tsx - 清理未使用的變數 */
+const _weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// TODO: [P2] REFACTOR src/components/github-heat-map.tsx:39 - 清理未使用的變數
+// 問題：'weekDays' 已定義但從未使用
+// 影響：增加 bundle 大小，影響性能
+// 建議：移除未使用的變數或添加下劃線前綴表示有意未使用
+// @assignee frontend-team
 
 export const GitHubHeatMap: React.FC<HeatMapProps> = ({
   data,

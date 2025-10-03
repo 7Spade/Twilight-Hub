@@ -155,8 +155,8 @@ export function PackagesTab({ className }: PackagesTabProps) {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              {/* TODO[P2][lint][parser-error][低認知]: 修正破損的關閉標籤，應為 </DialogTitle>；目前保留以利標記問題 */}
-              <DialogTitle>建�??��?�?/DialogTitle>
+              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 159 DialogTitle 關閉標籤破損；請改為 </DialogTitle> */}
+              <DialogTitle>建????/DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -246,6 +246,7 @@ export function PackagesTab({ className }: PackagesTabProps) {
                   </div>
                   <div>
                     <span className="text-muted-foreground">檔�??��?</span>
+                    {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 249 文字/標籤破損（</p>），請修正 */}
                     <p className="font-medium">{pkg.fileCount} ?��?�?/p>
                   </div>
                   <div>

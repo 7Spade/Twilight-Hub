@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useUser, useFirestore } from '@/firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import { SpacesDetailView as SpaceDetailView } from '@/components/features/spaces/components/spaces-detail-view';
+import { SpacesDetailView } from '@/components/features/spaces/components/spaces-detail-view';
 import { type Account, type Space } from '@/lib/types-unified';
 
 export default function UnifiedSpaceDetailsPage({
@@ -99,7 +99,7 @@ export default function UnifiedSpaceDetailsPage({
   );
 
   return (
-    <SpaceDetailView
+    <SpacesDetailView
       isLoading={loading}
       space={space}
       owner={owner}

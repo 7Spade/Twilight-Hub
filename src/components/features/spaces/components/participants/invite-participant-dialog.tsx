@@ -67,9 +67,9 @@ export function InviteParticipantDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>?��??�員</DialogTitle>
+          <DialogTitle>邀請成員</DialogTitle>
           <DialogDescription>
-            ?�送�?請以?�入此空?�。�??��??�到?�含?�請�??��??�件??
+            發送邀請以加入此空間。受邀者將會收到包含邀請連結的電子郵件。
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -79,7 +79,7 @@ export function InviteParticipantDialog({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>?��??�件?��?</FormLabel>
+                  <FormLabel>電子郵件</FormLabel>
                   <FormControl>
                     <Input placeholder="colleague@example.com" {...field} />
                   </FormControl>
@@ -96,15 +96,13 @@ export function InviteParticipantDialog({
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="?��?角色" />
+                        <SelectValue placeholder="選擇角色" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 103 之後 SelectItem 標籤關閉不正確，請補齊 </SelectItem> */}
-                      <SelectItem value="admin">管???/SelectItem>
-                      <SelectItem value="member">?員</SelectItem>
-                      {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 105 未正確關閉標籤，請修正 JSX 結構 */}
-                      <SelectItem value="viewer">檢???/SelectItem>
+                      <SelectItem value="admin">管理員</SelectItem>
+                      <SelectItem value="member">成員</SelectItem>
+                      <SelectItem value="viewer">檢視者</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -116,9 +114,9 @@ export function InviteParticipantDialog({
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>?�人訊息 (?�填)</FormLabel>
+                  <FormLabel>個人訊息（選填）</FormLabel>
                   <FormControl>
-                    <Input placeholder="?��??�人訊息..." {...field} />
+                    <Input placeholder="輸入個人訊息..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,11 +124,10 @@ export function InviteParticipantDialog({
             />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                ?��?
+                取消
               </Button>
               <Button type="submit" disabled={isLoading}>
-                {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 行 130 字串未終止，請補齊引號或用常量 */}
-                {isLoading ? '?送中...' : '?送??}
+                {isLoading ? '傳送中...' : '傳送邀請'}
               </Button>
             </DialogFooter>
           </form>

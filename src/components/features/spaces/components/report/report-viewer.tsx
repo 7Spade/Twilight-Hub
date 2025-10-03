@@ -238,7 +238,7 @@ export function ReportViewer({ report, open, onOpenChange }: ReportViewerProps) 
               </div>
             ) : (
               <div className="text-center py-8">
-                <div className="text-red-600 mb-4">?��?</div>
+                <div className="text-red-600 mb-4">錯誤</div>
                 <p className="text-muted-foreground">Report generation failed</p>
                 <p className="text-sm text-muted-foreground mt-2">
                   There was an error generating this report. Please try again.

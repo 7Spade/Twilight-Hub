@@ -233,7 +233,7 @@ export function ToolbarContextMenu({ onAction }: ToolbarContextMenuProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <MoreVertical className="h-4 w-4 mr-2" />
-          設�?
+          設定
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">

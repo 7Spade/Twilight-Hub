@@ -85,8 +85,7 @@ export function VersionHistoryDrawer({
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent side="right" className="w-[400px] sm:w-[540px]">
         <SheetHeader className="flex flex-row items-center justify-between">
-          {/* TODO[P2][lint][parser-error][低認知]: 修正未終止標籤，應為 </SheetTitle> */}
-          <SheetTitle className="text-lg font-semibold">?�本歷史紀??</SheetTitle>
+          <SheetTitle className="text-lg font-semibold">版本歷史紀錄</SheetTitle>
           <Button
             variant="ghost"
             size="icon"
@@ -98,22 +97,20 @@ export function VersionHistoryDrawer({
         </SheetHeader>
 
         <div className="mt-6 space-y-6">
-          {/* ?��??�件信息 */}
+          {/* 當前檔案資訊 */}
           {currentFile && (
             <div className="p-4 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-3">
                 <FileText className="h-8 w-8 text-blue-500" />
                 <div>
                   <h3 className="font-medium">{currentFile.name}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    ?��??�本: {currentFile.version}
-                  </p>
+                  <p className="text-sm text-muted-foreground">目前版本: {currentFile.version}</p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* ?�本?�表 */}
+          {/* 版本清單 */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-muted-foreground">
               ?�本歷史
@@ -124,10 +121,10 @@ export function VersionHistoryDrawer({
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
-                    <TableHead>?�本</TableHead>
-                    <TableHead>?�稱</TableHead>
-                    <TableHead>?��?</TableHead>
-                    <TableHead>標�?</TableHead>
+                    <TableHead>版本</TableHead>
+                    <TableHead>名稱</TableHead>
+                    <TableHead>指標</TableHead>
+                    <TableHead>標籤</TableHead>
                     <TableHead className="w-12"></TableHead>
                   </TableRow>
                 </TableHeader>

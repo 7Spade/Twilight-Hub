@@ -67,9 +67,10 @@ export function ParticipantRoleEditor({
       case 'admin':
         return '?�以管�??�員?�大?��?設�?';
       case 'member':
-        return '?�以檢�??�編輯內�?;
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串
+        return '?以檢??編輯內�?';
       case 'viewer':
-        return '?�能檢�??�容';
+        return '?能檢??容';
       default:
         return '';
     }

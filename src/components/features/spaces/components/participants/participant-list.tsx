@@ -59,7 +59,7 @@ export function ParticipantList({
     try {
       await actions.onExport(format);
     } catch (error) {
-      console.error('導出失�?:', error);
+      console.error('導出失敗:', error);
     }
   }, [actions]);
 
@@ -67,10 +67,10 @@ export function ParticipantList({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-300">
         <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
-        <h3 className="text-lg font-medium text-red-600 mb-2">載入?�員?�發?�錯�?/h3>
+        <h3 className="text-lg font-medium text-red-600 mb-2">載入成員時發生錯誤</h3>
         <p className="text-sm text-muted-foreground mb-4">{error}</p>
         <Button onClick={loadParticipants} variant="outline">
-          ?�試
+          重試
         </Button>
       </div>
     );
@@ -83,12 +83,10 @@ export function ParticipantList({
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
             <Users className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">?�員</h2>
+            <h2 className="text-xl font-semibold">成員</h2>
           </div>
           <div className="h-4 w-px bg-border" />
-          <span className="text-sm text-muted-foreground">
-            {filteredData.length} ?��???
-          </span>
+          <span className="text-sm text-muted-foreground">{filteredData.length} 位</span>
         </div>
         
         <div className="flex items-center space-x-2">
@@ -100,7 +98,7 @@ export function ParticipantList({
           {canManage && (
             <Button onClick={() => setInviteDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
-              ?��??�員
+              邀請成員
             </Button>
           )}
           
@@ -110,7 +108,7 @@ export function ParticipantList({
             onClick={() => handleExport('csv')}
           >
             <Download className="h-4 w-4 mr-2" />
-            ?�出
+            匯出
           </Button>
         </div>
       </div>

@@ -4,7 +4,7 @@
  */
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:7 - 清理未使用的導入
 // 問題：'useEffect' 已導入但從未使用
@@ -20,12 +20,6 @@ import {
   Music, 
   Archive, 
   Code,
-  
-// TODO: [P2] REFACTOR src/components/ui/file-type-icon.tsx:18-22 - 清理未使用的導入
-// 問題：'Image', 'Video', 'Music', 'Archive', 'Code' 已導入但從未使用
-// 影響：增加 bundle 大小，影響性能
-// 建議：移除未使用的導入或添加下劃線前綴表示有意未使用
-// @assignee frontend-team
   FileSpreadsheet,
   Presentation,
   FileImage,

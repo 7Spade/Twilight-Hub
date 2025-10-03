@@ -1,6 +1,6 @@
 /**
- * @fileoverview ?�代?��??��?表格組件
- * 使用 @tanstack/react-virtual 實現高性能?�大?��??�渲??
+ * @fileoverview 現代化虛擬清單表格組件
+ * 使用 @tanstack/react-virtual 實現高性能大量資料渲染
  */
 
 'use client';
@@ -78,17 +78,17 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
       className="flex items-center border-b border-border/50 hover:bg-muted/30 transition-colors animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
     >
       <div className="flex items-center w-full px-4 py-3">
-        {/* ?��?�?*/}
+        {/* 勾選 */}
         <div className="w-8 mr-3">
           <Checkbox
             checked={isSelected}
             onCheckedChange={handleSelect}
             disabled={isCurrentUser}
-            aria-label={`?��? ${participant.name}`}
+            aria-label={`選取 ${participant.name}`}
           />
         </div>
 
-        {/* ?��??�基?�信??*/}
+        {/* 參與者基礎資訊 */}
         <div className="flex items-center flex-1 min-w-0">
           <div className="relative mr-3">
             <Avatar className="h-10 w-10">
@@ -106,7 +106,8 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
             <div className="flex items-center gap-2">
               <h3 className="font-medium text-sm truncate">{participant.name}</h3>
               {isCurrentUser && (
-                <Badge variant="outline" className="text-xs">�?/Badge>
+                // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 修正破損的關閉標籤 </Badge>
+                <Badge variant="outline" className="text-xs">我</Badge>
               )}
             </div>
             <p className="text-xs text-muted-foreground truncate">{participant.email}</p>
@@ -116,27 +117,28 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
           </div>
         </div>
 
-        {/* 角色?��???*/}
+        {/* 角色與狀態 */}
         <div className="flex items-center gap-3 mr-4">
           <Badge 
             variant="outline" 
             className={`${ROLE_COLORS[participant.role]} text-xs flex items-center gap-1`}
           >
             <RoleIcon className="h-3 w-3" />
-            {participant.role === 'member' ? '?�員' : participant.role}
+            {participant.role === 'member' ? '成員' : participant.role}
           </Badge>
           
           <span className={`text-xs ${STATUS_COLORS[participant.status]}`}>
-            {participant.status === 'active' ? '使用�? : participant.status}
+            {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串 */}
+            {participant.status === 'active' ? '使用中' : participant.status}
           </span>
         </div>
 
-        {/* ?�入?��? */}
+        {/* 加入日期 */}
         <div className="text-xs text-muted-foreground mr-4">
           {participant.joinedAt.toLocaleDateString('zh-TW')}
         </div>
 
-        {/* ?��??��? */}
+        {/* 操作 */}
         <div className="w-8">
           {canManage && !isCurrentUser && (
             <DropdownMenu>
@@ -148,7 +150,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => handleAction('edit')}>
                   <UserCheck className="h-4 w-4 mr-2" />
-                  編輯?�員
+                  編輯成員
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleAction('role')}>
                   <Shield className="h-4 w-4 mr-2" />
@@ -159,7 +161,7 @@ const VirtualizedRow = React.memo(function VirtualizedRow({
                   onClick={() => handleAction('remove')}
                 >
                   <UserX className="h-4 w-4 mr-2" />
-                  移除?�員
+                  移除成員
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -219,7 +221,7 @@ export function VirtualizedTable({
         console.log('變更角色:', participantId);
         break;
       case 'remove':
-        if (confirm('確�?要移?�此?�員?��?')) {
+        if (confirm('確定要移除此成員嗎？')) {
           actions.onRemove(participantId);
         }
         break;
@@ -240,9 +242,9 @@ export function VirtualizedTable({
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <Users className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒�??�到?�員</h3>
+        <h3 className="text-lg font-medium text-muted-foreground mb-2">沒有找到成員</h3>
         <p className="text-sm text-muted-foreground">
-          ?�試調整?�索條件?��?請新?�員
+          試著調整搜尋條件，或邀請新成員
         </p>
       </div>
     );
@@ -260,7 +262,8 @@ export function VirtualizedTable({
                 if (el) el.indeterminate = isIndeterminate;
               }}
               onCheckedChange={handleSelectAll}
-              aria-label="?��??�?��???
+              {/* TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: aria-label 字串未終止 */}
+              aria-label="全選參與者"
             />
           </div>
           
@@ -284,7 +287,7 @@ export function VirtualizedTable({
         </div>
       </div>
 
-      {/* ?�擬?��?�?*/}
+      {/* 虛擬清單 */}
       <div
         ref={parentRef}
         className="overflow-auto"
@@ -322,12 +325,12 @@ export function VirtualizedTable({
         </div>
       </div>
 
-      {/* ?�中?�?�顯�?*/}
+      {/* 批次操作浮層 */}
       {selectedParticipants.length > 0 && (
         <div className="flex items-center justify-between bg-muted/50 border border-border rounded-lg p-3 animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">
-              已選??{selectedParticipants.length} ?��???
+              已選取 {selectedParticipants.length} 位
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -336,7 +339,7 @@ export function VirtualizedTable({
               size="sm"
               onClick={() => setSelectedParticipants([])}
             >
-              ?��??��?
+              取消全選
             </Button>
             <Button
               variant="destructive"
@@ -348,7 +351,7 @@ export function VirtualizedTable({
                 }
               }}
             >
-              ?��?移除
+              批次移除
             </Button>
           </div>
         </div>

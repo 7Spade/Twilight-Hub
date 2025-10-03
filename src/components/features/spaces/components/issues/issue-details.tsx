@@ -108,13 +108,13 @@ export function IssueDetails({ issue, open, onOpenChange, comments }: IssueDetai
       case 'bug':
         return '??';
       case 'feature':
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
-        return '??;
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串
+        return '??';
       case 'task':
         return '??';
       case 'question':
-        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 未終止字串；請補齊引號
-        return '??;
+        // TODO[足夠現代化][低認知][不造成 ai agent 認知困難提升]: 補齊未終止字串
+        return '??';
       default:
         return '??';
     }
