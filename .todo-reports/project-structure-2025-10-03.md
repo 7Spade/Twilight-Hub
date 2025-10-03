@@ -41,6 +41,8 @@
     ├── techContext.md (237 B, 今天)
 └── scripts/
     ├── generate-tree.ts (6.8 KB, 今天)
+    ├── memory-optimizer.ts (9.3 KB, 今天)
+    ├── memory-stats.ts (4.7 KB, 今天)
     ├── todo-automation-toolkit.ts (11.7 KB, 今天)
 └── src/
     ├── ai/
@@ -316,7 +318,7 @@
 └── firestore.rules (14.9 KB, 昨天)
 └── next.config.ts (1.2 KB, 今天)
 └── package-lock.json (796.3 KB, 今天)
-└── package.json (4.7 KB, 今天)
+└── package.json (5 KB, 今天)
 └── postcss.config.mjs (143 B, 昨天)
 └── README.md (119 B, 昨天)
 └── storage.rules (2 KB, 今天)
