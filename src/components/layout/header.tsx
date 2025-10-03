@@ -18,7 +18,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useChatStore } from '@/hooks/use-chat-store';
+import { useChatState } from '@/hooks/use-app-state';
 import { NotificationPopover } from '@/components/notification-popover';
 import { UserNav } from './user-nav';
 import { Nav, type NavItem } from './nav';
@@ -44,7 +44,7 @@ export function Header({
   setSelectedTeam: (team: Team) => void;
   userProfile: Account | null;
 }) {
-  const { toggle: toggleChat } = useChatStore();
+  const { toggle: toggleChat } = useChatState();
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">

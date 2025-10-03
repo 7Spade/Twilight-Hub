@@ -30,8 +30,8 @@ import { type NavItem } from '@/components/layout/nav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { InviteMemberDialog } from '@/components/invite-member-dialog';
 import { type Account } from '@/lib/types';
-import { DialogProvider } from '@/hooks/use-dialog-store';
-import { ChatProvider } from '@/hooks/use-chat-store';
+import { AppStateProvider } from '@/hooks/use-app-state';
+import { AuthProvider } from '@/components/auth';
 
 function AppLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -208,11 +208,11 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <FirebaseClientProvider>
-      <DialogProvider>
-        <ChatProvider>
+      <AppStateProvider>
+        <AuthProvider>
           <AppLayoutContent>{children}</AppLayoutContent>
-        </ChatProvider>
-      </DialogProvider>
+        </AuthProvider>
+      </AppStateProvider>
     </FirebaseClientProvider>
   );
 }

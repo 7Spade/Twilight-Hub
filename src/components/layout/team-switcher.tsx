@@ -20,7 +20,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 
 export type Team = {
   id: string;
@@ -40,7 +40,7 @@ export function TeamSwitcher({
   setSelectedTeam: (team: Team) => void;
   isCollapsed: boolean;
 }) {
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
 
   const handleSelect = (team: Team) => {
     setSelectedTeam(team);

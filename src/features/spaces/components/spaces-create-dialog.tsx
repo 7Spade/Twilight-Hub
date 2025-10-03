@@ -9,7 +9,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { type Team } from '@/components/layout/team-switcher';
 import {
   Dialog,
@@ -38,7 +38,7 @@ import { useSpaceActions } from '@/features/spaces/hooks';
 type CreateSpaceFormValues = SpaceBaseFormValues;
 
 export function SpaceCreateDialog({ selectedTeam }: { selectedTeam: Team | null }) {
-  const { type, isOpen, close } = useDialogStore();
+  const { type, isOpen, close } = useDialogState();
   const { createSpace, isLoading } = useSpaceActions();
 
   const isDialogVisible = isOpen && type === 'createSpace';

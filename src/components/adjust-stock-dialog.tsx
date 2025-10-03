@@ -14,7 +14,7 @@ import {
 } from 'firebase/firestore';
 
 import { useFirestore } from '@/firebase';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
@@ -52,7 +52,7 @@ export function AdjustStockDialog({
   warehouses: WarehouseType[];
 }) {
   const firestore = useFirestore();
-  const { type, isOpen, close, data } = useDialogStore();
+  const { type, isOpen, close, data } = useDialogState();
   const { toast } = useToast();
   const { item } = (data as AdjustStockDialogData) || {};
 

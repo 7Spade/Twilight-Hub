@@ -33,7 +33,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { type Account } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
@@ -97,7 +97,7 @@ export default function MembersPage({
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
   const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

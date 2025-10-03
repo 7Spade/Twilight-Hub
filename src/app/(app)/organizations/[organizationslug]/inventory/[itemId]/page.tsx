@@ -41,7 +41,7 @@ import {
   type Warehouse,
   type Stock,
 } from '@/lib/types';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 
 export default function ItemStockPage({
   params: paramsPromise,
@@ -52,7 +52,7 @@ export default function ItemStockPage({
   const firestore = useFirestore();
   const { organizationslug, itemId } = params;
   const [organization, setOrganization] = useState<Account | null>(null);
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
 
 
   // Fetch organization by slug to get its ID

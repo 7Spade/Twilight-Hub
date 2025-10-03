@@ -13,7 +13,7 @@ import * as z from 'zod';
 import { collection, serverTimestamp, addDoc } from 'firebase/firestore';
 
 import { useFirestore, useUser } from '@/firebase';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
@@ -45,7 +45,7 @@ type CreateGroupFormValues = z.infer<typeof createGroupSchema>;
 export function CreateGroupDialog({ organizationId }: { organizationId: string }) {
   const firestore = useFirestore();
   const { user } = useUser();
-  const { type, isOpen, close } = useDialogStore();
+  const { type, isOpen, close } = useDialogState();
   const { toast } = useToast();
 
   const isDialogVisible = isOpen && type === 'createGroup';

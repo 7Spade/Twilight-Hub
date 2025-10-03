@@ -6,7 +6,7 @@ import { PlusCircle } from 'lucide-react';
 import { collection, doc, query, where, getDocs, limit } from 'firebase/firestore';
 
 import { useDoc, useCollection, useFirestore } from '@/firebase';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { PageContainer } from '@/components/layout/page-container';
 import {
@@ -78,7 +78,7 @@ export default function GroupsPage({
 }) {
   const params = React.use(paramsPromise);
   const firestore = useFirestore();
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
   const [org, setOrg] = useState<Account | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

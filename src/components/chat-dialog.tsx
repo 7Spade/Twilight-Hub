@@ -1,6 +1,6 @@
 /**
  * @fileoverview A draggable, minimizable chat dialog component.
- * It uses a global Zustand store (`useChatStore`) to manage its open/minimized state.
+ * It uses the unified app state (`useChatState`) to manage its open/minimized state.
  * The component features a conversation list and a message view for the selected conversation.
  * Currently, it uses static placeholder data for demonstration purposes.
  */
@@ -14,7 +14,7 @@ import { GripVertical, Search, Send, X, Minimize2, MessageSquare } from 'lucide-
 import { useUser } from '@/firebase';
 import { cn } from '@/lib/utils';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
-import { useChatStore } from '@/hooks/use-chat-store';
+import { useChatState } from '@/hooks/use-app-state';
 import {
   Dialog,
   DialogContent,
@@ -59,7 +59,7 @@ const placeholderConversations = [
 
 /* ----------------------------- ChatDialog Component ---------------------------- */
 export function ChatDialog() {
-  const { isOpen, close, isMinimized, toggleMinimize } = useChatStore();
+  const { isOpen, close, isMinimized, toggleMinimize } = useChatState();
   const { user: currentUser } = useUser();
   const [selectedConversation, setSelectedConversation] = useState(placeholderConversations[0]);
   const nodeRef = useRef<HTMLDivElement>(null);

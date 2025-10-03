@@ -17,7 +17,7 @@ import {
 import { collection, query, where } from 'firebase/firestore';
 import { PlusCircle, Users2 } from 'lucide-react';
 import Image from 'next/image';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { useMemo } from 'react';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { PageContainer } from '@/components/layout/page-container';
@@ -72,7 +72,7 @@ function OrganizationCard({
 export default function OrganizationsPage() {
   const firestore = useFirestore();
   const { user } = useUser();
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
 
   const organizationsQuery = useMemo(
     () => (firestore && user ? query(collection(firestore, 'accounts'), where('type', '==', 'organization'), where('memberIds', 'array-contains', user.uid)) : null),

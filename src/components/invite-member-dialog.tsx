@@ -24,7 +24,7 @@ import {
 } from 'firebase/firestore';
 
 import { useFirestore } from '@/firebase';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
@@ -53,7 +53,7 @@ type InviteMemberFormValues = z.infer<typeof inviteMemberSchema>;
 
 export function InviteMemberDialog({ organizationId }: { organizationId: string }) {
   const firestore = useFirestore();
-  const { type, isOpen, close } = useDialogStore();
+  const { type, isOpen, close } = useDialogState();
   const { toast } = useToast();
 
   const isDialogVisible = isOpen && type === 'inviteMember';

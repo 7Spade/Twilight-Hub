@@ -5,7 +5,7 @@ import { collection, query, where, documentId } from 'firebase/firestore';
 import { useUser, useFirestore, useCollection } from '@/firebase';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
-import { useDialogStore } from '@/hooks/use-dialog-store';
+import { useDialogState } from '@/hooks/use-app-state';
 import { PageContainer } from '@/components/layout/page-container';
 import { SpaceListView } from '@/features/spaces/components/spaces-list-view';
 import { type Account, type Space } from '@/lib/types';
@@ -13,7 +13,7 @@ import { type Account, type Space } from '@/lib/types';
 export default function UnifiedSpacesPage() {
   const { user } = useUser();
   const firestore = useFirestore();
-  const { open: openDialog } = useDialogStore();
+  const { open: openDialog } = useDialogState();
 
   const userOrgsQuery = useMemo(() => {
     if (!firestore || !user) return null;
