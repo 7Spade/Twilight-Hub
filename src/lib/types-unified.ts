@@ -1,10 +1,21 @@
 /**
- * @fileoverview 統�??��??��?�? * ?��??�散?��??��?義�??�循奧卡姆�??�?��?
+ * @fileoverview 統一類型定義系統
+ * 整合分散的類型定義，遵循奧卡姆剃刀原則
+ * 
+ * TODO: [P1] [BUG] [REFACTOR] 修復 UTF-8 編碼問題 - 文件原本包含亂碼字符，已修復
+ * - 問題: 文件包含無效的 UTF-8 字符（亂碼）
+ * - 範圍/影響: src/lib/types-unified.ts，影響類型系統可讀性
+ * - 何時: 2025-10-03 發現
+ * - 為什麼: 文件保存時編碼設置錯誤
+ * - 解法: 以 UTF-8 編碼重新保存文件，修正註釋
+ * - 驗證: (1) 文件可正常讀取 (2) 無亂碼字符 (3) TypeScript 編譯成功
+ * - 預防: .editorconfig 強制 UTF-8，使用 pre-commit hook 檢測編碼
+ * - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復
  */
 
 import { Timestamp } from "firebase/firestore";
 
-// ===== ?��?類�? =====
+// ===== 基礎類型 =====
 
 export interface BaseEntity {
   id: string;
@@ -12,7 +23,7 @@ export interface BaseEntity {
   updatedAt: Timestamp;
 }
 
-// ===== ?�戶?��?織�???=====
+// ===== 用戶與組織類型 =====
 
 export interface Account extends BaseEntity {
   type: 'user' | 'organization';
@@ -32,7 +43,7 @@ export interface Account extends BaseEntity {
   moduleInventory?: { [key: string]: number };
 }
 
-// ===== 空�??�模組�???=====
+// ===== 空間與模組類型 =====
 
 export interface Space extends BaseEntity {
   ownerId: string;
@@ -52,7 +63,7 @@ export interface Module extends BaseEntity {
   type: 'user' | 'organization' | 'common';
 }
 
-// ===== 組�?管�?類�? =====
+// ===== 組織管理類型 =====
 
 export interface Group extends BaseEntity {
   organizationId: string;
@@ -81,7 +92,7 @@ export interface Stock extends BaseEntity {
   quantity: number;
 }
 
-// ===== 審�??��?就�???=====
+// ===== 審計與成就類型 =====
 
 export interface AuditLog extends BaseEntity {
   organizationId: string;
@@ -105,7 +116,7 @@ export interface Achievement extends BaseEntity {
   icon: string;
 }
 
-// ===== 權�?管�?類�? =====
+// ===== 權限管理類型 =====
 
 export type Permission = 
   | 'space:read'
@@ -187,7 +198,7 @@ export interface RoleManagementConfig {
   requireApprovalForRoleChange: boolean;
 }
 
-// ===== UI 組件類�? =====
+// ===== UI 組件類型 =====
 
 export interface NavItem {
   href: string;
@@ -202,7 +213,7 @@ export interface Team {
   slug?: string;
 }
 
-// ===== 表單類�? =====
+// ===== 表單類型 =====
 
 export interface FormFieldProps<TFieldValues extends FieldValues = FieldValues> {
   control: Control<TFieldValues>;
@@ -222,7 +233,7 @@ export interface FormCardProps<T extends FieldValues> {
   children: React.ReactNode;
 }
 
-// ===== ?�?�管?��???=====
+// ===== 狀態管理類型 =====
 
 export interface AppState {
   chat: {
@@ -231,7 +242,7 @@ export interface AppState {
   };
   dialog: {
     type: string | null;
-    data: any; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
+    data: unknown; /* TODO: [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告 */
     isOpen: boolean;
   };
 }
@@ -243,7 +254,7 @@ export interface AuthState {
   error: string | null;
 }
 
-// ===== ?�件?��?類�? =====
+// ===== 文件相關類型 =====
 
 export interface FileItem {
   id: string;
@@ -272,9 +283,9 @@ export interface FileActionItem {
   updated: string;
 }
 
-// ===== 導出?�?��???=====
+// ===== 導出其他類型 =====
 
-// ?�新導出 React Hook Form 類�?
+// 重新導出 React Hook Form 類型
 export type {
   FieldValues,
   FieldPath,

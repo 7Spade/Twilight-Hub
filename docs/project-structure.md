@@ -1,7 +1,7 @@
 # 項目結構
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:42:31
+> 最後更新時間: 2025/10/03 下午05:57:41
 
 ## 目錄結構
 
@@ -84,6 +84,7 @@
     │   │   │   ├── actions/
     │   │   │   │   ├── file-actions.ts
     │   │   │   │   ├── index.ts
+    │   │   │   │   ├── spaces-file-actions.ts
     │   │   │   ├── components/
     │   │   │   │   ├── acceptance/
     │   │   │   │   │   ├── acceptance-item.tsx
@@ -167,6 +168,7 @@
     │   │   │   ├── hooks/
     │   │   │   │   ├── index.ts
     │   │   │   │   ├── use-file-actions.ts
+    │   │   │   │   ├── use-file-operations.ts
     │   │   │   │   ├── use-space-actions.ts
     │   │   │   │   ├── use-star-actions.ts
     │   │   │   │   ├── use-visibility-actions.ts
@@ -266,6 +268,7 @@
     │   └── role-management.ts
     │   └── types-unified.ts
     │   └── utils.ts
+└── .editorconfig
 └── .eslintrc.json
 └── .prettierignore
 └── .prettierrc

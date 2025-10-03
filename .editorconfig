@@ -1,0 +1,45 @@
+# EditorConfig 配置文件
+# 確保所有編輯器使用一致的編碼和格式設置
+# 
+# TODO: [P1] [CONFIG] [SETUP] 預防 UTF-8 編碼問題
+# - 所有文件強制使用 UTF-8 編碼
+# - 防止再次出現亂碼字符
+
+root = true
+
+# 所有文件的默認設置
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# TypeScript/JavaScript 文件
+[*.{ts,tsx,js,jsx}]
+indent_style = space
+indent_size = 2
+charset = utf-8
+
+# JSON 文件
+[*.json]
+indent_style = space
+indent_size = 2
+charset = utf-8
+
+# Markdown 文件
+[*.md]
+trim_trailing_whitespace = false
+charset = utf-8
+
+# YAML 文件
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+charset = utf-8
+
+# 配置文件
+[{package.json,.prettierrc,.eslintrc,tsconfig.json}]
+indent_style = space
+indent_size = 2
+charset = utf-8
+

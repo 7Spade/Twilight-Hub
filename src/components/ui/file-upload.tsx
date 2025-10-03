@@ -6,7 +6,7 @@
  */
 
 'use client';
-/* TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - 第65、72、252行在回調函數中調用 Hook，必須在組件頂層調用 */
+// React Hooks 規則已修復 - 將 useFormatFileSize 和 useIsFileTypeSupported 替換為純函數
 
 import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -25,8 +25,23 @@ import {
   AlertCircle 
 } from 'lucide-react';
 /* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用 */
-import { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile, useFormatFileSize, useIsFileTypeSupported } from '@/hooks/use-file-operations';
+import { useUploadFile, useDeleteFile, useDownloadFile, usePreviewFile } from '@/hooks/use-file-operations';
 import { ContractDocument } from '@/lib/types/contract.types';
+
+// Helper functions for file validation (not hooks)
+const isFileTypeSupported = (fileName: string): boolean => {
+  const supportedTypes = ['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png', '.gif'];
+  const extension = fileName.toLowerCase().substring(fileName.lastIndexOf('.'));
+  return supportedTypes.includes(extension);
+};
+
+const formatFileSize = (bytes: number): string => {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
 
 interface FileUploadProps {
   path: string;
@@ -63,17 +78,15 @@ export function FileUpload({
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.forEach((file) => {
-      // TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useIsFileTypeSupported 不能在回調中調用
       // 檢查文件類型
-      if (!useIsFileTypeSupported(file.name)) {
+      if (!isFileTypeSupported(file.name)) {
         alert(`不支持的文件類型: ${file.name}`);
         return;
       }
 
-      // TODO: [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useFormatFileSize 不能在回調中調用
       // 檢查文件大小
       if (file.size > maxSize) {
-        alert(`文件太大: ${file.name} (最大 ${useFormatFileSize(maxSize)})`);
+        alert(`文件太大: ${file.name} (最大 ${formatFileSize(maxSize)})`);
         return;
       }
 
@@ -204,7 +217,7 @@ export function FileUpload({
               {dragActive ? '放開文件以上傳' : '拖拽文件到這裡或點擊選擇'}
             </p>
             <p className="text-sm text-muted-foreground mb-4">
-              支持 {acceptedTypes.join(', ')} 格式，最大 {useFormatFileSize(maxSize)}
+              支持 {acceptedTypes.join(', ')} 格式，最大 {formatFileSize(maxSize)}
             </p>
             <p className="text-xs text-muted-foreground">
               最多 {maxFiles} 個文件
@@ -253,7 +266,7 @@ export function FileUpload({
                     <div className="flex-1 min-w-0">
                       <p className="font-medium truncate">{document.name}</p>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span>{useFormatFileSize(document.size)}</span>
+                        <span>{formatFileSize(document.size)}</span>
                         <span>•</span>
                         <span>{document.uploadedAt.toLocaleDateString()}</span>
                         <span>•</span>

@@ -51,15 +51,49 @@
 - `[P1]` `[MEMORY_BANK]` `[CLEANUP]` `[DONE]` 更新 Memory Bank 與專案同步
 
 ### 構建錯誤修復（緊急）
-- `[P1]` `[BUG]` `[AUTH]` `[TODO]` 修復 UTF-8 編碼問題 - auth-provider.tsx, permission-guard.tsx
-  - 問題: 文件包含無效的 UTF-8 字符導致構建失敗
-  - 範圍/影響: src/components/auth/ 目錄，影響所有需要認證的頁面
-  - 何時: 2025-10-03 發現，阻塞構建流程
-  - 為什麼: 文件編輯時引入了非 UTF-8 字符或文件保存編碼錯誤
-  - 解法: 使用支援 UTF-8 的編輯器重新保存文件，確保文件編碼為 UTF-8
-  - 驗證: (1) npm run build 成功 (2) 文件可正常編譯 (3) 無編碼警告
-  - 預防: 在 .editorconfig 中強制 UTF-8 編碼，使用 ESLint 插件檢測編碼問題
+
+#### UTF-8 編碼問題（已修復 2/20+）
+- `[P1]` `[BUG]` `[REFACTOR]` `[DONE]` 修復 UTF-8 編碼問題 - types-unified.ts
+  - 問題: 文件包含無效的 UTF-8 字符（亂碼），影響可讀性和維護性
+  - 範圍/影響: src/lib/types-unified.ts，影響整個類型系統
+  - 何時: 2025-10-03 發現，使用 grep 搜索發現
+  - 為什麼: 文件保存時編碼設置錯誤，可能使用了非 UTF-8 編碼
+  - 解法: 以 UTF-8 編碼重新保存文件，修正註釋和類型名稱
+  - 驗證: (1) 文件可正常讀取 (2) 無亂碼字符 (3) TypeScript 編譯成功
+  - 預防: .editorconfig 強制 UTF-8，使用 pre-commit hook 檢測編碼
   - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復文件
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[DONE]` 修復 UTF-8 編碼問題 - overview/types.ts
+  - 問題: 文件包含無效的 UTF-8 字符（亂碼），影響可讀性
+  - 範圍/影響: src/components/features/spaces/components/overview/types.ts
+  - 何時: 2025-10-03 發現
+  - 為什麼: 文件保存時編碼設置錯誤
+  - 解法: 以 UTF-8 編碼重新保存文件，修正註釋
+  - 驗證: (1) 文件可正常讀取 (2) 無亂碼字符 (3) TypeScript 編譯成功
+  - 預防: .editorconfig 強制 UTF-8，使用 pre-commit hook 檢測編碼
+  - 風險/回滾: 風險低；若出現問題，從 git 歷史恢復文件
+
+- `[P1]` `[BUG]` `[REFACTOR]` `[TODO]` 檢查並修復其他 UTF-8 編碼問題
+  - 受影響文件列表（已通過 grep 搜索發現）:
+    - src/components/ui/file-upload.tsx
+    - src/components/features/spaces/components/contracts/contract-list.tsx
+    - src/components/features/spaces/actions/file-actions.ts
+    - src/components/features/spaces/actions/spaces-file-actions.ts
+    - src/components/features/spaces/hooks/use-file-operations.ts
+    - src/hooks/use-permissions.ts
+    - src/hooks/use-app-state.ts
+    - src/components/features/spaces/components/overview/recent-activity.tsx
+    - src/firebase/firestore/use-doc.tsx
+    - src/firebase/firestore/use-collection.tsx
+    - src/components/features/spaces/components/overview/stat-card.tsx
+    - src/components/features/spaces/components/report/report-viewer.tsx
+    - src/components/features/spaces/components/report/create-report-dialog.tsx
+    - src/components/features/spaces/components/quality/quality-dashboard.tsx
+    - src/components/features/spaces/components/participants/data.ts
+    - src/components/features/spaces/components/quality/checklist.tsx
+  - 注意: 部分文件包含中文註釋是正常的，需要區分亂碼和正常中文
+  - 解法: 逐一檢查每個文件，修復實際的編碼問題
+  - 驗證: (1) 所有文件可正常讀取 (2) 無亂碼字符 (3) 構建成功
 
 - `[P1]` `[BUG]` `[AUTH]` `[TODO]` 修復文件完整性問題 - role-manager.tsx 被截斷
   - 問題: role-manager.tsx 只剩 10 行，原本應有完整的角色管理功能

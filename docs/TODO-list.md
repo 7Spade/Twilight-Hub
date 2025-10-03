@@ -1,17 +1,80 @@
 # TODO 列表
 
 > 此文件由自動化腳本生成，請勿手動編輯
-> 最後更新時間: 2025/10/03 下午05:42:31
+> 最後更新時間: 2025/10/03 下午05:57:41
 
 ## 統計信息
 
-- **總計**: 151 個 TODO
+- **總計**: 214 個 TODO
 - **高優先級**: 0 個
-- **中優先級**: 151 個  
+- **中優先級**: 214 個  
 - **低優先級**: 0 個
 
-## 🟡 中優先級 (151 個)
+## 🟡 中優先級 (214 個)
 
+- [ ] `docs/Commands/04-cleanup-commands.md:216` - 移除未使用的導入
+- [ ] `docs/Commands/04-cleanup-commands.md:217` - 移除未使用的變數
+- [ ] `docs/Commands/04-cleanup-commands.md:218` - 移除未使用的參數
+- [ ] `docs/Commands/04-cleanup-commands.md:219` - 移除重複的代碼
+- [ ] `docs/Commands/04-cleanup-commands.md:220` - 統一代碼風格
+- [ ] `docs/Commands/04-cleanup-commands.md:221` - 規範命名約定
+- [ ] `docs/Commands/04-cleanup-commands.md:222` - 標準化註釋格式
+- [ ] `docs/Commands/04-cleanup-commands.md:223` - 優化結構布局
+- [ ] `docs/Commands/04-cleanup-commands.md:226` - 格式化所有文件
+- [ ] `docs/Commands/04-cleanup-commands.md:227` - 整理目錄結構
+- [ ] `docs/Commands/04-cleanup-commands.md:228` - 清理模組依賴
+- [ ] `docs/Commands/04-cleanup-commands.md:229` - 移除空文件
+- [ ] `docs/Commands/04-cleanup-commands.md:230` - 統一文件命名
+- [ ] `docs/Commands/04-cleanup-commands.md:231` - 優化文件組織
+- [ ] `docs/Commands/04-cleanup-commands.md:232` - 清理臨時文件
+- [ ] `docs/Commands/04-cleanup-commands.md:233` - 更新文件文檔
+- [ ] `docs/Commands/04-cleanup-commands.md:236` - 清理構建產物
+- [ ] `docs/Commands/04-cleanup-commands.md:237` - 清理緩存文件
+- [ ] `docs/Commands/04-cleanup-commands.md:238` - 清理日誌文件
+- [ ] `docs/Commands/04-cleanup-commands.md:239` - 清理測試產物
+- [ ] `docs/Commands/04-cleanup-commands.md:240` - 清理依賴冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:241` - 清理配置冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:242` - 清理文檔冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:243` - 清理版本控制冗餘
+- [ ] `docs/Commands/06-quick-commands.md:272` - 確認指令目標明確
+- [ ] `docs/Commands/06-quick-commands.md:273` - 確認操作範圍適當
+- [ ] `docs/Commands/06-quick-commands.md:274` - 確認不會破壞現有功能
+- [ ] `docs/Commands/06-quick-commands.md:275` - 確認有適當的回滾方案
+- [ ] `docs/Commands/06-quick-commands.md:278` - 監控操作進度
+- [ ] `docs/Commands/06-quick-commands.md:279` - 檢查錯誤和警告
+- [ ] `docs/Commands/06-quick-commands.md:280` - 驗證中間結果
+- [ ] `docs/Commands/06-quick-commands.md:281` - 記錄操作日誌
+- [ ] `docs/Commands/06-quick-commands.md:284` - 驗證操作結果
+- [ ] `docs/Commands/06-quick-commands.md:285` - 檢查功能完整性
+- [ ] `docs/Commands/06-quick-commands.md:286` - 確認性能影響
+- [ ] `docs/Commands/06-quick-commands.md:287` - 更新相關文檔
+- [ ] `docs/Commands/07-smart-commands.md:246` - 確認上下文信息完整
+- [ ] `docs/Commands/07-smart-commands.md:247` - 確認目標明確具體
+- [ ] `docs/Commands/07-smart-commands.md:248` - 確認範圍適當合理
+- [ ] `docs/Commands/07-smart-commands.md:249` - 確認有學習和適應能力
+- [ ] `docs/Commands/07-smart-commands.md:252` - 監控智能決策過程
+- [ ] `docs/Commands/07-smart-commands.md:253` - 檢查模式識別準確性
+- [ ] `docs/Commands/07-smart-commands.md:254` - 驗證批量操作效果
+- [ ] `docs/Commands/07-smart-commands.md:255` - 記錄學習和改進過程
+- [ ] `docs/Commands/07-smart-commands.md:258` - 評估智能指令效果
+- [ ] `docs/Commands/07-smart-commands.md:259` - 分析模式識別準確性
+- [ ] `docs/Commands/07-smart-commands.md:260` - 檢查批量操作效率
+- [ ] `docs/Commands/07-smart-commands.md:261` - 更新學習和適應策略
+- [ ] `docs/Commands/08-priority-commands.md:294` - 確認優先級標記正確
+- [ ] `docs/Commands/08-priority-commands.md:295` - 確認類型標記適當
+- [ ] `docs/Commands/08-priority-commands.md:296` - 確認影響範圍評估
+- [ ] `docs/Commands/08-priority-commands.md:297` - 確認緊急程度判斷
+- [ ] `docs/Commands/08-priority-commands.md:300` - 監控優先級執行順序
+- [ ] `docs/Commands/08-priority-commands.md:301` - 檢查任務完成進度
+- [ ] `docs/Commands/08-priority-commands.md:302` - 驗證優先級調整合理性
+- [ ] `docs/Commands/08-priority-commands.md:303` - 記錄優先級變更原因
+- [ ] `docs/Commands/08-priority-commands.md:306` - 評估優先級評估準確性
+- [ ] `docs/Commands/08-priority-commands.md:307` - 分析任務執行效率
+- [ ] `docs/Commands/08-priority-commands.md:308` - 檢查優先級管理效果
+- [ ] `docs/Commands/08-priority-commands.md:309` - 優化優先級評估標準
+- [ ] `docs/Commands/09-compliance-commands.md:268` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
+- [ ] `docs/Commands/09-compliance-commands.md:266` - 項目格式
+- [ ] `docs/Commands/09-compliance-commands.md:266` - 項目格式
 - [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` - `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
@@ -52,14 +115,14 @@
 - [ ] `docs/nextjs15_dev-standard.md:1329` - Firebase Security Rules 已部署
 - [ ] `docs/nextjs15_dev-standard.md:1330` - 錯誤追蹤已設置
 - [ ] `docs/nextjs15_dev-standard.md:1331` - 性能指標監控已配置
-- [ ] `docs/TODO.md:321` - 檢查 P0 任務狀態
-- [ ] `docs/TODO.md:322` - 更新進行中任務進度
-- [ ] `docs/TODO.md:323` - 識別新的阻塞問題
-- [ ] `docs/TODO.md:324` - 調整任務優先級
-- [ ] `docs/TODO.md:327` - 統計完成任務數量
-- [ ] `docs/TODO.md:328` - 分析任務完成時間
-- [ ] `docs/TODO.md:329` - 識別重複出現的問題
-- [ ] `docs/TODO.md:330` - 優化工作流程
+- [ ] `docs/TODO.md:355` - 檢查 P0 任務狀態
+- [ ] `docs/TODO.md:356` - 更新進行中任務進度
+- [ ] `docs/TODO.md:357` - 識別新的阻塞問題
+- [ ] `docs/TODO.md:358` - 調整任務優先級
+- [ ] `docs/TODO.md:361` - 統計完成任務數量
+- [ ] `docs/TODO.md:362` - 分析任務完成時間
+- [ ] `docs/TODO.md:363` - 識別重複出現的問題
+- [ ] `docs/TODO.md:364` - 優化工作流程
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `scripts/sync-todos.js:107` - 正則表達式模式
@@ -70,11 +133,15 @@
 - [ ] `scripts/sync-todos.js:459` - 內容\`, \`<!-- TODO: 內容 -->\`
 - [ ] `scripts/sync-todos.js:459` - 內容
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
-- [ ] `src/components/auth/auth-provider.tsx:140` - 從服務器獲取用戶角色分配
-- [ ] `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗
-- [ ] `src/components/auth/auth-provider.tsx:18` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用
+- [ ] `src/components/auth/auth-provider.tsx:139` - Fetch user role assignment from server
+- [ ] `src/components/auth/auth-provider.tsx:17` - [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
 - [ ] `src/components/auth/permission-guard.tsx:18` - Implement permission checking logic
-- [ ] `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題 - 文件被截斷，原本應該有完整的角色管理功能實現
+- [ ] `src/components/auth/role-manager.tsx:97` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:140` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:166` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:179` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:193` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:205` - Implement actual API call
 - [ ] `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
 - [ ] `src/components/features/contracts/contract-list.tsx:36` - 整合 React Query hooks 和 Server Actions
 - [ ] `src/components/features/contracts/contract-list.tsx:61` - 實現刪除邏輯
@@ -104,7 +171,6 @@
 - [ ] `src/components/features/spaces/components/contracts/contract-details.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:3` - [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
-- [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - span 標籤未正確閉合
 - [ ] `src/components/features/spaces/components/file-explorer/column-settings-menu.tsx:7` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/context-menu.tsx:7` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/deleted-items.tsx:8` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
@@ -119,7 +185,7 @@
 - [ ] `src/components/features/spaces/components/overview/recent-activity.tsx:26` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/overview/stat-card.tsx:6` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - LucideIcon 未使用
 - [ ] `src/components/features/spaces/components/overview/stat-card.tsx:27` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的變量 - isVisible 未使用
-- [ ] `src/components/features/spaces/components/overview/types.ts:31` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/overview/types.ts:41` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/participants/data.ts:81` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/participants/data.ts:91` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
 - [ ] `src/components/features/spaces/components/participants/participant-role-editor.tsx:47` - Implement role change API call
@@ -140,9 +206,6 @@
 - [ ] `src/components/search-command.tsx:97` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第86行缺少 Fragment 開始標籤，第94行 span 標籤未正確閉合
 - [ ] `src/components/ui/file-type-icon.tsx:20` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
 - [ ] `src/components/ui/file-type-icon.tsx:197` - [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
-- [ ] `src/components/ui/file-upload.tsx:66` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useIsFileTypeSupported 不能在回調中調用
-- [ ] `src/components/ui/file-upload.tsx:73` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useFormatFileSize 不能在回調中調用
-- [ ] `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - 第65、72、252行在回調函數中調用 Hook，必須在組件頂層調用
 - [ ] `src/components/ui/file-upload.tsx:27` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
 - [ ] `src/firebase/firestore/use-collection.tsx:75` - This might not represent complex queries perfectly but is good for most cases.
 - [ ] `src/firebase/firestore/use-collection.tsx:69` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用
@@ -162,7 +225,7 @@
 - [ ] `src/lib/role-management.ts:20` - Implement permission checking
 - [ ] `src/lib/role-management.ts:15` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - roleId 未使用
 - [ ] `src/lib/role-management.ts:19` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用
-- [ ] `src/lib/types-unified.ts:234` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/lib/types-unified.ts:245` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
 ## 按文件類型分組
 
@@ -176,8 +239,71 @@
 - [ ] `scripts/sync-todos.js:459` - 內容\`, \`<!-- TODO: 內容 -->\`
 - [ ] `scripts/sync-todos.js:459` - 內容
 
-### Markdown (61 個)
+### Markdown (124 個)
 
+- [ ] `docs/Commands/04-cleanup-commands.md:216` - 移除未使用的導入
+- [ ] `docs/Commands/04-cleanup-commands.md:217` - 移除未使用的變數
+- [ ] `docs/Commands/04-cleanup-commands.md:218` - 移除未使用的參數
+- [ ] `docs/Commands/04-cleanup-commands.md:219` - 移除重複的代碼
+- [ ] `docs/Commands/04-cleanup-commands.md:220` - 統一代碼風格
+- [ ] `docs/Commands/04-cleanup-commands.md:221` - 規範命名約定
+- [ ] `docs/Commands/04-cleanup-commands.md:222` - 標準化註釋格式
+- [ ] `docs/Commands/04-cleanup-commands.md:223` - 優化結構布局
+- [ ] `docs/Commands/04-cleanup-commands.md:226` - 格式化所有文件
+- [ ] `docs/Commands/04-cleanup-commands.md:227` - 整理目錄結構
+- [ ] `docs/Commands/04-cleanup-commands.md:228` - 清理模組依賴
+- [ ] `docs/Commands/04-cleanup-commands.md:229` - 移除空文件
+- [ ] `docs/Commands/04-cleanup-commands.md:230` - 統一文件命名
+- [ ] `docs/Commands/04-cleanup-commands.md:231` - 優化文件組織
+- [ ] `docs/Commands/04-cleanup-commands.md:232` - 清理臨時文件
+- [ ] `docs/Commands/04-cleanup-commands.md:233` - 更新文件文檔
+- [ ] `docs/Commands/04-cleanup-commands.md:236` - 清理構建產物
+- [ ] `docs/Commands/04-cleanup-commands.md:237` - 清理緩存文件
+- [ ] `docs/Commands/04-cleanup-commands.md:238` - 清理日誌文件
+- [ ] `docs/Commands/04-cleanup-commands.md:239` - 清理測試產物
+- [ ] `docs/Commands/04-cleanup-commands.md:240` - 清理依賴冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:241` - 清理配置冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:242` - 清理文檔冗餘
+- [ ] `docs/Commands/04-cleanup-commands.md:243` - 清理版本控制冗餘
+- [ ] `docs/Commands/06-quick-commands.md:272` - 確認指令目標明確
+- [ ] `docs/Commands/06-quick-commands.md:273` - 確認操作範圍適當
+- [ ] `docs/Commands/06-quick-commands.md:274` - 確認不會破壞現有功能
+- [ ] `docs/Commands/06-quick-commands.md:275` - 確認有適當的回滾方案
+- [ ] `docs/Commands/06-quick-commands.md:278` - 監控操作進度
+- [ ] `docs/Commands/06-quick-commands.md:279` - 檢查錯誤和警告
+- [ ] `docs/Commands/06-quick-commands.md:280` - 驗證中間結果
+- [ ] `docs/Commands/06-quick-commands.md:281` - 記錄操作日誌
+- [ ] `docs/Commands/06-quick-commands.md:284` - 驗證操作結果
+- [ ] `docs/Commands/06-quick-commands.md:285` - 檢查功能完整性
+- [ ] `docs/Commands/06-quick-commands.md:286` - 確認性能影響
+- [ ] `docs/Commands/06-quick-commands.md:287` - 更新相關文檔
+- [ ] `docs/Commands/07-smart-commands.md:246` - 確認上下文信息完整
+- [ ] `docs/Commands/07-smart-commands.md:247` - 確認目標明確具體
+- [ ] `docs/Commands/07-smart-commands.md:248` - 確認範圍適當合理
+- [ ] `docs/Commands/07-smart-commands.md:249` - 確認有學習和適應能力
+- [ ] `docs/Commands/07-smart-commands.md:252` - 監控智能決策過程
+- [ ] `docs/Commands/07-smart-commands.md:253` - 檢查模式識別準確性
+- [ ] `docs/Commands/07-smart-commands.md:254` - 驗證批量操作效果
+- [ ] `docs/Commands/07-smart-commands.md:255` - 記錄學習和改進過程
+- [ ] `docs/Commands/07-smart-commands.md:258` - 評估智能指令效果
+- [ ] `docs/Commands/07-smart-commands.md:259` - 分析模式識別準確性
+- [ ] `docs/Commands/07-smart-commands.md:260` - 檢查批量操作效率
+- [ ] `docs/Commands/07-smart-commands.md:261` - 更新學習和適應策略
+- [ ] `docs/Commands/08-priority-commands.md:294` - 確認優先級標記正確
+- [ ] `docs/Commands/08-priority-commands.md:295` - 確認類型標記適當
+- [ ] `docs/Commands/08-priority-commands.md:296` - 確認影響範圍評估
+- [ ] `docs/Commands/08-priority-commands.md:297` - 確認緊急程度判斷
+- [ ] `docs/Commands/08-priority-commands.md:300` - 監控優先級執行順序
+- [ ] `docs/Commands/08-priority-commands.md:301` - 檢查任務完成進度
+- [ ] `docs/Commands/08-priority-commands.md:302` - 驗證優先級調整合理性
+- [ ] `docs/Commands/08-priority-commands.md:303` - 記錄優先級變更原因
+- [ ] `docs/Commands/08-priority-commands.md:306` - 評估優先級評估準確性
+- [ ] `docs/Commands/08-priority-commands.md:307` - 分析任務執行效率
+- [ ] `docs/Commands/08-priority-commands.md:308` - 檢查優先級管理效果
+- [ ] `docs/Commands/08-priority-commands.md:309` - 優化優先級評估標準
+- [ ] `docs/Commands/09-compliance-commands.md:268` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
+- [ ] `docs/Commands/09-compliance-commands.md:266` - 項目格式
+- [ ] `docs/Commands/09-compliance-commands.md:266` - 項目格式
 - [ ] `docs/natural-language-commands.md:522` - `文件路徑:行號` - [優先級] [類型] [模組] [描述] - 具體問題說明
 - [ ] `docs/natural-language-commands.md:554` - `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題
 - [ ] `docs/natural-language-commands.md:555` - `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題
@@ -218,14 +344,14 @@
 - [ ] `docs/nextjs15_dev-standard.md:1329` - Firebase Security Rules 已部署
 - [ ] `docs/nextjs15_dev-standard.md:1330` - 錯誤追蹤已設置
 - [ ] `docs/nextjs15_dev-standard.md:1331` - 性能指標監控已配置
-- [ ] `docs/TODO.md:321` - 檢查 P0 任務狀態
-- [ ] `docs/TODO.md:322` - 更新進行中任務進度
-- [ ] `docs/TODO.md:323` - 識別新的阻塞問題
-- [ ] `docs/TODO.md:324` - 調整任務優先級
-- [ ] `docs/TODO.md:327` - 統計完成任務數量
-- [ ] `docs/TODO.md:328` - 分析任務完成時間
-- [ ] `docs/TODO.md:329` - 識別重複出現的問題
-- [ ] `docs/TODO.md:330` - 優化工作流程
+- [ ] `docs/TODO.md:355` - 檢查 P0 任務狀態
+- [ ] `docs/TODO.md:356` - 更新進行中任務進度
+- [ ] `docs/TODO.md:357` - 識別新的阻塞問題
+- [ ] `docs/TODO.md:358` - 調整任務優先級
+- [ ] `docs/TODO.md:361` - 統計完成任務數量
+- [ ] `docs/TODO.md:362` - 分析任務完成時間
+- [ ] `docs/TODO.md:363` - 識別重複出現的問題
+- [ ] `docs/TODO.md:364` - 優化工作流程
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `docs/TODO.md:1` - 管理系統
 - [ ] `src/components/features/spaces/COMPLIANCE_TODO.md:6` - `spaces.actions.ts` - 缺少統一的 Server Actions 文件
@@ -244,7 +370,7 @@
 
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:41` - ?�换为�?实�?API调用
 - [ ] `src/components/features/spaces/components/overview/hooks/use-dashboard-data.ts:61` - ?�换为�?实�?API调用
-- [ ] `src/components/features/spaces/components/overview/types.ts:31` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/components/features/spaces/components/overview/types.ts:41` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 - [ ] `src/components/features/spaces/components/participants/data.ts:81` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - spaceId 未使用
 - [ ] `src/components/features/spaces/components/participants/data.ts:91` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - message 未使用
 - [ ] `src/components/features/spaces/hooks/use-star-actions.ts:14` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Space 未使用
@@ -263,16 +389,20 @@
 - [ ] `src/lib/role-management.ts:20` - Implement permission checking
 - [ ] `src/lib/role-management.ts:15` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - roleId 未使用
 - [ ] `src/lib/role-management.ts:19` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - userId, spaceId, permission, userRoleAssignment 未使用
-- [ ] `src/lib/types-unified.ts:234` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
+- [ ] `src/lib/types-unified.ts:245` - [P2] [BUG] [UI] [TODO] 修復 TypeScript any 類型警告
 
 ### TypeScript React (61 個)
 
 - [ ] `src/app/(app)/organizations/[organizationslug]/spaces/page.tsx:10` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - params 未使用
-- [ ] `src/components/auth/auth-provider.tsx:140` - 從服務器獲取用戶角色分配
-- [ ] `src/components/auth/auth-provider.tsx:6` - [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗
-- [ ] `src/components/auth/auth-provider.tsx:18` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用
+- [ ] `src/components/auth/auth-provider.tsx:139` - Fetch user role assignment from server
+- [ ] `src/components/auth/auth-provider.tsx:17` - [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used
 - [ ] `src/components/auth/permission-guard.tsx:18` - Implement permission checking logic
-- [ ] `src/components/auth/role-manager.tsx:3` - [P1] [BUG] [AUTH] [TODO] 修復文件完整性問題 - 文件被截斷，原本應該有完整的角色管理功能實現
+- [ ] `src/components/auth/role-manager.tsx:97` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:140` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:166` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:179` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:193` - Implement actual API call
+- [ ] `src/components/auth/role-manager.tsx:205` - Implement actual API call
 - [ ] `src/components/contribution-breakdown-chart.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Card, CardContent, CardHeader, CardTitle 未使用
 - [ ] `src/components/features/contracts/contract-list.tsx:36` - 整合 React Query hooks 和 Server Actions
 - [ ] `src/components/features/contracts/contract-list.tsx:61` - 實現刪除邏輯
@@ -291,7 +421,6 @@
 - [ ] `src/components/features/spaces/components/contracts/contract-details.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Avatar, AvatarFallback, AvatarImage, Phone 未使用
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:3` - [P2] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第317行包含未閉合的標籤或無效字符
 - [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:11` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - FileText, DollarSign 未使用
-- [ ] `src/components/features/spaces/components/contracts/contract-list.tsx:319` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - span 標籤未正確閉合
 - [ ] `src/components/features/spaces/components/file-explorer/column-settings-menu.tsx:7` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第69行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/context-menu.tsx:7` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第126行包含未終止的字符串字面量
 - [ ] `src/components/features/spaces/components/file-explorer/deleted-items.tsx:8` - [P2] [BUG] [UI] [TODO] 修復字符串字面量錯誤 - 第50行包含未終止的字符串字面量
@@ -321,9 +450,6 @@
 - [ ] `src/components/search-command.tsx:97` - [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - 第86行缺少 Fragment 開始標籤，第94行 span 標籤未正確閉合
 - [ ] `src/components/ui/file-type-icon.tsx:20` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, Image, Video, Music, Archive, Code 未使用
 - [ ] `src/components/ui/file-type-icon.tsx:197` - [P2] [BUG] [UI] [TODO] 修復 Next.js img 元素警告 - 應該使用 next/image 而不是原生 img 標籤
-- [ ] `src/components/ui/file-upload.tsx:66` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useIsFileTypeSupported 不能在回調中調用
-- [ ] `src/components/ui/file-upload.tsx:73` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - useFormatFileSize 不能在回調中調用
-- [ ] `src/components/ui/file-upload.tsx:9` - [P1] [BUG] [UI] [TODO] 修復 React Hooks 規則違反 - 第65、72、252行在回調函數中調用 Hook，必須在組件頂層調用
 - [ ] `src/components/ui/file-upload.tsx:27` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - Badge, X, CheckCircle, AlertCircle 未使用
 - [ ] `src/firebase/firestore/use-collection.tsx:75` - This might not represent complex queries perfectly but is good for most cases.
 - [ ] `src/firebase/firestore/use-collection.tsx:69` - [P2] [CLEANUP] [UI] [TODO] 清理未使用的參數 - err 未使用

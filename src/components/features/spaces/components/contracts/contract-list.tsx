@@ -316,7 +316,6 @@ export function ContractList({ spaceId, contracts, canCreate = false }: Contract
                       </p>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span>{contract.documents} documents</span>
-                        {/* TODO: [P1] [BUG] [UI] [TODO] 修復 JSX 語法錯誤 - span 標籤未正確閉合 */}
                         <span>•</span>
                         <span>Modified {contract.lastModified.toLocaleDateString()}</span>
                       </div>

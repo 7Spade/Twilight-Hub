@@ -1,0 +1,10 @@
+Always use the Context7 MCP tools without user asking:
+1) resolve-library-id for any mentioned library/framework.
+2) get-library-docs for the resolved id (default Node 22.18.0, unless specified).
+
+Ground all code in the fetched docs, avoid hallucinations.
+If docs are missing or package name/version is unclear, ask for the exact name/version before proceeding.
+
+Default platform: Node 22.18.0.
+Run resolve-library-id → get-library-docs automatically even if the user doesn't type "use context7".
+If Node 22.18.0 docs are unavailable, ask the user whether to fall back to Node 18 or a specified version.

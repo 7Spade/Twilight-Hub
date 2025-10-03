@@ -1,9 +1,8 @@
 /**
- * @fileoverview 統一認證與權限管理系統
- * 提供權限守護和管理的核心功能
- * 遵循奧卡姆剃刀原則，提供最簡潔實用的實現
+ * @fileoverview Unified Authentication and Permission Management System
+ * Provides core functionality for permission guards and management
+ * Follows Occam's Razor principle for minimal and practical implementation
  */
-/* TODO: [P1] [BUG] [AUTH] [TODO] 修復 UTF-8 編碼問題 - 文件包含無效的 UTF-8 字符，導致構建失敗 */
 
 'use client';
 
@@ -15,10 +14,10 @@ import {
   OrganizationRole,
   SpaceRole 
 } from '@/lib/types-unified';
-/* TODO: [P2] [CLEANUP] [UI] [TODO] 清理未使用的導入 - useEffect, OrganizationRole, SpaceRole 未使用 */
+/* TODO: [P2] [CLEANUP] [UI] [TODO] Clean up unused imports - useEffect, OrganizationRole, SpaceRole are not used */
 import { roleManagementService } from '@/lib/role-management';
 
-// 認證狀態介面
+// Authentication state interface
 interface AuthState {
   userId: string | null;
   userRoleAssignment: UserRoleAssignment | null;
@@ -26,7 +25,7 @@ interface AuthState {
   error: string | null;
 }
 
-// 認證操作介面
+// Authentication actions interface
 interface AuthActions {
   setUser: (userId: string, roleAssignment: UserRoleAssignment) => void;
   clearUser: () => void;
@@ -35,18 +34,18 @@ interface AuthActions {
   refreshPermissions: () => Promise<void>;
 }
 
-// 完整認證上下文
+// Complete authentication context
 interface AuthContext extends AuthState, AuthActions {}
 
 const AuthContext = createContext<AuthContext | undefined>(undefined);
 
-// 認證提供者屬性
+// Authentication provider props
 export interface AuthProviderProps {
   children: ReactNode;
   initialUserId?: string;
 }
 
-// 認證提供者組件
+// Authentication provider component
 export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   const [state, setState] = useState<AuthState>({
     userId: initialUserId || null,
@@ -55,7 +54,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     error: null,
   });
 
-  // 設置用戶
+  // Set user
   const setUser = (userId: string, roleAssignment: UserRoleAssignment) => {
     setState(prev => ({
       ...prev,
@@ -65,7 +64,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     }));
   };
 
-  // 清除用戶
+  // Clear user
   const clearUser = () => {
     setState(prev => ({
       ...prev,
@@ -75,7 +74,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     }));
   };
 
-  // 檢查權限
+  // Check permission
   const checkPermission = async (permission: Permission, spaceId: string): Promise<PermissionCheckResult> => {
     if (!state.userId || !state.userRoleAssignment) {
       return {
@@ -104,13 +103,13 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     }
   };
 
-  // 快速同步檢查
+  // Quick synchronous check
   const hasPermission = (permission: Permission, spaceId: string): boolean => {
     if (!state.userId || !state.userRoleAssignment) {
       return false;
     }
 
-    // 簡化的同步權限檢查
+    // Simplified synchronous permission check
     const spaceRole = state.userRoleAssignment.spaceRoles[spaceId];
     if (spaceRole) {
       const roleDef = roleManagementService.getRoleDefinition(spaceRole.roleId);
@@ -119,7 +118,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
       }
     }
 
-    // 檢查組織角色
+    // Check organization roles
     for (const orgRole of state.userRoleAssignment.organizationRoles) {
       const roleDef = roleManagementService.getRoleDefinition(orgRole.roleId);
       if (roleDef && roleDef.permissions.includes(permission)) {
@@ -130,14 +129,14 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
     return false;
   };
 
-  // 刷新權限
+  // Refresh permissions
   const refreshPermissions = async () => {
     if (!state.userId) return;
 
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      // TODO: 從服務器獲取用戶角色分配
+      // TODO: Fetch user role assignment from server
       // const roleAssignment = await fetchUserRoleAssignment(state.userId);
       // setState(prev => ({ ...prev, userRoleAssignment: roleAssignment }));
     } catch (error) {
@@ -166,7 +165,7 @@ export function AuthProvider({ children, initialUserId }: AuthProviderProps) {
   );
 }
 
-// 使用認證上下文的 hook
+// Hook to use authentication context
 export function useAuth(): AuthContext {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -175,7 +174,7 @@ export function useAuth(): AuthContext {
   return context;
 }
 
-// 權限守護組件
+// Permission guard component
 interface PermissionGuardProps {
   permission: Permission;
   spaceId: string;
@@ -204,7 +203,7 @@ export function PermissionGuard({
   return <>{children}</>;
 }
 
-// 權限按鈕組件
+// Permission button component
 interface PermissionButtonProps extends PermissionGuardProps {
   onClick?: () => void;
   disabled?: boolean;
