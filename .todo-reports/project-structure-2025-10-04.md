@@ -28,6 +28,8 @@
     ├── nextjs15.dev-standard.md (35.5 KB, 今天)
     ├── project.structure.md (17.9 KB, 今天)
 └── memory-bank/
+    ├── creative/
+    │   ├── creative-firebase-architecture.md (15 KB, 今天)
     ├── activeContext.md (2.8 KB, 今天)
     ├── architecture-decisions.md (11.2 KB, 今天)
     ├── featureInventory.md (11.3 KB, 今天)
@@ -42,6 +44,7 @@
     ├── projectbrief.md (2.7 KB, 今天)
     ├── projectStructureTree.md (21.5 KB, 今天)
     ├── qaReport.md (4.3 KB, 今天)
+    ├── style-guide.md (6.7 KB, 今天)
     ├── systemPatterns.md (5.3 KB, 今天)
     ├── tasks.md (6.1 KB, 今天)
     ├── techContext.md (2.5 KB, 今天)
@@ -333,8 +336,6 @@
     │   │   │       ├── page.tsx (2.9 KB, 今天)
     │   │   │   └── page.tsx (3.8 KB, 今天)
     │   ├── (auth)/
-    │   │   ├── login/
-    │   │   │   ├── page.tsx (5.2 KB, 今天)
     │   │   ├── signup/
     │   │   │   └── page.tsx (8.4 KB, 今天)
     │   ├── (public)/
