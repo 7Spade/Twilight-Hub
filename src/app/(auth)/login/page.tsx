@@ -1,51 +1,34 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useFirebase } from '@/firebase/provider';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AuthForm } from '@/components/features/auth/auth-form';
+import { Logo } from '@/components/logo';
 
 export default function LoginPage() {
-  const { auth } = useFirebase();
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push('/dashboard');
-    } catch (err: any) {
-      setError(err?.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="flex min-h-screen items-center justify-center p-6">
-      <form onSubmit={onSubmit} className="w-full max-w-sm space-y-4">
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="w-full max-w-md space-y-6">
+        {/* Logo 和標題 */}
+        <div className="text-center space-y-2">
+          <Logo />
+          <h1 className="text-2xl font-semibold">歡迎使用 Twilight-Hub</h1>
+          <p className="text-sm text-muted-foreground">
+            登入或註冊以開始使用
+          </p>
         </div>
-        <div>
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        
+        {/* 認證表單 */}
+        <Card>
+          <CardContent className="p-6">
+            <AuthForm />
+          </CardContent>
+        </Card>
+        
+        {/* 額外信息 */}
+        <div className="text-center text-xs text-muted-foreground">
+          <p>繼續使用即表示您同意我們的服務條款</p>
         </div>
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        <Button type="submit" disabled={loading} className="w-full">
-          {loading ? 'Signing in...' : 'Sign In'}
-        </Button>
-      </form>
+      </div>
     </div>
   );
 }

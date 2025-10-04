@@ -1,0 +1,359 @@
+# 規範檢查指令 (Compliance Commands)
+
+> **版本**: 1.0 | **更新**: 2025-01-03  
+> **目標**: 定義專案規範檢查和合規性驗證的指令格式
+
+---
+
+## 🔍 規範發現指令 (Compliance Discovery)
+
+### 架構規範檢查
+- `檢查架構分離合規性` - 檢查 Server Actions 與 Firebase 分離
+- `檢查文件命名規範` - 驗證文件命名是否符合約定
+- `檢查組件職責分離` - 檢查組件是否保持單一職責
+- `檢查目錄結構規範` - 驗證目錄結構是否符合標準
+
+**範例:**
+```
+檢查 Next.js 15 App Router 架構分離合規性
+檢查 components 目錄文件命名規範
+檢查 auth 組件職責分離
+檢查 features 目錄結構規範
+```
+
+### 代碼質量規範檢查
+- `檢查 TypeScript 嚴格模式` - 驗證 TypeScript 配置
+- `檢查 ESLint 規範` - 檢查代碼風格和最佳實踐
+- `檢查未使用代碼` - 發現未使用的導入、變數、函數
+- `檢查錯誤處理規範` - 驗證錯誤處理是否完整
+
+**範例:**
+```
+檢查 TypeScript 嚴格模式配置
+檢查 ESLint 代碼風格規範
+檢查 auth-provider.tsx 未使用代碼
+檢查文件上傳錯誤處理規範
+```
+
+### Firebase 規範檢查
+- `檢查 Firebase 使用位置` - 確保 Firebase 只在客戶端使用
+- `檢查 Security Rules` - 驗證 Firebase 安全規則配置
+- `檢查環境變數配置` - 檢查 Firebase 環境變數設置
+- `檢查 API 金鑰管理` - 檢查 API 金鑰安全性
+
+**範例:**
+```
+檢查 Firebase 客戶端使用位置
+檢查 Firestore Security Rules 配置
+檢查 Firebase 環境變數配置
+檢查 API 金鑰安全管理
+```
+
+### UI/UX 規範檢查
+- `檢查 Radix UI 使用` - 驗證是否正確使用 Radix UI 組件
+- `檢查 Tailwind CSS 使用` - 檢查樣式是否使用 Tailwind
+- `檢查無障礙性規範` - 檢查鍵盤導航和 ARIA 屬性
+- `檢查響應式設計` - 驗證移動端適配
+
+**範例:**
+```
+檢查 shadcn/ui 組件使用規範
+檢查 Tailwind CSS 樣式使用
+檢查按鈕組件無障礙性規範
+檢查頁面響應式設計
+```
+
+---
+
+## 🔧 規範修復指令 (Compliance Fix)
+
+### 自動修復指令
+- `修復所有架構違規` - 自動修復架構分離問題
+- `修復所有命名違規` - 自動修復文件命名問題
+- `修復所有 TypeScript 錯誤` - 自動修復類型錯誤
+- `修復所有 ESLint 警告` - 自動修復代碼風格問題
+
+**範例:**
+```
+修復所有 Next.js 15 架構違規
+修復所有文件命名違規
+修復所有 TypeScript 類型錯誤
+修復所有 ESLint 代碼風格警告
+```
+
+### 手動修復指令
+- `重構 [組件] 符合單一職責` - 重構組件職責分離
+- `重構 [文件] 符合命名規範` - 重構文件命名
+- `重構 [模組] 符合架構規範` - 重構模組架構
+- `重構 [功能] 符合安全規範` - 重構功能安全性
+
+**範例:**
+```
+重構 auth-provider 符合單一職責
+重構 contract-list.tsx 符合命名規範
+重構 spaces 模組符合架構規範
+重構文件上傳功能符合安全規範
+```
+
+---
+
+## 📋 TODO 生成指令 (TODO Generation)
+
+### 規範檢查 TODO 生成
+- `生成架構規範 TODO` - 為架構違規生成 TODO 項目
+- `生成代碼質量 TODO` - 為代碼質量問題生成 TODO
+- `生成 Firebase 規範 TODO` - 為 Firebase 使用問題生成 TODO
+- `生成 UI 規範 TODO` - 為 UI/UX 問題生成 TODO
+
+**範例:**
+```
+生成 Next.js 15 架構規範 TODO
+生成 TypeScript 代碼質量 TODO
+生成 Firebase 安全規範 TODO
+生成 shadcn/ui 使用規範 TODO
+```
+
+### 優先級分類 TODO
+- `生成 P0 緊急 TODO` - 生成阻塞開發的緊急問題
+- `生成 P1 高優先級 TODO` - 生成影響功能的高優先級問題
+- `生成 P2 中優先級 TODO` - 生成代碼質量的中優先級問題
+- `生成 P3 低優先級 TODO` - 生成優化建議的低優先級問題
+
+**範例:**
+```
+生成 P0 緊急架構違規 TODO
+生成 P1 高優先級安全問題 TODO
+生成 P2 中優先級代碼質量 TODO
+生成 P3 低優先級性能優化 TODO
+```
+
+---
+
+## 🔍 規範審計指令 (Compliance Audit)
+
+### 全面審計
+- `執行完整規範審計` - 檢查所有規範項目
+- `執行架構審計` - 專注於架構規範檢查
+- `執行代碼質量審計` - 專注於代碼質量檢查
+- `執行安全審計` - 專注於安全相關檢查
+
+**範例:**
+```
+執行 Next.js 15 + Firebase 完整規範審計
+執行 App Router 架構審計
+執行 TypeScript 代碼質量審計
+執行 Firebase 安全審計
+```
+
+### 分類審計
+- `審計 [功能模組] 規範` - 檢查特定功能模組的規範
+- `審計 [文件類型] 規範` - 檢查特定文件類型的規範
+- `審計 [優先級] 問題` - 檢查特定優先級的問題
+
+**範例:**
+```
+審計 auth 模組規範合規性
+審計 .tsx 文件類型規範
+審計 P1 高優先級問題
+```
+
+---
+
+## 📊 規範報告指令 (Compliance Reporting)
+
+### 報告生成
+- `生成規範合規報告` - 生成完整的合規性報告
+- `生成問題統計報告` - 生成問題統計和分析
+- `生成修復建議報告` - 生成修復建議和優先級
+- `生成進度追蹤報告` - 生成規範改進進度報告
+
+**範例:**
+```
+生成 Next.js 15 規範合規報告
+生成 TypeScript 問題統計報告
+生成 Firebase 修復建議報告
+生成代碼質量改進進度報告
+```
+
+### 報告分析
+- `分析規範違規模式` - 分析違規問題的模式
+- `分析修復優先級` - 分析修復的優先順序
+- `分析改進趨勢` - 分析規範改進的趨勢
+
+**範例:**
+```
+分析架構違規問題模式
+分析代碼質量修復優先級
+分析規範合規性改進趨勢
+```
+
+---
+
+## 🎯 專案特定規範檢查
+
+### Next.js 15 規範檢查
+```
+# 架構規範
+檢查 App Router 使用規範
+檢查 Server/Client Components 分離
+檢查 Server Actions 使用規範
+檢查環境變數配置規範
+
+# 性能規範
+檢查代碼分割規範
+檢查圖片優化規範
+檢查字體優化規範
+檢查緩存策略規範
+```
+
+### Firebase 規範檢查
+```
+# 安全規範
+檢查 Firebase Security Rules
+檢查環境變數安全性
+檢查 API 金鑰管理
+檢查數據訪問權限
+
+# 使用規範
+檢查 Firebase 客戶端使用位置
+檢查 Firestore 查詢優化
+檢查 Storage 使用規範
+檢查 Auth 流程規範
+```
+
+### TypeScript 規範檢查
+```
+# 類型安全
+檢查嚴格模式配置
+檢查 any 類型使用
+檢查類型定義完整性
+檢查類型導入規範
+
+# 代碼質量
+檢查未使用變數
+檢查未使用導入
+檢查函數參數使用
+檢查返回值類型
+```
+
+### UI/UX 規範檢查
+```
+# 組件規範
+檢查 Radix UI 使用
+檢查 shadcn/ui 組件
+檢查自定義組件設計
+檢查組件組合模式
+
+# 樣式規範
+檢查 Tailwind CSS 使用
+檢查 CSS 變數使用
+檢查響應式設計
+檢查暗色模式支持
+```
+
+---
+
+## 📊 規範檢查結果格式
+
+### 檢查結果結構
+```typescript
+// TODO: [P0] SECURITY 架構分離違規
+// 問題：Server Actions 與 Firebase 未正確分離
+// 影響：可能導致安全漏洞和性能問題
+// @assignee dev-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FIX TypeScript 類型錯誤
+// 問題：缺少必要的類型定義
+// 影響：編譯錯誤，影響開發體驗
+// @assignee frontend-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：存在未使用的 import 語句
+// 影響：增加 bundle 大小，影響性能
+// @assignee cleanup-team
+
+// TODO: [P3] PERF 性能優化建議
+// 問題：組件渲染性能可優化
+// 影響：用戶體驗較差
+// @assignee performance-team
+```
+
+### TODO 項目格式
+```typescript
+// TODO: [優先級] [類型] 簡短描述
+// 詳細說明（可選）
+// @assignee 負責人（可選）
+// @deadline YYYY-MM-DD（可選）
+```
+
+### 報告格式
+```typescript
+// 規範合規報告範例
+// TODO: [P0] SECURITY 修復架構分離違規
+// 問題：app/api/auth/route.ts 中直接使用 Firebase Admin SDK
+// 影響：違反 Next.js 15 App Router 架構分離原則
+// 建議：將 Firebase 操作移至 Server Actions
+// @assignee security-team
+// @deadline 2025-01-10
+
+// TODO: [P1] FIX 修正 TypeScript 類型錯誤
+// 問題：components/auth/auth-provider.tsx 缺少類型定義
+// 影響：編譯失敗，阻塞開發流程
+// 建議：添加完整的 TypeScript 類型定義
+// @assignee frontend-team
+
+// TODO: [P2] REFACTOR 清理未使用的導入
+// 問題：lib/utils.ts 中存在未使用的 import
+// 影響：增加 bundle 大小
+// 建議：移除未使用的導入語句
+// @assignee cleanup-team
+
+// TODO: [P3] PERF 優化組件渲染性能
+// 問題：dashboard/page.tsx 渲染時間過長
+// 影響：用戶體驗較差
+// 建議：實作 React.memo 和 useMemo 優化
+// @assignee performance-team
+```
+
+---
+
+## 💡 規範檢查最佳實踐
+
+### 檢查指令撰寫建議
+1. **明確檢查範圍**: 指定要檢查的具體內容
+2. **包含檢查標準**: 定義檢查的標準和規範
+3. **指定輸出格式**: 說明期望的檢查結果格式
+4. **提供修復建議**: 為每個問題提供修復建議
+
+### 規範檢查流程
+1. **定期檢查**: 建立定期檢查機制
+2. **分類處理**: 按問題類型分類處理
+3. **優先級排序**: 按重要性和緊急程度排序
+4. **追蹤進度**: 記錄檢查結果的處理進度
+
+### 避免的檢查模式
+```
+❌ "檢查規範" - 太模糊
+❌ "檢查問題" - 沒有具體標準
+❌ "檢查合規性" - 缺少檢查範圍
+
+✅ "檢查 Next.js 15 App Router 架構分離合規性"
+✅ "檢查 TypeScript 嚴格模式配置和類型錯誤"
+✅ "檢查 Firebase 安全規則和環境變數配置"
+```
+
+### TODO 格式檢查清單
+```typescript
+// ✅ 正確的 TODO 格式
+// TODO: [P1] FIX 修正登入驗證邏輯錯誤
+// 問題：auth-provider.tsx 中驗證邏輯有漏洞
+// 影響：用戶可能繞過身份驗證
+// @assignee auth-team
+// @deadline 2025-01-15
+
+// ❌ 錯誤的 TODO 格式
+// TODO: 修這個問題
+// TODO: [HIGH] 檢查規範
+// TODO: [P1] [FIX] 修正錯誤 - 缺少具體描述
+```

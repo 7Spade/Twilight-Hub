@@ -22,6 +22,9 @@ export {
 
 export { default as default } from './config';
 
+// Auth service
+export { AuthService, type UserProfile } from './auth';
+
 // Firestore React hooks
 export { default as useCollection } from './firestore/use-collection';
 export { default as useDoc } from './firestore/use-doc';

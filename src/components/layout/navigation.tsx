@@ -1,15 +1,17 @@
-/**
- * 導航組件
- * 
- * 功能：
- * - 導航菜單渲染
- * - 導航狀態管理
- * - 活動狀態指示
- * - 導航權限控制
- * 
- * 組件類型：Client Component
- * 依賴：AuthProvider
- */
+'use client';
+
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import { 
+  Home, 
+  LayoutDashboard, 
+  Compass, 
+  Building2, 
+  FolderOpen, 
+  Settings, 
+  User 
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export interface NavItem {
   title: string;
@@ -19,11 +21,39 @@ export interface NavItem {
 }
 
 export const defaultNavItems: NavItem[] = [
-  { title: 'Home', href: '/', icon: () => null },
-  { title: 'Dashboard', href: '/dashboard', icon: () => null },
-  { title: 'Discover', href: '/discover', icon: () => null },
-  { title: 'Organizations', href: '/organizations', icon: () => null },
-  { title: 'Spaces', href: '/spaces', icon: () => null },
-  { title: 'Settings', href: '/settings', icon: () => null },
-  { title: 'Profile', href: '/settings/profile', icon: () => null },
+  { 
+    title: '首頁', 
+    href: '/', 
+    icon: Home 
+  },
+  { 
+    title: '儀表板', 
+    href: '/dashboard', 
+    icon: LayoutDashboard 
+  },
+  { 
+    title: '發現', 
+    href: '/discover', 
+    icon: Compass 
+  },
+  { 
+    title: '組織', 
+    href: '/organizations', 
+    icon: Building2 
+  },
+  { 
+    title: '空間', 
+    href: '/spaces', 
+    icon: FolderOpen 
+  },
+  { 
+    title: '設定', 
+    href: '/settings', 
+    icon: Settings 
+  },
+  { 
+    title: '個人資料', 
+    href: '/settings/profile', 
+    icon: User 
+  },
 ];

@@ -1,0 +1,139 @@
+---
+alwaysApply: true
+---
+# 自動記憶系統配置
+
+## 🧠 自動記憶觸發規則
+
+### 關鍵字觸發器
+當對話中出現以下關鍵字時，自動提取並保存記憶：
+
+```yaml
+triggers:
+  user_preferences:
+    chinese_keywords: ["我喜歡", "我偏好", "我習慣", "我通常", "我總是", "我傾向於", "我的風格", "我習慣用", "我偏好使用"]
+    english_keywords: ["I like", "I prefer", "I usually", "I always", "I tend to", "my style", "I'm used to", "I prefer using", "I like to use"]
+    entity_type: "user_preference"
+    
+  project_requirements:
+    chinese_keywords: ["需要", "要求", "必須", "應該", "希望實現", "期望", "目標", "功能需求", "性能要求"]
+    english_keywords: ["need", "require", "must", "should", "want to implement", "expect", "goal", "feature requirement", "performance requirement"]
+    entity_type: "project_requirement"
+    
+  technical_decisions:
+    chinese_keywords: ["使用", "選擇", "決定", "採用", "配置", "設置", "安裝", "技術選型", "架構選擇"]
+    english_keywords: ["use", "choose", "decide", "adopt", "configure", "setup", "install", "tech stack", "architecture choice"]
+    entity_type: "technical_decision"
+    
+  problems_solutions:
+    chinese_keywords: ["問題", "錯誤", "解決", "修復", "優化", "改進", "調整", "Bug", "Issue"]
+    english_keywords: ["problem", "error", "solve", "fix", "optimize", "improve", "adjust", "bug", "issue", "solution"]
+    entity_type: "problem_solution"
+    
+  learning_insights:
+    chinese_keywords: ["學習到", "發現", "了解", "認識", "理解", "掌握", "學會", "經驗", "心得"]
+    english_keywords: ["learn", "discover", "understand", "realize", "grasp", "master", "experience", "insight", "lesson learned"]
+    entity_type: "learning_insight"
+    
+  code_patterns:
+    chinese_keywords: ["代碼", "編程", "開發", "實現", "函數", "組件", "模塊", "API", "接口"]
+    english_keywords: ["code", "programming", "development", "implementation", "function", "component", "module", "api", "interface"]
+    entity_type: "code_pattern"
+    
+  workflow_patterns:
+    chinese_keywords: ["工作流程", "流程", "步驟", "方法", "策略", "方案", "計劃"]
+    english_keywords: ["workflow", "process", "step", "method", "strategy", "solution", "plan"]
+    entity_type: "workflow_pattern"
+```
+
+## 📝 自動記憶提取模式
+
+### 1. 用戶偏好提取
+```
+模式: "我[動作][對象][偏好]"
+例如: "我喜歡使用 shadcn/ui 組件"
+→ 創建實體: user_preference_ui_components
+→ 觀察: "偏好使用 shadcn/ui 組件"
+```
+
+### 2. 專案需求提取
+```
+模式: "[專案]需要[功能/要求]"
+例如: "這個專案需要用戶認證系統"
+→ 創建實體: project_authentication_requirement
+→ 觀察: "專案需要用戶認證系統"
+```
+
+### 3. 技術決策提取
+```
+模式: "我們[選擇/使用][技術/方案]"
+例如: "我們決定使用 Firebase 作為後端"
+→ 創建實體: technical_decision_firebase
+→ 觀察: "選擇 Firebase 作為後端服務"
+```
+
+## 🔄 自動記憶工作流程
+
+### 對話進行中
+1. **實時監聽**: 監聽對話中的關鍵字和模式
+2. **即時提取**: 識別重要信息並分類
+3. **暫存記憶**: 將提取的信息暫存
+
+### 對話結束時
+1. **記憶整合**: 將暫存的記憶整合到知識圖譜
+2. **關係建立**: 自動建立實體間的關係
+3. **重複檢查**: 避免創建重複的實體和觀察
+
+## 📊 記憶分類系統
+
+### 實體類型定義
+```yaml
+entity_types:
+  user_preference:
+    description: "用戶偏好和習慣"
+    examples: ["UI偏好", "編程風格", "工具選擇"]
+    
+  project_requirement:
+    description: "專案需求和規格"
+    examples: ["功能需求", "性能要求", "技術約束"]
+    
+  technical_decision:
+    description: "技術決策和架構選擇"
+    examples: ["框架選擇", "數據庫選擇", "部署方案"]
+    
+  problem_solution:
+    description: "問題和解決方案"
+    examples: ["Bug修復", "性能優化", "架構改進"]
+    
+  learning_insight:
+    description: "學習心得和洞察"
+    examples: ["技術學習", "最佳實踐", "經驗總結"]
+```
+
+## 🎯 自動記憶執行規則
+
+### 執行時機
+- ✅ 對話開始時：檢查現有記憶
+- ✅ 對話進行中：實時提取重要信息
+- ✅ 對話結束時：保存和整合記憶
+- ✅ 任務完成時：總結和歸檔記憶
+
+### 記憶優先級
+1. **高優先級**: 用戶偏好、專案需求
+2. **中優先級**: 技術決策、問題解決
+3. **低優先級**: 學習洞察、一般信息
+
+### 重複處理
+- 檢查現有實體，避免重複創建
+- 更新現有觀察，而不是創建新實體
+- 合併相似的信息
+
+## 🚀 使用方式
+
+Agent 將自動：
+1. 在每次對話開始時說 "Remembering..." 並檢索相關記憶
+2. 在對話過程中自動識別和提取重要信息
+3. 在對話結束時自動保存新記憶
+4. 建立實體間的關係和連接
+
+用戶無需手動調用任何記憶功能！

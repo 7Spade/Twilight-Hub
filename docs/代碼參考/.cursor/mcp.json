@@ -1,0 +1,200 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "list_allowed_directories",
+        "list_directory",
+        "directory_tree",
+        "create_directory",
+        "write_file",
+        "read_file",
+        "edit_file",
+        "delete_file",
+        "move_file",
+        "copy_file",
+        "search_files"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "navigate_to_url",
+        "click_element",
+        "fill_input",
+        "type_text",
+        "press_key",
+        "take_screenshot",
+        "get_element_text",
+        "get_element_attribute",
+        "wait_for_selector",
+        "wait_for_url",
+        "go_back",
+        "go_forward",
+        "scroll_to_element",
+        "get_by_text",
+        "get_by_role",
+        "get_by_label",
+        "get_by_placeholder",
+        "get_by_test_id"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=2048"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kazuph/mcp-fetch"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "fetch_url",
+        "fetch_content"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "status",
+        "log",
+        "diff",
+        "branch",
+        "commit"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=1024"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "D:\\7Spade\\Twilight-Hub\\memory-bank\\memory.json"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "create_entities",
+        "create_relations",
+        "add_observations",
+        "search_nodes",
+        "open_nodes",
+        "read_graph",
+        "delete_entities",
+        "delete_observations",
+        "delete_relations"
+      ]
+    },
+    "everything": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "print_env",
+        "get_environment_variable",
+        "list_tools",
+        "list_resources",
+        "list_prompts",
+        "add",
+        "echo",
+        "getTinyImage",
+        "sampleLLM"
+      ]
+    },
+    "time": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "time-mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "get_current_time",
+        "convert_time"
+      ]
+    },
+    "nextjs-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@taiyokimura/nextjs-docs-mcp@latest"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "get_nextjs_docs",
+        "search_nextjs_docs",
+        "list_nextjs_docs"
+      ],
+      "autoTrigger": {
+        "keywords": ["nextjs", "next.js", "app router", "server component"],
+        "conditions": ["documentation", "reference", "guide"]
+      }
+    },
+    "nextjs-manager": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ld338/nextjs-mcp-server"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "start_server",
+        "stop_server",
+        "restart_server",
+        "list_servers",
+        "get_server_logs",
+        "get_server_status"
+      ],
+      "autoTrigger": {
+        "keywords": ["dev server", "development", "start", "stop", "restart"],
+        "conditions": ["server management", "development workflow"]
+      }
+    }
+  }
+}

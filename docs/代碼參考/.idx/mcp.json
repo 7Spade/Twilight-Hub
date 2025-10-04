@@ -1,0 +1,70 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"],
+      "disabled": false,
+      "autoApprove": [
+        "list_allowed_directories",
+        "list_directory",
+        "directory_tree",
+        "create_directory",
+        "write_file",
+        "read_file",
+        "edit_file",
+        "delete_file",
+        "move_file",
+        "copy_file",
+        "search_files"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp"],
+      "disabled": false,
+      "autoApprove": [
+        "navigate_to_url",
+        "click_element",
+        "fill_input",
+        "type_text",
+        "press_key",
+        "take_screenshot",
+        "get_element_text",
+        "get_element_attribute",
+        "wait_for_selector",
+        "wait_for_url",
+        "go_back",
+        "go_forward",
+        "scroll_to_element",
+        "get_by_text",
+        "get_by_role",
+        "get_by_label",
+        "get_by_placeholder",
+        "get_by_test_id"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "disabled": false,
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "NODE_OPTIONS": "--max-old-space-size=1024",
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ]
+    },
+    "firebase": {
+      "command": "npx",
+      "args": ["-y", "firebase-tools@latest", "experimental:mcp"]
+    }
+  },
+  "autoUse": ["playwright", "context7", "sequential-thinking", "firebase"]
+}

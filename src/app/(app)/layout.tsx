@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { defaultNavItems } from '@/components/layout/navigation';
-import { useAuth } from '@/components/auth/auth-provider';
+import { useAuth } from '@/hooks/use-auth';
 import type { Team } from '@/components/layout/team-switcher';
 import { useFirestore } from '@/firebase/provider';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -15,7 +15,7 @@ export default function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { user, isUserLoading, isAuthenticated } = useAuth();
+  const { user, isLoading, userProfile } = useAuth();
   const router = useRouter();
 
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -24,29 +24,27 @@ export default function AppLayout({
   const db = useFirestore();
 
   useEffect(() => {
-    if (!isUserLoading && !isAuthenticated) {
+    if (!isLoading && !user) {
       router.push('/login');
     }
-  }, [isAuthenticated, isUserLoading, router]);
+  }, [user, isLoading, router]);
 
   useEffect(() => {
     if (!user) return;
     const load = async () => {
       const personalTeam: Team = {
         id: 'user',
-        label: user.displayName || user.email || 'Personal Account',
+        label: userProfile?.displayName || user.displayName || user.email || 'Personal Account',
         isUser: true,
       };
       const orgs: Team[] = [];
       try {
         const ownerQ = query(
-          collection(db, 'accounts'),
-          where('type', '==', 'organization'),
+          collection(db, 'organizations'),
           where('ownerId', '==', user.uid)
         );
         const memberQ = query(
-          collection(db, 'accounts'),
-          where('type', '==', 'organization'),
+          collection(db, 'organizations'),
           where('memberIds', 'array-contains', user.uid)
         );
         const [ownerSnap, memberSnap] = await Promise.all([getDocs(ownerQ), getDocs(memberQ)]);
@@ -65,7 +63,7 @@ export default function AppLayout({
       setSelectedTeam(all[0] || personalTeam);
     };
     load();
-  }, [db, user]);
+  }, [db, user, userProfile]);
 
   useEffect(() => {
     if (selectedTeam && !selectedTeam.isUser) {
@@ -74,7 +72,7 @@ export default function AppLayout({
     }
   }, [selectedTeam, router]);
 
-  if (isUserLoading) {
+  if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <p>Loading...</p>
@@ -82,7 +80,7 @@ export default function AppLayout({
     );
   }
 
-  if (!isAuthenticated) return null;
+  if (!user) return null;
 
   return (
     <div className="flex h-screen bg-background">

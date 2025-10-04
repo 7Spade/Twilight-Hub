@@ -1,0 +1,250 @@
+# Next.js TODO 格式規範
+
+## 📋 規範說明
+
+本規範為 Next.js 專案設計，讓開發者和 AI Agent 都能快速理解和處理待辦事項。
+
+---
+
+## 🎯 基本格式
+
+```typescript
+// TODO: [優先級] [類型] 簡短描述
+// 詳細說明（可選）
+// @assignee 負責人（可選）
+// @deadline YYYY-MM-DD（可選）
+```
+
+---
+
+## 📊 優先級標記
+
+| 標記 | 說明 | 使用時機 |
+|------|------|----------|
+| `[P0]` | 緊急重要 | 影響生產環境，需立即處理 |
+| `[P1]` | 高優先級 | 核心功能，本週內完成 |
+| `[P2]` | 中優先級 | 重要但不緊急，本月內完成 |
+| `[P3]` | 低優先級 | 優化改善，有空處理 |
+
+---
+
+## 🏷️ 類型標籤
+
+| 類型 | 說明 | 範例 |
+|------|------|------|
+| `FIX` | 修復 Bug | 修正登入驗證邏輯錯誤 |
+| `FEAT` | 新功能 | 實作使用者個人資料頁面 |
+| `REFACTOR` | 重構 | 優化 API 路由結構 |
+| `PERF` | 效能優化 | 減少首頁載入時間 |
+| `STYLE` | 樣式調整 | 調整 RWD 斷點 |
+| `DOCS` | 文件 | 補充 API 使用說明 |
+| `TEST` | 測試 | 新增單元測試 |
+| `SECURITY` | 安全性 | 修補 XSS 漏洞 |
+| `A11Y` | 無障礙 | 新增鍵盤導航支援 |
+| `SEO` | SEO 優化 | 優化 meta 標籤 |
+
+---
+
+## 📁 檔案位置規則
+
+### App Router 專案
+```typescript
+// ✅ 好的做法 - 明確標示位置
+// TODO: [P1] FIX app/dashboard/page.tsx - 修正資料載入錯誤
+// 當使用者快速切換頁面時，舊的請求沒有被取消
+
+// ❌ 避免 - 位置不明確
+// TODO: 修正錯誤
+```
+
+### Pages Router 專案
+```typescript
+// TODO: [P2] REFACTOR pages/api/users/[id].ts
+// 將資料庫查詢邏輯移到獨立的 service 層
+```
+
+---
+
+## 💡 完整範例
+
+### 範例 1：緊急修復
+```typescript
+// app/checkout/page.tsx
+export default function CheckoutPage() {
+  // TODO: [P0] FIX 修正付款流程中斷問題
+  // 問題：Stripe webhook 未正確處理 payment_intent.succeeded 事件
+  // 影響：用戶付款成功但訂單狀態未更新
+  // @assignee john
+  // @deadline 2025-10-04
+  
+  return <div>...</div>
+}
+```
+
+### 範例 2：新功能開發
+```typescript
+// components/UserProfile.tsx
+export function UserProfile() {
+  // TODO: [P1] FEAT 實作頭像上傳功能
+  // 需求：
+  // 1. 支援拖拽上傳
+  // 2. 圖片預覽
+  // 3. 自動壓縮（最大 2MB）
+  // 4. 使用 Next.js Image Optimization
+  // @assignee sarah
+  
+  return <div>...</div>
+}
+```
+
+### 範例 3：效能優化
+```typescript
+// app/products/page.tsx
+export default async function ProductsPage() {
+  // TODO: [P2] PERF 實作無限滾動與虛擬列表
+  // 目前一次載入所有商品（1000+ 筆），導致頁面卡頓
+  // 建議使用 react-window 或 TanStack Virtual
+  
+  const products = await getProducts()
+  return <div>...</div>
+}
+```
+
+### 範例 4：重構任務
+```typescript
+// lib/api/client.ts
+// TODO: [P2] REFACTOR 統一 API 錯誤處理
+// 目前每個 API 函數都有自己的錯誤處理邏輯
+// 建議：
+// 1. 建立統一的 ApiError 類別
+// 2. 使用 middleware 處理常見錯誤（401, 403, 500）
+// 3. 整合 toast 通知
+
+export async function fetchUser(id: string) {
+  // ...
+}
+```
+
+### 範例 5：安全性問題
+```typescript
+// app/api/upload/route.ts
+export async function POST(request: Request) {
+  // TODO: [P0] SECURITY 新增檔案類型與大小驗證
+  // 風險：目前未驗證上傳檔案，可能被上傳惡意腳本
+  // 措施：
+  // 1. 限制檔案類型（僅允許圖片）
+  // 2. 限制檔案大小（最大 10MB）
+  // 3. 使用 file-type 套件驗證真實檔案類型
+  // @deadline 2025-10-05
+  
+  return NextResponse.json({})
+}
+```
+
+---
+
+## 🔍 AI Agent 搜尋規則
+
+AI 可使用以下 RegEx 搜尋 TODO：
+
+```regex
+// 搜尋所有 TODO
+//\s*TODO:.*
+
+// 搜尋特定優先級
+//\s*TODO:\s*\[P0\].*
+
+// 搜尋特定類型
+//\s*TODO:.*\b(FIX|FEAT|SECURITY)\b.*
+
+// 搜尋特定負責人
+//\s*TODO:.*\n.*@assignee\s+(\w+)
+
+// 搜尋即將到期（需程式處理）
+//\s*TODO:.*\n.*@deadline\s+(\d{4}-\d{2}-\d{2})
+```
+
+---
+
+## 📝 命名建議
+
+### ✅ 好的 TODO
+```typescript
+// TODO: [P1] FIX 修正 useEffect 無限迴圈導致的記憶體洩漏
+// TODO: [P2] FEAT 新增深色模式切換功能
+// TODO: [P0] SECURITY 修補 SQL Injection 漏洞於搜尋功能
+```
+
+### ❌ 避免的 TODO
+```typescript
+// TODO: 修這個
+// TODO: 之後處理
+// TODO: 這裡有問題
+```
+
+---
+
+## 🎨 VS Code 整合
+
+安裝 **Todo Tree** 擴充套件，使用以下設定：
+
+```json
+{
+  "todo-tree.general.tags": ["TODO", "FIXME", "NOTE"],
+  "todo-tree.regex.regex": "//\\s*(TODO|FIXME|NOTE):\\s*\\[(P[0-3])\\]\\s*(\\w+)",
+  "todo-tree.highlights.customHighlight": {
+    "P0": {
+      "background": "#ff0000",
+      "foreground": "#ffffff"
+    },
+    "P1": {
+      "background": "#ff9800",
+      "foreground": "#000000"
+    },
+    "P2": {
+      "background": "#ffeb3b",
+      "foreground": "#000000"
+    },
+    "P3": {
+      "background": "#4caf50",
+      "foreground": "#ffffff"
+    }
+  }
+}
+```
+
+---
+
+## 🤖 AI Agent 使用指南
+
+當 AI 掃描專案時，應：
+
+1. **優先處理 P0 和 SECURITY** 相關 TODO
+2. **檢查 deadline** 標記，提醒即將到期的任務
+3. **按類型分組**，方便批次處理同類任務
+4. **追蹤 @assignee**，產生個人待辦清單
+5. **偵測孤兒 TODO**，找出超過 30 天未更新的項目
+
+---
+
+## 📌 最佳實踐
+
+1. **具體描述**：說明問題與預期結果
+2. **提供上下文**：相關的檔案、函數、變數名稱
+3. **設定優先級**：幫助團隊排定工作順序
+4. **定期清理**：已完成的 TODO 應立即刪除
+5. **避免嵌套**：一個 TODO 解決一個問題
+6. **使用英文或中文**：保持團隊統一語言
+
+---
+
+## 🔗 相關資源
+
+- [Next.js 官方文件](https://nextjs.org/docs)
+- [TypeScript 文件](https://www.typescriptlang.org/docs/)
+- [Conventional Comments](https://conventionalcomments.org/)
+
+---
+
+**版本**：1.0.0  
+**最後更新**：2025-10-03

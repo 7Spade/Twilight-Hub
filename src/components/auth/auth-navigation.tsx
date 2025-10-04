@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/components/auth/auth-provider';
+import { useAuth } from '@/hooks/use-auth';
 import { ArrowRight } from 'lucide-react';
 
 export function AuthNavigation() {
-  const { isAuthenticated, isUserLoading } = useAuth();
+  const { user, isLoading } = useAuth();
 
-  if (isUserLoading) {
+  if (isLoading) {
     return (
       <div className="flex items-center gap-4">
         <div className="h-8 w-16 bg-muted animate-pulse rounded" />
@@ -19,20 +19,20 @@ export function AuthNavigation() {
 
   return (
     <div className="flex items-center gap-4">
-      {isAuthenticated ? (
+      {user ? (
         <Button asChild>
           <Link href="/dashboard">
-            Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+            進入儀表板 <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       ) : (
         <>
           <Button variant="ghost" asChild>
-            <Link href="/login">Sign In</Link>
+            <Link href="/login">登入</Link>
           </Button>
           <Button asChild>
             <Link href="/signup">
-              Sign Up <ArrowRight className="ml-2 h-4 w-4" />
+              註冊 <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </>

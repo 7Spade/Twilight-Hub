@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+[rule]
+- Always ground code in Context7 docs (Node 22.18.0 by default).
+- If docs missing, ask for exact lib@version, or propose fallback (Node 18).
+- For multi-step tasks, first call sequentialthinking to outline steps, then for each step call Context7.
+
+[flow]
+1) sequentialthinking (if task spans multiple steps)
+2) resolve-library-id
+3) get-library-docs
+4) Cross-verify with npm-registry/mdn/github
+5) implement minimal solution with:
+   - library@version references
+   - short citations (doc page or section)
+   - clear limitations or TODOs
+
+[error]
+- If docs fetch fails: report reason, ask for package name/version or confirm fallback.
+- If auxiliary services fail: continue with Context7 results, note limitations.[rule]
+- Always ground code in Context7 docs (Node 22.18.0 by default).
+- If docs missing, ask for exact lib@version, or propose fallback (Node 18).
+- For multi-step tasks, first call sequentialthinking to outline steps, then for each step call Context7.
+
+[flow]
+1) sequentialthinking (if task spans multiple steps)
+2) resolve-library-id
+3) get-library-docs
+4) Cross-verify with npm-registry/mdn/github
+5) implement minimal solution with:
+   - library@version references
+   - short citations (doc page or section)
+   - clear limitations or TODOs
+
+[error]
+- If docs fetch fails: report reason, ask for package name/version or confirm fallback.
+- If auxiliary services fail: continue with Context7 results, note limitations.

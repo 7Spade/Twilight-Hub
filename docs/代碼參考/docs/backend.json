@@ -1,0 +1,282 @@
+{
+  "entities": {
+    "Account": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Account",
+      "type": "object",
+      "description": "Represents a unified entity for both users and organizations, distinguished by a 'type' field.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Account." },
+        "type": { "type": "string", "enum": ["user", "organization"], "description": "The type of the account." },
+        "name": { "type": "string", "description": "The user's full name or the organization's name." },
+        "username": { "type": "string", "description": "The user's chosen username (for users only)." },
+        "slug": { "type": "string", "description": "The URL-friendly slug for the account's profile or page." },
+        "email": { "type": "string", "description": "The user's email address (for users only).", "format": "email" },
+        "avatarUrl": { "type": "string", "description": "URL of the account's avatar or logo.", "format": "uri" },
+        "bio": { "type": "string", "description": "A short biography or description for a user account." },
+        "description": { "type": "string", "description": "A description of the organization (for orgs only)." },
+        "memberIds": { "type": "array", "description": "References to User Accounts that are members of this organization (for orgs only).", "items": { "type": "string" } },
+        "level": { "type": "number", "description": "The user's current level (for users only)." },
+        "experience": { "type": "number", "description": "The user's current experience points (XP) (for users only)." },
+        "managementScore": { "type": "number", "description": "A score representing the user's management skills or progress (for users only)." },
+        "followingCount": { "type": "number", "description": "The number of users this user is following (for users only)." },
+        "followersCount": { "type": "number", "description": "The number of users following this user (for users only)." },
+        "moduleInventory": { "type": "object", "description": "A map of Module IDs to the quantity the user owns (for users only).", "additionalProperties": { "type": "number" } }
+      },
+      "required": [ "id", "type", "name", "slug" ]
+    },
+    "UserFollow": {
+        "title": "UserFollow",
+        "type": "object",
+        "description": "Represents a follow relationship, including the timestamp. Stored in subcollections.",
+        "properties": {
+            "followedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["followedAt"]
+    },
+    "Group": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Group",
+      "type": "object",
+      "description": "Represents a group within an organization.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Group entity." },
+        "organizationId": { "type": "string", "description": "Reference to the Organization this group belongs to." },
+        "name": { "type": "string", "description": "The name of the group." },
+        "description": { "type": "string", "description": "A description of the group." },
+        "memberIds": { "type": "array", "description": "References to UserProfiles that are members of this group.", "items": { "type": "string" } }
+      },
+      "required": [ "id", "organizationId", "name", "description" ]
+    },
+    "Space": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Space",
+      "type": "object",
+      "description": "Represents a space created by a user or organization.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Space entity." },
+        "ownerId": { "type": "string", "description": "Reference to the UserProfile or Organization that owns this space." },
+        "ownerType": { "type": "string", "description": "The type of the owner, either 'user' or 'organization'." },
+        "name": { "type": "string", "description": "The name of the space." },
+        "slug": { "type": "string", "description": "The URL-friendly slug for the space." },
+        "description": { "type": "string", "description": "A description of the space." },
+        "isPublic": { "type": "boolean", "description": "Indicates whether the space is public or private." },
+        "moduleIds": { "type": "array", "description": "An 'equipment slot' array of Module IDs installed in the space.", "items": { "type": "string" } },
+        "starredByUserIds": { "type": "array", "description": "References to UserProfiles that have starred this space.", "items": { "type": "string" } }
+      },
+      "required": [ "id", "ownerId", "ownerType", "name", "slug", "isPublic" ]
+    },
+    "Module": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Module",
+      "type": "object",
+      "description": "Represents a module that can be added to a space. Can be of different types, e.g., a functional module like 'File Storage' or a content module.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Module entity." },
+        "name": { "type": "string", "description": "The name of the module." },
+        "description": { "type": "string", "description": "A description of the module." },
+        "icon": { "type": "string", "description": "A string identifier for a Lucide icon (e.g., 'puzzle', 'file-storage')." },
+        "type": { "type": "string", "enum": ["user", "organization", "common"], "description": "The type of module determining where it can be used." }
+      },
+      "required": [ "id", "name", "description", "type" ]
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "type": "object",
+      "description": "Defines a global achievement that can be unlocked by users.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["id", "name", "description"]
+    },
+    "UserAchievement": {
+        "title": "User Achievement",
+        "type": "object",
+        "description": "Represents a user's unlocked achievement, linking a user to an achievement.",
+        "properties": {
+            "achievementId": { "type": "string" },
+            "unlockedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["achievementId", "unlockedAt"]
+    },
+    "Wallet": {
+        "title": "Wallet",
+        "type": "object",
+        "description": "Represents the balance of a single currency for a user.",
+        "properties": {
+            "balance": { "type": "number" }
+        },
+        "required": ["balance"]
+    },
+    "Transaction": {
+        "title": "Transaction",
+        "type": "object",
+        "description": "Represents a single transaction or event in a user's history.",
+        "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string", "enum": ["gain_gold", "spend_gold", "gain_xp"] },
+            "amount": { "type": "number" },
+            "description": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "type", "amount", "timestamp"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "type": "object",
+      "description": "Represents a conversation between two or more users.",
+      "properties": {
+        "id": { "type": "string" },
+        "participantIds": { "type": "array", "items": { "type": "string" } },
+        "lastMessage": { "$ref": "#/entities/Message" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "participantIds", "updatedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "type": "object",
+      "description": "Represents a single message within a conversation.",
+      "properties": {
+        "id": { "type": "string" },
+        "conversationId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "conversationId", "senderId", "text", "createdAt"]
+    },
+    "Item": {
+      "title": "Item",
+      "type": "object",
+      "description": "Represents a product or item in the inventory.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "sku": { "type": "string", "description": "Stock Keeping Unit." },
+        "category": { "type": "string", "description": "The category of the item." },
+        "lowStockThreshold": { "type": "number", "description": "The threshold for low stock warnings." },
+        "price": { "type": "number" }
+      },
+      "required": ["id", "name"]
+    },
+    "Warehouse": {
+      "title": "Warehouse",
+      "type": "object",
+      "description": "Represents a physical location where items are stored.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "location": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Stock": {
+      "title": "Stock",
+      "type": "object",
+      "description": "Represents the stock level of a specific item in a warehouse.",
+      "properties": {
+        "id": { "type": "string" },
+        "itemId": { "type": "string" },
+        "warehouseId": { "type": "string" },
+        "quantity": { "type": "number" }
+      },
+      "required": ["id", "itemId", "warehouseId", "quantity"]
+    },
+    "AuditLog": {
+      "title": "Audit Log",
+      "type": "object",
+      "description": "Represents a single audit log entry for an organization.",
+      "properties": {
+        "id": { "type": "string" },
+        "organizationId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userAvatarUrl": { "type": "string", "format": "uri" },
+        "action": { "type": "string", "enum": ["CREATE", "UPDATE", "DELETE"] },
+        "entityType": { "type": "string", "enum": ["ORGANIZATION", "ITEM", "WAREHOUSE", "MEMBER"] },
+        "entityId": { "type": "string" },
+        "entityTitle": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "organizationId", "userId", "action", "entityType", "entityId", "createdAt"]
+    }
+  },
+  "auth": {
+    "providers": [ "password", "anonymous" ]
+  },
+  "firestore": {
+    "/accounts/{accountId}": {
+      "schema": { "$ref": "#/entities/Account" },
+      "description": "Stores all accounts, both users and organizations, distinguished by the 'type' field."
+    },
+    "/accounts/{userId}/following/{followingId}": {
+      "schema": { "$ref": "#/entities/UserFollow" },
+      "description": "A subcollection for user accounts, where each document represents another account that the parent user is following."
+    },
+    "/accounts/{userId}/followers/{followerId}": {
+      "schema": { "$ref": "#/entities/UserFollow" },
+      "description": "A subcollection for user accounts, where each document represents an account that is following the parent user."
+    },
+    "/accounts/{userId}/user_achievements/{achievementId}": {
+      "schema": { "$ref": "#/entities/UserAchievement" },
+      "description": "Stores achievements unlocked by a specific user."
+    },
+    "/accounts/{userId}/wallet/{currencyId}": {
+      "schema": { "$ref": "#/entities/Wallet" },
+      "description": "Stores the balance for a specific currency for a user."
+    },
+    "/accounts/{userId}/transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "A log of all significant events for a user."
+    },
+    "/accounts/{userId}/spaces/{spaceId}": {
+      "schema": { "$ref": "#/entities/Space" },
+      "description": "A subcollection for spaces owned directly by a user. This is a denormalization for quick access."
+    },
+     "/accounts/{organizationId}/audit_logs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Stores the audit trail of all actions performed within an organization."
+    },
+    "/accounts/{organizationId}/groups/{groupId}": {
+      "schema": { "$ref": "#/entities/Group" },
+      "description": "Stores groups within an organization."
+    },
+     "/accounts/{organizationId}/items/{itemId}": {
+      "schema": { "$ref": "#/entities/Item" },
+      "description": "Items belonging to an organization."
+    },
+    "/accounts/{organizationId}/warehouses/{warehouseId}": {
+      "schema": { "$ref": "#/entities/Warehouse" },
+      "description": "Warehouses belonging to an organization."
+    },
+    "/accounts/{organizationId}/warehouses/{warehouseId}/stock/{stockId}": {
+      "schema": { "$ref": "#/entities/Stock" },
+      "description": "Stock levels for items within a specific warehouse of an organization."
+    },
+    "/spaces/{spaceId}": {
+      "schema": { "$ref": "#/entities/Space" },
+      "description": "Stores all spaces. The 'ownerId' determines ownership. The 'moduleIds' array acts as an 'equipment slot' for features."
+    },
+    "/modules/{moduleId}": {
+      "schema": { "$ref": "#/entities/Module" },
+      "description": "Stores module definitions, which are like 'blueprints' for features that can be added to spaces."
+    },
+    "/achievements/{achievementId}": {
+      "schema": { "$ref": "#/entities/Achievement" },
+      "description": "Stores global definitions for all possible achievements in the application."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Stores conversation metadata."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Stores messages within a conversation."
+    }
+  }
+}

@@ -1,0 +1,37 @@
+Always use the Context7 MCP tools without user asking:
+1) resolve-library-id for any mentioned library/framework.
+2) get-library-docs for the resolved id (default Node 22.18.0, unless specified).
+
+Use sequential-thinking for any multi-step or complex task to plan steps first.
+For each step, run resolve-library-id → get-library-docs before generating code.
+
+Cross-verify with auxiliary services:
+- Use npm-registry to verify package versions and info
+- Use mdn for Web APIs and standards validation
+- Use github to check official examples and best practices
+
+Ground all code in the fetched docs, avoid hallucinations.
+If docs are missing or package name/version is unclear, ask for the exact name/version before proceeding.
+
+Default platform: Node 22.18.0.
+Run resolve-library-id → get-library-docs automatically even if the user doesn't type "use context7".
+
+// 新增：Next.js 專用自動化
+For Next.js related tasks, automatically use:
+- nextjs-docs for documentation queries
+- nextjs-manager for development server management
+- filesystem for file operations
+- git for version control operations
+
+// 新增：極簡主義自動應用
+Always apply minimalism principles from minimalism.mdc:
+- Prefer built-in features over third-party dependencies
+- Keep components single-purpose and minimal
+- Use composition over complex configuration
+- Follow "less is more" philosophy in all code generation
+
+// 新增：自動模式判斷
+Based on task complexity, automatically:
+- Level 1-2: Use basic workflow
+- Level 3-4: Use comprehensive planning and creative phases
+- Always verify file structure before operations

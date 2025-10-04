@@ -1,0 +1,164 @@
+---
+alwaysApply: true
+---
+
+# Agent 自動記憶行為配置
+
+## 🎯 Agent 記憶行為指令
+
+### 對話開始時
+```
+每次對話開始時，Agent 必須：
+1. 說 "Remembering..." 
+2. 檢索相關記憶
+3. 基於記憶調整回應風格
+```
+
+### 對話進行中
+```
+Agent 必須自動識別並暫存：
+- 用戶偏好和習慣
+- 專案需求和規格  
+- 技術決策和選擇
+- 問題和解決方案
+- 學習心得和洞察
+```
+
+### 對話結束時
+```
+Agent 必須自動：
+1. 整合暫存的記憶
+2. 創建或更新實體
+3. 建立實體關係
+4. 保存到記憶圖譜
+```
+
+## 📋 自動記憶檢查清單
+
+### 記憶提取檢查
+- [ ] 識別用戶偏好關鍵字
+- [ ] 識別專案需求關鍵字
+- [ ] 識別技術決策關鍵字
+- [ ] 識別問題解決關鍵字
+- [ ] 識別學習洞察關鍵字
+
+### 記憶保存檢查
+- [ ] 檢查現有實體避免重複
+- [ ] 創建或更新實體
+- [ ] 建立實體關係
+- [ ] 驗證記憶保存成功
+
+## 🔍 記憶觸發關鍵字 (中英文雙語支持)
+
+### 用戶偏好觸發器
+```
+中文: 我喜歡、我偏好、我習慣、我通常、我總是、我傾向於、我的風格、我習慣用、我偏好使用
+英文: I like, I prefer, I usually, I always, I tend to, my style, I'm used to, I prefer using
+```
+
+### 專案需求觸發器
+```
+中文: 需要、要求、必須、應該、希望實現、期望、目標、功能需求、性能要求
+英文: need, require, must, should, want to implement, expect, goal, feature requirement
+```
+
+### 技術決策觸發器
+```
+中文: 使用、選擇、決定、採用、配置、設置、安裝、技術選型、架構選擇
+英文: use, choose, decide, adopt, configure, setup, install, tech stack, architecture choice
+```
+
+### 問題解決觸發器
+```
+中文: 問題、錯誤、解決、修復、優化、改進、調整、Bug、Issue
+英文: problem, error, solve, fix, optimize, improve, adjust, bug, issue, solution
+```
+
+### 學習洞察觸發器
+```
+中文: 學習到、發現、了解、認識、理解、掌握、學會、經驗、心得
+英文: learn, discover, understand, realize, grasp, master, experience, insight
+```
+
+### 代碼模式觸發器
+```
+中文: 代碼、編程、開發、實現、函數、組件、模塊、API、接口
+英文: code, programming, development, implementation, function, component, module, api
+```
+
+### 工作流程觸發器
+```
+中文: 工作流程、流程、步驟、方法、策略、方案、計劃
+英文: workflow, process, step, method, strategy, solution, plan
+```
+
+## 🎨 記憶模板
+
+### 用戶偏好記憶模板
+```
+實體名稱: user_preference_[主題]
+實體類型: user_preference
+觀察: [具體偏好描述]
+```
+
+### 專案需求記憶模板
+```
+實體名稱: project_requirement_[功能]
+實體類型: project_requirement
+觀察: [具體需求描述]
+```
+
+### 技術決策記憶模板
+```
+實體名稱: technical_decision_[技術]
+實體類型: technical_decision
+觀察: [決策內容和原因]
+```
+
+## 🔗 關係建立規則
+
+### 自動關係建立
+```
+user_preference → project_context (applies_to)
+project_requirement → project_context (belongs_to)
+technical_decision → project_context (used_in)
+problem_solution → technical_decision (solves_for)
+learning_insight → technical_decision (learned_from)
+```
+
+## ✅ 執行確認
+
+Agent 必須在每次對話中：
+1. ✅ 自動檢索相關記憶
+2. ✅ 自動識別重要信息
+3. ✅ 自動保存新記憶
+4. ✅ 自動建立實體關係
+5. ✅ 驗證記憶保存成功
+
+## 🌐 中英文雙語記憶提取規則
+
+### 語言檢測與處理
+```
+Agent 必須能夠：
+1. 自動檢測對話語言（中文/英文/混合）
+2. 使用對應語言的關鍵字觸發器
+3. 支持中英文混合對話的記憶提取
+4. 保持記憶內容的語言一致性
+```
+
+### 混合語言處理
+```
+當對話中出現中英文混合時：
+- 優先使用主要語言的關鍵字
+- 如果英文關鍵字出現在中文對話中，也應觸發記憶
+- 記憶內容保持原始語言的表達方式
+```
+
+### 語言優先級
+```
+1. 中文優先：如果對話主要使用中文，優先使用中文關鍵字
+2. 英文優先：如果對話主要使用英文，優先使用英文關鍵字
+3. 混合模式：同時監聽中英文關鍵字，根據上下文判斷
+```
+
+**重要**: 用戶無需手動調用任何記憶功能，所有記憶操作都應該是自動的！
