@@ -31,6 +31,7 @@
     ├── creative/
     │   ├── creative-auth-uiux.md (15 KB, 今天)
     │   ├── creative-firebase-architecture.md (15 KB, 今天)
+    │   ├── creative-system-integration.md (21.5 KB, 今天)
     ├── activeContext.md (2.8 KB, 今天)
     ├── architecture-decisions.md (11.2 KB, 今天)
     ├── featureInventory.md (11.3 KB, 今天)
