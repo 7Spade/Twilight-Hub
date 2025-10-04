@@ -356,7 +356,6 @@
     │   ├── creative-firebase-architecture.md (15 KB, 今天)
     │   ├── creative-security-design.md (23.7 KB, 今天)
     │   ├── creative-system-integration.md (21.5 KB, 今天)
-    ├── .qa_validation_status (18 B, 今天)
     ├── activeContext.md (3 KB, 今天)
     ├── architecture-decisions.md (11.2 KB, 今天)
     ├── featureInventory.md (11.3 KB, 今天)

@@ -40,7 +40,7 @@ const CONFIG = {
   extensions: ['.ts', '.tsx', '.js', '.jsx'],
   
   // 忽略的目錄
-  ignoreDirs: ['node_modules', '.next', 'dist', 'build', '.git'],
+  ignoreDirs: ['docs', 'node_modules', '.next', 'dist', 'build', '.git'],
   
   // TODO 正則表達式
   todoRegex: /\/\/\s*TODO:\s*\[([^\]]+)\]\s*(\w+)\s+(.+)/,
