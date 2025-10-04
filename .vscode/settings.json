@@ -58,5 +58,8 @@
   "// === 程式碼片段 ===": "",
   "editor.quickSuggestions": {
     "comments": true
-  }
+  },
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": true,
+  "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "chcp 65001"]
 }
