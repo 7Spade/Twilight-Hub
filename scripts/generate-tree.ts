@@ -11,6 +11,9 @@ import * as path from 'node:path';
 // 排除的目錄和文件模式
 const EXCLUDE_PATTERNS: readonly string[] = [
   // IDE 和編輯器配置
+  'docs',
+  'memory-bank',
+  'scripts',
   '.playwright-mcp',
   '.cursor',
   '.vscode',
