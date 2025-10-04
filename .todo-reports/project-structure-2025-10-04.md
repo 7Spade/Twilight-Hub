@@ -31,6 +31,7 @@
     ├── creative/
     │   ├── creative-auth-uiux.md (15 KB, 今天)
     │   ├── creative-firebase-architecture.md (15 KB, 今天)
+    │   ├── creative-security-design.md (23.7 KB, 今天)
     │   ├── creative-system-integration.md (21.5 KB, 今天)
     ├── activeContext.md (2.8 KB, 今天)
     ├── architecture-decisions.md (11.2 KB, 今天)
@@ -120,14 +121,15 @@
     │   │   ├── signup/
     │   │   │   └── page.tsx (1.8 KB, 今天)
     │   ├── (public)/
-    │   │   ├── page.tsx (937 B, 今天)
+    │   │   ├── page.tsx (4.3 KB, 今天)
     │   ├── favicon.ico (14.7 KB, 昨天)
     │   ├── globals.css (2.3 KB, 今天)
     │   ├── page.tsx (120 B, 今天)
     ├── components/
     │   ├── auth/
+    │   │   ├── auth-navigation.tsx (1.1 KB, 今天)
     │   │   ├── auth-provider.tsx (844 B, 今天)
-    │   │   ├── index.ts (143 B, 今天)
+    │   │   ├── index.ts (253 B, 今天)
     │   │   ├── permission-guard.tsx (209 B, 今天)
     │   │   ├── role-manager.tsx (220 B, 今天)
     │   ├── features/
@@ -140,6 +142,9 @@
     │   │   │   ├── types/
     │   │   ├── organizations/
     │   │   │   ├── components/
+    │   │   │   │   ├── roles/
+    │   │   │   │   │   └── index.ts (45 B, 今天)
+    │   │   │   │   │   └── role-list.tsx (2.3 KB, 今天)
     │   │   │   ├── hooks/
     │   │   │   ├── services/
     │   │   │   ├── types/
@@ -293,6 +298,8 @@
     │   └── config.ts (124 B, 今天)
     │   └── constants.ts (124 B, 今天)
     │   └── formatting.ts (163 B, 今天)
+    │   └── placeholder-images.json (858 B, 今天)
+    │   └── placeholder-images.ts (1.5 KB, 今天)
     │   └── utils.ts (349 B, 今天)
     │   └── validation.ts (142 B, 今天)
 └── src copy/

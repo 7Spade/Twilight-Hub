@@ -41,5 +41,28 @@ export function getPlaceholderImage(id: string): ImagePlaceholder {
     return image;
 }
 
+/**
+ * 生成基於哈希值的頭像 URL
+ * @param seed 種子字符串（如用戶名、郵箱等）
+ * @param style 頭像風格
+ * @returns 頭像 URL
+ */
+export function generateAvatarUrl(
+    seed: string, 
+    style: 'identicon' | 'initials' | 'bottts' | 'avataaars' | 'micah' = 'identicon'
+): string {
+    const baseUrl = 'https://api.dicebear.com/6.x';
+    return `${baseUrl}/${style}/svg?seed=${encodeURIComponent(seed)}`;
+}
+
+/**
+ * 生成多文化頭像 URL
+ * @param seed 種子字符串
+ * @returns Multiavatar URL
+ */
+export function generateMultiavatarUrl(seed: string): string {
+    return `https://api.multiavatar.com/${encodeURIComponent(seed)}.svg`;
+}
+
 // Export all images if needed, though getPlaceholderImage is preferred.
 export const AllPlaceholderImages: ImagePlaceholder[] = Array.from(imageMap.values());
