@@ -22,7 +22,7 @@ imageMap.set(heroImage.id, heroImage);
 
 /**
  * Retrieves a placeholder image by its ID.
- * @param id The ID of the placeholder image (e.g., "avatar-1", "org-logo-2").
+ * @param id The ID of the placeholder image (e.g., "org-logo-1", "org-logo-2").
  * @returns The ImagePlaceholder object.
  * @throws If an image with the given ID is not found.
  */
@@ -65,4 +65,5 @@ export function generateMultiavatarUrl(seed: string): string {
 }
 
 // Export all images if needed, though getPlaceholderImage is preferred.
+// Note: Avatar images are now generated using hash-based avatars instead of static images
 export const AllPlaceholderImages: ImagePlaceholder[] = Array.from(imageMap.values());

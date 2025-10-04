@@ -179,10 +179,11 @@
     │   │   │   ├── services/
     │   │   │   ├── types/
     │   │   ├── users/
-    │   │   │   └── components/
-    │   │   │   └── hooks/
-    │   │   │   └── services/
-    │   │   │   └── types/
+    │   │   │   ├── components/
+    │   │   │   ├── hooks/
+    │   │   │   ├── services/
+    │   │   │   ├── types/
+    │   │   ├── avatar-demo.tsx (8 KB, 今天)
     │   ├── forms/
     │   │   ├── form-card.tsx (211 B, 今天)
     │   │   ├── form-field.tsx (211 B, 今天)
@@ -211,6 +212,7 @@
     │   │   ├── empty.tsx (2.3 KB, 今天)
     │   │   ├── field.tsx (5.9 KB, 今天)
     │   │   ├── form.tsx (4 KB, 今天)
+    │   │   ├── hash-avatar.tsx (3 KB, 今天)
     │   │   ├── hover-card.tsx (1.2 KB, 今天)
     │   │   ├── input-group.tsx (4.9 KB, 今天)
     │   │   ├── input-otp.tsx (2.1 KB, 今天)
@@ -298,8 +300,9 @@
     │   └── config.ts (124 B, 今天)
     │   └── constants.ts (124 B, 今天)
     │   └── formatting.ts (163 B, 今天)
+    │   └── hash-avatar.ts (4.4 KB, 今天)
     │   └── placeholder-images.json (858 B, 今天)
-    │   └── placeholder-images.ts (1.5 KB, 今天)
+    │   └── placeholder-images.ts (2.1 KB, 今天)
     │   └── utils.ts (349 B, 今天)
     │   └── validation.ts (142 B, 今天)
 └── src copy/

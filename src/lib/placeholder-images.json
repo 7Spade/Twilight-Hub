@@ -1,18 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "avatar-1",
-      "description": "Default avatar for user profile",
-      "imageUrl": "https://picsum.photos/seed/avatar-1/100/100",
-      "imageHint": "professional headshot"
-    },
-    {
-      "id": "avatar-2", 
-      "description": "Alternative avatar for user profile",
-      "imageUrl": "https://picsum.photos/seed/avatar-2/100/100",
-      "imageHint": "business professional"
-    },
-    {
       "id": "org-logo-1",
       "description": "Default organization logo",
       "imageUrl": "https://picsum.photos/seed/org-logo-1/200/200",
