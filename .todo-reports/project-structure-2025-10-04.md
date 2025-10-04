@@ -301,8 +301,8 @@
     │   └── constants.ts (124 B, 今天)
     │   └── formatting.ts (163 B, 今天)
     │   └── hash-avatar.ts (4.4 KB, 今天)
-    │   └── placeholder-images.json (858 B, 今天)
-    │   └── placeholder-images.ts (2.1 KB, 今天)
+    │   └── placeholder-images.json (439 B, 今天)
+    │   └── placeholder-images.ts (2.2 KB, 今天)
     │   └── utils.ts (349 B, 今天)
     │   └── validation.ts (142 B, 今天)
 └── src copy/
