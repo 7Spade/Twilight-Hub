@@ -49,7 +49,16 @@ interface Entity {
 
 ## 架構模式
 
-### 依賴方向
+### 核心架構決策
+基於 ADR (Architecture Decision Records) 確定的架構模式：
+
+#### 1. 技術棧選擇 (ADR-001, ADR-002, ADR-003)
+- **前端框架**: Next.js 15 App Router
+- **後端服務**: Firebase (Auth + Firestore + Storage)
+- **開發語言**: TypeScript
+- **UI 框架**: shadcn/ui + Tailwind CSS
+
+#### 2. 組件架構 (ADR-007)
 ```
 app/ (頁面層)
     ↓
@@ -64,7 +73,12 @@ lib/ (工具層)
 firebase/ (數據層)
 ```
 
-### 模組邊界
+### 依賴方向原則
+- **單向依賴**: 只能從上層依賴下層，嚴禁反向依賴
+- **清晰邊界**: 模組間通過公共 API 互動
+- **最小耦合**: 減少組件間的直接依賴
+
+### 模組邊界定義
 - **app/**: Next.js 頁面和路由
 - **components/features/**: 功能特定的業務組件
 - **components/**: 可重用的基礎 UI 組件

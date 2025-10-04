@@ -10,4 +10,18 @@ const firestore = getFirestore(app);
 const storage = getStorage(app);
 
 export { app, auth, firestore, storage };
-export default app;
+
+// Convenience re-exports for hooks and provider
+export {
+  FirebaseProvider,
+  useFirebase,
+  useUser,
+  useAuthInstance,
+  useFirestore,
+} from './provider';
+
+export { default as default } from './config';
+
+// Firestore React hooks
+export { default as useCollection } from './firestore/use-collection';
+export { default as useDoc } from './firestore/use-doc';

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { collection } from 'firebase/firestore';
+import { collection, type FirestoreDataConverter } from 'firebase/firestore';
 import { PageContainer } from '@/components/layout/page-container';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,7 +25,17 @@ export default function SpacesPage() {
   const firestore = useFirestore();
   const [search, setSearch] = useState('');
 
-  const spacesRef = useMemo(() => (firestore ? collection(firestore, 'spaces') : null), [firestore]);
+  const spacesRef = useMemo(() => {
+    if (!firestore) return null;
+    const converter: FirestoreDataConverter<Space> = {
+      fromFirestore: (snap) => ({ id: snap.id, ...(snap.data() as any) }) as Space,
+      toFirestore: (data) => {
+        const { id, ...rest } = data as any;
+        return rest;
+      },
+    };
+    return collection(firestore, 'spaces').withConverter(converter);
+  }, [firestore]);
   const { data: allSpaces, loading } = useCollection<Space>(spacesRef);
 
   const filtered = useMemo(() => {
